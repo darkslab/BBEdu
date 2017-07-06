@@ -1,0 +1,226 @@
+.mt-0  { margin-top:     0px !important; }
+.mr-0  { margin-right:   0px !important; }
+.mb-0  { margin-bottom:  0px !important; }
+.ml-0  { margin-left:    0px !important; }
+.mt-5  { margin-top:     5px !important; }
+.mr-5  { margin-right:   5px !important; }
+.mb-5  { margin-bottom:  5px !important; }
+.ml-5  { margin-left:    5px !important; }
+.mt-10 { margin-top:    10px !important; }
+.mr-10 { margin-right:  10px !important; }
+.mb-10 { margin-bottom: 10px !important; }
+.ml-10 { margin-left:   10px !important; }
+.pt-0  { padding-top:     0px !important; }
+.pr-0  { padding-right:   0px !important; }
+.pb-0  { padding-bottom:  0px !important; }
+.pl-0  { padding-left:    0px !important; }
+.pt-5  { padding-top:     5px !important; }
+.pr-5  { padding-right:   5px !important; }
+.pb-5  { padding-bottom:  5px !important; }
+.pl-5  { padding-left:    5px !important; }
+.pt-10 { padding-top:    10px !important; }
+.pr-10 { padding-right:  10px !important; }
+.pb-10 { padding-bottom: 10px !important; }
+.pl-10 { padding-left:   10px !important; }
+.pt-15 { padding-top:    15px !important; }
+.pr-15 { padding-right:  15px !important; }
+.pb-15 { padding-bottom: 15px !important; }
+.pl-15 { padding-left:   15px !important; }
+.text-bright {
+    color: rgba(237, 244, 247, 1);
+}
+.text-shadowed {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.bb-container {
+    position: relative;
+    overflow-x: hidden;
+}
+
+.bb-container-student {
+    background-color: rgba(13, 60, 97, 1);
+}
+
+.bb-menu {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 220px;
+}
+
+.bb-main {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    min-height: 600px;
+    background-color: rgba(237, 244, 247, 1);
+    -webkit-transition: left .3s ease-in-out;
+         -o-transition: left .3s ease-in-out;
+            transition: left .3s ease-in-out;
+    -webkit-box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.4);
+}
+
+.bb-main.bb-pushed {
+    left: 220px;
+}
+
+.bb-menu-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.bb-menu-section.bb-menu-section-first {
+    border-top: none;
+}
+
+@media (min-width: 768px) {
+    .bb-menu-section.bb-menu-section-last {
+        border-bottom: none;
+    }
+}
+
+.bb-menu-section.bb-menu-section-final {
+    border-bottom: none;
+}
+
+.bb-menu-section .nav>li>a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: rgba(237, 244, 247, 1);
+}
+
+.bb-menu-section .nav-pills>li>a {
+    border-radius: 0;
+}
+
+.bb-menu-section .nav>li>a:hover,
+.bb-menu-section .nav>li>a:focus {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.bb-menu-logo {
+    height: 64px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.bb-menu-gravatar {
+    border: 2px solid rgba(237, 244, 247, 1);
+}
+
+.bb-bar .navbar {
+    border-radius: 0;
+}
+
+.bb-bar .navbar-toggle {
+    display: block !important;
+    float: left;
+}
+
+.bb-bar .navbar-toggle .icon-bar {
+    -webkit-transition: all 0.3s;
+         -o-transition: all 0.3s;
+            transition: all 0.3s;
+}
+.bb-bar .navbar-toggle .icon-bar.bb-bar-button-first {
+    -webkit-transform: translate(0px, 0px) rotate(0deg);
+        -ms-transform: translate(0px, 0px) rotate(0deg);
+         -o-transform: translate(0px, 0px) rotate(0deg);
+            transform: translate(0px, 0px) rotate(0deg);
+}
+.bb-bar .navbar-toggle.bb-pushed .icon-bar.bb-bar-button-first {
+    -webkit-transform: translate(0px, 6px) rotate(45deg);
+        -ms-transform: translate(0px, 6px) rotate(45deg);
+         -o-transform: translate(0px, 6px) rotate(45deg);
+            transform: translate(0px, 6px) rotate(45deg);
+}
+.bb-bar .navbar-toggle .icon-bar.bb-bar-button-second {
+    -webkit-transform: translate(0px, 0px) rotate(0deg);
+        -ms-transform: translate(0px, 0px) rotate(0deg);
+         -o-transform: translate(0px, 0px) rotate(0deg);
+            transform: translate(0px, 0px) rotate(0deg);
+    opacity: 1;
+}
+.bb-bar .navbar-toggle.bb-pushed .icon-bar.bb-bar-button-second {
+    -webkit-transform: translate(0px, 0px) rotate(360deg);
+        -ms-transform: translate(0px, 0px) rotate(360deg);
+         -o-transform: translate(0px, 0px) rotate(360deg);
+            transform: translate(0px, 0px) rotate(360deg);
+    opacity: 0;
+}
+.bb-bar .navbar-toggle .icon-bar.bb-bar-button-third {
+    -webkit-transform: translate(0px, 0px) rotate(0deg);
+        -ms-transform: translate(0px, 0px) rotate(0deg);
+         -o-transform: translate(0px, 0px) rotate(0deg);
+            transform: translate(0px, 0px) rotate(0deg);
+}
+.bb-bar .navbar-toggle.bb-pushed .icon-bar.bb-bar-button-third {
+    -webkit-transform: translate(0px, -6px) rotate(-45deg);
+        -ms-transform: translate(0px, -6px) rotate(-45deg);
+         -o-transform: translate(0px, -6px) rotate(-45deg);
+            transform: translate(0px, -6px) rotate(-45deg);
+}
+
+.bb-bar-logo {
+    height: 54px;
+}
+
+.bb-bar-gravatar {
+    height: 44px;
+}
+
+.bb-content {
+    width: auto;
+    max-width: 970px;
+    padding-bottom: 46px;
+}
+
+.bb-copyright {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    line-height: 36px;
+    -webkit-transition: left .3s ease-in-out;
+         -o-transition: left .3s ease-in-out;
+            transition: left .3s ease-in-out;
+    font-size: 90%;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 1200px) {
+    .bb-main {
+        left: 220px;
+        padding-right: 220px;
+    }
+    .bb-copyright {
+        left: -220px;
+    }
+
+    .bb-bar .navbar-toggle .icon-bar.bb-bar-button-first {
+        -webkit-transform: translate(0px, 0px) rotate(0deg) !important;
+            -ms-transform: translate(0px, 0px) rotate(0deg) !important;
+             -o-transform: translate(0px, 0px) rotate(0deg) !important;
+                transform: translate(0px, 0px) rotate(0deg) !important;
+        width: 4px !important;
+    }
+    .bb-bar .navbar-toggle .icon-bar.bb-bar-button-second {
+        -webkit-transform: translate(0px, 0px) rotate(0deg) !important;
+            -ms-transform: translate(0px, 0px) rotate(0deg) !important;
+             -o-transform: translate(0px, 0px) rotate(0deg) !important;
+                transform: translate(0px, 0px) rotate(0deg) !important;
+        opacity: 1 !important;
+        width: 4px !important;
+    }
+    .bb-bar .navbar-toggle .icon-bar.bb-bar-button-third {
+        -webkit-transform: translate(0px, 0px) rotate(0deg) !important;
+            -ms-transform: translate(0px, 0px) rotate(0deg) !important;
+             -o-transform: translate(0px, 0px) rotate(0deg) !important;
+                transform: translate(0px, 0px) rotate(0deg) !important;
+        width: 4px !important;
+    }
+}
