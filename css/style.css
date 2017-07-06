@@ -188,6 +188,8 @@
     -webkit-transition: left .3s ease-in-out;
          -o-transition: left .3s ease-in-out;
             transition: left .3s ease-in-out;
+    font-size: 90%;
+    color: rgba(0, 0, 0, 0.3);
 }
 
 @media (min-width: 1200px) {
