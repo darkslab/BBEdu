@@ -1,7 +1,3 @@
-html,
-body {
-    height: 100%;
-}
 .mt-0  { margin-top:     0px !important; }
 .mr-0  { margin-right:   0px !important; }
 .mb-0  { margin-bottom:  0px !important; }
@@ -39,10 +35,11 @@ body {
 
 .bb-container {
     position: relative;
-    height: 100%;
-    min-height: 600px;
     overflow-x: hidden;
-    background-color: #2196f3;
+}
+
+.bb-container-student {
+    background-color: rgba(13, 60, 97, 1);
 }
 
 .bb-menu {
@@ -50,16 +47,15 @@ body {
     top: 0px;
     left: 0px;
     width: 220px;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
 }
 
-.bb-content {
-    position: absolute;
+.bb-main {
+    position: relative;
     top: 0px;
     left: 0px;
+    bottom: 0px;
     width: 100%;
-    height: 100%;
+    min-height: 600px;
     background-color: rgba(237, 244, 247, 1);
     -webkit-transition: left .3s ease-in-out;
          -o-transition: left .3s ease-in-out;
@@ -68,7 +64,7 @@ body {
             box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.4);
 }
 
-.bb-content.bb-pushed {
+.bb-main.bb-pushed {
     left: 220px;
 }
 
@@ -177,29 +173,52 @@ body {
     height: 44px;
 }
 
+.bb-content {
+    width: auto;
+    max-width: 970px;
+    padding-bottom: 46px;
+}
+
+.bb-copyright {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    line-height: 36px;
+    -webkit-transition: left .3s ease-in-out;
+         -o-transition: left .3s ease-in-out;
+            transition: left .3s ease-in-out;
+}
+
 @media (min-width: 1200px) {
-    .bb-content {
+    .bb-main {
         left: 220px;
         padding-right: 220px;
     }
+    .bb-copyright {
+        left: -220px;
+    }
 
     .bb-bar .navbar-toggle .icon-bar.bb-bar-button-first {
-        -webkit-transform: translate(5px, 6px) rotate(60deg) !important;
-            -ms-transform: translate(5px, 6px) rotate(60deg) !important;
-             -o-transform: translate(5px, 6px) rotate(60deg) !important;
-                transform: translate(5px, 6px) rotate(60deg) !important;
+        -webkit-transform: translate(0px, 0px) rotate(0deg) !important;
+            -ms-transform: translate(0px, 0px) rotate(0deg) !important;
+             -o-transform: translate(0px, 0px) rotate(0deg) !important;
+                transform: translate(0px, 0px) rotate(0deg) !important;
+        width: 4px !important;
     }
     .bb-bar .navbar-toggle .icon-bar.bb-bar-button-second {
-        -webkit-transform: translate(0px, 9px) rotate(0deg) !important;
-            -ms-transform: translate(0px, 9px) rotate(0deg) !important;
-             -o-transform: translate(0px, 9px) rotate(0deg) !important;
-                transform: translate(0px, 9px) rotate(0deg) !important;
+        -webkit-transform: translate(0px, 0px) rotate(0deg) !important;
+            -ms-transform: translate(0px, 0px) rotate(0deg) !important;
+             -o-transform: translate(0px, 0px) rotate(0deg) !important;
+                transform: translate(0px, 0px) rotate(0deg) !important;
         opacity: 1 !important;
+        width: 4px !important;
     }
     .bb-bar .navbar-toggle .icon-bar.bb-bar-button-third {
-        -webkit-transform: translate(-5px, -6px) rotate(120deg) !important;
-            -ms-transform: translate(-5px, -6px) rotate(120deg) !important;
-             -o-transform: translate(-5px, -6px) rotate(120deg) !important;
-                transform: translate(-5px, -6px) rotate(120deg) !important;
+        -webkit-transform: translate(0px, 0px) rotate(0deg) !important;
+            -ms-transform: translate(0px, 0px) rotate(0deg) !important;
+             -o-transform: translate(0px, 0px) rotate(0deg) !important;
+                transform: translate(0px, 0px) rotate(0deg) !important;
+        width: 4px !important;
     }
 }

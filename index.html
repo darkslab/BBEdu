@@ -17,16 +17,27 @@
     <script src="js/bootstrap.min.js"></script>
     <script>
         $(function() {
+            var min_height = 600;
+            var $main = $("[data-bb-main]");
+            $main.css({
+                "min-height": ($(window).height() > min_height ? $(window).height() : min_height) + "px"
+            });
+            $(window).resize(function() {
+                if ($(this).height() > min_height) {
+                    $main.css({
+                        "min-height": $(this).height() + "px"
+                    });
+                }
+            });
             $("[data-bb-bar-button]").click(function() {
                 if ($(window).width() < 1200) {
                     var $button = $(this);
-                    var $content = $("[data-bb-content]");
                     if ($button.hasClass("bb-pushed")) {
                         $button.removeClass("bb-pushed");
-                        $content.removeClass("bb-pushed");
+                        $main.removeClass("bb-pushed");
                     } else {
                         $button.addClass("bb-pushed");
-                        $content.addClass("bb-pushed");
+                        $main.addClass("bb-pushed");
                     }
                 }
             });
@@ -34,7 +45,7 @@
     </script>
 </head>
 <body>
-    <div class="bb-container">
+    <div class="bb-container bb-container-student">
         <div class="bb-menu text-bright text-shadowed">
             <div class="container-fluid">
                 <div class="row bb-menu-section bb-menu-section-first pt-15 pb-15">
@@ -65,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <div class="bb-content" data-bb-content>
+        <div class="bb-main" data-bb-main>
             <div class="container-fluid">
                 <div class="row bb-bar">
                     <nav class="navbar navbar-inverse">
@@ -97,7 +108,17 @@
                         </div>
                     </nav>
                 </div>
+                <div class="row">
+                    <div class="container bb-content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                Monkey!<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="bb-copyright text-center">Сделано с <i class="fa fa-heart-o"></i> в Казахстане. &copy; BBEdu</div>
         </div>
     </div>
 </body>
