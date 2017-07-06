@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title></title>
+
+    <meta name="description" content="">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            var min_height = 600;
+            var $main = $("[data-bb-main]");
+            $main.css({
+                "min-height": ($(window).height() > min_height ? $(window).height() : min_height) + "px"
+            });
+            $(window).resize(function() {
+                if ($(this).height() > min_height) {
+                    $main.css({
+                        "min-height": $(this).height() + "px"
+                    });
+                }
+            });
+            $("[data-bb-bar-button]").click(function() {
+                if ($(window).width() < 1200) {
+                    var $button = $(this);
+                    if ($button.hasClass("bb-pushed")) {
+                        $button.removeClass("bb-pushed");
+                        $main.removeClass("bb-pushed");
+                    } else {
+                        $button.addClass("bb-pushed");
+                        $main.addClass("bb-pushed");
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="bb-container bb-container-student">
+        <div class="bb-menu text-bright text-shadowed">
+            <div class="container-fluid">
+                <div class="row bb-menu-section bb-menu-section-first pt-15 pb-15">
+                    <a href="/" class="col-xs-12">
+                        <img class="img-responsive bb-menu-logo" src="img/bbedu-logo.png" alt="BBEdu Logo" title="BBEdu">
+                    </a>
+                </div>
+                <div class="row bb-menu-section pt-15 pb-15">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <img class="img-responsive img-circle bb-menu-gravatar" src="img/gravatar.jpg" alt="Мейрбекова Анара" title="Мейрбекова Анара">
+                    </div>
+                    <h5 class="col-xs-12 text-center text-bright mt-5 mb-0">Мейрбекова Анара</h5>
+                    <!-- <h5 class="col-xs-12 text-center text-bright mt-5 mb-5"><span class="label label-danger">Администратор</span></h5> -->
+                </div>
+                <div class="row bb-menu-section bb-menu-section-last pt-15 pb-15">
+                    <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
+                        <li class="active"><a href="#"><i class="fa fa-fw fa-tachometer"></i> Личный кабинет</a></li>
+                        <li><a href="#"><i class="fa fa-fw fa-pencil-square-o"></i> Онлайн тестирование</a></li>
+                        <li><a href="#"><i class="fa fa-fw fa-credit-card"></i> Пополнить счёт</a></li>
+                    </ul>
+                </div>
+                <div class="row bb-menu-section bb-menu-section-final pt-15 pb-15 visible-xs-block">
+                    <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
+                        <li><a href="#"><i class="fa fa-fw fa-user"></i> Профиль</a></li>
+                        <li><a href="#"><i class="fa fa-fw fa-sliders"></i> Настройки</a></li>
+                        <li><a href="#"><i class="fa fa-fw fa-sign-out"></i> Выход</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bb-main" data-bb-main>
+            <div class="container-fluid">
+                <div class="row bb-bar">
+                    <nav class="navbar navbar-inverse">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle mr-0" data-bb-bar-button>
+                                    <span class="icon-bar bb-bar-button-first"></span>
+                                    <span class="icon-bar bb-bar-button-second"></span>
+                                    <span class="icon-bar bb-bar-button-third"></span>
+                                </button>
+                                <a class="navbar-brand ml-0 pt-5 pb-5 pl-5" href="/">
+                                    <img class="bb-bar-logo" src="img/bbedu-logo.png" alt="BBEdu Logo" title="BBEdu">
+                                </a>
+                            </div>
+                            <div class="navbar-collapse collapse" style="height: 1px;">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="img/gravatar.jpg" alt="Мейрбекова Анара" title="Мейрбекова Анара"></li>
+                                    <li class="dropdown">
+                                        <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">Мейрбекова Анара <span class="caret"></span></a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#"><i class="fa fa-fw fa-user"></i> Профиль</a></li>
+                                            <li><a href="#"><i class="fa fa-fw fa-sliders"></i> Настройки</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#"><i class="fa fa-fw fa-sign-out"></i> Выход</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="container bb-content">
+
+                        <!-- Main content start -->
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Panel 1</h3>
+                                    </div>
+                                    <div class="panel-body" style="height: 400px;">
+                                        Panel content
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Panel 2</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        Panel content
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Panel 3</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        Panel content
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Main content end -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="bb-copyright text-center">Сделано с <i class="fa fa-heart-o"></i> в Казахстане. &copy; BBEdu</div>
+        </div>
+    </div>
+</body>
+</html>
