@@ -102,6 +102,11 @@
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+.bb-menu-section .nav>li.active>a:hover,
+.bb-menu-section .nav>li.active>a:focus {
+    background-color: #2196f3;
+}
+
 .bb-menu-logo {
     height: 64px;
     margin-right: auto;
