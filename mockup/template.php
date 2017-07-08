@@ -11,7 +11,7 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css?v=1" rel="stylesheet">
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -49,7 +49,7 @@
         <div class="bb-menu text-bright text-shadowed">
             <div class="container-fluid">
                 <div class="row bb-menu-section bb-menu-section-first pt-15 pb-15">
-                    <a href="/" class="col-xs-12">
+                    <a href="<?php echo $base; ?>" class="col-xs-12">
                         <img class="img-responsive bb-menu-logo" src="img/logo.png" alt="bbTest.kz Logo" title="bbTest.kz">
                     </a>
                 </div>
@@ -62,16 +62,16 @@
                 </div>
                 <div class="row bb-menu-section bb-menu-section-last pt-15 pb-15">
                     <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
-                        <li><a href="/dashboard.html"><i class="fa fa-fw fa-tachometer"></i> Личный кабинет</a></li>
-                        <li><a href="#"><i class="fa fa-fw fa-pencil-square-o"></i> Онлайн тестирование</a></li>
-                        <li><a href="#"><i class="fa fa-fw fa-credit-card"></i> Пополнить счёт</a></li>
+                        <li class="<?php echo $nav == 'dashboard' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>dashboard.html"><i class="fa fa-fw fa-tachometer"></i> Личный кабинет</a></li>
+                        <li class="<?php echo $nav == 'test' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>test.html"><i class="fa fa-fw fa-pencil-square-o"></i> Онлайн тестирование</a></li>
+                        <li class="<?php echo $nav == 'payment' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>payment.html"><i class="fa fa-fw fa-credit-card"></i> Пополнить счёт</a></li>
                     </ul>
                 </div>
                 <div class="row bb-menu-section bb-menu-section-final pt-15 pb-15 visible-xs-block">
                     <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
-                        <li><a href="#"><i class="fa fa-fw fa-user"></i> Профиль</a></li>
-                        <li><a href="#"><i class="fa fa-fw fa-sliders"></i> Настройки</a></li>
-                        <li><a href="#"><i class="fa fa-fw fa-sign-out"></i> Выход</a></li>
+                        <li class="<?php echo $nav == 'profile' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>profile.html"><i class="fa fa-fw fa-user"></i> Профиль</a></li>
+                        <li class="<?php echo $nav == 'settings' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>settings.html"><i class="fa fa-fw fa-sliders"></i> Настройки</a></li>
+                        <li class="<?php echo $nav == 'logout' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>logout.html"><i class="fa fa-fw fa-sign-out"></i> Выход</a></li>
                     </ul>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                                     <span class="icon-bar bb-bar-button-second"></span>
                                     <span class="icon-bar bb-bar-button-third"></span>
                                 </button>
-                                <a class="navbar-brand ml-0 pt-5 pb-5 pl-5" href="/">
+                                <a class="navbar-brand ml-0 pt-5 pb-5 pl-5" href="<?php echo $base; ?>">
                                     <img class="bb-bar-logo" src="img/logo.png" alt="bbTest.kz Logo" title="bbTest.kz">
                                 </a>
                             </div>
@@ -97,10 +97,10 @@
                                     <li class="dropdown">
                                         <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">Мейрбекова Анара <span class="caret"></span></a>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#"><i class="fa fa-fw fa-user"></i> Профиль</a></li>
-                                            <li><a href="#"><i class="fa fa-fw fa-sliders"></i> Настройки</a></li>
+                                            <li><a href="<?php echo $base; ?>profile.html"><i class="fa fa-fw fa-user"></i> Профиль</a></li>
+                                            <li><a href="<?php echo $base; ?>settings.html"><i class="fa fa-fw fa-sliders"></i> Настройки</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="#"><i class="fa fa-fw fa-sign-out"></i> Выход</a></li>
+                                            <li><a href="<?php echo $base; ?>logout.html"><i class="fa fa-fw fa-sign-out"></i> Выход</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -112,6 +112,7 @@
                     <div class="container bb-content">
 
                         <!-- Main content start -->
+                        <?php echo $content; ?>
                         <!-- Main content end -->
 
                     </div>
