@@ -69,7 +69,6 @@
                 </div>
                 <div class="row bb-menu-section bb-menu-section-final pt-15 pb-15 visible-xs-block">
                     <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
-                        <li class="<?php echo $nav == 'profile' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>profile.html"><i class="fa fa-fw fa-user"></i> Профиль</a></li>
                         <li class="<?php echo $nav == 'settings' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>settings.html"><i class="fa fa-fw fa-sliders"></i> Настройки</a></li>
                         <li class="<?php echo $nav == 'logout' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>logout.html"><i class="fa fa-fw fa-sign-out"></i> Выход</a></li>
                     </ul>
@@ -97,7 +96,7 @@
                                     <li class="dropdown">
                                         <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">Мейрбекова Анара <span class="caret"></span></a>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="<?php echo $base; ?>profile.html"><i class="fa fa-fw fa-user"></i> Профиль</a></li>
+                                            <li><a href="<?php echo $base; ?>dashboard.html"><i class="fa fa-fw fa-tachometer"></i> Личный кабинет</a></li>
                                             <li><a href="<?php echo $base; ?>settings.html"><i class="fa fa-fw fa-sliders"></i> Настройки</a></li>
                                             <li class="divider"></li>
                                             <li><a href="<?php echo $base; ?>logout.html"><i class="fa fa-fw fa-sign-out"></i> Выход</a></li>
