@@ -68,6 +68,22 @@
     left: 220px;
 }
 
+.bb-main .navbar-header {
+    position: relative;
+}
+
+.bb-main .navbar-header .navbar-brand {
+    position: relative;
+    top: 0px;
+    -webkit-transition: top .3s ease-in-out;
+         -o-transition: top .3s ease-in-out;
+            transition: top .3s ease-in-out;
+}
+
+.bb-main.bb-pushed .navbar-header .navbar-brand {
+    top: -64px;
+}
+
 .bb-menu-section {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -171,11 +187,24 @@
 }
 
 .bb-bar-logo {
-    height: 54px;
+    height: 44px;
+}
+
+.bb-bar-gravatar-container {
+    position: relative;
 }
 
 .bb-bar-gravatar {
     height: 44px;
+    position: relative;
+    top: 0px;
+    -webkit-transition: top .3s ease-in-out;
+         -o-transition: top .3s ease-in-out;
+            transition: top .3s ease-in-out;
+}
+
+.bb-main.bb-pushed .bb-bar-gravatar {
+    top: -64px;
 }
 
 .bb-content {
@@ -201,6 +230,12 @@
     .bb-main {
         left: 220px;
         padding-right: 220px;
+    }
+    .bb-main .navbar-header .navbar-brand {
+        top: -64px;
+    }
+    .bb-main .bb-bar-gravatar {
+        top: -64px;
     }
     .bb-copyright {
         left: -220px;

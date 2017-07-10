@@ -11,7 +11,7 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/style.css?v=3" rel="stylesheet">
+    <link href="css/style.css?v=4" rel="stylesheet">
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -86,13 +86,13 @@
                                     <span class="icon-bar bb-bar-button-second"></span>
                                     <span class="icon-bar bb-bar-button-third"></span>
                                 </button>
-                                <a class="navbar-brand ml-0 pt-5 pb-5 pl-5" href="<?php echo $base; ?>">
+                                <a class="navbar-brand ml-0 pt-10 pb-10 pl-5" href="<?php echo $base; ?>">
                                     <img class="bb-bar-logo" src="img/logo.png" alt="bbTest.kz Logo" title="bbTest.kz">
                                 </a>
                             </div>
                             <div class="navbar-collapse collapse" style="height: 1px;">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="img/gravatar.jpg" alt="Мейрбекова Анара" title="Мейрбекова Анара"></li>
+                                    <li class="bb-bar-gravatar-container"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="img/gravatar.jpg" alt="Мейрбекова Анара" title="Мейрбекова Анара"></li>
                                     <li class="dropdown">
                                         <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">Мейрбекова Анара <span class="caret"></span></a>
                                         <ul class="dropdown-menu dropdown-menu-right">
