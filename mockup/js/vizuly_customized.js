@@ -21,7 +21,7 @@ vizuly.theme.radial_progress = function(viz) {
         }
         var selection = viz.selection();
         selection.attr("class", skin.class);
-        selection.selectAll(".vz-radial_progress-label").style("font-size", viz.radius() * 0.25);
+        selection.selectAll(".vz-radial_progress-label").style("font-size", viz.radius() * 0.5);
     }
     function onMouseOver(e, d, i) {
     }
@@ -86,7 +86,7 @@ function VizulyArc($container, current_value, max_value) {
     var arc = vizuly.viz.radial_progress($container[0]);
     arc.data(current_value).min(0).max(max_value + 0.01).capRadius(1).on("tween", function(v, i) {
         v.selection().selectAll(".vz-radial_progress-label").text(v.label()(v.data() * i));
-    }).startAngle(250).endAngle(110).arcThickness(0.06).label(function(d, i) {
+    }).startAngle(180).endAngle(180).arcThickness(0.06).label(function(d, i) {
         return d3.format(".0f")(d);
     });
     var theme = vizuly.theme.radial_progress(arc);

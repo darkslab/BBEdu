@@ -11,7 +11,7 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/style.css?v=4" rel="stylesheet">
+    <link href="css/style.css?v=5" rel="stylesheet">
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="row bb-menu-section pt-15 pb-15">
                     <div class="col-xs-8 col-xs-offset-2">
-                        <img class="img-responsive img-circle bb-menu-gravatar" src="img/gravatar.jpg" alt="Мейрбекова Анара" title="Мейрбекова Анара">
+                        <img class="img-responsive img-circle bb-menu-gravatar" src="img/gravatar2.jpg" alt="Мейрбекова Анара" title="Мейрбекова Анара">
                     </div>
                     <h5 class="col-xs-12 text-center text-bright mt-5 mb-0">Мейрбекова Анара</h5>
                     <!-- <h5 class="col-xs-12 text-center text-bright mt-5 mb-5"><span class="label label-danger">Администратор</span></h5> -->
@@ -92,7 +92,7 @@
                             </div>
                             <div class="navbar-collapse collapse" style="height: 1px;">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class="bb-bar-gravatar-container"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="img/gravatar.jpg" alt="Мейрбекова Анара" title="Мейрбекова Анара"></li>
+                                    <li class="bb-bar-gravatar-container"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="img/gravatar2.jpg" alt="Мейрбекова Анара" title="Мейрбекова Анара"></li>
                                     <li class="dropdown">
                                         <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">Мейрбекова Анара <span class="caret"></span></a>
                                         <ul class="dropdown-menu dropdown-menu-right">

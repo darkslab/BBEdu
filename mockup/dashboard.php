@@ -7,7 +7,7 @@
 <script src="js/vizuly_customized.js"></script>
 <script>
     $(function() {
-        new VizulyArc($("[data-main-arc]"), 6, 18);
+        new VizulyArc($("[data-main-arc]"), 1, 18);
     });
 </script>
 <div class="row">
@@ -19,7 +19,10 @@
     </div>
     <div class="col-xs-12 col-sm-6 col-md-5">
         <div class="bb-arc bb-arc-dashboard-main" data-main-arc>
-            <div class="bb-arc-caption text-center text-uppercase">Тестов пройдено</div>
+            <div class="bb-arc-caption text-center">
+                <p class="mb-0">Тестов пройдено!</p>
+                <p class="mb-0">Вы можете пройти ещё 17.</p>
+            </div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-7">
