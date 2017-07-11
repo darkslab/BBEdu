@@ -7,7 +7,9 @@
 <script src="js/vizuly_customized.js"></script>
 <script>
     $(function() {
-        new VizulyArc($("[data-main-arc]"), 1, 18);
+        new VizulyArc($("[data-arc-main]"), 1, 18);
+        new VizulyArc($("[data-arc-small-0]"), 483, 1000);
+        new VizulyArc($("[data-arc-small-1]"), 48, 100);
     });
 </script>
 <div class="row">
@@ -17,18 +19,31 @@
             <strong>Хорошие новости!</strong> Мы добавили <a href="<?php echo $base; ?>test.html" class="alert-link">8 новые варианты тестов</a>!
         </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-5">
-        <div class="bb-arc bb-arc-dashboard-main" data-main-arc>
+    <div class="col-xs-12 col-sm-4 col-md-5">
+        <a href="<?php echo $base; ?>test.html" class="bb-arc bb-arc-dashboard-main mb-15" data-arc-main>
             <div class="bb-arc-caption text-center">
                 <p class="mb-0">Тестов пройдено!</p>
                 <p class="mb-0">Вы можете пройти ещё 17.</p>
             </div>
-        </div>
+        </a>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-7">
+    <div class="col-xs-12 col-sm-8 col-md-7">
         <div class="panel panel-primary">
             <div class="panel-heading"><strong>Результаты последнего теста</strong></div>
             <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="bb-arc bb-arc-dashboard-small mb-15" data-arc-small-0>
+                            <div class="bb-arc-caption text-center">
+                                <p class="mb-0">баллов</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="bb-arc bb-arc-dashboard-small mb-15" data-arc-small-1></div>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
                         <thead>

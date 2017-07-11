@@ -11,7 +11,7 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/style.css?v=5" rel="stylesheet">
+    <link href="css/style.css?v=6" rel="stylesheet">
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -59,6 +59,9 @@
                     </div>
                     <h5 class="col-xs-12 text-center text-bright mt-5 mb-0">Мейрбекова Анара</h5>
                     <!-- <h5 class="col-xs-12 text-center text-bright mt-5 mb-5"><span class="label label-danger">Администратор</span></h5> -->
+                    <div class="col-xs-12 text-center mt-5 mb-5">
+                        <a href="<?php echo $base; ?>payment.html" class="btn btn-success btn-xs">Счёт: 0 ₸</a>
+                    </div>
                 </div>
                 <div class="row bb-menu-section bb-menu-section-last pt-15 pb-15">
                     <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">

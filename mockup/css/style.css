@@ -1,15 +1,19 @@
-.mt-0  { margin-top:     0px !important; }
-.mr-0  { margin-right:   0px !important; }
-.mb-0  { margin-bottom:  0px !important; }
-.ml-0  { margin-left:    0px !important; }
-.mt-5  { margin-top:     5px !important; }
-.mr-5  { margin-right:   5px !important; }
-.mb-5  { margin-bottom:  5px !important; }
-.ml-5  { margin-left:    5px !important; }
-.mt-10 { margin-top:    10px !important; }
-.mr-10 { margin-right:  10px !important; }
-.mb-10 { margin-bottom: 10px !important; }
-.ml-10 { margin-left:   10px !important; }
+.mt-0  { margin-top:      0px !important; }
+.mr-0  { margin-right:    0px !important; }
+.mb-0  { margin-bottom:   0px !important; }
+.ml-0  { margin-left:     0px !important; }
+.mt-5  { margin-top:      5px !important; }
+.mr-5  { margin-right:    5px !important; }
+.mb-5  { margin-bottom:   5px !important; }
+.ml-5  { margin-left:     5px !important; }
+.mt-10 { margin-top:     10px !important; }
+.mr-10 { margin-right:   10px !important; }
+.mb-10 { margin-bottom:  10px !important; }
+.ml-10 { margin-left:    10px !important; }
+.mt-15 { margin-top:     15px !important; }
+.mr-15 { margin-right:   15px !important; }
+.mb-15 { margin-bottom:  15px !important; }
+.ml-15 { margin-left:    15px !important; }
 .pt-0  { padding-top:     0px !important; }
 .pr-0  { padding-right:   0px !important; }
 .pb-0  { padding-bottom:  0px !important; }
@@ -267,18 +271,42 @@
 
 .bb-arc {
     position: relative;
+    display: block;
 }
 
 .bb-arc .bb-arc-caption {
     position: absolute;
-    right: 10%;
+    right: 0px;
     top: 55%;
-    left: 10%;
-    font-size: 16px;
-    line-height: 20px;
+    left: 0px;
+    font-size: 14px;
+    line-height: 18px;
     color: #444444;
+    width: 140px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 768px) {
+    .bb-arc .bb-arc-caption {
+        right: 10%;
+        left: 10%;
+        font-size: 16px;
+        line-height: 20px;
+        width: auto;
+    }
 }
 
 .bb-arc-dashboard-main {
-    min-height: 320px;
+    height: 200px;
+}
+
+@media (min-width: 768px) {
+    .bb-arc-dashboard-main {
+        height: 280px;
+    }
+}
+
+.bb-arc-dashboard-small {
+    height: 180px;
 }
