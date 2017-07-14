@@ -2,7 +2,11 @@
 <script src="js/RadialChart.js"></script>
 <script>
     $(function() {
-        new RadialChart($("[data-arc-main]"), 1, 18);
+        new RadialChart($("[data-arc-main]"), 1, 10, {
+            "stroke-width": 16,
+            "circle-stroke": "#c7e7c8",
+            "arc-stroke": "#4caf50"
+        });
         new RadialChart($("[data-arc-small-0]"), 483, 1000);
         new RadialChart($("[data-arc-small-1]"), 48, 100);
     });
@@ -15,12 +19,12 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-5">
-        <a href="<?php echo $base; ?>test.html" class="bb-arc bb-arc-dashboard-main mb-15" data-arc-main>
+        <div class="bb-arc bb-arc-dashboard-main mb-15" data-arc-main>
             <div class="bb-arc-caption text-center">
-                <p class="mb-0">Тестов пройдено!</p>
-                <p class="mb-0">Вы можете пройти ещё 17.</p>
+                <p class="mb-0">Предметов пройдено!</p>
+                <p class="mb-0">Вы можете пройти ещё 9.</p>
             </div>
-        </a>
+        </div>
     </div>
     <div class="col-xs-12 col-sm-8 col-md-7">
         <div class="panel panel-primary">

@@ -10,9 +10,31 @@ function RadialChart($container, value, max_value, options) {
     this._max = ((Math.PI * 2) * value / max_value) - 0.001;
     this._value = value;
 
+    var last_width = $container.width();
+    var timer;
+    $(window).resize((function() {
+        if ($container.width() != last_width) {
+            last_width = $container.width();
+            clearTimeout(timer);
+            $container.css({
+                "visibility": "hidden"
+            });
+            this._clear($container);
+            timer = setTimeout((function() {
+                $container.css({
+                    "visibility": "visible"
+                });
+                this._render($container);
+            }).bind(this), 250);
+        }
+    }).bind(this));
+
     this._render($container);
 }
 RadialChart.prototype._clear = function($container) {
+    if (this._$arc) {
+        this._$arc.stop(true);
+    }
     this._$arc = null;
     $container.children("svg").remove();
 }
