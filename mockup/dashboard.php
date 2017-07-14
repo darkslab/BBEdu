@@ -1,15 +1,10 @@
-<link href="vendor/css/vizuly.css" rel="stylesheet">
-<link href="vendor/css/vizuly_radial_progress.css" rel="stylesheet">
-<link href="css/vizuly_customized.css" rel="stylesheet">
-<script src="vendor/js/d3.min.js"></script>
-<script src="vendor/js/vizuly_core.min.js"></script>
-<script src="vendor/js/vizuly_radialprogress.min.js"></script>
-<script src="js/vizuly_customized.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/RadialChart.js"></script>
 <script>
     $(function() {
-        new VizulyArc($("[data-arc-main]"), 1, 18);
-        new VizulyArc($("[data-arc-small-0]"), 483, 1000);
-        new VizulyArc($("[data-arc-small-1]"), 48, 100);
+        new RadialChart($("[data-arc-main]"), 1, 18);
+        new RadialChart($("[data-arc-small-0]"), 483, 1000);
+        new RadialChart($("[data-arc-small-1]"), 48, 100);
     });
 </script>
 <div class="row">
