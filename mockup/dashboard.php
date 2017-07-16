@@ -1,12 +1,14 @@
 <script src="js/jquery-ui.min.js"></script>
+<script src="js/SVGChart.js"></script>
 <script src="js/RadialChart.js"></script>
 <script>
     $(function() {
-        new RadialChart($("[data-dashboard-chart-0]"), 1, 10, {
+        var chart = new RadialChart($("[data-dashboard-chart-0]"), 1, 10, {
             "stroke-width": 16,
             "circle-stroke": "#c7e7c8",
             "arc-stroke": "#4caf50"
         });
+        chart.draw();
     });
 </script>
 <div class="row">

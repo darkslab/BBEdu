@@ -1,4 +1,7 @@
+RadialChart.prototype = Object.create(SVGChart.prototype);
 function RadialChart($container, value, max_value, options) {
+    SVGChart.call(this, $container);
+
     this._options = {};
     this._options["duration"] = (options && options["duration"]) || 2000;
     this._options["stroke-width"] = (options && options["stroke-width"]) || 6;
@@ -7,82 +10,58 @@ function RadialChart($container, value, max_value, options) {
     this._options["arc-stroke-linecap"] = (options && options["arc-stroke-linecap"]) || "round";
     this._options["text-fill"] = (options && options["text-fill"]) || "#444444";
     this._$arc = null;
-    this._max = ((Math.PI * 2) * value / max_value) - 0.001;
     this._value = value;
-
-    var last_width = $container.width();
-    var timer;
-    $(window).resize((function() {
-        if ($container.width() != last_width) {
-            last_width = $container.width();
-            clearTimeout(timer);
-            $container.css({
-                "visibility": "hidden"
-            });
-            this._clear($container);
-            timer = setTimeout((function() {
-                $container.css({
-                    "visibility": "visible"
-                });
-                this._render($container);
-            }).bind(this), 250);
-        }
-    }).bind(this));
-
-    this._render($container);
+    this._max = ((Math.PI * 2) * this._value / max_value) - 0.001;
 }
-RadialChart.prototype._clear = function($container) {
-    if (this._$arc) {
-        this._$arc.stop(true);
-    }
-    this._$arc = null;
-    $container.children("svg").remove();
-}
-RadialChart.prototype._render = function($container) {
-    var namespace = "http://www.w3.org/2000/svg";
+RadialChart.prototype._svg = function($container) {
     var size = Math.min($container.width(), $container.height());
     this._radius = (size - this._options["stroke-width"]) / 2;
 
-    var svg = document.createElementNS(namespace, "svg");
-    svg.setAttributeNS(null, "width", "100%");
-    svg.setAttributeNS(null, "height", "100%");
+    var group = this._createElement("g", {
+        "transform": "translate(" + [
+            size / 2 + ($container.width() - size) / 2,
+            size / 2 + ($container.height() - size) / 2
+        ].join() + ")"
+    });
 
-    var group_0 = document.createElementNS(namespace, "g");
-    group_0.setAttributeNS(null, "transform", "translate(" + [
-        size / 2 + ($container.width() - size) / 2,
-        size / 2 + ($container.height() - size) / 2
-    ].join() + ")");
+    group.appendChild(this._createElement("circle", {
+        "cx": 0,
+        "cy": 0,
+        "r": this._radius,
+        "fill": "none",
+        "stroke": this._options["circle-stroke"],
+        "stroke-width": this._options["stroke-width"]
+    }));
 
-    var circle = document.createElementNS(namespace, "circle");
-    circle.setAttributeNS(null, "cx", 0);
-    circle.setAttributeNS(null, "cy", 0);
-    circle.setAttributeNS(null, "r", this._radius);
-    circle.setAttributeNS(null, "fill", "none");
-    circle.setAttributeNS(null, "stroke", this._options["circle-stroke"]);
-    circle.setAttributeNS(null, "stroke-width", this._options["stroke-width"]);
-    group_0.appendChild(circle);
-
-    var path = document.createElementNS(namespace, "path");
+    var path = this._createElement("path", {
+        "d": "M0 0",
+        "fill": "none",
+        "stroke": this._options["arc-stroke"],
+        "stroke-width": this._options["stroke-width"],
+        "stroke-linecap": this._options["arc-stroke-linecap"]
+    });
     this._$arc = $(path);
-    path.setAttributeNS(null, "d", "M0 0");
-    path.setAttributeNS(null, "fill", "none");
-    path.setAttributeNS(null, "stroke", this._options["arc-stroke"]);
-    path.setAttributeNS(null, "stroke-width", this._options["stroke-width"]);
-    path.setAttributeNS(null, "stroke-linecap", this._options["arc-stroke-linecap"]);
-    group_0.appendChild(path);
+    group.appendChild(path);
 
-    var text = document.createElementNS(namespace, "text");
+    var text = this._createElement("text", {
+        "x": 0,
+        "y": 0,
+        "text-anchor": "middle",
+        "font-size": this._radius * 0.4,
+        "fill": this._options["text-fill"]
+    });
     this._$text = $(text);
-    text.setAttributeNS(null, "x", 0);
-    text.setAttributeNS(null, "y", 0);
-    text.setAttributeNS(null, "text-anchor", "middle");
-    text.setAttributeNS(null, "font-size", this._radius * 0.4);
-    text.setAttributeNS(null, "fill", this._options["text-fill"]);
-    group_0.appendChild(text);
+    group.appendChild(text);
 
-    svg.appendChild(group_0);
-    $container.append(svg);
+    var svg = this._createElement("svg", {
+        "width": "100%",
+        "height": "100%"
+    })
+    svg.appendChild(group);
 
+    return svg;
+}
+RadialChart.prototype._afterDraw = function() {
     this._$arc.stop(true).animate({
         "_progress": 1
     }, {
@@ -90,6 +69,12 @@ RadialChart.prototype._render = function($container) {
         "easing": "easeOutQuart",
         "step": this._render_arc.bind(this)
     });
+}
+RadialChart.prototype._beforeErase = function() {
+    if (this._$arc) {
+        this._$arc.stop(true);
+    }
+    this._$arc = null;
 }
 RadialChart.prototype._render_arc = function(percentage) {
     if (!this._$arc) {
