@@ -1,21 +1,29 @@
+/**
+ * DARK_TODO
+ * - redo linecap, so 100% value would result in 1 pixel touch
+ * - use _d() method
+ * - .stop(true) is enough
+ * - _optionValue
+ */
+
 RadialChart.prototype = Object.create(SVGChart.prototype);
 function RadialChart($container, value, max_value, options) {
     SVGChart.call(this, $container);
 
     this._options = {};
     this._options["duration"] = (options && options["duration"]) || 2000;
-    this._options["stroke-width"] = (options && options["stroke-width"]) || 6;
-    this._options["circle-stroke"] = (options && options["circle-stroke"]) || "#cae6fc";
-    this._options["arc-stroke"] = (options && options["arc-stroke"]) || "#2196f3";
-    this._options["arc-stroke-linecap"] = (options && options["arc-stroke-linecap"]) || "round";
-    this._options["text-fill"] = (options && options["text-fill"]) || "#444444";
+    this._options["line-width"] = (options && options["line-width"]) || 6;
+    this._options["circle-color"] = (options && options["circle-color"]) || "#cae6fc";
+    this._options["arc-color"] = (options && options["arc-color"]) || "#2196f3";
+    this._options["font-color"] = (options && options["font-color"]) || "#444444";
+
     this._$arc = null;
     this._value = value;
     this._max = ((Math.PI * 2) * this._value / max_value) - 0.001;
 }
 RadialChart.prototype._svg = function($container) {
     var size = Math.min($container.width(), $container.height());
-    this._radius = (size - this._options["stroke-width"]) / 2;
+    this._radius = (size - this._options["line-width"]) / 2;
 
     var group = this._createElement("g", {
         "transform": "translate(" + [
@@ -29,16 +37,16 @@ RadialChart.prototype._svg = function($container) {
         "cy": 0,
         "r": this._radius,
         "fill": "none",
-        "stroke": this._options["circle-stroke"],
-        "stroke-width": this._options["stroke-width"]
+        "stroke": this._options["circle-color"],
+        "stroke-width": this._options["line-width"]
     }));
 
     var path = this._createElement("path", {
         "d": "M0 0",
         "fill": "none",
-        "stroke": this._options["arc-stroke"],
-        "stroke-width": this._options["stroke-width"],
-        "stroke-linecap": this._options["arc-stroke-linecap"]
+        "stroke": this._options["arc-color"],
+        "stroke-width": this._options["line-width"],
+        "stroke-linecap": "round"
     });
     this._$arc = $(path);
     group.appendChild(path);
@@ -48,7 +56,7 @@ RadialChart.prototype._svg = function($container) {
         "y": 0,
         "text-anchor": "middle",
         "font-size": this._radius * 0.4,
-        "fill": this._options["text-fill"]
+        "fill": this._options["font-color"]
     });
     this._$text = $(text);
     group.appendChild(text);

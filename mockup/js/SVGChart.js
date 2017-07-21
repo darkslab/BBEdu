@@ -10,11 +10,12 @@ function SVGChart($container) {
             clearTimeout(timer);
             last_width = this._$container.width();
 
-            this._beforeErase();
-            this._$container.css({
-                "visibility": "hidden !important"
-            });
             if (this._$svg) {
+                this._beforeErase();
+                this._$container.css({
+                    "visibility": "hidden !important"
+                });
+
                 this._$svg.remove();
                 this._$svg = null;
             }
@@ -37,6 +38,25 @@ SVGChart.prototype._createElement = function(element, attributes) {
         }
     }
     return svg_element;
+}
+SVGChart.prototype._d = function(description) {
+    var d = "";
+    for (var i = 0; i < description.length; i++) {
+        d = [
+            d,
+            [
+                description[i][0],
+                description[i][1].join(" "),
+            ].join("")
+        ].join("");
+    }
+    return d;
+}
+SVGChart.prototype._optionValue = function(options, name, default_value) {
+    if (typeof options === "undefined" || typeof options[name] === "undefined") {
+        return default_value;
+    }
+    return options[name];
 }
 
 /**
