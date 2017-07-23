@@ -1,8 +1,9 @@
 ColumnChart.prototype = Object.create(SVGChart.prototype);
 function ColumnChart($container, values, max_value, options) {
-    SVGChart.call(this, $container);
-
     this._options = {};
+
+    this._options["avg_value"] = this._optionValue(options, "avg_value", 0);
+
     this._options["duration"] = this._optionValue(options, "duration", 2000);
     this._options["chain-duration"] = this._optionValue(options, "chain-duration", 100);
     this._options["line-width"] = this._optionValue(options, "line-width", 6);
@@ -22,29 +23,75 @@ function ColumnChart($container, values, max_value, options) {
     }
     this._timers = [];
     this._helpers = [];
+
+    SVGChart.call(this, $container);
 }
-ColumnChart.prototype._svg = function($container) {
-    var start_x = this._options["padding-left"] + this._options["line-width"] / 2;
-    var end_x = $container.width() - this._options["padding-right"] - this._options["line-width"] / 2;
+ColumnChart.prototype._afterCreate = function(svg) {
+    var texts = [];
 
-    var svg = this._createElement("svg", {
-        "width": "100%",
-        "height": "100%"
+    var text = this._createElement("text", {
+        "x": 0,
+        "y": 0,
+        "text-anchor": "end",
+        "dominant-baseline": "text-before-edge",
+        "font-size": this._options["font-size"],
+        "fill": this._options["font-color"]
     });
+    text.appendChild(document.createTextNode(this._max_value.toString()));
+    svg.appendChild(text);
+    texts.push(text);
 
-    var step_x = (end_x - start_x) / (this._values.length - 1);
+    var text_num = parseInt(($(svg).height() / text.getBBox().height + 2) / 3);
+    var text_step = $(svg).height() / (text_num - 1);
+    var text_value_step = this._max_value / (text_num - 1);
+    for (var i = text_num - 2; i > 0; i--) {
+        text = this._createElement("text", {
+            "x": 0,
+            "y": text_step * (text_num - 1 - i),
+            "text-anchor": "end",
+            "dominant-baseline": "central",
+            "font-size": this._options["font-size"],
+            "fill": this._options["font-color"]
+        });
+        text.appendChild(document.createTextNode(parseInt(text_value_step * i)));
+        svg.appendChild(text);
+        texts.push(text);
+    }
+
+    text = this._createElement("text", {
+        "x": 0,
+        "y": $(svg).height(),
+        "text-anchor": "end",
+        "dominant-baseline": "text-after-edge",
+        "font-size": this._options["font-size"],
+        "fill": this._options["font-color"]
+    });
+    text.appendChild(document.createTextNode("0"));
+    svg.appendChild(text);
+    texts.push(text);
+
+    var max_text_width = 0;
+    for (var i = 0; i < texts.length; i++) {
+        max_text_width = Math.max(texts[i].getBBox().width, max_text_width);
+    }
+    for (var i = 0; i < texts.length; i++) {
+        texts[i].setAttributeNS(null, "x", max_text_width);
+    }
+
+    var current_x = max_text_width + this._options["padding-left"] + this._options["line-width"] / 2;
+    var step_x = ($(svg).width() - this._options["padding-right"] - this._options["line-width"] / 2 - current_x) / (this._values.length - 1);
     for (var i = 0; i < this._values.length; i++) {
         var group = this._createElement("g", {
             "transform": "translate(" + [
-                start_x,
-                $container.height()
+                current_x,
+                $(svg).height()
             ].join() + ") rotate(180)"
         });
 
         group.appendChild(this._createElement("path", {
             "d": this._d([
                 [ "M", [ 0, this._shift_y ] ],
-                [ "L", [ 0, $container.height() - this._shift_y ] ]
+                [ "L", [ 0, $(svg).height() - this._shift_y ] ]
             ]),
             "fill": "none",
             "stroke": this._options["line-background-color"],
@@ -63,22 +110,40 @@ ColumnChart.prototype._svg = function($container) {
                 "stroke-width": this._options["line-width"],
                 "stroke-linecap": this._options["round-linecap"] ? "round" : "butt"
             });
-            this._helpers.push(new _ColumnChartHelper(this, $(path), this._values[i], $container));
+            this._helpers.push(new _ColumnChartHelper(this, $(path), this._values[i], $(svg)));
             group.appendChild(path);
         }
 
         svg.append(group);
-        start_x += step_x;
+        current_x += step_x;
     }
 
-    return svg;
-}
-ColumnChart.prototype._afterDraw = function() {
+    if (this._options["avg_value"] > 0) {
+        var avg_y = $(svg).height() - Math.min(this._options["avg_value"], this._max_value) * $(svg).height() / this._max_value;
+        var avg_start_x = max_text_width + this._options["padding-left"] / 2;
+        var avg_end_x = $(svg).width() - this._options["padding-right"] / 2;
+        if (this._options["round-linecap"]) {
+            avg_start_x += 1;
+            avg_end_x -= 1;
+        }
+        svg.append(this._createElement("path", {
+            "d": this._d([
+                [ "M", [ avg_start_x, avg_y ] ],
+                [ "L", [ avg_end_x, avg_y ] ]
+            ]),
+            "fill": "none",
+            "stroke": "#ff0000",
+            "stroke-width": 2,
+            "stroke-opacity": 0.4,
+            "stroke-linecap": this._options["round-linecap"] ? "round" : "butt"
+        }));
+    }
+
     if (this._helpers.length > 0) {
         this._scheduleNextHelper(0);
     }
 }
-ColumnChart.prototype._beforeErase = function() {
+ColumnChart.prototype._beforeDestroy = function(svg) {
     var obj;
     while (obj = this._timers.pop()) {
         clearTimeout(obj);

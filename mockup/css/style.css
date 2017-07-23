@@ -293,7 +293,7 @@
 }
 
 .bb-chart-elem.bb-chart-elem-dashboard-0 {
-    top: 55%;
+    top: 58%;
     font-size: 12px;
     line-height: 16px;
     color: #444444;
@@ -310,4 +310,16 @@
         line-height: 20px;
         width: auto;
     }
+}
+
+.bb-chart-dashboard-1 {
+    height: 200px;
+}
+
+.bb-chart-table {
+    height: 38px;
+}
+
+.data-dashboard-table-chart-row {
+    cursor: pointer;
 }

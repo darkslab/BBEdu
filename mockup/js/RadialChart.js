@@ -1,34 +1,34 @@
-/**
- * DARK_TODO
- * - redo linecap, so 100% value would result in 1 pixel touch
- * - use _d() method
- * - .stop(true) is enough
- * - _optionValue
- */
-
 RadialChart.prototype = Object.create(SVGChart.prototype);
 function RadialChart($container, value, max_value, options) {
-    SVGChart.call(this, $container);
-
     this._options = {};
-    this._options["duration"] = (options && options["duration"]) || 2000;
-    this._options["line-width"] = (options && options["line-width"]) || 6;
-    this._options["circle-color"] = (options && options["circle-color"]) || "#cae6fc";
-    this._options["arc-color"] = (options && options["arc-color"]) || "#2196f3";
-    this._options["font-color"] = (options && options["font-color"]) || "#444444";
 
-    this._$arc = null;
+    this._options["duration"] = this._optionValue(options, "duration", 2000);
+    this._options["line-width"] = this._optionValue(options, "line-width", 6);
+    this._options["circle-color"] = this._optionValue(options, "circle-color", "#cae6fc");
+    this._options["arc-color"] = this._optionValue(options, "arc-color", "#2196f3");
+    this._options["font-size"] = this._optionValue(options, "font-size", "auto");
+    this._options["font-color"] = this._optionValue(options, "font-color", "#444444");
+    this._options["round-linecap"] = true;
+
     this._value = value;
-    this._max = ((Math.PI * 2) * this._value / max_value) - 0.001;
+    this._max_value = max_value;
+    this._$arc = null;
+    this._$text = null;
+
+    SVGChart.call(this, $container);
 }
-RadialChart.prototype._svg = function($container) {
-    var size = Math.min($container.width(), $container.height());
+RadialChart.prototype._afterCreate = function(svg) {
+    var size = Math.min($(svg).width(), $(svg).height());
     this._radius = (size - this._options["line-width"]) / 2;
+    this._max_angle = 2 * Math.PI * this._value / this._max_value - 0.001;
+    if (this._options["round-linecap"]) {
+        this._max_angle = ((2 * Math.PI * this._radius - this._options["line-width"]) / this._radius) * this._value / this._max_value;
+    }
 
     var group = this._createElement("g", {
         "transform": "translate(" + [
-            size / 2 + ($container.width() - size) / 2,
-            size / 2 + ($container.height() - size) / 2
+            size / 2 + ($(svg).width() - size) / 2,
+            size / 2 + ($(svg).height() - size) / 2
         ].join() + ")"
     });
 
@@ -46,7 +46,7 @@ RadialChart.prototype._svg = function($container) {
         "fill": "none",
         "stroke": this._options["arc-color"],
         "stroke-width": this._options["line-width"],
-        "stroke-linecap": "round"
+        "stroke-linecap": this._options["round-linecap"] ? "round" : "butt"
     });
     this._$arc = $(path);
     group.appendChild(path);
@@ -55,22 +55,16 @@ RadialChart.prototype._svg = function($container) {
         "x": 0,
         "y": 0,
         "text-anchor": "middle",
-        "font-size": this._radius * 0.4,
+        "dominant-baseline": "central",
+        "font-size": this._options["font-size"] === "auto" ? this._radius * 0.4 : this._options["font-size"],
         "fill": this._options["font-color"]
     });
     this._$text = $(text);
     group.appendChild(text);
 
-    var svg = this._createElement("svg", {
-        "width": "100%",
-        "height": "100%"
-    })
     svg.appendChild(group);
 
-    return svg;
-}
-RadialChart.prototype._afterDraw = function() {
-    this._$arc.stop(true).animate({
+    this._$arc.animate({
         "_progress": 1
     }, {
         "duration": this._options["duration"],
@@ -78,28 +72,23 @@ RadialChart.prototype._afterDraw = function() {
         "step": this._render_arc.bind(this)
     });
 }
-RadialChart.prototype._beforeErase = function() {
-    if (this._$arc) {
-        this._$arc.stop(true);
-    }
+RadialChart.prototype._beforeDestroy = function(svg) {
+    this._$arc.stop(true);
     this._$arc = null;
 }
 RadialChart.prototype._render_arc = function(percentage) {
-    if (!this._$arc) {
-        return;
-    }
-    var angle = -(this._max * percentage + Math.PI / 2);
-    var description = "";
-    description += "M" + [ 0, this._radius ].join(" ");
-    description += "A" + [
-        this._radius,
-        this._radius,
-        0,
-        angle >= -(3 / 2 * Math.PI) ? 0 : 1,
-        1,
-        this._radius * Math.cos(angle),
-        -(this._radius * Math.sin(angle))
-    ].join(" ");
-    this._$arc.attr("d", description);
+    var angle = -(this._max_angle * percentage + Math.PI / 2);
+    this._$arc.attr("d", this._d([
+        [ "M", [ 0, this._radius ] ],
+        [ "A", [
+            this._radius,
+            this._radius,
+            0,
+            angle >= -(3 / 2 * Math.PI) ? 0 : 1,
+            1,
+            this._radius * Math.cos(angle),
+            -(this._radius * Math.sin(angle))
+        ] ]
+    ]));
     this._$text.text(parseInt(this._value * percentage));
 }
