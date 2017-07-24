@@ -10,6 +10,7 @@ function ColumnChart($container, values, max_value, options) {
     this._options["line-color"] = this._optionValue(options, "line-color", "#2196f3");
     this._options["line-background-color"] = this._optionValue(options, "line-background-color", "#cae6fc");
     this._options["font-size"] = this._optionValue(options, "font-size", 20);
+    this._options["font-weight"] = this._optionValue(options, "font-weight", "normal");
     this._options["font-color"] = this._optionValue(options, "font-color", "#444444");
     this._options["padding-right"] = this._optionValue(options, "padding-right", 15);
     this._options["padding-left"] = this._optionValue(options, "padding-left", 15);
@@ -35,6 +36,7 @@ ColumnChart.prototype._afterCreate = function(svg) {
         "text-anchor": "end",
         "dominant-baseline": "text-before-edge",
         "font-size": this._options["font-size"],
+        "font-weight": this._options["font-weight"],
         "fill": this._options["font-color"]
     });
     text.appendChild(document.createTextNode(this._max_value.toString()));
@@ -51,6 +53,7 @@ ColumnChart.prototype._afterCreate = function(svg) {
             "text-anchor": "end",
             "dominant-baseline": "central",
             "font-size": this._options["font-size"],
+            "font-weight": this._options["font-weight"],
             "fill": this._options["font-color"]
         });
         text.appendChild(document.createTextNode(parseInt(text_value_step * i)));
@@ -64,6 +67,7 @@ ColumnChart.prototype._afterCreate = function(svg) {
         "text-anchor": "end",
         "dominant-baseline": "text-after-edge",
         "font-size": this._options["font-size"],
+        "font-weight": this._options["font-weight"],
         "fill": this._options["font-color"]
     });
     text.appendChild(document.createTextNode("0"));

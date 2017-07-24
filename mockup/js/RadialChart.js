@@ -7,6 +7,7 @@ function RadialChart($container, value, max_value, options) {
     this._options["circle-color"] = this._optionValue(options, "circle-color", "#cae6fc");
     this._options["arc-color"] = this._optionValue(options, "arc-color", "#2196f3");
     this._options["font-size"] = this._optionValue(options, "font-size", "auto");
+    this._options["font-weight"] = this._optionValue(options, "font-weight", "normal");
     this._options["font-color"] = this._optionValue(options, "font-color", "#444444");
     this._options["round-linecap"] = true;
 
@@ -57,6 +58,7 @@ RadialChart.prototype._afterCreate = function(svg) {
         "text-anchor": "middle",
         "dominant-baseline": "central",
         "font-size": this._options["font-size"] === "auto" ? this._radius * 0.4 : this._options["font-size"],
+        "font-weight": this._options["font-weight"],
         "fill": this._options["font-color"]
     });
     this._$text = $(text);
