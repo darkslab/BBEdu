@@ -107,7 +107,7 @@
         var chart_index = 0;
         charts[chart_index].create();
 
-        $("[data-dashboard-table-chart-row]").click(function() {
+        $("[data-dashboard-table-chart-row]").mouseenter(function() {
             charts[chart_index].destroy();
             chart_index = $(this).data("dashboard-table-chart-row");
             charts[chart_index].create();
