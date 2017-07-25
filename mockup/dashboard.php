@@ -12,22 +12,26 @@
         (new RadialChart($("[data-dashboard-table-chart-0]"), 378, 400, {
             "line-width": 2,
             "arc-color": "#3366cc",
-            "font-size": 14
+            "font-size": 14,
+            "font-weight": "bold"
         })).create();
         (new RadialChart($("[data-dashboard-table-chart-1]"), 145, 200, {
             "line-width": 2,
             "arc-color": "#dc3912",
-            "font-size": 14
+            "font-size": 14,
+            "font-weight": "bold"
         })).create();
         (new RadialChart($("[data-dashboard-table-chart-2]"), 128, 200, {
             "line-width": 2,
             "arc-color": "#ff9900",
-            "font-size": 14
+            "font-size": 14,
+            "font-weight": "bold"
         })).create();
         (new RadialChart($("[data-dashboard-table-chart-3]"), 189, 200, {
             "line-width": 2,
             "arc-color": "#109618",
-            "font-size": 14
+            "font-size": 14,
+            "font-weight": "bold"
         })).create();
 
         var charts = [];
@@ -150,19 +154,19 @@
                         </thead>
                         <tbody>
                             <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="0">
-                                <td><h6>Математика</h6></td>
+                                <td><h6><strong>Математика</strong></h6></td>
                                 <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-0></div></td>
                             </tr>
                             <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="1">
-                                <td><h6>Казахский Язык</h6></td>
+                                <td><h6><strong>Казахский Язык</strong></h6></td>
                                 <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-1></div></td>
                             </tr>
                             <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="2">
-                                <td><h6>Русский Язык</h6></td>
+                                <td><h6><strong>Русский Язык</strong></h6></td>
                                 <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-2></div></td>
                             </tr>
                             <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="3">
-                                <td><h6>Английский Язык</h6></td>
+                                <td><h6><strong>Английский Язык</strong></h6></td>
                                 <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-3></div></td>
                             </tr>
                         </tbody>
