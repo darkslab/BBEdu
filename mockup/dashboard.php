@@ -33,6 +33,12 @@
             "font-size": 14,
             "font-weight": "bold"
         })).create();
+        (new RadialChart($("[data-dashboard-table-chart-4]"), 56, 60, {
+            "line-width": 2,
+            "arc-color": "#109618",
+            "font-size": 14,
+            "font-weight": "bold"
+        })).create();
 
         var charts = [];
         charts.push(new ColumnChart($("[data-dashboard-chart-1]"), [
@@ -103,6 +109,23 @@
             "line-width": 16,
             "font-size": 16
         }));
+        charts.push(new ColumnChart($("[data-dashboard-chart-1]"), [
+            24,
+            45,
+            56,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ], 60, {
+            "line-color": "#109618",
+            "avg_value": 50,
+            "line-width": 16,
+            "font-size": 16
+        }));
 
         var chart_index = 0;
         charts[chart_index].create();
@@ -169,7 +192,17 @@
                                 <td><h6><strong>Английский Язык</strong></h6></td>
                                 <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-3></div></td>
                             </tr>
+                            <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="4">
+                                <td><h6><strong>Количественные характеристики</strong></h6></td>
+                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-4></div></td>
+                            </tr>
                         </tbody>
+                        <tfoot>
+                            <tr class="">
+                                <td></td>
+                                <td class="text-center" style="font-size: 1.1em;"><strong>840</strong></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
