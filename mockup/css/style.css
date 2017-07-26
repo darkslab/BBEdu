@@ -18,6 +18,10 @@
 .mr-15 { margin-right:   15px !important; }
 .mb-15 { margin-bottom:  15px !important; }
 .ml-15 { margin-left:    15px !important; }
+.mt-23 { margin-top:     23px !important; }
+.mr-23 { margin-right:   23px !important; }
+.mb-23 { margin-bottom:  23px !important; }
+.ml-23 { margin-left:    23px !important; }
 .pt-0  { padding-top:     0px !important; }
 .pr-0  { padding-right:   0px !important; }
 .pb-0  { padding-bottom:  0px !important; }
@@ -34,6 +38,10 @@
 .pr-15 { padding-right:  15px !important; }
 .pb-15 { padding-bottom: 15px !important; }
 .pl-15 { padding-left:   15px !important; }
+.pt-23 { padding-top:    23px !important; }
+.pr-23 { padding-right:  23px !important; }
+.pb-23 { padding-bottom: 23px !important; }
+.pl-23 { padding-left:   23px !important; }
 .text-bright {
     color: rgba(237, 244, 247, 1);
 }
