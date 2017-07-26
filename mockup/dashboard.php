@@ -9,33 +9,71 @@
             "circle-color": "#c7e7c8",
             "arc-color": "#4caf50"
         })).create();
+
         (new RadialChart($("[data-dashboard-table-chart-0]"), 378, 400, {
             "line-width": 2,
             "arc-color": "#3366cc",
-            "font-size": 14,
-            "font-weight": "bold"
+            "font-size": 14
         })).create();
+        (new RadialChart($("[data-dashboard-table-chart-avg-0]"), 356, 400, {
+            "line-width": 2,
+            "arc-color": "#aaaaaa",
+            "font-size": 14
+        })).create();
+
         (new RadialChart($("[data-dashboard-table-chart-1]"), 145, 200, {
             "line-width": 2,
             "arc-color": "#dc3912",
-            "font-size": 14,
-            "font-weight": "bold"
+            "font-size": 14
         })).create();
+        (new RadialChart($("[data-dashboard-table-chart-avg-1]"), 187, 200, {
+            "line-width": 2,
+            "arc-color": "#aaaaaa",
+            "font-size": 14
+        })).create();
+
         (new RadialChart($("[data-dashboard-table-chart-2]"), 128, 200, {
             "line-width": 2,
             "arc-color": "#ff9900",
-            "font-size": 14,
-            "font-weight": "bold"
+            "font-size": 14
         })).create();
+        (new RadialChart($("[data-dashboard-table-chart-avg-2]"), 167, 200, {
+            "line-width": 2,
+            "arc-color": "#aaaaaa",
+            "font-size": 14
+        })).create();
+
         (new RadialChart($("[data-dashboard-table-chart-3]"), 189, 200, {
             "line-width": 2,
             "arc-color": "#109618",
-            "font-size": 14,
-            "font-weight": "bold"
+            "font-size": 14
         })).create();
+        (new RadialChart($("[data-dashboard-table-chart-avg-3]"), 156, 200, {
+            "line-width": 2,
+            "arc-color": "#aaaaaa",
+            "font-size": 14
+        })).create();
+
         (new RadialChart($("[data-dashboard-table-chart-4]"), 56, 60, {
             "line-width": 2,
             "arc-color": "#109618",
+            "font-size": 14
+        })).create();
+        (new RadialChart($("[data-dashboard-table-chart-avg-4]"), 50, 60, {
+            "line-width": 2,
+            "arc-color": "#aaaaaa",
+            "font-size": 14
+        })).create();
+
+        (new RadialChart($("[data-dashboard-table-chart-total]"), 840, 1000, {
+            "line-width": 4,
+            "arc-color": "#109618",
+            "font-size": 14,
+            "font-weight": "bold"
+        })).create();
+        (new RadialChart($("[data-dashboard-table-chart-total-avg]"), 740, 1000, {
+            "line-width": 4,
+            "arc-color": "#aaaaaa",
             "font-size": 14,
             "font-weight": "bold"
         })).create();
@@ -130,11 +168,19 @@
         var chart_index = 0;
         charts[chart_index].create();
 
-        $("[data-dashboard-table-chart-row]").mouseenter(function() {
-            charts[chart_index].destroy();
-            chart_index = $(this).data("dashboard-table-chart-row");
-            charts[chart_index].create();
+        $("[data-dashboard-table-chart-row]").click(function() {
+            if ($(this).data("dashboard-table-chart-row") != chart_index) {
+                charts[chart_index].destroy();
+                $("[data-dashboard-table-chart-row=\"" + chart_index + "\"]").removeClass("success");
+                chart_index = $(this).data("dashboard-table-chart-row");
+                charts[chart_index].create();
+                $(this).addClass("success");
+            }
         });
+    });
+
+    $(function() {
+        $("[data-toggle=\"popover\"]").popover();
     });
 </script>
 <div class="row">
@@ -172,37 +218,42 @@
                         <thead>
                             <tr>
                                 <th>Раздел</th>
-                                <th style="width: 40%;" class="text-center">Результат</th>
+                                <th style="width: 25%;" class="text-center">Результат</th>
+                                <th style="width: 25%;" class="text-center">Средний балл <i class="fa fa-question-circle text-help" data-toggle="popover" data-content="Средний балл по сравнению с другими студентами на bbTest.kz" data-placement="auto" data-trigger="hover"></i></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="0">
-                                <td><h6><strong>Математика</strong></h6></td>
+                            <tr class="data-dashboard-table-chart-row success" data-dashboard-table-chart-row="0">
+                                <td><h6>Математика</h6></td>
                                 <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-0></div></td>
+                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-0></div></td>
                             </tr>
                             <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="1">
-                                <td><h6><strong>Казахский Язык</strong></h6></td>
+                                <td><h6>Казахский Язык</h6></td>
                                 <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-1></div></td>
+                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-1></div></td>
                             </tr>
                             <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="2">
-                                <td><h6><strong>Русский Язык</strong></h6></td>
+                                <td><h6>Русский Язык</h6></td>
                                 <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-2></div></td>
+                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-2></div></td>
                             </tr>
                             <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="3">
-                                <td><h6><strong>Английский Язык</strong></h6></td>
+                                <td><h6>Английский Язык</h6></td>
                                 <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-3></div></td>
+                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-3></div></td>
+                            </tr>
+                            <tr class="">
+                                <td><h6 class="text-right"><strong>Общий балл <i class="fa fa-question-circle text-help" data-toggle="popover" data-content="Общий балл - это сумма 4-х разделов: Математика, Казахский Язык, Русский Язык, Английский Язык" data-placement="auto" data-trigger="hover"></i></strong></h6></td>
+                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-total></div></td>
+                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-total-avg></div></td>
                             </tr>
                             <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="4">
-                                <td><h6><strong>Количественные характеристики</strong></h6></td>
+                                <td><h6>Количественные характеристики</h6></td>
                                 <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-4></div></td>
+                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-4></div></td>
                             </tr>
                         </tbody>
-                        <tfoot>
-                            <tr class="">
-                                <td></td>
-                                <td class="text-center" style="font-size: 1.1em;"><strong>840</strong></td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
