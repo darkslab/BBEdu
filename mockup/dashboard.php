@@ -56,7 +56,7 @@
 
         (new RadialChart($("[data-dashboard-table-chart-4]"), 56, 60, {
             "line-width": 2,
-            "arc-color": "#109618",
+            "arc-color": "#990099",
             "font-size": 14
         })).create();
         (new RadialChart($("[data-dashboard-table-chart-avg-4]"), 50, 60, {
@@ -67,7 +67,7 @@
 
         (new RadialChart($("[data-dashboard-table-chart-total]"), 840, 1000, {
             "line-width": 4,
-            "arc-color": "#109618",
+            "arc-color": "#444444",
             "font-size": 14,
             "font-weight": "bold"
         })).create();
@@ -159,7 +159,7 @@
             0,
             0
         ], 60, {
-            "line-color": "#109618",
+            "line-color": "#990099",
             "avg_value": 50,
             "line-width": 16,
             "font-size": 16
