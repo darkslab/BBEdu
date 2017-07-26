@@ -11,7 +11,7 @@
 
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css?v=8" rel="stylesheet">
+    <link href="css/style.css?v=9" rel="stylesheet">
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
