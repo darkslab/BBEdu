@@ -191,77 +191,90 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-5">
-        <div class="bb-chart bb-chart-dashboard-0 mb-23" data-dashboard-chart-0>
-            <div class="bb-chart-elem bb-chart-elem-dashboard-0 text-center">
-                <p class="mb-0">Предметов пройдено!</p>
-                <p class="mb-0">Вы можете пройти ещё 6.</p>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="bb-chart bb-chart-dashboard-0 mb-23" data-dashboard-chart-0>
+                    <div class="bb-chart-elem bb-chart-elem-dashboard-0 text-center">
+                        <p class="mb-0">Предметов пройдено!</p>
+                        <p class="mb-0">Вы можете пройти ещё 6.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 mb-23">
+                <h5 class="text-center"><i class="fa fa-fw fa-bullhorn"></i> Поделись с друзьями</h5>
+                <a href="#" class="btn btn-primary btn-lg btn-block btn-social btn-facebook"><i class="fa fa-fw fa-facebook pull-left" style="line-height: inherit;"></i>Post the status</a>
+                <a href="#" class="btn btn-primary btn-lg btn-block btn-social btn-instagram"><i class="fa fa-fw fa-instagram pull-left" style="line-height: inherit;"></i>Show it off</a>
+                <a href="#" class="btn btn-primary btn-lg btn-block btn-social btn-twitter"><i class="fa fa-fw fa-twitter pull-left" style="line-height: inherit;"></i>Tweet the result</a>
             </div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-8 col-md-7">
-        <div class="bb-chart bb-chart-dashboard-1 mb-23" data-dashboard-chart-1>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-8 col-md-7">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><strong>Результаты последнего теста</strong></div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-6">
-                    </div>
-                    <div class="col-xs-6">
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="bb-chart bb-chart-dashboard-1 mb-23" data-dashboard-chart-1></div>
+            </div>
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><strong>Результаты последнего теста</strong></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-6">
+                            </div>
+                            <div class="col-xs-6">
+                            </div>
+                        </div>
 
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead>
-                            <tr>
-                                <th>Раздел</th>
-                                <th style="width: 25%;" class="text-center">Результат</th>
-                                <th style="width: 25%;" class="text-center">Средний балл <i class="fa fa-question-circle text-help" data-toggle="popover" data-content="Средний балл по сравнению с другими студентами на bbTest.kz" data-placement="auto" data-trigger="hover"></i></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="data-dashboard-table-chart-row success" data-dashboard-table-chart-row="0">
-                                <td><h6>Математика</h6></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-0></div></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-0></div></td>
-                            </tr>
-                            <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="1">
-                                <td><h6>Казахский Язык</h6></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-1></div></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-1></div></td>
-                            </tr>
-                            <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="2">
-                                <td><h6>Русский Язык</h6></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-2></div></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-2></div></td>
-                            </tr>
-                            <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="3">
-                                <td><h6>Английский Язык</h6></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-3></div></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-3></div></td>
-                            </tr>
-                            <tr class="">
-                                <td><h6 class="text-right"><strong>Общий балл <i class="fa fa-question-circle text-help" data-toggle="popover" data-content="Общий балл - это сумма 4-х разделов: Математика, Казахский Язык, Русский Язык, Английский Язык" data-placement="auto" data-trigger="hover"></i></strong></h6></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-total></div></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-total-avg></div></td>
-                            </tr>
-                            <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="4">
-                                <td><h6>Количественные характеристики</h6></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-4></div></td>
-                                <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-4></div></td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3" class="text-center pt-23">
-                                    <a href="<?php echo $base; ?>history.html">Результаты предыдущих тестов</a>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Раздел</th>
+                                        <th style="width: 25%;" class="text-center">Результат</th>
+                                        <th style="width: 25%;" class="text-center">Средний балл <i class="fa fa-question-circle text-help" data-toggle="popover" data-content="Средний балл по сравнению с другими студентами на bbTest.kz" data-placement="auto" data-trigger="hover"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="data-dashboard-table-chart-row success" data-dashboard-table-chart-row="0">
+                                        <td><h6>Математика</h6></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-0></div></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-0></div></td>
+                                    </tr>
+                                    <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="1">
+                                        <td><h6>Казахский Язык</h6></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-1></div></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-1></div></td>
+                                    </tr>
+                                    <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="2">
+                                        <td><h6>Русский Язык</h6></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-2></div></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-2></div></td>
+                                    </tr>
+                                    <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="3">
+                                        <td><h6>Английский Язык</h6></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-3></div></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-3></div></td>
+                                    </tr>
+                                    <tr class="">
+                                        <td><h6 class="text-right"><strong>Общий балл <i class="fa fa-question-circle text-help" data-toggle="popover" data-content="Общий балл - это сумма 4-х разделов: Математика, Казахский Язык, Русский Язык, Английский Язык" data-placement="auto" data-trigger="hover"></i></strong></h6></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-total></div></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-total-avg></div></td>
+                                    </tr>
+                                    <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="4">
+                                        <td><h6>Количественные характеристики</h6></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-4></div></td>
+                                        <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-4></div></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-center pt-23">
+                                            <a href="<?php echo $base; ?>history.html">Результаты предыдущих тестов</a>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
