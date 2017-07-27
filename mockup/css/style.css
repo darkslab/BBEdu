@@ -361,31 +361,31 @@
 }
 
 .btn-facebook {
-    background-color: rgba(59, 89, 153, 1);
+    background-color: #3b5998;
 }
 
 .btn-facebook:hover,
 .btn-facebook:focus,
 .btn-facebook:active:hover {
-    background-color: rgba(45, 64, 115, 1);
+    background-color: #364d89;
 }
 
 .btn-instagram {
-    background-color: rgba(228, 64, 95, 1)
+    background-color: #e23566;
 }
 
 .btn-instagram:hover,
 .btn-instagram:focus,
 .btn-instagram:active:hover {
-    background-color: rgba(171, 45, 69, 1);
+    background-color: #cb2a5a;
 }
 
 .btn-twitter {
-    background-color: rgba(85, 172, 238, 1);
+    background-color: #1da1f2;
 }
 
 .btn-twitter:hover,
 .btn-twitter:focus,
 .btn-twitter:active:hover {
-    background-color: rgba(65, 127, 179, 1);
+    background-color: #1d8ed9;
 }

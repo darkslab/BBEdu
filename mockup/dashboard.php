@@ -201,10 +201,10 @@
                 </div>
             </div>
             <div class="col-xs-12 mb-23">
-                <h5 class="text-center"><i class="fa fa-fw fa-bullhorn"></i> Поделись с друзьями</h5>
-                <a href="#" class="btn btn-primary btn-lg btn-block btn-social btn-facebook"><i class="fa fa-fw fa-facebook pull-left" style="line-height: inherit;"></i>Post the status</a>
-                <a href="#" class="btn btn-primary btn-lg btn-block btn-social btn-instagram"><i class="fa fa-fw fa-instagram pull-left" style="line-height: inherit;"></i>Show it off</a>
-                <a href="#" class="btn btn-primary btn-lg btn-block btn-social btn-twitter"><i class="fa fa-fw fa-twitter pull-left" style="line-height: inherit;"></i>Tweet the result</a>
+                <h5 class="text-center mb-15"><i class="fa fa-fw fa-bullhorn"></i> Поделись с друзьями</h5>
+                <a href="#" class="btn btn-primary btn-lg btn-block mt-10 btn-social btn-facebook"><i class="fa fa-fw fa-facebook pull-left" style="line-height: inherit;"></i>Post the status</a>
+                <a href="#" class="btn btn-primary btn-lg btn-block mt-10 btn-social btn-instagram"><i class="fa fa-fw fa-instagram pull-left" style="line-height: inherit;"></i>Show it off</a>
+                <a href="#" class="btn btn-primary btn-lg btn-block mt-10 btn-social btn-twitter"><i class="fa fa-fw fa-twitter pull-left" style="line-height: inherit;"></i>Tweet the result</a>
             </div>
         </div>
     </div>

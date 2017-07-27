@@ -60,13 +60,14 @@
                     <h5 class="col-xs-12 text-center text-bright mt-5 mb-0">Мейрбекова Анара</h5>
                     <!-- <h5 class="col-xs-12 text-center text-bright mt-5 mb-5"><span class="label label-danger">Администратор</span></h5> -->
                     <div class="col-xs-12 text-center mt-5 mb-5">
-                        <a href="<?php echo $base; ?>payment.html" class="btn btn-success btn-xs">Счёт: 0 ₸</a>
+                        <a href="<?php echo $base; ?>payment.html" class="btn btn-success btn-xs">Счёт: 3500 &#8376;</a>
                     </div>
                 </div>
                 <div class="row bb-menu-section bb-menu-section-last pt-15 pb-15">
                     <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
                         <li class="<?php echo $nav == 'dashboard' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>dashboard.html"><i class="fa fa-fw fa-tachometer"></i> Личный кабинет</a></li>
                         <li class="<?php echo $nav == 'test' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>test.html"><i class="fa fa-fw fa-pencil-square-o"></i> Онлайн тестирование</a></li>
+                        <li class="<?php echo $nav == 'history' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>history.html"><i class="fa fa-fw fa-line-chart"></i> Результаты тестов</a></li>
                         <li class="<?php echo $nav == 'payment' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>payment.html"><i class="fa fa-fw fa-credit-card"></i> Пополнить счёт</a></li>
                     </ul>
                 </div>
@@ -99,7 +100,6 @@
                                     <li class="dropdown">
                                         <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">Мейрбекова Анара <span class="caret"></span></a>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="<?php echo $base; ?>dashboard.html"><i class="fa fa-fw fa-tachometer"></i> Личный кабинет</a></li>
                                             <li><a href="<?php echo $base; ?>settings.html"><i class="fa fa-fw fa-sliders"></i> Настройки</a></li>
                                             <li class="divider"></li>
                                             <li><a href="<?php echo $base; ?>logout.html"><i class="fa fa-fw fa-sign-out"></i> Выход</a></li>
@@ -111,7 +111,7 @@
                     </nav>
                 </div>
                 <div class="row">
-                    <div class="container bb-content">
+                    <div class="container bb-content mt-23">
 
                         <!-- Main content start -->
                         <?php echo $content; ?>
