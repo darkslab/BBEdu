@@ -349,6 +349,10 @@
     height: 38px;
 }
 
+.table .data-dashboard-table-caption-cell {
+    vertical-align: middle;
+}
+
 .data-dashboard-table-chart-row {
     cursor: pointer;
 }

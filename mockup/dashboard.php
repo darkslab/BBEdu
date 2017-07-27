@@ -215,9 +215,11 @@
             </div>
             <div class="col-xs-12">
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><strong>Результаты последнего теста</strong></div>
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Результаты последнего теста</h3>
+                    </div>
                     <div class="table-responsive">
-                        <table class="table table-hover mb-0">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Раздел</th>
@@ -227,39 +229,39 @@
                             </thead>
                             <tbody>
                                 <tr class="data-dashboard-table-chart-row success" data-dashboard-table-chart-row="0">
-                                    <td><h6>Математика</h6></td>
+                                    <td class="data-dashboard-table-caption-cell">Математика</td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-0></div></td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-0></div></td>
                                 </tr>
                                 <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="1">
-                                    <td><h6>Казахский Язык</h6></td>
+                                    <td class="data-dashboard-table-caption-cell">Казахский Язык</td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-1></div></td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-1></div></td>
                                 </tr>
                                 <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="2">
-                                    <td><h6>Русский Язык</h6></td>
+                                    <td class="data-dashboard-table-caption-cell">Русский Язык</td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-2></div></td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-2></div></td>
                                 </tr>
                                 <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="3">
-                                    <td><h6>Английский Язык</h6></td>
+                                    <td class="data-dashboard-table-caption-cell">Английский Язык</td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-3></div></td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-3></div></td>
                                 </tr>
-                                <tr class="">
-                                    <td><h6 class="text-right"><strong>Общий балл <i class="fa fa-question-circle text-help" data-toggle="popover" data-content="Общий балл - это сумма 4-х разделов: Математика, Казахский Язык, Русский Язык, Английский Язык" data-placement="auto" data-trigger="hover"></i></strong></h6></td>
+                                <tr>
+                                    <td class="data-dashboard-table-caption-cell text-right"><strong>Общий балл <i class="fa fa-question-circle text-help" data-toggle="popover" data-content="Общий балл - это сумма 4-х разделов: Математика, Казахский Язык, Русский Язык, Английский Язык" data-placement="auto" data-trigger="hover"></i></strong></td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-total></div></td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-total-avg></div></td>
                                 </tr>
                                 <tr class="data-dashboard-table-chart-row" data-dashboard-table-chart-row="4">
-                                    <td><h6>Количественные характеристики</h6></td>
+                                    <td class="data-dashboard-table-caption-cell">Количественные характеристики</td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-4></div></td>
                                     <td><div class="bb-chart bb-chart-table" data-dashboard-table-chart-avg-4></div></td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="3" class="text-center pt-23 pb-23">
+                                    <td colspan="3" class="text-center">
                                         <a href="<?php echo $base; ?>history.html">Результаты предыдущих тестов</a>
                                     </td>
                                 </tr>
