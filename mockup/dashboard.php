@@ -260,7 +260,7 @@
                 <div class="bb-chart bb-chart-dashboard-0 mb-23" data-dashboard-chart-0>
                     <div class="bb-chart-elem bb-chart-elem-dashboard-0 text-center">
                         <p class="mb-0">Предметов пройдено!</p>
-                        <p class="mb-0">Вы можете пройти ещё 6.</p>
+                        <p class="mb-0"><a href="<?php echo $base; ?>test.html">Вы можете пройти ещё 6</a>.</p>
                     </div>
                 </div>
             </div>

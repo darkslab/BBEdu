@@ -111,7 +111,7 @@
                     </nav>
                 </div>
                 <div class="row">
-                    <div class="container bb-content mt-23">
+                    <div class="container bb-content">
 
                         <!-- Main content start -->
                         <?php echo $content; ?>
