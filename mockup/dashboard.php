@@ -190,29 +190,8 @@
             <strong>Хорошие новости!</strong> Мы добавили <a href="<?php echo $base; ?>test.html" class="alert-link">8 новые варианты тестов</a>!
         </div>
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-5">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="bb-chart bb-chart-dashboard-0 mb-23" data-dashboard-chart-0>
-                    <div class="bb-chart-elem bb-chart-elem-dashboard-0 text-center">
-                        <p class="mb-0">Предметов пройдено!</p>
-                        <p class="mb-0">Вы можете пройти ещё 6.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 mb-23">
-                <h5 class="text-center mb-15"><i class="fa fa-fw fa-bullhorn"></i> Поделись с друзьями</h5>
-                <a href="#" class="btn btn-primary btn-lg btn-block mt-10 btn-social btn-facebook"><i class="fa fa-fw fa-facebook pull-left" style="line-height: inherit;"></i>Post the status</a>
-                <a href="#" class="btn btn-primary btn-lg btn-block mt-10 btn-social btn-instagram"><i class="fa fa-fw fa-instagram pull-left" style="line-height: inherit;"></i>Show it off</a>
-                <a href="#" class="btn btn-primary btn-lg btn-block mt-10 btn-social btn-twitter"><i class="fa fa-fw fa-twitter pull-left" style="line-height: inherit;"></i>Tweet the result</a>
-            </div>
-        </div>
-    </div>
     <div class="col-xs-12 col-sm-8 col-md-7">
         <div class="row">
-            <div class="col-xs-12">
-                <div class="bb-chart bb-chart-dashboard-1 mb-23" data-dashboard-chart-1></div>
-            </div>
             <div class="col-xs-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -269,6 +248,27 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-5">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="bb-chart bb-chart-dashboard-1 mb-23" data-dashboard-chart-1></div>
+            </div>
+            <div class="col-xs-12">
+                <div class="bb-chart bb-chart-dashboard-0 mb-23" data-dashboard-chart-0>
+                    <div class="bb-chart-elem bb-chart-elem-dashboard-0 text-center">
+                        <p class="mb-0">Предметов пройдено!</p>
+                        <p class="mb-0">Вы можете пройти ещё 6.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 mb-23">
+                <h5 class="text-center mb-15"><i class="fa fa-fw fa-bullhorn"></i> Поделись с друзьями</h5>
+                <a href="#" class="btn btn-primary btn-lg btn-block mt-10 btn-social btn-facebook"><i class="fa fa-fw fa-facebook pull-left" style="line-height: inherit;"></i>Post the status</a>
+                <a href="#" class="btn btn-primary btn-lg btn-block mt-10 btn-social btn-instagram"><i class="fa fa-fw fa-instagram pull-left" style="line-height: inherit;"></i>Show it off</a>
+                <a href="#" class="btn btn-primary btn-lg btn-block mt-10 btn-social btn-twitter"><i class="fa fa-fw fa-twitter pull-left" style="line-height: inherit;"></i>Tweet the result</a>
             </div>
         </div>
     </div>
