@@ -73,6 +73,8 @@
             "font-size": 14,
             "font-weight": "bold"
         })).create();
+
+        $("a[href=\"#bb-results-0-0\"]").click();
     });
 </script>
 <div class="row">
