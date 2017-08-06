@@ -115,7 +115,7 @@
                                      L200 0
                                      A200 200 0 0 1 0 200
                                      L0 0
-                                     Z" fill="#ccc" stroke="#bbb" stroke-width="1"></path>
+                                     Z" fill="#c8c8c8"></path>
                         </g>
                     </g>
                     <g transform="rotate(0)">
@@ -125,7 +125,7 @@
                                      L200 0
                                      A200 200 0 0 1 141.421356237309505 141.421356237309505
                                      L0 0
-                                     Z" fill="#ccc" stroke="#bbb" stroke-width="1"></path>
+                                     Z" fill="#bebebe"></path>
                         </g>
                     </g>
                     <g transform="rotate(45)">
@@ -135,7 +135,7 @@
                                      L200 0
                                      A200 200 0 0 1 100 173.205080756887729
                                      L0 0
-                                     Z" fill="#ccc" stroke="#bbb" stroke-width="1"></path>
+                                     Z" fill="#b4b4b4"></path>
                         </g>
                     </g>
                     <g transform="rotate(105)">
@@ -145,7 +145,7 @@
                                      L200 0
                                      A200 200 0 0 1 173.205080756887729 100
                                      L0 0
-                                     Z" fill="#ccc" stroke="#bbb" stroke-width="1"></path>
+                                     Z" fill="#c8c8c8"></path>
                         </g>
                     </g>
                     <g transform="rotate(135)">
@@ -155,7 +155,7 @@
                                      L200 0
                                      A200 200 0 0 1 -141.421356237309505 141.421356237309505
                                      L0 0
-                                     Z" fill="#ccc" stroke="#bbb" stroke-width="1"></path>
+                                     Z" fill="#bebebe"></path>
                         </g>
                     </g>
                 </g>
