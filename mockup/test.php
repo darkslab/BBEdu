@@ -1,8 +1,8 @@
 <script src="js/jquery-ui.min.js"></script>
-<script src="js/SVGChart.js"></script>
-<script src="js/RadialChart.js"></script>
-<script src="js/ColumnChart.js"></script>
-<script src="js/ProgressPieChart.js"></script>
+<script src="js/SVGChart.js?v=1"></script>
+<script src="js/RadialChart.js?v=1"></script>
+<script src="js/ColumnChart.js?v=1"></script>
+<script src="js/ProgressPieChart.js?v=1"></script>
 <script>
     $(function() {
         (new ProgressPieChart($("[data-monkey]"), [
