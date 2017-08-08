@@ -77,6 +77,9 @@ SVGChart.prototype._optionValue = function(options, name, default_value) {
     }
     return options[name];
 }
+SVGChart.prototype._deg2rad = function(deg) {
+    return (2 * Math.PI * deg) / 360;
+}
 
 /**
  * Extension methods

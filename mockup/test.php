@@ -2,12 +2,38 @@
 <script src="js/SVGChart.js"></script>
 <script src="js/RadialChart.js"></script>
 <script src="js/ColumnChart.js"></script>
+<script src="js/ProgressPieChart.js"></script>
 <script>
     $(function() {
+        (new ProgressPieChart($("[data-monkey]"), [
+            {
+                "max-value": 200,
+                "value": 150,
+                "foreground-color": "#f00",
+                "background-color": "#888"
+            },
+            {
+                "max-value": 200,
+                "value": 50,
+                "foreground-color": "#0f0",
+                "background-color": "#888"
+            },
+            {
+                "max-value": 200,
+                "value": 100,
+                "foreground-color": "#00f",
+                "background-color": "#888"
+            }
+        ], {
+            // "font-size": 20,
+            // "font-weight": "bold",
+            // "font-color": "#000"
+        })).create();
     });
 </script>
 <div class="row">
     <div class="col-xs-12">
+        <div style="border: 1px solid #000; height: 502px; width: 502px; position: relative;" data-monkey></div>
         <div style="border: 1px solid #000; height: 502px; width: 502px; position: relative;">
             <svg width="100%" height="100%">
                 <g transform="translate(250,250) rotate(-90)">
