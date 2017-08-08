@@ -2,7 +2,7 @@
 <script src="js/SVGChart.js?v=1"></script>
 <script src="js/RadialChart.js?v=1"></script>
 <script src="js/ColumnChart.js?v=1"></script>
-<script src="js/ProgressPieChart.js?v=1"></script>
+<script src="js/ProgressPieChart.js?v=2"></script>
 <script>
     $(function() {
         (new ProgressPieChart($("[data-monkey]"), [

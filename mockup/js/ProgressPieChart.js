@@ -188,7 +188,7 @@ _ProgressPieChartHelper.prototype.activate = function() {
         }
     }
     this._is_active = true;
-    this._$group.animate({
+    this._$group.stop(true).animate({
         "_progress": 1
     }, {
         "duration": this._progress_pie_chart._options["activate-duration"],
@@ -201,7 +201,7 @@ _ProgressPieChartHelper.prototype.deactivate = function() {
         return;
     }
     this._is_active = false;
-    this._$group.animate({
+    this._$group.stop(true).animate({
         "_progress": 0
     }, {
         "duration": this._progress_pie_chart._options["activate-duration"],
