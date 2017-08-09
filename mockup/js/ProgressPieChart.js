@@ -19,7 +19,8 @@ function ProgressPieChart($container, values, options) {
         _value["value"] = Math.min(Math.max(this._optionValue(value, "value", _value["max-value"]), 0), _value["max-value"]);
         _value["foreground-color"] = this._optionValue(value, "foreground-color", "#888888");
         _value["background-color"] = this._optionValue(value, "background-color", "#cccccc");
-        _value["active-callback"] = this._optionValue(value, "active-callback", null);
+        _value["active-callback-start"] = this._optionValue(value, "active-callback-start", null);
+        _value["active-callback-complete"] = this._optionValue(value, "active-callback-complete", null);
         this._values.push(_value);
         total += _value["max-value"];
     }
@@ -115,25 +116,22 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
         });
         group3.appendChild(path);
 
-        var text_x = (this._radius * 0.75) * Math.cos(this._deg2rad(this._angles[i] / 2));
-        var text_y = (this._radius * 0.75) * Math.sin(this._deg2rad(this._angles[i] / 2));
         var group4 = this._createElement("g", {
-            "transform": "rotate(" + [
-                -current_angle,
-                text_x,
-                text_y
-            ].join(" ") + ")"
+            "transform": "translate(" + [
+                (this._radius * 0.75) * Math.cos(this._deg2rad(this._angles[i] / 2)),
+                (this._radius * 0.75) * Math.sin(this._deg2rad(this._angles[i] / 2))
+            ].join() + ")" + "rotate(" + (-current_angle) + ")"
         });
         var text = this._createElement("text", {
-            "x": text_x,
-            "y": text_y,
+            "x": 0,
+            "y": 0,
             "text-anchor": "middle",
             "dominant-baseline": "central",
             "font-size": this._options["font-size"],
             "font-weight": this._options["font-weight"],
-            "fill": this._options["font-color"]
+            "fill": this._options["font-color"],
+            "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
         });
-        text.appendChild(document.createTextNode("Monkey!"));
         group4.appendChild(text);
         group3.appendChild(group4);
 
@@ -141,7 +139,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
         group1.appendChild(group2);
 
         current_angle += this._angles[i];
-        this._helpers.push(new _ProgressPieChartHelper(this, i, $(path), $(group3)));
+        this._helpers.push(new _ProgressPieChartHelper(this, i, $(path), $(group3), $(text)));
     }
 
     svg.appendChild(group1);
@@ -169,17 +167,19 @@ ProgressPieChart.prototype._scheduleNextHelper = function(index) {
     }).bind(this), this._options["chain-duration"]));
 }
 
-function _ProgressPieChartHelper(progress_pie_chart, index, $path, $group) {
+function _ProgressPieChartHelper(progress_pie_chart, index, $path, $group, $text) {
     this._progress_pie_chart = progress_pie_chart;
     this._index = index;
     this._$path = $path;
     this._$group = $group;
+    this._$text = $text;
 
     this._is_active = false;
     this._$group.on("click", this.activate.bind(this));
 }
 _ProgressPieChartHelper.prototype.activate = function() {
     if (this._is_active) {
+        this.deactivate();
         return;
     }
     for (var i = 0; i < this._progress_pie_chart._helpers.length; i++) {
@@ -188,6 +188,9 @@ _ProgressPieChartHelper.prototype.activate = function() {
         }
     }
     this._is_active = true;
+    if (this._progress_pie_chart._values[this._index]["active-callback-start"]) {
+        this._progress_pie_chart._values[this._index]["active-callback-start"](this._index);
+    }
     this._$group.stop(true).animate({
         "_progress": 1
     }, {
@@ -229,6 +232,7 @@ _ProgressPieChartHelper.prototype._render_pie = function(percentage) {
     );
     var radius = Math.sqrt(2 * max_area * percentage / rad_angle);
 
+    this._$text.text(parseInt(this._progress_pie_chart._values[this._index]["value"] * percentage));
     this._$path.attr("d", this._progress_pie_chart._d([
         [ "M", [ 0, 0 ] ],
         [ "L", [ radius, 0 ] ],
@@ -252,7 +256,7 @@ _ProgressPieChartHelper.prototype._render_activation = function(percentage) {
     ] + ")");
 }
 _ProgressPieChartHelper.prototype._activation_complete = function() {
-    if (this._progress_pie_chart._values[this._index]["active-callback"]) {
-        this._progress_pie_chart._values[this._index]["active-callback"](this._index);
+    if (this._progress_pie_chart._values[this._index]["active-callback-complete"]) {
+        this._progress_pie_chart._values[this._index]["active-callback-complete"](this._index);
     }
 }
