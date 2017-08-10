@@ -44,7 +44,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
     var size = Math.min($(svg).width(), $(svg).height());
     var outer_radius = size / 2;
     this._active_radius = Math.min(this._optionalPercentageValue(this._options["active-radius"], outer_radius), outer_radius);
-    this._hole_radius = Math.min(this._optionalPercentageValue(this._options["hole-radius"], outer_radius), this._active_radius);
+    this._hole_radius = Math.min(this._optionalPercentageValue(this._options["hole-radius"], outer_radius), outer_radius);
     this._radius = outer_radius - this._active_radius;
 
     var group1 = this._createElement("g", {
@@ -68,7 +68,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
 
         group3.appendChild(this._createElement("path", {
             "d": this._d([
-                [ "M", [ 0, 0 ] ],
+                [ "M", [ this._hole_radius, 0 ] ],
                 [ "L", [ this._radius, 0 ] ],
                 [ "A", [
                     this._radius,
@@ -79,7 +79,19 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
                     this._radius * Math.cos(this._deg2rad(this._angles[i])),
                     this._radius * Math.sin(this._deg2rad(this._angles[i]))
                 ] ],
-                [ "L", [ 0, 0 ] ],
+                [ "L", [
+                    this._hole_radius * Math.cos(this._deg2rad(this._angles[i])),
+                    this._hole_radius * Math.sin(this._deg2rad(this._angles[i]))
+                ] ],
+                [ "A", [
+                    this._hole_radius,
+                    this._hole_radius,
+                    0,
+                    this._angles[i] >= 180 ? 1 : 0,
+                    0,
+                    this._hole_radius,
+                    0
+                ] ],
                 [ "Z", [] ]
             ]),
             "fill": this._values[i]["background-color"]
@@ -87,18 +99,30 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
 
         var path = this._createElement("path", {
             "d": this._d([
-                [ "M", [ 0, 0 ] ],
-                [ "L", [ 0, 0 ] ],
+                [ "M", [ this._hole_radius, 0 ] ],
+                [ "L", [ this._hole_radius, 0 ] ],
                 [ "A", [
+                    this._hole_radius,
+                    this._hole_radius,
                     0,
-                    0,
-                    0,
-                    0,
+                    this._angles[i] >= 180 ? 1 : 0,
                     1,
+                    this._hole_radius * Math.cos(this._deg2rad(this._angles[i])),
+                    this._hole_radius * Math.sin(this._deg2rad(this._angles[i]))
+                ] ],
+                [ "L", [
+                    this._hole_radius * Math.cos(this._deg2rad(this._angles[i])),
+                    this._hole_radius * Math.sin(this._deg2rad(this._angles[i]))
+                ] ],
+                [ "A", [
+                    this._hole_radius,
+                    this._hole_radius,
                     0,
+                    this._angles[i] >= 180 ? 1 : 0,
+                    0,
+                    this._hole_radius,
                     0
                 ] ],
-                [ "L", [ 0, 0 ] ],
                 [ "Z", [] ]
             ]),
             "fill": this._values[i]["foreground-color"]
@@ -251,14 +275,20 @@ _ProgressPieChartHelper.prototype.stop_animation = function() {
 }
 _ProgressPieChartHelper.prototype._render_pie = function(percentage) {
     var rad_angle = this._progress_pie_chart._deg2rad(this._progress_pie_chart._angles[this._index]);
-    var max_area = rad_angle / 2 * Math.pow(this._progress_pie_chart._radius, 2) * (
+    var max_area = rad_angle / 2 * (
+        Math.pow(this._progress_pie_chart._radius, 2) - Math.pow(this._progress_pie_chart._hole_radius, 2)
+    ) * (
         this._progress_pie_chart._values[this._index]["value"] / this._progress_pie_chart._values[this._index]["max-value"]
     );
-    var radius = Math.sqrt(2 * max_area * percentage / rad_angle);
+    var radius = Math.sqrt(
+        (
+            2 * max_area * percentage + (rad_angle * Math.pow(this._progress_pie_chart._hole_radius, 2))
+        ) / rad_angle
+    );
 
     this._$text.text(parseInt(this._progress_pie_chart._values[this._index]["value"] * percentage));
     this._$path.attr("d", this._progress_pie_chart._d([
-        [ "M", [ 0, 0 ] ],
+        [ "M", [ this._progress_pie_chart._hole_radius, 0 ] ],
         [ "L", [ radius, 0 ] ],
         [ "A", [
             radius,
@@ -269,7 +299,19 @@ _ProgressPieChartHelper.prototype._render_pie = function(percentage) {
             radius * Math.cos(rad_angle),
             radius * Math.sin(rad_angle)
         ] ],
-        [ "L", [ 0, 0 ] ],
+        [ "L", [
+            this._progress_pie_chart._hole_radius * Math.cos(rad_angle),
+            this._progress_pie_chart._hole_radius * Math.sin(rad_angle)
+        ] ],
+        [ "A", [
+            this._progress_pie_chart._hole_radius,
+            this._progress_pie_chart._hole_radius,
+            0,
+            rad_angle >= Math.PI ? 1 : 0,
+            0,
+            this._progress_pie_chart._hole_radius,
+            0
+        ] ],
         [ "Z", [] ]
     ]));
 }

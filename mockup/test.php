@@ -2,7 +2,7 @@
 <script src="js/SVGChart.js?v=1"></script>
 <script src="js/RadialChart.js?v=1"></script>
 <script src="js/ColumnChart.js?v=1"></script>
-<script src="js/ProgressPieChart.js?v=3"></script>
+<script src="js/ProgressPieChart.js?v=4"></script>
 <script>
     $(function() {
         function monkey(index) {
@@ -56,7 +56,8 @@
             "duration": 2000,
             "chain-duration": 0,
             "activate-duration": 150,
-            "active-radius": "10%",
+            "hole-radius": "30%",
+            "active-radius": "5%",
             "font-size": 20,
             "font-weight": "bold",
             "font-color": "#fff"
