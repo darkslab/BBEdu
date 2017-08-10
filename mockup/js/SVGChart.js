@@ -77,6 +77,23 @@ SVGChart.prototype._optionValue = function(options, name, default_value) {
     }
     return options[name];
 }
+SVGChart.prototype._optionalPercentageValue = function(value, whole_value) {
+    var _value = 0;
+    var is_set = false;
+    if (isNaN(parseInt(value))) {
+        is_set = true;
+    }
+    if (!is_set && typeof value === "string") {
+        if (value[value.length-1] === "%") {
+            _value = Math.max(parseInt(value.slice(0, value.length-1)), 0) / 100 * whole_value;
+            is_set = true;
+        }
+    }
+    if (!is_set) {
+        _value = Math.max(parseInt(value), 0);
+    }
+    return _value;
+}
 SVGChart.prototype._deg2rad = function(deg) {
     return (2 * Math.PI * deg) / 360;
 }

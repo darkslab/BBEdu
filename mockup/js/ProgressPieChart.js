@@ -5,6 +5,7 @@ function ProgressPieChart($container, values, options) {
     this._options["duration"] = this._optionValue(options, "duration", 2000);
     this._options["chain-duration"] = this._optionValue(options, "chain-duration", 100);
     this._options["activate-duration"] = this._optionValue(options, "activate-duration", 500);
+    this._options["hole-radius"] = this._optionValue(options, "hole-radius", "10%");
     this._options["active-radius"] = this._optionValue(options, "active-radius", "20%");
     this._options["font-size"] = this._optionValue(options, "font-size", 20);
     this._options["font-weight"] = this._optionValue(options, "font-weight", "normal");
@@ -42,22 +43,9 @@ ProgressPieChart.prototype.activate = function(index) {
 ProgressPieChart.prototype._afterCreate = function(svg) {
     var size = Math.min($(svg).width(), $(svg).height());
     var outer_radius = size / 2;
-    this._inner_radius = 0;
-    var inner_radius_set = false;
-    if (isNaN(parseInt(this._options["active-radius"]))) {
-        inner_radius_set = true;
-    }
-    if (!inner_radius_set && typeof this._options["active-radius"] === "string") {
-        if (this._options["active-radius"][this._options["active-radius"].length-1] === "%") {
-            this._inner_radius = parseInt(this._options["active-radius"].slice(0, this._options["active-radius"].length-1)) / 100 * outer_radius;
-            inner_radius_set = true;
-        }
-    }
-    if (!inner_radius_set) {
-        this._inner_radius = parseInt(this._options["active-radius"]);
-    }
-    this._inner_radius = Math.min(Math.max(this._inner_radius, 0), outer_radius);
-    this._radius = outer_radius - this._inner_radius;
+    this._active_radius = Math.min(this._optionalPercentageValue(this._options["active-radius"], outer_radius), outer_radius);
+    this._hole_radius = Math.min(this._optionalPercentageValue(this._options["hole-radius"], outer_radius), this._active_radius);
+    this._radius = outer_radius - this._active_radius;
 
     var group1 = this._createElement("g", {
         "transform": "translate(" + [
@@ -67,6 +55,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
     });
 
     var current_angle = -90;
+    var texts = [];
     for (var i = 0; i < this._values.length; i++) {
         var group2 = this._createElement("g", {
             "transform": "rotate(" + current_angle + ")"
@@ -122,7 +111,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
                 (this._radius * 0.75) * Math.sin(this._deg2rad(this._angles[i] / 2))
             ].join() + ")" + "rotate(" + (-current_angle) + ")"
         });
-        var text = this._createElement("text", {
+        var text1 = this._createElement("text", {
             "x": 0,
             "y": 0,
             "text-anchor": "middle",
@@ -132,17 +121,52 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
             "fill": this._options["font-color"],
             "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
         });
-        group4.appendChild(text);
+        text1.appendChild(document.createTextNode("0"));
+        var text2 = this._createElement("text", {
+            "x": 0,
+            "y": 0,
+            "text-anchor": "middle",
+            "dominant-baseline": "central",
+            "font-size": this._options["font-size"],
+            "font-weight": this._options["font-weight"],
+            "fill": this._options["font-color"],
+            "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
+        });
+        text2.appendChild(document.createTextNode("──"));
+        var text3 = this._createElement("text", {
+            "x": 0,
+            "y": 0,
+            "text-anchor": "middle",
+            "dominant-baseline": "central",
+            "font-size": this._options["font-size"],
+            "font-weight": this._options["font-weight"],
+            "fill": this._options["font-color"],
+            "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
+        });
+        text3.appendChild(document.createTextNode(this._values[i]["max-value"]));
+        group4.appendChild(text1);
+        group4.appendChild(text2);
+        group4.appendChild(text3);
+        texts.push([
+            text1,
+            text3
+        ]);
+
         group3.appendChild(group4);
 
         group2.appendChild(group3);
         group1.appendChild(group2);
 
         current_angle += this._angles[i];
-        this._helpers.push(new _ProgressPieChartHelper(this, i, $(path), $(group3), $(text)));
+        this._helpers.push(new _ProgressPieChartHelper(this, i, $(path), $(group3), $(text1)));
     }
 
     svg.appendChild(group1);
+
+    for (var i = 0; i < texts.length; i++) {
+        $(texts[i][0]).attr("y", -(texts[i][0].getBBox().height / 2));
+        $(texts[i][1]).attr("y", texts[i][0].getBBox().height / 2);
+    }
 
     if (this._helpers.length > 0) {
         this._scheduleNextHelper(0);
@@ -251,8 +275,8 @@ _ProgressPieChartHelper.prototype._render_pie = function(percentage) {
 }
 _ProgressPieChartHelper.prototype._render_activation = function(percentage) {
     this._$group.attr("transform", "translate(" + [
-        Math.cos(this._progress_pie_chart._deg2rad(this._progress_pie_chart._angles[this._index] / 2)) * this._progress_pie_chart._inner_radius * percentage,
-        Math.sin(this._progress_pie_chart._deg2rad(this._progress_pie_chart._angles[this._index] / 2)) * this._progress_pie_chart._inner_radius * percentage
+        Math.cos(this._progress_pie_chart._deg2rad(this._progress_pie_chart._angles[this._index] / 2)) * this._progress_pie_chart._active_radius * percentage,
+        Math.sin(this._progress_pie_chart._deg2rad(this._progress_pie_chart._angles[this._index] / 2)) * this._progress_pie_chart._active_radius * percentage
     ] + ")");
 }
 _ProgressPieChartHelper.prototype._activation_complete = function() {
