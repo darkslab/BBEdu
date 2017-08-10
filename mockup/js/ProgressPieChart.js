@@ -131,8 +131,8 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
 
         var group4 = this._createElement("g", {
             "transform": "translate(" + [
-                (this._radius * 0.75) * Math.cos(this._deg2rad(this._angles[i] / 2)),
-                (this._radius * 0.75) * Math.sin(this._deg2rad(this._angles[i] / 2))
+                (this._radius - (this._radius - this._hole_radius) / 2) * Math.cos(this._deg2rad(this._angles[i] / 2)),
+                (this._radius - (this._radius - this._hole_radius) / 2) * Math.sin(this._deg2rad(this._angles[i] / 2))
             ].join() + ")" + "rotate(" + (-current_angle) + ")"
         });
         var text1 = this._createElement("text", {
