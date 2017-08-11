@@ -412,7 +412,7 @@
     padding: 10px 15px;
 }
 
-.bb-accordion-panel-heading:not(.first) {
+.bb-accordion-panel-heading:not(.bb-accordion-panel-heading-first) {
     border-top: 1px solid #dddddd;
 }
 
@@ -475,4 +475,8 @@
     .bb-result-cell-total {
         text-align: right;
     }
+}
+
+.bb-chart-history {
+    height: 260px;
 }
