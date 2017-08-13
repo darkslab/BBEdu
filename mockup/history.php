@@ -18,6 +18,24 @@
             "font-size": 14
         })).create();
 
+        (new ColumnChart($("[data-dashboard-table-chart-columns-0]"), [
+            245,
+            356,
+            378,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ], 400, {
+            "line-color": "#3366cc",
+            "avg_value": 356,
+            "line-width": 4,
+            "font-size": 14
+        })).create();
+
         (new RadialChart($("[data-dashboard-table-chart-1]"), 145, 200, {
             "line-width": 2,
             "arc-color": "#dc3912",
@@ -166,6 +184,31 @@
             }
 
             // pie_chart.activate(0);
+
+            (new RadialChart($("[data-section-0]"), 36, 90, {
+                "line-width": 2,
+                "arc-color": "#3366cc",
+                "font-size": 14
+            })).create();
+
+            (new ColumnChart($("[data-section-1]"), [
+                24,
+                30,
+                36,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ], 90, {
+                "line-color": "#3366cc",
+                "avg_value": 45,
+                "line-width": 4,
+                "font-size": 14
+            })).create();
+
         }, 100);
     });
 </script>
@@ -190,15 +233,16 @@
                 <div class="panel">
                     <div class="bb-accordion-panel-heading bb-accordion-panel-heading-first">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-6 bb-result-cell">
+                            <div class="col-xs-12 col-sm-4 bb-result-cell">
                                 <span>Математика</span>
                                 <a href="#bb-results-0-0" class="bb-accordion-toggle collapsed pull-right visible-xs-block" data-toggle="collapse" data-parent="#bb-results-0">
                                     <i class="fa fa-fw fa-chevron-up"></i>
                                 </a>
                             </div>
-                            <div class="col-xs-4 col-xs-offset-2 col-sm-2 col-sm-offset-0 bb-chart bb-result-cell" data-dashboard-table-chart-0></div>
-                            <div class="col-xs-4 col-sm-2 bb-chart bb-result-cell" data-dashboard-table-chart-avg-0></div>
-                            <div class="col-sm-2 bb-result-cell hidden-xs">
+                            <div class="col-xs-3 col-sm-2 bb-chart bb-result-cell" data-dashboard-table-chart-0></div>
+                            <div class="col-xs-3 col-sm-2 bb-chart bb-result-cell" data-dashboard-table-chart-avg-0></div>
+                            <div class="col-xs-6 col-sm-3 bb-chart bb-result-cell" data-dashboard-table-chart-columns-0></div>
+                            <div class="col-sm-1 bb-result-cell hidden-xs">
                                 <a href="#bb-results-0-0" class="bb-accordion-toggle collapsed pull-right" data-toggle="collapse" data-parent="#bb-results-0">
                                     <i class="fa fa-fw fa-chevron-up"></i>
                                 </a>
@@ -221,6 +265,10 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane fade active in" id="bb-results-0-0-section-0">
+                                            <div class="row mt-15 mb-15">
+                                                <div class="col-xs-2 bb-result-cell" data-section-0></div>
+                                                <div class="col-xs-5 bb-result-cell" data-section-1></div>
+                                            </div>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris eleifend, quam a vulputate dictum, massa quam dapibus leo, eget vulputate orci purus ut lorem. In fringilla mi in ligula. Pellentesque aliquam quam vel dolor. Nunc adipiscing. Sed quam odio, tempus ac, aliquam molestie, varius ac, tellus. Vestibulum ut nulla aliquam risus rutrum interdum. Pellentesque lorem. Curabitur sit amet erat quis risus feugiat viverra. Pellentesque augue justo, sagittis et, lacinia at, venenatis non, arcu. Nunc nec libero. In cursus dictum risus. Etiam tristique nisl a nulla. Ut a orci. Curabitur dolor nunc, egestas at, accumsan at, malesuada nec, magna.</p>
                                         </div>
                                         <div class="tab-pane fade" id="bb-results-0-0-section-1">
