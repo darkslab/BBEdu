@@ -151,7 +151,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
             "y": 0,
             "text-anchor": "middle",
             "dominant-baseline": "central",
-            "font-size": this._options["font-size"],
+            "font-size": Math.max(this._options["font-size"] * 0.75, 1),
             "font-weight": this._options["font-weight"],
             "fill": this._options["font-color"],
             "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
@@ -162,7 +162,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
             "y": 0,
             "text-anchor": "middle",
             "dominant-baseline": "central",
-            "font-size": this._options["font-size"],
+            "font-size": Math.max(this._options["font-size"] * 0.75, 1),
             "font-weight": this._options["font-weight"],
             "fill": this._options["font-color"],
             "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
@@ -189,7 +189,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
 
     for (var i = 0; i < texts.length; i++) {
         $(texts[i][0]).attr("y", -(texts[i][0].getBBox().height / 2));
-        $(texts[i][1]).attr("y", texts[i][0].getBBox().height / 2);
+        $(texts[i][1]).attr("y", texts[i][1].getBBox().height / 2);
     }
 
     if (this._helpers.length > 0) {
@@ -214,6 +214,14 @@ ProgressPieChart.prototype._scheduleNextHelper = function(index) {
         this._scheduleNextHelper(index + 1);
     }).bind(this), this._options["chain-duration"]));
 }
+ProgressPieChart.prototype._isInspected = function() {
+    for (var i = 0; i < this._helpers.length; i++) {
+        if (this._helpers[i]._is_active) {
+            return true;
+        }
+    }
+    return false;
+}
 
 function _ProgressPieChartHelper(progress_pie_chart, index, $path, $group, $text) {
     this._progress_pie_chart = progress_pie_chart;
@@ -223,41 +231,55 @@ function _ProgressPieChartHelper(progress_pie_chart, index, $path, $group, $text
     this._$text = $text;
 
     this._is_active = false;
+    this._activation_timer = null;
+    this._$group[0]._progress1 = 1;
     this._$group.on("click", this.activate.bind(this));
 }
 _ProgressPieChartHelper.prototype.activate = function() {
     if (this._is_active) {
-        this.deactivate();
-        return;
+        this._is_active = false;
+    } else {
+        this._is_active = true;
     }
+
     for (var i = 0; i < this._progress_pie_chart._helpers.length; i++) {
-        if (i != this._index) {
+        if (i != this._index || (i == this._index && !this._is_active)) {
             this._progress_pie_chart._helpers[i].deactivate();
         }
     }
-    this._is_active = true;
-    if (this._progress_pie_chart._values[this._index]["active-callback-start"]) {
-        this._progress_pie_chart._values[this._index]["active-callback-start"](this._index);
-    }
-    this._$group.stop(true).animate({
-        "_progress": 1
-    }, {
-        "duration": this._progress_pie_chart._options["activate-duration"],
-        "step": this._render_activation.bind(this),
-        "complete": this._activation_complete.bind(this)
-    });
-}
-_ProgressPieChartHelper.prototype.deactivate = function() {
+
     if (!this._is_active) {
         return;
     }
+
+    if (this._progress_pie_chart._values[this._index]["active-callback-start"]) {
+        this._progress_pie_chart._values[this._index]["active-callback-start"](this._index);
+    }
+    clearTimeout(this._activation_timer);
+    this._activation_timer = setTimeout(function() {
+        this._$group.stop(true).animate({
+            "_progress0": 1,
+            "_progress1": 1
+        }, {
+            "duration": this._progress_pie_chart._options["activate-duration"],
+            "step": this._render_activation.bind(this),
+            "complete": this._activation_complete.bind(this)
+        });
+    }.bind(this));
+}
+_ProgressPieChartHelper.prototype.deactivate = function() {
     this._is_active = false;
-    this._$group.stop(true).animate({
-        "_progress": 0
-    }, {
-        "duration": this._progress_pie_chart._options["activate-duration"],
-        "step": this._render_activation.bind(this)
-    });
+
+    clearTimeout(this._activation_timer);
+    this._activation_timer = setTimeout(function() {
+        this._$group.stop(true).animate({
+            "_progress0": 0,
+            "_progress1": this._progress_pie_chart._isInspected() ? 0 : 1
+        }, {
+            "duration": this._progress_pie_chart._options["activate-duration"],
+            "step": this._render_activation.bind(this)
+        });
+    }.bind(this));
 }
 _ProgressPieChartHelper.prototype.start_animation = function() {
     this._$path.animate({
@@ -269,6 +291,7 @@ _ProgressPieChartHelper.prototype.start_animation = function() {
     });
 }
 _ProgressPieChartHelper.prototype.stop_animation = function() {
+    clearTimeout(this._activation_timer);
     this._$path.stop(true);
     this._$group.stop(true);
     this._$group.off("click", this.activate.bind(this));
@@ -315,11 +338,15 @@ _ProgressPieChartHelper.prototype._render_pie = function(percentage) {
         [ "Z", [] ]
     ]));
 }
-_ProgressPieChartHelper.prototype._render_activation = function(percentage) {
-    this._$group.attr("transform", "translate(" + [
-        Math.cos(this._progress_pie_chart._deg2rad(this._progress_pie_chart._angles[this._index] / 2)) * this._progress_pie_chart._active_radius * percentage,
-        Math.sin(this._progress_pie_chart._deg2rad(this._progress_pie_chart._angles[this._index] / 2)) * this._progress_pie_chart._active_radius * percentage
-    ] + ")");
+_ProgressPieChartHelper.prototype._render_activation = function(percentage, tween) {
+    if (tween.prop == "_progress0") {
+        this._$group.attr("transform", "translate(" + [
+            Math.cos(this._progress_pie_chart._deg2rad(this._progress_pie_chart._angles[this._index] / 2)) * this._progress_pie_chart._active_radius * percentage,
+            Math.sin(this._progress_pie_chart._deg2rad(this._progress_pie_chart._angles[this._index] / 2)) * this._progress_pie_chart._active_radius * percentage
+        ] + ")");
+    } else if (tween.prop == "_progress1") {
+        this._$group.attr("opacity", 0.5 + (0.5 * percentage));
+    }
 }
 _ProgressPieChartHelper.prototype._activation_complete = function() {
     if (this._progress_pie_chart._values[this._index]["active-callback-complete"]) {

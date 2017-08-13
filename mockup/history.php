@@ -2,7 +2,7 @@
 <script src="js/SVGChart.js"></script>
 <script src="js/RadialChart.js"></script>
 <script src="js/ColumnChart.js"></script>
-<script src="js/ProgressPieChart.js"></script>
+<script src="js/ProgressPieChart.js?v=10"></script>
 <script>
     $(function() {
         $("[data-toggle=\"popover\"]").popover();
@@ -142,8 +142,8 @@
                 "chain-duration": 0,
                 "activate-duration": 150,
                 "hole-radius": "30%",
-                "active-radius": "5%",
-                "font-size": 20,
+                "active-radius": "15%",
+                "font-size": 18,
                 "font-weight": "bold",
                 "font-color": "#fff"
             });
@@ -165,7 +165,7 @@
                 $("[data-results=\"" + last_index + "\"]").click();
             }
 
-            pie_chart.activate(0);
+            // pie_chart.activate(0);
         }, 100);
     });
 </script>
@@ -213,14 +213,14 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-7">
                                     <ul class="nav nav-tabs">
-                                        <li><a href="#bb-results-0-0-section-0" data-toggle="tab" data-results="0">Section 1</a></li>
-                                        <li><a href="#bb-results-0-0-section-1" data-toggle="tab" data-results="1">Section 2</a></li>
-                                        <li><a href="#bb-results-0-0-section-2" data-toggle="tab" data-results="2">Section 3</a></li>
-                                        <li><a href="#bb-results-0-0-section-3" data-toggle="tab" data-results="3">Section 4</a></li>
-                                        <li><a href="#bb-results-0-0-section-4" data-toggle="tab" data-results="4">Section 5</a></li>
+                                        <li class="active"><a href="#bb-results-0-0-section-0" data-toggle="tab" data-results="0">Дроби и Числа</a></li>
+                                        <li><a href="#bb-results-0-0-section-1" data-toggle="tab" data-results="1">Функций</a></li>
+                                        <li><a href="#bb-results-0-0-section-2" data-toggle="tab" data-results="2">Арифметика</a></li>
+                                        <li><a href="#bb-results-0-0-section-3" data-toggle="tab" data-results="3">Комбинаторика</a></li>
+                                        <li><a href="#bb-results-0-0-section-4" data-toggle="tab" data-results="4">Геометрия</a></li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div class="tab-pane fade" id="bb-results-0-0-section-0">
+                                        <div class="tab-pane fade active in" id="bb-results-0-0-section-0">
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris eleifend, quam a vulputate dictum, massa quam dapibus leo, eget vulputate orci purus ut lorem. In fringilla mi in ligula. Pellentesque aliquam quam vel dolor. Nunc adipiscing. Sed quam odio, tempus ac, aliquam molestie, varius ac, tellus. Vestibulum ut nulla aliquam risus rutrum interdum. Pellentesque lorem. Curabitur sit amet erat quis risus feugiat viverra. Pellentesque augue justo, sagittis et, lacinia at, venenatis non, arcu. Nunc nec libero. In cursus dictum risus. Etiam tristique nisl a nulla. Ut a orci. Curabitur dolor nunc, egestas at, accumsan at, malesuada nec, magna.</p>
                                         </div>
                                         <div class="tab-pane fade" id="bb-results-0-0-section-1">
