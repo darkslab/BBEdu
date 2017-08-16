@@ -235,7 +235,10 @@ function _ProgressPieChartHelper(progress_pie_chart, index, $path, $group, $text
     this._$group[0]._progress1 = 1;
     this._$group.on("click", this.activate.bind(this));
 }
-_ProgressPieChartHelper.prototype.activate = function() {
+_ProgressPieChartHelper.prototype.activate = function(event) {
+    if (event !== undefined) {
+        event.stopPropagation();
+    }
     if (this._is_active) {
         this._is_active = false;
     } else {
@@ -309,7 +312,7 @@ _ProgressPieChartHelper.prototype._render_pie = function(percentage) {
         ) / rad_angle
     );
 
-    this._$text.text(parseInt(this._progress_pie_chart._values[this._index]["value"] * percentage));
+    this._$text.text(Math.round(this._progress_pie_chart._values[this._index]["value"] * percentage));
     this._$path.attr("d", this._progress_pie_chart._d([
         [ "M", [ this._progress_pie_chart._hole_radius, 0 ] ],
         [ "L", [ radius, 0 ] ],

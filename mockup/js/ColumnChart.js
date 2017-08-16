@@ -56,7 +56,7 @@ ColumnChart.prototype._afterCreate = function(svg) {
             "font-weight": this._options["font-weight"],
             "fill": this._options["font-color"]
         });
-        text.appendChild(document.createTextNode(parseInt(text_value_step * i)));
+        text.appendChild(document.createTextNode(Math.round(text_value_step * i)));
         svg.appendChild(text);
         texts.push(text);
     }

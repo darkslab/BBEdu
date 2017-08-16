@@ -9,6 +9,7 @@ function RadialChart($container, value, max_value, options) {
     this._options["font-size"] = this._optionValue(options, "font-size", "auto");
     this._options["font-weight"] = this._optionValue(options, "font-weight", "normal");
     this._options["font-color"] = this._optionValue(options, "font-color", "#444444");
+    this._options["percentage-first"] = this._optionValue(options, "percentage-first", false);
     this._options["round-linecap"] = true;
 
     this._value = value;
@@ -59,23 +60,31 @@ RadialChart.prototype._afterCreate = function(svg) {
         "dominant-baseline": "central",
         "font-size": this._options["font-size"] === "auto" ? this._radius * 0.4 : this._options["font-size"],
         "font-weight": this._options["font-weight"],
-        "fill": this._options["font-color"]
+        "fill": this._options["font-color"],
+        "cursor": "pointer"
     });
     this._$text = $(text);
     group.appendChild(text);
 
     svg.appendChild(group);
 
+    this._$text.on("click", this._toggleText.bind(this));
+
+    this._animation_complete = false;
     this._$arc.animate({
         "_progress": 1
     }, {
         "duration": this._options["duration"],
         "easing": "easeOutQuart",
-        "step": this._render_arc.bind(this)
+        "step": this._render_arc.bind(this),
+        "complete": function() {
+            this._animation_complete = true;
+        }.bind(this)
     });
 }
 RadialChart.prototype._beforeDestroy = function(svg) {
     this._$arc.stop(true);
+    this._$text.off("click", this._toggleText.bind(this));
     this._$arc = null;
 }
 RadialChart.prototype._render_arc = function(percentage) {
@@ -92,5 +101,21 @@ RadialChart.prototype._render_arc = function(percentage) {
             -(this._radius * Math.sin(angle))
         ] ]
     ]));
-    this._$text.text(parseInt(this._value * percentage));
+    this._$text.text(this._getText(percentage));
+}
+RadialChart.prototype._getText = function(percentage) {
+    var text = "";
+    if (this._options["percentage-first"]) {
+        text += Math.round(this._value / this._max_value * 100 * percentage) + "%";
+    } else {
+        text += Math.round(this._value * percentage);
+    }
+    return text;
+}
+RadialChart.prototype._toggleText = function(event) {
+    event.stopPropagation();
+    this._options["percentage-first"] = !this._options["percentage-first"];
+    if (this._animation_complete) {
+        this._$text.text(this._getText(1));
+    }
 }

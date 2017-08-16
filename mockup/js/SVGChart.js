@@ -80,17 +80,17 @@ SVGChart.prototype._optionValue = function(options, name, default_value) {
 SVGChart.prototype._optionalPercentageValue = function(value, whole_value) {
     var _value = 0;
     var is_set = false;
-    if (isNaN(parseInt(value))) {
+    if (isNaN(parseFloat(value))) {
         is_set = true;
     }
     if (!is_set && typeof value === "string") {
         if (value[value.length-1] === "%") {
-            _value = Math.max(parseInt(value.slice(0, value.length-1)), 0) / 100 * whole_value;
+            _value = Math.max(parseFloat(value.slice(0, value.length-1)), 0) / 100 * whole_value;
             is_set = true;
         }
     }
     if (!is_set) {
-        _value = Math.max(parseInt(value), 0);
+        _value = Math.max(parseFloat(value), 0);
     }
     return _value;
 }
