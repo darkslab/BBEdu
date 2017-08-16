@@ -11,10 +11,17 @@
 
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css?v=13" rel="stylesheet">
+    <link href="css/style.css?v=100" rel="stylesheet">
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/SVGChart.js?v=100"></script>
+    <script src="js/RadialChart.js?v=100"></script>
+    <script src="js/ColumnChart.js?v=100"></script>
+    <script src="js/ProgressPieChart.js?v=100"></script>
+
     <script>
         $(function() {
             var min_height = 600;

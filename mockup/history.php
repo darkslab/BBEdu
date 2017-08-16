@@ -1,8 +1,3 @@
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/SVGChart.js"></script>
-<script src="js/RadialChart.js"></script>
-<script src="js/ColumnChart.js"></script>
-<script src="js/ProgressPieChart.js?v=10"></script>
 <script>
     $(function() {
         $("[data-toggle=\"popover\"]").popover();

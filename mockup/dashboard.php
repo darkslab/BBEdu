@@ -1,7 +1,3 @@
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/SVGChart.js"></script>
-<script src="js/RadialChart.js"></script>
-<script src="js/ColumnChart.js"></script>
 <script>
     $(function() {
         (new RadialChart($("[data-dashboard-chart-0]"), 4, 10, {
