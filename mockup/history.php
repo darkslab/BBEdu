@@ -188,7 +188,8 @@
             (new RadialChart($("[data-section-0]"), 36, 90, {
                 "line-width": 2,
                 "arc-color": "#3366cc",
-                "font-size": 14
+                "font-size": 14,
+                "percentage-first": true
             })).create();
 
             (new ColumnChart($("[data-section-1]"), [
@@ -204,7 +205,6 @@
                 0
             ], 90, {
                 "line-color": "#3366cc",
-                "avg_value": 45,
                 "line-width": 4,
                 "font-size": 14
             })).create();
@@ -266,10 +266,48 @@
                                     <div class="tab-content">
                                         <div class="tab-pane fade active in" id="bb-results-0-0-section-0">
                                             <div class="row mt-15 mb-15">
-                                                <div class="col-xs-2 bb-result-cell" data-section-0></div>
-                                                <div class="col-xs-5 bb-result-cell" data-section-1></div>
+                                                <div class="col-xs-2 col-xs-offset-3 bb-result-cell" data-section-0></div>
+                                                <div class="col-xs-4 bb-result-cell" data-section-1></div>
                                             </div>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris eleifend, quam a vulputate dictum, massa quam dapibus leo, eget vulputate orci purus ut lorem. In fringilla mi in ligula. Pellentesque aliquam quam vel dolor. Nunc adipiscing. Sed quam odio, tempus ac, aliquam molestie, varius ac, tellus. Vestibulum ut nulla aliquam risus rutrum interdum. Pellentesque lorem. Curabitur sit amet erat quis risus feugiat viverra. Pellentesque augue justo, sagittis et, lacinia at, venenatis non, arcu. Nunc nec libero. In cursus dictum risus. Etiam tristique nisl a nulla. Ut a orci. Curabitur dolor nunc, egestas at, accumsan at, malesuada nec, magna.</p>
+                                            <div class="row mt-15 mb-15">
+                                                <div class="col-xs-6 col-xs-offset-3">
+                                                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#bb-modal-0">Правильные ответы</a>
+
+                                                    <div class="modal fade" id="bb-modal-0">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title">Правильные ответы</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p>Holidays are coming!...</p>
+                                                                    <p><a href="https://www.youtube.com/watch?v=b6liVLkW-U8" target="_blank">...Always Coca-Cola!</a></p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="tab-pane fade" id="bb-results-0-0-section-1">
                                             <p>Nulla facilisi. Nunc volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut sit amet orci vel mauris blandit vehicula. Nullam quis enim. Integer dignissim viverra velit. Curabitur in odio. In hac habitasse platea dictumst. Ut consequat, tellus eu volutpat varius, justo orci elementum dolor, sed imperdiet nulla tellus ut diam. Vestibulum ipsum ante, malesuada quis, tempus ac, placerat sit amet, elit.</p>
