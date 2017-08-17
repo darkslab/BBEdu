@@ -11,16 +11,16 @@
 
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css?v=100" rel="stylesheet">
+    <link href="css/style.css?v=101" rel="stylesheet">
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <script src="js/jquery-ui.min.js"></script>
-    <script src="js/SVGChart.js?v=100"></script>
-    <script src="js/RadialChart.js?v=100"></script>
-    <script src="js/ColumnChart.js?v=100"></script>
-    <script src="js/ProgressPieChart.js?v=100"></script>
+    <script src="js/SVGChart.js?v=101"></script>
+    <script src="js/RadialChart.js?v=101"></script>
+    <script src="js/ColumnChart.js?v=101"></script>
+    <script src="js/ProgressPieChart.js?v=101"></script>
 
     <script>
         $(function() {
@@ -70,7 +70,7 @@
                         <a href="<?php echo $base; ?>payment.html" class="btn btn-success btn-xs">Счёт: 3500 &#8376;</a>
                     </div>
                 </div>
-                <div class="row bb-menu-section bb-menu-section-last pt-15 pb-15">
+                <div class="row bb-menu-section pt-15 pb-15">
                     <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
                         <li class="<?php echo $nav == 'dashboard' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>dashboard.html"><i class="fa fa-fw fa-tachometer"></i> Личный кабинет</a></li>
                         <li class="<?php echo $nav == 'test' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>test.html"><i class="fa fa-fw fa-pencil-square-o"></i> Онлайн тестирование</a></li>
@@ -78,11 +78,22 @@
                         <li class="<?php echo $nav == 'payment' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>payment.html"><i class="fa fa-fw fa-credit-card"></i> Пополнить счёт</a></li>
                     </ul>
                 </div>
-                <div class="row bb-menu-section bb-menu-section-final pt-15 pb-15 visible-xs-block">
+                <div class="row bb-menu-section pt-15 pb-15 visible-xs-block">
                     <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
                         <li class="<?php echo $nav == 'settings' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>settings.html"><i class="fa fa-fw fa-sliders"></i> Настройки</a></li>
                         <li class="<?php echo $nav == 'logout' ? 'active' : ''; ?>"><a href="<?php echo $base; ?>logout.html"><i class="fa fa-fw fa-sign-out"></i> Выход</a></li>
                     </ul>
+                </div>
+                <div class="row bb-menu-section bb-menu-section-last pt-15 pb-15 pr-30 pl-30">
+                    <div class="col-xs-4 pr-0 pl-0">
+                        <a href="#" class="bb-social-icon bb-social-icon-facebook"><i class="fa fa-fw fa-facebook"></i></a>
+                    </div>
+                    <div class="col-xs-4 pr-0 pl-0">
+                        <a href="#" class="bb-social-icon bb-social-icon-instagram"><i class="fa fa-fw fa-instagram"></i></a>
+                    </div>
+                    <div class="col-xs-4 pr-0 pl-0">
+                        <a href="#" class="bb-social-icon bb-social-icon-twitter"><i class="fa fa-fw fa-twitter"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
