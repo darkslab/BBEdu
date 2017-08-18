@@ -157,7 +157,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr class="mt-15 mb-15">
+                        <hr class="mt-15 mb-15" style="border-color: #ccc;">
                         <h4 class="text-right mt-0 mb-23" data-total-amount>0 &#8376;</h4>
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled data-charge-button>Начать</button>
                     </div>

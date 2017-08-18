@@ -11,16 +11,16 @@
 
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css?v=101" rel="stylesheet">
+    <link href="css/style.css?v=102" rel="stylesheet">
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <script src="js/jquery-ui.min.js"></script>
-    <script src="js/SVGChart.js?v=101"></script>
-    <script src="js/RadialChart.js?v=101"></script>
-    <script src="js/ColumnChart.js?v=101"></script>
-    <script src="js/ProgressPieChart.js?v=101"></script>
+    <script src="js/SVGChart.js?v=102"></script>
+    <script src="js/RadialChart.js?v=102"></script>
+    <script src="js/ColumnChart.js?v=102"></script>
+    <script src="js/ProgressPieChart.js?v=102"></script>
 
     <script>
         $(function() {
