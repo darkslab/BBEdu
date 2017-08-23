@@ -1,6 +1,6 @@
 html,
 body {
-    height: 100%;
+    min-height: 100%;
 }
 
 .splash-body {
@@ -27,3 +27,24 @@ body {
 .mt-0  { margin-top:     0px; }
 .mb-0  { margin-bottom:  0px; }
 .mb-30 { margin-bottom: 30px; }
+
+.splash-social {
+    width: 60px;
+    height: 60px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: block;
+    line-height: 60px;
+}
+
+.splash-social.splash-social-facebook:hover,
+.splash-social.splash-social-facebook:focus {
+}
+.splash-social.splash-social-instagram:hover,
+.splash-social.splash-social-instagram:focus {
+}
+.splash-social.splash-social-twitter:hover,
+.splash-social.splash-social-twitter:focus {
+}
