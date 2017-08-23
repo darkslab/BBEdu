@@ -41,10 +41,19 @@ body {
 
 .splash-social.splash-social-facebook:hover,
 .splash-social.splash-social-facebook:focus {
+    background-color: #3b5998;
+    color: #fff;
+    text-shadow: none;
 }
 .splash-social.splash-social-instagram:hover,
 .splash-social.splash-social-instagram:focus {
+    background-color: #e23566;
+    color: #fff;
+    text-shadow: none;
 }
 .splash-social.splash-social-twitter:hover,
 .splash-social.splash-social-twitter:focus {
+    background-color: #1da1f2;
+    color: #fff;
+    text-shadow: none;
 }
