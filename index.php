@@ -76,7 +76,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <h5 class="text-center mt-0 mb-30">
-                    <a href="javascript:void(0);" class="splash-title" data-toggle="modal" data-target="#subscribe">Когда заработает сайт?</a>
+                    <a href="#subscribe" class="splash-title" data-toggle="modal">Когда заработает сайт?</a>
                 </h5>
                 <div class="modal fade" id="subscribe">
                     <div class="modal-dialog">
@@ -85,7 +85,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="modal-body">
-                                <h4 class="modal-title text-center mb-30" style="line-height: 1;">Оставьте нам свой емайл и Вы первым узнаете когда откроется сайт</h4>
+                                <h4 class="modal-title text-center mb-30" style="line-height: 1;">Оставьте нам свой емайл и Вы первым узнаете когда сайт будет запущен.</h4>
                                 <div class="form-group" data-subscribe-container>
                                     <label class="control-label hidden" data-subscribe-error>Проверьте правильность емайла</label>
                                     <div class="input-group">
