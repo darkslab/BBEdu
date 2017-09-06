@@ -76,7 +76,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 <h5 class="text-center mt-0 mb-30">
-                    <a href="#subscribe" class="splash-title" data-toggle="modal">Когда заработает сайт?</a>
+                    <a href="#subscribe" class="btn btn-default btn-lg" data-toggle="modal">Когда заработает сайт?</a>
                 </h5>
                 <div class="modal fade" id="subscribe">
                     <div class="modal-dialog">
