@@ -15,7 +15,7 @@
 
     <script src="jquery-3.2.1.min.js"></script>
     <script src="bootstrap.min.js"></script>
-    <?php if (file_exists(dirname(__FILE__).'/.production')): ?>
+    <?php if (file_exists(dirname(__FILE__).'/../.bbtest_production')): ?>
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
