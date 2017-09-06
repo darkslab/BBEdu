@@ -9,7 +9,7 @@ if ($post_email) {
     $response['success'] = true;
 
     $mysql = new mysqli('localhost', 'root', 'monkey', 'bbtest');
-    if (!$mysql->connect_errono) {
+    if (!$mysql->connect_errno) {
         $mysql->set_charset('utf8');
         $mysql->query("
             INSERT INTO `bbtest`.`subscriptions` (
