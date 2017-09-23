@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.0\n"
+"Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2017-09-22 10:23+0600\n"
+"POT-Creation-Date: 2017-09-24 02:11+0600\n"
 "PO-Revision-Date: 2017-09-21 21:32-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -19,22 +19,18 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Generator: Poedit 2.0.4\n"
 
-#: bbtest/templates/home.html:2
 msgctxt "Home page header"
 msgid "Home page"
 msgstr "Домашняя страница"
 
-#: bbtest/templates/login.html:2
 msgctxt "Login page header"
 msgid "Login page"
 msgstr "Страница авторизации"
 
-#: bbtest/templates/login.html:7
 msgctxt "Login page submit button"
 msgid "Login"
 msgstr "Войти"
 
-#: bbtest/templates/test.html:2
 msgctxt "Test page header"
 msgid "Test page"
 msgstr "Тестовая страница"
