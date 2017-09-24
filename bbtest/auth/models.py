@@ -47,6 +47,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         default_permissions = ()
+        permissions = (
+            ("admin", "Can act as an Admin"),
+            ("developer", "Can act as a Developer"),
+            ("student", "Can act as a Student"),
+        )
 
     def __str__(self):
         return self.get_full_name()
