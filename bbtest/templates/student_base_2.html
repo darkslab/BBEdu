@@ -1,0 +1,13 @@
+{% extends 'personalized_base_1.html' %}
+{% load i18n %}
+
+{% block _d1_group_class %}bb-container-student{% endblock %}
+
+{% block _d1_navigation %}
+    <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
+        <li class="{% block d2_nav_dashboard_class %}{% endblock %}"><a href="#"><i class="fa fa-fw fa-tachometer"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
+        <li class="{% block d2_nav_start_testing_class %}{% endblock %}"><a href="#"><i class="fa fa-fw fa-pencil-square-o"></i> {% trans 'Start testing' context 'Navigation link' %}</a></li>
+        <li class="{% block d2_nav_results_class %}{% endblock %}"><a href="#"><i class="fa fa-fw fa-line-chart"></i> {% trans 'Results' context 'Navigation link' %}</a></li>
+        <li class="{% block d2_nav_refill_balance_class %}{% endblock %}"><a href="#"><i class="fa fa-fw fa-credit-card"></i> {% trans 'Refill Balance' context 'Navigation link' %}</a></li>
+    </ul>
+{% endblock %}

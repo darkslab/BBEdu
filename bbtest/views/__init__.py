@@ -1,1 +1,1 @@
-from .common import HomeView, TestView
+from .common import HomeView
