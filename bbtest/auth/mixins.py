@@ -22,13 +22,13 @@ class _GroupLoginRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
 class AdminLoginRequiredMixin(_GroupLoginRequiredMixin):
-    permission_denied_message = "Admin required"
+    permission_denied_message = "Admin access required"
     permission_required = "bbtest.admin"
 
 class DeveloperLoginRequiredMixin(_GroupLoginRequiredMixin):
-    permission_denied_message = "Developer required"
+    permission_denied_message = "Developer access required"
     permission_required = "bbtest.developer"
 
 class StudentLoginRequiredMixin(_GroupLoginRequiredMixin):
-    permission_denied_message = "Student required"
+    permission_denied_message = "Student access required"
     permission_required = "bbtest.student"

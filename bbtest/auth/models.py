@@ -38,9 +38,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = CharField(max_length=100, blank=True)
     joined_at = DateTimeField(auto_now_add=True)
     is_active = BooleanField(default=True)
-    is_student = BooleanField(default=False)
-    is_developer = BooleanField(default=False)
-    is_admin = BooleanField(default=False)
 
     USERNAME_FIELD = "username"
     EMAIL_FIELD = "email"
@@ -50,6 +47,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         default_permissions = ()
+        permissions = (
+            ("admin", "Can act as an Admin"),
+            ("developer", "Can act as a Developer"),
+            ("student", "Can act as a Student"),
+        )
 
     def __str__(self):
         return self.get_full_name()
