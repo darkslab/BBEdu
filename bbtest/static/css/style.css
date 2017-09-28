@@ -81,6 +81,11 @@
  * Application classes
  */
 
+html,
+body {
+    height: 100%;
+}
+
 .bb-container {
     position: relative;
     overflow-x: hidden;
