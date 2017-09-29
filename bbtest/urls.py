@@ -8,10 +8,13 @@ from .views.developer import DeveloperDashboardView
 
 app_name = "bbtest"
 urlpatterns = [
+    # PUBLIC URLS
     url(r"^$", HomeView.as_view(), name="home"),
 
+    # DEVELOPER URLS
     url(r"^developer/$", DeveloperDashboardView.as_view(), name="developer_dashboard"),
 
+    # SYSTEM URLS
     url(r"^login/$", LoginView.as_view(
         template_name="login.html",
         redirect_field_name=settings.BB_REDIRECT_FIELDNAME,
