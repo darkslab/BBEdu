@@ -3,11 +3,14 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.conf import settings
 from .auth.forms import AuthenticationForm
 from .views import HomeView
+from .views.developer import DeveloperDashboardView
 
 
 app_name = "bbtest"
 urlpatterns = [
     url(r"^$", HomeView.as_view(), name="home"),
+
+    url(r"^developer/$", DeveloperDashboardView.as_view(), name="developer_dashboard"),
 
     url(r"^login/$", LoginView.as_view(
         template_name="login.html",
