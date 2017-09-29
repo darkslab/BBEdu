@@ -21,6 +21,10 @@ class _GroupLoginRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
             return self.handle_no_permission()
         return super().dispatch(request, *args, **kwargs)
 
+class SuperLoginRequiredMixin(_GroupLoginRequiredMixin):
+    permission_denied_message = "Super access required"
+    permission_required = "bbtest.super"
+
 class AdminLoginRequiredMixin(_GroupLoginRequiredMixin):
     permission_denied_message = "Admin access required"
     permission_required = "bbtest.admin"

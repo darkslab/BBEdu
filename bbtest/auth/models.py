@@ -48,6 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         default_permissions = ()
         permissions = (
+            ("super", "Can act as a Super"),
             ("admin", "Can act as an Admin"),
             ("developer", "Can act as a Developer"),
             ("student", "Can act as a Student"),
