@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.contrib.auth.views import LoginView, LogoutView
 from django.conf import settings
 from .auth.forms import AuthenticationForm
+from .auth.views import RegisterView
 from .views import HomeView
 from .views.developer import DeveloperDashboardView
 
@@ -24,4 +25,5 @@ urlpatterns = [
     url(r"^logout/$", LogoutView.as_view(
         redirect_field_name=settings.BB_REDIRECT_FIELDNAME,
     ), name="logout"),
+    url(r"^register/$", RegisterView.as_view(), name="register"),
 ]

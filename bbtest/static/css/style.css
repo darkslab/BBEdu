@@ -89,6 +89,7 @@ body {
 .bb-container {
     position: relative;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 .bb-container-student {
@@ -99,17 +100,22 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
+    bottom: 0px;
     width: 220px;
+    min-height: 640px;
 }
 
 .bb-main {
-    position: relative;
+    position: absolute;
     top: 0px;
     left: 0px;
     bottom: 0px;
     width: 100%;
-    min-height: 600px;
+    min-height: 640px;
     background-color: rgba(237, 244, 247, 1);
+}
+
+.bb-main-personalized {
     -webkit-transition: left .3s ease-in-out;
          -o-transition: left .3s ease-in-out;
             transition: left .3s ease-in-out;
@@ -117,15 +123,15 @@ body {
             box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.4);
 }
 
-.bb-main.bb-pushed {
+.bb-main-personalized.bb-pushed {
     left: 220px;
 }
 
-.bb-main .navbar-header {
+.bb-main-personalized .navbar-header {
     position: relative;
 }
 
-.bb-main .navbar-header .navbar-brand {
+.bb-main-personalized .navbar-header .navbar-brand {
     position: relative;
     top: 0px;
     -webkit-transition: top .3s ease-in-out;
@@ -133,7 +139,11 @@ body {
             transition: top .3s ease-in-out;
 }
 
-.bb-main.bb-pushed .navbar-header .navbar-brand {
+.bb-main-personalized.bb-pushed .navbar-header .navbar-brand {
+    top: -64px;
+}
+
+.bb-main-personalized.bb-pushed .bb-bar-gravatar {
     top: -64px;
 }
 
@@ -184,7 +194,7 @@ body {
     border-radius: 0;
 }
 
-.bb-bar .navbar-toggle {
+.bb-bar.bb-bar-personalized .navbar-toggle {
     display: block !important;
     float: left;
 }
@@ -194,39 +204,45 @@ body {
          -o-transition: all 0.3s;
             transition: all 0.3s;
 }
-.bb-bar .navbar-toggle .icon-bar.bb-bar-button-first {
+.bb-bar.bb-bar-personalized .navbar-toggle .icon-bar.bb-bar-button-first,
+.bb-bar.bb-bar-public .navbar-toggle.collapsed .icon-bar.bb-bar-button-first {
     -webkit-transform: translate(0px, 0px) rotate(0deg);
         -ms-transform: translate(0px, 0px) rotate(0deg);
          -o-transform: translate(0px, 0px) rotate(0deg);
             transform: translate(0px, 0px) rotate(0deg);
 }
-.bb-bar .navbar-toggle.bb-pushed .icon-bar.bb-bar-button-first {
+.bb-bar.bb-bar-personalized .navbar-toggle.bb-pushed .icon-bar.bb-bar-button-first,
+.bb-bar.bb-bar-public .navbar-toggle .icon-bar.bb-bar-button-first {
     -webkit-transform: translate(0px, 6px) rotate(45deg);
         -ms-transform: translate(0px, 6px) rotate(45deg);
          -o-transform: translate(0px, 6px) rotate(45deg);
             transform: translate(0px, 6px) rotate(45deg);
 }
-.bb-bar .navbar-toggle .icon-bar.bb-bar-button-second {
+.bb-bar.bb-bar-personalized .navbar-toggle .icon-bar.bb-bar-button-second,
+.bb-bar.bb-bar-public .navbar-toggle.collapsed .icon-bar.bb-bar-button-second {
     -webkit-transform: translate(0px, 0px) rotate(0deg);
         -ms-transform: translate(0px, 0px) rotate(0deg);
          -o-transform: translate(0px, 0px) rotate(0deg);
             transform: translate(0px, 0px) rotate(0deg);
     opacity: 1;
 }
-.bb-bar .navbar-toggle.bb-pushed .icon-bar.bb-bar-button-second {
+.bb-bar.bb-bar-personalized .navbar-toggle.bb-pushed .icon-bar.bb-bar-button-second,
+.bb-bar.bb-bar-public .navbar-toggle .icon-bar.bb-bar-button-second {
     -webkit-transform: translate(0px, 0px) rotate(360deg);
         -ms-transform: translate(0px, 0px) rotate(360deg);
          -o-transform: translate(0px, 0px) rotate(360deg);
             transform: translate(0px, 0px) rotate(360deg);
     opacity: 0;
 }
-.bb-bar .navbar-toggle .icon-bar.bb-bar-button-third {
+.bb-bar.bb-bar-personalized .navbar-toggle .icon-bar.bb-bar-button-third,
+.bb-bar.bb-bar-public .navbar-toggle.collapsed .icon-bar.bb-bar-button-third {
     -webkit-transform: translate(0px, 0px) rotate(0deg);
         -ms-transform: translate(0px, 0px) rotate(0deg);
          -o-transform: translate(0px, 0px) rotate(0deg);
             transform: translate(0px, 0px) rotate(0deg);
 }
-.bb-bar .navbar-toggle.bb-pushed .icon-bar.bb-bar-button-third {
+.bb-bar.bb-bar-personalized .navbar-toggle.bb-pushed .icon-bar.bb-bar-button-third,
+.bb-bar.bb-bar-public .navbar-toggle .icon-bar.bb-bar-button-third {
     -webkit-transform: translate(0px, -6px) rotate(-45deg);
         -ms-transform: translate(0px, -6px) rotate(-45deg);
          -o-transform: translate(0px, -6px) rotate(-45deg);
@@ -250,14 +266,13 @@ body {
             transition: top .3s ease-in-out;
 }
 
-.bb-main.bb-pushed .bb-bar-gravatar {
-    top: -64px;
+.bb-content {
+    padding-bottom: 46px;
 }
 
-.bb-content {
+.bb-content-personalized {
     width: auto;
     max-width: 970px;
-    padding-bottom: 46px;
 }
 
 .bb-copyright {
@@ -266,36 +281,39 @@ body {
     bottom: 0px;
     left: 0px;
     line-height: 36px;
-    -webkit-transition: left .3s ease-in-out;
-         -o-transition: left .3s ease-in-out;
-            transition: left .3s ease-in-out;
     font-size: 90%;
     color: rgba(0, 0, 0, 0.3);
 }
 
+.bb-copyright-personalized {
+    -webkit-transition: left .3s ease-in-out;
+         -o-transition: left .3s ease-in-out;
+            transition: left .3s ease-in-out;
+}
+
 @media (min-width: 1200px) {
-    .bb-main {
+    .bb-main-personalized {
         left: 220px;
         padding-right: 220px;
     }
-    .bb-main .navbar-header .navbar-brand {
+    .bb-main-personalized .navbar-header .navbar-brand {
         top: -64px;
     }
-    .bb-main .bb-bar-gravatar {
+    .bb-main-personalized .bb-bar-gravatar {
         top: -64px;
     }
-    .bb-copyright {
+    .bb-copyright-personalized {
         left: -220px;
     }
 
-    .bb-bar .navbar-toggle .icon-bar.bb-bar-button-first {
+    .bb-bar.bb-bar-personalized .navbar-toggle .icon-bar.bb-bar-button-first {
         -webkit-transform: translate(0px, 0px) rotate(0deg) !important;
             -ms-transform: translate(0px, 0px) rotate(0deg) !important;
              -o-transform: translate(0px, 0px) rotate(0deg) !important;
                 transform: translate(0px, 0px) rotate(0deg) !important;
         width: 4px !important;
     }
-    .bb-bar .navbar-toggle .icon-bar.bb-bar-button-second {
+    .bb-bar.bb-bar-personalized .navbar-toggle .icon-bar.bb-bar-button-second {
         -webkit-transform: translate(0px, 0px) rotate(0deg) !important;
             -ms-transform: translate(0px, 0px) rotate(0deg) !important;
              -o-transform: translate(0px, 0px) rotate(0deg) !important;
@@ -303,7 +321,7 @@ body {
         opacity: 1 !important;
         width: 4px !important;
     }
-    .bb-bar .navbar-toggle .icon-bar.bb-bar-button-third {
+    .bb-bar.bb-bar-personalized .navbar-toggle .icon-bar.bb-bar-button-third {
         -webkit-transform: translate(0px, 0px) rotate(0deg) !important;
             -ms-transform: translate(0px, 0px) rotate(0deg) !important;
              -o-transform: translate(0px, 0px) rotate(0deg) !important;

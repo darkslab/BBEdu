@@ -10,21 +10,10 @@
 
     <script>
         $(function() {
-            var min_height = 600;
             var $main = $("[data-bb-main]");
-            $main.css({
-                "min-height": ($(window).height() > min_height ? $(window).height() : min_height) + "px"
-            });
-            $(window).resize(function() {
-                if ($(this).height() > min_height) {
-                    $main.css({
-                        "min-height": $(this).height() + "px"
-                    });
-                }
-            });
-            $("[data-bb-bar-button]").click(function() {
+            var $button = $("[data-bb-bar-button]");
+            $button.click(function() {
                 if ($(window).width() < 1200) {
-                    var $button = $(this);
                     if ($button.hasClass("bb-pushed")) {
                         $button.removeClass("bb-pushed");
                         $main.removeClass("bb-pushed");
@@ -77,9 +66,9 @@
                 </div>
             </div>
         </div>
-        <div class="bb-main" data-bb-main>
+        <div class="bb-main bb-main-personalized" data-bb-main>
             <div class="container-fluid">
-                <div class="row bb-bar">
+                <div class="row bb-bar bb-bar-personalized">
                     <nav class="navbar navbar-inverse">
                         <div class="container-fluid">
                             <div class="navbar-header">
@@ -109,12 +98,12 @@
                     </nav>
                 </div>
                 <div class="row">
-                    <div class="container bb-content">
+                    <div class="container bb-content bb-content-personalized">
                         {% block d1_content %}{% endblock %}
                     </div>
                 </div>
             </div>
-            <div class="bb-copyright text-center">{% blocktrans with heart_icon='<i class="fa fa-heart-o"></i>' copyright_code='&copy;' %}Made with {{ heart_icon }} in Kazakhstan. {{ copyright_code }} bbTest.kz{% endblocktrans %}</div>
+            <div class="bb-copyright bb-copyright-personalized text-center">{% blocktrans with heart_icon='<i class="fa fa-heart-o"></i>' copyright_code='&copy;' context 'Bottom copyright' %}Made with {{ heart_icon }} in Kazakhstan. {{ copyright_code }} bbTest.kz{% endblocktrans %}</div>
         </div>
     </div>
 {% endblock %}
