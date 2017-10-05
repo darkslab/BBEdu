@@ -1,5 +1,14 @@
 {% extends './base_0.html' %}
 
 {% block _d0_content %}
-    {% block d1_content %}{% endblock %}
+    {% block header %}<h3>{% block title %}{% endblock %}</h3>{% endblock %}
+    {% block content %}{% endblock %}
 {% endblock %}
+
+{% comment %}
+
+    header
+      title
+    content
+
+{% endcomment %}

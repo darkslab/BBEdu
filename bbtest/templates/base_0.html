@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block d0_title_full %}{% block d0_title %}{% endblock %} - bbTest.kz{% endblock %}</title>
+    <title>{% block title_full %}{% block title %}{% endblock %} - bbTest.kz{% endblock %}</title>
 
-    <meta name="description" content="{% block d0_description %}bbTest.kz{% endblock %}">
+    <meta name="description" content="{% block description %}bbTest.kz{% endblock %}">
 
     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -22,3 +22,13 @@
     {% block _d0_content %}{% endblock %}
 </body>
 </html>
+
+{% comment %}
+
+    title_full
+      title
+    description
+
+    _d0_content
+
+{% endcomment %}
