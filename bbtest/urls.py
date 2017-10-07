@@ -25,5 +25,5 @@ urlpatterns = [
     url(r"^logout/$", LogoutView.as_view(
         redirect_field_name=settings.BB_REDIRECT_FIELDNAME,
     ), name="logout"),
-    url(r"^register/$", RegisterView.as_view(), name="register"),
+    url(r"^register/(?:(?P<group>developer)/)?$", RegisterView.as_view(), name="register"),
 ]

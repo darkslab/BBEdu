@@ -1,13 +1,32 @@
 {% extends './public_base_1.html' %}
-{% load i18n %}
+{% load i18n widget_tweaks %}
 
 {% block title %}{% trans 'Register' context 'Page title' %}{% endblock %}
 
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4{% endblock %}
+
 {% block content %}
     <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <form method="post" action="{{ form_url }}" class="mt-15">
+                        {% csrf_token %}
+
+                        {% for field in form %}
+                            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                {{ field|add_class:'form-control' }}
+                                {% for error in field.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">{% trans 'Register' context 'Form button' %}</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@
                     <nav class="navbar navbar-default">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-10 col-lg-offset-1">
+                                <div class="col-lg-10 col-lg-offset-1 pr-0 pl-0">
                                     <div class="navbar-header">
                                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bb-navbar-collapse">
                                             <span class="icon-bar bb-bar-button-first"></span>
@@ -47,7 +47,7 @@
                     <div class="container bb-content">
                         {% block header %}
                             <div class="row">
-                                <div class="col-lg-10 col-lg-offset-1">
+                                <div class="{% block header_class %}col-lg-10 col-lg-offset-1{% endblock %}">
                                     <h3 class="mb-23 mt-0">{% block title %}{% endblock %}</h3>
                                 </div>
                             </div>
@@ -65,6 +65,7 @@
 
     header
       title
+    header_class
     content
 
 {% endcomment %}

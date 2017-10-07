@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import (
 from django.contrib.auth.views import redirect_to_login
 from django.urls import reverse_lazy
 from django.conf import settings
+from django.shortcuts import redirect
 
 
 class LoginRequiredMixin(_LoginRequiredMixin):
@@ -36,3 +37,9 @@ class DeveloperLoginRequiredMixin(_GroupLoginRequiredMixin):
 class StudentLoginRequiredMixin(_GroupLoginRequiredMixin):
     permission_denied_message = "Student access required"
     permission_required = "bbtest.student"
+
+class LogoutRequiredMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(request.user)
+        return super().dispatch(request, *args, **kwargs)

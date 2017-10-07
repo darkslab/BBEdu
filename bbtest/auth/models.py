@@ -1,7 +1,9 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.db.models import CharField, EmailField, DateTimeField, BooleanField
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext as _
+from django.shortcuts import resolve_url
 
 
 class UserManager(BaseUserManager):
@@ -54,6 +56,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.get_full_name()
+    def get_absolute_url(self):
+        if self.has_perm("bbtest.super"):
+            return resolve_url("bbtest:super_dashboard")
+        if self.has_perm("bbtest.admin"):
+            return resolve_url("bbtest:admin_dashboard")
+        if self.has_perm("bbtest.developer"):
+            return resolve_url("bbtest:developer_dashboard")
+        if self.has_perm("bbtest.student"):
+            return resolve_url("bbtest:student_dashboard")
+        return resolve_url("home")
 
     def get_full_name(self):
         full_name_values = []
