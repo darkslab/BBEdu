@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db.models import CharField, EmailField, DateTimeField, BooleanField
 from django.core.exceptions import ValidationError
-from django.utils.translation import pgettext as _
+from django.utils.translation import pgettext_lazy
 from django.shortcuts import resolve_url
 
 
@@ -28,12 +28,12 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser, PermissionsMixin):
-    username = CharField(_("Model field", "username"), max_length=100, unique=True)
-    email = EmailField(_("Model field", "email"), max_length=100, null=True, blank=True, unique=True)
-    first_name = CharField(_("Model field", "first name"), max_length=100, blank=True)
-    last_name = CharField(_("Model field", "last name"), max_length=100, blank=True)
-    joined_at = DateTimeField(_("Model field", "joined at"), auto_now_add=True, db_index=True)
-    is_active = BooleanField(_("Model field", "active?"), db_index=True, default=True)
+    username = CharField(pgettext_lazy("Model field", "username"), max_length=100, unique=True)
+    email = EmailField(pgettext_lazy("Model field", "email"), max_length=100, null=True, blank=True, unique=True)
+    first_name = CharField(pgettext_lazy("Model field", "first name"), max_length=100, blank=True)
+    last_name = CharField(pgettext_lazy("Model field", "last name"), max_length=100, blank=True)
+    joined_at = DateTimeField(pgettext_lazy("Model field", "joined at"), auto_now_add=True, db_index=True)
+    is_active = BooleanField(pgettext_lazy("Model field", "active?"), db_index=True, default=True)
 
     USERNAME_FIELD = "username"
     EMAIL_FIELD = "email"

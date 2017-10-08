@@ -1,17 +1,17 @@
 from django.forms import ValidationError, Form, ModelForm, CharField, PasswordInput
 from django.contrib.auth import get_user_model, authenticate
-from django.utils.translation import pgettext as _
+from django.utils.translation import pgettext_lazy
 from uuid import uuid4
 
 
 User = get_user_model()
 
 class AuthenticationForm(Form):
-    username = CharField(label=_("Form label", "Email"), error_messages={
-        "required": _("Form field error", "Please enter email"),
+    username = CharField(label=pgettext_lazy("Form label", "Email"), error_messages={
+        "required": pgettext_lazy("Form field error", "Please enter email"),
     })
-    password = CharField(label=_("Form label", "Password"), error_messages={
-        "required": _("Form field error", "Please enter password"),
+    password = CharField(label=pgettext_lazy("Form label", "Password"), error_messages={
+        "required": pgettext_lazy("Form field error", "Please enter password"),
     }, widget=PasswordInput, strip=False)
 
     def __init__(self, request=None, *args, **kwargs):
@@ -27,7 +27,7 @@ class AuthenticationForm(Form):
             self._user = authenticate(self.request, username=username, password=password)
             if self._user is None:
                 raise ValidationError(
-                    _("Authentication failed error", "Please enter a correct email and password."),
+                    pgettext_lazy("Authentication failed error", "Please enter a correct email and password."),
                     code="invalid_login",
                 )
 
@@ -42,11 +42,11 @@ class AuthenticationForm(Form):
         return self._user
 
 class UserCreationForm(ModelForm):
-    password1 = CharField(label=_("Form label", "New password"), error_messages={
-        "required": _("Form field error", "Please enter password"),
+    password1 = CharField(label=pgettext_lazy("Form label", "New password"), error_messages={
+        "required": pgettext_lazy("Form field error", "Please enter password"),
     }, widget=PasswordInput, strip=False)
-    password2 = CharField(label=_("Form label", "Confirm password"), error_messages={
-        "required": _("Form field error", "Please enter password confirmation"),
+    password2 = CharField(label=pgettext_lazy("Form label", "Confirm password"), error_messages={
+        "required": pgettext_lazy("Form field error", "Please enter password confirmation"),
     }, widget=PasswordInput, strip=False)
 
     class Meta:
@@ -54,18 +54,18 @@ class UserCreationForm(ModelForm):
         fields = ("first_name", "last_name", "email")
         error_messages = {
             "first_name": {
-                "required": _("Form field error", "Please enter first name"),
-                "max_length": _("Form field error", "First name is too long"),
+                "required": pgettext_lazy("Form field error", "Please enter first name"),
+                "max_length": pgettext_lazy("Form field error", "First name is too long"),
             },
             "last_name": {
-                "required": _("Form field error", "Please enter last name"),
-                "max_length": _("Form field error", "Last name is too long"),
+                "required": pgettext_lazy("Form field error", "Please enter last name"),
+                "max_length": pgettext_lazy("Form field error", "Last name is too long"),
             },
             "email": {
-                "required": _("Form field error", "Please enter email"),
-                "invalid": _("Form field error", "Incorrect email"),
-                "max_length": _("Form field error", "Email is too long"),
-                "unique": _("Form field error", "This email is already taken"),
+                "required": pgettext_lazy("Form field error", "Please enter email"),
+                "invalid": pgettext_lazy("Form field error", "Incorrect email"),
+                "max_length": pgettext_lazy("Form field error", "Email is too long"),
+                "unique": pgettext_lazy("Form field error", "This email is already taken"),
             },
         }
 
@@ -84,7 +84,7 @@ class UserCreationForm(ModelForm):
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
             raise ValidationError(
-                _("Form validation error", "Passwords do not match"),
+                pgettext_lazy("Form validation error", "Passwords do not match"),
                 code="password_mismatch",
             )
         return password2
