@@ -7,24 +7,24 @@ from django.shortcuts import resolve_url
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, password=None):
-        user = self.__create_unsaved_user(username, password)
+    def create_user(self, username, email=None, password=None):
+        user = self.__create_unsaved_user(username, email, password)
         user.save()
         return user
 
-    def create_superuser(self, username, password):
-        user = self.__create_unsaved_user(username, password)
+    def create_superuser(self, username, email, password):
+        user = self.__create_unsaved_user(username, email, password)
         user.is_superuser = True
         user.save()
         return user
 
-    def __create_unsaved_user(self, username, password):
+    def __create_unsaved_user(self, username, email, password):
         try:
-            user = self.model(username=username)
+            user = self.model(username=username, email=email)
             user.set_password(password)
             user.full_clean()
         except ValidationError:
-            raise ValueError("Please provide correct username and password")
+            raise ValueError("Given arguments have to be: username is required and has to be unique, email is not required but has to be unique")
         return user
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -52,7 +52,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def clean(self):
         super().clean()
-        self.email = type(self).objects.normalize_email(self.email)
+        if self.email is not None:
+            self.email = type(self).objects.normalize_email(self.email)
 
     def __str__(self):
         return self.get_full_name()
