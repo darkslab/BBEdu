@@ -1,6 +1,6 @@
 from django.forms import ValidationError, Form, ModelForm, CharField, PasswordInput
 from django.contrib.auth import get_user_model, authenticate
-from django.utils.translation import pgettext_lazy
+from django.utils.translation import pgettext_lazy, pgettext
 from uuid import uuid4
 
 
@@ -27,7 +27,7 @@ class AuthenticationForm(Form):
             self._user = authenticate(self.request, username=username, password=password)
             if self._user is None:
                 raise ValidationError(
-                    pgettext_lazy("Authentication failed error", "Please enter a correct email and password."),
+                    pgettext("Authentication failed error", "Please enter a correct email and password."),
                     code="invalid_login",
                 )
 
@@ -84,7 +84,7 @@ class UserCreationForm(ModelForm):
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
             raise ValidationError(
-                pgettext_lazy("Form validation error", "Passwords do not match"),
+                pgettext("Form validation error", "Passwords do not match"),
                 code="password_mismatch",
             )
         return password2
