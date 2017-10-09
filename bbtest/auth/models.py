@@ -27,6 +27,7 @@ class UserManager(BaseUserManager):
             raise ValueError("Given arguments have to be: username is required and has to be unique, email is not required but has to be unique")
         return user
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     username = CharField(pgettext_lazy("Model field", "username"), max_length=100, unique=True)
     email = EmailField(pgettext_lazy("Model field", "email"), max_length=100, null=True, blank=True, unique=True)

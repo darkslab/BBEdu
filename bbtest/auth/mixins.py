@@ -12,6 +12,7 @@ class LoginRequiredMixin(_LoginRequiredMixin):
     login_url = reverse_lazy("bbtest:login")
     redirect_field_name = settings.BB_REDIRECT_FIELDNAME
 
+
 class _GroupLoginRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     raise_exception = True
 
@@ -22,21 +23,26 @@ class _GroupLoginRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
             return self.handle_no_permission()
         return super().dispatch(request, *args, **kwargs)
 
+
 class SuperLoginRequiredMixin(_GroupLoginRequiredMixin):
     permission_denied_message = "Super access required"
     permission_required = "bbtest.super"
+
 
 class AdminLoginRequiredMixin(_GroupLoginRequiredMixin):
     permission_denied_message = "Admin access required"
     permission_required = "bbtest.admin"
 
+
 class DeveloperLoginRequiredMixin(_GroupLoginRequiredMixin):
     permission_denied_message = "Developer access required"
     permission_required = "bbtest.developer"
 
+
 class StudentLoginRequiredMixin(_GroupLoginRequiredMixin):
     permission_denied_message = "Student access required"
     permission_required = "bbtest.student"
+
 
 class LogoutRequiredMixin:
     def dispatch(self, request, *args, **kwargs):

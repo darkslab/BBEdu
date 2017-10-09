@@ -1,10 +1,12 @@
 from django.forms import ValidationError, Form, ModelForm, CharField, PasswordInput
 from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth.password_validation import validate_password, password_validators_help_text_html
 from django.utils.translation import pgettext_lazy, pgettext
 from uuid import uuid4
 
 
 User = get_user_model()
+
 
 class AuthenticationForm(Form):
     username = CharField(label=pgettext_lazy("Form label", "Email"), error_messages={
@@ -41,10 +43,11 @@ class AuthenticationForm(Form):
     def get_user(self):
         return self._user
 
+
 class UserCreationForm(ModelForm):
     password1 = CharField(label=pgettext_lazy("Form label", "New password"), error_messages={
         "required": pgettext_lazy("Form field error", "Please enter password"),
-    }, widget=PasswordInput, strip=False)
+    }, widget=PasswordInput, strip=False, help_text=password_validators_help_text_html())
     password2 = CharField(label=pgettext_lazy("Form label", "Confirm password"), error_messages={
         "required": pgettext_lazy("Form field error", "Please enter password confirmation"),
     }, widget=PasswordInput, strip=False)
@@ -87,6 +90,8 @@ class UserCreationForm(ModelForm):
                 pgettext("Form validation error", "Passwords do not match"),
                 code="password_mismatch",
             )
+        user_attributes = { key: self.cleaned_data[key] for key in self._meta.fields }
+        validate_password(password2, User(**user_attributes))
         return password2
 
     def clean(self):

@@ -5,6 +5,7 @@ from django.db.models import Q
 
 User = get_user_model()
 
+
 class Backend(ModelBackend):
     def authenticate(self, request, username=None, password=None):
         try:
