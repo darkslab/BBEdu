@@ -1,1 +1,1 @@
-from .base import DeveloperDashboardView
+from .base import DashboardView

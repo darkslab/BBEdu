@@ -1,10 +1,11 @@
 {% extends './student_base_2.html' %}
+{% load i18n %}
 
-{% block d0_title %}Dashboard{% endblock %}
+{% block title %}{% trans 'Dashboard' context 'Page title' %}{% endblock %}
 
-{% block d2_nav_dashboard_class %}active{% endblock %}
+{% block nav_dashboard_class %}active{% endblock %}
 
-{% block d1_content %}
+{% block content %}
     <script>
         $(function() {
             (new RadialChart($("[data-dashboard-chart-0]"), 4, 10, {

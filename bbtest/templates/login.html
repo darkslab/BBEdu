@@ -1,11 +1,42 @@
-{% extends './plain_base_1.html' %}
+{% extends './public_base_1.html' %}
+{% load i18n widget_tweaks %}
 
-{% block d1_content %}
-    <h1>Login page</h1>
-    <form method="post" action="{% url 'bbtest:login' %}">
-        {% csrf_token %}
-        <input type="hidden" name="r" value="{{ r }}">
-        {{ form }}
-        <input type="submit" value="Login">
-    </form>
+{% block title %}{% trans 'Login' context 'Page title' %}{% endblock %}
+
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form method="post" action="{% url 'bbtest:login' %}" class="mt-15">
+                        {% csrf_token %}
+                        <input type="hidden" name="r" value="{{ r }}">
+
+                        {% if form.non_field_errors %}
+                            <div class="form-group has-error">
+                                {% for error in form.non_field_errors %}
+                                    <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% for field in form %}
+                            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                {{ field|add_class:'form-control' }}
+                                {% for error in field.errors %}
+                                    <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">{% trans 'Login' context 'Form button' %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
