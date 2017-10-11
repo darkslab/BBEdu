@@ -99,6 +99,10 @@ body {
     background-color: rgba(10, 60, 100, 1);
 }
 
+.bb-container-developer {
+    background-color: rgba(40, 100, 90, 1);
+}
+
 .bb-menu {
     position: absolute;
     top: 0px;

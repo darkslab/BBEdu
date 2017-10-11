@@ -4,6 +4,8 @@ from django.db.models import CharField, EmailField, DateTimeField, BooleanField
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy
 from django.shortcuts import resolve_url
+from hashlib import md5
+from urllib.parse import urlencode
 
 
 class UserManager(BaseUserManager):
@@ -83,3 +85,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         if len(self.first_name):
             return self.first_name
         return self.username
+
+    def gravatar_url(self):
+        gravatar_hash = ""
+        if self.email:
+            gravatar_hash = md5(self.email.strip().lower().encode("utf-8")).hexdigest()
+        return "https://www.gravatar.com/avatar/%s?%s" % (
+            gravatar_hash,
+            urlencode({
+                "s": "600",
+                "r": "pg",
+                "d": "mm",
+            }),
+        )
