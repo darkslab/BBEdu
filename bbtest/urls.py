@@ -1,8 +1,8 @@
 from django.conf.urls import url
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
 from django.conf import settings
 from .auth.forms import AuthenticationForm
-from .auth.views import RegisterView
+from .auth.views import LoginView, RegisterView
 from .views import HomeView
 from .views.student import DashboardView as StudentDashboardView
 from .views.developer import DashboardView as DeveloperDashboardView

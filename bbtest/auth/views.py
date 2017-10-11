@@ -1,10 +1,17 @@
 from django.views.generic import TemplateView
 from django.contrib.auth import login
 from django.contrib.auth.models import Permission
+from django.contrib.auth.views import LoginView as _LoginView
 from django.shortcuts import redirect, resolve_url
 from django.contrib.contenttypes.models import ContentType
 from .forms import UserCreationForm
 from .mixins import LogoutRequiredMixin
+
+
+class LoginView(_LoginView):
+    def get_success_url(self):
+        url = self.get_redirect_url()
+        return url or resolve_url(self.request.user)
 
 
 class RegisterView(LogoutRequiredMixin, TemplateView):

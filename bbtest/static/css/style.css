@@ -59,6 +59,9 @@
 .text-help {
     cursor: help;
 }
+.list-narrow {
+    padding-left: 16px;
+}
 
 
 /**

@@ -1,6 +1,6 @@
 from django.forms import ValidationError, Form, ModelForm, CharField, PasswordInput
 from django.contrib.auth import get_user_model, authenticate
-from django.contrib.auth.password_validation import validate_password, password_validators_help_text_html
+from django.contrib.auth.password_validation import validate_password, password_validators_help_texts
 from django.utils.translation import pgettext_lazy, pgettext
 from uuid import uuid4
 
@@ -47,7 +47,7 @@ class AuthenticationForm(Form):
 class UserCreationForm(ModelForm):
     password1 = CharField(label=pgettext_lazy("Form label", "New password"), error_messages={
         "required": pgettext_lazy("Form field error", "Please enter password"),
-    }, widget=PasswordInput, strip=False, help_text=password_validators_help_text_html())
+    }, widget=PasswordInput, strip=False, help_text=password_validators_help_texts())
     password2 = CharField(label=pgettext_lazy("Form label", "Confirm password"), error_messages={
         "required": pgettext_lazy("Form field error", "Please enter password confirmation"),
     }, widget=PasswordInput, strip=False)
