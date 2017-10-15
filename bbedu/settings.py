@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "widget_tweaks",
+    "pipeline",
 ]
 
 MIDDLEWARE = [
@@ -127,6 +128,43 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "/tmp/bbtest/"
+STATICFILES_STORAGE = "bbtest.pipeline.storage.ManifestPipelineStorage"
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "pipeline.finders.CachedFileFinder",
+    "pipeline.finders.PipelineFinder",
+]
+
+PIPELINE = {
+    "DISABLE_WRAPPER": True,
+    "SHOW_ERRORS_INLINE": False,
+    "JAVASCRIPT": {
+        "base": {
+            "source_filenames": (
+                "js/jquery-3.2.1.min.js",
+                "js/jquery-ui.js",
+                "js/bootstrap.js",
+                "js/charts/SVGChart.js",
+                "js/charts/RadialChart.js",
+                "js/charts/ColumnChart.js",
+                "js/charts/ProgressPieChart.js",
+            ),
+            "output_filename": "js/base.js"
+        },
+    },
+    "STYLESHEETS": {
+        "base": {
+            "source_filenames": (
+                "css/font-awesome.css",
+                "css/bootstrap.css",
+                "css/style.css",
+            ),
+            "output_filename": "css/base.css",
+        },
+    },
+}
 
 AUTH_USER_MODEL = "bbtest.User"
 AUTHENTICATION_BACKENDS = [
