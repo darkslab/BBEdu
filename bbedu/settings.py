@@ -128,7 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "/tmp/bbtest/"
+STATIC_ROOT = "/var/www/html/static/"
 STATICFILES_STORAGE = "bbtest.pipeline.storage.ManifestPipelineStorage"
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
