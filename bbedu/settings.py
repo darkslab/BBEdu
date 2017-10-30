@@ -11,21 +11,34 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from pathlib import Path
+from json import load
+from re import match
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR_PATH = Path(BASE_DIR).resolve()
 
+SECRETS = {}
+VERSION = "dev"
+if match(r"^v\d\.\d\.\d", BASE_DIR_PATH.name):
+    VERSION = BASE_DIR_PATH.name
+try:
+    with (BASE_DIR_PATH / "settings.json").open() as settings_file:
+        SECRETS = load(settings_file)
+except (OSError, ValueError):
+    pass
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'n3oi_$gt*5ei#)96tuqy=bm26&n4!3#on@m7!!s@1h_df7$d4q'
+SECRET_KEY = SECRETS.get("SECRET_KEY", "secret")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = SECRETS.get("DEBUG", True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = SECRETS.get("ALLOWED_HOSTS", [])
 
 
 # Application definition
@@ -79,10 +92,10 @@ WSGI_APPLICATION = 'bbedu.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.mysql",
-        "HOST": "bbedu",
-        "NAME": "bbtest",
-        "USER": "root",
-        "PASSWORD": "monkey",
+        "HOST": SECRETS.get("DATABASES_DEFAULT_HOST", "bbedu-database-01"),
+        "NAME": SECRETS.get("DATABASES_DEFAULT_NAME", "bbtest"),
+        "USER": SECRETS.get("DATABASES_DEFAULT_USER", "root"),
+        "PASSWORD": SECRETS.get("DATABASES_DEFAULT_PASSWORD", "monkey"),
     }
 }
 
@@ -112,7 +125,7 @@ LANGUAGES = [
     ("ru", "Russian"),
 ]
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, "i18n"),
+    str(BASE_DIR_PATH / "i18n"),
 ]
 
 TIME_ZONE = "Asia/Almaty"
@@ -138,6 +151,7 @@ STATICFILES_FINDERS = [
 ]
 
 PIPELINE = {
+    "PIPELINE_COLLECTOR_ENABLED": False,
     "DISABLE_WRAPPER": True,
     "SHOW_ERRORS_INLINE": False,
     "JAVASCRIPT": {
@@ -173,3 +187,79 @@ AUTHENTICATION_BACKENDS = [
 LOGOUT_REDIRECT_URL = "/"
 
 BB_REDIRECT_FIELDNAME = "r"
+
+if not DEBUG:
+    CSRF_COOKIE_SECURE = SECRETS.get("CSRF_COOKIE_SECURE", False)
+    SESSION_COOKIE_SECURE = SECRETS.get("SESSION_COOKIE_SECURE", False)
+    SECURE_CONTENT_TYPE_NOSNIFF = SECRETS.get("SECURE_CONTENT_TYPE_NOSNIFF", False)
+    SECURE_BROWSER_XSS_FILTER = SECRETS.get("SECURE_BROWSER_XSS_FILTER", False)
+    SECURE_SSL_REDIRECT = SECRETS.get("SECURE_SSL_REDIRECT", False)
+
+    CONN_MAX_AGE = SECRETS.get("CONN_MAX_AGE", 0)
+
+    SILENCED_SYSTEM_CHECKS = [
+        "security.W004",
+        "security.W019",
+    ]
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {
+        "require_debug_false": {
+            "()": "django.utils.log.RequireDebugFalse",
+        },
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
+        },
+    },
+    "formatters": {
+        "django.server": {
+            "()": "django.utils.log.ServerFormatter",
+            "format": "[%(server_time)s] %(message)s",
+        },
+        "django.mysql": {
+            "()": "bbtest.logging.MysqlFormatter",
+            "format": "[%(server_time)s] %(message)s",
+        },
+    },
+    "handlers": {
+        "production_console": {
+            "level": "ERROR",
+            "filters": ["require_debug_false"],
+            "class": "logging.StreamHandler",
+        },
+        "development_console": {
+            "level": "INFO",
+            "filters": ["require_debug_true"],
+            "class": "logging.StreamHandler",
+        },
+        "django.server": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "django.server",
+        },
+        "django.mysql": {
+            "level": "DEBUG",
+            "filters": ["require_debug_true"],
+            "class": "logging.StreamHandler",
+            "formatter": "django.mysql",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["production_console", "development_console"],
+            "level": "INFO",
+        },
+        "django.server": {
+            "handlers": ["django.server"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "django.db.backends": {
+            "handlers": ["django.mysql"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
+}
