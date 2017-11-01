@@ -1,0 +1,38 @@
+from django.conf.urls import url
+from django.contrib.auth.views import LogoutView
+from django.conf import settings
+from django.views.generic import TemplateView
+from .auth.forms import AuthenticationForm
+from .auth.views import LoginView, RegisterView
+from .views import HomeView
+from .views.student import DashboardView as StudentDashboardView
+from .views.developer import DashboardView as DeveloperDashboardView
+
+
+app_name = "bbtest"
+urlpatterns = [
+    # PUBLIC URLS
+    url(r"^$", HomeView.as_view(), name="home"),
+
+    # DEVELOPER URLS
+    url(r"^student/$", StudentDashboardView.as_view(), name="student_dashboard"),
+    url(r"^developer/$", DeveloperDashboardView.as_view(), name="developer_dashboard"),
+
+    # SYSTEM URLS
+    url(r"^login/$", LoginView.as_view(
+        template_name="login.html",
+        redirect_field_name=settings.BB_REDIRECT_FIELDNAME,
+        authentication_form=AuthenticationForm,
+        redirect_authenticated_user=True,
+    ), name="login"),
+    url(r"^logout/$", LogoutView.as_view(
+        redirect_field_name=settings.BB_REDIRECT_FIELDNAME,
+    ), name="logout"),
+    url(r"^register/(?:(?P<group>developer)/)?$", RegisterView.as_view(), name="register"),
+
+    # OTHER URLS
+    url(r"^robots\.txt$", TemplateView.as_view(
+        template_name="robots.txt",
+        content_type="text/plain",
+    ), name="robots"),
+]

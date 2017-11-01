@@ -1,0 +1,39 @@
+{% extends './public_base_1.html' %}
+{% load i18n widget_tweaks %}
+
+{% block title %}{% trans 'Register' context 'Page title' %}{% endblock %}
+
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4{% endblock %}
+
+{% block content %}
+    <script>
+        $(function() {
+            $("[data-toggle=\"popover\"]").popover();
+        });
+    </script>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form method="post" action="{{ form_url }}" class="mt-15">
+                        {% csrf_token %}
+
+                        {% for field in form %}
+                            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}{% if field.name == 'password1' %} <i class="fa fa-question-circle text-help" data-toggle="popover" data-html="true" data-content="<ul class='list-narrow'>{% spaceless %}{{ field.help_text|unordered_list }}{% endspaceless %}</ul>" data-placement="auto" data-trigger="hover" title=""></i>{% endif %}</label>
+                                {{ field|add_class:'form-control' }}
+                                {% for error in field.errors %}
+                                    <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">{% trans 'Register' context 'Form button' %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

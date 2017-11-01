@@ -1,0 +1,34 @@
+# Kazakh language translations for BBEdu project.
+# Copyright (C) 2017 bbTest.kz
+# Darkhan Baimyrza <darkhan@baimyrza.com>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
+"Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
+"POT-Creation-Date: 2017-09-24 02:11+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
+"Language-Team: bbTest.kz <admin@bbtest.kz>\n"
+"Language: kk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgctxt "Home page header"
+msgid "Home page"
+msgstr ""
+
+msgctxt "Login page header"
+msgid "Login page"
+msgstr ""
+
+msgctxt "Login page submit button"
+msgid "Login"
+msgstr ""
+
+msgctxt "Test page header"
+msgid "Test page"
+msgstr ""

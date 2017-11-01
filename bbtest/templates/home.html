@@ -1,0 +1,18 @@
+{% extends './plain_base_1.html' %}
+{% load static %}
+
+{% block title_full %}bbTest.kz{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+    <div style="background-color: rgba(10, 60, 100, 1); height: 100%; min-height: 360px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <img src="{% static 'img/logo.png' %}" class="img-responsive center-block" style="margin-top: 100px; margin-bottom: 100px;">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
