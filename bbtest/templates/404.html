@@ -1,1 +1,38 @@
-404.html
+{% extends './base_0.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans 'Page not found' context 'Page title' %}{% endblock %}
+
+{% block _d0_content %}
+    <div class="bb-container">
+        <div class="bb-main bb-main-error">
+            <div class="container-fluid">
+                <div class="row bb-bar">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="navbar-header">
+                                        <a class="navbar-brand ml-0 pt-10 pb-10" href="{% url 'bbtest:home' %}">
+                                            <img class="bb-bar-logo" src="{% static 'img/logo.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" title="bbTest.kz">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="container bb-content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="mb-23 mt-23 text-center">{% trans 'Page not found' context 'Page title' %}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bb-copyright text-center">{% blocktrans with heart_icon='<i class="fa fa-heart-o"></i>' copyright_code='&copy;' context 'Bottom copyright' %}Made with {{ heart_icon }} in Kazakhstan. {{ copyright_code }} bbTest.kz{% endblocktrans %}&nbsp;&nbsp;({{ VERSION }})</div>
+        </div>
+    </div>
+{% endblock %}
