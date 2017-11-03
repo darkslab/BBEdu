@@ -264,3 +264,11 @@ LOGGING = {
         },
     },
 }
+
+ADMINS = [
+    ("Darkhan Baimyrza", "darkhan@baimyrza.com"),
+]
+EMAIL_SUBJECT_PREFIX = "[ERROR] "
+SERVER_EMAIL = "errors@bbtest.kz"
+EMAIL_HOST = "127.0.0.1"
+EMAIL_PORT = 1025
