@@ -269,6 +269,11 @@ ADMINS = [
     ("Darkhan Baimyrza", "darkhan@baimyrza.com"),
 ]
 EMAIL_SUBJECT_PREFIX = "[ERROR] "
-SERVER_EMAIL = "errors@bbtest.kz"
-EMAIL_HOST = "127.0.0.1"
-EMAIL_PORT = 1025
+DEFAULT_FROM_EMAIL = ("bbTest.kz", "admin@bbtest.kz")
+SERVER_EMAIL = ("bbTest.kz ERROR", "errors@bbtest.kz")
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = "127.0.0.1"
+    EMAIL_PORT = 1025
+else:
+    EMAIL_BACKEND = "bbtest.mail.backends.async.EmailBackend"
