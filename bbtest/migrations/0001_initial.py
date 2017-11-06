@@ -3,6 +3,15 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+from django.db import connection
+
+
+def set_auto_increment_value(apps, schema_editor):
+    with connection.cursor() as cursor:
+        sql = "ALTER TABLE %s AUTO_INCREMENT = %%s" % apps.get_model("bbtest", "User")._meta.db_table
+        cursor.execute(sql, [
+            3083,
+        ])
 
 
 class Migration(migrations.Migration):
@@ -35,4 +44,5 @@ class Migration(migrations.Migration):
                 'permissions': (('super', 'Can act as a Super'), ('admin', 'Can act as an Admin'), ('developer', 'Can act as a Developer'), ('student', 'Can act as a Student')),
             },
         ),
+        migrations.RunPython(set_auto_increment_value, migrations.RunPython.noop),
     ]
