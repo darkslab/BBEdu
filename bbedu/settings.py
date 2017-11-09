@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "widget_tweaks",
     "pipeline",
+    "django_rq",
 ]
 
 MIDDLEWARE = [
@@ -93,7 +94,7 @@ WSGI_APPLICATION = 'bbedu.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.mysql",
-        "HOST": SECRETS.get("DATABASES_DEFAULT_HOST", "bbedu-database-01"),
+        "HOST": SECRETS.get("DATABASES_DEFAULT_HOST", "bbedu"),
         "NAME": SECRETS.get("DATABASES_DEFAULT_NAME", "bbtest"),
         "USER": SECRETS.get("DATABASES_DEFAULT_USER", "root"),
         "PASSWORD": SECRETS.get("DATABASES_DEFAULT_PASSWORD", "monkey"),
@@ -277,3 +278,15 @@ if DEBUG:
     EMAIL_PORT = 1025
 else:
     EMAIL_BACKEND = "bbtest.mail.backends.async.EmailBackend"
+
+RQ_QUEUES = {
+    "default": {
+        "HOST": "bbedu",
+        "PORT": 6379,
+        "DB": 8,
+        "PASSWORD": "monkey",
+        "DEFAULT_TIMEOUT": 300,
+    },
+}
+RQ_QUEUES["high"] = RQ_QUEUES["default"]
+RQ_QUEUES["low"] = RQ_QUEUES["default"]
