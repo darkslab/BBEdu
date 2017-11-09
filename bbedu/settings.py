@@ -278,13 +278,16 @@ if DEBUG:
     EMAIL_PORT = 1025
 else:
     EMAIL_BACKEND = "bbtest.mail.backends.async.EmailBackend"
+    AWS_ACCESS_KEY_ID = SECRETS.get("AWS_ACCESS_KEY_ID", None)
+    AWS_SECRET_ACCESS_KEY = SECRETS.get("AWS_SECRET_ACCESS_KEY", None)
+    AWS_REGION_NAME = SECRETS.get("AWS_REGION_NAME", None)
 
 RQ_QUEUES = {
     "default": {
-        "HOST": "bbedu",
+        "HOST": SECRETS.get("BROKER_HOST", "bbedu"),
         "PORT": 6379,
         "DB": 8,
-        "PASSWORD": "monkey",
+        "PASSWORD": SECRETS.get("BROKER_PASSWORD", "monkey"),
         "DEFAULT_TIMEOUT": 300,
     },
 }
