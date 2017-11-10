@@ -1,5 +1,6 @@
 from django.core.mail.backends.base import BaseEmailBackend
 from bbtest.models import Email
+from bbtest.jobs.amazon_ses import send_email
 
 
 class EmailBackend(BaseEmailBackend):
@@ -22,6 +23,8 @@ class EmailBackend(BaseEmailBackend):
                 subject=email_message.subject,
                 mime_data=email_message.message().as_bytes(linesep="\r\n"),
             )
+            send_email(email.id)
+
             num_sent += 1
         return num_sent
 
