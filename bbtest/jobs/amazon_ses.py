@@ -1,5 +1,6 @@
 from django_rq import job
 from django.conf import settings
+from django.utils.timezone import now
 from bbtest.models import Email
 import boto3
 
@@ -16,3 +17,5 @@ def send_email(email_id):
     client.send_raw_email(RawMessage={
         "Data": email.mime_data,
     })
+    email.sent_at = now()
+    email.save()
