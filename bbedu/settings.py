@@ -278,9 +278,9 @@ LOGGING = {
 ADMINS = [
     ("Darkhan Baimyrza", "darkhan@baimyrza.com"),
 ]
-EMAIL_SUBJECT_PREFIX = "[ERROR] "
-DEFAULT_FROM_EMAIL = ("bbTest.kz", "admin@bbtest.kz")
-SERVER_EMAIL = ("bbTest.kz ERROR", "errors@bbtest.kz")
+EMAIL_SUBJECT_PREFIX = ""
+DEFAULT_FROM_EMAIL = "bbTest.kz <admin@bbtest.kz>"
+SERVER_EMAIL = "bbTest.kz ERROR <errors@bbtest.kz>"
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_HOST = "127.0.0.1"
