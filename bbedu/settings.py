@@ -252,10 +252,6 @@ LOGGING = {
             "class": "logging.StreamHandler",
             "formatter": "django.mysql",
         },
-        "rq_console": {
-            "class": "rq.utils.ColorizingStreamHandler",
-            "level": "DEBUG",
-        },
     },
     "loggers": {
         "django": {
@@ -275,10 +271,6 @@ LOGGING = {
             "handlers": ["django.mysql"],
             "level": "DEBUG",
             "propagate": True,
-        },
-        "rq.worker": {
-            "handlers": ["rq_console"],
-            "level": "DEBUG",
         },
     },
 }
