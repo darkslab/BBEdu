@@ -286,7 +286,7 @@ RQ_QUEUES = {
     "default": {
         "HOST": SECRETS.get("BROKER_HOST", "bbedu"),
         "PORT": 6379,
-        "DB": 8,
+        "DB": 0,
         "PASSWORD": SECRETS.get("BROKER_PASSWORD", "monkey"),
         "DEFAULT_TIMEOUT": 300,
     },
