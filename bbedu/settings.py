@@ -236,6 +236,11 @@ LOGGING = {
             "filters": ["require_debug_true"],
             "class": "logging.StreamHandler",
         },
+        "mail_admins": {
+            "level": "ERROR",
+            "filters": ["require_debug_false"],
+            "class": "django.utils.log.AdminEmailHandler",
+        },
         "django.server": {
             "level": "INFO",
             "class": "logging.StreamHandler",
@@ -250,7 +255,11 @@ LOGGING = {
     },
     "loggers": {
         "django": {
-            "handlers": ["production_console", "development_console"],
+            "handlers": [
+                "production_console",
+                "development_console",
+                "mail_admins",
+            ],
             "level": "INFO",
         },
         "django.server": {
