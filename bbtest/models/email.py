@@ -7,7 +7,8 @@ class Email(Model):
     recipients = TextField(pgettext_lazy("Model field", "recipients"), editable=False)
     subject = TextField(pgettext_lazy("Model field", "subject"), blank=True, editable=False)
     mime_data = BinaryField(pgettext_lazy("Model field", "mime data"), editable=False)
-    sent_at = DateTimeField(pgettext_lazy("Model field", "sent at"), auto_now_add=True, db_index=True, editable=False)
+    created_at = DateTimeField(pgettext_lazy("Model field", "created at"), auto_now_add=True, db_index=True, editable=False)
+    sent_at = DateTimeField(pgettext_lazy("Model field", "sent at"), null=True, blank=True, db_index=True, editable=False)
 
     class Meta:
         default_permissions = ()
