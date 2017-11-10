@@ -6,10 +6,9 @@ A testing platform application.
 #### System Requirements ####
 
 * Python 3.4.7
-* MySQL 5.5+ server
+* MySQL 5.7 server
     (database character set should be "utf8" and collation "utf8_general_ci")
     (InnoDB tables)
-    (set this configuration: sql-mode="TRADITIONAL")
 
 
 #### How to create translation files ####
