@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "widget_tweaks",
     "pipeline",
+    "django_rq",
 ]
 
 MIDDLEWARE = [
@@ -93,7 +94,7 @@ WSGI_APPLICATION = 'bbedu.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.mysql",
-        "HOST": SECRETS.get("DATABASES_DEFAULT_HOST", "bbedu-database-01"),
+        "HOST": SECRETS.get("DATABASES_DEFAULT_HOST", "bbedu"),
         "NAME": SECRETS.get("DATABASES_DEFAULT_NAME", "bbtest"),
         "USER": SECRETS.get("DATABASES_DEFAULT_USER", "root"),
         "PASSWORD": SECRETS.get("DATABASES_DEFAULT_PASSWORD", "monkey"),
@@ -235,6 +236,11 @@ LOGGING = {
             "filters": ["require_debug_true"],
             "class": "logging.StreamHandler",
         },
+        "mail_admins": {
+            "level": "ERROR",
+            "filters": ["require_debug_false"],
+            "class": "django.utils.log.AdminEmailHandler",
+        },
         "django.server": {
             "level": "INFO",
             "class": "logging.StreamHandler",
@@ -249,7 +255,11 @@ LOGGING = {
     },
     "loggers": {
         "django": {
-            "handlers": ["production_console", "development_console"],
+            "handlers": [
+                "production_console",
+                "development_console",
+                "mail_admins",
+            ],
             "level": "INFO",
         },
         "django.server": {
@@ -264,3 +274,35 @@ LOGGING = {
         },
     },
 }
+
+ADMINS = [
+    ("Darkhan Baimyrza", "darkhan@baimyrza.com"),
+]
+EMAIL_SUBJECT_PREFIX = ""
+DEFAULT_FROM_EMAIL = "bbTest.kz <admin@bbtest.kz>"
+SERVER_EMAIL = "bbTest.kz ERROR <errors@bbtest.kz>"
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = "127.0.0.1"
+    EMAIL_PORT = 1025
+else:
+    EMAIL_BACKEND = "bbtest.mail.backends.async.EmailBackend"
+    AWS_ACCESS_KEY_ID = SECRETS.get("AWS_ACCESS_KEY_ID", None)
+    AWS_SECRET_ACCESS_KEY = SECRETS.get("AWS_SECRET_ACCESS_KEY", None)
+    AWS_REGION_NAME = SECRETS.get("AWS_REGION_NAME", None)
+
+RQ_QUEUES = {
+    "default": {
+        "HOST": SECRETS.get("BROKER_HOST", "bbedu"),
+        "PORT": 6379,
+        "DB": 0,
+        "PASSWORD": SECRETS.get("BROKER_PASSWORD", "monkey"),
+        "DEFAULT_TIMEOUT": 300,
+    },
+}
+RQ_QUEUES["high"] = RQ_QUEUES["default"]
+RQ_QUEUES["low"] = RQ_QUEUES["default"]
+RQ_EXCEPTION_HANDLERS = [
+    "bbtest.rq.handlers.exception",
+    "rq.handlers.move_to_failed_queue",
+]
