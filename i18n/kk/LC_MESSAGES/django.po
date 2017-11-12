@@ -2,12 +2,11 @@
 # Copyright (C) 2017 bbTest.kz
 # Darkhan Baimyrza <darkhan@baimyrza.com>
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2017-09-24 02:11+0600\n"
+"POT-Creation-Date: 2017-11-12 07:31+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -17,18 +16,245 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgctxt "Home page header"
-msgid "Home page"
+msgctxt "Form label"
+msgid "Email"
 msgstr ""
 
-msgctxt "Login page header"
-msgid "Login page"
+msgctxt "Form field error"
+msgid "Please enter email"
 msgstr ""
 
-msgctxt "Login page submit button"
+msgctxt "Form label"
+msgid "Password"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Please enter password"
+msgstr ""
+
+msgctxt "Authentication failed error"
+msgid "Please enter a correct email and password."
+msgstr ""
+
+msgctxt "Form label"
+msgid "New password"
+msgstr ""
+
+msgctxt "Form label"
+msgid "Confirm password"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Please enter password confirmation"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Please enter first name"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "First name is too long"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Please enter last name"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Last name is too long"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Incorrect email"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Email is too long"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "This email is already taken"
+msgstr ""
+
+msgctxt "Form validation error"
+msgid "Passwords do not match"
+msgstr ""
+
+msgctxt "Model field"
+msgid "username"
+msgstr ""
+
+msgctxt "Model field"
+msgid "email"
+msgstr ""
+
+msgctxt "Model field"
+msgid "first name"
+msgstr ""
+
+msgctxt "Model field"
+msgid "last name"
+msgstr ""
+
+msgctxt "Model field"
+msgid "joined at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "active?"
+msgstr ""
+
+#, python-format
+msgctxt "Password validation error"
+msgid "The password has to be at least %(min_length)d characters."
+msgstr ""
+
+#, python-format
+msgctxt "Password validation error"
+msgid ""
+"If the password is less than %(secure_length)d characters, it has to contain "
+"at least one uppercase character."
+msgstr ""
+
+#, python-format
+msgctxt "Password validation error"
+msgid ""
+"If the password is less than %(secure_length)d characters, it has to contain "
+"at least one lowercase character."
+msgstr ""
+
+#, python-format
+msgctxt "Password validation error"
+msgid ""
+"If the password is less than %(secure_length)d characters, it has to contain "
+"at least one numeric character."
+msgstr ""
+
+#, python-format
+msgctxt "Password validation error"
+msgid ""
+"If the password is less than %(secure_length)d characters, it has to contain "
+"at least one symbol character."
+msgstr ""
+
+#, python-format
+msgctxt "Password validation help text"
+msgid ""
+"If the password is less than %(secure_length)d characters, it has to be at "
+"least %(min_length)d characters and contain uppercase, lowercase, numeric "
+"and a symbol character."
+msgstr ""
+
+#, python-format
+msgctxt "Password validation error"
+msgid "The password is too similar to the %(verbose_name)s."
+msgstr ""
+
+msgctxt "Password validation help text"
+msgid "The password can't be too similar to your other personal information."
+msgstr ""
+
+msgctxt "Password validation error"
+msgid "The password is too common."
+msgstr ""
+
+msgctxt "Password validation help text"
+msgid "The password can't be a commonly used password."
+msgstr ""
+
+msgctxt "Model field"
+msgid "from email"
+msgstr ""
+
+msgctxt "Model field"
+msgid "recipients"
+msgstr ""
+
+msgctxt "Model field"
+msgid "subject"
+msgstr ""
+
+msgctxt "Model field"
+msgid "mime data"
+msgstr ""
+
+msgctxt "Model field"
+msgid "created at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "sent at"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Something went wrong"
+msgstr ""
+
+msgctxt "Logo img html tag alt parameter"
+msgid "bbTest.kz Logo"
+msgstr ""
+
+#, python-format
+msgctxt "Bottom copyright"
+msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Sorry, but you should not be here"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Page not found"
+msgstr ""
+
+msgctxt "Badge label under avatar"
+msgid "Administrator"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Dashboard"
+msgstr ""
+
+msgctxt "Badge label under avatar"
+msgid "Developer"
+msgstr ""
+
+msgctxt "Page title"
 msgid "Login"
 msgstr ""
 
-msgctxt "Test page header"
-msgid "Test page"
+msgctxt "Form button"
+msgid "Login"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Settings"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Logout"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Register"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Register"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Dashboard"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Start testing"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Results"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Refill Balance"
 msgstr ""
