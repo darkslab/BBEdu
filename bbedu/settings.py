@@ -272,11 +272,6 @@ LOGGING = {
             "level": "DEBUG",
             "propagate": True,
         },
-        # "rq.worker": {
-        #     "handlers": ["mail_admins"],
-        #     "level": "DEBUG",
-        #     "propagate": True,
-        # },
     },
 }
 
