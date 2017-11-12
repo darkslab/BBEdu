@@ -302,4 +302,7 @@ RQ_QUEUES = {
 }
 RQ_QUEUES["high"] = RQ_QUEUES["default"]
 RQ_QUEUES["low"] = RQ_QUEUES["default"]
-RQ_EXCEPTION_HANDLERS = ["bbtest.rq.handlers.exception"]
+RQ_EXCEPTION_HANDLERS = [
+    "bbtest.rq.handlers.exception",
+    "rq.handlers.move_to_failed_queue",
+]
