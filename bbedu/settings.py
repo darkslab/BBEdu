@@ -169,7 +169,10 @@ PIPELINE = {
                 "js/charts/ProgressPieChart.js",
                 "js/script.js",
             ),
-            "output_filename": "js/base.js"
+            "output_filename": "js/base.js",
+            "extra_context": {
+                "defer": True,
+            },
         },
     },
     "STYLESHEETS": {
