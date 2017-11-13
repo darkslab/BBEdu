@@ -3,6 +3,7 @@ function StudentDashboardModule(data) {
     this._radialCharts = [];
     this._columnCharts = [];
     this._chartIndex = 0;
+    this._$row = $("[data-dashboard-table-chart-row]");
 
     var i;
     for (i = 0; i < data.radialChartsData.length; i++) {
@@ -21,17 +22,19 @@ function StudentDashboardModule(data) {
     }
     this._columnCharts[this._chartIndex].create();
 
-    $("[data-dashboard-table-chart-row]").click(function() {
-        if ($(this).data("dashboard-table-chart-row") != this._chartIndex) {
-            this._columnCharts[this._chartIndex].destroy();
-            $("[data-dashboard-table-chart-row=\"" + this._chartIndex + "\"]").removeClass("success");
-            this._chartIndex = $(this).data("dashboard-table-chart-row");
-            this._columnCharts[this._chartIndex].create();
-            $(this).addClass("success");
-        }
-    });
+    this._$row.on("click", this._activateRow.bind(this));
 
     Module.call(this);
+}
+StudentDashboardModule.prototype._activateRow = function(event) {
+    var $row = $(event.currentTarget);
+    if ($row.data("dashboard-table-chart-row") != this._chartIndex) {
+        this._columnCharts[this._chartIndex].destroy();
+        $("[data-dashboard-table-chart-row=\"" + this._chartIndex + "\"]").removeClass("success");
+        this._chartIndex = $row.data("dashboard-table-chart-row");
+        this._columnCharts[this._chartIndex].create();
+        $row.addClass("success");
+    }
 }
 StudentDashboardModule.prototype.unMount = function() {
     var radialChart;
@@ -39,4 +42,6 @@ StudentDashboardModule.prototype.unMount = function() {
         radialChart.destroy();
     }
     this._columnCharts[this._chartIndex].destroy();
+
+    this._$row.off("click", this._activateRow.bind(this));
 }

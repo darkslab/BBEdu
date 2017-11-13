@@ -4,3 +4,6 @@ function PopoverModule() {
 
     Module.call(this);
 }
+PopoverModule.prototype.unMount = function() {
+    $("[data-toggle=\"popover\"]").popover("destroy");
+}
