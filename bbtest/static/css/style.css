@@ -97,9 +97,25 @@
  * Application classes
  */
 
-html,
-body {
+html {
     height: 100%;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 36px;
+    background-color: rgba(237, 244, 247, 1);
+}
+
+.bb-copyright {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    line-height: 36px;
+    font-size: 90%;
+    color: rgba(0, 0, 0, 0.3);
 }
 
 .bb-loading {
@@ -307,16 +323,6 @@ body {
 .bb-content-personalized {
     width: auto;
     max-width: 970px;
-}
-
-.bb-copyright {
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    line-height: 36px;
-    font-size: 90%;
-    color: rgba(0, 0, 0, 0.3);
 }
 
 .bb-copyright-personalized {
