@@ -10,10 +10,14 @@
     <title>{% block title_full %}{% block title %}{% endblock %} - bbTest.kz{% endblock %}</title>
 
     <meta name="description" content="{% block description %}bbTest.kz{% endblock %}">
+    <meta name="turbolinks-cache-control" content="no-cache">
 
     {% stylesheet 'base' %}
 
     {% javascript 'base' %}
+    <script>
+        var moduleDataStack = [];
+    </script>
 </head>
 <body>
     {% block _d0_content %}{% endblock %}

@@ -7,184 +7,38 @@
 
 {% block content %}
     <script>
-        $(function() {
-            (new RadialChart($("[data-dashboard-chart-0]"), 4, 10, {
-                "line-width": 16,
-                "circle-color": "#c7e7c8",
-                "arc-color": "#4caf50"
-            })).create();
-
-            (new RadialChart($("[data-dashboard-table-chart-0]"), 378, 400, {
-                "line-width": 2,
-                "arc-color": "#3366cc",
-                "font-size": 14
-            })).create();
-            (new RadialChart($("[data-dashboard-table-chart-avg-0]"), 356, 400, {
-                "line-width": 2,
-                "arc-color": "#aaaaaa",
-                "font-size": 14
-            })).create();
-
-            (new RadialChart($("[data-dashboard-table-chart-1]"), 145, 200, {
-                "line-width": 2,
-                "arc-color": "#dc3912",
-                "font-size": 14
-            })).create();
-            (new RadialChart($("[data-dashboard-table-chart-avg-1]"), 187, 200, {
-                "line-width": 2,
-                "arc-color": "#aaaaaa",
-                "font-size": 14
-            })).create();
-
-            (new RadialChart($("[data-dashboard-table-chart-2]"), 128, 200, {
-                "line-width": 2,
-                "arc-color": "#ff9900",
-                "font-size": 14
-            })).create();
-            (new RadialChart($("[data-dashboard-table-chart-avg-2]"), 167, 200, {
-                "line-width": 2,
-                "arc-color": "#aaaaaa",
-                "font-size": 14
-            })).create();
-
-            (new RadialChart($("[data-dashboard-table-chart-3]"), 189, 200, {
-                "line-width": 2,
-                "arc-color": "#109618",
-                "font-size": 14
-            })).create();
-            (new RadialChart($("[data-dashboard-table-chart-avg-3]"), 156, 200, {
-                "line-width": 2,
-                "arc-color": "#aaaaaa",
-                "font-size": 14
-            })).create();
-
-            (new RadialChart($("[data-dashboard-table-chart-4]"), 56, 60, {
-                "line-width": 2,
-                "arc-color": "#990099",
-                "font-size": 14
-            })).create();
-            (new RadialChart($("[data-dashboard-table-chart-avg-4]"), 50, 60, {
-                "line-width": 2,
-                "arc-color": "#aaaaaa",
-                "font-size": 14
-            })).create();
-
-            (new RadialChart($("[data-dashboard-table-chart-total]"), 840, 1000, {
-                "line-width": 4,
-                "arc-color": "#444444",
-                "font-size": 14,
-                "font-weight": "bold"
-            })).create();
-            (new RadialChart($("[data-dashboard-table-chart-total-avg]"), 740, 1000, {
-                "line-width": 4,
-                "arc-color": "#aaaaaa",
-                "font-size": 14,
-                "font-weight": "bold"
-            })).create();
-
-            var charts = [];
-            charts.push(new ColumnChart($("[data-dashboard-chart-1]"), [
-                245,
-                356,
-                378,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ], 400, {
-                "line-color": "#3366cc",
-                "avg_value": 356,
-                "line-width": 16,
-                "font-size": 16
-            }));
-            charts.push(new ColumnChart($("[data-dashboard-chart-1]"), [
-                98,
-                136,
-                145,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ], 200, {
-                "line-color": "#dc3912",
-                "avg_value": 187,
-                "line-width": 16,
-                "font-size": 16
-            }));
-            charts.push(new ColumnChart($("[data-dashboard-chart-1]"), [
-                67,
-                135,
-                128,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ], 200, {
-                "line-color": "#ff9900",
-                "avg_value": 167,
-                "line-width": 16,
-                "font-size": 16
-            }));
-            charts.push(new ColumnChart($("[data-dashboard-chart-1]"), [
-                181,
-                178,
-                189,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ], 200, {
-                "line-color": "#109618",
-                "avg_value": 156,
-                "line-width": 16,
-                "font-size": 16
-            }));
-            charts.push(new ColumnChart($("[data-dashboard-chart-1]"), [
-                24,
-                45,
-                56,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ], 60, {
-                "line-color": "#990099",
-                "avg_value": 50,
-                "line-width": 16,
-                "font-size": 16
-            }));
-
-            var chart_index = 0;
-            charts[chart_index].create();
-
-            $("[data-dashboard-table-chart-row]").click(function() {
-                if ($(this).data("dashboard-table-chart-row") != chart_index) {
-                    charts[chart_index].destroy();
-                    $("[data-dashboard-table-chart-row=\"" + chart_index + "\"]").removeClass("success");
-                    chart_index = $(this).data("dashboard-table-chart-row");
-                    charts[chart_index].create();
-                    $(this).addClass("success");
-                }
-            });
+        moduleDataStack.push({
+            module: "PopoverModule"
         });
-
-        $(function() {
-            $("[data-toggle=\"popover\"]").popover();
+        moduleDataStack.push({
+            module: "StudentDashboardModule",
+            data: {
+                radialChartsData: [
+                    [ "[data-dashboard-chart-0]", 4, 10, { "line-width": 16, "circle-color": "#c7e7c8", "arc-color": "#4caf50" } ],
+                    [ "[data-dashboard-table-chart-0]", 378, 400, { "line-width": 2, "arc-color": "#3366cc", "font-size": 14 } ],
+                    [ "[data-dashboard-table-chart-avg-0]", 356, 400, { "line-width": 2, "arc-color": "#aaaaaa", "font-size": 14 } ],
+                    [ "[data-dashboard-table-chart-1]", 145, 200, { "line-width": 2, "arc-color": "#dc3912", "font-size": 14 } ],
+                    [ "[data-dashboard-table-chart-avg-1]", 187, 200, { "line-width": 2, "arc-color": "#aaaaaa", "font-size": 14 } ],
+                    [ "[data-dashboard-table-chart-2]", 128, 200, { "line-width": 2, "arc-color": "#ff9900", "font-size": 14 } ],
+                    [ "[data-dashboard-table-chart-avg-2]", 167, 200, { "line-width": 2, "arc-color": "#aaaaaa", "font-size": 14 } ],
+                    [ "[data-dashboard-table-chart-3]", 189, 200, { "line-width": 2, "arc-color": "#109618", "font-size": 14 } ],
+                    [ "[data-dashboard-table-chart-avg-3]", 156, 200, { "line-width": 2, "arc-color": "#aaaaaa", "font-size": 14 } ],
+                    [ "[data-dashboard-table-chart-4]", 56, 60, { "line-width": 2, "arc-color": "#990099", "font-size": 14 } ],
+                    [ "[data-dashboard-table-chart-avg-4]", 50, 60, { "line-width": 2, "arc-color": "#aaaaaa", "font-size": 14 } ],
+                    [ "[data-dashboard-table-chart-total]", 840, 1000, { "line-width": 4, "arc-color": "#444444", "font-size": 14, "font-weight": "bold" } ],
+                    [ "[data-dashboard-table-chart-total-avg]", 740, 1000, { "line-width": 4, "arc-color": "#aaaaaa", "font-size": 14, "font-weight": "bold" } ]
+                ],
+                columnChartsData: {
+                    attr: "[data-dashboard-chart-1]",
+                    data: [
+                        [ [ 245, 356, 378, 0, 0, 0, 0, 0, 0, 0 ], 400, { "line-color": "#3366cc", "avg_value": 356, "line-width": 16, "font-size": 16 } ],
+                        [ [ 98, 136, 145, 0, 0, 0, 0, 0, 0, 0 ], 200, { "line-color": "#dc3912", "avg_value": 187, "line-width": 16, "font-size": 16 } ],
+                        [ [ 67, 135, 128, 0, 0, 0, 0, 0, 0, 0 ], 200, { "line-color": "#ff9900", "avg_value": 167, "line-width": 16, "font-size": 16 } ],
+                        [ [ 181, 178, 189, 0, 0, 0, 0, 0, 0, 0 ], 200, { "line-color": "#109618", "avg_value": 156, "line-width": 16, "font-size": 16 } ],
+                        [ [ 24, 45, 56, 0, 0, 0, 0, 0, 0, 0 ], 60, { "line-color": "#990099", "avg_value": 50, "line-width": 16, "font-size": 16 } ]
+                    ]
+                }
+            }
         });
     </script>
     <div class="row">

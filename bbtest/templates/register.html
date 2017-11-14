@@ -7,8 +7,8 @@
 
 {% block content %}
     <script>
-        $(function() {
-            $("[data-toggle=\"popover\"]").popover();
+        moduleDataStack.push({
+            module: "PopoverModule"
         });
     </script>
     <div class="row">

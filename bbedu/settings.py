@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "bbtest.middleware.turbolinks.RedirectHeaderMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     "django.middleware.locale.LocaleMiddleware",
@@ -162,12 +163,23 @@ PIPELINE = {
                 "js/jquery-3.2.1.min.js",
                 "js/jquery-ui.js",
                 "js/bootstrap.js",
+                "js/turbolinks.min.js",
+                "js/script.js",
+
                 "js/charts/SVGChart.js",
                 "js/charts/RadialChart.js",
                 "js/charts/ColumnChart.js",
                 "js/charts/ProgressPieChart.js",
+
+                "js/modules/Module.js",
+                "js/modules/PersonalizedModule.js",
+                "js/modules/PopoverModule.js",
+                "js/modules/StudentDashboardModule.js",
             ),
-            "output_filename": "js/base.js"
+            "output_filename": "js/base.js",
+            "extra_context": {
+                "defer": True,
+            },
         },
     },
     "STYLESHEETS": {
