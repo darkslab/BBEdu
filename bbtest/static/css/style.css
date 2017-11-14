@@ -118,8 +118,8 @@ body {
     color: rgba(0, 0, 0, 0.3);
 }
 
-.bb-loading {
-    cursor: progress;
+.bb-loading * {
+    cursor: progress !important;
 }
 
 .bb-container {
