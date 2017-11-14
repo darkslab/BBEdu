@@ -85,12 +85,25 @@
 
 
 /**
+ * Turbolinks overrides
+ */
+
+.turbolinks-progress-bar {
+    background-color: #e51c23;
+}
+
+
+/**
  * Application classes
  */
 
 html,
 body {
     height: 100%;
+}
+
+.bb-loading {
+    cursor: progress;
 }
 
 .bb-container {

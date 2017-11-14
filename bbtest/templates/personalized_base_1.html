@@ -3,23 +3,10 @@
 
 {% block _d0_content %}
     <script>
-        $(function() {
-            var $main = $("[data-bb-main]");
-            var $button = $("[data-bb-bar-button]");
-            $button.click(function() {
-                if ($(window).width() < 1200) {
-                    if ($button.hasClass("bb-pushed")) {
-                        $button.removeClass("bb-pushed");
-                        $main.removeClass("bb-pushed");
-                    } else {
-                        $button.addClass("bb-pushed");
-                        $main.addClass("bb-pushed");
-                    }
-                }
-            });
+        moduleDataStack.push({
+            module: "PersonalizedModule"
         });
     </script>
-
     <div class="bb-container {% block _d1_group_class %}{% endblock %}">
         <div class="bb-menu text-bright text-shadowed">
             <div class="container-fluid">
