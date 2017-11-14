@@ -102,8 +102,8 @@ body {
     height: 100%;
 }
 
-.bb-loading {
-    cursor: progress;
+.bb-loading * {
+    cursor: progress !important;
 }
 
 .bb-container {
