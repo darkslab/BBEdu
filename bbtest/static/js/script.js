@@ -25,12 +25,13 @@
     var stack = new ModuleStack();
 
     $(document).on("turbolinks:request-start", function() {
-        $(document.body).addClass("bb-loading");
+        $(document.documentElement).addClass("bb-loading");
     });
     $(document).on("turbolinks:request-end", function() {
         stack.unLoad();
     });
     $(document).on("turbolinks:render", function() {
+        $(document.documentElement).removeClass("bb-loading");
         stack.load();
     });
     $(function() {
