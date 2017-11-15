@@ -1,13 +1,15 @@
 {% extends './base_0.html' %}
 {% load static i18n %}
 
+{% block _d0_body_class %}bb-body-personalized{% endblock %}
+
 {% block _d0_content %}
     <script>
         moduleDataStack.push({
             module: "PersonalizedModule"
         });
     </script>
-    <div class="bb-container {% block _d1_group_class %}{% endblock %}">
+    <div class="bb-container {% block _d1_group_class %}{% endblock %}" data-bb-container>
         <div class="bb-menu text-bright text-shadowed">
             <div class="container-fluid">
                 <div class="row bb-menu-section bb-menu-section-first pt-15 pb-15">
@@ -79,7 +81,7 @@
                     </nav>
                 </div>
                 <div class="row">
-                    <div class="container bb-content bb-content-personalized">
+                    <div class="container bb-content">
                         {% block header %}
                             <div class="row">
                                 <div class="col-xs-12">
@@ -92,6 +94,7 @@
                 </div>
             </div>
             <div class="bb-copyright bb-copyright-personalized text-center">{% blocktrans with heart_icon='<i class="fa fa-heart-o"></i>' copyright_code='&copy;' context 'Bottom copyright' %}Made with {{ heart_icon }} in Kazakhstan. {{ copyright_code }} bbTest.kz{% endblocktrans %}&nbsp;&nbsp;({{ VERSION }})</div>
+            <div class="bb-overlay" data-bb-overlay></div>
         </div>
     </div>
 {% endblock %}

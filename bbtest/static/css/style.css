@@ -97,9 +97,36 @@
  * Application classes
  */
 
-html,
-body {
+html {
     height: 100%;
+}
+
+.bb-body {
+    position: relative;
+    background-color: rgba(237, 244, 247, 1);
+}
+
+.bb-body-plain {
+    height: 100%;
+}
+
+.bb-body-public {
+    min-height: 100%;
+    padding-bottom: 36px;
+}
+
+.bb-body-personalized {
+    height: 100%;
+}
+
+.bb-copyright {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    line-height: 36px;
+    font-size: 90%;
+    color: rgba(0, 0, 0, 0.3);
 }
 
 .bb-loading * {
@@ -107,9 +134,19 @@ body {
 }
 
 .bb-container {
-    position: relative;
+    height: 100%;
+    min-height: 640px;
     overflow-x: hidden;
-    min-height: 100vh;
+}
+
+.bb-container.bb-overlayed {
+    overflow-y: hidden;
+}
+
+@media (min-width: 1200px) {
+    .bb-container.bb-overlayed {
+        overflow-y: initial;
+    }
 }
 
 .bb-container-student {
@@ -120,42 +157,51 @@ body {
     background-color: rgba(40, 100, 90, 1);
 }
 
+.bb-overlay {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bb-overlay.bb-overlayed {
+    top: 64px;
+}
+
+@media (min-width: 1200px) {
+    .bb-overlay.bb-overlayed {
+        top: initial;
+    }
+}
+
 .bb-menu {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
     width: 220px;
-    min-height: 640px;
+    height: 100%;
 }
 
 .bb-main {
-    position: absolute;
-    top: 0px;
+    position: relative;
     left: 0px;
-    bottom: 0px;
-    width: 100%;
-    min-height: 640px;
+    min-height: 100%;
     background-color: rgba(237, 244, 247, 1);
-}
-
-.bb-main-personalized {
-    -webkit-transition: left .3s ease-in-out;
-         -o-transition: left .3s ease-in-out;
-            transition: left .3s ease-in-out;
+    -webkit-transition: left .3s ease-in-out, padding-right .3s ease-in-out;
+         -o-transition: left .3s ease-in-out, padding-right .3s ease-in-out;
+            transition: left .3s ease-in-out, padding-right .3s ease-in-out;
     -webkit-box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.4);
             box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.4);
 }
 
-.bb-main-personalized.bb-pushed {
+.bb-main.bb-pushed {
     left: 220px;
 }
 
-.bb-main-personalized .navbar-header {
+.bb-main .navbar-header {
     position: relative;
 }
 
-.bb-main-personalized .navbar-header .navbar-brand {
+.bb-main .navbar-header .navbar-brand {
     position: relative;
     top: 0px;
     -webkit-transition: top .3s ease-in-out;
@@ -163,19 +209,19 @@ body {
             transition: top .3s ease-in-out;
 }
 
-.bb-main-personalized.bb-pushed .navbar-header .navbar-brand {
+.bb-main.bb-pushed .navbar-header .navbar-brand {
     top: -64px;
 }
 
-.bb-main-personalized.bb-pushed .bb-bar-gravatar {
+.bb-main.bb-pushed .bb-bar-gravatar {
     top: -64px;
 }
 
-.bb-main-error {
+.bb-error {
     min-height: 360px;
 }
 
-.bb-main-error .navbar-header {
+.bb-error .navbar-header {
     float: none;
     width: 220px;
     margin: 0 auto;
@@ -302,21 +348,8 @@ body {
 
 .bb-content {
     padding-bottom: 46px;
-}
-
-.bb-content-personalized {
     width: auto;
     max-width: 970px;
-}
-
-.bb-copyright {
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    line-height: 36px;
-    font-size: 90%;
-    color: rgba(0, 0, 0, 0.3);
 }
 
 .bb-copyright-personalized {
@@ -326,14 +359,14 @@ body {
 }
 
 @media (min-width: 1200px) {
-    .bb-main-personalized {
+    .bb-main {
         left: 220px;
         padding-right: 220px;
     }
-    .bb-main-personalized .navbar-header .navbar-brand {
+    .bb-main .navbar-header .navbar-brand {
         top: -64px;
     }
-    .bb-main-personalized .bb-bar-gravatar {
+    .bb-main .bb-bar-gravatar {
         top: -64px;
     }
     .bb-copyright-personalized {

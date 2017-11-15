@@ -2,23 +2,21 @@ function SVGChart($container) {
     this._$container = $container;
     this._$svg = null;
     this._active = false;
+    this._last_width = this._$container.width();
+    this._timer = null;
+}
+SVGChart.prototype._resize = function() {
+    if (this._$container.width() != this._last_width) {
+        clearTimeout(this._timer);
+        this._last_width = this._$container.width();
 
-    var last_width = this._$container.width();
-    var timer = null;
-
-    $(window).resize((function() {
-        if (this._$container.width() != last_width) {
-            clearTimeout(timer);
-            last_width = this._$container.width();
-
-            if (this._active) {
-                this._destroy();
-                timer = setTimeout((function() {
-                    this._create();
-                }).bind(this), 250);
-            }
+        if (this._active) {
+            this._destroy();
+            this._timer = setTimeout((function() {
+                this._create();
+            }).bind(this), 250);
         }
-    }).bind(this));
+    }
 }
 SVGChart.prototype._create = function() {
     if (this._$svg) {
@@ -110,8 +108,10 @@ SVGChart.prototype._beforeDestroy = function(svg) {}
 SVGChart.prototype.create = function() {
     this._active = true;
     this._create();
+    $(window).on("resize", this._resize.bind(this));
 }
 SVGChart.prototype.destroy = function() {
+    $(window).off("resize", this._resize.bind(this));
     this._destroy();
     this._active = false;
 }
