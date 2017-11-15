@@ -19,7 +19,7 @@
         var moduleDataStack = [];
     </script>
 </head>
-<body>
+<body class="bb-body {% block _d0_body_class %}{% endblock %}">
     {% block _d0_content %}{% endblock %}
 </body>
 </html>
@@ -30,6 +30,7 @@
       title
     description
 
+    _d0_body_class
     _d0_content
 
 {% endcomment %}

@@ -1,64 +1,62 @@
 {% extends './base_0.html' %}
 {% load static i18n %}
 
+{% block _d0_body_class %}bb-body-public{% endblock %}
+
 {% block _d0_content %}
-    <div class="bb-container">
-        <div class="bb-main">
-            <div class="container-fluid">
-                <div class="row bb-bar bb-bar-public">
-                    <nav class="navbar navbar-default">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-10 col-lg-offset-1 pr-0 pl-0">
-                                    <div class="navbar-header">
-                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bb-navbar-collapse">
-                                            <span class="icon-bar bb-bar-button-first"></span>
-                                            <span class="icon-bar bb-bar-button-second"></span>
-                                            <span class="icon-bar bb-bar-button-third"></span>
-                                        </button>
-                                        <a class="navbar-brand ml-0 pt-10 pb-10" href="{% url 'bbtest:home' %}">
-                                            <img class="bb-bar-logo" src="{% static 'img/logo.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" title="bbTest.kz">
-                                        </a>
-                                    </div>
-                                    <div class="navbar-collapse collapse" id="bb-navbar-collapse" style="height: 1px;">
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li class="bb-bar-gravatar-container hidden-xs"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="{% static 'img/gravatar2.jpg' %}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}"></li>
-                                            <li class="dropdown">
-                                                <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">Monkey Shmonkey <span class="caret"></span></a>
-                                                <ul class="dropdown-menu dropdown-menu-right">
-                                                    <li><a href="#"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
-                                                </ul>
-                                            </li>
+    <div class="container-fluid">
+        <div class="row bb-bar bb-bar-public">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1 pr-0 pl-0">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bb-navbar-collapse">
+                                    <span class="icon-bar bb-bar-button-first"></span>
+                                    <span class="icon-bar bb-bar-button-second"></span>
+                                    <span class="icon-bar bb-bar-button-third"></span>
+                                </button>
+                                <a class="navbar-brand ml-0 pt-10 pb-10" href="{% url 'bbtest:home' %}">
+                                    <img class="bb-bar-logo" src="{% static 'img/logo.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" title="bbTest.kz">
+                                </a>
+                            </div>
+                            <div class="navbar-collapse collapse" id="bb-navbar-collapse" style="height: 1px;">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="bb-bar-gravatar-container hidden-xs"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="{% static 'img/gravatar2.jpg' %}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}"></li>
+                                    <li class="dropdown">
+                                        <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">Monkey Shmonkey <span class="caret"></span></a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
                                         </ul>
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="#">Dashboard</a></li>
-                                            <li><a href="#">Payment</a></li>
-                                            <li><a href="#">Funkey</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                    </li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Payment</a></li>
+                                    <li><a href="#">Funkey</a></li>
+                                </ul>
                             </div>
                         </div>
-                    </nav>
-                </div>
-                <div class="row">
-                    <div class="container bb-content">
-                        {% block header %}
-                            <div class="row">
-                                <div class="{% block header_class %}col-lg-10 col-lg-offset-1{% endblock %}">
-                                    <h3 class="mb-23 mt-0">{% block title %}{% endblock %}</h3>
-                                </div>
-                            </div>
-                        {% endblock %}
-                        {% block content %}{% endblock %}
                     </div>
                 </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="container mb-23">
+                {% block header %}
+                    <div class="row">
+                        <div class="{% block header_class %}col-lg-10 col-lg-offset-1{% endblock %}">
+                            <h3 class="mb-23 mt-0">{% block title %}{% endblock %}</h3>
+                        </div>
+                    </div>
+                {% endblock %}
+                {% block content %}{% endblock %}
             </div>
-            <div class="bb-copyright text-center">{% blocktrans with heart_icon='<i class="fa fa-heart-o"></i>' copyright_code='&copy;' context 'Bottom copyright' %}Made with {{ heart_icon }} in Kazakhstan. {{ copyright_code }} bbTest.kz{% endblocktrans %}&nbsp;&nbsp;({{ VERSION }})</div>
         </div>
     </div>
+    <div class="bb-copyright text-center">{% blocktrans with heart_icon='<i class="fa fa-heart-o"></i>' copyright_code='&copy;' context 'Bottom copyright' %}Made with {{ heart_icon }} in Kazakhstan. {{ copyright_code }} bbTest.kz{% endblocktrans %}&nbsp;&nbsp;({{ VERSION }})</div>
 {% endblock %}
 
 {% comment %}
