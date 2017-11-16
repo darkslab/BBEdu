@@ -34,6 +34,18 @@
                     </form>
                 </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-7">
+                            <h6 class="mt-10 mb-10">{% trans 'Already have an account?' context '/register/' %}</h6>
+                        </div>
+                        <div class="col-xs-5">
+                            <a href="{% url 'bbtest:login' %}" class="btn btn-success btn-block">{% trans 'Login' context '/register/' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
