@@ -90,7 +90,7 @@ class UserCreationForm(ModelForm):
                 pgettext("Form validation error", "Passwords do not match"),
                 code="password_mismatch",
             )
-        user_attributes = { key: self.cleaned_data[key] for key in self._meta.fields }
+        user_attributes = { key: self.cleaned_data.get(key) for key in self._meta.fields }
         validate_password(password2, User(**user_attributes))
         return password2
 
@@ -104,7 +104,7 @@ class UserCreationForm(ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
+        user.set_password(self.cleaned_data.get("password1"))
         if commit:
             user.save()
         return user
