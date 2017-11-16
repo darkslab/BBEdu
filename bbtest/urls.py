@@ -1,8 +1,5 @@
 from django.conf.urls import url
-from django.contrib.auth.views import LogoutView
-from django.conf import settings
-from .auth.forms import AuthenticationForm
-from .auth.views import LoginView, RegisterView
+from .auth.views import LoginView, LogoutView, RegisterView
 from .views import HomeView
 from .views.student import DashboardView as StudentDashboardView
 from .views.developer import DashboardView as DeveloperDashboardView
@@ -18,14 +15,7 @@ urlpatterns = [
     url(r"^developer/$", DeveloperDashboardView.as_view(), name="developer_dashboard"),
 
     # SYSTEM URLS
-    url(r"^login/$", LoginView.as_view(
-        template_name="login.html",
-        redirect_field_name=settings.BB_REDIRECT_FIELDNAME,
-        authentication_form=AuthenticationForm,
-        redirect_authenticated_user=True,
-    ), name="login"),
-    url(r"^logout/$", LogoutView.as_view(
-        redirect_field_name=settings.BB_REDIRECT_FIELDNAME,
-    ), name="logout"),
+    url(r"^login/$", LoginView.as_view(), name="login"),
+    url(r"^logout/$", LogoutView.as_view(), name="logout"),
     url(r"^register/(?:(?P<group>developer)/)?$", RegisterView.as_view(), name="register"),
 ]
