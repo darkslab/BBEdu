@@ -1,7 +1,9 @@
-from django.forms import ValidationError, Form, ModelForm, CharField, PasswordInput
+from django.forms import ValidationError, Form, ModelForm, CharField, EmailField, PasswordInput
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.password_validation import validate_password, password_validators_help_texts
+from django.contrib.auth.forms import PasswordResetForm as _PasswordResetForm
 from django.utils.translation import pgettext_lazy, pgettext
+from django.contrib.messages import success
 from uuid import uuid4
 
 
@@ -108,3 +110,19 @@ class UserCreationForm(ModelForm):
         if commit:
             user.save()
         return user
+
+
+class PasswordResetForm(_PasswordResetForm):
+    email = EmailField(label=pgettext_lazy("Form label", "Email"), error_messages={
+        "required": pgettext_lazy("Form field error", "Please enter email"),
+        "invalid": pgettext_lazy("Form field error", "Please correct email"),
+    })
+
+    def send_mail(self, subject_template_name, email_template_name, context, from_email, to_email, html_email_template_name=None):
+        # DARK_TODO
+        pass
+
+    def save(self, **kwargs):
+        if "request" in kwargs:
+            success(kwargs["request"], "Monkey!")
+        super().save(**kwargs)

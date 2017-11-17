@@ -40,7 +40,7 @@
                             <button type="submit" class="btn btn-primary btn-block" data-bb-submit>{% trans 'Login' context 'Form button' %}</button>
                         </div>
                         <div class="text-center">
-                            <a href="#">{% trans 'Forgot your password?' context 'Form link' %}</a>
+                            <a href="{% url 'bbtest:password_reset' %}">{% trans 'Forgot your password?' context 'Form link' %}</a>
                         </div>
                     </form>
                 </div>

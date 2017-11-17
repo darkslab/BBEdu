@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .auth.views import LoginView, LogoutView, RegisterView
+from .auth.views import LoginView, LogoutView, RegisterView, PasswordResetView
 from .views import HomeView
 from .views.student import DashboardView as StudentDashboardView
 from .views.developer import DashboardView as DeveloperDashboardView
@@ -18,4 +18,5 @@ urlpatterns = [
     url(r"^login/$", LoginView.as_view(), name="login"),
     url(r"^logout/$", LogoutView.as_view(), name="logout"),
     url(r"^register/(?:(?P<group>developer)/)?$", RegisterView.as_view(), name="register"),
+    url(r"^password_reset/$", PasswordResetView.as_view(), name="password_reset"),
 ]

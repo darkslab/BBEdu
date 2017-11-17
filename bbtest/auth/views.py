@@ -1,11 +1,16 @@
 from django.views.generic import TemplateView
 from django.contrib.auth import login
 from django.contrib.auth.models import Permission
-from django.contrib.auth.views import LoginView as _LoginView, LogoutView as _LogoutView
+from django.contrib.auth.views import (
+    LoginView as _LoginView,
+    LogoutView as _LogoutView,
+    PasswordResetView as _PasswordResetView,
+)
 from django.shortcuts import redirect, resolve_url
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
-from .forms import AuthenticationForm, UserCreationForm
+from django.urls import reverse_lazy
+from .forms import AuthenticationForm, UserCreationForm, PasswordResetForm
 from .mixins import LogoutRequiredMixin
 
 
@@ -62,3 +67,9 @@ class RegisterView(LogoutRequiredMixin, TemplateView):
             return redirect(user)
 
         return self.render_to_response(context)
+
+
+class PasswordResetView(_PasswordResetView):
+    form_class = PasswordResetForm
+    success_url = reverse_lazy("bbtest:login")
+    template_name = "password_reset.html"
