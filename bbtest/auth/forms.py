@@ -124,5 +124,5 @@ class PasswordResetForm(_PasswordResetForm):
 
     def save(self, **kwargs):
         if "request" in kwargs:
-            success(kwargs["request"], "Monkey!")
+            success(kwargs["request"], pgettext("Success alert message", "Please follow password reset instructions in the sent email"))
         super().save(**kwargs)
