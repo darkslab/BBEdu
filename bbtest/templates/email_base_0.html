@@ -50,8 +50,8 @@
                     <table border="0" cellpadding="30" cellspacing="0" width="100%" class="bb-header">
                         <tr>
                             <td align="center" valign="top">
-                                <a href="http://localhost:8000{% url 'bbtest:home' %}" target="_blank">
-                                    <img src="http://localhost:8000{% static 'emails/logo_20171118.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" width="180" />
+                                <a href="{{ protocol}}://{{ domain }}{% url 'bbtest:home' %}" target="_blank">
+                                    <img src="{{ protocol}}://{{ domain }}{% static 'emails/logo_20171118.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" width="180" />
                                 </a>
                             </td>
                         </tr>
