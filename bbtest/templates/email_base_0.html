@@ -1,0 +1,101 @@
+{% load static i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title></title>
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Helvetica, Arial, sans-serif;
+            }
+            img {
+                border: 0 none;
+                height: auto;
+                line-height: 100%;
+                outline: none;
+                text-decoration: none;
+            }
+            a {
+                display: inline-block;
+                color: #2196f3;
+                text-decoration: none;
+            }
+            a img {
+                border: 0 none;
+            }
+            table, td {
+                border-collapse: collapse;
+            }
+            table.bb-header,
+            table.bb-footer {
+                background-color: rgb(237, 244, 247);
+            }
+            table.bb-content {
+                color: #444;
+            }
+            table.bb-footer {
+                font-size: 13px;
+            }
+            td.bb-copyright {
+                color: #888;
+            }
+        </style>
+    </head>
+    <body>
+        <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" style="height:100% !important; margin: 0; padding: 0; width: 100% !important;">
+            <tr>
+                <td align="center" valign="top">
+                    <table border="0" cellpadding="30" cellspacing="0" width="100%" class="bb-header">
+                        <tr>
+                            <td align="center" valign="top">
+                                <a href="http://localhost:8000{% url 'bbtest:home' %}" target="_blank">
+                                    <img src="http://localhost:8000{% static 'img/logo.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" width="180" />
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="0" cellpadding="30" cellspacing="0" width="600" class="bb-content">
+                        <tr>
+                            <td valign="top">
+                                {% block content %}{% endblock %}
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="0" cellpadding="30" cellspacing="0" width="100%" class="bb-footer">
+                        <tr>
+                            <td align="center" valign="top">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td align="center" valign="top" style="padding-bottom: 10px;" class="bb-copyright">&copy; {% now 'Y' %} bbTest.kz</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" valign="top">
+                                            <table border="0" cellpadding="5" cellspacing="0" id="utilityLink">
+                                                <tr>
+                                                    <td valign="top">
+                                                        <a href="http://localhost:8000{% url 'bbtest:home' %}" target="_blank">Contact Us</a>
+                                                    </td>
+                                                    <td valign="top">
+                                                        <a href="http://localhost:8000{% url 'bbtest:home' %}" target="_blank">Unsubscribe</a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+
+{% comment %}
+
+    content
+
+{% endcomment %}
