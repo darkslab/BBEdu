@@ -11,6 +11,8 @@ from django.shortcuts import redirect, resolve_url
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from django.urls import reverse_lazy
+from django.contrib.messages import success
+from django.utils.translation import pgettext
 from .forms import AuthenticationForm, UserCreationForm, PasswordResetForm, SetPasswordForm
 from .mixins import LogoutRequiredMixin
 
@@ -81,3 +83,7 @@ class PasswordResetConfirmView(_PasswordResetConfirmView):
     post_reset_login = True
     success_url = reverse_lazy("bbtest:login")
     template_name = "password_reset_confirm.html"
+
+    def form_valid(self, form):
+        success(self.request, pgettext("Success alert message", "Password was reset successfully."))
+        return super().form_valid(form)
