@@ -1,17 +1,35 @@
 from django.views.generic import TemplateView
 from django.contrib.auth import login
 from django.contrib.auth.models import Permission
-from django.contrib.auth.views import LoginView as _LoginView
+from django.contrib.auth.views import (
+    LoginView as _LoginView,
+    LogoutView as _LogoutView,
+    PasswordResetView as _PasswordResetView,
+    PasswordResetConfirmView as _PasswordResetConfirmView,
+)
 from django.shortcuts import redirect, resolve_url
 from django.contrib.contenttypes.models import ContentType
-from .forms import UserCreationForm
+from django.conf import settings
+from django.urls import reverse_lazy
+from django.contrib.messages import success
+from django.utils.translation import pgettext
+from .forms import AuthenticationForm, UserCreationForm, PasswordResetForm, SetPasswordForm
 from .mixins import LogoutRequiredMixin
 
 
 class LoginView(_LoginView):
+    template_name="login.html"
+    redirect_field_name=settings.BB_REDIRECT_FIELDNAME
+    authentication_form=AuthenticationForm
+    redirect_authenticated_user=True
+
     def get_success_url(self):
         url = self.get_redirect_url()
         return url or resolve_url(self.request.user)
+
+
+class LogoutView(_LogoutView):
+    redirect_field_name=settings.BB_REDIRECT_FIELDNAME
 
 
 class RegisterView(LogoutRequiredMixin, TemplateView):
@@ -52,3 +70,20 @@ class RegisterView(LogoutRequiredMixin, TemplateView):
             return redirect(user)
 
         return self.render_to_response(context)
+
+
+class PasswordResetView(LogoutRequiredMixin, _PasswordResetView):
+    form_class = PasswordResetForm
+    success_url = reverse_lazy("bbtest:login")
+    template_name = "password_reset.html"
+
+
+class PasswordResetConfirmView(LogoutRequiredMixin, _PasswordResetConfirmView):
+    form_class = SetPasswordForm
+    post_reset_login = True
+    success_url = reverse_lazy("bbtest:login")
+    template_name = "password_reset_confirm.html"
+
+    def form_valid(self, form):
+        success(self.request, pgettext("Success alert message", "Password was reset successfully."))
+        return super().form_valid(form)

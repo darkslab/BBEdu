@@ -6,11 +6,16 @@
 {% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4{% endblock %}
 
 {% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+    </script>
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form method="post" action="{% url 'bbtest:login' %}" class="mt-15">
+                    <form method="post" action="{% url 'bbtest:login' %}" class="mt-15" data-bb-form>
                         {% csrf_token %}
                         <input type="hidden" name="r" value="{{ r }}">
 
@@ -32,9 +37,24 @@
                         {% endfor %}
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">{% trans 'Login' context 'Form button' %}</button>
+                            <button type="submit" class="btn btn-primary btn-block" data-bb-submit>{% trans 'Login' context 'Form button' %}</button>
+                        </div>
+                        <div class="text-center">
+                            <a href="{% url 'bbtest:password_reset' %}">{% trans 'Forgot your password?' context 'Form link' %}</a>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-7">
+                            <h6 class="mt-10 mb-10">{% trans "Don't have an account?" context '/login/' %}</h6>
+                        </div>
+                        <div class="col-xs-5">
+                            <a href="{% url 'bbtest:register' %}" class="btn btn-success btn-block">{% trans 'Register' context '/login/' %}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
