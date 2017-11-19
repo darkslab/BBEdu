@@ -72,13 +72,13 @@ class RegisterView(LogoutRequiredMixin, TemplateView):
         return self.render_to_response(context)
 
 
-class PasswordResetView(_PasswordResetView):
+class PasswordResetView(LogoutRequiredMixin, _PasswordResetView):
     form_class = PasswordResetForm
     success_url = reverse_lazy("bbtest:login")
     template_name = "password_reset.html"
 
 
-class PasswordResetConfirmView(_PasswordResetConfirmView):
+class PasswordResetConfirmView(LogoutRequiredMixin, _PasswordResetConfirmView):
     form_class = SetPasswordForm
     post_reset_login = True
     success_url = reverse_lazy("bbtest:login")
