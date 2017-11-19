@@ -18,5 +18,13 @@ urlpatterns = [
     url(r"^login/$", LoginView.as_view(), name="login"),
     url(r"^logout/$", LogoutView.as_view(), name="logout"),
     url(r"^register/(?:(?P<group>developer)/)?$", RegisterView.as_view(), name="register"),
-    url(r"^password_reset/$", PasswordResetView.as_view(), name="password_reset"),
+    url(r"^password-reset/$", PasswordResetView.as_view(), name="password_reset"),
 ]
+
+
+# from django.views.generic import TemplateView
+# urlpatterns += [
+#     url(r"^page/$", TemplateView.as_view(template_name="page.html"), {
+#         "var": 1,
+#     }),
+# ]

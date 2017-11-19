@@ -5,6 +5,7 @@ from django.contrib.auth.forms import PasswordResetForm as _PasswordResetForm
 from django.utils.translation import pgettext_lazy, pgettext
 from django.contrib.messages import success
 from uuid import uuid4
+from bbtest.emails.password_reset import send_mail
 
 
 User = get_user_model()
@@ -119,8 +120,7 @@ class PasswordResetForm(_PasswordResetForm):
     })
 
     def send_mail(self, subject_template_name, email_template_name, context, from_email, to_email, html_email_template_name=None):
-        # DARK_TODO
-        pass
+        send_mail(to_email, context)
 
     def save(self, **kwargs):
         if "request" in kwargs:
