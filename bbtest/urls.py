@@ -1,8 +1,5 @@
 from django.conf.urls import url
-from django.contrib.auth.views import LogoutView
-from django.conf import settings
-from .auth.forms import AuthenticationForm
-from .auth.views import LoginView, RegisterView
+from .auth.views import LoginView, LogoutView, RegisterView, PasswordResetView, PasswordResetConfirmView
 from .views import HomeView
 from .views.student import DashboardView as StudentDashboardView
 from .views.developer import DashboardView as DeveloperDashboardView
@@ -18,14 +15,17 @@ urlpatterns = [
     url(r"^developer/$", DeveloperDashboardView.as_view(), name="developer_dashboard"),
 
     # SYSTEM URLS
-    url(r"^login/$", LoginView.as_view(
-        template_name="login.html",
-        redirect_field_name=settings.BB_REDIRECT_FIELDNAME,
-        authentication_form=AuthenticationForm,
-        redirect_authenticated_user=True,
-    ), name="login"),
-    url(r"^logout/$", LogoutView.as_view(
-        redirect_field_name=settings.BB_REDIRECT_FIELDNAME,
-    ), name="logout"),
+    url(r"^login/$", LoginView.as_view(), name="login"),
+    url(r"^logout/$", LogoutView.as_view(), name="logout"),
     url(r"^register/(?:(?P<group>developer)/)?$", RegisterView.as_view(), name="register"),
+    url(r"^password-reset/$", PasswordResetView.as_view(), name="password_reset"),
+    url(r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]
+
+
+# from django.views.generic import TemplateView
+# urlpatterns += [
+#     url(r"^page/$", TemplateView.as_view(template_name="page.html"), {
+#         "var": 1,
+#     }),
+# ]

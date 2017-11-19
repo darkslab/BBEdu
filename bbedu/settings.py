@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from json import load
 from re import match
+from bbtest.pipeline_js import SOURCE_FILENAMES as SOURCE_FILENAMES_JS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -159,23 +160,7 @@ PIPELINE = {
     "SHOW_ERRORS_INLINE": False,
     "JAVASCRIPT": {
         "base": {
-            "source_filenames": (
-                "js/jquery-3.2.1.min.js",
-                "js/jquery-ui.js",
-                "js/bootstrap.js",
-                "js/turbolinks.min.js",
-                "js/script.js",
-
-                "js/charts/SVGChart.js",
-                "js/charts/RadialChart.js",
-                "js/charts/ColumnChart.js",
-                "js/charts/ProgressPieChart.js",
-
-                "js/modules/Module.js",
-                "js/modules/PersonalizedModule.js",
-                "js/modules/PopoverModule.js",
-                "js/modules/StudentDashboardModule.js",
-            ),
+            "source_filenames": SOURCE_FILENAMES_JS,
             "output_filename": "js/base.js",
             "extra_context": {
                 "defer": True,
