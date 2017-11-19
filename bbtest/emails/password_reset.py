@@ -8,8 +8,7 @@ def send_mail(to_email, context):
     reset_url = "%s://%s%s" % (
         context["protocol"],
         context["domain"],
-        # DARK_TODO
-        reverse("bbtest:password_reset"),
+        reverse("bbtest:password_reset_confirm", kwargs={ "uidb64": context["uid"], "token": context["token"] }),
     )
     email = EmailMessage(
         subject=pgettext("Email subject", "Password reset"),

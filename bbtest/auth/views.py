@@ -5,6 +5,7 @@ from django.contrib.auth.views import (
     LoginView as _LoginView,
     LogoutView as _LogoutView,
     PasswordResetView as _PasswordResetView,
+    PasswordResetConfirmView as _PasswordResetConfirmView,
 )
 from django.shortcuts import redirect, resolve_url
 from django.contrib.contenttypes.models import ContentType
@@ -73,3 +74,11 @@ class PasswordResetView(_PasswordResetView):
     form_class = PasswordResetForm
     success_url = reverse_lazy("bbtest:login")
     template_name = "password_reset.html"
+
+
+class PasswordResetConfirmView(_PasswordResetConfirmView):
+    # DARK_TODO
+    # form_class = 
+    post_reset_login = True
+    success_url = reverse_lazy("bbtest:login")
+    template_name = "password_reset_confirm.html"
