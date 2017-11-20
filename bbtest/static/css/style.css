@@ -621,3 +621,8 @@ html {
     color: #79c37c;
     opacity: 1;
 }
+
+.bb-settings-gravatar {
+    border: 2px solid #2196f3;
+    max-height: 300px;
+}
