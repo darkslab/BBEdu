@@ -1,1 +1,1 @@
-from .base import HomeView, DashboardView
+from .base import HomeView, DashboardView, SettingsView

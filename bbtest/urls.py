@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from .auth.views import LoginView, LogoutView, RegisterView, PasswordResetView, PasswordResetConfirmView
-from .views import HomeView, DashboardView
+from .views import HomeView, DashboardView, SettingsView
 from .views.student import DashboardView as StudentDashboardView
 from .views.developer import DashboardView as DeveloperDashboardView
 
@@ -12,6 +12,7 @@ urlpatterns = [
 
     # USER URLS
     url(r"^dashboard/$", DashboardView.as_view(), name="dashboard"),
+    url(r"^settings/$", SettingsView.as_view(), name="settings"),
 
     # STUDENT URLS
     url(r"^student/$", StudentDashboardView.as_view(), name="student_dashboard"),
