@@ -38,11 +38,8 @@ class BaseUserForm(ModelForm):
             },
         }
 
-    def __init__(self, group="student", *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if group not in ("admin", "developer", "student"):
-            raise ValueError("%s is not a valid group" % group)
-        self._group = group
         self.fields["first_name"].required = True
         self.fields["last_name"].required = True
         self.fields["email"].required = True
@@ -50,9 +47,6 @@ class BaseUserForm(ModelForm):
         if not self.require_password:
             self.fields["password1"].required = False
             self.fields["password2"].required = False
-
-    def group(self):
-        return self._group
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1", "")
@@ -68,13 +62,16 @@ class BaseUserForm(ModelForm):
                 validate_password(password2, User(**user_attributes))
         return password2
 
-    def save(self, commit=True):
+    def save(self, group, commit=True):
+        assert group in ("super", "admin", "developer", "student")
         user = super().save(commit=False)
         if self.cleaned_data.get("password1"):
             user.set_password(self.cleaned_data.get("password1"))
         if not user.username:
+            if group == "super":
+                raise ValueError("Cannot generate username for Super users")
             while True:
-                user.username = "%s_%s" % (self._group, uuid4().hex)
+                user.username = "%s_%s" % (group, uuid4().hex)
                 if not User.objects.filter(username=user.username).exists():
                     break
         if commit:

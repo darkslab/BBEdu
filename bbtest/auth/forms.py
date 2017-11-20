@@ -27,13 +27,13 @@ class AuthenticationForm(_AuthenticationForm):
 
 
 class UserCreationForm(BaseUserForm):
-    def save(self, request):
-        user = super().save()
+    def save(self, request, group):
+        user = super().save(group)
 
         content_type = ContentType.objects.get_for_model(type(user))
         permissions = []
-        if self.group() in ("developer", "student"):
-            permissions.append(Permission.objects.get(codename=self.group(), content_type=content_type))
+        if group in ("developer", "student"):
+            permissions.append(Permission.objects.get(codename=group, content_type=content_type))
         user.user_permissions.set(permissions)
 
         login(request, user)

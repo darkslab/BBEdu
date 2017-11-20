@@ -36,17 +36,11 @@ class RegisterView(LogoutRequiredMixin, FormView):
 
     def dispatch(self, request, group, *args, **kwargs):
         self._group = group or "student"
+        assert self._group in ("developer", "student")
         return super().dispatch(request, *args, **kwargs)
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs.update({
-            "group": self._group,
-        })
-        return kwargs
-
     def form_valid(self, form):
-        form.save(self.request)
+        form.save(self.request, self._group)
         return super().form_valid(form)
 
 
