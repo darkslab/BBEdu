@@ -6,7 +6,6 @@ from django.contrib.auth.forms import (
     SetPasswordForm as _SetPasswordForm,
 )
 from django.utils.translation import pgettext_lazy, pgettext
-from django.contrib.auth import login
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.messages import success
@@ -27,7 +26,7 @@ class AuthenticationForm(_AuthenticationForm):
 
 
 class UserCreationForm(BaseUserForm):
-    def save(self, request, group):
+    def save(self, group):
         user = super().save()
 
         content_type = ContentType.objects.get_for_model(type(user))
@@ -35,8 +34,6 @@ class UserCreationForm(BaseUserForm):
         if group in ("developer", "student"):
             permissions.append(Permission.objects.get(codename=group, content_type=content_type))
         user.user_permissions.set(permissions)
-
-        login(request, user)
 
         return user
 

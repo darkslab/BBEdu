@@ -10,6 +10,7 @@ from django.conf import settings
 from django.urls import reverse_lazy
 from django.contrib.messages import success
 from django.utils.translation import pgettext
+from django.contrib.auth import login
 from .forms import AuthenticationForm, UserCreationForm, PasswordResetForm, SetPasswordForm
 from .mixins import LogoutRequiredMixin
 
@@ -40,7 +41,7 @@ class RegisterView(LogoutRequiredMixin, FormView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.save(self.request, self._group)
+        login(self.request, form.save(self._group))
         return super().form_valid(form)
 
 
