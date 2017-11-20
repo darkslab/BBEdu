@@ -62,16 +62,13 @@ class BaseUserForm(ModelForm):
                 validate_password(password2, User(**user_attributes))
         return password2
 
-    def save(self, group, commit=True):
-        assert group in ("super", "admin", "developer", "student")
+    def save(self, commit=True):
         user = super().save(commit=False)
         if self.cleaned_data.get("password1"):
             user.set_password(self.cleaned_data.get("password1"))
         if not user.username:
-            if group == "super":
-                raise ValueError("Cannot generate username for Super users")
             while True:
-                user.username = "%s_%s" % (group, uuid4().hex)
+                user.username = uuid4().hex
                 if not User.objects.filter(username=user.username).exists():
                     break
         if commit:

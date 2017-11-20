@@ -28,7 +28,7 @@ class AuthenticationForm(_AuthenticationForm):
 
 class UserCreationForm(BaseUserForm):
     def save(self, request, group):
-        user = super().save(group)
+        user = super().save()
 
         content_type = ContentType.objects.get_for_model(type(user))
         permissions = []
