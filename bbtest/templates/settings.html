@@ -1,0 +1,58 @@
+{% extends template_name %}
+{% load i18n widget_tweaks %}
+
+{% block title %}{% trans 'Settings' context 'Page title' %}{% endblock %}
+
+{% block nav_settings_class %}active{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "PopoverModule"
+        });
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+    </script>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-5">
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <img class="img-responsive img-circle bb-settings-gravatar center-block" src="{{ user.gravatar_url }}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}">
+                </div>
+                <div class="col-xs-10 col-xs-offset-1 mt-23 mb-23 text-center">
+                    {% blocktrans trimmed with link_tag='<a href="http://ru.gravatar.com/" target="_blank">Gravatar</a>' context '/settings/' %}
+                        If you want to change your avatar, you can do it by going to {{ link_tag }}
+                    {% endblocktrans %}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-7">
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form method="post" action="{{ request.path }}" class="mt-15" data-bb-form>
+                                {% csrf_token %}
+
+                                {% for field in form %}
+                                    <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                        <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}{% if field.name == 'password1' %} <i class="fa fa-question-circle text-help" data-toggle="popover" data-html="true" data-content="<ul class='list-narrow'>{% spaceless %}{{ field.help_text|unordered_list }}{% endspaceless %}</ul>" data-placement="auto" data-trigger="hover" title=""></i>{% endif %}</label>
+                                        {{ field|add_class:'form-control' }}
+                                        {% for error in field.errors %}
+                                            <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block" data-bb-submit>{% trans 'Save' context 'Form button' %}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

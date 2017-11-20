@@ -1,18 +1,16 @@
-from django.views.generic import TemplateView
-from django.contrib.auth import login
-from django.contrib.auth.models import Permission
+from django.views.generic import FormView
 from django.contrib.auth.views import (
     LoginView as _LoginView,
     LogoutView as _LogoutView,
     PasswordResetView as _PasswordResetView,
     PasswordResetConfirmView as _PasswordResetConfirmView,
 )
-from django.shortcuts import redirect, resolve_url
-from django.contrib.contenttypes.models import ContentType
+from django.shortcuts import resolve_url
 from django.conf import settings
 from django.urls import reverse_lazy
 from django.contrib.messages import success
 from django.utils.translation import pgettext
+from django.contrib.auth import login
 from .forms import AuthenticationForm, UserCreationForm, PasswordResetForm, SetPasswordForm
 from .mixins import LogoutRequiredMixin
 
@@ -32,44 +30,19 @@ class LogoutView(_LogoutView):
     redirect_field_name=settings.BB_REDIRECT_FIELDNAME
 
 
-class RegisterView(LogoutRequiredMixin, TemplateView):
+class RegisterView(LogoutRequiredMixin, FormView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("bbtest:dashboard")
     template_name = "register.html"
 
     def dispatch(self, request, group, *args, **kwargs):
         self._group = group or "student"
+        assert self._group in ("developer", "student")
         return super().dispatch(request, *args, **kwargs)
 
-    def get_context_data(self, **kwargs):
-        if self._group == "developer":
-            kwargs["form_url"] = resolve_url("bbtest:register", "developer")
-        else:
-            kwargs["form_url"] = resolve_url("bbtest:register")
-        return super().get_context_data(**kwargs)
-
-    def get(self, request, *args, **kwargs):
-        context = self.get_context_data(**kwargs)
-
-        context["form"] = UserCreationForm(self._group)
-
-        return self.render_to_response(context)
-
-    def post(self, request, *args, **kwargs):
-        context = self.get_context_data(**kwargs)
-
-        context["form"] = UserCreationForm(self._group, data=request.POST)
-        if context["form"].is_valid():
-            user = context["form"].save()
-
-            content_type = ContentType.objects.get_for_model(type(user))
-            permissions = []
-            if self._group in ("developer", "student"):
-                permissions.append(Permission.objects.get(codename=self._group, content_type=content_type))
-            user.user_permissions.set(permissions)
-
-            login(request, user)
-            return redirect(user)
-
-        return self.render_to_response(context)
+    def form_valid(self, form):
+        login(self.request, form.save(self._group))
+        return super().form_valid(form)
 
 
 class PasswordResetView(LogoutRequiredMixin, _PasswordResetView):
@@ -81,7 +54,7 @@ class PasswordResetView(LogoutRequiredMixin, _PasswordResetView):
 class PasswordResetConfirmView(LogoutRequiredMixin, _PasswordResetConfirmView):
     form_class = SetPasswordForm
     post_reset_login = True
-    success_url = reverse_lazy("bbtest:login")
+    success_url = reverse_lazy("bbtest:dashboard")
     template_name = "password_reset_confirm.html"
 
     def form_valid(self, form):

@@ -3,7 +3,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.db.models import CharField, EmailField, DateTimeField, BooleanField
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy
-from django.shortcuts import resolve_url
+from django.urls import reverse
 from hashlib import md5
 from urllib.parse import urlencode
 
@@ -62,14 +62,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.get_full_name()
     def get_absolute_url(self):
         if self.has_perm("bbtest.super"):
-            return resolve_url("bbtest:super_dashboard")
+            return reverse("bbtest:super_dashboard")
         if self.has_perm("bbtest.admin"):
-            return resolve_url("bbtest:admin_dashboard")
+            return reverse("bbtest:admin_dashboard")
         if self.has_perm("bbtest.developer"):
-            return resolve_url("bbtest:developer_dashboard")
+            return reverse("bbtest:developer_dashboard")
         if self.has_perm("bbtest.student"):
-            return resolve_url("bbtest:student_dashboard")
-        return resolve_url("home")
+            return reverse("bbtest:student_dashboard")
+        return reverse("home")
 
     def get_full_name(self):
         full_name_values = []
