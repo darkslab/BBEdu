@@ -102,7 +102,6 @@ html {
 }
 
 .bb-body {
-    position: relative;
     background-color: rgba(237, 244, 247, 1);
 }
 
@@ -111,6 +110,7 @@ html {
 }
 
 .bb-body-public {
+    position: relative;
     min-height: 100%;
     padding-bottom: 36px;
 }
@@ -134,18 +134,21 @@ html {
 }
 
 .bb-container {
-    height: 100%;
-    min-height: 640px;
-    overflow-x: hidden;
+    overflow: hidden;
+}
+
+.bb-min {
+    min-height: 660px;
 }
 
 .bb-container.bb-overlayed {
-    overflow-y: hidden;
+    height: 100vh;
 }
 
 @media (min-width: 1200px) {
     .bb-container.bb-overlayed {
-        overflow-y: initial;
+        height: initial;
+        min-height: initial;
     }
 }
 
@@ -178,13 +181,12 @@ html {
 .bb-menu {
     position: absolute;
     width: 220px;
-    height: 100%;
 }
 
 .bb-main {
     position: relative;
     left: 0px;
-    min-height: 100%;
+    min-height: 100vh;
     background-color: rgba(237, 244, 247, 1);
     -webkit-transition: left .3s ease-in-out, padding-right .3s ease-in-out;
          -o-transition: left .3s ease-in-out, padding-right .3s ease-in-out;

@@ -39,7 +39,7 @@ SECRET_KEY = SECRETS.get("SECRET_KEY", "secret")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = SECRETS.get("DEBUG", True)
 
-ALLOWED_HOSTS = SECRETS.get("ALLOWED_HOSTS", [])
+ALLOWED_HOSTS = SECRETS.get("ALLOWED_HOSTS", ["*"])
 
 
 # Application definition
