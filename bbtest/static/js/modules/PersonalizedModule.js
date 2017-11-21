@@ -14,6 +14,7 @@ PersonalizedModule.prototype._controlWindow = function() {
     if ($(window).width() < 1200) {
         if (this._$button.hasClass("bb-pushed")) {
             this._$container.removeClass("bb-overlayed");
+            this._$container.removeClass("bb-min");
             this._$button.removeClass("bb-pushed");
             this._$main.removeClass("bb-pushed");
             this._$overlay.removeClass("bb-overlayed");
@@ -22,6 +23,7 @@ PersonalizedModule.prototype._controlWindow = function() {
                 scrollTop: "0px"
             });
             this._$container.addClass("bb-overlayed");
+            this._$container.addClass("bb-min");
             this._$button.addClass("bb-pushed");
             this._$main.addClass("bb-pushed");
             this._$overlay.addClass("bb-overlayed");
