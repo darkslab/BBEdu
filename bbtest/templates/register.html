@@ -14,12 +14,11 @@
             module: "SubmitModule"
         });
     </script>
-    {# DARK_TODO  bind SubmitModule, also probably check everywhere #}
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form method="post" action="{{ request.path }}" class="mt-15">
+                    <form method="post" action="{{ request.path }}" class="mt-15" data-bb-form>
                         {% csrf_token %}
 
                         {% for field in form %}
@@ -33,7 +32,7 @@
                         {% endfor %}
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">{% trans 'Register' context 'Form button' %}</button>
+                            <button type="submit" class="btn btn-primary btn-block" data-bb-submit>{% trans 'Register' context 'Form button' %}</button>
                         </div>
                     </form>
                 </div>
