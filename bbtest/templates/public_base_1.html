@@ -21,22 +21,25 @@
                                 </a>
                             </div>
                             <div class="navbar-collapse collapse" id="bb-navbar-collapse" style="height: 1px;">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li class="bb-bar-gravatar-container hidden-xs"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="{% static 'img/gravatar2.jpg' %}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}"></li>
-                                    <li class="dropdown">
-                                        <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">Monkey Shmonkey <span class="caret"></span></a>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="#"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Payment</a></li>
-                                    <li><a href="#">Funkey</a></li>
-                                </ul>
+                                {% if user.is_authenticated %}
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a href="{% url 'bbtest:dashboard' %}">{% trans 'Dashboard' context 'Navigation link' %}</a></li>
+                                        <li class="bb-bar-gravatar-container hidden-xs"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="{{ user.gravatar_url }}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}"></li>
+                                        <li class="dropdown">
+                                            <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">{{ user.get_full_name }} <span class="caret"></span></a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="{% url 'bbtest:settings' %}"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                {% else %}
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a href="{% url 'bbtest:login' %}">{% trans 'Login' context 'Navigation link' %}</a></li>
+                                        <li><a href="{% url 'bbtest:register' %}">{% trans 'Register' context 'Navigation link' %}</a></li>
+                                    </ul>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

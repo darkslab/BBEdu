@@ -15,4 +15,5 @@ SOURCE_FILENAMES = (
     "js/modules/PopoverModule.js",
     "js/modules/StudentDashboardModule.js",
     "js/modules/SubmitModule.js",
+    "js/modules/SettingsModule.js",
 )
