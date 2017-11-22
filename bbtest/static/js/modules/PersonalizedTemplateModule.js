@@ -1,5 +1,5 @@
-PersonalizedModule.prototype = Object.create(Module.prototype);
-function PersonalizedModule() {
+PersonalizedTemplateModule.prototype = Object.create(Module.prototype);
+function PersonalizedTemplateModule() {
     this._$container = $("[data-bb-container]");
     this._$main = $("[data-bb-main]");
     this._$button = $("[data-bb-bar-button]");
@@ -10,7 +10,7 @@ function PersonalizedModule() {
 
     Module.call(this);
 }
-PersonalizedModule.prototype._controlWindow = function() {
+PersonalizedTemplateModule.prototype._controlWindow = function() {
     if ($(window).width() < 1200) {
         if (this._$button.hasClass("bb-pushed")) {
             this._$container.removeClass("bb-overlayed");
@@ -30,14 +30,14 @@ PersonalizedModule.prototype._controlWindow = function() {
         }
     }
 }
-PersonalizedModule.prototype._normalizeScroll = function() {
+PersonalizedTemplateModule.prototype._normalizeScroll = function() {
     if ($(window).width() < 1200 && this._$button.hasClass("bb-pushed")) {
         this._$container.animate({
             scrollTop: "0px"
         });
     }
 }
-PersonalizedModule.prototype.unMount = function() {
+PersonalizedTemplateModule.prototype.unMount = function() {
     this._$button.off("click", this._controlWindow.bind(this));
     $(window).off("resize", this._normalizeScroll.bind(this));
 }
