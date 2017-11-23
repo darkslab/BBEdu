@@ -13,12 +13,17 @@
         moduleDataStack.push({
             module: "SubmitModule"
         });
+        moduleDataStack.push({
+            module: "RegisterPageModule"
+        });
     </script>
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form method="post" action="{{ request.path }}" class="mt-15" data-bb-form>
+                    {% url 'bbtest:register' as student_url %}
+                    {% url 'bbtest:register' group='developer' as developer_url %}
+                    <form method="post" action="{% if group == 'developer' %}{{ developer_url }}{% else %}{{ student_url }}{% endif %}" class="mt-15" data-bb-form data-register-form="{{ '{"student":"'|add:student_url|add:'","developer":"'|add:developer_url|add:'"}'|force_escape }}">
                         {% csrf_token %}
 
                         {% for field in form %}
@@ -30,6 +35,24 @@
                                 {% endfor %}
                             </div>
                         {% endfor %}
+
+                        <div class="form-group">
+                            <label class="control-label">{% trans 'I want to register as' context 'Form label' %}</label>
+                            <div class="mr-23 ml-23">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="group_type" value="student" data-register-radio {% if group == 'student' %}checked{% endif %}>
+                                        {% trans 'Student' context 'Form label' %}
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="group_type" value="developer" data-register-radio {% if group == 'developer' %}checked{% endif %}>
+                                        {% trans 'Test developer' context 'Form label' %}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block" data-bb-submit>{% trans 'Register' context 'Form button' %}</button>

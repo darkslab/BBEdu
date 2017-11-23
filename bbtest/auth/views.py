@@ -44,6 +44,10 @@ class RegisterView(LogoutRequiredMixin, FormView):
         login(self.request, form.save(self._group))
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        kwargs["group"] = self._group
+        return super().get_context_data(**kwargs)
+
 
 class PasswordResetView(LogoutRequiredMixin, _PasswordResetView):
     form_class = PasswordResetForm

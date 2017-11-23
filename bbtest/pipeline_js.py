@@ -11,9 +11,12 @@ SOURCE_FILENAMES = (
     "js/charts/ProgressPieChart.js",
 
     "js/modules/Module.js",
-    "js/modules/PersonalizedModule.js",
     "js/modules/PopoverModule.js",
-    "js/modules/StudentDashboardModule.js",
     "js/modules/SubmitModule.js",
-    "js/modules/SettingsModule.js",
+
+    "js/modules/PersonalizedTemplateModule.js",
+
+    "js/modules/StudentDashboardPageModule.js",
+    "js/modules/SettingsPageModule.js",
+    "js/modules/RegisterPageModule.js",
 )
