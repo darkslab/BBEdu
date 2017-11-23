@@ -1,5 +1,5 @@
-StudentDashboardModule.prototype = Object.create(Module.prototype);
-function StudentDashboardModule(data) {
+StudentDashboardPageModule.prototype = Object.create(Module.prototype);
+function StudentDashboardPageModule(data) {
     this._radialCharts = [];
     this._columnCharts = [];
     this._chartIndex = 0;
@@ -26,7 +26,7 @@ function StudentDashboardModule(data) {
 
     Module.call(this);
 }
-StudentDashboardModule.prototype._activateRow = function(event) {
+StudentDashboardPageModule.prototype._activateRow = function(event) {
     var $row = $(event.currentTarget);
     if ($row.data("dashboard-table-chart-row") != this._chartIndex) {
         this._columnCharts[this._chartIndex].destroy();
@@ -36,7 +36,7 @@ StudentDashboardModule.prototype._activateRow = function(event) {
         $row.addClass("success");
     }
 }
-StudentDashboardModule.prototype.unMount = function() {
+StudentDashboardPageModule.prototype.unMount = function() {
     var radialChart;
     while ((radialChart = this._radialCharts.shift()) !== undefined) {
         radialChart.destroy();

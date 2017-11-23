@@ -1,5 +1,5 @@
-SettingsModule.prototype = Object.create(Module.prototype);
-function SettingsModule() {
+SettingsPageModule.prototype = Object.create(Module.prototype);
+function SettingsPageModule() {
     this._hidden = true;
     this._$container = $("[data-settings-password-container]");
     this._$button = $("[data-settings-password-button]");
@@ -12,7 +12,7 @@ function SettingsModule() {
 
     Module.call(this);
 }
-SettingsModule.prototype._process = function() {
+SettingsPageModule.prototype._process = function() {
     if (this._hidden) {
         this._hidden = false;
         this._$container.removeClass("hidden");
@@ -25,6 +25,6 @@ SettingsModule.prototype._process = function() {
         this._$container.find("input[type=\"password\"]").val("");
     }
 }
-SettingsModule.prototype.unMount = function() {
+SettingsPageModule.prototype.unMount = function() {
     this._$button.off("click", this._process.bind(this));
 }
