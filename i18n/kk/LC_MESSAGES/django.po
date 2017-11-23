@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2017-11-12 07:31+0600\n"
+"POT-Creation-Date: 2017-11-23 10:44+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -21,7 +21,7 @@ msgid "Email"
 msgstr ""
 
 msgctxt "Form field error"
-msgid "Please enter email"
+msgid "Please enter email."
 msgstr ""
 
 msgctxt "Form label"
@@ -29,55 +29,39 @@ msgid "Password"
 msgstr ""
 
 msgctxt "Form field error"
-msgid "Please enter password"
+msgid "Please enter password."
 msgstr ""
 
-msgctxt "Authentication failed error"
+msgctxt "Form validation error"
 msgid "Please enter a correct email and password."
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Incorrect email."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "Please follow password reset instructions in the sent email."
+msgstr ""
+
+msgctxt "Form validation error"
+msgid "Passwords do not match."
 msgstr ""
 
 msgctxt "Form label"
 msgid "New password"
 msgstr ""
 
+msgctxt "Form field error"
+msgid "Please enter new password."
+msgstr ""
+
 msgctxt "Form label"
-msgid "Confirm password"
+msgid "Confirm new password"
 msgstr ""
 
 msgctxt "Form field error"
-msgid "Please enter password confirmation"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Please enter first name"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "First name is too long"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Please enter last name"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Last name is too long"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Incorrect email"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Email is too long"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "This email is already taken"
-msgstr ""
-
-msgctxt "Form validation error"
-msgid "Passwords do not match"
+msgid "Please enter new password confirmation."
 msgstr ""
 
 msgctxt "Model field"
@@ -162,6 +146,58 @@ msgctxt "Password validation help text"
 msgid "The password can't be a commonly used password."
 msgstr ""
 
+msgctxt "Success alert message"
+msgid "Password was reset successfully."
+msgstr ""
+
+msgctxt "Email subject"
+msgid "Password reset"
+msgstr ""
+
+msgctxt "Form label"
+msgid "Confirm password"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Please enter password confirmation."
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Please enter first name."
+msgstr ""
+
+msgctxt "Form field error"
+msgid "First name is too long."
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Please enter last name."
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Last name is too long."
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Email is too long."
+msgstr ""
+
+msgctxt "Form field error"
+msgid "This email is already taken."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Old password"
+msgstr ""
+
+msgctxt "Form field error"
+msgid "Please enter old password."
+msgstr ""
+
+msgctxt "Form validation error"
+msgid "Incorrect old password."
+msgstr ""
+
 msgctxt "Model field"
 msgid "from email"
 msgstr ""
@@ -190,15 +226,6 @@ msgctxt "Page title"
 msgid "Something went wrong"
 msgstr ""
 
-msgctxt "Logo img html tag alt parameter"
-msgid "bbTest.kz Logo"
-msgstr ""
-
-#, python-format
-msgctxt "Bottom copyright"
-msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
-msgstr ""
-
 msgctxt "Page title"
 msgid "Sorry, but you should not be here"
 msgstr ""
@@ -219,12 +246,83 @@ msgctxt "Badge label under avatar"
 msgid "Developer"
 msgstr ""
 
+msgctxt "Navigation link"
+msgid "Dashboard"
+msgstr ""
+
+msgctxt "Logo img html tag alt parameter"
+msgid "bbTest.kz Logo"
+msgstr ""
+
+msgctxt "Email body element"
+msgid "link"
+msgstr ""
+
+#, python-format
+msgctxt "Email body"
+msgid ""
+"Hello %(name)s,%(line_break)s%(line_break)s We have received a request to "
+"reset your password. If you did not request this, then please ignore this "
+"email.%(line_break)s%(line_break)s To reset your password please follow this "
+"%(link_tag)s.%(line_break)s%(line_break)s Or copy and paste the link below:"
+"%(line_break)s %(link_tag_url)s"
+msgstr ""
+
+#, python-format
+msgctxt "Bottom copyright"
+msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
+msgstr ""
+
 msgctxt "Page title"
 msgid "Login"
 msgstr ""
 
 msgctxt "Form button"
 msgid "Login"
+msgstr ""
+
+msgctxt "Form link"
+msgid "Forgot your password?"
+msgstr ""
+
+msgctxt "/login/"
+msgid "Don't have an account?"
+msgstr ""
+
+msgctxt "/login/"
+msgid "Register"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Reset Password"
+msgstr ""
+
+msgctxt "/password_reset/"
+msgid "Please provide your email to get a reset link"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Send"
+msgstr ""
+
+msgctxt "Form link"
+msgid "Go back to Login"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Set Password"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Reset"
+msgstr ""
+
+msgctxt "/reset/"
+msgid "Password reset link has been expired."
+msgstr ""
+
+msgctxt "Button"
+msgid "Reset Password"
 msgstr ""
 
 msgctxt "Navigation link"
@@ -235,16 +333,58 @@ msgctxt "Navigation link"
 msgid "Logout"
 msgstr ""
 
+msgctxt "Navigation link"
+msgid "Login"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Register"
+msgstr ""
+
 msgctxt "Page title"
 msgid "Register"
+msgstr ""
+
+msgctxt "Form label"
+msgid "I want to register as"
+msgstr ""
+
+msgctxt "Form label"
+msgid "Student"
+msgstr ""
+
+msgctxt "Form label"
+msgid "Test developer"
 msgstr ""
 
 msgctxt "Form button"
 msgid "Register"
 msgstr ""
 
-msgctxt "Navigation link"
-msgid "Dashboard"
+msgctxt "/register/"
+msgid "Already have an account?"
+msgstr ""
+
+msgctxt "/register/"
+msgid "Login"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Settings"
+msgstr ""
+
+#, python-format
+msgctxt "/settings/"
+msgid ""
+"If you want to change your avatar, you can do it by going to %(link_tag)s"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Change Password"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Save"
 msgstr ""
 
 msgctxt "Navigation link"
