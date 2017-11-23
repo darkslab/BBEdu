@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2017-11-12 07:31+0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2017-11-23 10:44+0600\n"
+"PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -15,99 +15,86 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.0.4\n"
 
 msgctxt "Form label"
 msgid "Email"
-msgstr ""
+msgstr "Электрондық пошта"
 
 msgctxt "Form field error"
-msgid "Please enter email"
-msgstr ""
+msgid "Please enter email."
+msgstr "Электрондық поштаңызды енгізіңіз."
 
 msgctxt "Form label"
 msgid "Password"
-msgstr ""
+msgstr "Құпиясөз"
 
 msgctxt "Form field error"
-msgid "Please enter password"
-msgstr ""
+msgid "Please enter password."
+msgstr "Құпиясөзді енгізіңіз."
 
-msgctxt "Authentication failed error"
+msgctxt "Form validation error"
 msgid "Please enter a correct email and password."
+msgstr "Дұрыс электрондық поштаңызбен құпиясөзді енгізіңіз."
+
+msgctxt "Form field error"
+msgid "Incorrect email."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "Success alert message"
+msgid "Please follow password reset instructions in the sent email."
 msgstr ""
+"Электрондық поштаңызға жіберілген хаттағы нұсқаулық бойынша құпиясөзіңізді "
+"өзгертіңіз."
+
+msgctxt "Form validation error"
+msgid "Passwords do not match."
+msgstr "Құпиясөздер сәйкес келмейді."
 
 msgctxt "Form label"
 msgid "New password"
-msgstr ""
+msgstr "Жаңа құпиясөз"
+
+msgctxt "Form field error"
+msgid "Please enter new password."
+msgstr "Жаңа құпиясөзді енгізіңіз."
 
 msgctxt "Form label"
-msgid "Confirm password"
-msgstr ""
+msgid "Confirm new password"
+msgstr "Жаңа құпиясөзді растаңыз"
 
 msgctxt "Form field error"
-msgid "Please enter password confirmation"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Please enter first name"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "First name is too long"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Please enter last name"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Last name is too long"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Incorrect email"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Email is too long"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "This email is already taken"
-msgstr ""
-
-msgctxt "Form validation error"
-msgid "Passwords do not match"
-msgstr ""
+msgid "Please enter new password confirmation."
+msgstr "Жаңа құпиясөздің растауын енгізіңіз."
 
 msgctxt "Model field"
 msgid "username"
-msgstr ""
+msgstr "аты-жөні"
 
 msgctxt "Model field"
 msgid "email"
-msgstr ""
+msgstr "электрондық пошта"
 
 msgctxt "Model field"
 msgid "first name"
-msgstr ""
+msgstr "аты"
 
 msgctxt "Model field"
 msgid "last name"
-msgstr ""
+msgstr "тегі"
 
 msgctxt "Model field"
 msgid "joined at"
-msgstr ""
+msgstr "тіркелген уақыты"
 
 msgctxt "Model field"
 msgid "active?"
-msgstr ""
+msgstr "активті?"
 
 #, python-format
 msgctxt "Password validation error"
 msgid "The password has to be at least %(min_length)d characters."
-msgstr ""
+msgstr "Құпиясөз кем дегенде %(min_length)d белгіден тұру керек."
 
 #, python-format
 msgctxt "Password validation error"
@@ -115,6 +102,8 @@ msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one uppercase character."
 msgstr ""
+"Құпиясөз %(secure_length)d белгіден аз болса, құрамында кем дегенде бір бас "
+"әріп болу керек."
 
 #, python-format
 msgctxt "Password validation error"
@@ -122,6 +111,8 @@ msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one lowercase character."
 msgstr ""
+"Құпиясөз %(secure_length)d белгіден аз болса, құрамында кем дегенде бір кіші "
+"әріп болу керек."
 
 #, python-format
 msgctxt "Password validation error"
@@ -129,6 +120,8 @@ msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one numeric character."
 msgstr ""
+"Құпиясөз %(secure_length)d белгіден аз болса, құрамында кем дегенде бір цифр "
+"болу керек."
 
 #, python-format
 msgctxt "Password validation error"
@@ -136,6 +129,8 @@ msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one symbol character."
 msgstr ""
+"Құпиясөз %(secure_length)d белгіден аз болса, құрамында кем дегенде бір "
+"символ болу керек."
 
 #, python-format
 msgctxt "Password validation help text"
@@ -144,117 +139,285 @@ msgid ""
 "least %(min_length)d characters and contain uppercase, lowercase, numeric "
 "and a symbol character."
 msgstr ""
+"Құпиясөз %(secure_length)d белгіден аз болса, құпиясөз құрамында бас және "
+"кіші әріпі мен бір символы бар кем дегенде %(min_length)d белгіден тұратын "
+"болу керек."
 
 #, python-format
 msgctxt "Password validation error"
 msgid "The password is too similar to the %(verbose_name)s."
-msgstr ""
+msgstr "Құпиясөз сіздің жеке мәліметтеріңізге тым ұқсас: %(verbose_name)s."
 
 msgctxt "Password validation help text"
 msgid "The password can't be too similar to your other personal information."
-msgstr ""
+msgstr "Құпиясөз сіздің жеке мәліметтеріңізге ұқсас бола алмайды."
 
 msgctxt "Password validation error"
 msgid "The password is too common."
-msgstr ""
+msgstr "Бұл құпиясөз өте оңай. Тағы ойланып көріңіз."
 
 msgctxt "Password validation help text"
 msgid "The password can't be a commonly used password."
-msgstr ""
+msgstr "Бұл құпиясөз өте оңай. Тағы ойланып көріңіз."
+
+msgctxt "Success alert message"
+msgid "Password was reset successfully."
+msgstr "Құпиясөз өзгертілді."
+
+msgctxt "Email subject"
+msgid "Password reset"
+msgstr "Құпиясөзді өзгерту"
+
+msgctxt "Form label"
+msgid "Confirm password"
+msgstr "Құпиясөзді растау"
+
+msgctxt "Form field error"
+msgid "Please enter password confirmation."
+msgstr "Құпиясөздің растауын енгізіңіз."
+
+msgctxt "Form field error"
+msgid "Please enter first name."
+msgstr "Атыңызды енгізіңіз."
+
+msgctxt "Form field error"
+msgid "First name is too long."
+msgstr "Атыңыздың ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+
+msgctxt "Form field error"
+msgid "Please enter last name."
+msgstr "Тегіңізді енгізіңіз."
+
+msgctxt "Form field error"
+msgid "Last name is too long."
+msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+
+msgctxt "Form field error"
+msgid "Email is too long."
+msgstr "Электрондық поштаңыздың ұзындығын тексеріңіз."
+
+msgctxt "Form field error"
+msgid "This email is already taken."
+msgstr "Бұл электрондық пошта тіркелген."
+
+msgctxt "Form label"
+msgid "Old password"
+msgstr "Ескі құпиясөз"
+
+msgctxt "Form field error"
+msgid "Please enter old password."
+msgstr "Ескі құпиясөзді енгізіңіз."
+
+msgctxt "Form validation error"
+msgid "Incorrect old password."
+msgstr "Ескі құпиясөз дұрыс емес."
 
 msgctxt "Model field"
 msgid "from email"
-msgstr ""
+msgstr "электрондық поштадан"
 
 msgctxt "Model field"
 msgid "recipients"
-msgstr ""
+msgstr "қабылдаушылар"
 
+#, fuzzy
 msgctxt "Model field"
 msgid "subject"
-msgstr ""
+msgstr "пән"
 
 msgctxt "Model field"
 msgid "mime data"
-msgstr ""
+msgstr "MIME мәліметі"
 
 msgctxt "Model field"
 msgid "created at"
-msgstr ""
+msgstr "жасалған уақыты"
 
 msgctxt "Model field"
 msgid "sent at"
-msgstr ""
+msgstr "жіберілген уақыты"
 
 msgctxt "Page title"
 msgid "Something went wrong"
-msgstr ""
+msgstr "Бірдеңе дұрыс болмады"
+
+msgctxt "Page title"
+msgid "Sorry, but you should not be here"
+msgstr "Кешіріңіз, Сіздің бұл жерде болуыңыз мүмкін емес еді"
+
+msgctxt "Page title"
+msgid "Page not found"
+msgstr "Парақша табылмады"
+
+msgctxt "Badge label under avatar"
+msgid "Administrator"
+msgstr "Администратор"
+
+msgctxt "Page title"
+msgid "Dashboard"
+msgstr "Жеке кабинет"
+
+msgctxt "Badge label under avatar"
+msgid "Developer"
+msgstr "Құрастырушы"
+
+msgctxt "Navigation link"
+msgid "Dashboard"
+msgstr "Жеке кабинет"
 
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"
+msgstr "bbTest.kz логотипі"
+
+msgctxt "Email body element"
+msgid "link"
+msgstr "сілтеме"
+
+#, python-format
+msgctxt "Email body"
+msgid ""
+"Hello %(name)s,%(line_break)s%(line_break)s We have received a request to "
+"reset your password. If you did not request this, then please ignore this "
+"email.%(line_break)s%(line_break)s To reset your password please follow this "
+"%(link_tag)s.%(line_break)s%(line_break)s Or copy and paste the link below:"
+"%(line_break)s %(link_tag_url)s"
 msgstr ""
+"Сәлеметсізбе %(name)s!%(line_break)s%(line_break)s Біз Сіздің жіберген "
+"құпиясөзді өзгерту бойынша сұрауыңызды алдық. Сіз бұл сұрауды жібермеген "
+"болсаңыз, бұл хатты елемеуіңізді сұраймыз.%(line_break)s%(line_break)s "
+"Құпиясөзді өзгерту үшін келесі сілтемеге өтіңіз %(link_tag)s.%(line_break)s"
+"%(line_break)s немесе төмендегі сілтемені көшіріп салыңыз:%(line_break)s "
+"%(link_tag_url)s"
 
 #, python-format
 msgctxt "Bottom copyright"
 msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
-msgstr ""
-
-msgctxt "Page title"
-msgid "Sorry, but you should not be here"
-msgstr ""
-
-msgctxt "Page title"
-msgid "Page not found"
-msgstr ""
-
-msgctxt "Badge label under avatar"
-msgid "Administrator"
-msgstr ""
-
-msgctxt "Page title"
-msgid "Dashboard"
-msgstr ""
-
-msgctxt "Badge label under avatar"
-msgid "Developer"
-msgstr ""
+msgstr "Қазақстанда %(heart_icon)s-пен жасалған. %(copyright_code)s bbTest.kz"
 
 msgctxt "Page title"
 msgid "Login"
-msgstr ""
+msgstr "Авторизация"
 
 msgctxt "Form button"
 msgid "Login"
+msgstr "Кіру"
+
+msgctxt "Form link"
+msgid "Forgot your password?"
+msgstr "Құпиясөз есіңізде жоқ па?"
+
+msgctxt "/login/"
+msgid "Don't have an account?"
+msgstr "Аккаунт жоқ па?"
+
+msgctxt "/login/"
+msgid "Register"
+msgstr "Тіркелу"
+
+msgctxt "Page title"
+msgid "Reset Password"
+msgstr "Құпиясөзді өзгерту"
+
+msgctxt "/password_reset/"
+msgid "Please provide your email to get a reset link"
 msgstr ""
+"Құпиясөзді өзгерту бойынша сілтемені алу үшін электрондық поштаңызды "
+"енгізіңіз"
+
+msgctxt "Form button"
+msgid "Send"
+msgstr "Жіберу"
+
+msgctxt "Form link"
+msgid "Go back to Login"
+msgstr "Артқа қайту"
+
+msgctxt "Page title"
+msgid "Set Password"
+msgstr "Құпиясөзді өзгерту"
+
+msgctxt "Form button"
+msgid "Reset"
+msgstr "Өзгерту"
+
+msgctxt "/reset/"
+msgid "Password reset link has been expired."
+msgstr "Құпиясөзді өзгерту бойынша сілтемесі ескіріп қалды."
+
+msgctxt "Button"
+msgid "Reset Password"
+msgstr "Құпиясөзді өзгерту"
 
 msgctxt "Navigation link"
 msgid "Settings"
-msgstr ""
+msgstr "Құрылғылар"
 
 msgctxt "Navigation link"
 msgid "Logout"
-msgstr ""
+msgstr "Шығу"
+
+msgctxt "Navigation link"
+msgid "Login"
+msgstr "Кіру"
+
+msgctxt "Navigation link"
+msgid "Register"
+msgstr "Тіркелу"
 
 msgctxt "Page title"
 msgid "Register"
-msgstr ""
+msgstr "Тіркелу"
+
+msgctxt "Form label"
+msgid "I want to register as"
+msgstr "Келесі ретінде тіркелу"
+
+msgctxt "Form label"
+msgid "Student"
+msgstr "Тестілеуге қатысушы"
+
+msgctxt "Form label"
+msgid "Test developer"
+msgstr "Тестілеуді құрастырушы"
 
 msgctxt "Form button"
 msgid "Register"
-msgstr ""
+msgstr "Тіркелу"
 
-msgctxt "Navigation link"
-msgid "Dashboard"
-msgstr ""
+msgctxt "/register/"
+msgid "Already have an account?"
+msgstr "Тіркеліп қойдыңыз ба?"
+
+msgctxt "/register/"
+msgid "Login"
+msgstr "Кіру"
+
+msgctxt "Page title"
+msgid "Settings"
+msgstr "Құрылғылар"
+
+#, python-format
+msgctxt "/settings/"
+msgid ""
+"If you want to change your avatar, you can do it by going to %(link_tag)s"
+msgstr "Аватарды мына сілтеме бойынша өзгертуіңізге болады %(link_tag)s"
+
+msgctxt "Form button"
+msgid "Change Password"
+msgstr "Құпиясөзді өзгерту"
+
+msgctxt "Form button"
+msgid "Save"
+msgstr "Сақтау"
 
 msgctxt "Navigation link"
 msgid "Start testing"
-msgstr ""
+msgstr "Тестілеуді бастау"
 
 msgctxt "Navigation link"
 msgid "Results"
-msgstr ""
+msgstr "Тестілеудің нәтижелері"
 
 msgctxt "Navigation link"
 msgid "Refill Balance"
-msgstr ""
+msgstr "Шотты толтыру"

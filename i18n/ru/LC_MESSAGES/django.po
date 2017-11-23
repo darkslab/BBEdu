@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2017-11-12 07:31+0600\n"
-"PO-Revision-Date: 2017-09-21 21:32-0700\n"
+"POT-Creation-Date: 2017-11-23 10:44+0600\n"
+"PO-Revision-Date: 2017-11-23 15:42-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -21,96 +21,82 @@ msgstr ""
 
 msgctxt "Form label"
 msgid "Email"
-msgstr ""
+msgstr "Адрес электронной почты"
 
 msgctxt "Form field error"
-msgid "Please enter email"
-msgstr ""
+msgid "Please enter email."
+msgstr "Пожалуйста введите адрес электронной почты."
 
 msgctxt "Form label"
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 msgctxt "Form field error"
-msgid "Please enter password"
-msgstr ""
+msgid "Please enter password."
+msgstr "Пожалуйста введите пароль."
 
-msgctxt "Authentication failed error"
+msgctxt "Form validation error"
 msgid "Please enter a correct email and password."
+msgstr "Пожалуйста введите верный адрес электронной почты и пароль."
+
+msgctxt "Form field error"
+msgid "Incorrect email."
+msgstr "Неверный адрес электронной почты."
+
+msgctxt "Success alert message"
+msgid "Please follow password reset instructions in the sent email."
 msgstr ""
+"Для восстановления пароля, пожалуйста следуйте инструкциям которые мы вам "
+"выслали на электронную почту."
+
+msgctxt "Form validation error"
+msgid "Passwords do not match."
+msgstr "Введенные пароли не совпадают."
 
 msgctxt "Form label"
 msgid "New password"
-msgstr ""
+msgstr "Новый пароль"
+
+msgctxt "Form field error"
+msgid "Please enter new password."
+msgstr "Пожалуйста введите новый пароль."
 
 msgctxt "Form label"
-msgid "Confirm password"
-msgstr ""
+msgid "Confirm new password"
+msgstr "Пожалуйста подтвердите новый пароль"
 
 msgctxt "Form field error"
-msgid "Please enter password confirmation"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Please enter first name"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "First name is too long"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Please enter last name"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Last name is too long"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Incorrect email"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "Email is too long"
-msgstr ""
-
-msgctxt "Form field error"
-msgid "This email is already taken"
-msgstr ""
-
-msgctxt "Form validation error"
-msgid "Passwords do not match"
-msgstr ""
+msgid "Please enter new password confirmation."
+msgstr "Пожалуйста введите подтверждение нового пароля."
 
 msgctxt "Model field"
 msgid "username"
-msgstr ""
+msgstr "имя пользователя"
 
 msgctxt "Model field"
 msgid "email"
-msgstr ""
+msgstr "электронная почта"
 
 msgctxt "Model field"
 msgid "first name"
-msgstr ""
+msgstr "имя"
 
 msgctxt "Model field"
 msgid "last name"
-msgstr ""
+msgstr "фамилия"
 
 msgctxt "Model field"
 msgid "joined at"
-msgstr ""
+msgstr "зарегистрировано"
 
 msgctxt "Model field"
 msgid "active?"
-msgstr ""
+msgstr "активный?"
 
 #, python-format
 msgctxt "Password validation error"
 msgid "The password has to be at least %(min_length)d characters."
-msgstr ""
+msgstr "В пароле должно быть не меньше %(min_length)d символов."
 
 #, python-format
 msgctxt "Password validation error"
@@ -118,6 +104,8 @@ msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one uppercase character."
 msgstr ""
+"Если пароль меньше %(secure_length)d знаков, добавьте хотя бы одну заглавную "
+"букву."
 
 #, python-format
 msgctxt "Password validation error"
@@ -125,6 +113,8 @@ msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one lowercase character."
 msgstr ""
+"Если пароль меньше %(secure_length)d знаков, добавьте хотя бы одну маленькую "
+"букву."
 
 #, python-format
 msgctxt "Password validation error"
@@ -132,6 +122,7 @@ msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one numeric character."
 msgstr ""
+"Если пароль меньше %(secure_length)d знаков, добавьте хотя бы одну цифру."
 
 #, python-format
 msgctxt "Password validation error"
@@ -139,6 +130,7 @@ msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one symbol character."
 msgstr ""
+"Если пароль меньше %(secure_length)d знаков, добавьте хотя бы один символ."
 
 #, python-format
 msgctxt "Password validation help text"
@@ -147,117 +139,283 @@ msgid ""
 "least %(min_length)d characters and contain uppercase, lowercase, numeric "
 "and a symbol character."
 msgstr ""
+"Если пароль меньше %(secure_length)d знаков, Вы можете создать пароль "
+"который должен состоять хотя бы из %(min_length)d знаков в которой есть "
+"заглавная буква, маленькая буква, цифра и символ."
 
 #, python-format
 msgctxt "Password validation error"
 msgid "The password is too similar to the %(verbose_name)s."
-msgstr ""
+msgstr "Пароль слишком похож на %(verbose_name)s."
 
 msgctxt "Password validation help text"
 msgid "The password can't be too similar to your other personal information."
-msgstr ""
+msgstr "Пароль не может быть похож на информацию из Ваших личных данных."
 
 msgctxt "Password validation error"
 msgid "The password is too common."
-msgstr ""
+msgstr "Это слишком простой пароль :) Вы можете придумать лучше."
 
 msgctxt "Password validation help text"
 msgid "The password can't be a commonly used password."
-msgstr ""
+msgstr "Придумайте сложный пароль. Не будьте как “все” :)"
+
+msgctxt "Success alert message"
+msgid "Password was reset successfully."
+msgstr "Пароль успешно сброшен."
+
+msgctxt "Email subject"
+msgid "Password reset"
+msgstr "Сброс пароля"
+
+msgctxt "Form label"
+msgid "Confirm password"
+msgstr "Подтверждение пароля"
+
+msgctxt "Form field error"
+msgid "Please enter password confirmation."
+msgstr "Пожалуйста введите подтверждение пароля."
+
+msgctxt "Form field error"
+msgid "Please enter first name."
+msgstr "Пожалуйста введите Ваше имя."
+
+msgctxt "Form field error"
+msgid "First name is too long."
+msgstr "У Вас очень длинное имя, как можно Вас называть по короче?"
+
+msgctxt "Form field error"
+msgid "Please enter last name."
+msgstr "Пожалуйста, введите Вашу фамилию."
+
+msgctxt "Form field error"
+msgid "Last name is too long."
+msgstr "У Вас очень длинная фамилия. Пожалуйста введите сокращенную версию."
+
+msgctxt "Form field error"
+msgid "Email is too long."
+msgstr "Адрес электронной почты слишком длинный."
+
+msgctxt "Form field error"
+msgid "This email is already taken."
+msgstr "Данный адрес электронной почты уже используется."
+
+msgctxt "Form label"
+msgid "Old password"
+msgstr "Старый пароль"
+
+msgctxt "Form field error"
+msgid "Please enter old password."
+msgstr "Пожалуйста введите старый пароль."
+
+msgctxt "Form validation error"
+msgid "Incorrect old password."
+msgstr "Неверный старый пароль."
 
 msgctxt "Model field"
 msgid "from email"
-msgstr ""
+msgstr "от электронной почты"
 
 msgctxt "Model field"
 msgid "recipients"
-msgstr ""
+msgstr "получатели"
 
 msgctxt "Model field"
 msgid "subject"
-msgstr ""
+msgstr "предмет"
 
 msgctxt "Model field"
 msgid "mime data"
-msgstr ""
+msgstr "данные MIME"
 
 msgctxt "Model field"
 msgid "created at"
-msgstr ""
+msgstr "создано"
 
 msgctxt "Model field"
 msgid "sent at"
-msgstr ""
+msgstr "отправлено"
 
 msgctxt "Page title"
 msgid "Something went wrong"
-msgstr ""
+msgstr "Упс.. Что-то пошло не так :("
+
+msgctxt "Page title"
+msgid "Sorry, but you should not be here"
+msgstr "Извините, но Вас не должно было быть здесь"
+
+msgctxt "Page title"
+msgid "Page not found"
+msgstr "Страница не найдена :("
+
+msgctxt "Badge label under avatar"
+msgid "Administrator"
+msgstr "Администратор"
+
+msgctxt "Page title"
+msgid "Dashboard"
+msgstr "Личный кабинет"
+
+msgctxt "Badge label under avatar"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "Navigation link"
+msgid "Dashboard"
+msgstr "Личный кабинет"
 
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"
+msgstr "Логотип bbTest.kz"
+
+msgctxt "Email body element"
+msgid "link"
+msgstr "ссылка"
+
+#, python-format
+msgctxt "Email body"
+msgid ""
+"Hello %(name)s,%(line_break)s%(line_break)s We have received a request to "
+"reset your password. If you did not request this, then please ignore this "
+"email.%(line_break)s%(line_break)s To reset your password please follow this "
+"%(link_tag)s.%(line_break)s%(line_break)s Or copy and paste the link below:"
+"%(line_break)s %(link_tag_url)s"
 msgstr ""
+"Здравствуйте %(name)s,%(line_break)s%(line_break)s Мы получили от Вас запрос "
+"на сброс пароля. Если Вы не отправляли данный запрос, проигнорируйте это "
+"сообщение.%(line_break)s%(line_break)s Для сброса пароля перейдите по ссылке "
+"%(link_tag)s.%(line_break)s%(line_break)s Или скопируйте и вставьте ссылку "
+"ниже:%(line_break)s %(link_tag_url)s"
 
 #, python-format
 msgctxt "Bottom copyright"
 msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
-msgstr ""
-
-msgctxt "Page title"
-msgid "Sorry, but you should not be here"
-msgstr ""
-
-msgctxt "Page title"
-msgid "Page not found"
-msgstr ""
-
-msgctxt "Badge label under avatar"
-msgid "Administrator"
-msgstr ""
-
-msgctxt "Page title"
-msgid "Dashboard"
-msgstr ""
-
-msgctxt "Badge label under avatar"
-msgid "Developer"
-msgstr ""
+msgstr "Сделано с %(heart_icon)s в Казахстане. %(copyright_code)s bbTest.kz"
 
 msgctxt "Page title"
 msgid "Login"
-msgstr "Авторизироваться"
+msgstr "Авторизация"
 
 msgctxt "Form button"
 msgid "Login"
 msgstr "Войти"
 
+msgctxt "Form link"
+msgid "Forgot your password?"
+msgstr "Забыли пароль?"
+
+msgctxt "/login/"
+msgid "Don't have an account?"
+msgstr "Нет учетной записи?"
+
+msgctxt "/login/"
+msgid "Register"
+msgstr "Регистрация"
+
+msgctxt "Page title"
+msgid "Reset Password"
+msgstr "Сброс пароля"
+
+msgctxt "/password_reset/"
+msgid "Please provide your email to get a reset link"
+msgstr ""
+"Для получения ссылки на сброс пароля, пожалуйста введите адрес электронной "
+"почты"
+
+msgctxt "Form button"
+msgid "Send"
+msgstr "Отправить"
+
+msgctxt "Form link"
+msgid "Go back to Login"
+msgstr "Вернуться назад к Авторизации"
+
+msgctxt "Page title"
+msgid "Set Password"
+msgstr "Изменение пароля"
+
+msgctxt "Form button"
+msgid "Reset"
+msgstr "Изменить"
+
+msgctxt "/reset/"
+msgid "Password reset link has been expired."
+msgstr "Ссылка на сброс пароля устарела."
+
+msgctxt "Button"
+msgid "Reset Password"
+msgstr "Изменить пароль"
+
 msgctxt "Navigation link"
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 msgctxt "Navigation link"
 msgid "Logout"
-msgstr ""
+msgstr "Выйти"
+
+msgctxt "Navigation link"
+msgid "Login"
+msgstr "Войти"
+
+msgctxt "Navigation link"
+msgid "Register"
+msgstr "Регистрация"
 
 msgctxt "Page title"
 msgid "Register"
-msgstr ""
+msgstr "Регистрация"
+
+msgctxt "Form label"
+msgid "I want to register as"
+msgstr "Зарегестрироваться в качестве"
+
+msgctxt "Form label"
+msgid "Student"
+msgstr "Участник тестирования"
+
+msgctxt "Form label"
+msgid "Test developer"
+msgstr "Разработчик тестирования"
 
 msgctxt "Form button"
 msgid "Register"
-msgstr ""
+msgstr "Регистрация"
 
-msgctxt "Navigation link"
-msgid "Dashboard"
-msgstr ""
+msgctxt "/register/"
+msgid "Already have an account?"
+msgstr "Уже зарегестрированы?"
+
+msgctxt "/register/"
+msgid "Login"
+msgstr "Войти"
+
+msgctxt "Page title"
+msgid "Settings"
+msgstr "Настройки"
+
+#, python-format
+msgctxt "/settings/"
+msgid ""
+"If you want to change your avatar, you can do it by going to %(link_tag)s"
+msgstr "Для того чтобы изменить Ваш аватар, пройдите по ссылке: %(link_tag)s"
+
+msgctxt "Form button"
+msgid "Change Password"
+msgstr "Изменить пароль"
+
+msgctxt "Form button"
+msgid "Save"
+msgstr "Сохранить"
 
 msgctxt "Navigation link"
 msgid "Start testing"
-msgstr ""
+msgstr "Начать тестирование"
 
 msgctxt "Navigation link"
 msgid "Results"
-msgstr ""
+msgstr "Результаты тестирования"
 
 msgctxt "Navigation link"
 msgid "Refill Balance"
-msgstr ""
+msgstr "Пополнить счёт"
