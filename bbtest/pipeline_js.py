@@ -18,4 +18,5 @@ SOURCE_FILENAMES = (
 
     "js/modules/StudentDashboardPageModule.js",
     "js/modules/SettingsPageModule.js",
+    "js/modules/RegisterPageModule.js",
 )
