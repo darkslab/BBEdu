@@ -7,6 +7,10 @@ from django.utils.encoding import force_text
 from django.core.exceptions import FieldDoesNotExist, ValidationError
 from django.contrib.auth import password_validation
 from django.utils.translation import pgettext, pgettext_lazy
+from django.contrib.auth.password_validation import password_validators_help_texts
+from django.utils.html import format_html
+from django.utils.six import text_type
+from django.utils.functional import lazy
 
 
 class BadPasswordValidator:
@@ -136,3 +140,10 @@ class CommonPasswordValidator:
 
     def get_help_text(self):
         return str(pgettext_lazy("Password validation help text", "The password can't be a commonly used password."))
+
+
+def _password_validators_help_text_html(password_validators=None):
+    help_texts = password_validators_help_texts(password_validators)
+    help_items = [format_html("<li>{}</li>", help_text) for help_text in help_texts]
+    return "<ul class=\"list-narrow\">%s</ul>" % "".join(help_items) if help_items else ""
+password_validators_help_text_html = lazy(_password_validators_help_text_html, text_type)

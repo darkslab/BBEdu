@@ -28,7 +28,7 @@
 
                         {% for field in form %}
                             <div class="form-group {% if field.errors %}has-error{% endif %}">
-                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}{% if field.name == 'password1' %} <i class="fa fa-question-circle text-help" data-toggle="popover" data-html="true" data-content="<ul class='list-narrow'>{% spaceless %}{{ field.help_text|unordered_list }}{% endspaceless %}</ul>" data-placement="auto" data-trigger="hover" title=""></i>{% endif %}</label>
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}{% if field.name == 'password1' %} <i class="fa fa-question-circle text-help" data-toggle="popover" data-html="true" data-content="{{ field.help_text|force_escape }}" data-placement="auto" data-trigger="hover" title=""></i>{% endif %}</label>
                                 {{ field|add_class:'form-control' }}
                                 {% for error in field.errors %}
                                     <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>

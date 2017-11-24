@@ -1,5 +1,4 @@
 from django.forms import CharField, EmailField, PasswordInput
-from django.contrib.auth.password_validation import password_validators_help_texts
 from django.contrib.auth.forms import (
     AuthenticationForm as _AuthenticationForm,
     PasswordResetForm as _PasswordResetForm,
@@ -11,6 +10,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.messages import success
 from bbtest.forms.base import BaseUserForm
 from bbtest.emails.password_reset import send_mail
+from bbtest.auth.password_validation import password_validators_help_text_html
 
 
 class AuthenticationForm(_AuthenticationForm):
@@ -59,7 +59,7 @@ class SetPasswordForm(_SetPasswordForm):
     }
     new_password1 = CharField(label=pgettext_lazy("Form label", "New password"), error_messages={
         "required": pgettext_lazy("Form field error", "Please enter new password."),
-    }, widget=PasswordInput, strip=False, help_text=password_validators_help_texts())
+    }, widget=PasswordInput, strip=False, help_text=password_validators_help_text_html())
     new_password2 = CharField(label=pgettext_lazy("Form label", "Confirm new password"), error_messages={
         "required": pgettext_lazy("Form field error", "Please enter new password confirmation."),
     }, widget=PasswordInput, strip=False)
