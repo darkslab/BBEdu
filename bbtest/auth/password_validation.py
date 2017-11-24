@@ -6,7 +6,7 @@ from django.utils._os import upath
 from django.utils.encoding import force_text
 from django.core.exceptions import FieldDoesNotExist, ValidationError
 from django.contrib.auth import password_validation
-from django.utils.translation import pgettext
+from django.utils.translation import pgettext, pgettext_lazy
 
 
 class BadPasswordValidator:
@@ -63,13 +63,13 @@ class BadPasswordValidator:
                 )
 
     def get_help_text(self):
-        return pgettext(
+        return str(pgettext_lazy(
             "Password validation help text",
-            "If the password is less than %(secure_length)d characters, it has to be at least %(min_length)d characters and contain uppercase, lowercase, numeric and a symbol character." % {
-                "secure_length": self.secure_length,
-                "min_length": self.min_length,
-            },
-        )
+            "If the password is less than %(secure_length)d characters, it has to be at least %(min_length)d characters and contain uppercase, lowercase, numeric and a symbol character.",
+        ) % {
+            "secure_length": self.secure_length,
+            "min_length": self.min_length,
+        })
 
 
 class UserAttributeSimilarityValidator:
@@ -108,7 +108,7 @@ class UserAttributeSimilarityValidator:
                     )
 
     def get_help_text(self):
-        return pgettext("Password validation help text", "The password can't be too similar to your other personal information.")
+        return str(pgettext_lazy("Password validation help text", "The password can't be too similar to your other personal information."))
 
 
 class CommonPasswordValidator:
@@ -135,4 +135,4 @@ class CommonPasswordValidator:
             )
 
     def get_help_text(self):
-        return pgettext("Password validation help text", "The password can't be a commonly used password.")
+        return str(pgettext_lazy("Password validation help text", "The password can't be a commonly used password."))
