@@ -5,6 +5,7 @@ from json import loads, dumps
 
 
 class JSONField(TextField):
+    empty_strings_allowed = False
     default_error_messages = {
         "invalid": pgettext_lazy("Validation error", "Invalid JSON format"),
     }
