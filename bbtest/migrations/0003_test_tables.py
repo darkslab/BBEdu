@@ -27,25 +27,72 @@ def set_auto_increment_values(apps, schema_editor):
 
 
 def seed_initial_values(apps, schema_editor):
-    order = 0
-    nis = apps.get_model("bbtest", "TestDomain").objects.create(name="NIS", order=order)
-
-    order = 0
-    for nis_section_name, nis_section_is_multi_language, nis_section_question_count, nis_section_question_weight in (
-        ("Mathematics", True, 40, 10),
-        ("Kazakh Language", False, 20, 10),
-        ("Russian Language", False, 20, 10),
-        ("English Language", False, 20, 10),
+    for domain_name, domain_order, domain_data in (
+        ("TestDomain", 0, (
+            ("Mathematics", True, 40, 10, 0, (
+                ((
+                    ("Category 1", 0),
+                    ("Category 2", 1),
+                ), (
+                    ("Topic 1", 0),
+                    ("Topic 2", 0),
+                )),
+            )),
+            ("Kazakh Language", False, 20, 10, 1, (
+                ((
+                    ("Category 1", 0),
+                    ("Category 2", 1),
+                ), (
+                    ("Topic 1", 0),
+                    ("Topic 2", 0),
+                )),
+            )),
+            ("Russian Language", False, 20, 10, 2, (
+                ((
+                    ("Category 1", 0),
+                    ("Category 2", 1),
+                ), (
+                    ("Topic 1", 0),
+                    ("Topic 2", 0),
+                )),
+            )),
+            ("English Language", False, 20, 10, 3, (
+                ((
+                    ("Category 1", 0),
+                    ("Category 2", 1),
+                ), (
+                    ("Topic 1", 0),
+                    ("Topic 2", 0),
+                )),
+            )),
+        )),
     ):
-        apps.get_model("bbtest", "TestSection").objects.create(
-            name=nis_section_name,
-            is_multi_language=nis_section_is_multi_language,
-            question_count=nis_section_question_count,
-            question_weight=nis_section_question_weight,
-            order=order,
-            domain=nis
+        domain = apps.get_model("bbtest", "TestDomain").objects.create(
+            name=domain_name,
+            order=domain_order,
         )
-        order += 1
+        for section_name, section_is_multi_language, section_question_count, section_question_weight, section_order, section_data in domain_data:
+            section = apps.get_model("bbtest", "TestSection").objects.create(
+                name=section_name,
+                is_multi_language=section_is_multi_language,
+                question_count=section_question_count,
+                question_weight=section_question_weight,
+                order=section_order,
+                domain=domain,
+            )
+            for category_data, topic_data in section_data:
+                for category_name, category_order in category_data:
+                    apps.get_model("bbtest", "TestCategory").objects.create(
+                        name=category_name,
+                        order=category_order,
+                        section=section,
+                    )
+                for topic_name, topic_order in topic_data:
+                    apps.get_model("bbtest", "TestTopic").objects.create(
+                        name=topic_name,
+                        order=topic_order,
+                        section=section,
+                    )
 
 
 class Migration(migrations.Migration):
