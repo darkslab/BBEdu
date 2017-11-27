@@ -24,31 +24,34 @@ class JSONField(TextField):
     def from_db_value(self, value, expression, connection, context):
         if value is None:
             return None
-        return self.__parse_json(value)
+        try:
+            value = loads(value)
+        except ValueError:
+            return None
+        return value
 
     def to_python(self, value):
         if value is None:
             return None
-        if isinstance(value, dict) or isinstance(value, list):
-            return value
-        return self.__parse_json(value)
+        try:
+            if isinstance(value, str):
+                value = loads(value)
+            else:
+                dumps(value)
+        except (ValueError, TypeError):
+            raise ValidationError(
+                self.error_messages["invalid"],
+                code="invalid",
+            )
+        return value
 
     def get_prep_value(self, value):
-        if value is None:
+        if value is None and self.null:
             return None
         try:
-            return dumps(value)
+            value = dumps(value)
         except TypeError:
-            raise ValidationError(
-                self.error_messages["invalid"],
-                code="invalid",
-            )
-
-    def __parse_json(self, data):
-        try:
-            return loads(data)
-        except ValueError:
-            raise ValidationError(
-                self.error_messages["invalid"],
-                code="invalid",
-            )
+            if self.null:
+                return None
+            return dumps(None)
+        return value
