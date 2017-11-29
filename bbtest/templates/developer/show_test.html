@@ -1,7 +1,7 @@
 {% extends './developer_base_2.html' %}
 {% load i18n %}
 
-{% block title %}{% blocktrans with section_name=section_name code=code context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% endblock %}
 
 {% block content %}
 {% endblock %}
