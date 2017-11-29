@@ -2,7 +2,11 @@ from django.conf.urls import url
 from .auth.views import LoginView, LogoutView, RegisterView, PasswordResetView, PasswordResetConfirmView
 from .views import HomeView, DashboardView, SettingsView
 from .views.student import DashboardView as StudentDashboardView
-from .views.developer import DashboardView as DeveloperDashboardView
+from .views.developer import (
+    DashboardView as DeveloperDashboardView,
+    NewTestView,
+    ShowTestView,
+)
 
 
 app_name = "bbtest"
@@ -19,6 +23,8 @@ urlpatterns = [
 
     # DEVELOPER URLS
     url(r"^developer/$", DeveloperDashboardView.as_view(), name="developer_dashboard"),
+    url(r"^developer/tests/create/$", NewTestView.as_view(), name="developer_new_test"),
+    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/$", ShowTestView.as_view(), name="developer_show_test"),
 
     # SYSTEM URLS
     url(r"^login/$", LoginView.as_view(), name="login"),

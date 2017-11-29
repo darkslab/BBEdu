@@ -1,1 +1,1 @@
-from .base import DashboardView
+from .base import DashboardView, NewTestView, ShowTestView
