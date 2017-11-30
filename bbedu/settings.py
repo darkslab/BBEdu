@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 from json import load
 from re import match
-from bbtest.pipeline_js import SOURCE_FILENAMES as SOURCE_FILENAMES_JS
+from bbtest.pipeline_js import BASE_SOURCE_FILENAMES, REACT_SOURCE_FILENAMES
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -160,8 +160,15 @@ PIPELINE = {
     "SHOW_ERRORS_INLINE": False,
     "JAVASCRIPT": {
         "base": {
-            "source_filenames": SOURCE_FILENAMES_JS,
+            "source_filenames": BASE_SOURCE_FILENAMES,
             "output_filename": "js/base.js",
+            "extra_context": {
+                "defer": True,
+            },
+        },
+        "react": {
+            "source_filenames": REACT_SOURCE_FILENAMES,
+            "output_filename": "js/react.js",
             "extra_context": {
                 "defer": True,
             },

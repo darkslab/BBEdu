@@ -15,6 +15,9 @@
     {% stylesheet 'base' %}
 
     {% javascript 'base' %}
+    {% if perms.bbtest.developer %}
+        {% javascript 'react' %}
+    {% endif %}
     <script>
         var moduleDataStack = [];
     </script>
