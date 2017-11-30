@@ -14,8 +14,10 @@
 
     {% stylesheet 'base' %}
 
+    {% javascript 'library0' %}
     {% javascript 'base' %}
     {% if perms.bbtest.developer %}
+        {% javascript 'library1' %}
         {% javascript 'react' %}
     {% endif %}
     <script>
