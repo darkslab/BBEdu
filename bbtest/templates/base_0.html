@@ -1,4 +1,4 @@
-{% load i18n pipeline %}
+{% load i18n pipeline static %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
@@ -14,6 +14,7 @@
 
     {% stylesheet 'base' %}
 
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     {% javascript 'base0' %}
     {% javascript 'base1' %}
     {% if perms.bbtest.developer %}

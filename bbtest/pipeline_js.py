@@ -1,5 +1,4 @@
 BASE0_SOURCE_FILENAMES = (
-    "js/jquery-3.2.1.min.js",
     "js/jquery-ui.js",
     "js/bootstrap.js",
     "js/turbolinks.min.js",
