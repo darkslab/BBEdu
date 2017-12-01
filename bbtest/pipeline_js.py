@@ -22,8 +22,8 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/RegisterPageModule.js",
 )
 BASE2_SOURCE_FILENAMES = (
-    "js/react/react.production.min.js",
-    "js/react/react-dom.production.min.js",
+    "js/react/react.js",
+    "js/react/react-dom.js",
 )
 BASE3_SOURCE_FILENAMES = (
     "js/react/components/Monkey.js",
