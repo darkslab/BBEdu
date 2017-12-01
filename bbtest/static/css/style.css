@@ -682,3 +682,7 @@ html {
          -o-animation: bb-spinner-animation 2s ease infinite;
             animation: bb-spinner-animation 2s ease infinite;
 }
+
+.bb-workspace {
+    min-height: 420px;
+}

@@ -26,6 +26,5 @@ BASE2_SOURCE_FILENAMES = (
     "js/react/react-dom.js",
 )
 BASE3_SOURCE_FILENAMES = (
-    "js/react/components/Monkey.js",
-    "js/react/components/Shmonkey.js",
+    "js/react/components/Test.js",
 )

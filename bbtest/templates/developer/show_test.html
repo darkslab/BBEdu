@@ -1,5 +1,5 @@
 {% extends './developer_base_2.html' %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% endblock %}
 
@@ -8,14 +8,16 @@
         moduleDataStack.push({
             module: "ReactModule",
             data: {
-                class: "Monkey",
+                class: "Test",
                 props: {
-                    title: "Counter"
+                    spinnerLogo: "{% static 'img/logo.png' %}"
                 }
             }
         });
     </script>
     <div class="row">
-        <div class="col-xs-12" id="root"></div>
+        <div class="col-xs-12 bb-workspace" id="root">
+            <img class="bb-spinner" src="{% static 'img/logo.png' %}">
+        </div>
     </div>
 {% endblock %}

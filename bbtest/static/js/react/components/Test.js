@@ -8,37 +8,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Monkey = function (_React$Component) {
-    _inherits(Monkey, _React$Component);
+var Test = function (_React$Component) {
+    _inherits(Test, _React$Component);
 
-    function Monkey(props) {
-        _classCallCheck(this, Monkey);
+    function Test(props) {
+        _classCallCheck(this, Test);
 
-        var _this = _possibleConstructorReturn(this, (Monkey.__proto__ || Object.getPrototypeOf(Monkey)).call(this, props));
-
-        _this.state = {
-            counter: 0
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (Test.__proto__ || Object.getPrototypeOf(Test)).call(this, props));
     }
 
-    _createClass(Monkey, [{
-        key: "handleClick",
-        value: function handleClick() {
-            this.setState(function (prevState) {
-                return {
-                    counter: prevState.counter + 1
-                };
-            });
-        }
-    }, {
+    _createClass(Test, [{
         key: "render",
         value: function render() {
-            return React.createElement(Shmonkey, { title: this.props.title,
-                counter: this.state.counter,
-                handleClick: this.handleClick.bind(this) });
+            return React.createElement("img", { className: "bb-spinner",
+                src: this.props.spinnerLogo });
         }
     }]);
 
-    return Monkey;
+    return Test;
 }(React.Component);
