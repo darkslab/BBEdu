@@ -628,3 +628,57 @@ html {
     border: 2px solid #2196f3;
     max-height: 300px;
 }
+
+@-webkit-keyframes bb-spinner-animation {
+    from {
+        -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+     @-o-keyframes bb-spinner-animation {
+    from {
+        -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+        @keyframes bb-spinner-animation {
+    from {
+        -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
+.bb-spinner {
+    width: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    -webkit-animation: bb-spinner-animation 2s ease infinite;
+         -o-animation: bb-spinner-animation 2s ease infinite;
+            animation: bb-spinner-animation 2s ease infinite;
+}
