@@ -15,10 +15,10 @@ from pathlib import Path
 from json import load
 from re import match
 from bbtest.pipeline_js import (
-    LIBRARY0_SOURCE_FILENAMES,
-    LIBRARY1_SOURCE_FILENAMES,
-    BASE_SOURCE_FILENAMES,
-    REACT_SOURCE_FILENAMES,
+    BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_JS,
+    BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_JS,
+    BASE2_SOURCE_FILENAMES as BASE2_SOURCE_FILENAMES_JS,
+    BASE3_SOURCE_FILENAMES as BASE3_SOURCE_FILENAMES_JS,
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -164,30 +164,30 @@ PIPELINE = {
     "DISABLE_WRAPPER": True,
     "SHOW_ERRORS_INLINE": False,
     "JAVASCRIPT": {
-        "library0": {
-            "source_filenames": LIBRARY0_SOURCE_FILENAMES,
-            "output_filename": "js/library0.js",
+        "base0": {
+            "source_filenames": BASE0_SOURCE_FILENAMES_JS,
+            "output_filename": "js/base0.js",
             "extra_context": {
                 "defer": True,
             },
         },
-        "library1": {
-            "source_filenames": LIBRARY1_SOURCE_FILENAMES,
-            "output_filename": "js/library1.js",
+        "base1": {
+            "source_filenames": BASE1_SOURCE_FILENAMES_JS,
+            "output_filename": "js/base1.js",
             "extra_context": {
                 "defer": True,
             },
         },
-        "base": {
-            "source_filenames": BASE_SOURCE_FILENAMES,
-            "output_filename": "js/base.js",
+        "base2": {
+            "source_filenames": BASE2_SOURCE_FILENAMES_JS,
+            "output_filename": "js/base2.js",
             "extra_context": {
                 "defer": True,
             },
         },
-        "react": {
-            "source_filenames": REACT_SOURCE_FILENAMES,
-            "output_filename": "js/react.js",
+        "base3": {
+            "source_filenames": BASE3_SOURCE_FILENAMES_JS,
+            "output_filename": "js/base3.js",
             "extra_context": {
                 "defer": True,
             },

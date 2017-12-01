@@ -4,4 +4,18 @@
 {% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% endblock %}
 
 {% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "ReactModule",
+            data: {
+                class: "Monkey",
+                props: {
+                    title: "Counter"
+                }
+            }
+        });
+    </script>
+    <div class="row">
+        <div class="col-xs-12" id="root"></div>
+    </div>
 {% endblock %}

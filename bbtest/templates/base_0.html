@@ -14,11 +14,11 @@
 
     {% stylesheet 'base' %}
 
-    {% javascript 'library0' %}
-    {% javascript 'base' %}
+    {% javascript 'base0' %}
+    {% javascript 'base1' %}
     {% if perms.bbtest.developer %}
-        {% javascript 'library1' %}
-        {% javascript 'react' %}
+        {% javascript 'base2' %}
+        {% javascript 'base3' %}
     {% endif %}
     <script>
         var moduleDataStack = [];

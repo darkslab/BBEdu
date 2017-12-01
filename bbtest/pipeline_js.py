@@ -1,15 +1,11 @@
-LIBRARY0_SOURCE_FILENAMES = (
+BASE0_SOURCE_FILENAMES = (
     "js/jquery-3.2.1.min.js",
     "js/jquery-ui.js",
     "js/bootstrap.js",
     "js/turbolinks.min.js",
     "js/script.js",
 )
-LIBRARY1_SOURCE_FILENAMES = (
-    "js/react/react.production.min.js",
-    "js/react/react-dom.production.min.js",
-)
-BASE_SOURCE_FILENAMES = (
+BASE1_SOURCE_FILENAMES = (
     "js/charts/SVGChart.js",
     "js/charts/RadialChart.js",
     "js/charts/ColumnChart.js",
@@ -26,5 +22,11 @@ BASE_SOURCE_FILENAMES = (
     "js/modules/SettingsPageModule.js",
     "js/modules/RegisterPageModule.js",
 )
-REACT_SOURCE_FILENAMES = (
+BASE2_SOURCE_FILENAMES = (
+    "js/react/react.production.min.js",
+    "js/react/react-dom.production.min.js",
+)
+BASE3_SOURCE_FILENAMES = (
+    "js/react/components/Monkey.js",
+    "js/react/components/Shmonkey.js",
 )
