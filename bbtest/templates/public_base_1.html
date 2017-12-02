@@ -24,7 +24,7 @@
                                 {% if user.is_authenticated %}
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a href="{% url 'bbtest:dashboard' %}">{% trans 'Dashboard' context 'Navigation link' %}</a></li>
-                                        <li class="bb-bar-gravatar-container hidden-xs"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="{{ user.gravatar_url }}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}"></li>
+                                        <li class="bb-bar-gravatar-container hidden-xs"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="{{ user.gravatar_url|safe }}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}"></li>
                                         <li class="dropdown">
                                             <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">{{ user.get_full_name }} <span class="caret"></span></a>
                                             <ul class="dropdown-menu dropdown-menu-right">
