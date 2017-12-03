@@ -101,6 +101,10 @@ html {
     height: 100%;
 }
 
+.bb-rel {
+    position: relative;
+}
+
 .bb-body {
     background-color: rgba(237, 244, 247, 1);
 }
@@ -681,8 +685,4 @@ html {
     -webkit-animation: bb-spinner-animation 2s ease infinite;
          -o-animation: bb-spinner-animation 2s ease infinite;
             animation: bb-spinner-animation 2s ease infinite;
-}
-
-.bb-workspace {
-    min-height: 420px;
 }

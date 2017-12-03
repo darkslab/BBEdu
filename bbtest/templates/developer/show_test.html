@@ -16,8 +16,265 @@
         });
     </script>
     <div class="row">
-        <div class="col-xs-12 bb-workspace" id="root">
+        <!-- <div class="col-xs-12" style="
+            min-height: 420px;
+        ">
             <img class="bb-spinner" src="{% static 'img/logo.png' %}">
+        </div> -->
+        <div class="col-xs-12" style="
+            min-height: 420px;
+        ">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading bb-rel">
+                            <div style="
+                                position: absolute;
+                                width: 48px;
+                                height: 48px;
+                                top: 50%;
+                                margin-top: -24px;
+                                left: 18px;
+                                background-color: #f5f5f5;
+                                border-radius: 50%;
+                                color: #444444;
+                                text-align: center;
+                                line-height: 48px;
+                                font-size: 26px;
+                            ">40</div>
+                            <h4 class="panel-title mt-15 mb-15" style="
+                                font-size: 24px;
+                                margin-left: 64px;
+                            ">Question</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">DIFFICULTY</span>
+                                            <input type="text" class="form-control" readonly value="Normal">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="javascript:void(0);">High</a></li>
+                                                    <li><a href="javascript:void(0);">Normal</a></li>
+                                                    <li><a href="javascript:void(0);">Low</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">TAXONOMY</span>
+                                            <input type="text" class="form-control" readonly value="Communication">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="javascript:void(0);">Meaning</a></li>
+                                                    <li><a href="javascript:void(0);">Communication</a></li>
+                                                    <li><a href="javascript:void(0);">Structure</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">TOPIC</span>
+                                            <input type="text" class="form-control" readonly value="Fables and Fairy Tales Fables and Fairy Tales">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="javascript:void(0);">People</a></li>
+                                                    <li><a href="javascript:void(0);">Animals</a></li>
+                                                    <li><a href="javascript:void(0);">Nature</a></li>
+                                                    <li><a href="javascript:void(0);">Weather</a></li>
+                                                    <li><a href="javascript:void(0);">Food</a></li>
+                                                    <li><a href="javascript:void(0);">Science</a></li>
+                                                    <li><a href="javascript:void(0);">Education</a></li>
+                                                    <li><a href="javascript:void(0);">History</a></li>
+                                                    <li><a href="javascript:void(0);">Ethics</a></li>
+                                                    <li><a href="javascript:void(0);">Sports</a></li>
+                                                    <li><a href="javascript:void(0);">Art</a></li>
+                                                    <li><a href="javascript:void(0);">Health</a></li>
+                                                    <li><a href="javascript:void(0);">Traditions</a></li>
+                                                    <li><a href="javascript:void(0);">Upbringing</a></li>
+                                                    <li><a href="javascript:void(0);">Culture</a></li>
+                                                    <li><a href="javascript:void(0);">Hobby</a></li>
+                                                    <li><a href="javascript:void(0);">Ecology</a></li>
+                                                    <li><a href="javascript:void(0);">Fables and Fairy Tales</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group" style="
+                                    background-color: rgba(33, 150, 243, 0.15);
+                                    border-radius: 2px;
+                                    cursor: move;
+                                ">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-danger btn-xs pull-right">Formulas Off</button>
+                                        <button type="button" class="btn btn-default btn-xs pull-right invisible">Spacer</button>
+                                    </div>
+                                    <textarea style="
+                                        border-radius: 2px;
+                                        height: 170px;
+                                        border: 2px dashed rgba(33, 150, 243, 1);
+                                        background-color: #fff;
+                                        padding: 15px;
+                                        resize: none;
+                                        -webkit-box-shadow: none;
+                                                box-shadow: none;
+                                    " placeholder="Type something!" class="form-control">Main question here...</textarea>
+                                </div>
+
+                                <div class="form-group" style="
+                                    background-color: rgba(33, 150, 243, 0.15);
+                                    border-radius: 2px;
+                                    cursor: move;
+                                ">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-success btn-xs pull-right">Formulas On</button>
+                                        <button type="button" class="btn btn-default btn-xs pull-right invisible">Spacer</button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                                            <div class="row">
+                                                <div class="col-xs-6 pr-5">
+                                                    <textarea style="
+                                                        border-radius: 2px;
+                                                        height: 170px;
+                                                        border: 2px dashed rgba(33, 150, 243, 1);
+                                                        background-color: #fff;
+                                                        padding: 15px;
+                                                        resize: none;
+                                                        -webkit-box-shadow: none;
+                                                                box-shadow: none;
+                                                    " placeholder="Type something!" class="form-control">Left quantitative text</textarea>
+                                                </div>
+                                                <div class="col-xs-6 pl-5">
+                                                    <textarea style="
+                                                        border-radius: 2px;
+                                                        height: 170px;
+                                                        border: 2px dashed rgba(33, 150, 243, 1);
+                                                        background-color: #fff;
+                                                        padding: 15px;
+                                                        resize: none;
+                                                        -webkit-box-shadow: none;
+                                                                box-shadow: none;
+                                                    " placeholder="Type something!" class="form-control">Right quantitative text</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="
+                                    background-color: rgba(33, 150, 243, 0.15);
+                                    border-radius: 2px;
+                                    cursor: move;
+                                ">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-default btn-xs pull-right invisible">Spacer</button>
+                                    </div>
+                                    <div style="
+                                        border-radius: 2px;
+                                        height: 170px;
+                                        border: 2px solid transparent;
+                                        padding: 15px;
+                                    ">
+                                        <div class="row">
+                                            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <label for="monkey" class="btn btn-success btn-lg btn-block" style="
+                                                            margin-top: 34px;
+                                                        ">Upload Image</label>
+                                                        <input id="monkey" class="hidden" type="file">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-center mt-15">
+                                    <button type="button" class="btn btn-success">Add Section</button>
+                                </div>
+                            </div>
+                            <hr style="border-color: #ccc;">
+                            <div>
+                                <div>
+                                    <div style="
+                                        min-height: 64px;
+                                        border: 2px solid transparent;
+                                        padding: 15px;
+                                        font-size: 16px;
+                                    ">
+                                        <p class="lead text-center mb-0">Please add a Section above to preview it here.</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="
+                                        min-height: 64px;
+                                        border: 2px solid transparent;
+                                        padding: 15px;
+                                        font-size: 16px;
+                                    ">Main question here...</div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                                            <div class="row">
+                                                <div class="col-xs-6 pr-5">
+                                                    <div style="
+                                                        min-height: 64px;
+                                                        border: 2px solid transparent;
+                                                        padding: 15px;
+                                                        font-size: 16px;
+                                                    ">Left quantitative text</div>
+                                                </div>
+                                                <div class="col-xs-6 pl-5">
+                                                    <div style="
+                                                        min-height: 64px;
+                                                        border: 2px solid transparent;
+                                                        padding: 15px;
+                                                        font-size: 16px;
+                                                    ">Right quantitative text</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 mb-23">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                        <button type="button" class="btn btn-primary btn-lg btn-block">Add Answer</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="text-center">Answers</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group text-center mt-15">
+                                <button type="button" class="btn btn-success">Add Answer Choice</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
