@@ -89,7 +89,7 @@
                                     <label class="control-label col-sm-3">TOPIC</label>
                                     <div class="col-sm-9">
                                         <div class="input-group">
-                                            <input type="text" class="form-control pl-10" readonly value="Fables and Fairy Tales" style="
+                                            <input type="text" class="form-control pl-10" readonly value="Nature" style="
                                                 background-color: rgba(33, 150, 243, 0.15);
                                             ">
                                             <div class="input-group-btn">
@@ -97,7 +97,7 @@
                                                 <ul class="dropdown-menu dropdown-menu-right">
                                                     <li><a href="javascript:void(0);">People</a></li>
                                                     <li><a href="javascript:void(0);">Animals</a></li>
-                                                    <li><a href="javascript:void(0);">Nature</a></li>
+                                                    <li class="active"><a href="javascript:void(0);">Nature</a></li>
                                                     <li><a href="javascript:void(0);">Weather</a></li>
                                                     <li><a href="javascript:void(0);">Food</a></li>
                                                     <li><a href="javascript:void(0);">Science</a></li>
@@ -112,7 +112,7 @@
                                                     <li><a href="javascript:void(0);">Culture</a></li>
                                                     <li><a href="javascript:void(0);">Hobby</a></li>
                                                     <li><a href="javascript:void(0);">Ecology</a></li>
-                                                    <li class="active"><a href="javascript:void(0);">Fables and Fairy Tales</a></li>
+                                                    <li><a href="javascript:void(0);">Fables and Fairy Tales</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -215,49 +215,58 @@
                                     <button type="button" class="btn btn-success">Add Section</button>
                                 </div>
                             </div>
-                            <hr style="border-color: #ccc;">
+                            <hr style="
+                                border-color: #ccc;
+                            ">
                             <div>
-                                <div>
-                                    <div style="
-                                        min-height: 64px;
-                                        border: 2px solid transparent;
-                                        padding: 15px;
-                                        font-size: 16px;
-                                    ">
-                                        <p class="lead text-center mb-0">Please add a Section above to preview it here.</p>
-                                    </div>
+                                <div style="
+                                    min-height: 64px;
+                                    border: 2px solid transparent;
+                                    padding: 15px;
+                                    font-size: 16px;
+                                ">
+                                    <p class="lead text-center mb-0">Please add a Section above to preview it here.</p>
                                 </div>
-                                <div>
-                                    <div style="
-                                        min-height: 64px;
-                                        border: 2px solid transparent;
-                                        padding: 15px;
-                                        font-size: 16px;
-                                    ">Main question here...</div>
-                                </div>
-                                <div>
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                                            <div class="row">
-                                                <div class="col-xs-6 pr-5">
-                                                    <div style="
-                                                        min-height: 64px;
-                                                        border: 2px solid transparent;
-                                                        padding: 15px;
-                                                        font-size: 16px;
-                                                    ">Left quantitative text</div>
-                                                </div>
-                                                <div class="col-xs-6 pl-5">
-                                                    <div style="
-                                                        min-height: 64px;
-                                                        border: 2px solid transparent;
-                                                        padding: 15px;
-                                                        font-size: 16px;
-                                                    ">Right quantitative text</div>
-                                                </div>
+                                <div style="
+                                    min-height: 64px;
+                                    border: 2px solid transparent;
+                                    padding: 15px;
+                                    font-size: 16px;
+                                    letter-spacing: normal;
+                                ">Main question here...</div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                                        <div class="row">
+                                            <div class="col-xs-6 pr-5">
+                                                <div style="
+                                                    min-height: 64px;
+                                                    border: 2px solid transparent;
+                                                    padding: 15px;
+                                                    font-size: 16px;
+                                                    letter-spacing: normal;
+                                                ">Left quantitative text</div>
+                                            </div>
+                                            <div class="col-xs-6 pl-5">
+                                                <div style="
+                                                    min-height: 64px;
+                                                    border: 2px solid transparent;
+                                                    padding: 15px;
+                                                    font-size: 16px;
+                                                    letter-spacing: normal;
+                                                ">Right quantitative text</div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div style="
+                                    min-height: 64px;
+                                    border: 2px solid transparent;
+                                    padding: 15px;
+                                    font-size: 16px;
+                                ">
+                                    <img class="img-responsive center-block" src="{% static 'img/sample.png' %}" style="
+                                        max-height: 400px;
+                                    ">
                                 </div>
                             </div>
                         </div>
@@ -275,11 +284,183 @@
                 <div class="col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h4 class="text-center">Answers</h4>
+                            <h4 class="text-center">Multi-choice with 1 answer</h4>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group text-center mt-15">
-                                <button type="button" class="btn btn-success">Add Answer Choice</button>
+                            <div>
+                                <div class="form-group" style="
+                                    background-color: rgba(33, 150, 243, 0.15);
+                                    border-radius: 2px;
+                                    cursor: move;
+                                ">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-success btn-xs pull-right">Formulas On</button>
+                                        <button type="button" class="btn btn-default btn-xs pull-right invisible">Spacer</button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                                            <textarea style="
+                                                border-radius: 2px;
+                                                height: 70px;
+                                                border: 2px dashed rgba(33, 150, 243, 1);
+                                                background-color: #fff;
+                                                padding: 5px 15px;
+                                                resize: none;
+                                                -webkit-box-shadow: none;
+                                                        box-shadow: none;
+                                            " placeholder="Type something!" class="form-control">Answer example 1</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-center mt-15">
+                                    <button type="button" class="btn btn-success">Add Answer Choice</button>
+                                </div>
+                            </div>
+                            <hr style="
+                                border-color: #ccc;
+                            ">
+                            <div>
+                                <div class="row">
+                                    <div class="col-xs-2 col-sm-3 pr-0">
+                                        <div class="bb-rel" style="
+                                            min-height: 44px;
+                                            border: 2px solid transparent;
+                                            padding: 5px 15px;
+                                            font-size: 16px;
+                                        ">
+                                            <div style="
+                                                position: absolute;
+                                                top: 50%;
+                                                right: -5px;
+                                                width: 36px;
+                                                height: 36px;
+                                                margin-top: -18px;
+                                                background-color: #bbbbbb;
+                                                color: #ffffff;
+                                                border-radius: 50%;
+                                                text-align: center;
+                                                line-height: 36px;
+                                                font-weight: bold;
+                                                cursor: pointer;
+                                            ">A</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-9 pl-0">
+                                        <div style="
+                                            min-height: 44px;
+                                            border: 2px solid transparent;
+                                            padding: 5px 15px;
+                                            font-size: 16px;
+                                            letter-spacing: normal;
+                                        ">Answer example 1</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2 col-sm-3 pr-0">
+                                        <div class="bb-rel" style="
+                                            min-height: 44px;
+                                            border: 2px solid transparent;
+                                            padding: 5px 15px;
+                                            font-size: 16px;
+                                        ">
+                                            <div style="
+                                                position: absolute;
+                                                top: 50%;
+                                                right: -5px;
+                                                width: 36px;
+                                                height: 36px;
+                                                margin-top: -18px;
+                                                background-color: #4caf50;
+                                                color: #ffffff;
+                                                border-radius: 50%;
+                                                text-align: center;
+                                                line-height: 36px;
+                                                font-weight: bold;
+                                                cursor: pointer;
+                                            ">B</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-9 pl-0">
+                                        <div style="
+                                            min-height: 44px;
+                                            border: 2px solid transparent;
+                                            padding: 5px 15px;
+                                            font-size: 16px;
+                                            letter-spacing: normal;
+                                        ">Answer example 2</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2 col-sm-3 pr-0">
+                                        <div class="bb-rel" style="
+                                            min-height: 44px;
+                                            border: 2px solid transparent;
+                                            padding: 5px 15px;
+                                            font-size: 16px;
+                                        ">
+                                            <div style="
+                                                position: absolute;
+                                                top: 50%;
+                                                right: -5px;
+                                                width: 36px;
+                                                height: 36px;
+                                                margin-top: -18px;
+                                                background-color: #bbbbbb;
+                                                color: #ffffff;
+                                                border-radius: 50%;
+                                                text-align: center;
+                                                line-height: 36px;
+                                                font-weight: bold;
+                                                cursor: pointer;
+                                            ">C</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-9 pl-0">
+                                        <div style="
+                                            min-height: 44px;
+                                            border: 2px solid transparent;
+                                            padding: 5px 15px;
+                                            font-size: 16px;
+                                            letter-spacing: normal;
+                                        ">Answer example 3</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2 col-sm-3 pr-0">
+                                        <div class="bb-rel" style="
+                                            min-height: 44px;
+                                            border: 2px solid transparent;
+                                            padding: 5px 15px;
+                                            font-size: 16px;
+                                        ">
+                                            <div style="
+                                                position: absolute;
+                                                top: 50%;
+                                                right: -5px;
+                                                width: 36px;
+                                                height: 36px;
+                                                margin-top: -18px;
+                                                background-color: #bbbbbb;
+                                                color: #ffffff;
+                                                border-radius: 50%;
+                                                text-align: center;
+                                                line-height: 36px;
+                                                font-weight: bold;
+                                                cursor: pointer;
+                                            ">D</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-9 pl-0">
+                                        <div style="
+                                            min-height: 44px;
+                                            border: 2px solid transparent;
+                                            padding: 5px 15px;
+                                            font-size: 16px;
+                                            letter-spacing: normal;
+                                        ">Answer example 4</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
