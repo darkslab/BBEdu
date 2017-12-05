@@ -13,7 +13,7 @@ A testing platform application.
 
 #### How to create translation files ####
 
-    ./manage.py makemessages -v3 -a -i '_.*' --no-location --no-obsolete
+    ./manage.py makemessages -v3 -a -i '_.*' -i '__pycache__' -i 'node_modules' -i 'bbtest/static' --no-location --no-obsolete
 
 
 #### How to compile React components ####
