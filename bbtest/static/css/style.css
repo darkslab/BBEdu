@@ -687,3 +687,7 @@ html {
          -o-animation: bb-spinner-animation 2s ease infinite;
             animation: bb-spinner-animation 2s ease infinite;
 }
+
+.bb-developer-container {
+    min-height: 420px;
+}
