@@ -25,6 +25,8 @@ urlpatterns = [
     url(r"^developer/$", DeveloperDashboardView.as_view(), name="developer_dashboard"),
     url(r"^developer/tests/create/$", NewTestView.as_view(), name="developer_new_test"),
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/$", ShowTestView.as_view(), name="developer_show_test"),
+    # DARK_TODO  remove this when done
+    url(r"^developer/tests_concept/(?P<code>[0-9A-Fa-f]{4,6})/$", ShowTestView.as_view(template_name = "developer/show_test_concept.html")),
 
     # SYSTEM URLS
     url(r"^login/$", LoginView.as_view(), name="login"),
