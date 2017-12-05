@@ -107,9 +107,26 @@ class Test(Model):
 
 
 class TestQuestion(Model):
-    DIFFICULTY_HIGH    = 2
-    DIFFICULTY_NORMAL  = 1
-    DIFFICULTY_LOW     = 0
+    # DIFFICULTY_RESERVED  = 0x0f
+    # DIFFICULTY_RESERVED  = 0x0e
+    # DIFFICULTY_HIGH      = 0x0d
+    # DIFFICULTY_RESERVED  = 0x0c
+    # DIFFICULTY_RESERVED  = 0x0b
+    # DIFFICULTY_RESERVED  = 0x0a
+    # DIFFICULTY_RESERVED  = 0x09
+    # DIFFICULTY_NORMAL    = 0x08
+    # DIFFICULTY_RESERVED  = 0x07
+    # DIFFICULTY_RESERVED  = 0x06
+    # DIFFICULTY_RESERVED  = 0x05
+    # DIFFICULTY_RESERVED  = 0x04
+    # DIFFICULTY_LOW       = 0x03
+    # DIFFICULTY_RESERVED  = 0x02
+    # DIFFICULTY_RESERVED  = 0x01
+    # DIFFICULTY_NONE      = 0x00
+
+    DIFFICULTY_HIGH    = 0x0d
+    DIFFICULTY_NORMAL  = 0x08
+    DIFFICULTY_LOW     = 0x03
     DIFFICULTIES = (
         ( DIFFICULTY_HIGH,   pgettext_lazy("Question difficulty", "High")   ),
         ( DIFFICULTY_NORMAL, pgettext_lazy("Question difficulty", "Normal") ),
