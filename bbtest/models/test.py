@@ -133,18 +133,25 @@ class TestQuestion(Model):
         ( DIFFICULTY_LOW,    pgettext_lazy("Question difficulty", "Low")    ),
     )
 
+    ANSWER_CLASS_MULTICHOICE_ONE    = "OneMultichoiceAnswer"
+    ANSWER_CLASS_MULTICHOICE_MULTI  = "MultiMultichoiceAnswer"
+    ANSWER_CLASS_FREEFORM           = "FreeformAnswer"
+    ANSWER_CLASSES = (
+        ( ANSWER_CLASS_MULTICHOICE_ONE, ANSWER_CLASS_MULTICHOICE_ONE ),
+    )
+
     test      = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )
     taxonomy  = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     topic     = ForeignKey  ( TestTopic,    on_delete=CASCADE, related_name="questions", null=True, blank=True, )
 
-    answer_class     = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,                                                                    )
-    meta_data        = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                             )
-    paragraph_order  = JSONField                  ( pgettext_lazy("Model field", "paragraph order"),                                                                                       )
-    difficulty       = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES, default=DIFFICULTY_NORMAL, db_index=True, )
-    weight           = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "weight of question"),                                                                     db_index=True, )
-    order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                                                                  db_index=True, )
-    created_at       = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                 )
-    updated_at       = DateTimeField              ( pgettext_lazy("Model field", "updated at"),         auto_now=True,                                                                     )
+    answer_class     = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
+    meta_data        = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
+    paragraph_order  = JSONField                  ( pgettext_lazy("Model field", "paragraph order"),                                                                                         )
+    difficulty       = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NORMAL, db_index=True, )
+    weight           = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "weight of question"),                                                                       db_index=True, )
+    order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                                                                    db_index=True, )
+    created_at       = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                   )
+    updated_at       = DateTimeField              ( pgettext_lazy("Model field", "updated at"),         auto_now=True,                                                                       )
 
     class Meta:
         default_permissions = ()
@@ -157,12 +164,22 @@ class TestQuestion(Model):
 
 
 class TestParagraph(Model):
+    PARAGRAPH_CLASS_TEXT        = "TextParagraph"
+    PARAGRAPH_CLASS_SPLIT_TEXT  = "SplitTextParagraph"
+    PARAGRAPH_CLASS_IMAGE       = "ImageParagraph"
+    PARAGRAPH_CLASS_AUDIO       = "AudioParagraph"
+    PARAGRAPH_CLASSES = (
+        ( PARAGRAPH_CLASS_TEXT,       PARAGRAPH_CLASS_TEXT       ),
+        ( PARAGRAPH_CLASS_SPLIT_TEXT, PARAGRAPH_CLASS_SPLIT_TEXT ),
+        ( PARAGRAPH_CLASS_IMAGE,      PARAGRAPH_CLASS_IMAGE      ),
+    )
+
     question  = ForeignKey  ( TestQuestion, on_delete=CASCADE, related_name="paragraphs", )
 
-    paragraph_class  = CharField      ( pgettext_lazy("Model field", "paragraph class"), max_length=100,    )
-    meta_data        = JSONField      ( pgettext_lazy("Model field", "meta data"),                          )
-    created_at       = DateTimeField  ( pgettext_lazy("Model field", "created at"),      auto_now_add=True, )
-    updated_at       = DateTimeField  ( pgettext_lazy("Model field", "updated at"),      auto_now=True,     )
+    paragraph_class  = CharField      ( pgettext_lazy("Model field", "paragraph class"), max_length=100,    choices=PARAGRAPH_CLASSES, )
+    meta_data        = JSONField      ( pgettext_lazy("Model field", "meta data"),                                                     )
+    created_at       = DateTimeField  ( pgettext_lazy("Model field", "created at"),      auto_now_add=True,                            )
+    updated_at       = DateTimeField  ( pgettext_lazy("Model field", "updated at"),      auto_now=True,                                )
 
     class Meta:
         default_permissions = ()
