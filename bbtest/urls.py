@@ -4,8 +4,9 @@ from .views import HomeView, DashboardView, SettingsView
 from .views.student import DashboardView as StudentDashboardView
 from .views.developer import (
     DashboardView as DeveloperDashboardView,
-    NewTestView,
-    ShowTestView,
+    TestView,
+    IndexedQuestionView,
+    AttributesView,
 )
 
 
@@ -23,10 +24,11 @@ urlpatterns = [
 
     # DEVELOPER URLS
     url(r"^developer/$", DeveloperDashboardView.as_view(), name="developer_dashboard"),
-    url(r"^developer/tests/create/$", NewTestView.as_view(), name="developer_new_test"),
-    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/$", ShowTestView.as_view(), name="developer_show_test"),
+    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/$", TestView.as_view(), name="developer_test"),
+    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/indexed/(?:(?P<question_index>\d+)/)?$", IndexedQuestionView.as_view(), name="developer_indexed_question"),
+    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/attributes/$", AttributesView.as_view(), name="developer_attributes"),
     # DARK_TODO  remove this when done
-    url(r"^developer/tests_concept/(?P<code>[0-9A-Fa-f]{4,6})/$", ShowTestView.as_view(template_name = "developer/show_test_concept.html")),
+    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/concept/$", TestView.as_view(template_name="developer/test_concept.html")),
 
     # SYSTEM URLS
     url(r"^login/$", LoginView.as_view(), name="login"),
