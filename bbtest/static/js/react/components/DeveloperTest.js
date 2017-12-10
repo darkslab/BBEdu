@@ -19,11 +19,17 @@ var DeveloperTest = function (_React$Component) {
         _this.state = {
             isTestLoading: true,
             isQuestionLoading: true,
+            isQuestionSaving: false,
+            isErrored: false,
             questionIndex: 0
         };
-        _this._questionData = null;
+        _this._questionObject = null;
+        _this._oldQuestionObjects = [];
         _this._questionAttributes = null;
-        _this._$xhrs = [];
+        _this._$xhrs = {
+            question: null,
+            attributes: null
+        };
         return _this;
     }
 
@@ -36,40 +42,38 @@ var DeveloperTest = function (_React$Component) {
                 if (isNaN(questionNumber) || questionNumber < 1 || questionNumber > this.props.questionCount) {
                     questionNumber = 1;
                 }
-                this.setState({
-                    questionIndex: questionNumber - 1
-                });
-                location.hash = questionNumber + "";
             }
 
-            this._$xhrs.push($.get({
-                url: this.props.indexedQuestionUrl + (questionNumber - 1) + "/",
-                success: this._ajaxSuccess.bind(this, "question"),
-                error: this._ajaxError.bind(this, "question")
-            }));
-            this._$xhrs.push($.get({
+            this._getQuestionData(questionNumber - 1);
+            this._$xhrs["attributes"] = $.get({
                 url: this.props.attributesUrl,
                 success: this._ajaxSuccess.bind(this, "attributes"),
                 error: this._ajaxError.bind(this, "attributes")
-            }));
+            });
         }
     }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
-            var $xhr = void 0;
-            while ($xhr = this._$xhrs.shift()) {
-                $xhr.abort();
-            }
+            this._cleanUp();
         }
     }, {
         key: "render",
         value: function render() {
             var content = null;
-            if (!this.state.isTestLoading && !this.state.isQuestionLoading) {
-                content = React.createElement(DeveloperQuestion, { id: this._questionData.id,
-                    data: this._questionData.data,
-                    paragraphs: this._questionData.paragraphs,
-                    attributes: this._questionAttributes });
+            if (this.state.isErrored) {
+                content = React.createElement(
+                    "div",
+                    { className: "col-xs-12 bb-developer-container" },
+                    React.createElement(
+                        "h4",
+                        { className: "text-center" },
+                        this.props.texts.error
+                    )
+                );
+            } else if (!this.state.isTestLoading && !this.state.isQuestionLoading && !this.state.isQuestionSaving) {
+                content = React.createElement(DeveloperQuestion, { count: this.state.questionIndex,
+                    attributes: this._questionAttributes,
+                    object: this._questionObject });
             } else {
                 content = React.createElement(
                     "div",
@@ -79,7 +83,7 @@ var DeveloperTest = function (_React$Component) {
             }
 
             var pagination = null;
-            if (!this.state.isTestLoading) {
+            if (!this.state.isErrored && !this.state.isTestLoading) {
                 var width = 5;
                 if (width < 1) {
                     width = 1;
@@ -115,35 +119,74 @@ var DeveloperTest = function (_React$Component) {
                 }
 
                 var paginationElements = [];
-                paginationElements.push(React.createElement(
-                    "li",
-                    { key: 'left', className: !indexes[0] ? 'disabled' : '' },
-                    React.createElement(
-                        "a",
-                        { href: "javascript:void(0);" },
-                        "\xAB"
-                    )
-                ));
-                for (var _i2 = 0; _i2 < indexes.length; _i2++) {
+                if (this.state.questionIndex > 0) {
                     paginationElements.push(React.createElement(
                         "li",
-                        { key: indexes[_i2].toString(), className: indexes[_i2] === this.state.questionIndex ? 'active' : '' },
+                        { key: 'left' },
+                        React.createElement(
+                            "a",
+                            { href: "javascript:void(0);",
+                                onClick: this._nextQuestion.bind(this, this.state.questionIndex - 1) },
+                            "\xAB"
+                        )
+                    ));
+                } else {
+                    paginationElements.push(React.createElement(
+                        "li",
+                        { key: 'left', className: "disabled" },
                         React.createElement(
                             "a",
                             { href: "javascript:void(0);" },
-                            indexes[_i2] + 1
+                            "\xAB"
                         )
                     ));
                 }
-                paginationElements.push(React.createElement(
-                    "li",
-                    { key: 'right', className: indexes[indexes.length - 1] === this.props.questionCount - 1 ? 'disabled' : '' },
-                    React.createElement(
-                        "a",
-                        { href: "javascript:void(0);" },
-                        "\xBB"
-                    )
-                ));
+                for (var _i2 = 0; _i2 < indexes.length; _i2++) {
+                    if (indexes[_i2] === this.state.questionIndex) {
+                        paginationElements.push(React.createElement(
+                            "li",
+                            { key: indexes[_i2].toString(), className: "active" },
+                            React.createElement(
+                                "a",
+                                { href: "javascript:void(0);" },
+                                indexes[_i2] + 1
+                            )
+                        ));
+                    } else {
+                        paginationElements.push(React.createElement(
+                            "li",
+                            { key: indexes[_i2].toString() },
+                            React.createElement(
+                                "a",
+                                { href: "javascript:void(0);",
+                                    onClick: this._nextQuestion.bind(this, indexes[_i2]) },
+                                indexes[_i2] + 1
+                            )
+                        ));
+                    }
+                }
+                if (this.state.questionIndex < this.props.questionCount - 1) {
+                    paginationElements.push(React.createElement(
+                        "li",
+                        { key: 'right' },
+                        React.createElement(
+                            "a",
+                            { href: "javascript:void(0);",
+                                onClick: this._nextQuestion.bind(this, this.state.questionIndex + 1) },
+                            "\xBB"
+                        )
+                    ));
+                } else {
+                    paginationElements.push(React.createElement(
+                        "li",
+                        { key: 'right', className: "disabled" },
+                        React.createElement(
+                            "a",
+                            { href: "javascript:void(0);" },
+                            "\xBB"
+                        )
+                    ));
+                }
                 pagination = React.createElement(
                     "div",
                     { className: "col-xs-12 text-right" },
@@ -163,17 +206,34 @@ var DeveloperTest = function (_React$Component) {
             );
         }
     }, {
+        key: "_nextQuestion",
+        value: function _nextQuestion(index) {
+            this.setState({
+                isQuestionLoading: true
+            });
+            if (this._questionObject) {
+                this.setState({
+                    isQuestionSaving: true
+                });
+                var object = this._questionObject;
+                this._questionObject = null;
+                object.save("test", this._questionSave.bind(this));
+                this._oldQuestionObjects.push(object);
+            }
+            this._getQuestionData(index);
+        }
+    }, {
         key: "_ajaxSuccess",
         value: function _ajaxSuccess(type, data, status, $xhr) {
             if (type === "question") {
-                this._questionData = data;
+                this._questionObject = new DeveloperQuestionObject(data.id, data.data, data.paragraphs);
                 this.setState({
                     isQuestionLoading: false
                 });
             } else if (type === "attributes") {
                 this._questionAttributes = data;
             }
-            if (this._questionData && this._questionAttributes) {
+            if (this._questionObject && this._questionAttributes) {
                 this.setState({
                     isTestLoading: false
                 });
@@ -185,9 +245,74 @@ var DeveloperTest = function (_React$Component) {
             if (status === "abort") {
                 return;
             }
-            // DARK_TODO  probably say that something is wrong and ask to reload the page?
+
+            this.setState({
+                isErrored: true
+            });
+            this._cleanUp();
+        }
+    }, {
+        key: "_cleanUp",
+        value: function _cleanUp() {
+            var object = void 0;
+            while (object = this._oldQuestionObjects.shift()) {
+                object.stop("test");
+            }
+            this._$xhrs["question"].abort();
+            this._$xhrs["attributes"].abort();
+        }
+    }, {
+        key: "_questionSave",
+        value: function _questionSave(success, object) {
+            if (!success) {
+                this.setState({
+                    isErrored: true
+                });
+                this._cleanUp();
+                return;
+            }
+
+            var index = this._oldQuestionObjects.indexOf(object);
+            if (index > -1) {
+                this._oldQuestionObjects.splice(index, 1);
+            }
+
+            this.setState({
+                isQuestionSaving: false
+            });
+        }
+    }, {
+        key: "_getQuestionData",
+        value: function _getQuestionData(index) {
+            this.setState({
+                questionIndex: index
+            });
+            location.hash = (index + 1).toString();
+
+            if (this._$xhrs["question"]) {
+                this._$xhrs["question"].abort();
+            }
+            this._$xhrs["question"] = $.get({
+                url: this.props.indexedQuestionUrl + index + "/",
+                success: this._ajaxSuccess.bind(this, "question"),
+                error: this._ajaxError.bind(this, "question")
+            });
         }
     }]);
 
     return DeveloperTest;
 }(React.Component);
+
+function DeveloperQuestionObject(id, data, paragraphs) {
+    this._id = id;
+    this._data = data;
+    this._paragraphs = paragraphs;
+}
+DeveloperQuestionObject.prototype.id = function () {
+    return this._id;
+};
+DeveloperQuestionObject.prototype.save = function (context, callback) {
+    callback(true, this);
+};
+DeveloperQuestionObject.prototype.stop = function (context) {};
+DeveloperQuestionObject.prototype.isSaved = function () {};

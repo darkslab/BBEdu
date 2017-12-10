@@ -4,11 +4,17 @@ class DeveloperTest extends React.Component {
         this.state = {
             isTestLoading: true,
             isQuestionLoading: true,
+            isQuestionSaving: false,
+            isErrored: false,
             questionIndex: 0
         };
-        this._questionData = null;
+        this._questionObject = null;
+        this._oldQuestionObjects = [];
         this._questionAttributes = null;
-        this._$xhrs = [];
+        this._$xhrs = {
+            question: null,
+            attributes: null
+        };
     }
     componentDidMount() {
         let questionNumber = 1;
@@ -17,37 +23,31 @@ class DeveloperTest extends React.Component {
             if (isNaN(questionNumber) || questionNumber < 1 || questionNumber > this.props.questionCount) {
                 questionNumber = 1;
             }
-            this.setState({
-                questionIndex: questionNumber - 1
-            });
-            location.hash = questionNumber + "";
         }
 
-        this._$xhrs.push($.get({
-            url: this.props.indexedQuestionUrl + (questionNumber - 1) + "/",
-            success: this._ajaxSuccess.bind(this, "question"),
-            error: this._ajaxError.bind(this, "question")
-        }));
-        this._$xhrs.push($.get({
+        this._getQuestionData(questionNumber - 1);
+        this._$xhrs["attributes"] = $.get({
             url: this.props.attributesUrl,
             success: this._ajaxSuccess.bind(this, "attributes"),
             error: this._ajaxError.bind(this, "attributes")
-        }));
+        });
     }
     componentWillUnmount() {
-        let $xhr;
-        while ($xhr = this._$xhrs.shift()) {
-            $xhr.abort();
-        }
+        this._cleanUp();
     }
     render() {
         let content = null;
-        if (!this.state.isTestLoading && !this.state.isQuestionLoading) {
+        if (this.state.isErrored) {
             content = (
-                <DeveloperQuestion id={this._questionData.id}
-                                   data={this._questionData.data}
-                                   paragraphs={this._questionData.paragraphs}
-                                   attributes={this._questionAttributes} />
+                <div className="col-xs-12 bb-developer-container">
+                    <h4 className="text-center">{this.props.texts.error}</h4>
+                </div>
+            );
+        } else if (!this.state.isTestLoading && !this.state.isQuestionLoading && !this.state.isQuestionSaving) {
+            content = (
+                <DeveloperQuestion count={this.state.questionIndex}
+                                   attributes={this._questionAttributes}
+                                   object={this._questionObject} />
             );
         } else {
             content = (
@@ -58,7 +58,7 @@ class DeveloperTest extends React.Component {
         }
 
         let pagination = null;
-        if (!this.state.isTestLoading) {
+        if (!this.state.isErrored && !this.state.isTestLoading) {
             let width = 5;
             if (width < 1) {
                 width = 1;
@@ -94,23 +94,50 @@ class DeveloperTest extends React.Component {
             }
 
             let paginationElements = [];
-            paginationElements.push(
-                <li key={ 'left' } className={ !indexes[0] ? 'disabled' : '' }>
-                    <a href="javascript:void(0);">&laquo;</a>
-                </li>
-            );
-            for (let i = 0; i < indexes.length; i++) {
+            if (this.state.questionIndex > 0) {
                 paginationElements.push(
-                    <li key={ indexes[i].toString() } className={ indexes[i] === this.state.questionIndex ? 'active' : '' }>
-                        <a href="javascript:void(0);">{indexes[i] + 1}</a>
+                    <li key={'left'}>
+                        <a href="javascript:void(0);"
+                           onClick={this._nextQuestion.bind(this, this.state.questionIndex - 1)}>&laquo;</a>
+                    </li>
+                );
+            } else {
+                paginationElements.push(
+                    <li key={'left'} className="disabled">
+                        <a href="javascript:void(0);">&laquo;</a>
                     </li>
                 );
             }
-            paginationElements.push(
-                <li key={ 'right' } className={ indexes[indexes.length - 1] === this.props.questionCount - 1 ? 'disabled' : '' }>
-                    <a href="javascript:void(0);">&raquo;</a>
-                </li>
-            );
+            for (let i = 0; i < indexes.length; i++) {
+                if (indexes[i] === this.state.questionIndex) {
+                    paginationElements.push(
+                        <li key={indexes[i].toString()} className="active">
+                            <a href="javascript:void(0);">{indexes[i] + 1}</a>
+                        </li>
+                    );
+                } else {
+                    paginationElements.push(
+                        <li key={indexes[i].toString()}>
+                            <a href="javascript:void(0);"
+                               onClick={this._nextQuestion.bind(this, indexes[i])}>{indexes[i] + 1}</a>
+                        </li>
+                    );
+                }
+            }
+            if (this.state.questionIndex < this.props.questionCount - 1) {
+                paginationElements.push(
+                    <li key={'right'}>
+                        <a href="javascript:void(0);"
+                           onClick={this._nextQuestion.bind(this, this.state.questionIndex + 1)}>&raquo;</a>
+                    </li>
+                );
+            } else {
+                paginationElements.push(
+                    <li key={'right'} className="disabled">
+                        <a href="javascript:void(0);">&raquo;</a>
+                    </li>
+                );
+            }
             pagination = (
                 <div className="col-xs-12 text-right">
                     <ul className="pagination mt-5 mb-5">{paginationElements}</ul>
@@ -125,16 +152,35 @@ class DeveloperTest extends React.Component {
             </div>
         );
     }
+    _nextQuestion(index) {
+        this.setState({
+            isQuestionLoading: true
+        });
+        if (this._questionObject) {
+            this.setState({
+                isQuestionSaving: true
+            });
+            let object = this._questionObject;
+            this._questionObject = null;
+            object.save("test", this._questionSave.bind(this));
+            this._oldQuestionObjects.push(object);
+        }
+        this._getQuestionData(index);
+    }
     _ajaxSuccess(type, data, status, $xhr) {
         if (type === "question") {
-            this._questionData = data;
+            this._questionObject = new DeveloperQuestionObject(
+                data.id,
+                data.data,
+                data.paragraphs
+            );
             this.setState({
                 isQuestionLoading: false
             });
         } else if (type === "attributes") {
             this._questionAttributes = data;
         }
-        if (this._questionData && this._questionAttributes) {
+        if (this._questionObject && this._questionAttributes) {
             this.setState({
                 isTestLoading: false
             });
@@ -144,6 +190,68 @@ class DeveloperTest extends React.Component {
         if (status === "abort") {
             return;
         }
-        // DARK_TODO  probably say that something is wrong and ask to reload the page?
+
+        this.setState({
+            isErrored: true
+        });
+        this._cleanUp();
     }
+    _cleanUp() {
+        let object;
+        while (object = this._oldQuestionObjects.shift()) {
+            object.stop("test");
+        }
+        this._$xhrs["question"].abort();
+        this._$xhrs["attributes"].abort();
+    }
+    _questionSave(success, object) {
+        if (!success) {
+            this.setState({
+                isErrored: true
+            });
+            this._cleanUp();
+            return;
+        }
+
+        let index = this._oldQuestionObjects.indexOf(object);
+        if (index > -1) {
+            this._oldQuestionObjects.splice(index, 1);
+        }
+
+        this.setState({
+            isQuestionSaving: false
+        });
+    }
+    _getQuestionData(index) {
+        this.setState({
+            questionIndex: index
+        });
+        location.hash = (index + 1).toString();
+
+        if (this._$xhrs["question"]) {
+            this._$xhrs["question"].abort();
+        }
+        this._$xhrs["question"] = $.get({
+            url: this.props.indexedQuestionUrl + index + "/",
+            success: this._ajaxSuccess.bind(this, "question"),
+            error: this._ajaxError.bind(this, "question")
+        });
+    }
+}
+
+
+function DeveloperQuestionObject(id, data, paragraphs) {
+    this._id = id;
+    this._data = data;
+    this._paragraphs = paragraphs;
+}
+DeveloperQuestionObject.prototype.id = function() {
+    return this._id;
+}
+DeveloperQuestionObject.prototype.save = function(context, callback) {
+    callback(true, this);
+}
+DeveloperQuestionObject.prototype.stop = function(context) {
+}
+DeveloperQuestionObject.prototype.isSaved = function() {
 }

@@ -21,13 +21,11 @@ var DeveloperQuestion = function (_React$Component) {
         key: "render",
         value: function render() {
             // DARK_TODO  implement this
-            console.log(this.props.id);
-            console.log(this.props.data);
-            console.log(this.props.paragraphs);
             return React.createElement(
                 "div",
                 { className: "col-xs-12 bb-developer-container" },
-                "DeveloperQuestion"
+                "Question #",
+                this.props.object.id()
             );
         }
     }]);
