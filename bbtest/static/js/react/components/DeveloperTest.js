@@ -71,9 +71,10 @@ var DeveloperTest = function (_React$Component) {
                     )
                 );
             } else if (!this.state.isTestLoading && !this.state.isQuestionLoading && !this.state.isQuestionSaving) {
-                content = React.createElement(DeveloperQuestion, { count: this.state.questionIndex,
+                content = React.createElement(DeveloperQuestion, { count: this.state.questionIndex + 1,
                     attributes: this._questionAttributes,
-                    object: this._questionObject });
+                    object: this._questionObject,
+                    texts: this.props.texts });
             } else {
                 content = React.createElement(
                     "div",
@@ -308,9 +309,12 @@ function DeveloperQuestionObject(id, data, paragraphs) {
     this._data = data;
     this._paragraphs = paragraphs;
 }
-DeveloperQuestionObject.prototype.id = function () {
-    return this._id;
-};
+DeveloperQuestionObject.prototype.difficulty = function () {};
+DeveloperQuestionObject.prototype.setDifficulty = function () {};
+DeveloperQuestionObject.prototype.taxonomy = function () {};
+DeveloperQuestionObject.prototype.setTaxonomy = function () {};
+DeveloperQuestionObject.prototype.topic = function () {};
+DeveloperQuestionObject.prototype.setTopic = function () {};
 DeveloperQuestionObject.prototype.save = function (context, callback) {
     callback(true, this);
 };

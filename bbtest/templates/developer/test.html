@@ -15,7 +15,11 @@
                     indexedQuestionUrl: "{% url 'bbtest:developer_indexed_question' code %}",
                     attributesUrl: "{% url 'bbtest:developer_attributes' code %}",
                     texts: {
-                        error: "{% trans 'There was an error, please reload the page.' context 'Developer tools message' %}"
+                        error: "{% trans 'There was an error, please reload the page.' context 'Developer tools' %}",
+                        question: "{% trans 'Question' context 'Developer tools' %}",
+                        difficulty: "{% trans 'Difficulty' context 'Developer tools' %}",
+                        taxonomy: "{% trans 'Taxonomy' context 'Developer tools' %}",
+                        topic: "{% trans 'Topic' context 'Developer tools' %}"
                     }
                 }
             }

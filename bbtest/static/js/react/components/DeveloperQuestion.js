@@ -14,19 +14,85 @@ var DeveloperQuestion = function (_React$Component) {
     function DeveloperQuestion(props) {
         _classCallCheck(this, DeveloperQuestion);
 
-        return _possibleConstructorReturn(this, (DeveloperQuestion.__proto__ || Object.getPrototypeOf(DeveloperQuestion)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (DeveloperQuestion.__proto__ || Object.getPrototypeOf(DeveloperQuestion)).call(this, props));
+
+        _this.state = {
+            difficulty: _this.props.object.difficulty(),
+            taxonomy: _this.props.object.taxonomy(),
+            topic: _this.props.object.topic()
+        };
+        return _this;
     }
 
     _createClass(DeveloperQuestion, [{
         key: "render",
         value: function render() {
-            // DARK_TODO  implement this
             return React.createElement(
                 "div",
                 { className: "col-xs-12 bb-developer-container" },
-                "Question #",
-                this.props.object.id()
+                React.createElement(
+                    "div",
+                    { className: "panel panel-primary" },
+                    React.createElement(
+                        "div",
+                        { className: "panel-heading bb-rel" },
+                        React.createElement(
+                            "div",
+                            { className: "bb-test-number" },
+                            this.props.count
+                        ),
+                        React.createElement(
+                            "h4",
+                            { className: "panel-title bb-test-title mt-15 mb-15" },
+                            this.props.texts.question
+                        )
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "panel-body" },
+                        React.createElement(
+                            "div",
+                            { className: "form-horizontal" },
+                            React.createElement(DeveloperAttribute, { label: this.props.texts.difficulty,
+                                value: this.state.difficulty,
+                                data: this.props.attributes.difficulties,
+                                change: this._attributeChange.bind(this, "difficulty") }),
+                            React.createElement(DeveloperAttribute, { label: this.props.texts.taxonomy,
+                                value: this.state.taxonomy,
+                                data: this.props.attributes.taxonomies,
+                                change: this._attributeChange.bind(this, "taxonomy") }),
+                            React.createElement(DeveloperAttribute, { label: this.props.texts.topic,
+                                value: this.state.topic,
+                                data: this.props.attributes.topics,
+                                change: this._attributeChange.bind(this, "topic") })
+                        )
+                    )
+                )
             );
+        }
+    }, {
+        key: "_attributeChange",
+        value: function _attributeChange(type, value) {
+            switch (type) {
+                case "difficulty":
+                    this.props.object.setDifficulty(value);
+                    this.setState({
+                        difficulty: value
+                    });
+                    break;
+                case "taxonomy":
+                    this.props.object.setTaxonomy(value);
+                    this.setState({
+                        taxonomy: value
+                    });
+                    break;
+                case "topic":
+                    this.props.object.setTopic(value);
+                    this.setState({
+                        topic: value
+                    });
+                    break;
+            }
         }
     }]);
 
