@@ -34,6 +34,13 @@ class DeveloperQuestion extends React.Component {
                 );
             }
         }.bind(this));
+        if (!paragraphs.length) {
+            paragraphs.push(
+                <div key={'empty'} className="bb-test-paragraph">
+                    <p className="lead text-center mb-0">{this.props.texts.emptyParagraph}</p>
+                </div>
+            );
+        }
 
         return (
             <div className="col-xs-12 bb-developer-container">
@@ -59,7 +66,7 @@ class DeveloperQuestion extends React.Component {
                         </div>
                         <div>
                             {developerParagraphs}
-                            <div className="form-group text-center mt-15">
+                            <div className="form-group text-center mt-23">
                                 <button type="button" className="btn btn-success">{this.props.texts.addSection}</button>
                             </div>
                         </div>
@@ -89,9 +96,6 @@ class DeveloperQuestion extends React.Component {
                         </div>
                         <hr class="bb-separator">
                         <div>
-                            <div class="bb-test-paragraph">
-                                <p class="lead text-center mb-0">Please add a Section above to preview it here.</p>
-                            </div>
                             <div class="bb-test-paragraph">
                                 <img class="img-responsive center-block bb-test-paragraph-image" src="{% static 'img/sample.png' %}">
                             </div>

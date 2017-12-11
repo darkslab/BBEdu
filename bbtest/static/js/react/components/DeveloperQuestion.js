@@ -45,6 +45,17 @@ var DeveloperQuestion = function (_React$Component) {
                         data: data.meta_data }));
                 }
             }.bind(this));
+            if (!paragraphs.length) {
+                paragraphs.push(React.createElement(
+                    "div",
+                    { key: 'empty', className: "bb-test-paragraph" },
+                    React.createElement(
+                        "p",
+                        { className: "lead text-center mb-0" },
+                        this.props.texts.emptyParagraph
+                    )
+                ));
+            }
 
             return React.createElement(
                 "div",
@@ -91,7 +102,7 @@ var DeveloperQuestion = function (_React$Component) {
                             developerParagraphs,
                             React.createElement(
                                 "div",
-                                { className: "form-group text-center mt-15" },
+                                { className: "form-group text-center mt-23" },
                                 React.createElement(
                                     "button",
                                     { type: "button", className: "btn btn-success" },
