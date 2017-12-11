@@ -29,4 +29,8 @@ BASE3_SOURCE_FILENAMES = (
     "js/react/components/DeveloperTest.js",
     "js/react/components/DeveloperQuestion.js",
     "js/react/components/DeveloperAttribute.js",
+    "js/react/components/DeveloperTextParagraph.js",
+    "js/react/components/DeveloperSplitTextParagraph.js",
+    "js/react/components/TextParagraph.js",
+    "js/react/components/SplitTextParagraph.js",
 )

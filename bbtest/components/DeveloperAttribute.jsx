@@ -13,7 +13,7 @@ function DeveloperAttribute(props) {
             options.push(
                 <li key={props.data[i].value}>
                     <a href="javascript:void(0);"
-                       onClick={props.change.bind(null, props.data[i].value)}>{props.data[i].caption}</a>
+                       onClick={props.onChange.bind(null, props.data[i].value)}>{props.data[i].caption}</a>
                 </li>
             );
         }

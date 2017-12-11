@@ -247,16 +247,22 @@ function DeveloperQuestionObject(id, data, paragraphs) {
     this._paragraphs = paragraphs;
 }
 DeveloperQuestionObject.prototype.difficulty = function() {
+    return this._data.difficulty;
 }
-DeveloperQuestionObject.prototype.setDifficulty = function() {
+DeveloperQuestionObject.prototype.setDifficulty = function(value) {
+    this._data.difficulty = value;
 }
 DeveloperQuestionObject.prototype.taxonomy = function() {
+    return this._data.taxonomy;
 }
-DeveloperQuestionObject.prototype.setTaxonomy = function() {
+DeveloperQuestionObject.prototype.setTaxonomy = function(value) {
+    this._data.taxonomy = value;
 }
 DeveloperQuestionObject.prototype.topic = function() {
+    return this._data.topic;
 }
-DeveloperQuestionObject.prototype.setTopic = function() {
+DeveloperQuestionObject.prototype.setTopic = function(value) {
+    this._data.topic = value;
 }
 DeveloperQuestionObject.prototype.save = function(context, callback) {
     callback(true, this);
@@ -264,4 +270,17 @@ DeveloperQuestionObject.prototype.save = function(context, callback) {
 DeveloperQuestionObject.prototype.stop = function(context) {
 }
 DeveloperQuestionObject.prototype.isSaved = function() {
+    return true;
+}
+DeveloperQuestionObject.prototype.paragraphIds = function() {
+    return this._data.paragraph_order;
+}
+DeveloperQuestionObject.prototype.paragraph = function(id) {
+    for (let i = 0; i < this._paragraphs.length; i++) {
+        if (id === this._paragraphs[i].id) {
+            return this._paragraphs[i].data;
+        }
+    }
+}
+DeveloperQuestionObject.prototype.updateParagraph = function(id, data) {
 }

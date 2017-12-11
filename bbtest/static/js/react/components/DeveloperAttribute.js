@@ -22,7 +22,7 @@ function DeveloperAttribute(props) {
                 React.createElement(
                     "a",
                     { href: "javascript:void(0);",
-                        onClick: props.change.bind(null, props.data[i].value) },
+                        onClick: props.onChange.bind(null, props.data[i].value) },
                     props.data[i].caption
                 )
             ));

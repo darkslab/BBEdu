@@ -725,25 +725,31 @@ html {
     cursor: move;
 }
 
-.bb-test-paragraph {
+.bb-test-paragraph,
+.form-control.bb-test-paragraph {
     min-height: 64px;
     border: 2px solid transparent;
     padding: 15px;
     font-size: 16px;
     letter-spacing: normal;
+    line-height: 1.5;
 }
 
-.bb-test-paragraph-textarea {
+.bb-test-paragraph-textarea,
+.form-control.bb-test-paragraph-textarea {
     border-radius: 2px;
-    display: block;
-    width: 100%;
     height: 170px;
     border-style: dashed;
-    border-color: rgba(33, 150, 243, 1);
+    border-color: #2196f3;
     background-color: #fff;
     resize: none;
     -webkit-box-shadow: none !important;
             box-shadow: none !important;
+}
+
+.bb-test-paragraph-textarea-empty,
+.form-control.bb-test-paragraph-textarea-empty {
+    border-color: #e51c23;
 }
 
 .bb-test-paragraph-upload {
@@ -754,7 +760,8 @@ html {
     max-height: 400px;
 }
 
-.bb-test-answer {
+.bb-test-answer,
+.form-control.bb-test-answer {
     min-height: 44px;
     border: 2px solid transparent;
     padding: 5px 15px;
@@ -782,13 +789,12 @@ html {
     background-color: #4caf50;
 }
 
-.bb-test-answer-textarea {
+.bb-test-answer-textarea,
+.form-control.bb-test-answer-textarea {
     border-radius: 2px;
-    display: block;
-    width: 100%;
     height: 70px;
     border-style: dashed;
-    border-color: rgba(33, 150, 243, 1);
+    border-color: #2196f3;
     background-color: #fff;
     resize: none;
     -webkit-box-shadow: none !important;

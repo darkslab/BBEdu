@@ -17,9 +17,7 @@ var DeveloperQuestion = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (DeveloperQuestion.__proto__ || Object.getPrototypeOf(DeveloperQuestion)).call(this, props));
 
         _this.state = {
-            difficulty: _this.props.object.difficulty(),
-            taxonomy: _this.props.object.taxonomy(),
-            topic: _this.props.object.topic()
+            update: 0
         };
         return _this;
     }
@@ -27,6 +25,27 @@ var DeveloperQuestion = function (_React$Component) {
     _createClass(DeveloperQuestion, [{
         key: "render",
         value: function render() {
+            var developerParagraphs = [];
+            var paragraphs = [];
+            this.props.object.paragraphIds().map(function (id) {
+                var data = this.props.object.paragraph(id);
+                if (data.paragraph_class === "TextParagraph") {
+                    developerParagraphs.push(React.createElement(DeveloperTextParagraph, { key: id,
+                        data: data.meta_data,
+                        onChange: this._paragraphChange.bind(this, id),
+                        placeholder: this.props.texts.sectionTextareaPlaceholder }));
+                    paragraphs.push(React.createElement(TextParagraph, { key: id,
+                        data: data.meta_data }));
+                } else if (data.paragraph_class === "SplitTextParagraph") {
+                    developerParagraphs.push(React.createElement(DeveloperSplitTextParagraph, { key: id,
+                        data: data.meta_data,
+                        onChange: this._paragraphChange.bind(this, id),
+                        placeholder: this.props.texts.sectionTextareaPlaceholder }));
+                    paragraphs.push(React.createElement(SplitTextParagraph, { key: id,
+                        data: data.meta_data }));
+                }
+            }.bind(this));
+
             return React.createElement(
                 "div",
                 { className: "col-xs-12 bb-developer-container" },
@@ -54,17 +73,37 @@ var DeveloperQuestion = function (_React$Component) {
                             "div",
                             { className: "form-horizontal" },
                             React.createElement(DeveloperAttribute, { label: this.props.texts.difficulty,
-                                value: this.state.difficulty,
+                                value: this.props.object.difficulty(),
                                 data: this.props.attributes.difficulties,
-                                change: this._attributeChange.bind(this, "difficulty") }),
+                                onChange: this._attributeChange.bind(this, "difficulty") }),
                             React.createElement(DeveloperAttribute, { label: this.props.texts.taxonomy,
-                                value: this.state.taxonomy,
+                                value: this.props.object.taxonomy(),
                                 data: this.props.attributes.taxonomies,
-                                change: this._attributeChange.bind(this, "taxonomy") }),
+                                onChange: this._attributeChange.bind(this, "taxonomy") }),
                             React.createElement(DeveloperAttribute, { label: this.props.texts.topic,
-                                value: this.state.topic,
+                                value: this.props.object.topic(),
                                 data: this.props.attributes.topics,
-                                change: this._attributeChange.bind(this, "topic") })
+                                onChange: this._attributeChange.bind(this, "topic") })
+                        ),
+                        React.createElement(
+                            "div",
+                            null,
+                            developerParagraphs,
+                            React.createElement(
+                                "div",
+                                { className: "form-group text-center mt-15" },
+                                React.createElement(
+                                    "button",
+                                    { type: "button", className: "btn btn-success" },
+                                    this.props.texts.addSection
+                                )
+                            )
+                        ),
+                        React.createElement("hr", { className: "bb-separator" }),
+                        React.createElement(
+                            "div",
+                            null,
+                            paragraphs
                         )
                     )
                 )
@@ -76,23 +115,29 @@ var DeveloperQuestion = function (_React$Component) {
             switch (type) {
                 case "difficulty":
                     this.props.object.setDifficulty(value);
-                    this.setState({
-                        difficulty: value
-                    });
                     break;
                 case "taxonomy":
                     this.props.object.setTaxonomy(value);
-                    this.setState({
-                        taxonomy: value
-                    });
                     break;
                 case "topic":
                     this.props.object.setTopic(value);
-                    this.setState({
-                        topic: value
-                    });
                     break;
             }
+            this.setState(function (prevState) {
+                return {
+                    update: prevState.update + 1
+                };
+            });
+        }
+    }, {
+        key: "_paragraphChange",
+        value: function _paragraphChange(id, data) {
+            this.props.object.updateParagraph(id, data);
+            this.setState(function (prevState) {
+                return {
+                    update: prevState.update + 1
+                };
+            });
         }
     }]);
 

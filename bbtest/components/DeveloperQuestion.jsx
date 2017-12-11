@@ -2,12 +2,39 @@ class DeveloperQuestion extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            difficulty: this.props.object.difficulty(),
-            taxonomy: this.props.object.taxonomy(),
-            topic: this.props.object.topic()
+            update: 0
         };
     }
     render() {
+        let developerParagraphs = [];
+        let paragraphs = [];
+        this.props.object.paragraphIds().map(function(id) {
+            let data = this.props.object.paragraph(id);
+            if (data.paragraph_class === "TextParagraph") {
+                developerParagraphs.push(
+                    <DeveloperTextParagraph key={id}
+                                            data={data.meta_data}
+                                            onChange={this._paragraphChange.bind(this, id)}
+                                            placeholder={this.props.texts.sectionTextareaPlaceholder} />
+                );
+                paragraphs.push(
+                    <TextParagraph key={id}
+                                   data={data.meta_data} />
+                );
+            } else if (data.paragraph_class === "SplitTextParagraph") {
+                developerParagraphs.push(
+                    <DeveloperSplitTextParagraph key={id}
+                                                 data={data.meta_data}
+                                                 onChange={this._paragraphChange.bind(this, id)}
+                                                 placeholder={this.props.texts.sectionTextareaPlaceholder} />
+                );
+                paragraphs.push(
+                    <SplitTextParagraph key={id}
+                                        data={data.meta_data} />
+                );
+            }
+        }.bind(this));
+
         return (
             <div className="col-xs-12 bb-developer-container">
                 <div className="panel panel-primary">
@@ -18,47 +45,30 @@ class DeveloperQuestion extends React.Component {
                     <div className="panel-body">
                         <div className="form-horizontal">
                             <DeveloperAttribute label={this.props.texts.difficulty}
-                                                value={this.state.difficulty}
+                                                value={this.props.object.difficulty()}
                                                 data={this.props.attributes.difficulties}
-                                                change={this._attributeChange.bind(this, "difficulty")} />
+                                                onChange={this._attributeChange.bind(this, "difficulty")} />
                             <DeveloperAttribute label={this.props.texts.taxonomy}
-                                                value={this.state.taxonomy}
+                                                value={this.props.object.taxonomy()}
                                                 data={this.props.attributes.taxonomies}
-                                                change={this._attributeChange.bind(this, "taxonomy")} />
+                                                onChange={this._attributeChange.bind(this, "taxonomy")} />
                             <DeveloperAttribute label={this.props.texts.topic}
-                                                value={this.state.topic}
+                                                value={this.props.object.topic()}
                                                 data={this.props.attributes.topics}
-                                                change={this._attributeChange.bind(this, "topic")} />
+                                                onChange={this._attributeChange.bind(this, "topic")} />
+                        </div>
+                        <div>
+                            {developerParagraphs}
+                            <div className="form-group text-center mt-15">
+                                <button type="button" className="btn btn-success">{this.props.texts.addSection}</button>
+                            </div>
+                        </div>
+                        <hr className="bb-separator" />
+                        <div>
+                            {paragraphs}
                         </div>
                         {/*
                         <div>
-                            <div class="form-group bb-test-section-movable bb-test-section-background">
-                                <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
-                                    <button type="button" class="btn btn-danger btn-xs pull-right ml-5">Formulas Off</button>
-                                    <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
-                                </div>
-                                <textarea class="bb-test-paragraph bb-test-paragraph-textarea" placeholder="Type something!" class="form-control">Main question here...</textarea>
-                            </div>
-
-                            <div class="form-group bb-test-section-movable bb-test-section-background">
-                                <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
-                                    <button type="button" class="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
-                                    <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                                        <div class="row">
-                                            <div class="col-xs-6 pr-5">
-                                                <textarea class="bb-test-paragraph bb-test-paragraph-textarea" placeholder="Type something!" class="form-control">Left quantitative text</textarea>
-                                            </div>
-                                            <div class="col-xs-6 pl-5">
-                                                <textarea class="bb-test-paragraph bb-test-paragraph-textarea" placeholder="Type something!" class="form-control">Right quantitative text</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="form-group bb-test-section-movable bb-test-section-background">
                                 <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
                                     <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
@@ -76,28 +86,11 @@ class DeveloperQuestion extends React.Component {
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="form-group text-center mt-15">
-                                <button type="button" class="btn btn-success">Add Section</button>
-                            </div>
                         </div>
                         <hr class="bb-separator">
                         <div>
                             <div class="bb-test-paragraph">
                                 <p class="lead text-center mb-0">Please add a Section above to preview it here.</p>
-                            </div>
-                            <div class="bb-test-paragraph">Main question here...</div>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                                    <div class="row">
-                                        <div class="col-xs-6 pr-5">
-                                            <div class="bb-test-paragraph">Left quantitative text</div>
-                                        </div>
-                                        <div class="col-xs-6 pl-5">
-                                            <div class="bb-test-paragraph">Right quantitative text</div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="bb-test-paragraph">
                                 <img class="img-responsive center-block bb-test-paragraph-image" src="{% static 'img/sample.png' %}">
@@ -113,22 +106,22 @@ class DeveloperQuestion extends React.Component {
         switch (type) {
             case "difficulty":
                 this.props.object.setDifficulty(value);
-                this.setState({
-                    difficulty: value
-                });
                 break;
             case "taxonomy":
                 this.props.object.setTaxonomy(value);
-                this.setState({
-                    taxonomy: value
-                });
                 break;
             case "topic":
                 this.props.object.setTopic(value);
-                this.setState({
-                    topic: value
-                });
                 break;
         }
+        this.setState(prevState => ({
+            update: prevState.update + 1
+        }));
+    }
+    _paragraphChange(id, data) {
+        this.props.object.updateParagraph(id, data);
+        this.setState(prevState => ({
+            update: prevState.update + 1
+        }));
     }
 }
