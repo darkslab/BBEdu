@@ -19,10 +19,40 @@ var DeveloperQuestion = function (_React$Component) {
         _this.state = {
             update: 0
         };
+        _this._$paragraphsContainer = undefined;
         return _this;
     }
 
     _createClass(DeveloperQuestion, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this._$paragraphsContainer = $("[data-paragraphs]");
+            if (this._$paragraphsContainer.length) {
+                this._$paragraphsContainer.sortable({
+                    axis: "y",
+                    forceHelperSize: true,
+                    forcePlaceholderSize: true,
+                    placeholder: "bb-test-paragraph-placeholder",
+                    tolerance: "pointer",
+
+                    create: function () {
+                        this._$paragraphsContainer.height(this._$paragraphsContainer.height());
+                    }.bind(this),
+                    update: this._paragraphsSorted.bind(this)
+                });
+            } else {
+                this._$paragraphsContainer = undefined;
+            }
+        }
+    }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+            if (this._$paragraphsContainer) {
+                this._$paragraphsContainer.sortable("destroy");
+                this._$paragraphsContainer = undefined;
+            }
+        }
+    }, {
         key: "render",
         value: function render() {
             var developerParagraphs = [];
@@ -31,6 +61,7 @@ var DeveloperQuestion = function (_React$Component) {
                 var data = this.props.object.paragraph(id);
                 if (data.paragraph_class === "TextParagraph") {
                     developerParagraphs.push(React.createElement(DeveloperTextParagraph, { key: id,
+                        paragraphId: id,
                         data: data.meta_data,
                         onChange: this._paragraphChange.bind(this, id),
                         placeholder: this.props.texts.sectionTextareaPlaceholder }));
@@ -38,6 +69,7 @@ var DeveloperQuestion = function (_React$Component) {
                         data: data.meta_data }));
                 } else if (data.paragraph_class === "SplitTextParagraph") {
                     developerParagraphs.push(React.createElement(DeveloperSplitTextParagraph, { key: id,
+                        paragraphId: id,
                         data: data.meta_data,
                         onChange: this._paragraphChange.bind(this, id),
                         placeholder: this.props.texts.sectionTextareaPlaceholder }));
@@ -99,7 +131,11 @@ var DeveloperQuestion = function (_React$Component) {
                         React.createElement(
                             "div",
                             null,
-                            developerParagraphs,
+                            React.createElement(
+                                "div",
+                                { "data-paragraphs": true },
+                                developerParagraphs
+                            ),
                             React.createElement(
                                 "div",
                                 { className: "form-group text-center mt-23" },
@@ -144,6 +180,21 @@ var DeveloperQuestion = function (_React$Component) {
         key: "_paragraphChange",
         value: function _paragraphChange(id, data) {
             this.props.object.updateParagraph(id, data);
+            this.setState(function (prevState) {
+                return {
+                    update: prevState.update + 1
+                };
+            });
+        }
+    }, {
+        key: "_paragraphsSorted",
+        value: function _paragraphsSorted(event, ui) {
+            var paragraphIds = this._$paragraphsContainer.sortable("toArray", {
+                attribute: "data-paragraph-id"
+            });
+            this.props.object.setParagraphOrder(paragraphIds.map(function (id) {
+                return parseInt(id, 10);
+            }));
             this.setState(function (prevState) {
                 return {
                     update: prevState.update + 1

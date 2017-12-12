@@ -4,6 +4,32 @@ class DeveloperQuestion extends React.Component {
         this.state = {
             update: 0
         };
+        this._$paragraphsContainer = undefined;
+    }
+    componentDidMount() {
+        this._$paragraphsContainer = $("[data-paragraphs]");
+        if (this._$paragraphsContainer.length) {
+            this._$paragraphsContainer.sortable({
+                axis: "y",
+                forceHelperSize: true,
+                forcePlaceholderSize: true,
+                placeholder: "bb-test-paragraph-placeholder",
+                tolerance: "pointer",
+
+                create: function() {
+                    this._$paragraphsContainer.height(this._$paragraphsContainer.height());
+                }.bind(this),
+                update: this._paragraphsSorted.bind(this)
+            });
+        } else {
+            this._$paragraphsContainer = undefined;
+        }
+    }
+    componentWillUnmount() {
+        if (this._$paragraphsContainer) {
+            this._$paragraphsContainer.sortable("destroy");
+            this._$paragraphsContainer = undefined;
+        }
     }
     render() {
         let developerParagraphs = [];
@@ -13,6 +39,7 @@ class DeveloperQuestion extends React.Component {
             if (data.paragraph_class === "TextParagraph") {
                 developerParagraphs.push(
                     <DeveloperTextParagraph key={id}
+                                            paragraphId={id}
                                             data={data.meta_data}
                                             onChange={this._paragraphChange.bind(this, id)}
                                             placeholder={this.props.texts.sectionTextareaPlaceholder} />
@@ -24,6 +51,7 @@ class DeveloperQuestion extends React.Component {
             } else if (data.paragraph_class === "SplitTextParagraph") {
                 developerParagraphs.push(
                     <DeveloperSplitTextParagraph key={id}
+                                                 paragraphId={id}
                                                  data={data.meta_data}
                                                  onChange={this._paragraphChange.bind(this, id)}
                                                  placeholder={this.props.texts.sectionTextareaPlaceholder} />
@@ -65,7 +93,9 @@ class DeveloperQuestion extends React.Component {
                                                 onChange={this._attributeChange.bind(this, "topic")} />
                         </div>
                         <div>
-                            {developerParagraphs}
+                            <div data-paragraphs>
+                                {developerParagraphs}
+                            </div>
                             <div className="form-group text-center mt-23">
                                 <button type="button" className="btn btn-success">{this.props.texts.addSection}</button>
                             </div>
@@ -124,6 +154,15 @@ class DeveloperQuestion extends React.Component {
     }
     _paragraphChange(id, data) {
         this.props.object.updateParagraph(id, data);
+        this.setState(prevState => ({
+            update: prevState.update + 1
+        }));
+    }
+    _paragraphsSorted(event, ui) {
+        let paragraphIds = this._$paragraphsContainer.sortable("toArray", {
+            attribute: "data-paragraph-id"
+        });
+        this.props.object.setParagraphOrder(paragraphIds.map(id => parseInt(id, 10)));
         this.setState(prevState => ({
             update: prevState.update + 1
         }));

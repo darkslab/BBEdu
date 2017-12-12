@@ -36,7 +36,7 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
 
             return React.createElement(
                 "div",
-                { className: "form-group bb-test-section-movable bb-test-section-background" },
+                { className: "form-group bb-test-section-movable bb-test-section-background", "data-paragraph-id": this.props.paragraphId },
                 React.createElement(
                     "div",
                     { className: "pt-5 pr-5 pb-5 pl-5 clearfix" },

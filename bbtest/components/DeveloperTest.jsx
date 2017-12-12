@@ -284,3 +284,6 @@ DeveloperQuestionObject.prototype.paragraph = function(id) {
 }
 DeveloperQuestionObject.prototype.updateParagraph = function(id, data) {
 }
+DeveloperQuestionObject.prototype.setParagraphOrder = function(order) {
+    this._data.paragraph_order = order;
+}

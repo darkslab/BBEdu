@@ -18,7 +18,7 @@ class DeveloperSplitTextParagraph extends React.Component {
         }
 
         return (
-            <div className="form-group bb-test-section-movable bb-test-section-background">
+            <div className="form-group bb-test-section-movable bb-test-section-background" data-paragraph-id={this.props.paragraphId}>
                 <div className="pt-5 pr-5 pb-5 pl-5 clearfix">
                     {buttons}
                     <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
