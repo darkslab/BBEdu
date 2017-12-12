@@ -20,6 +20,10 @@ from bbtest.pipeline_js import (
     BASE2_SOURCE_FILENAMES as BASE2_SOURCE_FILENAMES_JS,
     BASE3_SOURCE_FILENAMES as BASE3_SOURCE_FILENAMES_JS,
 )
+from bbtest.pipeline_css import (
+    BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_CSS,
+    BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_CSS,
+)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -194,13 +198,13 @@ PIPELINE = {
         },
     },
     "STYLESHEETS": {
-        "base": {
-            "source_filenames": (
-                "css/font-awesome.css",
-                "css/bootstrap.css",
-                "css/style.css",
-            ),
-            "output_filename": "css/base.css",
+        "base0": {
+            "source_filenames": BASE0_SOURCE_FILENAMES_CSS,
+            "output_filename": "css/base0.css",
+        },
+        "base1": {
+            "source_filenames": BASE1_SOURCE_FILENAMES_CSS,
+            "output_filename": "css/base1.css",
         },
     },
 }
