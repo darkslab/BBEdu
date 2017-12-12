@@ -104,33 +104,6 @@ class DeveloperQuestion extends React.Component {
                         <div>
                             {paragraphs}
                         </div>
-                        {/*
-                        <div>
-                            <div class="form-group bb-test-section-movable bb-test-section-background">
-                                <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
-                                    <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
-                                </div>
-                                <div class="bb-test-paragraph bb-test-paragraph-upload">
-                                    <div class="row">
-                                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <label for="monkey" class="btn btn-success btn-lg btn-block mt-23">Upload Image</label>
-                                                    <input id="monkey" class="hidden" type="file">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="bb-separator">
-                        <div>
-                            <div class="bb-test-paragraph">
-                                <img class="img-responsive center-block bb-test-paragraph-image" src="{% static 'img/sample.png' %}">
-                            </div>
-                        </div>
-                        */}
                     </div>
                 </div>
             </div>
