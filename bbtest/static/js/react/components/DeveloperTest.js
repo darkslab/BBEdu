@@ -62,13 +62,9 @@ var DeveloperTest = function (_React$Component) {
             var content = null;
             if (this.state.isErrored) {
                 content = React.createElement(
-                    "div",
-                    { className: "col-xs-12 bb-developer-container" },
-                    React.createElement(
-                        "h4",
-                        { className: "text-center" },
-                        this.props.texts.error
-                    )
+                    "h4",
+                    { className: "text-center text-danger" },
+                    this.props.texts.error
                 );
             } else if (!this.state.isTestLoading && !this.state.isQuestionLoading && !this.state.isQuestionSaving) {
                 content = React.createElement(DeveloperQuestion, { count: this.state.questionIndex + 1,
@@ -76,11 +72,7 @@ var DeveloperTest = function (_React$Component) {
                     object: this._questionObject,
                     texts: this.props.texts });
             } else {
-                content = React.createElement(
-                    "div",
-                    { className: "col-xs-12 bb-developer-container" },
-                    React.createElement("img", { className: "bb-spinner", src: this.props.spinnerLogo })
-                );
+                content = React.createElement("img", { className: "bb-spinner", src: this.props.spinnerLogo });
             }
 
             var pagination = null;
@@ -203,7 +195,11 @@ var DeveloperTest = function (_React$Component) {
                 "div",
                 { className: "row" },
                 pagination,
-                content
+                React.createElement(
+                    "div",
+                    { className: "col-xs-12 bb-developer-container" },
+                    content
+                )
             );
         }
     }, {
@@ -344,7 +340,23 @@ DeveloperQuestionObject.prototype.paragraph = function (id) {
         }
     }
 };
-DeveloperQuestionObject.prototype.updateParagraph = function (id, data) {};
+DeveloperQuestionObject.prototype.updateParagraph = function (id, data) {
+    for (var i = 0; i < this._paragraphs.length; i++) {
+        if (id === this._paragraphs[i].id) {
+            this._paragraphs[i].data.meta_data = data;
+            break;
+        }
+    }
+};
 DeveloperQuestionObject.prototype.setParagraphOrder = function (order) {
     this._data.paragraph_order = order;
+};
+DeveloperQuestionObject.prototype.answer = function () {
+    return {
+        answer_class: this._data.answer_class,
+        meta_data: this._data.meta_data
+    };
+};
+DeveloperQuestionObject.prototype.updateAnswer = function (data) {
+    this._data.meta_data = data;
 };

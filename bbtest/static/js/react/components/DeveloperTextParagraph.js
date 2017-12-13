@@ -1,5 +1,7 @@
 "use strict";
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21,9 +23,7 @@ var DeveloperTextParagraph = function (_React$Component) {
         key: "render",
         value: function render() {
             var buttons = [];
-            {/*
-                <button type="button" class="btn btn-danger btn-xs pull-right ml-5">Formulas Off</button>
-                */}
+            // <button type="button" className="btn btn-danger btn-xs pull-right ml-5">Formulas Off</button>
 
             var className = "form-control bb-test-paragraph bb-test-paragraph-textarea";
             if (!this.props.data.text) {
@@ -44,7 +44,7 @@ var DeveloperTextParagraph = function (_React$Component) {
                     )
                 ),
                 React.createElement("textarea", { className: className,
-                    placeholder: this.props.placeholder,
+                    placeholder: this.props.texts.sectionTextareaPlaceholder,
                     value: this.props.data.text,
                     onChange: this._handleChange.bind(this) })
             );
@@ -52,8 +52,9 @@ var DeveloperTextParagraph = function (_React$Component) {
     }, {
         key: "_handleChange",
         value: function _handleChange(event) {
-            this.props.data.text = event.target.value;
-            this.props.onChange(this.props.data);
+            this.props.onChange(_extends({}, this.props.data, {
+                text: event.target.value
+            }));
         }
     }]);
 

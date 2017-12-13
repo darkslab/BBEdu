@@ -4,9 +4,7 @@ class DeveloperSplitTextParagraph extends React.Component {
     }
     render() {
         let buttons = [];
-        {/*
-        <button type="button" class="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
-        */}
+        // <button type="button" className="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
 
         let leftClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
         if (!this.props.data.left_text) {
@@ -28,13 +26,13 @@ class DeveloperSplitTextParagraph extends React.Component {
                         <div className="row">
                             <div className="col-xs-6 pr-5">
                                 <textarea className={leftClassName}
-                                          placeholder={this.props.placeholder}
+                                          placeholder={this.props.texts.sectionTextareaPlaceholder}
                                           value={this.props.data.left_text}
                                           onChange={this._handleChange.bind(this, "left")} />
                             </div>
                             <div className="col-xs-6 pl-5">
                                 <textarea className={rightClassName}
-                                          placeholder={this.props.placeholder}
+                                          placeholder={this.props.texts.sectionTextareaPlaceholder}
                                           value={this.props.data.right_text}
                                           onChange={this._handleChange.bind(this, "right")} />
                             </div>
@@ -45,14 +43,21 @@ class DeveloperSplitTextParagraph extends React.Component {
         );
     }
     _handleChange(side, event) {
+        let data;
         switch (side) {
             case "left":
-                this.props.data.left_text = event.target.value;
+                data = {
+                    ...this.props.data,
+                    left_text: event.target.value
+                };
                 break;
             case "right":
-                this.props.data.right_text = event.target.value;
+                data = {
+                    ...this.props.data,
+                    right_text: event.target.value
+                };
                 break;
         }
-        this.props.onChange(this.props.data);
+        this.props.onChange(data);
     }
 }

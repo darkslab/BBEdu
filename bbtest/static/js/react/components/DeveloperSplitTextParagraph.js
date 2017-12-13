@@ -1,5 +1,7 @@
 "use strict";
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21,9 +23,7 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
         key: "render",
         value: function render() {
             var buttons = [];
-            {/*
-                <button type="button" class="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
-                */}
+            // <button type="button" className="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
 
             var leftClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
             if (!this.props.data.left_text) {
@@ -60,7 +60,7 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                                 "div",
                                 { className: "col-xs-6 pr-5" },
                                 React.createElement("textarea", { className: leftClassName,
-                                    placeholder: this.props.placeholder,
+                                    placeholder: this.props.texts.sectionTextareaPlaceholder,
                                     value: this.props.data.left_text,
                                     onChange: this._handleChange.bind(this, "left") })
                             ),
@@ -68,7 +68,7 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                                 "div",
                                 { className: "col-xs-6 pl-5" },
                                 React.createElement("textarea", { className: rightClassName,
-                                    placeholder: this.props.placeholder,
+                                    placeholder: this.props.texts.sectionTextareaPlaceholder,
                                     value: this.props.data.right_text,
                                     onChange: this._handleChange.bind(this, "right") })
                             )
@@ -80,15 +80,20 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
     }, {
         key: "_handleChange",
         value: function _handleChange(side, event) {
+            var data = void 0;
             switch (side) {
                 case "left":
-                    this.props.data.left_text = event.target.value;
+                    data = _extends({}, this.props.data, {
+                        left_text: event.target.value
+                    });
                     break;
                 case "right":
-                    this.props.data.right_text = event.target.value;
+                    data = _extends({}, this.props.data, {
+                        right_text: event.target.value
+                    });
                     break;
             }
-            this.props.onChange(this.props.data);
+            this.props.onChange(data);
         }
     }]);
 

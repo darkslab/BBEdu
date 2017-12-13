@@ -34,34 +34,24 @@ class DeveloperQuestion extends React.Component {
     render() {
         let developerParagraphs = [];
         let paragraphs = [];
-        this.props.object.paragraphIds().map(function(id) {
-            let data = this.props.object.paragraph(id);
-            if (data.paragraph_class === "TextParagraph") {
-                developerParagraphs.push(
-                    <DeveloperTextParagraph key={id}
-                                            paragraphId={id}
-                                            data={data.meta_data}
-                                            onChange={this._paragraphChange.bind(this, id)}
-                                            placeholder={this.props.texts.sectionTextareaPlaceholder} />
-                );
-                paragraphs.push(
-                    <TextParagraph key={id}
-                                   data={data.meta_data} />
-                );
-            } else if (data.paragraph_class === "SplitTextParagraph") {
-                developerParagraphs.push(
-                    <DeveloperSplitTextParagraph key={id}
-                                                 paragraphId={id}
-                                                 data={data.meta_data}
-                                                 onChange={this._paragraphChange.bind(this, id)}
-                                                 placeholder={this.props.texts.sectionTextareaPlaceholder} />
-                );
-                paragraphs.push(
-                    <SplitTextParagraph key={id}
-                                        data={data.meta_data} />
-                );
-            }
-        }.bind(this));
+        this.props.object.paragraphIds().map(id => {
+            let paragraphData = this.props.object.paragraph(id);
+
+            let DeveloperParagraphClass = eval("Developer" + paragraphData.paragraph_class);
+            let ParagraphClass = eval(paragraphData.paragraph_class);
+
+            developerParagraphs.push(
+                <DeveloperParagraphClass key={id}
+                                         paragraphId={id}
+                                         data={paragraphData.meta_data}
+                                         onChange={this._paragraphChange.bind(this, id)}
+                                         texts={this.props.texts} />
+            );
+            paragraphs.push(
+                <ParagraphClass key={id}
+                                data={paragraphData.meta_data} />
+            );
+        });
         if (!paragraphs.length) {
             paragraphs.push(
                 <div key={'empty'} className="bb-test-paragraph">
@@ -70,43 +60,63 @@ class DeveloperQuestion extends React.Component {
             );
         }
 
-        return (
-            <div className="col-xs-12 bb-developer-container">
-                <div className="panel panel-primary">
-                    <div className="panel-heading bb-rel">
-                        <div className="bb-test-number">{this.props.count}</div>
-                        <h4 className="panel-title bb-test-title mt-15 mb-15">{this.props.texts.question}</h4>
+        let answerContent = null;
+        let answerData = this.props.object.answer();
+        if (answerData.answer_class) {
+            let AnswerClass = eval("Developer" + answerData.answer_class);
+            answerContent = (
+                <AnswerClass data={answerData.meta_data}
+                             onChange={this._answerChange.bind(this)}
+                             texts={this.props.texts} />
+            );
+        } else {
+            answerContent = (
+                <div className="row mb-23">
+                    <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                        <button type="button" className="btn btn-primary btn-lg btn-block">{this.props.texts.addAnswer}</button>
                     </div>
-                    <div className="panel-body">
-                        <div className="form-horizontal">
-                            <DeveloperAttribute label={this.props.texts.difficulty}
-                                                value={this.props.object.difficulty()}
-                                                data={this.props.attributes.difficulties}
-                                                onChange={this._attributeChange.bind(this, "difficulty")} />
-                            <DeveloperAttribute label={this.props.texts.taxonomy}
-                                                value={this.props.object.taxonomy()}
-                                                data={this.props.attributes.taxonomies}
-                                                onChange={this._attributeChange.bind(this, "taxonomy")} />
-                            <DeveloperAttribute label={this.props.texts.topic}
-                                                value={this.props.object.topic()}
-                                                data={this.props.attributes.topics}
-                                                onChange={this._attributeChange.bind(this, "topic")} />
-                        </div>
-                        <div>
-                            <div data-paragraphs>
-                                {developerParagraphs}
+                </div>
+            );
+        }
+
+        return (
+            <React.Fragment>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <div className="panel panel-primary">
+                            <div className="panel-heading bb-rel">
+                                <div className="bb-test-number">{this.props.count}</div>
+                                <h4 className="panel-title bb-test-title mt-15 mb-15">{this.props.texts.question}</h4>
                             </div>
-                            <div className="form-group text-center mt-23">
-                                <button type="button" className="btn btn-success">{this.props.texts.addSection}</button>
+                            <div className="panel-body">
+                                <div className="form-horizontal">
+                                    <DeveloperAttribute label={this.props.texts.difficulty}
+                                                        value={this.props.object.difficulty()}
+                                                        data={this.props.attributes.difficulties}
+                                                        onChange={this._attributeChange.bind(this, "difficulty")} />
+                                    <DeveloperAttribute label={this.props.texts.taxonomy}
+                                                        value={this.props.object.taxonomy()}
+                                                        data={this.props.attributes.taxonomies}
+                                                        onChange={this._attributeChange.bind(this, "taxonomy")} />
+                                    <DeveloperAttribute label={this.props.texts.topic}
+                                                        value={this.props.object.topic()}
+                                                        data={this.props.attributes.topics}
+                                                        onChange={this._attributeChange.bind(this, "topic")} />
+                                </div>
+                                <div data-paragraphs>
+                                    {developerParagraphs}
+                                </div>
+                                <div className="form-group text-center mt-23">
+                                    <button type="button" className="btn btn-success">{this.props.texts.addSection}</button>
+                                </div>
+                                <hr className="bb-separator" />
+                                {paragraphs}
                             </div>
-                        </div>
-                        <hr className="bb-separator" />
-                        <div>
-                            {paragraphs}
                         </div>
                     </div>
                 </div>
-            </div>
+                {answerContent}
+            </React.Fragment>
         );
     }
     _attributeChange(type, value) {
@@ -136,6 +146,12 @@ class DeveloperQuestion extends React.Component {
             attribute: "data-paragraph-id"
         });
         this.props.object.setParagraphOrder(paragraphIds.map(id => parseInt(id, 10)));
+        this.setState(prevState => ({
+            update: prevState.update + 1
+        }));
+    }
+    _answerChange(data) {
+        this.props.object.updateAnswer(data);
         this.setState(prevState => ({
             update: prevState.update + 1
         }));

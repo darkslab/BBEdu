@@ -4,9 +4,7 @@ class DeveloperTextParagraph extends React.Component {
     }
     render() {
         let buttons = [];
-        {/*
-        <button type="button" class="btn btn-danger btn-xs pull-right ml-5">Formulas Off</button>
-        */}
+        // <button type="button" className="btn btn-danger btn-xs pull-right ml-5">Formulas Off</button>
 
         let className = "form-control bb-test-paragraph bb-test-paragraph-textarea";
         if (!this.props.data.text) {
@@ -20,14 +18,16 @@ class DeveloperTextParagraph extends React.Component {
                     <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
                 </div>
                 <textarea className={className}
-                          placeholder={this.props.placeholder}
+                          placeholder={this.props.texts.sectionTextareaPlaceholder}
                           value={this.props.data.text}
                           onChange={this._handleChange.bind(this)} />
             </div>
         );
     }
     _handleChange(event) {
-        this.props.data.text = event.target.value;
-        this.props.onChange(this.props.data);
+        this.props.onChange({
+            ...this.props.data,
+            text: event.target.value
+        });
     }
 }

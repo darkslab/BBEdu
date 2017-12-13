@@ -39,9 +39,7 @@ class DeveloperTest extends React.Component {
         let content = null;
         if (this.state.isErrored) {
             content = (
-                <div className="col-xs-12 bb-developer-container">
-                    <h4 className="text-center">{this.props.texts.error}</h4>
-                </div>
+                <h4 className="text-center text-danger">{this.props.texts.error}</h4>
             );
         } else if (!this.state.isTestLoading && !this.state.isQuestionLoading && !this.state.isQuestionSaving) {
             content = (
@@ -52,9 +50,7 @@ class DeveloperTest extends React.Component {
             );
         } else {
             content = (
-                <div className="col-xs-12 bb-developer-container">
-                    <img className="bb-spinner" src={this.props.spinnerLogo} />
-                </div>
+                <img className="bb-spinner" src={this.props.spinnerLogo} />
             );
         }
 
@@ -149,7 +145,9 @@ class DeveloperTest extends React.Component {
         return (
             <div className="row">
                 {pagination}
-                {content}
+                <div className="col-xs-12 bb-developer-container">
+                    {content}
+                </div>
             </div>
         );
     }
@@ -283,7 +281,22 @@ DeveloperQuestionObject.prototype.paragraph = function(id) {
     }
 }
 DeveloperQuestionObject.prototype.updateParagraph = function(id, data) {
+    for (let i = 0; i < this._paragraphs.length; i++) {
+        if (id === this._paragraphs[i].id) {
+            this._paragraphs[i].data.meta_data = data;
+            break;
+        }
+    }
 }
 DeveloperQuestionObject.prototype.setParagraphOrder = function(order) {
     this._data.paragraph_order = order;
+}
+DeveloperQuestionObject.prototype.answer = function() {
+    return {
+        answer_class: this._data.answer_class,
+        meta_data: this._data.meta_data
+    };
+}
+DeveloperQuestionObject.prototype.updateAnswer = function(data) {
+    this._data.meta_data = data;
 }
