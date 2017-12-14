@@ -4,7 +4,7 @@ class DeveloperQuestion extends React.Component {
         this.state = {
             update: 0
         };
-        this._$paragraphsContainer = undefined;
+        this._$paragraphsContainer;
     }
     componentDidMount() {
         this._$paragraphsContainer = $("[data-paragraphs]");
@@ -110,7 +110,9 @@ class DeveloperQuestion extends React.Component {
                                     <button type="button" className="btn btn-success">{this.props.texts.addSection}</button>
                                 </div>
                                 <hr className="bb-separator" />
-                                {paragraphs}
+                                <div className="mb-15">
+                                    {paragraphs}
+                                </div>
                             </div>
                         </div>
                     </div>

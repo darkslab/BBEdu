@@ -1,5 +1,7 @@
 "use strict";
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26,7 +28,7 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
 
             return React.createElement(
                 "div",
-                { className: "form-group bb-test-section-movable bb-test-section-background" },
+                { className: "form-group bb-test-section-movable bb-test-section-background", "data-choice-id": this.props.choiceId },
                 React.createElement(
                     "div",
                     { className: "pt-5 pr-5 pb-5 pl-5 clearfix" },
@@ -45,11 +47,19 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
                         "div",
                         { className: "col-xs-10 col-sm-7 pl-0" },
                         React.createElement("textarea", { className: "form-control bb-test-answer bb-test-answer-textarea",
-                            placeholder: "Type something!",
-                            value: "" })
+                            placeholder: this.props.texts.choiceTextareaPlaceholder,
+                            value: this.props.data.text,
+                            onChange: this._handleChange.bind(this) })
                     )
                 )
             );
+        }
+    }, {
+        key: "_handleChange",
+        value: function _handleChange(event) {
+            this.props.onChange(_extends({}, this.props.data, {
+                text: event.target.value
+            }));
         }
     }]);
 

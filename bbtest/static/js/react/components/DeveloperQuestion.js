@@ -19,7 +19,7 @@ var DeveloperQuestion = function (_React$Component) {
         _this.state = {
             update: 0
         };
-        _this._$paragraphsContainer = undefined;
+        _this._$paragraphsContainer;
         return _this;
     }
 
@@ -168,7 +168,11 @@ var DeveloperQuestion = function (_React$Component) {
                                     )
                                 ),
                                 React.createElement("hr", { className: "bb-separator" }),
-                                paragraphs
+                                React.createElement(
+                                    "div",
+                                    { className: "mb-15" },
+                                    paragraphs
+                                )
                             )
                         )
                     )
