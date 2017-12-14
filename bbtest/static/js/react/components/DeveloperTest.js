@@ -284,7 +284,7 @@ var DeveloperTest = function (_React$Component) {
             this.setState({
                 questionIndex: index
             });
-            location.hash = (index + 1).toString();
+            history.replaceState(history.state, "", location.pathname + "#" + (index + 1).toString());
 
             if (this._$xhrs["question"]) {
                 this._$xhrs["question"].abort();
