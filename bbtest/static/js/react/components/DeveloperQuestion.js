@@ -17,7 +17,8 @@ var DeveloperQuestion = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (DeveloperQuestion.__proto__ || Object.getPrototypeOf(DeveloperQuestion)).call(this, props));
 
         _this.state = {
-            update: 0
+            update: 0,
+            paragraphsModal: false
         };
         _this._$paragraphsContainer;
         return _this;
@@ -108,9 +109,16 @@ var DeveloperQuestion = function (_React$Component) {
                 );
             }
 
+            var modal = null;
+            if (this.state.paragraphsModal) {
+                modal = React.createElement(DeveloperParagraphsModal, { complete: this._completeParagraphsModal.bind(this),
+                    texts: this.props.texts });
+            }
+
             return React.createElement(
                 React.Fragment,
                 null,
+                modal,
                 React.createElement(
                     "div",
                     { className: "row" },
@@ -163,8 +171,10 @@ var DeveloperQuestion = function (_React$Component) {
                                     { className: "form-group text-center mt-23" },
                                     React.createElement(
                                         "button",
-                                        { type: "button", className: "btn btn-success" },
-                                        this.props.texts.addSection
+                                        { type: "button",
+                                            className: "btn btn-success",
+                                            onClick: this._renderParagraphsModal.bind(this) },
+                                        this.props.texts.addParagraph
                                     )
                                 ),
                                 React.createElement("hr", { className: "bb-separator" }),
@@ -233,6 +243,20 @@ var DeveloperQuestion = function (_React$Component) {
                 return {
                     update: prevState.update + 1
                 };
+            });
+        }
+    }, {
+        key: "_renderParagraphsModal",
+        value: function _renderParagraphsModal() {
+            this.setState({
+                paragraphsModal: true
+            });
+        }
+    }, {
+        key: "_completeParagraphsModal",
+        value: function _completeParagraphsModal(data) {
+            this.setState({
+                paragraphsModal: false
             });
         }
     }]);

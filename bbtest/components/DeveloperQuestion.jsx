@@ -2,7 +2,8 @@ class DeveloperQuestion extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            update: 0
+            update: 0,
+            paragraphsModal: false
         };
         this._$paragraphsContainer;
     }
@@ -79,8 +80,17 @@ class DeveloperQuestion extends React.Component {
             );
         }
 
+        let modal = null;
+        if (this.state.paragraphsModal) {
+            modal = (
+                <DeveloperParagraphsModal complete={this._completeParagraphsModal.bind(this)}
+                                          texts={this.props.texts} />
+            );
+        }
+
         return (
             <React.Fragment>
+                {modal}
                 <div className="row">
                     <div className="col-xs-12">
                         <div className="panel panel-primary">
@@ -107,7 +117,9 @@ class DeveloperQuestion extends React.Component {
                                     {developerParagraphs}
                                 </div>
                                 <div className="form-group text-center mt-23">
-                                    <button type="button" className="btn btn-success">{this.props.texts.addSection}</button>
+                                    <button type="button"
+                                            className="btn btn-success"
+                                            onClick={this._renderParagraphsModal.bind(this)}>{this.props.texts.addParagraph}</button>
                                 </div>
                                 <hr className="bb-separator" />
                                 <div className="mb-15">
@@ -157,5 +169,15 @@ class DeveloperQuestion extends React.Component {
         this.setState(prevState => ({
             update: prevState.update + 1
         }));
+    }
+    _renderParagraphsModal() {
+        this.setState({
+            paragraphsModal: true
+        });
+    }
+    _completeParagraphsModal(data) {
+        this.setState({
+            paragraphsModal: false
+        });
     }
 }
