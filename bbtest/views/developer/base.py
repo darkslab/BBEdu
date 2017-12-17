@@ -36,27 +36,31 @@ class IndexedQuestionView(DeveloperLoginRequiredMixin, TemplateView):
             if question_index < 0 or question_index >= test.section.question_count:
                 question_index = 0
         try:
-            question = test.questions.prefetch_related("paragraphs")[question_index]
+            question = test.questions.all()[question_index]
             question_data = {
                 "id": question.id,
                 "data": {
                     "answer_class": question.answer_class,
                     "meta_data": question.meta_data,
-                    "paragraph_order": question.paragraph_order,
                     "difficulty": question.difficulty,
                     "taxonomy": question.taxonomy_id,
                     "topic": question.topic_id,
                 },
                 "paragraphs": [],
             }
-            for paragraph in question.paragraphs.all():
-                question_data["paragraphs"].append({
+            for paragraph in question.paragraphs.prefetch_related("through").order_by("through"):
+                paragraph_data = {
                     "id": paragraph.id,
                     "data": {
                         "paragraph_class": paragraph.paragraph_class,
                         "meta_data": paragraph.meta_data,
                     },
-                })
+                    "question_ids": []
+                }
+                for through in paragraph.through.all():
+                    if through.question_id != question.id:
+                        paragraph_data["question_ids"].append(through.question_id)
+                question_data["paragraphs"].append(paragraph_data)
             kwargs["question_data"] = dumps(question_data, separators=(",", ":"))
         except IndexError:
             raise Http404("Could not find test question")

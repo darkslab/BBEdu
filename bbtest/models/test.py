@@ -57,6 +57,7 @@ class TestTaxonomySection(Model):
     class Meta:
         default_permissions = ()
         ordering = ("order",)
+        unique_together = ("section", "taxonomy")
 
 
 class TestTopic(Model):
@@ -80,6 +81,7 @@ class TestTopicSection(Model):
     class Meta:
         default_permissions = ()
         ordering = ("order",)
+        unique_together = ("section", "topic")
 
 
 class Test(Model):
@@ -133,8 +135,8 @@ class TestQuestion(Model):
         ( DIFFICULTY_LOW,    pgettext_lazy("Question difficulty", "Low")    ),
     )
 
-    ANSWER_CLASS_MULTICHOICE_ONE    = "OneMultichoiceAnswer"
-    ANSWER_CLASS_MULTICHOICE_MULTI  = "MultiMultichoiceAnswer"
+    ANSWER_CLASS_MULTICHOICE_ONE    = "MultichoiceOneAnswer"
+    ANSWER_CLASS_MULTICHOICE_MULTI  = "MultichoiceMultiAnswer"
     ANSWER_CLASS_FREEFORM           = "FreeformAnswer"
     ANSWER_CLASSES = (
         ( ANSWER_CLASS_MULTICHOICE_ONE, ANSWER_CLASS_MULTICHOICE_ONE ),
@@ -146,7 +148,6 @@ class TestQuestion(Model):
 
     answer_class     = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
     meta_data        = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
-    paragraph_order  = JSONField                  ( pgettext_lazy("Model field", "paragraph order"),                                                                                         )
     difficulty       = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NORMAL, db_index=True, )
     weight           = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "weight of question"),                                                                       db_index=True, )
     order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                                                                    db_index=True, )
@@ -174,7 +175,7 @@ class TestParagraph(Model):
         ( PARAGRAPH_CLASS_IMAGE,      PARAGRAPH_CLASS_IMAGE      ),
     )
 
-    question  = ForeignKey  ( TestQuestion, on_delete=CASCADE, related_name="paragraphs", )
+    questions  = ManyToManyField  ( TestQuestion, through="TestParagraphQuestion", related_name="paragraphs", )
 
     paragraph_class  = CharField      ( pgettext_lazy("Model field", "paragraph class"), max_length=100,    choices=PARAGRAPH_CLASSES, )
     meta_data        = JSONField      ( pgettext_lazy("Model field", "meta data"),                                                     )
@@ -188,3 +189,15 @@ class TestParagraph(Model):
         if self.id:
             return "TestParagraph #%d" % self.id
         return "New TestParagraph"
+
+
+class TestParagraphQuestion(Model):
+    question   = ForeignKey  ( TestQuestion,  on_delete=CASCADE,                         )
+    paragraph  = ForeignKey  ( TestParagraph, on_delete=CASCADE, related_name="through", )
+
+    order  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"), db_index=True, )
+
+    class Meta:
+        default_permissions = ()
+        ordering = ("order",)
+        unique_together = ("question", "paragraph")
