@@ -23,7 +23,14 @@ var DeveloperTextParagraph = function (_React$Component) {
         key: "render",
         value: function render() {
             var buttons = [];
-            // <button type="button" className="btn btn-danger btn-xs pull-right ml-5">Formulas Off</button>
+            buttons.push(React.createElement(
+                "button",
+                { key: 'delete',
+                    type: "button",
+                    className: "btn btn-danger btn-xs pull-right ml-5",
+                    onClick: this.props.onDelete },
+                this.props.texts.deleteParagraphButton
+            ));
 
             var className = "form-control bb-test-paragraph bb-test-paragraph-textarea";
             if (!this.props.data.text) {

@@ -26,6 +26,8 @@ BASE2_SOURCE_FILENAMES = (
     "js/react/react-dom.js",
 )
 BASE3_SOURCE_FILENAMES = (
+    "js/react/objects/DeveloperQuestionObject.js",
+
     "js/react/components/DeveloperTest.js",
     "js/react/components/DeveloperQuestion.js",
     "js/react/components/DeveloperAttribute.js",

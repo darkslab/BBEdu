@@ -4,7 +4,12 @@ class DeveloperSplitTextParagraph extends React.Component {
     }
     render() {
         let buttons = [];
-        // <button type="button" className="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
+        buttons.push(
+            <button key={'delete'}
+                    type="button"
+                    className="btn btn-danger btn-xs pull-right ml-5"
+                    onClick={this.props.onDelete}>{this.props.texts.deleteParagraphButton}</button>
+        );
 
         let leftClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
         if (!this.props.data.left_text) {

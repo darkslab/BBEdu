@@ -17,7 +17,7 @@ var DeveloperQuestion = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (DeveloperQuestion.__proto__ || Object.getPrototypeOf(DeveloperQuestion)).call(this, props));
 
         _this.state = {
-            update: 0,
+            toggleFlag: true,
             paragraphsModal: false
         };
         _this._$paragraphsContainer;
@@ -46,6 +46,20 @@ var DeveloperQuestion = function (_React$Component) {
             }
         }
     }, {
+        key: "componentWillUpdate",
+        value: function componentWillUpdate() {
+            if (this._$paragraphsContainer) {
+                this._$paragraphsContainer.css("height", "");
+            }
+        }
+    }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+            if (this._$paragraphsContainer) {
+                this._$paragraphsContainer.height(this._$paragraphsContainer.height());
+            }
+        }
+    }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
             if (this._$paragraphsContainer) {
@@ -70,6 +84,7 @@ var DeveloperQuestion = function (_React$Component) {
                     paragraphId: id,
                     data: paragraphData.meta_data,
                     onChange: _this2._paragraphChange.bind(_this2, id),
+                    onDelete: _this2._paragraphDelete.bind(_this2, id),
                     texts: _this2.props.texts }));
                 paragraphs.push(React.createElement(ParagraphClass, { key: id,
                     data: paragraphData.meta_data }));
@@ -191,6 +206,15 @@ var DeveloperQuestion = function (_React$Component) {
             );
         }
     }, {
+        key: "_pokeComponent",
+        value: function _pokeComponent() {
+            this.setState(function (prevState) {
+                return {
+                    toggleFlag: !prevState.toggleFlag
+                };
+            });
+        }
+    }, {
         key: "_attributeChange",
         value: function _attributeChange(type, value) {
             switch (type) {
@@ -204,21 +228,19 @@ var DeveloperQuestion = function (_React$Component) {
                     this.props.object.setTopic(value);
                     break;
             }
-            this.setState(function (prevState) {
-                return {
-                    update: prevState.update + 1
-                };
-            });
+            this._pokeComponent();
         }
     }, {
         key: "_paragraphChange",
         value: function _paragraphChange(id, data) {
             this.props.object.updateParagraph(id, data);
-            this.setState(function (prevState) {
-                return {
-                    update: prevState.update + 1
-                };
-            });
+            this._pokeComponent();
+        }
+    }, {
+        key: "_paragraphDelete",
+        value: function _paragraphDelete(id) {
+            this.props.object.deleteParagraph(id);
+            this._pokeComponent();
         }
     }, {
         key: "_paragraphsSorted",
@@ -226,24 +248,14 @@ var DeveloperQuestion = function (_React$Component) {
             var paragraphIds = this._$paragraphsContainer.sortable("toArray", {
                 attribute: "data-paragraph-id"
             });
-            this.props.object.setParagraphOrder(paragraphIds.map(function (id) {
-                return parseInt(id, 10);
-            }));
-            this.setState(function (prevState) {
-                return {
-                    update: prevState.update + 1
-                };
-            });
+            this.props.object.setParagraphOrder(paragraphIds);
+            this._pokeComponent();
         }
     }, {
         key: "_answerChange",
         value: function _answerChange(data) {
             this.props.object.updateAnswer(data);
-            this.setState(function (prevState) {
-                return {
-                    update: prevState.update + 1
-                };
-            });
+            this._pokeComponent();
         }
     }, {
         key: "_renderParagraphsModal",
@@ -255,6 +267,9 @@ var DeveloperQuestion = function (_React$Component) {
     }, {
         key: "_completeParagraphsModal",
         value: function _completeParagraphsModal(data) {
+            if (data) {
+                this.props.object.addParagraph(data);
+            }
             this.setState({
                 paragraphsModal: false
             });

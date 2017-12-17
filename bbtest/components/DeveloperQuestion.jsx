@@ -2,7 +2,7 @@ class DeveloperQuestion extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            update: 0,
+            toggleFlag: true,
             paragraphsModal: false
         };
         this._$paragraphsContainer;
@@ -26,6 +26,16 @@ class DeveloperQuestion extends React.Component {
             this._$paragraphsContainer = undefined;
         }
     }
+    componentWillUpdate() {
+        if (this._$paragraphsContainer) {
+            this._$paragraphsContainer.css("height", "");
+        }
+    }
+    componentDidUpdate() {
+        if (this._$paragraphsContainer) {
+            this._$paragraphsContainer.height(this._$paragraphsContainer.height());
+        }
+    }
     componentWillUnmount() {
         if (this._$paragraphsContainer) {
             this._$paragraphsContainer.sortable("destroy");
@@ -46,6 +56,7 @@ class DeveloperQuestion extends React.Component {
                                          paragraphId={id}
                                          data={paragraphData.meta_data}
                                          onChange={this._paragraphChange.bind(this, id)}
+                                         onDelete={this._paragraphDelete.bind(this, id)}
                                          texts={this.props.texts} />
             );
             paragraphs.push(
@@ -133,6 +144,11 @@ class DeveloperQuestion extends React.Component {
             </React.Fragment>
         );
     }
+    _pokeComponent() {
+        this.setState(prevState => ({
+            toggleFlag: !prevState.toggleFlag
+        }));
+    }
     _attributeChange(type, value) {
         switch (type) {
             case "difficulty":
@@ -145,30 +161,26 @@ class DeveloperQuestion extends React.Component {
                 this.props.object.setTopic(value);
                 break;
         }
-        this.setState(prevState => ({
-            update: prevState.update + 1
-        }));
+        this._pokeComponent();
     }
     _paragraphChange(id, data) {
         this.props.object.updateParagraph(id, data);
-        this.setState(prevState => ({
-            update: prevState.update + 1
-        }));
+        this._pokeComponent();
+    }
+    _paragraphDelete(id) {
+        this.props.object.deleteParagraph(id);
+        this._pokeComponent();
     }
     _paragraphsSorted(event, ui) {
         let paragraphIds = this._$paragraphsContainer.sortable("toArray", {
             attribute: "data-paragraph-id"
         });
-        this.props.object.setParagraphOrder(paragraphIds.map(id => parseInt(id, 10)));
-        this.setState(prevState => ({
-            update: prevState.update + 1
-        }));
+        this.props.object.setParagraphOrder(paragraphIds);
+        this._pokeComponent();
     }
     _answerChange(data) {
         this.props.object.updateAnswer(data);
-        this.setState(prevState => ({
-            update: prevState.update + 1
-        }));
+        this._pokeComponent();
     }
     _renderParagraphsModal() {
         this.setState({
@@ -176,6 +188,9 @@ class DeveloperQuestion extends React.Component {
         });
     }
     _completeParagraphsModal(data) {
+        if (data) {
+            this.props.object.addParagraph(data);
+        }
         this.setState({
             paragraphsModal: false
         });
