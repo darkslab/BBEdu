@@ -5,18 +5,20 @@ class DeveloperSplitTextParagraph extends React.Component {
     render() {
         let buttons = [];
         buttons.push(
-            <button key={'delete'}
+            <button key="delete"
                     type="button"
                     className="btn btn-danger btn-xs pull-right ml-5"
-                    onClick={this.props.onDelete}>{this.props.texts.deleteParagraphButton}</button>
+                    onClick={this.props.onDelete}>
+                <i className="fa fa-fw fa-times"></i>
+            </button>
         );
 
         let leftClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
-        if (!this.props.data.left_text) {
+        if (!this.props.data.left.text) {
             leftClassName += " bb-test-paragraph-textarea-empty";
         }
         let rightClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
-        if (!this.props.data.right_text) {
+        if (!this.props.data.right.text) {
             rightClassName += " bb-test-paragraph-textarea-empty";
         }
 
@@ -32,13 +34,13 @@ class DeveloperSplitTextParagraph extends React.Component {
                             <div className="col-xs-6 pr-5">
                                 <textarea className={leftClassName}
                                           placeholder={this.props.texts.sectionTextareaPlaceholder}
-                                          value={this.props.data.left_text}
+                                          value={this.props.data.left.text}
                                           onChange={this._handleChange.bind(this, "left")} />
                             </div>
                             <div className="col-xs-6 pl-5">
                                 <textarea className={rightClassName}
                                           placeholder={this.props.texts.sectionTextareaPlaceholder}
-                                          value={this.props.data.right_text}
+                                          value={this.props.data.right.text}
                                           onChange={this._handleChange.bind(this, "right")} />
                             </div>
                         </div>
@@ -48,19 +50,13 @@ class DeveloperSplitTextParagraph extends React.Component {
         );
     }
     _handleChange(side, event) {
-        let data;
+        let data = {...this.props.data};
+        data.left = {...data.left};
+        data.right = {...data.right};
         switch (side) {
             case "left":
-                data = {
-                    ...this.props.data,
-                    left_text: event.target.value
-                };
-                break;
             case "right":
-                data = {
-                    ...this.props.data,
-                    right_text: event.target.value
-                };
+                data[side].text = event.target.value;
                 break;
         }
         this.props.onChange(data);

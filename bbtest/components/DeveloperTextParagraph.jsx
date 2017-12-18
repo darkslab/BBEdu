@@ -5,10 +5,12 @@ class DeveloperTextParagraph extends React.Component {
     render() {
         let buttons = [];
         buttons.push(
-            <button key={'delete'}
+            <button key="delete"
                     type="button"
                     className="btn btn-danger btn-xs pull-right ml-5"
-                    onClick={this.props.onDelete}>{this.props.texts.deleteParagraphButton}</button>
+                    onClick={this.props.onDelete}>
+                <i className="fa fa-fw fa-times"></i>
+            </button>
         );
 
         let className = "form-control bb-test-paragraph bb-test-paragraph-textarea";

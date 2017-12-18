@@ -25,11 +25,11 @@ var DeveloperTextParagraph = function (_React$Component) {
             var buttons = [];
             buttons.push(React.createElement(
                 "button",
-                { key: 'delete',
+                { key: "delete",
                     type: "button",
                     className: "btn btn-danger btn-xs pull-right ml-5",
                     onClick: this.props.onDelete },
-                this.props.texts.deleteParagraphButton
+                React.createElement("i", { className: "fa fa-fw fa-times" })
             ));
 
             var className = "form-control bb-test-paragraph bb-test-paragraph-textarea";

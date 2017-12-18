@@ -115,7 +115,7 @@ var DeveloperTest = function (_React$Component) {
                 if (this.state.questionIndex > 0) {
                     paginationElements.push(React.createElement(
                         "li",
-                        { key: 'left' },
+                        { key: "left" },
                         React.createElement(
                             "a",
                             { href: "javascript:void(0);",
@@ -126,7 +126,7 @@ var DeveloperTest = function (_React$Component) {
                 } else {
                     paginationElements.push(React.createElement(
                         "li",
-                        { key: 'left', className: "disabled" },
+                        { key: "left", className: "disabled" },
                         React.createElement(
                             "a",
                             { href: "javascript:void(0);" },
@@ -161,7 +161,7 @@ var DeveloperTest = function (_React$Component) {
                 if (this.state.questionIndex < this.props.questionCount - 1) {
                     paginationElements.push(React.createElement(
                         "li",
-                        { key: 'right' },
+                        { key: "right" },
                         React.createElement(
                             "a",
                             { href: "javascript:void(0);",
@@ -172,7 +172,7 @@ var DeveloperTest = function (_React$Component) {
                 } else {
                     paginationElements.push(React.createElement(
                         "li",
-                        { key: 'right', className: "disabled" },
+                        { key: "right", className: "disabled" },
                         React.createElement(
                             "a",
                             { href: "javascript:void(0);" },

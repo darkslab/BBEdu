@@ -121,3 +121,21 @@ DeveloperQuestionObject.prototype.answer = function() {
 DeveloperQuestionObject.prototype.updateAnswer = function(data) {
     this._data.meta_data = data;
 }
+DeveloperQuestionObject.prototype.setAnswer = function(type) {
+    if (["MultichoiceOneAnswer"].indexOf(type) <= -1) {
+        return;
+    }
+    switch (type) {
+        case "MultichoiceOneAnswer":
+            this._data.answer_class = type;
+            this._data.meta_data = {
+                choices: [],
+                correct_id: null
+            };
+            break;
+    }
+}
+DeveloperQuestionObject.prototype.deleteAnswer = function() {
+    this._data.answer_class = "";
+    this._data.meta_data = null;
+}

@@ -22,6 +22,9 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
 
         _this._alphabet = "ABCDEFGHIJKLMNOP";
         _this._$choicesContainer;
+        _this.state = {
+            choicesModal: false
+        };
         return _this;
     }
 
@@ -44,6 +47,20 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                 });
             } else {
                 this._$choicesContainer = undefined;
+            }
+        }
+    }, {
+        key: "componentWillUpdate",
+        value: function componentWillUpdate() {
+            if (this._$choicesContainer) {
+                this._$choicesContainer.css("height", "");
+            }
+        }
+    }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+            if (this._$choicesContainer) {
+                this._$choicesContainer.height(this._$choicesContainer.height());
             }
         }
     }, {
@@ -71,6 +88,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                     choiceId: choice.id,
                     data: choice.meta_data,
                     onChange: _this2._choiceChange.bind(_this2, choice.id),
+                    onDelete: _this2._choiceDelete.bind(_this2, choice.id),
                     texts: _this2.props.texts,
                     chosen: chosen }));
                 choices.push(React.createElement(ChoiceClass, { key: choice.id,
@@ -78,47 +96,99 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                     label: _this2._alphabet[index],
                     chosen: chosen }));
             });
-
-            return React.createElement(
-                "div",
-                { className: "row" },
-                React.createElement(
+            if (!choices.length) {
+                choices.push(React.createElement(
                     "div",
-                    { className: "col-xs-12" },
+                    { key: "empty", className: "row" },
                     React.createElement(
                         "div",
-                        { className: "panel panel-default" },
+                        { className: "col-xs-12" },
+                        React.createElement(
+                            "p",
+                            { className: "lead text-center mb-0" },
+                            this.props.texts.noAnswerChoices
+                        )
+                    )
+                ));
+            }
+
+            var modal = null;
+            if (this.state.choicesModal) {
+                modal = React.createElement(DeveloperSelectorModal, { title: this.props.texts.answerChoicesModalTitle,
+                    complete: this._completeModal.bind(this),
+                    classData: [{
+                        class: "MultichoiceTextChoice",
+                        caption: this.props.texts.answerChoicesModalTitleButtonMultichoiceTextChoice
+                    }] });
+            }
+
+            var addAnswerChoiceButton = null;
+            if (developerChoices.length < this._alphabet.length) {
+                addAnswerChoiceButton = React.createElement(
+                    "div",
+                    { className: "form-group text-center mt-23" },
+                    React.createElement(
+                        "button",
+                        { type: "button",
+                            className: "btn btn-success",
+                            onClick: this._renderModal.bind(this) },
+                        this.props.texts.addAnswerChoice
+                    )
+                );
+            }
+
+            return React.createElement(
+                React.Fragment,
+                null,
+                modal,
+                React.createElement(
+                    "div",
+                    { className: "row" },
+                    React.createElement(
+                        "div",
+                        { className: "col-xs-12" },
                         React.createElement(
                             "div",
-                            { className: "panel-heading" },
-                            React.createElement(
-                                "h4",
-                                { className: "text-center" },
-                                this.props.texts.multichoiceOneAnswerTitle
-                            )
-                        ),
-                        React.createElement(
-                            "div",
-                            { className: "panel-body" },
+                            { className: "panel panel-default" },
                             React.createElement(
                                 "div",
-                                { "data-choices": true },
-                                developerChoices
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "form-group text-center mt-23" },
+                                { className: "panel-heading" },
                                 React.createElement(
-                                    "button",
-                                    { type: "button", className: "btn btn-success" },
-                                    this.props.texts.addAnswerChoice
+                                    "div",
+                                    { className: "row" },
+                                    React.createElement(
+                                        "h4",
+                                        { className: "col-xs-9 col-sm-11 mt-5 mb-5" },
+                                        this.props.texts.multichoiceOneAnswerTitle
+                                    ),
+                                    React.createElement(
+                                        "div",
+                                        { className: "col-xs-3 col-sm-1 text-right pl-0" },
+                                        React.createElement(
+                                            "button",
+                                            { type: "button",
+                                                className: "btn btn-danger btn-sm",
+                                                onClick: this.props.onDelete },
+                                            React.createElement("i", { className: "fa fa-fw fa-times" })
+                                        )
+                                    )
                                 )
                             ),
-                            React.createElement("hr", { className: "bb-separator" }),
                             React.createElement(
                                 "div",
-                                { className: "mb-23" },
-                                choices
+                                { className: "panel-body" },
+                                React.createElement(
+                                    "div",
+                                    { "data-choices": true },
+                                    developerChoices
+                                ),
+                                addAnswerChoiceButton,
+                                React.createElement("hr", { className: "bb-separator" }),
+                                React.createElement(
+                                    "div",
+                                    { className: "mb-23" },
+                                    choices
+                                )
                             )
                         )
                     )
@@ -136,6 +206,21 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                 }
             }
             this.props.onChange(_data);
+        }
+    }, {
+        key: "_choiceDelete",
+        value: function _choiceDelete(choiceId) {
+            var data = this._deepCopyData();
+            for (var i = 0; i < data.choices.length; i++) {
+                if (data.choices[i].id === choiceId) {
+                    if (data.correct_id === choiceId) {
+                        data.correct_id = null;
+                    }
+                    data.choices.splice(i, 1);
+                    break;
+                }
+            }
+            this.props.onChange(data);
         }
     }, {
         key: "_deepCopyData",
@@ -166,6 +251,44 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                 return i < j ? -1 : 1;
             });
             this.props.onChange(_data);
+        }
+    }, {
+        key: "_renderModal",
+        value: function _renderModal() {
+            this.setState({
+                choicesModal: true
+            });
+        }
+    }, {
+        key: "_completeModal",
+        value: function _completeModal(answerChoiceClass) {
+            if (answerChoiceClass) {
+                var data = this._deepCopyData();
+                var choiceIds = data.choices.map(function (choice) {
+                    return choice.id;
+                }).sort(function (a, b) {
+                    return a === b ? 0 : a < b ? -1 : 1;
+                });
+
+                var choice = {
+                    choice_class: answerChoiceClass,
+                    id: null,
+                    meta_data: {
+                        text: ""
+                    }
+                };
+                if (choiceIds.length) {
+                    choice.id = choiceIds[choiceIds.length - 1] + 1;
+                } else {
+                    choice.id = Math.random() * 0xffff | 0x00;
+                }
+
+                data.choices.push(choice);
+                this.props.onChange(data);
+            }
+            this.setState({
+                choicesModal: false
+            });
         }
     }]);
 

@@ -8,20 +8,20 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DeveloperParagraphsModal = function (_React$Component) {
-    _inherits(DeveloperParagraphsModal, _React$Component);
+var DeveloperSelectorModal = function (_React$Component) {
+    _inherits(DeveloperSelectorModal, _React$Component);
 
-    function DeveloperParagraphsModal(props) {
-        _classCallCheck(this, DeveloperParagraphsModal);
+    function DeveloperSelectorModal(props) {
+        _classCallCheck(this, DeveloperSelectorModal);
 
-        var _this = _possibleConstructorReturn(this, (DeveloperParagraphsModal.__proto__ || Object.getPrototypeOf(DeveloperParagraphsModal)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (DeveloperSelectorModal.__proto__ || Object.getPrototypeOf(DeveloperSelectorModal)).call(this, props));
 
         _this._$modal;
-        _this._paragraphClass;
+        _this._selectedClass;
         return _this;
     }
 
-    _createClass(DeveloperParagraphsModal, [{
+    _createClass(DeveloperSelectorModal, [{
         key: "componentDidMount",
         value: function componentDidMount() {
             this._$modal = $("[data-modal]");
@@ -43,6 +43,21 @@ var DeveloperParagraphsModal = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
+            var buttons = [];
+            for (var i = 0; i < this.props.classData.length; i++) {
+                buttons.push(React.createElement(
+                    "div",
+                    { key: i, className: "col-xs-12 col-sm-10 col-sm-offset-1 mb-10" },
+                    React.createElement(
+                        "button",
+                        { type: "button",
+                            className: "btn btn-primary btn-block btn-lg",
+                            onClick: this._chooseClass.bind(this, this.props.classData[i].class) },
+                        this.props.classData[i].caption
+                    )
+                ));
+            }
+
             return React.createElement(
                 "div",
                 { className: "modal fade", "data-modal": true },
@@ -63,7 +78,7 @@ var DeveloperParagraphsModal = function (_React$Component) {
                             React.createElement(
                                 "h4",
                                 { className: "modal-title" },
-                                this.props.texts.paragraphsModalTitle
+                                this.props.title
                             )
                         ),
                         React.createElement(
@@ -72,28 +87,7 @@ var DeveloperParagraphsModal = function (_React$Component) {
                             React.createElement(
                                 "div",
                                 { className: "row" },
-                                React.createElement(
-                                    "div",
-                                    { className: "col-xs-12 col-sm-10 col-sm-offset-1 mb-10" },
-                                    React.createElement(
-                                        "button",
-                                        { type: "button",
-                                            className: "btn btn-primary btn-block btn-lg",
-                                            onClick: this._chooseParagraphClass.bind(this, "TextParagraph") },
-                                        this.props.texts.paragraphButtonTextParagraph
-                                    )
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "col-xs-12 col-sm-10 col-sm-offset-1 mb-10" },
-                                    React.createElement(
-                                        "button",
-                                        { type: "button",
-                                            className: "btn btn-primary btn-block btn-lg",
-                                            onClick: this._chooseParagraphClass.bind(this, "SplitTextParagraph") },
-                                        this.props.texts.paragraphButtonSplitTextParagraph
-                                    )
-                                )
+                                buttons
                             )
                         ),
                         React.createElement("div", { className: "modal-footer" })
@@ -104,15 +98,15 @@ var DeveloperParagraphsModal = function (_React$Component) {
     }, {
         key: "_modalHidden",
         value: function _modalHidden() {
-            this.props.complete(this._paragraphClass);
+            this.props.complete(this._selectedClass);
         }
     }, {
-        key: "_chooseParagraphClass",
-        value: function _chooseParagraphClass(paragraphClass) {
-            this._paragraphClass = paragraphClass;
+        key: "_chooseClass",
+        value: function _chooseClass(selectedClass) {
+            this._selectedClass = selectedClass;
             this._$modal.modal("hide");
         }
     }]);
 
-    return DeveloperParagraphsModal;
+    return DeveloperSelectorModal;
 }(React.Component);

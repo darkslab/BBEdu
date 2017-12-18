@@ -23,8 +23,14 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
         key: "render",
         value: function render() {
             var buttons = [];
-            // <button type="button" className="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
-            // <button type="button" className="btn btn-danger btn-xs pull-right ml-5">Incorrect Answer</button>
+            buttons.push(React.createElement(
+                "button",
+                { key: "delete",
+                    type: "button",
+                    className: "btn btn-danger btn-xs pull-right ml-5",
+                    onClick: this.props.onDelete },
+                React.createElement("i", { className: "fa fa-fw fa-times" })
+            ));
 
             return React.createElement(
                 "div",

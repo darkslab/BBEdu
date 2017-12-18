@@ -3,6 +3,9 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
         super(props);
         this._alphabet = "ABCDEFGHIJKLMNOP";
         this._$choicesContainer;
+        this.state = {
+            choicesModal: false
+        };
     }
     componentDidMount() {
         this._$choicesContainer = $("[data-choices]");
@@ -21,6 +24,16 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
             });
         } else {
             this._$choicesContainer = undefined;
+        }
+    }
+    componentWillUpdate() {
+        if (this._$choicesContainer) {
+            this._$choicesContainer.css("height", "");
+        }
+    }
+    componentDidUpdate() {
+        if (this._$choicesContainer) {
+            this._$choicesContainer.height(this._$choicesContainer.height());
         }
     }
     componentWillUnmount() {
@@ -43,6 +56,7 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                                       choiceId={choice.id}
                                       data={choice.meta_data}
                                       onChange={this._choiceChange.bind(this, choice.id)}
+                                      onDelete={this._choiceDelete.bind(this, choice.id)}
                                       texts={this.props.texts}
                                       chosen={chosen} />
             );
@@ -53,29 +67,73 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                              chosen={chosen} />
             );
         });
+        if (!choices.length) {
+            choices.push(
+                <div key="empty" className="row">
+                    <div className="col-xs-12">
+                        <p className="lead text-center mb-0">{this.props.texts.noAnswerChoices}</p>
+                    </div>
+                </div>
+            );
+        }
+
+        let modal = null;
+        if (this.state.choicesModal) {
+            modal = (
+                <DeveloperSelectorModal title={this.props.texts.answerChoicesModalTitle}
+                                        complete={this._completeModal.bind(this)}
+                                        classData={[
+                                            {
+                                                class: "MultichoiceTextChoice",
+                                                caption: this.props.texts.answerChoicesModalTitleButtonMultichoiceTextChoice
+                                            }
+                                        ]} />
+            );
+        }
+
+        let addAnswerChoiceButton = null;
+        if (developerChoices.length < this._alphabet.length) {
+            addAnswerChoiceButton = (
+                <div className="form-group text-center mt-23">
+                    <button type="button"
+                            className="btn btn-success"
+                            onClick={this._renderModal.bind(this)}>{this.props.texts.addAnswerChoice}</button>
+                </div>
+            );
+        }
 
         return (
-            <div className="row">
-                <div className="col-xs-12">
-                    <div className="panel panel-default">
-                        <div className="panel-heading">
-                            <h4 className="text-center">{this.props.texts.multichoiceOneAnswerTitle}</h4>
-                        </div>
-                        <div className="panel-body">
-                            <div data-choices>
-                                {developerChoices}
+            <React.Fragment>
+                {modal}
+                <div className="row">
+                    <div className="col-xs-12">
+                        <div className="panel panel-default">
+                            <div className="panel-heading">
+                                <div className="row">
+                                    <h4 className="col-xs-9 col-sm-11 mt-5 mb-5">{this.props.texts.multichoiceOneAnswerTitle}</h4>
+                                    <div className="col-xs-3 col-sm-1 text-right pl-0">
+                                        <button type="button"
+                                                className="btn btn-danger btn-sm"
+                                                onClick={this.props.onDelete}>
+                                            <i className="fa fa-fw fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="form-group text-center mt-23">
-                                <button type="button" className="btn btn-success">{this.props.texts.addAnswerChoice}</button>
-                            </div>
-                            <hr className="bb-separator" />
-                            <div className="mb-23">
-                                {choices}
+                            <div className="panel-body">
+                                <div data-choices>
+                                    {developerChoices}
+                                </div>
+                                {addAnswerChoiceButton}
+                                <hr className="bb-separator" />
+                                <div className="mb-23">
+                                    {choices}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
     _choiceChange(choiceId, data) {
@@ -87,6 +145,19 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
             }
         }
         this.props.onChange(_data);
+    }
+    _choiceDelete(choiceId) {
+        let data = this._deepCopyData();
+        for (let i = 0; i < data.choices.length; i++) {
+            if (data.choices[i].id === choiceId) {
+                if (data.correct_id === choiceId) {
+                    data.correct_id = null;
+                }
+                data.choices.splice(i, 1);
+                break;
+            }
+        }
+        this.props.onChange(data);
     }
     _deepCopyData() {
         let data = {...this.props.data};
@@ -111,5 +182,35 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
             return i < j ? -1 : 1;
         });
         this.props.onChange(_data);
+    }
+    _renderModal() {
+        this.setState({
+            choicesModal: true
+        });
+    }
+    _completeModal(answerChoiceClass) {
+        if (answerChoiceClass) {
+            let data = this._deepCopyData();
+            let choiceIds = data.choices.map(choice => choice.id).sort((a, b) => a === b ? 0 : (a < b ? -1 : 1));
+
+            let choice = {
+                choice_class: answerChoiceClass,
+                id: null,
+                meta_data: {
+                    text: ""
+                }
+            };
+            if (choiceIds.length) {
+                choice.id = choiceIds[choiceIds.length - 1] + 1;
+            } else {
+                choice.id = Math.random() * 0xffff | 0x00;
+            }
+
+            data.choices.push(choice);
+            this.props.onChange(data);
+        }
+        this.setState({
+            choicesModal: false
+        });
     }
 }

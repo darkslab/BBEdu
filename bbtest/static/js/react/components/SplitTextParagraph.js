@@ -16,7 +16,7 @@ function SplitTextParagraph(props) {
                     React.createElement(
                         "div",
                         { className: "bb-test-paragraph" },
-                        props.data.left_text
+                        props.data.left.text
                     )
                 ),
                 React.createElement(
@@ -25,7 +25,7 @@ function SplitTextParagraph(props) {
                     React.createElement(
                         "div",
                         { className: "bb-test-paragraph" },
-                        props.data.right_text
+                        props.data.right.text
                     )
                 )
             )

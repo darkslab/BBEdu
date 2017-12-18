@@ -3,9 +3,11 @@ class DeveloperQuestion extends React.Component {
         super(props);
         this.state = {
             toggleFlag: true,
-            paragraphsModal: false
+            paragraphsModal: false,
+            answersModal: false
         };
         this._$paragraphsContainer;
+        this._maxParagraphs = 8;
     }
     componentDidMount() {
         this._$paragraphsContainer = $("[data-paragraphs]");
@@ -66,8 +68,8 @@ class DeveloperQuestion extends React.Component {
         });
         if (!paragraphs.length) {
             paragraphs.push(
-                <div key={'empty'} className="bb-test-paragraph">
-                    <p className="lead text-center mb-0">{this.props.texts.emptyParagraph}</p>
+                <div key="empty" className="bb-test-paragraph">
+                    <p className="lead text-center mb-0">{this.props.texts.noParagraphs}</p>
                 </div>
             );
         }
@@ -79,13 +81,16 @@ class DeveloperQuestion extends React.Component {
             answerContent = (
                 <AnswerClass data={answerData.meta_data}
                              onChange={this._answerChange.bind(this)}
+                             onDelete={this._answerDelete.bind(this)}
                              texts={this.props.texts} />
             );
         } else {
             answerContent = (
                 <div className="row mb-23">
                     <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                        <button type="button" className="btn btn-primary btn-lg btn-block">{this.props.texts.addAnswer}</button>
+                        <button type="button"
+                                className="btn btn-primary btn-lg btn-block"
+                                onClick={this._renderModal.bind(this, "answers")}>{this.props.texts.addAnswer}</button>
                     </div>
                 </div>
             );
@@ -94,8 +99,40 @@ class DeveloperQuestion extends React.Component {
         let modal = null;
         if (this.state.paragraphsModal) {
             modal = (
-                <DeveloperParagraphsModal complete={this._completeParagraphsModal.bind(this)}
-                                          texts={this.props.texts} />
+                <DeveloperSelectorModal title={this.props.texts.paragraphsModalTitle}
+                                        complete={this._completeModal.bind(this, "paragraphs")}
+                                        classData={[
+                                            {
+                                                class: "TextParagraph",
+                                                caption: this.props.texts.paragraphsModalButtonTextParagraph
+                                            },
+                                            {
+                                                class: "SplitTextParagraph",
+                                                caption: this.props.texts.paragraphsModalButtonSplitTextParagraph
+                                            }
+                                        ]} />
+            );
+        } else if (this.state.answersModal) {
+            modal = (
+                <DeveloperSelectorModal title={this.props.texts.answersModalTitle}
+                                        complete={this._completeModal.bind(this, "answers")}
+                                        classData={[
+                                            {
+                                                class: "MultichoiceOneAnswer",
+                                                caption: this.props.texts.multichoiceOneAnswerTitle
+                                            }
+                                        ]} />
+            );
+        }
+
+        let addParagaphButton = null;
+        if (developerParagraphs.length < this._maxParagraphs) {
+            addParagaphButton = (
+                <div className="form-group text-center mt-23">
+                    <button type="button"
+                            className="btn btn-success"
+                            onClick={this._renderModal.bind(this, "paragraphs")}>{this.props.texts.addParagraph}</button>
+                </div>
             );
         }
 
@@ -127,11 +164,7 @@ class DeveloperQuestion extends React.Component {
                                 <div data-paragraphs>
                                     {developerParagraphs}
                                 </div>
-                                <div className="form-group text-center mt-23">
-                                    <button type="button"
-                                            className="btn btn-success"
-                                            onClick={this._renderParagraphsModal.bind(this)}>{this.props.texts.addParagraph}</button>
-                                </div>
+                                {addParagaphButton}
                                 <hr className="bb-separator" />
                                 <div className="mb-15">
                                     {paragraphs}
@@ -182,17 +215,42 @@ class DeveloperQuestion extends React.Component {
         this.props.object.updateAnswer(data);
         this._pokeComponent();
     }
-    _renderParagraphsModal() {
-        this.setState({
-            paragraphsModal: true
-        });
+    _answerDelete() {
+        this.props.object.deleteAnswer();
+        this._pokeComponent();
     }
-    _completeParagraphsModal(data) {
-        if (data) {
-            this.props.object.addParagraph(data);
+    _renderModal(type) {
+        switch (type) {
+            case "paragraphs":
+                this.setState({
+                    paragraphsModal: true
+                });
+                break;
+            case "answers":
+                this.setState({
+                    answersModal: true
+                });
+                break;
         }
-        this.setState({
-            paragraphsModal: false
-        });
+    }
+    _completeModal(type, data) {
+        switch (type) {
+            case "paragraphs":
+                if (data) {
+                    this.props.object.addParagraph(data);
+                }
+                this.setState({
+                    paragraphsModal: false
+                });
+                break;
+            case "answers":
+                if (data) {
+                    this.props.object.setAnswer(data);
+                }
+                this.setState({
+                    answersModal: false
+                });
+                break;
+        }
     }
 }

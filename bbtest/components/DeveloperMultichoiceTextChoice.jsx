@@ -4,8 +4,14 @@ class DeveloperMultichoiceTextChoice extends React.Component {
     }
     render() {
         let buttons = [];
-        // <button type="button" className="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
-        // <button type="button" className="btn btn-danger btn-xs pull-right ml-5">Incorrect Answer</button>
+        buttons.push(
+            <button key="delete"
+                    type="button"
+                    className="btn btn-danger btn-xs pull-right ml-5"
+                    onClick={this.props.onDelete}>
+                <i className="fa fa-fw fa-times"></i>
+            </button>
+        );
 
         return (
             <div className="form-group bb-test-section-movable bb-test-section-background" data-choice-id={this.props.choiceId}>

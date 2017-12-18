@@ -93,14 +93,14 @@ class DeveloperTest extends React.Component {
             let paginationElements = [];
             if (this.state.questionIndex > 0) {
                 paginationElements.push(
-                    <li key={'left'}>
+                    <li key="left">
                         <a href="javascript:void(0);"
                            onClick={this._nextQuestion.bind(this, this.state.questionIndex - 1)}>&laquo;</a>
                     </li>
                 );
             } else {
                 paginationElements.push(
-                    <li key={'left'} className="disabled">
+                    <li key="left" className="disabled">
                         <a href="javascript:void(0);">&laquo;</a>
                     </li>
                 );
@@ -123,14 +123,14 @@ class DeveloperTest extends React.Component {
             }
             if (this.state.questionIndex < this.props.questionCount - 1) {
                 paginationElements.push(
-                    <li key={'right'}>
+                    <li key="right">
                         <a href="javascript:void(0);"
                            onClick={this._nextQuestion.bind(this, this.state.questionIndex + 1)}>&raquo;</a>
                     </li>
                 );
             } else {
                 paginationElements.push(
-                    <li key={'right'} className="disabled">
+                    <li key="right" className="disabled">
                         <a href="javascript:void(0);">&raquo;</a>
                     </li>
                 );
