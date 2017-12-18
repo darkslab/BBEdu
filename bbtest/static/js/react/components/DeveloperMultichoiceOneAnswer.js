@@ -20,7 +20,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (DeveloperMultichoiceOneAnswer.__proto__ || Object.getPrototypeOf(DeveloperMultichoiceOneAnswer)).call(this, props));
 
-        _this._alphabet = "ABCDEFGHIJKLMNOP";
+        _this._alphabet = "ABCDEFGH";
         _this._$choicesContainer;
         _this.state = {
             choicesModal: false
@@ -88,6 +88,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                     choiceId: choice.id,
                     data: choice.meta_data,
                     onChange: _this2._choiceChange.bind(_this2, choice.id),
+                    onSelect: _this2._choiceSelect.bind(_this2, choice.id),
                     onDelete: _this2._choiceDelete.bind(_this2, choice.id),
                     texts: _this2.props.texts,
                     chosen: chosen }));
@@ -205,6 +206,13 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                     break;
                 }
             }
+            this.props.onChange(_data);
+        }
+    }, {
+        key: "_choiceSelect",
+        value: function _choiceSelect(choiceId, data) {
+            var _data = this._deepCopyData();
+            _data.correct_id = data ? choiceId : null;
             this.props.onChange(_data);
         }
     }, {

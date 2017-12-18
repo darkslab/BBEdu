@@ -12,6 +12,19 @@ class DeveloperMultichoiceTextChoice extends React.Component {
                 <i className="fa fa-fw fa-times"></i>
             </button>
         );
+        buttons.push(
+            <button key="chosen"
+                    type="button"
+                    className={"btn btn-default btn-xs pull-right ml-5" + (this.props.chosen ? " active" : "")}
+                    onClick={this.props.onSelect.bind(null, !this.props.chosen)}>{this.props.texts.answerChoiceSelectButton}</button>
+        );
+        if (this.props.chosen) {
+            buttons.push(
+                <button key="solution"
+                        type="button"
+                        className="btn btn-primary btn-xs pull-right ml-5">{this.props.texts.answerChoiceSolutionButton}</button>
+            );
+        }
 
         return (
             <div className="form-group bb-test-section-movable bb-test-section-background" data-choice-id={this.props.choiceId}>

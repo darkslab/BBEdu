@@ -31,6 +31,23 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
                     onClick: this.props.onDelete },
                 React.createElement("i", { className: "fa fa-fw fa-times" })
             ));
+            buttons.push(React.createElement(
+                "button",
+                { key: "chosen",
+                    type: "button",
+                    className: "btn btn-default btn-xs pull-right ml-5" + (this.props.chosen ? " active" : ""),
+                    onClick: this.props.onSelect.bind(null, !this.props.chosen) },
+                this.props.texts.answerChoiceSelectButton
+            ));
+            if (this.props.chosen) {
+                buttons.push(React.createElement(
+                    "button",
+                    { key: "solution",
+                        type: "button",
+                        className: "btn btn-primary btn-xs pull-right ml-5" },
+                    this.props.texts.answerChoiceSolutionButton
+                ));
+            }
 
             return React.createElement(
                 "div",

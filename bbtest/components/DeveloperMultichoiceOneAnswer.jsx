@@ -1,7 +1,7 @@
 class DeveloperMultichoiceOneAnswer extends React.Component {
     constructor(props) {
         super(props);
-        this._alphabet = "ABCDEFGHIJKLMNOP";
+        this._alphabet = "ABCDEFGH";
         this._$choicesContainer;
         this.state = {
             choicesModal: false
@@ -56,6 +56,7 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                                       choiceId={choice.id}
                                       data={choice.meta_data}
                                       onChange={this._choiceChange.bind(this, choice.id)}
+                                      onSelect={this._choiceSelect.bind(this, choice.id)}
                                       onDelete={this._choiceDelete.bind(this, choice.id)}
                                       texts={this.props.texts}
                                       chosen={chosen} />
@@ -144,6 +145,11 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                 break;
             }
         }
+        this.props.onChange(_data);
+    }
+    _choiceSelect(choiceId, data) {
+        let _data = this._deepCopyData();
+        _data.correct_id = data ? choiceId : null;
         this.props.onChange(_data);
     }
     _choiceDelete(choiceId) {
