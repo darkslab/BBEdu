@@ -2,6 +2,7 @@ BASE0_SOURCE_FILENAMES = (
     "js/jquery-ui.js",
     "js/bootstrap.js",
     "js/turbolinks.min.js",
+    "js/js.cookie.js",
     "js/script.js",
 )
 BASE1_SOURCE_FILENAMES = (

@@ -20,7 +20,7 @@ class DeveloperTest extends React.Component {
         let questionNumber = 1;
         if (location.hash) {
             questionNumber = parseInt(location.hash.substr(1), 10);
-            if (isNaN(questionNumber) || questionNumber < 1 || questionNumber > this.props.questionCount) {
+            if (isNaN(questionNumber) || questionNumber < 1 || questionNumber > this.props.questionIds.length) {
                 questionNumber = 1;
             }
         }
@@ -59,8 +59,8 @@ class DeveloperTest extends React.Component {
             let width = 5;
             if (width < 1) {
                 width = 1;
-            } else if (width > this.props.questionCount) {
-                width = this.props.questionCount;
+            } else if (width > this.props.questionIds.length) {
+                width = this.props.questionIds.length;
             }
             let padding = parseInt((width - 1) / 2, 10);
             let rightPadding = (width - 1) % 2;
@@ -80,9 +80,9 @@ class DeveloperTest extends React.Component {
                     indexes.shift();
                     indexes.push(indexes[indexes.length - 1] + 1);
                 }
-            } else if (indexes[indexes.length - 1] >= this.props.questionCount) {
+            } else if (indexes[indexes.length - 1] >= this.props.questionIds.length) {
                 while (true) {
-                    if (indexes[indexes.length - 1] < this.props.questionCount) {
+                    if (indexes[indexes.length - 1] < this.props.questionIds.length) {
                         break;
                     }
                     indexes.pop();
@@ -121,7 +121,7 @@ class DeveloperTest extends React.Component {
                     );
                 }
             }
-            if (this.state.questionIndex < this.props.questionCount - 1) {
+            if (this.state.questionIndex < this.props.questionIds.length - 1) {
                 paginationElements.push(
                     <li key="right">
                         <a href="javascript:void(0);"
@@ -171,7 +171,8 @@ class DeveloperTest extends React.Component {
             this._questionObject = new DeveloperQuestionObject(
                 data.id,
                 data.data,
-                data.paragraphs
+                data.paragraphs,
+                this.props.questionUrl
             );
             this.setState({
                 isQuestionLoading: false
@@ -231,7 +232,7 @@ class DeveloperTest extends React.Component {
             this._$xhrs["question"].abort();
         }
         this._$xhrs["question"] = $.get({
-            url: this.props.indexedQuestionUrl + index + "/",
+            url: this.props.questionUrl + this.props.questionIds[index] + "/",
             success: this._ajaxSuccess.bind(this, "question"),
             error: this._ajaxError.bind(this, "question")
         });

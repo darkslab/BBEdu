@@ -1,10 +1,11 @@
-from django.views.generic import TemplateView
+from django.views.generic import View, TemplateView
 from django.shortcuts import get_object_or_404
-from django.http import Http404
+from django.http import JsonResponse, Http404
 from django.utils.translation import ugettext as _
-from json import dumps
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
 from bbtest.models import TestQuestion
+from bbtest.forms.test import TestQuestionForm
+from json import dumps
 
 
 def get_test_or_404(user, code):
@@ -21,59 +22,63 @@ class TestView(DeveloperLoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         kwargs["test"] = get_test_or_404(self.request.user, kwargs.get("code"))
         kwargs["section_name"] = _(kwargs["test"].section.name)
+        question_ids = []
+        for data in kwargs["test"].questions.values("id").order_by("order"):
+            question_ids.append(data["id"])
+        kwargs["question_ids"] = dumps(question_ids, separators=(",", ":"))
         return super().get_context_data(**kwargs)
 
 
-class IndexedQuestionView(DeveloperLoginRequiredMixin, TemplateView):
-    template_name = "developer/indexed_question.txt"
-    content_type = "application/json"
+class QuestionView(DeveloperLoginRequiredMixin, View):
+    def get(self, request, code, question_id, *args, **kwargs):
+        test = get_object_or_404(request.user.tests, code=code)
+        question = get_object_or_404(test.questions, pk=question_id)
 
-    def get_context_data(self, **kwargs):
-        test = get_test_or_404(self.request.user, kwargs.get("code"))
-        question_index = 0
-        if kwargs["question_index"] is not None:
-            question_index = int(kwargs["question_index"])
-            if question_index < 0 or question_index >= test.section.question_count:
-                question_index = 0
-        try:
-            question = test.questions.all()[question_index]
-            question_data = {
-                "id": question.id,
+        question_data = {
+            "id": question.id,
+            "data": {
+                "answer_class": question.answer_class,
+                "meta_data": question.meta_data,
+                "difficulty": question.difficulty,
+                "taxonomy": question.taxonomy_id,
+                "topic": question.topic_id,
+            },
+            "paragraphs": [],
+        }
+        for paragraph in question.paragraphs.prefetch_related("through").order_by("through"):
+            paragraph_data = {
+                "id": paragraph.id,
                 "data": {
-                    "answer_class": question.answer_class,
-                    "meta_data": question.meta_data,
-                    "difficulty": question.difficulty,
-                    "taxonomy": question.taxonomy_id,
-                    "topic": question.topic_id,
+                    "paragraph_class": paragraph.paragraph_class,
+                    "meta_data": paragraph.meta_data,
                 },
-                "paragraphs": [],
+                "question_ids": []
             }
-            for paragraph in question.paragraphs.prefetch_related("through").order_by("through"):
-                paragraph_data = {
-                    "id": paragraph.id,
-                    "data": {
-                        "paragraph_class": paragraph.paragraph_class,
-                        "meta_data": paragraph.meta_data,
-                    },
-                    "question_ids": []
-                }
-                for through in paragraph.through.all():
-                    if through.question_id != question.id:
-                        paragraph_data["question_ids"].append(through.question_id)
-                question_data["paragraphs"].append(paragraph_data)
-            kwargs["question_data"] = dumps(question_data, separators=(",", ":"))
-        except IndexError:
-            raise Http404("Could not find test question")
+            for through in paragraph.through.all():
+                if through.question_id != question.id:
+                    paragraph_data["question_ids"].append(through.question_id)
+            question_data["paragraphs"].append(paragraph_data)
 
-        return super().get_context_data(**kwargs)
+        return JsonResponse(question_data, json_dumps_params={"separators": (",", ":")})
+
+    def post(self, request, code, question_id, *args, **kwargs):
+        test = get_object_or_404(request.user.tests, code=code)
+        question = get_object_or_404(test.questions, pk=question_id)
+
+        form = TestQuestionForm(data=request.POST, instance=question)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({"success": True}, json_dumps_params={"separators": (",", ":")})
+
+        return JsonResponse({
+            "success": False,
+            "errors": form.errors.as_json(),
+        }, status=400, json_dumps_params={"separators": (",", ":")})
 
 
-class AttributesView(DeveloperLoginRequiredMixin, TemplateView):
-    template_name = "developer/attributes.txt"
-    content_type = "application/json"
-
-    def get_context_data(self, **kwargs):
-        test = get_test_or_404(self.request.user, kwargs.get("code"))
+class AttributesView(DeveloperLoginRequiredMixin, View):
+    def get(self, request, code, *args, **kwargs):
+        test = get_test_or_404(request.user, code)
         attributes_data = {
             "difficulties": [],
             "taxonomies": [],
@@ -96,5 +101,4 @@ class AttributesView(DeveloperLoginRequiredMixin, TemplateView):
                 "caption": str(_(str(topic))),
             })
 
-        kwargs["attributes_data"] = dumps(attributes_data, separators=(",", ":"))
-        return super().get_context_data(**kwargs)
+        return JsonResponse(attributes_data, json_dumps_params={"separators": (",", ":")})

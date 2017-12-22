@@ -11,8 +11,8 @@
                 class: "DeveloperTest",
                 props: {
                     spinnerLogo: "{% static 'img/logo.png' %}",
-                    questionCount: {{ test.section.question_count }},
-                    indexedQuestionUrl: "{% url 'bbtest:developer_indexed_question' code %}",
+                    questionUrl: "{% url 'bbtest:developer_question' code %}",
+                    questionIds: {{ question_ids|safe }},
                     attributesUrl: "{% url 'bbtest:developer_attributes' code %}",
                     texts: {
                         error:                                               "{% trans 'There was an error, please reload the page.'            context 'Developer tools' %}",

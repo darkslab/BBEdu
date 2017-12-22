@@ -2,6 +2,7 @@ from django.db.models import TextField
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy
 from json import loads, dumps
+from bbtest.forms.fields import JSONField as JSONFormField
 
 
 class JSONField(TextField):
@@ -38,7 +39,7 @@ class JSONField(TextField):
             if isinstance(value, str):
                 value = loads(value)
             else:
-                dumps(value)
+                dumps(value, separators=(",", ":"))
         except (ValueError, TypeError):
             raise ValidationError(
                 self.error_messages["invalid"],
@@ -50,9 +51,16 @@ class JSONField(TextField):
         if value is None and self.null:
             return None
         try:
-            value = dumps(value)
+            value = dumps(value, separators=(",", ":"))
         except TypeError:
             if self.null:
                 return None
             return dumps(None)
         return value
+
+    def formfield(self, **kwargs):
+        defaults = {
+            "form_class": JSONFormField,
+        }
+        defaults.update(**kwargs)
+        return super().formfield(**defaults)

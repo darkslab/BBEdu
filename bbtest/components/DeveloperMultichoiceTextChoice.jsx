@@ -20,7 +20,8 @@ class DeveloperMultichoiceTextChoice extends React.Component {
         );
         if (this.props.chosen) {
             buttons.push(
-                <button key="solution"
+                <button disabled
+                        key="solution"
                         type="button"
                         className="btn btn-primary btn-xs pull-right ml-5">{this.props.texts.answerChoiceSolutionButton}</button>
             );

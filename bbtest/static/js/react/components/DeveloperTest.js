@@ -39,7 +39,7 @@ var DeveloperTest = function (_React$Component) {
             var questionNumber = 1;
             if (location.hash) {
                 questionNumber = parseInt(location.hash.substr(1), 10);
-                if (isNaN(questionNumber) || questionNumber < 1 || questionNumber > this.props.questionCount) {
+                if (isNaN(questionNumber) || questionNumber < 1 || questionNumber > this.props.questionIds.length) {
                     questionNumber = 1;
                 }
             }
@@ -80,8 +80,8 @@ var DeveloperTest = function (_React$Component) {
                 var width = 5;
                 if (width < 1) {
                     width = 1;
-                } else if (width > this.props.questionCount) {
-                    width = this.props.questionCount;
+                } else if (width > this.props.questionIds.length) {
+                    width = this.props.questionIds.length;
                 }
                 var padding = parseInt((width - 1) / 2, 10);
                 var rightPadding = (width - 1) % 2;
@@ -101,9 +101,9 @@ var DeveloperTest = function (_React$Component) {
                         indexes.shift();
                         indexes.push(indexes[indexes.length - 1] + 1);
                     }
-                } else if (indexes[indexes.length - 1] >= this.props.questionCount) {
+                } else if (indexes[indexes.length - 1] >= this.props.questionIds.length) {
                     while (true) {
-                        if (indexes[indexes.length - 1] < this.props.questionCount) {
+                        if (indexes[indexes.length - 1] < this.props.questionIds.length) {
                             break;
                         }
                         indexes.pop();
@@ -158,7 +158,7 @@ var DeveloperTest = function (_React$Component) {
                         ));
                     }
                 }
-                if (this.state.questionIndex < this.props.questionCount - 1) {
+                if (this.state.questionIndex < this.props.questionIds.length - 1) {
                     paginationElements.push(React.createElement(
                         "li",
                         { key: "right" },
@@ -223,7 +223,7 @@ var DeveloperTest = function (_React$Component) {
         key: "_ajaxSuccess",
         value: function _ajaxSuccess(type, data, status, $xhr) {
             if (type === "question") {
-                this._questionObject = new DeveloperQuestionObject(data.id, data.data, data.paragraphs);
+                this._questionObject = new DeveloperQuestionObject(data.id, data.data, data.paragraphs, this.props.questionUrl);
                 this.setState({
                     isQuestionLoading: false
                 });
@@ -290,7 +290,7 @@ var DeveloperTest = function (_React$Component) {
                 this._$xhrs["question"].abort();
             }
             this._$xhrs["question"] = $.get({
-                url: this.props.indexedQuestionUrl + index + "/",
+                url: this.props.questionUrl + this.props.questionIds[index] + "/",
                 success: this._ajaxSuccess.bind(this, "question"),
                 error: this._ajaxError.bind(this, "question")
             });

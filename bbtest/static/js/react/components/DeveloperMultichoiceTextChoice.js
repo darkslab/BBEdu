@@ -42,7 +42,8 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
             if (this.props.chosen) {
                 buttons.push(React.createElement(
                     "button",
-                    { key: "solution",
+                    { disabled: true,
+                        key: "solution",
                         type: "button",
                         className: "btn btn-primary btn-xs pull-right ml-5" },
                     this.props.texts.answerChoiceSolutionButton
