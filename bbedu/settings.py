@@ -14,7 +14,16 @@ import os
 from pathlib import Path
 from json import load
 from re import match
-from bbtest.pipeline_js import SOURCE_FILENAMES as SOURCE_FILENAMES_JS
+from bbtest.pipeline_js import (
+    BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_JS,
+    BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_JS,
+    BASE2_SOURCE_FILENAMES as BASE2_SOURCE_FILENAMES_JS,
+    BASE3_SOURCE_FILENAMES as BASE3_SOURCE_FILENAMES_JS,
+)
+from bbtest.pipeline_css import (
+    BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_CSS,
+    BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_CSS,
+)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -159,22 +168,43 @@ PIPELINE = {
     "DISABLE_WRAPPER": True,
     "SHOW_ERRORS_INLINE": False,
     "JAVASCRIPT": {
-        "base": {
-            "source_filenames": SOURCE_FILENAMES_JS,
-            "output_filename": "js/base.js",
+        "base0": {
+            "source_filenames": BASE0_SOURCE_FILENAMES_JS,
+            "output_filename": "js/base0.js",
+            "extra_context": {
+                "defer": True,
+            },
+        },
+        "base1": {
+            "source_filenames": BASE1_SOURCE_FILENAMES_JS,
+            "output_filename": "js/base1.js",
+            "extra_context": {
+                "defer": True,
+            },
+        },
+        "base2": {
+            "source_filenames": BASE2_SOURCE_FILENAMES_JS,
+            "output_filename": "js/base2.js",
+            "extra_context": {
+                "defer": True,
+            },
+        },
+        "base3": {
+            "source_filenames": BASE3_SOURCE_FILENAMES_JS,
+            "output_filename": "js/base3.js",
             "extra_context": {
                 "defer": True,
             },
         },
     },
     "STYLESHEETS": {
-        "base": {
-            "source_filenames": (
-                "css/font-awesome.css",
-                "css/bootstrap.css",
-                "css/style.css",
-            ),
-            "output_filename": "css/base.css",
+        "base0": {
+            "source_filenames": BASE0_SOURCE_FILENAMES_CSS,
+            "output_filename": "css/base0.css",
+        },
+        "base1": {
+            "source_filenames": BASE1_SOURCE_FILENAMES_CSS,
+            "output_filename": "css/base1.css",
         },
     },
 }

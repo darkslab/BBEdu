@@ -1,0 +1,293 @@
+{% extends './developer_base_2.html' %}
+{% load i18n static %}
+
+{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "ReactModule",
+            data: {
+                class: "Test",
+                props: {
+                    spinnerLogo: "{% static 'img/logo.png' %}"
+                }
+            }
+        });
+    </script>
+    <div class="row">
+        <div class="col-xs-12" style="
+            min-height: 420px;
+        ">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading bb-rel">
+                            <div class="bb-test-number">13</div>
+                            <h4 class="panel-title bb-test-title mt-15 mb-15">Question</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">DIFFICULTY</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bb-test-section-background pl-10" readonly value="Normal">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="javascript:void(0);">High</a></li>
+                                                    <li class="active"><a href="javascript:void(0);">Normal</a></li>
+                                                    <li><a href="javascript:void(0);">Low</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">TAXONOMY</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bb-test-section-background pl-10" readonly value="Communication">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="javascript:void(0);">Meaning</a></li>
+                                                    <li class="active"><a href="javascript:void(0);">Communication</a></li>
+                                                    <li><a href="javascript:void(0);">Structure</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3">TOPIC</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bb-test-section-background pl-10" readonly value="Nature">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="javascript:void(0);">People</a></li>
+                                                    <li><a href="javascript:void(0);">Animals</a></li>
+                                                    <li class="active"><a href="javascript:void(0);">Nature</a></li>
+                                                    <li><a href="javascript:void(0);">Weather</a></li>
+                                                    <li><a href="javascript:void(0);">Food</a></li>
+                                                    <li><a href="javascript:void(0);">Science</a></li>
+                                                    <li><a href="javascript:void(0);">Education</a></li>
+                                                    <li><a href="javascript:void(0);">History</a></li>
+                                                    <li><a href="javascript:void(0);">Ethics</a></li>
+                                                    <li><a href="javascript:void(0);">Sports</a></li>
+                                                    <li><a href="javascript:void(0);">Art</a></li>
+                                                    <li><a href="javascript:void(0);">Health</a></li>
+                                                    <li><a href="javascript:void(0);">Traditions</a></li>
+                                                    <li><a href="javascript:void(0);">Upbringing</a></li>
+                                                    <li><a href="javascript:void(0);">Culture</a></li>
+                                                    <li><a href="javascript:void(0);">Hobby</a></li>
+                                                    <li><a href="javascript:void(0);">Ecology</a></li>
+                                                    <li><a href="javascript:void(0);">Fables and Fairy Tales</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group bb-test-section-movable bb-test-section-background">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-danger btn-xs pull-right ml-5">Formulas Off</button>
+                                        <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
+                                    </div>
+                                    <textarea class="form-control bb-test-paragraph bb-test-paragraph-textarea" placeholder="Type something!">Main question here...</textarea>
+                                </div>
+
+                                <div class="form-group bb-test-section-movable bb-test-section-background">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
+                                        <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                                            <div class="row">
+                                                <div class="col-xs-6 pr-5">
+                                                    <textarea class="form-control bb-test-paragraph bb-test-paragraph-textarea" placeholder="Type something!">Left quantitative text</textarea>
+                                                </div>
+                                                <div class="col-xs-6 pl-5">
+                                                    <textarea class="form-control bb-test-paragraph bb-test-paragraph-textarea" placeholder="Type something!">Right quantitative text</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group bb-test-section-movable bb-test-section-background">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
+                                    </div>
+                                    <div class="bb-test-paragraph bb-test-paragraph-upload">
+                                        <div class="row">
+                                            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <label for="monkey" class="btn btn-success btn-lg btn-block mt-23">Upload Image</label>
+                                                        <input id="monkey" class="hidden" type="file">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-center mt-15">
+                                    <button type="button" class="btn btn-success">Add Section</button>
+                                </div>
+                            </div>
+                            <hr class="bb-separator">
+                            <div>
+                                <div class="bb-test-paragraph">
+                                    <p class="lead text-center mb-0">Please add a Section above to preview it here.</p>
+                                </div>
+                                <div class="bb-test-paragraph">Main question here...</div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                                        <div class="row">
+                                            <div class="col-xs-6 pr-5">
+                                                <div class="bb-test-paragraph">Left quantitative text</div>
+                                            </div>
+                                            <div class="col-xs-6 pl-5">
+                                                <div class="bb-test-paragraph">Right quantitative text</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bb-test-paragraph">
+                                    <img class="img-responsive center-block bb-test-paragraph-image" src="{% static 'img/sample.png' %}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 mb-23">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                        <button type="button" class="btn btn-primary btn-lg btn-block">Add Answer</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="text-center">Multi-choice with 1 answer</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <div class="form-group bb-test-section-movable bb-test-section-background">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
+                                        <button type="button" class="btn btn-danger btn-xs pull-right ml-5">Incorrect Answer</button>
+                                        <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-2 col-sm-3 pr-0"></div>
+                                        <div class="col-xs-10 col-sm-7 pl-0">
+                                            <textarea class="form-control bb-test-answer bb-test-answer-textarea" placeholder="Type something!">Answer example 1</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group bb-test-section-movable bb-test-section-background">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
+                                        <button type="button" class="btn btn-success btn-xs pull-right ml-5">Correct Answer</button>
+                                        <button type="button" class="btn btn-primary btn-xs pull-right ml-5">Provide Solution</button>
+                                        <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-2 col-sm-3 pr-0"></div>
+                                        <div class="col-xs-10 col-sm-7 pl-0">
+                                            <textarea class="form-control bb-test-answer bb-test-answer-textarea" placeholder="Type something!">Answer example 2</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group bb-test-section-movable bb-test-section-background">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
+                                        <button type="button" class="btn btn-danger btn-xs pull-right ml-5">Incorrect Answer</button>
+                                        <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-2 col-sm-3 pr-0"></div>
+                                        <div class="col-xs-10 col-sm-7 pl-0">
+                                            <textarea class="form-control bb-test-answer bb-test-answer-textarea" placeholder="Type something!">Answer example 3</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group bb-test-section-movable bb-test-section-background">
+                                    <div class="pt-5 pr-5 pb-5 pl-5 clearfix">
+                                        <button type="button" class="btn btn-success btn-xs pull-right ml-5">Formulas On</button>
+                                        <button type="button" class="btn btn-danger btn-xs pull-right ml-5">Incorrect Answer</button>
+                                        <button type="button" class="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-2 col-sm-3 pr-0"></div>
+                                        <div class="col-xs-10 col-sm-7 pl-0">
+                                            <textarea class="form-control bb-test-answer bb-test-answer-textarea" placeholder="Type something!">Answer example 4</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-center mt-15">
+                                    <button type="button" class="btn btn-success">Add Answer Choice</button>
+                                </div>
+                            </div>
+                            <hr class="bb-separator">
+                            <div>
+                                <div class="row">
+                                    <div class="col-xs-2 col-sm-3 pr-0">
+                                        <div class="bb-rel bb-test-answer">
+                                            <div class="bb-test-answer-choice">A</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-7 pl-0">
+                                        <div class="bb-test-answer">Answer example 1</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2 col-sm-3 pr-0">
+                                        <div class="bb-rel bb-test-answer">
+                                            <div class="bb-test-answer-choice bb-test-answer-choice-selected">B</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-7 pl-0">
+                                        <div class="bb-test-answer">Answer example 2</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2 col-sm-3 pr-0">
+                                        <div class="bb-rel bb-test-answer">
+                                            <div class="bb-test-answer-choice">C</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-7 pl-0">
+                                        <div class="bb-test-answer">Answer example 3</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2 col-sm-3 pr-0">
+                                        <div class="bb-rel bb-test-answer">
+                                            <div class="bb-test-answer-choice">D</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-7 pl-0">
+                                        <div class="bb-test-answer">Answer example 4</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

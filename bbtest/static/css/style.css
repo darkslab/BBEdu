@@ -101,6 +101,10 @@ html {
     height: 100%;
 }
 
+.bb-rel {
+    position: relative;
+}
+
 .bb-body {
     background-color: rgba(237, 244, 247, 1);
 }
@@ -166,6 +170,7 @@ html {
     bottom: 0px;
     left: 0px;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
 .bb-overlay.bb-overlayed {
@@ -627,4 +632,184 @@ html {
 .bb-settings-gravatar {
     border: 2px solid #2196f3;
     max-height: 300px;
+}
+
+@-webkit-keyframes bb-spinner-animation {
+    from {
+        -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+     @-o-keyframes bb-spinner-animation {
+    from {
+        -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+        @keyframes bb-spinner-animation {
+    from {
+        -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
+.bb-spinner {
+    width: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    -webkit-animation: bb-spinner-animation 2s ease infinite;
+         -o-animation: bb-spinner-animation 2s ease infinite;
+            animation: bb-spinner-animation 2s ease infinite;
+}
+
+.bb-developer-container {
+    min-height: 420px;
+}
+
+.bb-separator {
+    border-color: #ccc;
+}
+
+.bb-test-number {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    top: 50%;
+    margin-top: -24px;
+    left: 18px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    color: #444444;
+    text-align: center;
+    line-height: 48px;
+    font-size: 26px;
+}
+
+.bb-test-title {
+    font-size: 24px;
+    margin-left: 64px;
+}
+
+.bb-test-section-background {
+    background-color: rgba(33, 150, 243, 0.15) !important;
+}
+
+.bb-test-section-movable {
+    border-radius: 2px;
+    cursor: ns-resize;
+}
+
+.bb-test-paragraph,
+.form-control.bb-test-paragraph {
+    min-height: 64px;
+    border: 2px solid transparent;
+    padding: 15px;
+    font-size: 16px;
+    letter-spacing: normal;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.bb-test-paragraph-placeholder {
+    background-color: rgba(255, 152, 0, 0.25) !important;
+    margin-bottom: 15px;
+}
+
+.bb-test-paragraph-textarea,
+.form-control.bb-test-paragraph-textarea {
+    border-radius: 2px;
+    height: 170px;
+    border-style: dashed;
+    border-color: #2196f3;
+    background-color: #fff;
+    resize: none;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+}
+
+.bb-test-paragraph-textarea-empty,
+.form-control.bb-test-paragraph-textarea-empty {
+    border-color: #e51c23;
+}
+
+.bb-test-paragraph-upload {
+    height: 170px;
+}
+
+.bb-test-paragraph-image {
+    max-height: 400px;
+}
+
+.bb-test-answer,
+.form-control.bb-test-answer {
+    min-height: 44px;
+    border: 2px solid transparent;
+    padding: 5px 15px;
+    font-size: 16px;
+    letter-spacing: normal;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.bb-test-answer-choice {
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    width: 36px;
+    height: 36px;
+    margin-top: -18px;
+    background-color: #bbbbbb;
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 36px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bb-test-answer-choice-selected {
+    background-color: #4caf50;
+}
+
+.bb-test-answer-textarea,
+.form-control.bb-test-answer-textarea {
+    border-radius: 2px;
+    height: 70px;
+    border-style: dashed;
+    border-color: #2196f3;
+    background-color: #fff;
+    resize: none;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+}
+
+.bb-test-answer-placeholder {
+    background-color: rgba(255, 152, 0, 0.25) !important;
+    margin-bottom: 15px;
 }

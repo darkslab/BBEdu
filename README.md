@@ -13,4 +13,15 @@ A testing platform application.
 
 #### How to create translation files ####
 
-    ./manage.py makemessages -v3 -a -i '_.*' --no-location --no-obsolete
+    ./manage.py makemessages -v3 -a -i '_.*' -i '__pycache__' -i 'node_modules' -i 'bbtest/static' --no-location --no-obsolete
+
+
+#### How to compile React components ####
+
+1. In the project root, install required binaries:
+
+        npm install --save-dev
+
+2. Compile with npm:
+
+        npm run build

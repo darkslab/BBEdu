@@ -15,13 +15,13 @@ from bbtest.auth.password_validation import password_validators_help_text_html
 
 class AuthenticationForm(_AuthenticationForm):
     username = CharField(label=pgettext_lazy("Form label", "Email"), error_messages={
-        "required": pgettext_lazy("Form field error", "Please enter email."),
+        "required": pgettext_lazy("Validation error", "Please enter email."),
     })
     password = CharField(label=pgettext_lazy("Form label", "Password"), error_messages={
-        "required": pgettext_lazy("Form field error", "Please enter password."),
+        "required": pgettext_lazy("Validation error", "Please enter password."),
     }, widget=PasswordInput, strip=False)
     error_messages = {
-        "invalid_login": pgettext_lazy("Form validation error", "Please enter a correct email and password."),
+        "invalid_login": pgettext_lazy("Validation error", "Please enter a correct email and password."),
     }
 
 
@@ -40,8 +40,8 @@ class UserCreationForm(BaseUserForm):
 
 class PasswordResetForm(_PasswordResetForm):
     email = EmailField(label=pgettext_lazy("Form label", "Email"), error_messages={
-        "required": pgettext_lazy("Form field error", "Please enter email."),
-        "invalid": pgettext_lazy("Form field error", "Incorrect email."),
+        "required": pgettext_lazy("Validation error", "Please enter email."),
+        "invalid": pgettext_lazy("Validation error", "Incorrect email."),
     })
 
     def send_mail(self, subject_template_name, email_template_name, context, from_email, to_email, html_email_template_name=None):
@@ -55,11 +55,11 @@ class PasswordResetForm(_PasswordResetForm):
 
 class SetPasswordForm(_SetPasswordForm):
     error_messages = {
-        "password_mismatch": pgettext_lazy("Form validation error", "Passwords do not match."),
+        "password_mismatch": pgettext_lazy("Validation error", "Passwords do not match."),
     }
     new_password1 = CharField(label=pgettext_lazy("Form label", "New password"), error_messages={
-        "required": pgettext_lazy("Form field error", "Please enter new password."),
+        "required": pgettext_lazy("Validation error", "Please enter new password."),
     }, widget=PasswordInput, strip=False, help_text=password_validators_help_text_html())
     new_password2 = CharField(label=pgettext_lazy("Form label", "Confirm new password"), error_messages={
-        "required": pgettext_lazy("Form field error", "Please enter new password confirmation."),
+        "required": pgettext_lazy("Validation error", "Please enter new password confirmation."),
     }, widget=PasswordInput, strip=False)
