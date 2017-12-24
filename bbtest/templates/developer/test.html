@@ -13,6 +13,7 @@
                     spinnerLogo: "{% static 'img/logo.png' %}",
                     questionUrl: "{% url 'bbtest:developer_question' code %}",
                     questionIds: {{ question_ids|safe }},
+                    paragraphsUrl: "{% url 'bbtest:developer_paragraphs' code %}",
                     attributesUrl: "{% url 'bbtest:developer_attributes' code %}",
                     texts: {
                         error:                                               "{% trans 'There was an error, please reload the page.'            context 'Developer tools' %}",

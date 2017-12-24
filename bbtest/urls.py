@@ -6,6 +6,7 @@ from .views.developer import (
     DashboardView as DeveloperDashboardView,
     TestView,
     QuestionView,
+    ParagraphsView,
     AttributesView,
 )
 
@@ -26,6 +27,7 @@ urlpatterns = [
     url(r"^developer/$", DeveloperDashboardView.as_view(), name="developer_dashboard"),
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/$", TestView.as_view(), name="developer_test"),
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/)?$", QuestionView.as_view(), name="developer_question"),
+    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", ParagraphsView.as_view(), name="developer_paragraphs"),
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/attributes/$", AttributesView.as_view(), name="developer_attributes"),
     # DARK_TODO  remove this when done
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/concept/$", TestView.as_view(template_name="developer/test_concept.html")),

@@ -1,11 +1,13 @@
 from django.views.generic import View, TemplateView
 from django.shortcuts import get_object_or_404
-from django.http import JsonResponse, Http404
+from django.http import Http404
 from django.utils.translation import ugettext as _
+from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
 from bbtest.models import TestQuestion
-from bbtest.forms.test import TestQuestionForm
-from json import dumps
+from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm
+from bbtest.utils.json import tight_dumps
+from bbtest.http import TightJsonResponse
 
 
 def get_test_or_404(user, code):
@@ -25,7 +27,7 @@ class TestView(DeveloperLoginRequiredMixin, TemplateView):
         question_ids = []
         for data in kwargs["test"].questions.values("id").order_by("order"):
             question_ids.append(data["id"])
-        kwargs["question_ids"] = dumps(question_ids, separators=(",", ":"))
+        kwargs["question_ids"] = tight_dumps(question_ids)
         return super().get_context_data(**kwargs)
 
 
@@ -59,7 +61,7 @@ class QuestionView(DeveloperLoginRequiredMixin, View):
                     paragraph_data["question_ids"].append(through.question_id)
             question_data["paragraphs"].append(paragraph_data)
 
-        return JsonResponse(question_data, json_dumps_params={"separators": (",", ":")})
+        return TightJsonResponse(question_data)
 
     def post(self, request, code, question_id, *args, **kwargs):
         test = get_object_or_404(request.user.tests, code=code)
@@ -68,12 +70,28 @@ class QuestionView(DeveloperLoginRequiredMixin, View):
         form = TestQuestionForm(data=request.POST, instance=question)
         if form.is_valid():
             form.save()
-            return JsonResponse({"success": True}, json_dumps_params={"separators": (",", ":")})
+            return TightJsonResponse({"success": True})
 
-        return JsonResponse({
+        return TightJsonResponse({
             "success": False,
-            "errors": form.errors.as_json(),
-        }, status=400, json_dumps_params={"separators": (",", ":")})
+            "errors": loads(form.errors.as_json()),
+        }, status=400)
+
+
+class ParagraphsView(DeveloperLoginRequiredMixin, View):
+    def post(self, request, code, question_id, *args, **kwargs):
+        test = get_object_or_404(request.user.tests, code=code)
+        question = get_object_or_404(test.questions, pk=question_id)
+
+        form = TestParagraphsContainerForm(question, data=request.POST)
+        if form.is_valid():
+            form.save_paragraphs()
+            return TightJsonResponse({"success": True})
+
+        return TightJsonResponse({
+            "success": False,
+            "errors": loads(form.errors.as_json()),
+        }, status=400)
 
 
 class AttributesView(DeveloperLoginRequiredMixin, View):
@@ -101,4 +119,4 @@ class AttributesView(DeveloperLoginRequiredMixin, View):
                 "caption": str(_(str(topic))),
             })
 
-        return JsonResponse(attributes_data, json_dumps_params={"separators": (",", ":")})
+        return TightJsonResponse(attributes_data)

@@ -13,7 +13,7 @@ class JSONField(CharField):
             value = loads(value)
         except (ValueError, TypeError):
             raise ValidationError(
-                pgettext("Validation error", "Invalid JSON format"),
+                pgettext("Validation error", "Invalid JSON format."),
                 code="invalid",
             )
         return value

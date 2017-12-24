@@ -172,7 +172,8 @@ class DeveloperTest extends React.Component {
                 data.id,
                 data.data,
                 data.paragraphs,
-                this.props.questionUrl
+                this.props.questionUrl,
+                this.props.paragraphsUrl
             );
             this.setState({
                 isQuestionLoading: false
