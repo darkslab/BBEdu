@@ -1,0 +1,52 @@
+{% extends './developer_base_2.html' %}
+{% load i18n static %}
+
+{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "ReactModule",
+            data: {
+                class: "DeveloperTest",
+                props: {
+                    spinnerLogo: "{% static 'img/logo.png' %}",
+                    questionUrl: "{% url 'bbtest:developer_question' code %}",
+                    questionIds: {{ question_ids|safe }},
+                    paragraphsUrl: "{% url 'bbtest:developer_paragraphs' code %}",
+                    attributesUrl: "{% url 'bbtest:developer_attributes' code %}",
+                    texts: {
+                        error:                                               "{% trans 'There was an error, please reload the page.'            context 'Developer tools' %}",
+                        question:                                            "{% trans 'Question'                                               context 'Developer tools' %}",
+                        difficulty:                                          "{% trans 'Difficulty'                                             context 'Developer tools' %}",
+                        taxonomy:                                            "{% trans 'Taxonomy'                                               context 'Developer tools' %}",
+                        topic:                                               "{% trans 'Topic'                                                  context 'Developer tools' %}",
+                        addParagraph:                                        "{% trans 'Add Section'                                            context 'Developer tools' %}",
+                        sectionTextareaPlaceholder:                          "{% trans 'Type your question here'                                context 'Developer tools' %}",
+                        addAnswer:                                           "{% trans 'Add Answer'                                             context 'Developer tools' %}",
+                        multichoiceOneAnswerTitle:                           "{% trans 'Multi-choice with 1 answer'                             context 'Developer tools' %}",
+                        addAnswerChoice:                                     "{% trans 'Add Answer Choice'                                      context 'Developer tools' %}",
+                        choiceTextareaPlaceholder:                           "{% trans 'Type your answer choice here'                           context 'Developer tools' %}",
+                        paragraphsModalTitle:                                "{% trans 'Please choose Section type'                             context 'Developer tools' %}",
+                        paragraphsModalButtonTextParagraph:                  "{% trans 'Text Section'                                           context 'Developer tools' %}",
+                        paragraphsModalButtonSplitTextParagraph:             "{% trans 'Split Text Section'                                     context 'Developer tools' %}",
+                        answersModalTitle:                                   "{% trans 'Please choose Answer type'                              context 'Developer tools' %}",
+                        noParagraphs:                                        "{% trans 'Please add a Section above to preview it here.'         context 'Developer tools' %}",
+                        noAnswerChoices:                                     "{% trans 'Please add an Answer Choice above to preview it here.'  context 'Developer tools' %}",
+                        answerChoicesModalTitle:                             "{% trans 'Please choose Answer Choice type'                       context 'Developer tools' %}",
+                        answerChoicesModalTitleButtonMultichoiceTextChoice:  "{% trans 'Text Answer Choice'                                     context 'Developer tools' %}",
+                        answerChoiceSelectButton:                            "{% trans 'Correct'                                                context 'Developer tools' %}",
+                        answerChoiceSolutionButton:                          "{% trans 'Solution'                                               context 'Developer tools' %}"
+                    }
+                }
+            }
+        });
+    </script>
+    <div id="root">
+        <div class="row">
+            <div class="col-xs-12 bb-developer-container">
+                <img class="bb-spinner" src="{% static 'img/logo.png' %}">
+            </div>
+        </div>
+    </div>
+{% endblock %}

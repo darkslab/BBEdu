@@ -1,4 +1,4 @@
-{% load i18n pipeline %}
+{% load i18n pipeline static %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
@@ -12,9 +12,16 @@
     <meta name="description" content="{% block description %}bbTest.kz{% endblock %}">
     <meta name="turbolinks-cache-control" content="no-cache">
 
-    {% stylesheet 'base' %}
+    {% stylesheet 'base0' %}
+    {% stylesheet 'base1' %}
 
-    {% javascript 'base' %}
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    {% javascript 'base0' %}
+    {% javascript 'base1' %}
+    {% if perms.bbtest.developer %}
+        {% javascript 'base2' %}
+        {% javascript 'base3' %}
+    {% endif %}
     <script>
         var moduleDataStack = [];
     </script>

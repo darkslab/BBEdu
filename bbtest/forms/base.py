@@ -13,10 +13,10 @@ class BaseUserForm(ModelForm):
     require_password = True
 
     password1 = CharField(label=pgettext_lazy("Form label", "Password"), error_messages={
-        "required": pgettext_lazy("Form field error", "Please enter password."),
+        "required": pgettext_lazy("Validation error", "Please enter password."),
     }, widget=PasswordInput, strip=False, help_text=password_validators_help_text_html())
     password2 = CharField(label=pgettext_lazy("Form label", "Confirm password"), error_messages={
-        "required": pgettext_lazy("Form field error", "Please enter password confirmation."),
+        "required": pgettext_lazy("Validation error", "Please enter password confirmation."),
     }, widget=PasswordInput, strip=False)
 
     class Meta:
@@ -24,18 +24,18 @@ class BaseUserForm(ModelForm):
         fields = ("first_name", "last_name", "email")
         error_messages = {
             "first_name": {
-                "required": pgettext_lazy("Form field error", "Please enter first name."),
-                "max_length": pgettext_lazy("Form field error", "First name is too long."),
+                "required": pgettext_lazy("Validation error", "Please enter first name."),
+                "max_length": pgettext_lazy("Validation error", "First name is too long."),
             },
             "last_name": {
-                "required": pgettext_lazy("Form field error", "Please enter last name."),
-                "max_length": pgettext_lazy("Form field error", "Last name is too long."),
+                "required": pgettext_lazy("Validation error", "Please enter last name."),
+                "max_length": pgettext_lazy("Validation error", "Last name is too long."),
             },
             "email": {
-                "required": pgettext_lazy("Form field error", "Please enter email."),
-                "invalid": pgettext_lazy("Form field error", "Incorrect email."),
-                "max_length": pgettext_lazy("Form field error", "Email is too long."),
-                "unique": pgettext_lazy("Form field error", "This email is already taken."),
+                "required": pgettext_lazy("Validation error", "Please enter email."),
+                "invalid": pgettext_lazy("Validation error", "Incorrect email."),
+                "max_length": pgettext_lazy("Validation error", "Email is too long."),
+                "unique": pgettext_lazy("Validation error", "This email is already taken."),
             },
         }
 
@@ -55,7 +55,7 @@ class BaseUserForm(ModelForm):
         if password1 or password2:
             if password1 != password2:
                 raise ValidationError(
-                    pgettext("Form validation error", "Passwords do not match."),
+                    pgettext("Validation error", "Passwords do not match."),
                     code="password_mismatch",
                 )
             else:

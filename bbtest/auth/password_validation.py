@@ -21,7 +21,7 @@ class BadPasswordValidator:
     def validate(self, password, user=None):
         if len(password) < self.min_length:
             raise ValidationError(
-                pgettext("Password validation error", "The password has to be at least %(min_length)d characters."),
+                pgettext("Validation error", "The password has to be at least %(min_length)d characters."),
                 code="password_too_short",
                 params={
                     "min_length": self.min_length
@@ -30,7 +30,7 @@ class BadPasswordValidator:
         if len(password) < self.secure_length:
             if password.lower() == password:
                 raise ValidationError(
-                    pgettext("Password validation error", "If the password is less than %(secure_length)d characters, it has to contain at least one uppercase character."),
+                    pgettext("Validation error", "If the password is less than %(secure_length)d characters, it has to contain at least one uppercase character."),
                     code="password_bad",
                     params={
                         "secure_length": self.secure_length
@@ -38,7 +38,7 @@ class BadPasswordValidator:
                 )
             if password.upper() == password:
                 raise ValidationError(
-                    pgettext("Password validation error", "If the password is less than %(secure_length)d characters, it has to contain at least one lowercase character."),
+                    pgettext("Validation error", "If the password is less than %(secure_length)d characters, it has to contain at least one lowercase character."),
                     code="password_bad",
                     params={
                         "secure_length": self.secure_length
@@ -51,7 +51,7 @@ class BadPasswordValidator:
                     break
             if not has_numeric:
                 raise ValidationError(
-                    pgettext("Password validation error", "If the password is less than %(secure_length)d characters, it has to contain at least one numeric character."),
+                    pgettext("Validation error", "If the password is less than %(secure_length)d characters, it has to contain at least one numeric character."),
                     code="password_bad",
                     params={
                         "secure_length": self.secure_length
@@ -59,7 +59,7 @@ class BadPasswordValidator:
                 )
             if password.isalnum():
                 raise ValidationError(
-                    pgettext("Password validation error", "If the password is less than %(secure_length)d characters, it has to contain at least one symbol character."),
+                    pgettext("Validation error", "If the password is less than %(secure_length)d characters, it has to contain at least one symbol character."),
                     code="password_bad",
                     params={
                         "secure_length": self.secure_length
@@ -104,7 +104,7 @@ class UserAttributeSimilarityValidator:
                     except FieldDoesNotExist:
                         verbose_name = attribute_name
                     raise ValidationError(
-                        pgettext("Password validation error", "The password is too similar to the %(verbose_name)s."),
+                        pgettext("Validation error", "The password is too similar to the %(verbose_name)s."),
                         code="password_too_similar",
                         params={
                             "verbose_name": verbose_name
@@ -134,7 +134,7 @@ class CommonPasswordValidator:
     def validate(self, password, user=None):
         if password.lower().strip() in self.passwords:
             raise ValidationError(
-                pgettext("Password validation error", "The password is too common."),
+                pgettext("Validation error", "The password is too common."),
                 code="password_too_common",
             )
 
