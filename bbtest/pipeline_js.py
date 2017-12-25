@@ -22,9 +22,13 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/SettingsPageModule.js",
     "js/modules/RegisterPageModule.js",
 )
-BASE2_SOURCE_FILENAMES = (
-    "js/react/react.js",
-    "js/react/react-dom.js",
+BASE2_PRODUCTION_SOURCE_FILENAMES = (
+    "js/react/react.production.min.js",
+    "js/react/react-dom.production.min.js",
+)
+BASE2_DEVELOPMENT_SOURCE_FILENAMES = (
+    "js/react/react.development.js",
+    "js/react/react-dom.development.js",
 )
 BASE3_SOURCE_FILENAMES = (
     "js/react/objects/DeveloperQuestionObject.js",
