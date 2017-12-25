@@ -14,16 +14,6 @@ import os
 from pathlib import Path
 from json import load
 from re import match
-from bbtest.pipeline_js import (
-    BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_JS,
-    BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_JS,
-    BASE2_SOURCE_FILENAMES as BASE2_SOURCE_FILENAMES_JS,
-    BASE3_SOURCE_FILENAMES as BASE3_SOURCE_FILENAMES_JS,
-)
-from bbtest.pipeline_css import (
-    BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_CSS,
-    BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_CSS,
-)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -162,6 +152,20 @@ STATICFILES_FINDERS = [
     "pipeline.finders.CachedFileFinder",
     "pipeline.finders.PipelineFinder",
 ]
+
+from bbtest.pipeline_js import (
+    BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_JS,
+    BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_JS,
+    BASE3_SOURCE_FILENAMES as BASE3_SOURCE_FILENAMES_JS,
+)
+if not DEBUG:
+    from bbtest.pipeline_js import BASE2_PRODUCTION_SOURCE_FILENAMES as BASE2_SOURCE_FILENAMES_JS
+else:
+    from bbtest.pipeline_js import BASE2_DEVELOPMENT_SOURCE_FILENAMES as BASE2_SOURCE_FILENAMES_JS
+from bbtest.pipeline_css import (
+    BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_CSS,
+    BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_CSS,
+)
 
 PIPELINE = {
     "PIPELINE_COLLECTOR_ENABLED": False,
