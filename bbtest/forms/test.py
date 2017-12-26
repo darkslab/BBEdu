@@ -263,12 +263,14 @@ class TestParagraphsContainerForm(Form):
                     ),
                 })
             if "id" in data:
+                paragraph_index = paragraph_ids.index(data["id"])
                 self._forms.append(
                     TestParagraphForm(
                         data=data["data"],
-                        instance=paragraphs.pop(paragraph_ids.index(data["id"])),
+                        instance=paragraphs.pop(paragraph_index),
                     )
                 )
+                paragraph_ids.pop(paragraph_index)
             else:
                 self._forms.append(
                     TestParagraphForm(data=data["data"])
