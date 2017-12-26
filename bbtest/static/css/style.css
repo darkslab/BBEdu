@@ -809,6 +809,11 @@ html {
             box-shadow: none !important;
 }
 
+.bb-test-answer-textarea-empty,
+.form-control.bb-test-answer-textarea-empty {
+    border-color: #e51c23;
+}
+
 .bb-test-answer-placeholder {
     background-color: rgba(255, 152, 0, 0.25) !important;
     margin-bottom: 15px;
