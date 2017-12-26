@@ -50,6 +50,11 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
                 ));
             }
 
+            var className = "form-control bb-test-answer bb-test-answer-textarea";
+            if (!this.props.data.text) {
+                className += " bb-test-answer-textarea-empty";
+            }
+
             return React.createElement(
                 "div",
                 { className: "form-group bb-test-section-movable bb-test-section-background", "data-choice-id": this.props.choiceId },
@@ -70,7 +75,7 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
                     React.createElement(
                         "div",
                         { className: "col-xs-10 col-sm-7 pl-0" },
-                        React.createElement("textarea", { className: "form-control bb-test-answer bb-test-answer-textarea",
+                        React.createElement("textarea", { className: className,
                             placeholder: this.props.texts.choiceTextareaPlaceholder,
                             value: this.props.data.text,
                             onChange: this._handleChange.bind(this) })

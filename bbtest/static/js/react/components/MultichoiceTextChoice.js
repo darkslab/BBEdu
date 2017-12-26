@@ -25,6 +25,15 @@ var MultichoiceTextChoice = function (_React$Component) {
                 choiceClassName += " bb-test-answer-choice-selected";
             }
 
+            var contentClassName = "bb-test-answer";
+            var content = null;
+            if (this.props.data.text) {
+                content = this.props.data.text;
+            } else if (this.props.optionalTexts) {
+                contentClassName += " bb-placeholder";
+                content = this.props.optionalTexts.choiceEmptyPlaceholder;
+            }
+
             return React.createElement(
                 "div",
                 { className: "row" },
@@ -47,8 +56,8 @@ var MultichoiceTextChoice = function (_React$Component) {
                     { className: "col-xs-10 col-sm-7 pl-0" },
                     React.createElement(
                         "div",
-                        { className: "bb-test-answer" },
-                        this.props.data.text
+                        { className: contentClassName },
+                        content
                     )
                 )
             );

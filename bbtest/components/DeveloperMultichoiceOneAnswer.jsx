@@ -65,7 +65,8 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                 <ChoiceClass key={choice.id}
                              data={choice.meta_data}
                              label={this._alphabet[index]}
-                             chosen={chosen} />
+                             chosen={chosen}
+                             optionalTexts={this.props.texts} />
             );
         });
         if (!choices.length) {

@@ -27,6 +27,11 @@ class DeveloperMultichoiceTextChoice extends React.Component {
             );
         }
 
+        let className = "form-control bb-test-answer bb-test-answer-textarea";
+        if (!this.props.data.text) {
+            className += " bb-test-answer-textarea-empty";
+        }
+
         return (
             <div className="form-group bb-test-section-movable bb-test-section-background" data-choice-id={this.props.choiceId}>
                 <div className="pt-5 pr-5 pb-5 pl-5 clearfix">
@@ -36,7 +41,7 @@ class DeveloperMultichoiceTextChoice extends React.Component {
                 <div className="row">
                     <div className="col-xs-2 col-sm-3 pr-0"></div>
                     <div className="col-xs-10 col-sm-7 pl-0">
-                        <textarea className="form-control bb-test-answer bb-test-answer-textarea"
+                        <textarea className={className}
                                   placeholder={this.props.texts.choiceTextareaPlaceholder}
                                   value={this.props.data.text}
                                   onChange={this._handleChange.bind(this)} />

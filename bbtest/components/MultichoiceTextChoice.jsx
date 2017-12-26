@@ -8,6 +8,15 @@ class MultichoiceTextChoice extends React.Component {
             choiceClassName += " bb-test-answer-choice-selected";
         }
 
+        let contentClassName = "bb-test-answer";
+        let content = null;
+        if (this.props.data.text) {
+            content = this.props.data.text;
+        } else if (this.props.optionalTexts) {
+            contentClassName += " bb-placeholder";
+            content = this.props.optionalTexts.choiceEmptyPlaceholder;
+        }
+
         return (
             <div className="row">
                 <div className="col-xs-2 col-sm-3 pr-0">
@@ -17,7 +26,7 @@ class MultichoiceTextChoice extends React.Component {
                     </div>
                 </div>
                 <div className="col-xs-10 col-sm-7 pl-0">
-                    <div className="bb-test-answer">{this.props.data.text}</div>
+                    <div className={contentClassName}>{content}</div>
                 </div>
             </div>
         );
