@@ -51,7 +51,7 @@ var DeveloperTextParagraph = function (_React$Component) {
                     )
                 ),
                 React.createElement("textarea", { className: className,
-                    placeholder: this.props.texts.sectionTextareaPlaceholder,
+                    placeholder: this.props.texts.paragraphTextareaPlaceholder,
                     value: this.props.data.text,
                     onChange: this._handleChange.bind(this) })
             );

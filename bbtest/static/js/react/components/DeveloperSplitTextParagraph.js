@@ -67,7 +67,7 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                                 "div",
                                 { className: "col-xs-6 pr-5" },
                                 React.createElement("textarea", { className: leftClassName,
-                                    placeholder: this.props.texts.sectionTextareaPlaceholder,
+                                    placeholder: this.props.texts.paragraphTextareaPlaceholder,
                                     value: this.props.data.left.text,
                                     onChange: this._handleChange.bind(this, "left") })
                             ),
@@ -75,7 +75,7 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                                 "div",
                                 { className: "col-xs-6 pl-5" },
                                 React.createElement("textarea", { className: rightClassName,
-                                    placeholder: this.props.texts.sectionTextareaPlaceholder,
+                                    placeholder: this.props.texts.paragraphTextareaPlaceholder,
                                     value: this.props.data.right.text,
                                     onChange: this._handleChange.bind(this, "right") })
                             )

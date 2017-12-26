@@ -25,7 +25,7 @@ class DeveloperTextParagraph extends React.Component {
                     <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
                 </div>
                 <textarea className={className}
-                          placeholder={this.props.texts.sectionTextareaPlaceholder}
+                          placeholder={this.props.texts.paragraphTextareaPlaceholder}
                           value={this.props.data.text}
                           onChange={this._handleChange.bind(this)} />
             </div>
