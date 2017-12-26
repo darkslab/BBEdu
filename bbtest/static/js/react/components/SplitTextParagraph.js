@@ -1,6 +1,24 @@
 "use strict";
 
 function SplitTextParagraph(props) {
+    var leftClassName = "bb-test-paragraph";
+    var leftContent = null;
+    if (props.data.left.text) {
+        leftContent = props.data.left.text;
+    } else if (props.optionalTexts) {
+        leftClassName += " bb-placeholder";
+        leftContent = props.optionalTexts.paragraphEmptyPlaceholder;
+    }
+
+    var rightClassName = "bb-test-paragraph";
+    var rightContent = null;
+    if (props.data.right.text) {
+        rightContent = props.data.right.text;
+    } else if (props.optionalTexts) {
+        rightClassName += " bb-placeholder";
+        rightContent = props.optionalTexts.paragraphEmptyPlaceholder;
+    }
+
     return React.createElement(
         "div",
         { className: "row" },
@@ -15,8 +33,8 @@ function SplitTextParagraph(props) {
                     { className: "col-xs-6 pr-5" },
                     React.createElement(
                         "div",
-                        { className: "bb-test-paragraph" },
-                        props.data.left.text
+                        { className: leftClassName },
+                        leftContent
                     )
                 ),
                 React.createElement(
@@ -24,8 +42,8 @@ function SplitTextParagraph(props) {
                     { className: "col-xs-6 pl-5" },
                     React.createElement(
                         "div",
-                        { className: "bb-test-paragraph" },
-                        props.data.right.text
+                        { className: rightClassName },
+                        rightContent
                     )
                 )
             )

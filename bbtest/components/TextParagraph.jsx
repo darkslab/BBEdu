@@ -1,5 +1,14 @@
 function TextParagraph(props) {
+    let className = "bb-test-paragraph";
+    let content = null;
+    if (props.data.text) {
+        content = props.data.text;
+    } else if (props.optionalTexts) {
+        className += " bb-placeholder";
+        content = props.optionalTexts.paragraphEmptyPlaceholder;
+    }
+
     return (
-        <div className="bb-test-paragraph">{props.data.text}</div>
+        <div className={className}>{content}</div>
     );
 }

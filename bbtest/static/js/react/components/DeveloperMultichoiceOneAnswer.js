@@ -95,7 +95,8 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                 choices.push(React.createElement(ChoiceClass, { key: choice.id,
                     data: choice.meta_data,
                     label: _this2._alphabet[index],
-                    chosen: chosen }));
+                    chosen: chosen,
+                    optionalTexts: _this2.props.texts }));
             });
             if (!choices.length) {
                 choices.push(React.createElement(
