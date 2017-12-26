@@ -89,7 +89,8 @@ var DeveloperQuestion = function (_React$Component) {
                     onDelete: _this2._paragraphDelete.bind(_this2, id),
                     texts: _this2.props.texts }));
                 paragraphs.push(React.createElement(ParagraphClass, { key: id,
-                    data: paragraphData.meta_data }));
+                    data: paragraphData.meta_data,
+                    optionalTexts: _this2.props.texts }));
             });
             if (!paragraphs.length) {
                 paragraphs.push(React.createElement(

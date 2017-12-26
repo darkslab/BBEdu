@@ -1,9 +1,18 @@
 "use strict";
 
 function TextParagraph(props) {
+    var className = "bb-test-paragraph";
+    var content = null;
+    if (props.data.text) {
+        content = props.data.text;
+    } else if (props.optionalTexts) {
+        className += " bb-placeholder";
+        content = props.optionalTexts.paragraphEmptyPlaceholder;
+    }
+
     return React.createElement(
         "div",
-        { className: "bb-test-paragraph" },
-        props.data.text
+        { className: className },
+        content
     );
 }
