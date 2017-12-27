@@ -23,7 +23,7 @@ var DeveloperQuestion = function (_React$Component) {
         };
         _this._$paragraphsContainer;
         _this._maxParagraphs = 8;
-        _this._saveInterval = 5000;
+        _this._saveTimeout = 2000;
         _this._timer = null;
         return _this;
     }
@@ -49,7 +49,7 @@ var DeveloperQuestion = function (_React$Component) {
                 this._$paragraphsContainer = undefined;
             }
 
-            this._scheduleSave();
+            this._reScheduleSave();
         }
     }, {
         key: "componentWillUpdate",
@@ -74,6 +74,7 @@ var DeveloperQuestion = function (_React$Component) {
             }
 
             clearTimeout(this._timer);
+            this.props.object.stop("question");
         }
     }, {
         key: "render",
@@ -267,18 +268,21 @@ var DeveloperQuestion = function (_React$Component) {
                     break;
             }
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_paragraphChange",
         value: function _paragraphChange(id, data) {
             this.props.object.updateParagraph(id, data);
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_paragraphDelete",
         value: function _paragraphDelete(id) {
             this.props.object.deleteParagraph(id);
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_paragraphsSorted",
@@ -288,18 +292,21 @@ var DeveloperQuestion = function (_React$Component) {
             });
             this.props.object.setParagraphOrder(paragraphIds);
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_answerChange",
         value: function _answerChange(data) {
             this.props.object.updateAnswer(data);
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_answerDelete",
         value: function _answerDelete() {
             this.props.object.deleteAnswer();
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_renderModal",
@@ -340,13 +347,14 @@ var DeveloperQuestion = function (_React$Component) {
             }
         }
     }, {
-        key: "_scheduleSave",
-        value: function _scheduleSave() {
+        key: "_reScheduleSave",
+        value: function _reScheduleSave() {
             var _this3 = this;
 
+            clearTimeout(this._timer);
             this._timer = setTimeout(function () {
                 _this3.props.object.save("question", _this3._saveCallback.bind(_this3));
-            }, this._saveInterval);
+            }, this._saveTimeout);
         }
     }, {
         key: "_saveCallback",
@@ -356,7 +364,6 @@ var DeveloperQuestion = function (_React$Component) {
                 return;
             }
             this._pokeComponent();
-            this._scheduleSave();
         }
     }]);
 
