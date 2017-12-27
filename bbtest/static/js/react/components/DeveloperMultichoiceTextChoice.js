@@ -16,7 +16,12 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
     function DeveloperMultichoiceTextChoice(props) {
         _classCallCheck(this, DeveloperMultichoiceTextChoice);
 
-        return _possibleConstructorReturn(this, (DeveloperMultichoiceTextChoice.__proto__ || Object.getPrototypeOf(DeveloperMultichoiceTextChoice)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (DeveloperMultichoiceTextChoice.__proto__ || Object.getPrototypeOf(DeveloperMultichoiceTextChoice)).call(this, props));
+
+        _this.state = {
+            confirmModal: false
+        };
+        return _this;
     }
 
     _createClass(DeveloperMultichoiceTextChoice, [{
@@ -28,7 +33,7 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
                 { key: "delete",
                     type: "button",
                     className: "btn btn-danger btn-xs pull-right ml-5",
-                    onClick: this.props.onDelete },
+                    onClick: this._renderModal.bind(this) },
                 React.createElement("i", { className: "fa fa-fw fa-times" })
             ));
             buttons.push(React.createElement(
@@ -55,30 +60,44 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
                 className += " bb-test-answer-textarea-empty";
             }
 
+            var modal = null;
+            if (this.state.confirmModal) {
+                modal = React.createElement(DeveloperDeleteConfirmModal, { title: this.props.texts.deleteModalTitle,
+                    yesCaption: this.props.texts.deleteModalYesCaption,
+                    noCaption: this.props.texts.deleteModalNoCaption,
+                    isInverse: true,
+                    complete: this._completeModal.bind(this) });
+            }
+
             return React.createElement(
-                "div",
-                { className: "form-group bb-test-section-movable bb-test-section-background", "data-choice-id": this.props.choiceId },
+                React.Fragment,
+                null,
+                modal,
                 React.createElement(
                     "div",
-                    { className: "pt-5 pr-5 pb-5 pl-5 clearfix" },
-                    buttons,
-                    React.createElement(
-                        "button",
-                        { type: "button", className: "btn btn-default btn-xs pull-right ml-5 invisible" },
-                        "Spacer"
-                    )
-                ),
-                React.createElement(
-                    "div",
-                    { className: "row" },
-                    React.createElement("div", { className: "col-xs-2 col-sm-3 pr-0" }),
+                    { className: "form-group bb-test-section-movable bb-test-section-background", "data-choice-id": this.props.choiceId },
                     React.createElement(
                         "div",
-                        { className: "col-xs-10 col-sm-7 pl-0" },
-                        React.createElement("textarea", { className: className,
-                            placeholder: this.props.texts.choiceTextareaPlaceholder,
-                            value: this.props.data.text,
-                            onChange: this._handleChange.bind(this) })
+                        { className: "pt-5 pr-5 pb-5 pl-5 clearfix" },
+                        buttons,
+                        React.createElement(
+                            "button",
+                            { type: "button", className: "btn btn-default btn-xs pull-right ml-5 invisible" },
+                            "Spacer"
+                        )
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "row" },
+                        React.createElement("div", { className: "col-xs-2 col-sm-3 pr-0" }),
+                        React.createElement(
+                            "div",
+                            { className: "col-xs-10 col-sm-7 pl-0" },
+                            React.createElement("textarea", { className: className,
+                                placeholder: this.props.texts.choiceTextareaPlaceholder,
+                                value: this.props.data.text,
+                                onChange: this._handleChange.bind(this) })
+                        )
                     )
                 )
             );
@@ -89,6 +108,24 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
             this.props.onChange(_extends({}, this.props.data, {
                 text: event.target.value
             }));
+        }
+    }, {
+        key: "_renderModal",
+        value: function _renderModal() {
+            this.setState({
+                confirmModal: true
+            });
+        }
+    }, {
+        key: "_completeModal",
+        value: function _completeModal(data) {
+            if (data) {
+                this.props.onDelete();
+            } else {
+                this.setState({
+                    confirmModal: false
+                });
+            }
         }
     }]);
 

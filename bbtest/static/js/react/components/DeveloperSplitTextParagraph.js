@@ -16,7 +16,12 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
     function DeveloperSplitTextParagraph(props) {
         _classCallCheck(this, DeveloperSplitTextParagraph);
 
-        return _possibleConstructorReturn(this, (DeveloperSplitTextParagraph.__proto__ || Object.getPrototypeOf(DeveloperSplitTextParagraph)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (DeveloperSplitTextParagraph.__proto__ || Object.getPrototypeOf(DeveloperSplitTextParagraph)).call(this, props));
+
+        _this.state = {
+            confirmModal: false
+        };
+        return _this;
     }
 
     _createClass(DeveloperSplitTextParagraph, [{
@@ -28,7 +33,7 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                 { key: "delete",
                     type: "button",
                     className: "btn btn-danger btn-xs pull-right ml-5",
-                    onClick: this.props.onDelete },
+                    onClick: this._renderModal.bind(this) },
                 React.createElement("i", { className: "fa fa-fw fa-times" })
             ));
 
@@ -41,43 +46,57 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                 rightClassName += " bb-test-paragraph-textarea-empty";
             }
 
+            var modal = null;
+            if (this.state.confirmModal) {
+                modal = React.createElement(DeveloperDeleteConfirmModal, { title: this.props.texts.deleteModalTitle,
+                    yesCaption: this.props.texts.deleteModalYesCaption,
+                    noCaption: this.props.texts.deleteModalNoCaption,
+                    isInverse: true,
+                    complete: this._completeModal.bind(this) });
+            }
+
             return React.createElement(
-                "div",
-                { className: "form-group bb-test-section-movable bb-test-section-background", "data-paragraph-id": this.props.paragraphId },
+                React.Fragment,
+                null,
+                modal,
                 React.createElement(
                     "div",
-                    { className: "pt-5 pr-5 pb-5 pl-5 clearfix" },
-                    buttons,
-                    React.createElement(
-                        "button",
-                        { type: "button", className: "btn btn-default btn-xs pull-right ml-5 invisible" },
-                        "Spacer"
-                    )
-                ),
-                React.createElement(
-                    "div",
-                    { className: "row" },
+                    { className: "form-group bb-test-section-movable bb-test-section-background", "data-paragraph-id": this.props.paragraphId },
                     React.createElement(
                         "div",
-                        { className: "col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2" },
+                        { className: "pt-5 pr-5 pb-5 pl-5 clearfix" },
+                        buttons,
+                        React.createElement(
+                            "button",
+                            { type: "button", className: "btn btn-default btn-xs pull-right ml-5 invisible" },
+                            "Spacer"
+                        )
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "row" },
                         React.createElement(
                             "div",
-                            { className: "row" },
+                            { className: "col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2" },
                             React.createElement(
                                 "div",
-                                { className: "col-xs-6 pr-5" },
-                                React.createElement("textarea", { className: leftClassName,
-                                    placeholder: this.props.texts.paragraphTextareaPlaceholder,
-                                    value: this.props.data.left.text,
-                                    onChange: this._handleChange.bind(this, "left") })
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "col-xs-6 pl-5" },
-                                React.createElement("textarea", { className: rightClassName,
-                                    placeholder: this.props.texts.paragraphTextareaPlaceholder,
-                                    value: this.props.data.right.text,
-                                    onChange: this._handleChange.bind(this, "right") })
+                                { className: "row" },
+                                React.createElement(
+                                    "div",
+                                    { className: "col-xs-6 pr-5" },
+                                    React.createElement("textarea", { className: leftClassName,
+                                        placeholder: this.props.texts.paragraphTextareaPlaceholder,
+                                        value: this.props.data.left.text,
+                                        onChange: this._handleChange.bind(this, "left") })
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "col-xs-6 pl-5" },
+                                    React.createElement("textarea", { className: rightClassName,
+                                        placeholder: this.props.texts.paragraphTextareaPlaceholder,
+                                        value: this.props.data.right.text,
+                                        onChange: this._handleChange.bind(this, "right") })
+                                )
                             )
                         )
                     )
@@ -97,6 +116,24 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                     break;
             }
             this.props.onChange(data);
+        }
+    }, {
+        key: "_renderModal",
+        value: function _renderModal() {
+            this.setState({
+                confirmModal: true
+            });
+        }
+    }, {
+        key: "_completeModal",
+        value: function _completeModal(data) {
+            if (data) {
+                this.props.onDelete();
+            } else {
+                this.setState({
+                    confirmModal: false
+                });
+            }
         }
     }]);
 

@@ -37,6 +37,7 @@ var DeveloperQuestion = function (_React$Component) {
                     axis: "y",
                     forceHelperSize: true,
                     forcePlaceholderSize: true,
+                    items: "> [data-paragraph-id]",
                     placeholder: "bb-test-paragraph-placeholder",
                     tolerance: "pointer",
 
