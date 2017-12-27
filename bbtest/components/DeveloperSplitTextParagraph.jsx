@@ -1,6 +1,9 @@
 class DeveloperSplitTextParagraph extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            confirmModal: false
+        };
     }
     render() {
         let buttons = [];
@@ -8,7 +11,7 @@ class DeveloperSplitTextParagraph extends React.Component {
             <button key="delete"
                     type="button"
                     className="btn btn-danger btn-xs pull-right ml-5"
-                    onClick={this.props.onDelete}>
+                    onClick={this._renderModal.bind(this)}>
                 <i className="fa fa-fw fa-times"></i>
             </button>
         );
@@ -22,31 +25,45 @@ class DeveloperSplitTextParagraph extends React.Component {
             rightClassName += " bb-test-paragraph-textarea-empty";
         }
 
+        let modal = null;
+        if (this.state.confirmModal) {
+            modal = (
+                <DeveloperDeleteConfirmModal title={this.props.texts.deleteModalTitle}
+                                             yesCaption={this.props.texts.deleteModalYesCaption}
+                                             noCaption={this.props.texts.deleteModalNoCaption}
+                                             isInverse={true}
+                                             complete={this._completeModal.bind(this)} />
+            );
+        }
+
         return (
-            <div className="form-group bb-test-section-movable bb-test-section-background" data-paragraph-id={this.props.paragraphId}>
-                <div className="pt-5 pr-5 pb-5 pl-5 clearfix">
-                    {buttons}
-                    <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
-                </div>
-                <div className="row">
-                    <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                        <div className="row">
-                            <div className="col-xs-6 pr-5">
-                                <textarea className={leftClassName}
-                                          placeholder={this.props.texts.paragraphTextareaPlaceholder}
-                                          value={this.props.data.left.text}
-                                          onChange={this._handleChange.bind(this, "left")} />
-                            </div>
-                            <div className="col-xs-6 pl-5">
-                                <textarea className={rightClassName}
-                                          placeholder={this.props.texts.paragraphTextareaPlaceholder}
-                                          value={this.props.data.right.text}
-                                          onChange={this._handleChange.bind(this, "right")} />
+            <React.Fragment>
+                {modal}
+                <div className="form-group bb-test-section-movable bb-test-section-background" data-paragraph-id={this.props.paragraphId}>
+                    <div className="pt-5 pr-5 pb-5 pl-5 clearfix">
+                        {buttons}
+                        <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                            <div className="row">
+                                <div className="col-xs-6 pr-5">
+                                    <textarea className={leftClassName}
+                                              placeholder={this.props.texts.paragraphTextareaPlaceholder}
+                                              value={this.props.data.left.text}
+                                              onChange={this._handleChange.bind(this, "left")} />
+                                </div>
+                                <div className="col-xs-6 pl-5">
+                                    <textarea className={rightClassName}
+                                              placeholder={this.props.texts.paragraphTextareaPlaceholder}
+                                              value={this.props.data.right.text}
+                                              onChange={this._handleChange.bind(this, "right")} />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
     _handleChange(side, event) {
@@ -60,5 +77,19 @@ class DeveloperSplitTextParagraph extends React.Component {
                 break;
         }
         this.props.onChange(data);
+    }
+    _renderModal() {
+        this.setState({
+            confirmModal: true
+        });
+    }
+    _completeModal(data) {
+        if (data) {
+            this.props.onDelete();
+        } else {
+            this.setState({
+                confirmModal: false
+            });
+        }
     }
 }

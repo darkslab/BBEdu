@@ -16,7 +16,12 @@ var DeveloperTextParagraph = function (_React$Component) {
     function DeveloperTextParagraph(props) {
         _classCallCheck(this, DeveloperTextParagraph);
 
-        return _possibleConstructorReturn(this, (DeveloperTextParagraph.__proto__ || Object.getPrototypeOf(DeveloperTextParagraph)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (DeveloperTextParagraph.__proto__ || Object.getPrototypeOf(DeveloperTextParagraph)).call(this, props));
+
+        _this.state = {
+            confirmModal: false
+        };
+        return _this;
     }
 
     _createClass(DeveloperTextParagraph, [{
@@ -28,7 +33,7 @@ var DeveloperTextParagraph = function (_React$Component) {
                 { key: "delete",
                     type: "button",
                     className: "btn btn-danger btn-xs pull-right ml-5",
-                    onClick: this.props.onDelete },
+                    onClick: this._renderModal.bind(this) },
                 React.createElement("i", { className: "fa fa-fw fa-times" })
             ));
 
@@ -37,23 +42,37 @@ var DeveloperTextParagraph = function (_React$Component) {
                 className += " bb-test-paragraph-textarea-empty";
             }
 
+            var modal = null;
+            if (this.state.confirmModal) {
+                modal = React.createElement(DeveloperDeleteConfirmModal, { title: this.props.texts.deleteModalTitle,
+                    yesCaption: this.props.texts.deleteModalYesCaption,
+                    noCaption: this.props.texts.deleteModalNoCaption,
+                    isInverse: true,
+                    complete: this._completeModal.bind(this) });
+            }
+
             return React.createElement(
-                "div",
-                { className: "form-group bb-test-section-movable bb-test-section-background", "data-paragraph-id": this.props.paragraphId },
+                React.Fragment,
+                null,
+                modal,
                 React.createElement(
                     "div",
-                    { className: "pt-5 pr-5 pb-5 pl-5 clearfix" },
-                    buttons,
+                    { className: "form-group bb-test-section-movable bb-test-section-background", "data-paragraph-id": this.props.paragraphId },
                     React.createElement(
-                        "button",
-                        { type: "button", className: "btn btn-default btn-xs pull-right ml-5 invisible" },
-                        "Spacer"
-                    )
-                ),
-                React.createElement("textarea", { className: className,
-                    placeholder: this.props.texts.paragraphTextareaPlaceholder,
-                    value: this.props.data.text,
-                    onChange: this._handleChange.bind(this) })
+                        "div",
+                        { className: "pt-5 pr-5 pb-5 pl-5 clearfix" },
+                        buttons,
+                        React.createElement(
+                            "button",
+                            { type: "button", className: "btn btn-default btn-xs pull-right ml-5 invisible" },
+                            "Spacer"
+                        )
+                    ),
+                    React.createElement("textarea", { className: className,
+                        placeholder: this.props.texts.paragraphTextareaPlaceholder,
+                        value: this.props.data.text,
+                        onChange: this._handleChange.bind(this) })
+                )
             );
         }
     }, {
@@ -62,6 +81,24 @@ var DeveloperTextParagraph = function (_React$Component) {
             this.props.onChange(_extends({}, this.props.data, {
                 text: event.target.value
             }));
+        }
+    }, {
+        key: "_renderModal",
+        value: function _renderModal() {
+            this.setState({
+                confirmModal: true
+            });
+        }
+    }, {
+        key: "_completeModal",
+        value: function _completeModal(data) {
+            if (data) {
+                this.props.onDelete();
+            } else {
+                this.setState({
+                    confirmModal: false
+                });
+            }
         }
     }]);
 

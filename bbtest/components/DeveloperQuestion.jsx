@@ -8,6 +8,8 @@ class DeveloperQuestion extends React.Component {
         };
         this._$paragraphsContainer;
         this._maxParagraphs = 8;
+        this._saveTimeout = 2000;
+        this._timer = null;
     }
     componentDidMount() {
         this._$paragraphsContainer = $("[data-paragraphs]");
@@ -16,6 +18,7 @@ class DeveloperQuestion extends React.Component {
                 axis: "y",
                 forceHelperSize: true,
                 forcePlaceholderSize: true,
+                items: "> [data-paragraph-id]",
                 placeholder: "bb-test-paragraph-placeholder",
                 tolerance: "pointer",
 
@@ -27,6 +30,8 @@ class DeveloperQuestion extends React.Component {
         } else {
             this._$paragraphsContainer = undefined;
         }
+
+        this._reScheduleSave();
     }
     componentWillUpdate() {
         if (this._$paragraphsContainer) {
@@ -43,6 +48,9 @@ class DeveloperQuestion extends React.Component {
             this._$paragraphsContainer.sortable("destroy");
             this._$paragraphsContainer = undefined;
         }
+
+        clearTimeout(this._timer);
+        this.props.object.stop("question");
     }
     render() {
         let developerParagraphs = [];
@@ -137,12 +145,38 @@ class DeveloperQuestion extends React.Component {
             );
         }
 
+        let panelClassName = "panel";
+        if (this.props.object.isSaved()) {
+            panelClassName += " panel-success";
+        } else {
+            panelClassName += " panel-primary";
+        }
+
+        let taxonomyContent = null;
+        if (this.props.attributes.taxonomies.length > 0) {
+            taxonomyContent = (
+                <DeveloperAttribute label={this.props.texts.taxonomy}
+                                    value={this.props.object.taxonomy()}
+                                    data={this.props.attributes.taxonomies}
+                                    onChange={this._attributeChange.bind(this, "taxonomy")} />
+            );
+        }
+        let topicContent = null;
+        if (this.props.attributes.topics.length > 0) {
+            topicContent = (
+                <DeveloperAttribute label={this.props.texts.topic}
+                                    value={this.props.object.topic()}
+                                    data={this.props.attributes.topics}
+                                    onChange={this._attributeChange.bind(this, "topic")} />
+            );
+        }
+
         return (
             <React.Fragment>
                 {modal}
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="panel panel-primary">
+                        <div className={panelClassName}>
                             <div className="panel-heading bb-rel">
                                 <div className="bb-test-number">{this.props.count}</div>
                                 <h4 className="panel-title bb-test-title mt-15 mb-15">{this.props.texts.question}</h4>
@@ -153,14 +187,8 @@ class DeveloperQuestion extends React.Component {
                                                         value={this.props.object.difficulty()}
                                                         data={this.props.attributes.difficulties}
                                                         onChange={this._attributeChange.bind(this, "difficulty")} />
-                                    <DeveloperAttribute label={this.props.texts.taxonomy}
-                                                        value={this.props.object.taxonomy()}
-                                                        data={this.props.attributes.taxonomies}
-                                                        onChange={this._attributeChange.bind(this, "taxonomy")} />
-                                    <DeveloperAttribute label={this.props.texts.topic}
-                                                        value={this.props.object.topic()}
-                                                        data={this.props.attributes.topics}
-                                                        onChange={this._attributeChange.bind(this, "topic")} />
+                                    {taxonomyContent}
+                                    {topicContent}
                                 </div>
                                 <div data-paragraphs>
                                     {developerParagraphs}
@@ -196,14 +224,17 @@ class DeveloperQuestion extends React.Component {
                 break;
         }
         this._pokeComponent();
+        this._reScheduleSave();
     }
     _paragraphChange(id, data) {
         this.props.object.updateParagraph(id, data);
         this._pokeComponent();
+        this._reScheduleSave();
     }
     _paragraphDelete(id) {
         this.props.object.deleteParagraph(id);
         this._pokeComponent();
+        this._reScheduleSave();
     }
     _paragraphsSorted(event, ui) {
         let paragraphIds = this._$paragraphsContainer.sortable("toArray", {
@@ -211,14 +242,17 @@ class DeveloperQuestion extends React.Component {
         });
         this.props.object.setParagraphOrder(paragraphIds);
         this._pokeComponent();
+        this._reScheduleSave();
     }
     _answerChange(data) {
         this.props.object.updateAnswer(data);
         this._pokeComponent();
+        this._reScheduleSave();
     }
     _answerDelete() {
         this.props.object.deleteAnswer();
         this._pokeComponent();
+        this._reScheduleSave();
     }
     _renderModal(type) {
         switch (type) {
@@ -253,5 +287,18 @@ class DeveloperQuestion extends React.Component {
                 });
                 break;
         }
+    }
+    _reScheduleSave() {
+        clearTimeout(this._timer);
+        this._timer = setTimeout(() => {
+            this.props.object.save("question", this._saveCallback.bind(this));
+        }, this._saveTimeout);
+    }
+    _saveCallback(result) {
+        if (!result) {
+            this.props.errorOut();
+            return;
+        }
+        this._pokeComponent();
     }
 }

@@ -23,7 +23,8 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
         _this._alphabet = "ABCDEFGH";
         _this._$choicesContainer;
         _this.state = {
-            choicesModal: false
+            choicesModal: false,
+            confirmModal: false
         };
         return _this;
     }
@@ -37,6 +38,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                     axis: "y",
                     forceHelperSize: true,
                     forcePlaceholderSize: true,
+                    items: "> [data-choice-id]",
                     placeholder: "bb-test-answer-placeholder",
                     tolerance: "pointer",
 
@@ -117,11 +119,17 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
             var modal = null;
             if (this.state.choicesModal) {
                 modal = React.createElement(DeveloperSelectorModal, { title: this.props.texts.answerChoicesModalTitle,
-                    complete: this._completeModal.bind(this),
+                    complete: this._completeModal.bind(this, "choices"),
                     classData: [{
                         class: "MultichoiceTextChoice",
                         caption: this.props.texts.answerChoicesModalTitleButtonMultichoiceTextChoice
                     }] });
+            } else if (this.state.confirmModal) {
+                modal = React.createElement(DeveloperDeleteConfirmModal, { title: this.props.texts.deleteModalTitle,
+                    yesCaption: this.props.texts.deleteModalYesCaption,
+                    noCaption: this.props.texts.deleteModalNoCaption,
+                    isInverse: true,
+                    complete: this._completeModal.bind(this, "confirm") });
             }
 
             var addAnswerChoiceButton = null;
@@ -133,7 +141,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                         "button",
                         { type: "button",
                             className: "btn btn-success",
-                            onClick: this._renderModal.bind(this) },
+                            onClick: this._renderModal.bind(this, "choices") },
                         this.props.texts.addAnswerChoice
                     )
                 );
@@ -170,7 +178,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                                             "button",
                                             { type: "button",
                                                 className: "btn btn-danger btn-sm",
-                                                onClick: this.props.onDelete },
+                                                onClick: this._renderModal.bind(this, "confirm") },
                                             React.createElement("i", { className: "fa fa-fw fa-times" })
                                         )
                                     )
@@ -263,41 +271,63 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
         }
     }, {
         key: "_renderModal",
-        value: function _renderModal() {
-            this.setState({
-                choicesModal: true
-            });
+        value: function _renderModal(type) {
+            switch (type) {
+                case "choices":
+                    this.setState({
+                        choicesModal: true
+                    });
+                    break;
+                case "confirm":
+                    this.setState({
+                        confirmModal: true
+                    });
+                    break;
+            }
         }
     }, {
         key: "_completeModal",
-        value: function _completeModal(answerChoiceClass) {
-            if (answerChoiceClass) {
-                var data = this._deepCopyData();
-                var choiceIds = data.choices.map(function (choice) {
-                    return choice.id;
-                }).sort(function (a, b) {
-                    return a === b ? 0 : a < b ? -1 : 1;
-                });
+        value: function _completeModal(type, data) {
+            switch (type) {
+                case "choices":
+                    if (data) {
+                        var _data = this._deepCopyData();
+                        var choiceIds = _data.choices.map(function (choice) {
+                            return choice.id;
+                        }).sort(function (a, b) {
+                            return a === b ? 0 : a < b ? -1 : 1;
+                        });
 
-                var choice = {
-                    choice_class: answerChoiceClass,
-                    id: null,
-                    meta_data: {
-                        text: ""
+                        var choice = {
+                            choice_class: data,
+                            id: null,
+                            meta_data: {
+                                text: ""
+                            }
+                        };
+                        if (choiceIds.length) {
+                            choice.id = choiceIds[choiceIds.length - 1] + 1;
+                        } else {
+                            choice.id = Math.random() * 0xffff | 0x00;
+                        }
+
+                        _data.choices.push(choice);
+                        this.props.onChange(_data);
                     }
-                };
-                if (choiceIds.length) {
-                    choice.id = choiceIds[choiceIds.length - 1] + 1;
-                } else {
-                    choice.id = Math.random() * 0xffff | 0x00;
-                }
-
-                data.choices.push(choice);
-                this.props.onChange(data);
+                    this.setState({
+                        choicesModal: false
+                    });
+                    break;
+                case "confirm":
+                    if (data) {
+                        this.props.onDelete();
+                    } else {
+                        this.setState({
+                            confirmModal: false
+                        });
+                    }
+                    break;
             }
-            this.setState({
-                choicesModal: false
-            });
         }
     }]);
 

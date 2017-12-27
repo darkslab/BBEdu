@@ -50,11 +50,17 @@ var DeveloperTest = function (_React$Component) {
                 success: this._ajaxSuccess.bind(this, "attributes"),
                 error: this._ajaxError.bind(this, "attributes")
             });
+
+            $(window).on("beforeunload", this._confirmIsSaved.bind(this));
+            $(document).on("turbolinks:before-visit", this._confirmIsSavedTurbolinks.bind(this));
         }
     }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
             this._cleanUp();
+
+            $(window).off("beforeunload", this._confirmIsSaved.bind(this));
+            $(document).off("turbolinks:before-visit", this._confirmIsSavedTurbolinks.bind(this));
         }
     }, {
         key: "render",
@@ -70,7 +76,8 @@ var DeveloperTest = function (_React$Component) {
                 content = React.createElement(DeveloperQuestion, { count: this.state.questionIndex + 1,
                     attributes: this._questionAttributes,
                     object: this._questionObject,
-                    texts: this.props.texts });
+                    texts: this.props.texts,
+                    errorOut: this._errorOut.bind(this) });
             } else {
                 content = React.createElement("img", { className: "bb-spinner", src: this.props.spinnerLogo });
             }
@@ -243,10 +250,7 @@ var DeveloperTest = function (_React$Component) {
                 return;
             }
 
-            this.setState({
-                isErrored: true
-            });
-            this._cleanUp();
+            this._errorOut();
         }
     }, {
         key: "_cleanUp",
@@ -267,10 +271,7 @@ var DeveloperTest = function (_React$Component) {
             }
 
             if (!success) {
-                this.setState({
-                    isErrored: true
-                });
-                this._cleanUp();
+                this._errorOut();
                 return;
             }
 
@@ -294,6 +295,30 @@ var DeveloperTest = function (_React$Component) {
                 success: this._ajaxSuccess.bind(this, "question"),
                 error: this._ajaxError.bind(this, "question")
             });
+        }
+    }, {
+        key: "_errorOut",
+        value: function _errorOut() {
+            this.setState({
+                isErrored: true
+            });
+            this._cleanUp();
+        }
+    }, {
+        key: "_confirmIsSaved",
+        value: function _confirmIsSaved(event) {
+            if (this.state.isQuestionSaving && !this.state.isErrored) {
+                var confirmationMessage = "\o/";
+                event.returnValue = confirmationMessage;
+                return confirmationMessage;
+            }
+        }
+    }, {
+        key: "_confirmIsSavedTurbolinks",
+        value: function _confirmIsSavedTurbolinks(event) {
+            if (this.state.isQuestionSaving && !this.state.isErrored) {
+                event.preventDefault();
+            }
         }
     }]);
 
