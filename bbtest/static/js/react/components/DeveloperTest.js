@@ -50,11 +50,17 @@ var DeveloperTest = function (_React$Component) {
                 success: this._ajaxSuccess.bind(this, "attributes"),
                 error: this._ajaxError.bind(this, "attributes")
             });
+
+            $(window).on("beforeunload", this._confirmIsSaved.bind(this));
+            $(document).on("turbolinks:before-visit", this._confirmIsSavedTurbolinks.bind(this));
         }
     }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
             this._cleanUp();
+
+            $(window).off("beforeunload", this._confirmIsSaved.bind(this));
+            $(document).off("turbolinks:before-visit", this._confirmIsSavedTurbolinks.bind(this));
         }
     }, {
         key: "render",
@@ -297,6 +303,22 @@ var DeveloperTest = function (_React$Component) {
                 isErrored: true
             });
             this._cleanUp();
+        }
+    }, {
+        key: "_confirmIsSaved",
+        value: function _confirmIsSaved(event) {
+            if (this.state.isQuestionSaving && !this.state.isErrored) {
+                var confirmationMessage = "\o/";
+                event.returnValue = confirmationMessage;
+                return confirmationMessage;
+            }
+        }
+    }, {
+        key: "_confirmIsSavedTurbolinks",
+        value: function _confirmIsSavedTurbolinks(event) {
+            if (this.state.isQuestionSaving && !this.state.isErrored) {
+                event.preventDefault();
+            }
         }
     }]);
 

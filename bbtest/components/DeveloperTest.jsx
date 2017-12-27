@@ -31,9 +31,15 @@ class DeveloperTest extends React.Component {
             success: this._ajaxSuccess.bind(this, "attributes"),
             error: this._ajaxError.bind(this, "attributes")
         });
+
+        $(window).on("beforeunload", this._confirmIsSaved.bind(this));
+        $(document).on("turbolinks:before-visit", this._confirmIsSavedTurbolinks.bind(this));
     }
     componentWillUnmount() {
         this._cleanUp();
+
+        $(window).off("beforeunload", this._confirmIsSaved.bind(this));
+        $(document).off("turbolinks:before-visit", this._confirmIsSavedTurbolinks.bind(this));
     }
     render() {
         let content = null;
@@ -238,5 +244,17 @@ class DeveloperTest extends React.Component {
             isErrored: true
         });
         this._cleanUp();
+    }
+    _confirmIsSaved(event) {
+        if (this.state.isQuestionSaving && !this.state.isErrored) {
+            let confirmationMessage = "\o/";
+            event.returnValue = confirmationMessage;
+            return confirmationMessage;
+        }
+    }
+    _confirmIsSavedTurbolinks(event) {
+        if (this.state.isQuestionSaving && !this.state.isErrored) {
+            event.preventDefault();
+        }
     }
 }
