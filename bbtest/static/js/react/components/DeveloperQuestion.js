@@ -23,6 +23,8 @@ var DeveloperQuestion = function (_React$Component) {
         };
         _this._$paragraphsContainer;
         _this._maxParagraphs = 8;
+        _this._saveTimeout = 2000;
+        _this._timer = null;
         return _this;
     }
 
@@ -35,6 +37,7 @@ var DeveloperQuestion = function (_React$Component) {
                     axis: "y",
                     forceHelperSize: true,
                     forcePlaceholderSize: true,
+                    items: "> [data-paragraph-id]",
                     placeholder: "bb-test-paragraph-placeholder",
                     tolerance: "pointer",
 
@@ -46,6 +49,8 @@ var DeveloperQuestion = function (_React$Component) {
             } else {
                 this._$paragraphsContainer = undefined;
             }
+
+            this._reScheduleSave();
         }
     }, {
         key: "componentWillUpdate",
@@ -68,6 +73,9 @@ var DeveloperQuestion = function (_React$Component) {
                 this._$paragraphsContainer.sortable("destroy");
                 this._$paragraphsContainer = undefined;
             }
+
+            clearTimeout(this._timer);
+            this.props.object.stop("question");
         }
     }, {
         key: "render",
@@ -165,6 +173,28 @@ var DeveloperQuestion = function (_React$Component) {
                 );
             }
 
+            var panelClassName = "panel";
+            if (this.props.object.isSaved()) {
+                panelClassName += " panel-success";
+            } else {
+                panelClassName += " panel-primary";
+            }
+
+            var taxonomyContent = null;
+            if (this.props.attributes.taxonomies.length > 0) {
+                taxonomyContent = React.createElement(DeveloperAttribute, { label: this.props.texts.taxonomy,
+                    value: this.props.object.taxonomy(),
+                    data: this.props.attributes.taxonomies,
+                    onChange: this._attributeChange.bind(this, "taxonomy") });
+            }
+            var topicContent = null;
+            if (this.props.attributes.topics.length > 0) {
+                topicContent = React.createElement(DeveloperAttribute, { label: this.props.texts.topic,
+                    value: this.props.object.topic(),
+                    data: this.props.attributes.topics,
+                    onChange: this._attributeChange.bind(this, "topic") });
+            }
+
             return React.createElement(
                 React.Fragment,
                 null,
@@ -177,7 +207,7 @@ var DeveloperQuestion = function (_React$Component) {
                         { className: "col-xs-12" },
                         React.createElement(
                             "div",
-                            { className: "panel panel-primary" },
+                            { className: panelClassName },
                             React.createElement(
                                 "div",
                                 { className: "panel-heading bb-rel" },
@@ -202,14 +232,8 @@ var DeveloperQuestion = function (_React$Component) {
                                         value: this.props.object.difficulty(),
                                         data: this.props.attributes.difficulties,
                                         onChange: this._attributeChange.bind(this, "difficulty") }),
-                                    React.createElement(DeveloperAttribute, { label: this.props.texts.taxonomy,
-                                        value: this.props.object.taxonomy(),
-                                        data: this.props.attributes.taxonomies,
-                                        onChange: this._attributeChange.bind(this, "taxonomy") }),
-                                    React.createElement(DeveloperAttribute, { label: this.props.texts.topic,
-                                        value: this.props.object.topic(),
-                                        data: this.props.attributes.topics,
-                                        onChange: this._attributeChange.bind(this, "topic") })
+                                    taxonomyContent,
+                                    topicContent
                                 ),
                                 React.createElement(
                                     "div",
@@ -254,18 +278,21 @@ var DeveloperQuestion = function (_React$Component) {
                     break;
             }
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_paragraphChange",
         value: function _paragraphChange(id, data) {
             this.props.object.updateParagraph(id, data);
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_paragraphDelete",
         value: function _paragraphDelete(id) {
             this.props.object.deleteParagraph(id);
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_paragraphsSorted",
@@ -275,18 +302,21 @@ var DeveloperQuestion = function (_React$Component) {
             });
             this.props.object.setParagraphOrder(paragraphIds);
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_answerChange",
         value: function _answerChange(data) {
             this.props.object.updateAnswer(data);
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_answerDelete",
         value: function _answerDelete() {
             this.props.object.deleteAnswer();
             this._pokeComponent();
+            this._reScheduleSave();
         }
     }, {
         key: "_renderModal",
@@ -325,6 +355,25 @@ var DeveloperQuestion = function (_React$Component) {
                     });
                     break;
             }
+        }
+    }, {
+        key: "_reScheduleSave",
+        value: function _reScheduleSave() {
+            var _this3 = this;
+
+            clearTimeout(this._timer);
+            this._timer = setTimeout(function () {
+                _this3.props.object.save("question", _this3._saveCallback.bind(_this3));
+            }, this._saveTimeout);
+        }
+    }, {
+        key: "_saveCallback",
+        value: function _saveCallback(result) {
+            if (!result) {
+                this.props.errorOut();
+                return;
+            }
+            this._pokeComponent();
         }
     }]);
 

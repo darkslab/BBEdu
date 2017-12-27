@@ -56,38 +56,45 @@ DeveloperQuestionObject.prototype.save = function(context, callback) {
     if (this._contextData[context].$xhrs.length) {
         return;
     }
+
     this._contextData[context].callback = callback;
-    this._contextData[context].$xhrs.push($.post({
-        url: this._questionUrl + this._id + "/",
-        headers: {"X-CSRFToken": Cookies.get("csrftoken")},
-        data: {
-            difficulty: this.difficulty(),
-            taxonomy: this.taxonomy(),
-            topic: this.topic(),
-            answer_class: this.answer().answer_class,
-            meta_data: JSON.stringify(this.answer().meta_data)
-        },
-        success: this._ajaxSuccess.bind(this, context, "question"),
-        error: this._ajaxError.bind(this, context, "question")
-    }));
-    var paragraphs = [];
-    var i;
-    for (i = 0; i < this._paragraphs.length; i++) {
-        paragraphs.push({
-            id: this._paragraphs[i].id,
-            is_new: this._paragraphs[i].is_new,
-            data: this._paragraphs[i].data
-        });
+
+    if (!this._isQuestionSaved) {
+        this._contextData[context].$xhrs.push($.post({
+            url: this._questionUrl + this._id + "/",
+            headers: {"X-CSRFToken": Cookies.get("csrftoken")},
+            data: {
+                difficulty: this.difficulty(),
+                taxonomy: this.taxonomy(),
+                topic: this.topic(),
+                answer_class: this.answer().answer_class,
+                meta_data: JSON.stringify(this.answer().meta_data)
+            },
+            success: this._ajaxSuccess.bind(this, context, "question"),
+            error: this._ajaxError.bind(this, context, "question")
+        }));
     }
-    this._contextData[context].$xhrs.push($.post({
-        url: this._paragraphsUrl + this._id + "/paragraphs/",
-        headers: {"X-CSRFToken": Cookies.get("csrftoken")},
-        data: {
-            data: JSON.stringify(paragraphs)
-        },
-        success: this._ajaxSuccess.bind(this, context, "paragraphs"),
-        error: this._ajaxError.bind(this, context, "paragraphs")
-    }));
+
+    if (!this._isParagraphsSaved) {
+        var paragraphs = [];
+        var i;
+        for (i = 0; i < this._paragraphs.length; i++) {
+            paragraphs.push({
+                id: this._paragraphs[i].id,
+                is_new: this._paragraphs[i].is_new,
+                data: this._paragraphs[i].data
+            });
+        }
+        this._contextData[context].$xhrs.push($.post({
+            url: this._paragraphsUrl + this._id + "/paragraphs/",
+            headers: {"X-CSRFToken": Cookies.get("csrftoken")},
+            data: {
+                data: JSON.stringify(paragraphs)
+            },
+            success: this._ajaxSuccess.bind(this, context, "paragraphs"),
+            error: this._ajaxError.bind(this, context, "paragraphs")
+        }));
+    }
 }
 DeveloperQuestionObject.prototype.stop = function(context) {
     if (!this._contextData.hasOwnProperty(context)) {
@@ -124,6 +131,7 @@ DeveloperQuestionObject.prototype.updateParagraph = function(id, data) {
     for (i = 0; i < this._paragraphs.length; i++) {
         if (id === this._paragraphs[i].id) {
             this._paragraphs[i].data.meta_data = data;
+            this._isParagraphsSaved = false;
             break;
         }
     }
@@ -155,6 +163,7 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
             break;
     }
     this._paragraphs.push(newParagraph);
+    this._isParagraphsSaved = false;
 }
 DeveloperQuestionObject.prototype.deleteParagraph = function(id) {
     var i;
@@ -164,6 +173,7 @@ DeveloperQuestionObject.prototype.deleteParagraph = function(id) {
         }
     }
     this._paragraphs.splice(i, 1);
+    this._isParagraphsSaved = false;
 }
 DeveloperQuestionObject.prototype.setParagraphOrder = function(order) {
     this._paragraphs.sort(function(a, b) {
@@ -174,6 +184,7 @@ DeveloperQuestionObject.prototype.setParagraphOrder = function(order) {
         }
         return i < j ? -1 : 1;
     });
+    this._isParagraphsSaved = false;
 }
 DeveloperQuestionObject.prototype.answer = function() {
     return {
@@ -213,6 +224,16 @@ DeveloperQuestionObject.prototype._ajaxSuccess = function(context, type, data, s
     } else {
         this._contextData[context].result = this._contextData[context].result && true;
     }
+
+    switch (type) {
+        case "question":
+            this._isQuestionSaved = true;
+            break;
+        case "paragraphs":
+            this._isParagraphsSaved = true;
+            break;
+    }
+
     if (!this._contextData[context].$xhrs.length) {
         this._runCallback(context);
     }

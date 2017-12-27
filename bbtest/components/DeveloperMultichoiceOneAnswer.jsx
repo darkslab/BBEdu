@@ -4,7 +4,8 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
         this._alphabet = "ABCDEFGH";
         this._$choicesContainer;
         this.state = {
-            choicesModal: false
+            choicesModal: false,
+            confirmModal: false
         };
     }
     componentDidMount() {
@@ -14,6 +15,7 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                 axis: "y",
                 forceHelperSize: true,
                 forcePlaceholderSize: true,
+                items: "> [data-choice-id]",
                 placeholder: "bb-test-answer-placeholder",
                 tolerance: "pointer",
 
@@ -83,13 +85,21 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
         if (this.state.choicesModal) {
             modal = (
                 <DeveloperSelectorModal title={this.props.texts.answerChoicesModalTitle}
-                                        complete={this._completeModal.bind(this)}
+                                        complete={this._completeModal.bind(this, "choices")}
                                         classData={[
                                             {
                                                 class: "MultichoiceTextChoice",
                                                 caption: this.props.texts.answerChoicesModalTitleButtonMultichoiceTextChoice
                                             }
                                         ]} />
+            );
+        } else if (this.state.confirmModal) {
+            modal = (
+                <DeveloperDeleteConfirmModal title={this.props.texts.deleteModalTitle}
+                                             yesCaption={this.props.texts.deleteModalYesCaption}
+                                             noCaption={this.props.texts.deleteModalNoCaption}
+                                             isInverse={true}
+                                             complete={this._completeModal.bind(this, "confirm")} />
             );
         }
 
@@ -99,7 +109,7 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                 <div className="form-group text-center mt-23">
                     <button type="button"
                             className="btn btn-success"
-                            onClick={this._renderModal.bind(this)}>{this.props.texts.addAnswerChoice}</button>
+                            onClick={this._renderModal.bind(this, "choices")}>{this.props.texts.addAnswerChoice}</button>
                 </div>
             );
         }
@@ -116,7 +126,7 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                                     <div className="col-xs-3 col-sm-1 text-right pl-0">
                                         <button type="button"
                                                 className="btn btn-danger btn-sm"
-                                                onClick={this.props.onDelete}>
+                                                onClick={this._renderModal.bind(this, "confirm")}>
                                             <i className="fa fa-fw fa-times"></i>
                                         </button>
                                     </div>
@@ -190,34 +200,56 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
         });
         this.props.onChange(_data);
     }
-    _renderModal() {
-        this.setState({
-            choicesModal: true
-        });
-    }
-    _completeModal(answerChoiceClass) {
-        if (answerChoiceClass) {
-            let data = this._deepCopyData();
-            let choiceIds = data.choices.map(choice => choice.id).sort((a, b) => a === b ? 0 : (a < b ? -1 : 1));
-
-            let choice = {
-                choice_class: answerChoiceClass,
-                id: null,
-                meta_data: {
-                    text: ""
-                }
-            };
-            if (choiceIds.length) {
-                choice.id = choiceIds[choiceIds.length - 1] + 1;
-            } else {
-                choice.id = Math.random() * 0xffff | 0x00;
-            }
-
-            data.choices.push(choice);
-            this.props.onChange(data);
+    _renderModal(type) {
+        switch (type) {
+            case "choices":
+                this.setState({
+                    choicesModal: true
+                });
+                break;
+            case "confirm":
+                this.setState({
+                    confirmModal: true
+                });
+                break;
         }
-        this.setState({
-            choicesModal: false
-        });
+    }
+    _completeModal(type, data) {
+        switch (type) {
+            case "choices":
+                if (data) {
+                    let _data = this._deepCopyData();
+                    let choiceIds = _data.choices.map(choice => choice.id).sort((a, b) => a === b ? 0 : (a < b ? -1 : 1));
+
+                    let choice = {
+                        choice_class: data,
+                        id: null,
+                        meta_data: {
+                            text: ""
+                        }
+                    };
+                    if (choiceIds.length) {
+                        choice.id = choiceIds[choiceIds.length - 1] + 1;
+                    } else {
+                        choice.id = Math.random() * 0xffff | 0x00;
+                    }
+
+                    _data.choices.push(choice);
+                    this.props.onChange(_data);
+                }
+                this.setState({
+                    choicesModal: false
+                });
+                break;
+            case "confirm":
+                if (data) {
+                    this.props.onDelete();
+                } else {
+                    this.setState({
+                        confirmModal: false
+                    });
+                }
+                break;
+        }
     }
 }
