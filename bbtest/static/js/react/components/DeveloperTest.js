@@ -70,7 +70,8 @@ var DeveloperTest = function (_React$Component) {
                 content = React.createElement(DeveloperQuestion, { count: this.state.questionIndex + 1,
                     attributes: this._questionAttributes,
                     object: this._questionObject,
-                    texts: this.props.texts });
+                    texts: this.props.texts,
+                    errorOut: this._errorOut.bind(this) });
             } else {
                 content = React.createElement("img", { className: "bb-spinner", src: this.props.spinnerLogo });
             }
@@ -243,10 +244,7 @@ var DeveloperTest = function (_React$Component) {
                 return;
             }
 
-            this.setState({
-                isErrored: true
-            });
-            this._cleanUp();
+            this._errorOut();
         }
     }, {
         key: "_cleanUp",
@@ -267,10 +265,7 @@ var DeveloperTest = function (_React$Component) {
             }
 
             if (!success) {
-                this.setState({
-                    isErrored: true
-                });
-                this._cleanUp();
+                this._errorOut();
                 return;
             }
 
@@ -294,6 +289,14 @@ var DeveloperTest = function (_React$Component) {
                 success: this._ajaxSuccess.bind(this, "question"),
                 error: this._ajaxError.bind(this, "question")
             });
+        }
+    }, {
+        key: "_errorOut",
+        value: function _errorOut() {
+            this.setState({
+                isErrored: true
+            });
+            this._cleanUp();
         }
     }]);
 

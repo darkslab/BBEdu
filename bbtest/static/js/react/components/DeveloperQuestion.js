@@ -23,6 +23,8 @@ var DeveloperQuestion = function (_React$Component) {
         };
         _this._$paragraphsContainer;
         _this._maxParagraphs = 8;
+        _this._saveInterval = 5000;
+        _this._timer = null;
         return _this;
     }
 
@@ -46,6 +48,8 @@ var DeveloperQuestion = function (_React$Component) {
             } else {
                 this._$paragraphsContainer = undefined;
             }
+
+            this._scheduleSave();
         }
     }, {
         key: "componentWillUpdate",
@@ -68,6 +72,8 @@ var DeveloperQuestion = function (_React$Component) {
                 this._$paragraphsContainer.sortable("destroy");
                 this._$paragraphsContainer = undefined;
             }
+
+            clearTimeout(this._timer);
         }
     }, {
         key: "render",
@@ -165,6 +171,13 @@ var DeveloperQuestion = function (_React$Component) {
                 );
             }
 
+            var panelClassName = "panel";
+            if (this.props.object.isSaved()) {
+                panelClassName += " panel-success";
+            } else {
+                panelClassName += " panel-primary";
+            }
+
             return React.createElement(
                 React.Fragment,
                 null,
@@ -177,7 +190,7 @@ var DeveloperQuestion = function (_React$Component) {
                         { className: "col-xs-12" },
                         React.createElement(
                             "div",
-                            { className: "panel panel-primary" },
+                            { className: panelClassName },
                             React.createElement(
                                 "div",
                                 { className: "panel-heading bb-rel" },
@@ -325,6 +338,25 @@ var DeveloperQuestion = function (_React$Component) {
                     });
                     break;
             }
+        }
+    }, {
+        key: "_scheduleSave",
+        value: function _scheduleSave() {
+            var _this3 = this;
+
+            this._timer = setTimeout(function () {
+                _this3.props.object.save("question", _this3._saveCallback.bind(_this3));
+            }, this._saveInterval);
+        }
+    }, {
+        key: "_saveCallback",
+        value: function _saveCallback(result) {
+            if (!result) {
+                this.props.errorOut();
+                return;
+            }
+            this._pokeComponent();
+            this._scheduleSave();
         }
     }]);
 

@@ -46,7 +46,8 @@ class DeveloperTest extends React.Component {
                 <DeveloperQuestion count={this.state.questionIndex + 1}
                                    attributes={this._questionAttributes}
                                    object={this._questionObject}
-                                   texts={this.props.texts} />
+                                   texts={this.props.texts}
+                                   errorOut={this._errorOut.bind(this)} />
             );
         } else {
             content = (
@@ -192,10 +193,7 @@ class DeveloperTest extends React.Component {
             return;
         }
 
-        this.setState({
-            isErrored: true
-        });
-        this._cleanUp();
+        this._errorOut();
     }
     _cleanUp() {
         let object;
@@ -212,10 +210,7 @@ class DeveloperTest extends React.Component {
         }
 
         if (!success) {
-            this.setState({
-                isErrored: true
-            });
-            this._cleanUp();
+            this._errorOut();
             return;
         }
 
@@ -237,5 +232,11 @@ class DeveloperTest extends React.Component {
             success: this._ajaxSuccess.bind(this, "question"),
             error: this._ajaxError.bind(this, "question")
         });
+    }
+    _errorOut() {
+        this.setState({
+            isErrored: true
+        });
+        this._cleanUp();
     }
 }

@@ -8,6 +8,8 @@ class DeveloperQuestion extends React.Component {
         };
         this._$paragraphsContainer;
         this._maxParagraphs = 8;
+        this._saveInterval = 5000;
+        this._timer = null;
     }
     componentDidMount() {
         this._$paragraphsContainer = $("[data-paragraphs]");
@@ -27,6 +29,8 @@ class DeveloperQuestion extends React.Component {
         } else {
             this._$paragraphsContainer = undefined;
         }
+
+        this._scheduleSave();
     }
     componentWillUpdate() {
         if (this._$paragraphsContainer) {
@@ -43,6 +47,8 @@ class DeveloperQuestion extends React.Component {
             this._$paragraphsContainer.sortable("destroy");
             this._$paragraphsContainer = undefined;
         }
+
+        clearTimeout(this._timer);
     }
     render() {
         let developerParagraphs = [];
@@ -137,12 +143,19 @@ class DeveloperQuestion extends React.Component {
             );
         }
 
+        let panelClassName = "panel";
+        if (this.props.object.isSaved()) {
+            panelClassName += " panel-success";
+        } else {
+            panelClassName += " panel-primary";
+        }
+
         return (
             <React.Fragment>
                 {modal}
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="panel panel-primary">
+                        <div className={panelClassName}>
                             <div className="panel-heading bb-rel">
                                 <div className="bb-test-number">{this.props.count}</div>
                                 <h4 className="panel-title bb-test-title mt-15 mb-15">{this.props.texts.question}</h4>
@@ -253,5 +266,18 @@ class DeveloperQuestion extends React.Component {
                 });
                 break;
         }
+    }
+    _scheduleSave() {
+        this._timer = setTimeout(() => {
+            this.props.object.save("question", this._saveCallback.bind(this));
+        }, this._saveInterval);
+    }
+    _saveCallback(result) {
+        if (!result) {
+            this.props.errorOut();
+            return;
+        }
+        this._pokeComponent();
+        this._scheduleSave();
     }
 }
