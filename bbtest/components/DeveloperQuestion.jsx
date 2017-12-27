@@ -152,6 +152,25 @@ class DeveloperQuestion extends React.Component {
             panelClassName += " panel-primary";
         }
 
+        let taxonomyContent = null;
+        if (this.props.attributes.taxonomies.length > 0) {
+            taxonomyContent = (
+                <DeveloperAttribute label={this.props.texts.taxonomy}
+                                    value={this.props.object.taxonomy()}
+                                    data={this.props.attributes.taxonomies}
+                                    onChange={this._attributeChange.bind(this, "taxonomy")} />
+            );
+        }
+        let topicContent = null;
+        if (this.props.attributes.topics.length > 0) {
+            topicContent = (
+                <DeveloperAttribute label={this.props.texts.topic}
+                                    value={this.props.object.topic()}
+                                    data={this.props.attributes.topics}
+                                    onChange={this._attributeChange.bind(this, "topic")} />
+            );
+        }
+
         return (
             <React.Fragment>
                 {modal}
@@ -168,14 +187,8 @@ class DeveloperQuestion extends React.Component {
                                                         value={this.props.object.difficulty()}
                                                         data={this.props.attributes.difficulties}
                                                         onChange={this._attributeChange.bind(this, "difficulty")} />
-                                    <DeveloperAttribute label={this.props.texts.taxonomy}
-                                                        value={this.props.object.taxonomy()}
-                                                        data={this.props.attributes.taxonomies}
-                                                        onChange={this._attributeChange.bind(this, "taxonomy")} />
-                                    <DeveloperAttribute label={this.props.texts.topic}
-                                                        value={this.props.object.topic()}
-                                                        data={this.props.attributes.topics}
-                                                        onChange={this._attributeChange.bind(this, "topic")} />
+                                    {taxonomyContent}
+                                    {topicContent}
                                 </div>
                                 <div data-paragraphs>
                                     {developerParagraphs}

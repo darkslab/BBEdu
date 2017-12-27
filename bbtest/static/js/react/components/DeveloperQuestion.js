@@ -180,6 +180,21 @@ var DeveloperQuestion = function (_React$Component) {
                 panelClassName += " panel-primary";
             }
 
+            var taxonomyContent = null;
+            if (this.props.attributes.taxonomies.length > 0) {
+                taxonomyContent = React.createElement(DeveloperAttribute, { label: this.props.texts.taxonomy,
+                    value: this.props.object.taxonomy(),
+                    data: this.props.attributes.taxonomies,
+                    onChange: this._attributeChange.bind(this, "taxonomy") });
+            }
+            var topicContent = null;
+            if (this.props.attributes.topics.length > 0) {
+                topicContent = React.createElement(DeveloperAttribute, { label: this.props.texts.topic,
+                    value: this.props.object.topic(),
+                    data: this.props.attributes.topics,
+                    onChange: this._attributeChange.bind(this, "topic") });
+            }
+
             return React.createElement(
                 React.Fragment,
                 null,
@@ -217,14 +232,8 @@ var DeveloperQuestion = function (_React$Component) {
                                         value: this.props.object.difficulty(),
                                         data: this.props.attributes.difficulties,
                                         onChange: this._attributeChange.bind(this, "difficulty") }),
-                                    React.createElement(DeveloperAttribute, { label: this.props.texts.taxonomy,
-                                        value: this.props.object.taxonomy(),
-                                        data: this.props.attributes.taxonomies,
-                                        onChange: this._attributeChange.bind(this, "taxonomy") }),
-                                    React.createElement(DeveloperAttribute, { label: this.props.texts.topic,
-                                        value: this.props.object.topic(),
-                                        data: this.props.attributes.topics,
-                                        onChange: this._attributeChange.bind(this, "topic") })
+                                    taxonomyContent,
+                                    topicContent
                                 ),
                                 React.createElement(
                                     "div",
