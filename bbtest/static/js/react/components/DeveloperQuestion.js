@@ -345,6 +345,7 @@ var DeveloperQuestion = function (_React$Component) {
                     this.setState({
                         paragraphsModal: false
                     });
+                    this._reScheduleSave();
                     break;
                 case "answers":
                     if (data) {
@@ -353,6 +354,7 @@ var DeveloperQuestion = function (_React$Component) {
                     this.setState({
                         answersModal: false
                     });
+                    this._reScheduleSave();
                     break;
             }
         }

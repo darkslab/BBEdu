@@ -277,6 +277,7 @@ class DeveloperQuestion extends React.Component {
                 this.setState({
                     paragraphsModal: false
                 });
+                this._reScheduleSave();
                 break;
             case "answers":
                 if (data) {
@@ -285,6 +286,7 @@ class DeveloperQuestion extends React.Component {
                 this.setState({
                     answersModal: false
                 });
+                this._reScheduleSave();
                 break;
         }
     }
