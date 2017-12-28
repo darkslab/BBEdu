@@ -1,7 +1,8 @@
 from django.forms import ModelForm, Form
+from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy
-from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion
+from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test
 from bbtest.forms.fields import JSONField
 from bbtest.utils.json import tight_dumps
 
@@ -330,3 +331,13 @@ class TestParagraphsContainerForm(Form):
                 )
         except IndexError:
             pass
+
+
+class TestForm(ModelForm):
+    class Meta:
+        model = Test
+        fields = ("section", "language")
+        widgets = {
+            "section": HiddenInput,
+            "language": HiddenInput,
+        }

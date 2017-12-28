@@ -822,3 +822,44 @@ html {
 .bb-placeholder {
     color: #bbb;
 }
+
+.bb-create-test {
+    margin: 23px 0;
+}
+
+.bb-create-test .nav > li > a {
+    text-align: center;
+    border: 1px solid #0c84e4;
+}
+
+.bb-create-test .tab-content {
+    margin-top: 23px;
+}
+
+@media (min-width: 768px) {
+    .bb-create-test {
+        margin-right: 23px;
+        margin-left: 23px;
+    }
+
+    .bb-create-test .nav-pills > li {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .bb-create-test .nav-pills > li + li {
+        margin-left: 23px;
+    }
+
+    .bb-create-test .nav > li > a {
+        min-width: 240px;
+    }
+
+    .bb-create-test .tab-content {
+        margin-top: 46px;
+    }
+
+    .bb-create-test .btn-group .btn-success {
+        min-width: 400px;
+    }
+}

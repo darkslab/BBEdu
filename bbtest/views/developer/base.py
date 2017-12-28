@@ -1,11 +1,11 @@
-from django.views.generic import View, TemplateView
+from django.views.generic import View, TemplateView, FormView
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from django.utils.translation import ugettext as _
 from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
-from bbtest.models import TestQuestion
-from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm
+from bbtest.models import TestQuestion, TestDomain, Test
+from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm
 from bbtest.utils.json import tight_dumps
 from bbtest.http import TightJsonResponse
 
@@ -16,6 +16,19 @@ def get_test_or_404(user, code):
 
 class DashboardView(DeveloperLoginRequiredMixin, TemplateView):
     template_name = "developer/dashboard.html"
+
+
+class TestsView(DeveloperLoginRequiredMixin, FormView):
+    template_name = "developer/tests.html"
+    form_class = TestForm
+
+    def get_context_data(self, **kwargs):
+        kwargs["nis"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7911)
+        kwargs["unt"] = get_object_or_404(TestDomain.objects, pk=7912)
+
+        kwargs["languages"] = Test.LANGUAGES
+
+        return super().get_context_data(**kwargs)
 
 
 class TestView(DeveloperLoginRequiredMixin, TemplateView):
