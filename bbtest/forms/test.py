@@ -2,6 +2,7 @@ from django.forms import ModelForm, Form
 from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy
+from random import randint
 from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test
 from bbtest.forms.fields import JSONField
 from bbtest.utils.json import tight_dumps
@@ -341,3 +342,37 @@ class TestForm(ModelForm):
             "section": HiddenInput,
             "language": HiddenInput,
         }
+        error_messages = {
+            "section": {
+                "required": pgettext_lazy("Validation error", "Please select test section."),
+                "invalid_choice": pgettext_lazy("Validation error", "Incorrect test section value."),
+            },
+            "language": {
+                "required": pgettext_lazy("Validation error", "Please select test language."),
+                "invalid_choice": pgettext_lazy("Validation error", "Incorrect test language value."),
+            },
+        }
+
+    def create_test_suite(self, developer):
+        test = self.save(developer)
+
+        for i in range(test.section.question_count):
+            test.questions.create(
+                weight=test.section.question_weight,
+                order=i,
+            )
+
+        return test
+
+    def save(self, developer, commit=True):
+        test = super().save(commit=False)
+        test.developer = developer
+
+        while True:
+            test.code = "%04x" % randint(0x0000, 0xffff)
+            if not Test.objects.filter(code=test.code).exists():
+                break
+
+        if commit:
+            test.save()
+        return test

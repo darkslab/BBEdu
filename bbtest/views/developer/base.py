@@ -2,6 +2,7 @@ from django.views.generic import View, TemplateView, FormView
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from django.utils.translation import ugettext as _
+from django.urls import reverse
 from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
 from bbtest.models import TestQuestion, TestDomain, Test
@@ -29,6 +30,13 @@ class TestsView(DeveloperLoginRequiredMixin, FormView):
         kwargs["languages"] = Test.LANGUAGES
 
         return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        self._test = form.create_test_suite(self.request.user)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("bbtest:developer_test", kwargs={ "code": self._test.code })
 
 
 class TestView(DeveloperLoginRequiredMixin, TemplateView):

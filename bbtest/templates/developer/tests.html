@@ -19,7 +19,7 @@
         {{ form.section|set_data:'set-section:' }}
         {{ form.language|set_data:'set-language:' }}
 
-        <div class="modal fade" id="language-modal">
+        <div class="modal fade" data-language-modal>
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -62,12 +62,12 @@
                                         <div class="row mt-10">
                                             <div class="col-xs-12 hidden-xs text-center">
                                                 <div class="btn-group btn-group-lg">
-                                                    <button type="button" class="btn btn-success" data-bb-submit data-get-section="{{ section.id }}" data-toggle="modal" data-target="#language-modal">{% trans section.name %}</button>
+                                                    <button type="button" class="btn btn-success" data-bb-submit data-get-section="{{ section.id }}" data-toggle="modal" data-target="[data-language-modal]">{% trans section.name %}</button>
                                                     <button type="button" class="btn btn-info"><i class="fa fa-fw fa-info-circle"></i></button>
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 visible-xs-block">
-                                                <button type="button" class="btn btn-success btn-sm btn-block" data-bb-submit data-get-section="{{ section.id }}" data-toggle="modal" data-target="#language-modal">{% trans section.name %}</button>
+                                                <button type="button" class="btn btn-success btn-sm btn-block" data-bb-submit data-get-section="{{ section.id }}" data-toggle="modal" data-target="[data-language-modal]">{% trans section.name %}</button>
                                             </div>
                                             <div class="col-xs-12 visible-xs-block mt-5">
                                                 <button type="button" class="btn btn-info btn-xs btn-block"><i class="fa fa-fw fa-info-circle"></i></button>
