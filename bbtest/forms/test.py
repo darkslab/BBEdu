@@ -1,7 +1,7 @@
 from django.forms import ModelForm, Form
 from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
-from django.utils.translation import pgettext_lazy
+from django.utils.translation import pgettext_lazy, pgettext
 from random import randint
 from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test
 from bbtest.forms.fields import JSONField
@@ -356,11 +356,95 @@ class TestForm(ModelForm):
     def create_test_suite(self, developer):
         test = self.save(developer)
 
-        for i in range(test.section.question_count):
-            test.questions.create(
-                weight=test.section.question_weight,
-                order=i,
-            )
+        # NIS sections
+        if test.section.id in (9540, 9541, 9542, 9543, 9544):
+            shared_paragraph = None
+            for i in range(test.section.question_count):
+                choice_id = randint(0x0000, 0xffff)
+                meta_data = {
+                    "choices": [
+                        { "id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
+                        { "id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
+                        { "id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
+                        { "id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
+                    ],
+                    "correct_id": None,
+                }
+                if test.section.id == 9544:
+                    meta_data["choices"][0]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer", "Quantity A is greater."))
+                    meta_data["choices"][1]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer", "Quantity B is greater."))
+                    meta_data["choices"][2]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer", "The two quantities are equal."))
+                    meta_data["choices"][3]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer", "The relationship cannot be determined from the information given."))
+
+                question = test.questions.create(
+                    answer_class="MultichoiceOneAnswer",
+                    meta_data=meta_data,
+                    weight=test.section.question_weight,
+                    order=i,
+                )
+
+                if test.section.id == 9540:
+                    paragraph = TestParagraph.objects.create(
+                        paragraph_class="TextParagraph",
+                        meta_data={ "text": "" },
+                    )
+                    TestParagraphQuestion.objects.create(
+                        question=question,
+                        paragraph=paragraph,
+                        order=0,
+                    )
+                elif test.section.id in (9541, 9542, 9543):
+                    if i < 6:
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=TestParagraph.objects.create(
+                                paragraph_class="TextParagraph",
+                                meta_data={ "text": "" },
+                            ),
+                            order=0,
+                        )
+                    elif i in (6, 9, 12, 15):
+                        shared_paragraph = TestParagraph.objects.create(
+                            paragraph_class="TextParagraph",
+                            meta_data={ "text": "" },
+                        )
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=shared_paragraph,
+                            order=0,
+                        )
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=TestParagraph.objects.create(
+                                paragraph_class="TextParagraph",
+                                meta_data={ "text": "" },
+                            ),
+                            order=1,
+                        )
+                    else:
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=shared_paragraph,
+                            order=0,
+                        )
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=TestParagraph.objects.create(
+                                paragraph_class="TextParagraph",
+                                meta_data={ "text": "" },
+                            ),
+                            order=1,
+                        )
+                elif test.section.id == 9544:
+                    paragraph = TestParagraph.objects.create(
+                        paragraph_class="SplitTextParagraph",
+                        meta_data={ "right": { "text": "" }, "left": { "text": "" } },
+                    )
+                    TestParagraphQuestion.objects.create(
+                        question=question,
+                        paragraph=paragraph,
+                        order=0,
+                    )
 
         return test
 

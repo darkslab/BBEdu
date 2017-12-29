@@ -25,3 +25,16 @@ A testing platform application.
 2. Compile with npm:
 
         npm run build
+
+
+#### How to make structural changes to Test Paragraph or Answer ####
+
+Test Paragraph and Answer structures are a simple JSON formatted data. When changed,
+the changes have to reflect in multiple places:
+
+1. In `bbtest.forms.test.TestForm`: This form provides initial data for questions.
+2. In `bbtest/static/js/react/objects/DeveloperQuestionObject.js`: This object creates
+   Paragraphs and Answers in frontend.
+3. In `bbtest.forms.test.TestQuestionForm`: This form validates Answer.
+4. In `bbtest.forms.test.TestParagraphForm`: This form validates Paragraph.
+5. Don't forget to also provide the migration for backward compatibility.
