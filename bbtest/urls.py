@@ -4,6 +4,7 @@ from .views import HomeView, DashboardView, SettingsView
 from .views.student import DashboardView as StudentDashboardView
 from .views.developer import (
     DashboardView as DeveloperDashboardView,
+    TestsView,
     TestView,
     QuestionView,
     ParagraphsView,
@@ -25,6 +26,7 @@ urlpatterns = [
 
     # DEVELOPER URLS
     url(r"^developer/$", DeveloperDashboardView.as_view(), name="developer_dashboard"),
+    url(r"^developer/tests/$", TestsView.as_view(), name="developer_tests"),
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/$", TestView.as_view(), name="developer_test"),
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/)?$", QuestionView.as_view(), name="developer_question"),
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", ParagraphsView.as_view(), name="developer_paragraphs"),

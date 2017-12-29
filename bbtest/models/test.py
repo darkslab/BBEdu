@@ -1,6 +1,6 @@
 from django.db.models import (
     Model, ForeignKey, CASCADE, ManyToManyField,
-    CharField, PositiveSmallIntegerField, BooleanField, DateTimeField, TextField,
+    CharField, PositiveSmallIntegerField, BooleanField, DateTimeField,
 )
 from django.utils.translation import pgettext_lazy
 from django.contrib.auth import get_user_model
@@ -22,11 +22,12 @@ class TestDomain(Model):
 class TestSection(Model):
     domain  = ForeignKey  ( TestDomain, on_delete=CASCADE, related_name="sections", )
 
-    name               = CharField                  ( pgettext_lazy("Model field", "name"),                       max_length=100,                )
-    duration           = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "duration in seconds"),                                       )
-    question_count     = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                            )
-    question_weight    = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question weight by default"),                                )
-    order              = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                      db_index=True, )
+    name             = CharField                  ( pgettext_lazy("Model field", "name"),                       max_length=100,                )
+    duration         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "duration in seconds"),                                       )
+    question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                            )
+    question_weight  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question weight by default"),                                )
+    order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                      db_index=True, )
+    specification    = JSONField                  ( pgettext_lazy("Model field", "specification"),                                             )
 
     class Meta:
         default_permissions = ()
@@ -146,13 +147,13 @@ class TestQuestion(Model):
     taxonomy  = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     topic     = ForeignKey  ( TestTopic,    on_delete=CASCADE, related_name="questions", null=True, blank=True, )
 
-    answer_class     = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
-    meta_data        = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
-    difficulty       = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NORMAL, db_index=True, )
-    weight           = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "weight of question"),                                                                       db_index=True, )
-    order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                                                                    db_index=True, )
-    created_at       = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                   )
-    updated_at       = DateTimeField              ( pgettext_lazy("Model field", "updated at"),         auto_now=True,                                                                       )
+    answer_class  = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
+    meta_data     = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
+    difficulty    = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NORMAL, db_index=True, )
+    weight        = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "weight of question"),                                                                       db_index=True, )
+    order         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                                                                    db_index=True, )
+    created_at    = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                   )
+    updated_at    = DateTimeField              ( pgettext_lazy("Model field", "updated at"),         auto_now=True,                                                                       )
 
     class Meta:
         default_permissions = ()

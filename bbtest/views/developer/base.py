@@ -1,11 +1,13 @@
-from django.views.generic import View, TemplateView
+from django.views.generic import View, TemplateView, FormView
 from django.shortcuts import get_object_or_404
 from django.http import Http404
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, pgettext, get_language
+from django.urls import reverse
+from django.contrib.messages import success
 from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
-from bbtest.models import TestQuestion
-from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm
+from bbtest.models import TestQuestion, TestDomain, Test
+from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm
 from bbtest.utils.json import tight_dumps
 from bbtest.http import TightJsonResponse
 
@@ -16,6 +18,37 @@ def get_test_or_404(user, code):
 
 class DashboardView(DeveloperLoginRequiredMixin, TemplateView):
     template_name = "developer/dashboard.html"
+
+
+class TestsView(DeveloperLoginRequiredMixin, FormView):
+    template_name = "developer/tests.html"
+    form_class = TestForm
+
+    def get_context_data(self, **kwargs):
+        kwargs["nis"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7911)
+        kwargs["nis_data"] = []
+        for section in kwargs["nis"].sections.all():
+            data = {
+                "section": section,
+                "specification": None,
+            }
+            if section.specification and get_language() in section.specification:
+                data["specification"] = section.specification[get_language()]
+            kwargs["nis_data"].append(data)
+
+        kwargs["unt"] = get_object_or_404(TestDomain.objects, pk=7912)
+
+        kwargs["languages"] = Test.LANGUAGES
+
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        self._test = form.create_test_suite(self.request.user)
+        success(self.request, pgettext("Success alert message", "You have created a new Test."))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("bbtest:developer_test", kwargs={ "code": self._test.code })
 
 
 class TestView(DeveloperLoginRequiredMixin, TemplateView):
