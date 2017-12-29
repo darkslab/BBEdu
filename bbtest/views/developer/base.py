@@ -1,8 +1,9 @@
 from django.views.generic import View, TemplateView, FormView
 from django.shortcuts import get_object_or_404
 from django.http import Http404
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, pgettext
 from django.urls import reverse
+from django.contrib.messages import success
 from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
 from bbtest.models import TestQuestion, TestDomain, Test
@@ -33,6 +34,7 @@ class TestsView(DeveloperLoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         self._test = form.create_test_suite(self.request.user)
+        success(self.request, pgettext("Success alert message", "You have created a new Test."))
         return super().form_valid(form)
 
     def get_success_url(self):

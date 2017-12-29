@@ -8,49 +8,46 @@ class DeveloperQuestion extends React.Component {
         };
         this._$paragraphsContainer;
         this._maxParagraphs = 8;
-        this._saveTimeout = 2000;
+        this._saveTimeout = 4000;
         this._timer = null;
+        this._$quickModal;
+        this._quickModalIsClosing = false;
+        this._quickModalTimer = null;
+        this._quickModalTimeout = 1500;  // this time should be at least twice less than this._saveTimeout
     }
     componentDidMount() {
         this._$paragraphsContainer = $("[data-paragraphs]");
-        if (this._$paragraphsContainer.length) {
-            this._$paragraphsContainer.sortable({
-                axis: "y",
-                forceHelperSize: true,
-                forcePlaceholderSize: true,
-                items: "> [data-paragraph-id]",
-                placeholder: "bb-test-paragraph-placeholder",
-                tolerance: "pointer",
+        this._$paragraphsContainer.sortable({
+            axis: "y",
+            forceHelperSize: true,
+            forcePlaceholderSize: true,
+            items: "> [data-paragraph-id]",
+            placeholder: "bb-test-paragraph-placeholder",
+            tolerance: "pointer",
 
-                create: function() {
-                    this._$paragraphsContainer.height(this._$paragraphsContainer.height());
-                }.bind(this),
-                update: this._paragraphsSorted.bind(this)
-            });
-        } else {
-            this._$paragraphsContainer = undefined;
-        }
+            create: function() {
+                this._$paragraphsContainer.height(this._$paragraphsContainer.height());
+            }.bind(this),
+            update: this._paragraphsSorted.bind(this)
+        });
 
-        this._reScheduleSave();
+        this._$quickModal = $("[data-quick-modal]");
+        this._$quickModal.on("webkitTransitionEnd otransitionend transitionend", this._quickModalTransitioned.bind(this));
     }
     componentWillUpdate() {
-        if (this._$paragraphsContainer) {
-            this._$paragraphsContainer.css("height", "");
-        }
+        this._$paragraphsContainer.css("height", "");
     }
     componentDidUpdate() {
-        if (this._$paragraphsContainer) {
-            this._$paragraphsContainer.height(this._$paragraphsContainer.height());
-        }
+        this._$paragraphsContainer.height(this._$paragraphsContainer.height());
     }
     componentWillUnmount() {
-        if (this._$paragraphsContainer) {
-            this._$paragraphsContainer.sortable("destroy");
-            this._$paragraphsContainer = undefined;
-        }
+        this._$paragraphsContainer.sortable("destroy");
 
         clearTimeout(this._timer);
         this.props.object.stop("question");
+
+        this._$quickModal.off("webkitTransitionEnd otransitionend transitionend", this._quickModalTransitioned.bind(this));
+        clearTimeout(this._quickModalTimer);
     }
     render() {
         let developerParagraphs = [];
@@ -145,13 +142,6 @@ class DeveloperQuestion extends React.Component {
             );
         }
 
-        let panelClassName = "panel";
-        if (this.props.object.isSaved()) {
-            panelClassName += " panel-success";
-        } else {
-            panelClassName += " panel-primary";
-        }
-
         let taxonomyContent = null;
         if (this.props.attributes.taxonomies.length > 0) {
             taxonomyContent = (
@@ -173,10 +163,19 @@ class DeveloperQuestion extends React.Component {
 
         return (
             <React.Fragment>
+                <div className="modal bb-quick-modal fade" data-quick-modal>
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-body">
+                                <p className="lead text-center mb-0">Saved</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {modal}
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className={panelClassName}>
+                        <div className="panel panel-primary">
                             <div className="panel-heading bb-rel">
                                 <div className="bb-test-number">{this.props.count}</div>
                                 <h4 className="panel-title bb-test-title mt-15 mb-15">{this.props.texts.question}</h4>
@@ -224,17 +223,17 @@ class DeveloperQuestion extends React.Component {
                 break;
         }
         this._pokeComponent();
-        this._reScheduleSave();
+        this._scheduleSave();
     }
     _paragraphChange(id, data) {
         this.props.object.updateParagraph(id, data);
         this._pokeComponent();
-        this._reScheduleSave();
+        this._scheduleSave();
     }
     _paragraphDelete(id) {
         this.props.object.deleteParagraph(id);
         this._pokeComponent();
-        this._reScheduleSave();
+        this._scheduleSave();
     }
     _paragraphsSorted(event, ui) {
         let paragraphIds = this._$paragraphsContainer.sortable("toArray", {
@@ -242,17 +241,17 @@ class DeveloperQuestion extends React.Component {
         });
         this.props.object.setParagraphOrder(paragraphIds);
         this._pokeComponent();
-        this._reScheduleSave();
+        this._scheduleSave();
     }
     _answerChange(data) {
         this.props.object.updateAnswer(data);
         this._pokeComponent();
-        this._reScheduleSave();
+        this._scheduleSave();
     }
     _answerDelete() {
         this.props.object.deleteAnswer();
         this._pokeComponent();
-        this._reScheduleSave();
+        this._scheduleSave();
     }
     _renderModal(type) {
         switch (type) {
@@ -277,7 +276,7 @@ class DeveloperQuestion extends React.Component {
                 this.setState({
                     paragraphsModal: false
                 });
-                this._reScheduleSave();
+                this._scheduleSave();
                 break;
             case "answers":
                 if (data) {
@@ -286,11 +285,11 @@ class DeveloperQuestion extends React.Component {
                 this.setState({
                     answersModal: false
                 });
-                this._reScheduleSave();
+                this._scheduleSave();
                 break;
         }
     }
-    _reScheduleSave() {
+    _scheduleSave() {
         clearTimeout(this._timer);
         this._timer = setTimeout(() => {
             this.props.object.save("question", this._saveCallback.bind(this));
@@ -301,6 +300,23 @@ class DeveloperQuestion extends React.Component {
             this.props.errorOut();
             return;
         }
-        this._pokeComponent();
+        this._$quickModal.css("display", "block");
+        this._quickModalTimer = setTimeout(() => {
+            this._$quickModal.addClass("in");
+            this._quickModalTimer = setTimeout(() => {
+                this._$quickModal.removeClass("in");
+                this._quickModalIsClosing = true;
+            }, this._quickModalTimeout);
+        });
+    }
+    _quickModalTransitioned(event) {
+        if (event.currentTarget !== event.target) {
+            return;
+        }
+        if (!this._quickModalIsClosing) {
+            return;
+        }
+        this._quickModalIsClosing = false;
+        this._$quickModal.css("display", "");
     }
 }

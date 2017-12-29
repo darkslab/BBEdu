@@ -863,3 +863,20 @@ html {
         min-width: 400px;
     }
 }
+
+.bb-quick-modal {
+    bottom: auto;
+}
+
+@media (min-width: 768px) {
+    .bb-quick-modal {
+        right: auto;
+        left: 50%;
+        width: 360px;
+        margin-left: -180px;
+    }
+
+    .bb-quick-modal .modal-dialog {
+        max-width: 300px;
+    }
+}

@@ -23,8 +23,12 @@ var DeveloperQuestion = function (_React$Component) {
         };
         _this._$paragraphsContainer;
         _this._maxParagraphs = 8;
-        _this._saveTimeout = 2000;
+        _this._saveTimeout = 4000;
         _this._timer = null;
+        _this._$quickModal;
+        _this._quickModalIsClosing = false;
+        _this._quickModalTimer = null;
+        _this._quickModalTimeout = 1500; // this time should be at least twice less than this._saveTimeout
         return _this;
     }
 
@@ -32,50 +36,43 @@ var DeveloperQuestion = function (_React$Component) {
         key: "componentDidMount",
         value: function componentDidMount() {
             this._$paragraphsContainer = $("[data-paragraphs]");
-            if (this._$paragraphsContainer.length) {
-                this._$paragraphsContainer.sortable({
-                    axis: "y",
-                    forceHelperSize: true,
-                    forcePlaceholderSize: true,
-                    items: "> [data-paragraph-id]",
-                    placeholder: "bb-test-paragraph-placeholder",
-                    tolerance: "pointer",
+            this._$paragraphsContainer.sortable({
+                axis: "y",
+                forceHelperSize: true,
+                forcePlaceholderSize: true,
+                items: "> [data-paragraph-id]",
+                placeholder: "bb-test-paragraph-placeholder",
+                tolerance: "pointer",
 
-                    create: function () {
-                        this._$paragraphsContainer.height(this._$paragraphsContainer.height());
-                    }.bind(this),
-                    update: this._paragraphsSorted.bind(this)
-                });
-            } else {
-                this._$paragraphsContainer = undefined;
-            }
+                create: function () {
+                    this._$paragraphsContainer.height(this._$paragraphsContainer.height());
+                }.bind(this),
+                update: this._paragraphsSorted.bind(this)
+            });
 
-            this._reScheduleSave();
+            this._$quickModal = $("[data-quick-modal]");
+            this._$quickModal.on("webkitTransitionEnd otransitionend transitionend", this._quickModalTransitioned.bind(this));
         }
     }, {
         key: "componentWillUpdate",
         value: function componentWillUpdate() {
-            if (this._$paragraphsContainer) {
-                this._$paragraphsContainer.css("height", "");
-            }
+            this._$paragraphsContainer.css("height", "");
         }
     }, {
         key: "componentDidUpdate",
         value: function componentDidUpdate() {
-            if (this._$paragraphsContainer) {
-                this._$paragraphsContainer.height(this._$paragraphsContainer.height());
-            }
+            this._$paragraphsContainer.height(this._$paragraphsContainer.height());
         }
     }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
-            if (this._$paragraphsContainer) {
-                this._$paragraphsContainer.sortable("destroy");
-                this._$paragraphsContainer = undefined;
-            }
+            this._$paragraphsContainer.sortable("destroy");
 
             clearTimeout(this._timer);
             this.props.object.stop("question");
+
+            this._$quickModal.off("webkitTransitionEnd otransitionend transitionend", this._quickModalTransitioned.bind(this));
+            clearTimeout(this._quickModalTimer);
         }
     }, {
         key: "render",
@@ -173,13 +170,6 @@ var DeveloperQuestion = function (_React$Component) {
                 );
             }
 
-            var panelClassName = "panel";
-            if (this.props.object.isSaved()) {
-                panelClassName += " panel-success";
-            } else {
-                panelClassName += " panel-primary";
-            }
-
             var taxonomyContent = null;
             if (this.props.attributes.taxonomies.length > 0) {
                 taxonomyContent = React.createElement(DeveloperAttribute, { label: this.props.texts.taxonomy,
@@ -198,6 +188,27 @@ var DeveloperQuestion = function (_React$Component) {
             return React.createElement(
                 React.Fragment,
                 null,
+                React.createElement(
+                    "div",
+                    { className: "modal bb-quick-modal fade", "data-quick-modal": true },
+                    React.createElement(
+                        "div",
+                        { className: "modal-dialog" },
+                        React.createElement(
+                            "div",
+                            { className: "modal-content" },
+                            React.createElement(
+                                "div",
+                                { className: "modal-body" },
+                                React.createElement(
+                                    "p",
+                                    { className: "lead text-center mb-0" },
+                                    "Saved"
+                                )
+                            )
+                        )
+                    )
+                ),
                 modal,
                 React.createElement(
                     "div",
@@ -207,7 +218,7 @@ var DeveloperQuestion = function (_React$Component) {
                         { className: "col-xs-12" },
                         React.createElement(
                             "div",
-                            { className: panelClassName },
+                            { className: "panel panel-primary" },
                             React.createElement(
                                 "div",
                                 { className: "panel-heading bb-rel" },
@@ -278,21 +289,21 @@ var DeveloperQuestion = function (_React$Component) {
                     break;
             }
             this._pokeComponent();
-            this._reScheduleSave();
+            this._scheduleSave();
         }
     }, {
         key: "_paragraphChange",
         value: function _paragraphChange(id, data) {
             this.props.object.updateParagraph(id, data);
             this._pokeComponent();
-            this._reScheduleSave();
+            this._scheduleSave();
         }
     }, {
         key: "_paragraphDelete",
         value: function _paragraphDelete(id) {
             this.props.object.deleteParagraph(id);
             this._pokeComponent();
-            this._reScheduleSave();
+            this._scheduleSave();
         }
     }, {
         key: "_paragraphsSorted",
@@ -302,21 +313,21 @@ var DeveloperQuestion = function (_React$Component) {
             });
             this.props.object.setParagraphOrder(paragraphIds);
             this._pokeComponent();
-            this._reScheduleSave();
+            this._scheduleSave();
         }
     }, {
         key: "_answerChange",
         value: function _answerChange(data) {
             this.props.object.updateAnswer(data);
             this._pokeComponent();
-            this._reScheduleSave();
+            this._scheduleSave();
         }
     }, {
         key: "_answerDelete",
         value: function _answerDelete() {
             this.props.object.deleteAnswer();
             this._pokeComponent();
-            this._reScheduleSave();
+            this._scheduleSave();
         }
     }, {
         key: "_renderModal",
@@ -345,7 +356,7 @@ var DeveloperQuestion = function (_React$Component) {
                     this.setState({
                         paragraphsModal: false
                     });
-                    this._reScheduleSave();
+                    this._scheduleSave();
                     break;
                 case "answers":
                     if (data) {
@@ -354,13 +365,13 @@ var DeveloperQuestion = function (_React$Component) {
                     this.setState({
                         answersModal: false
                     });
-                    this._reScheduleSave();
+                    this._scheduleSave();
                     break;
             }
         }
     }, {
-        key: "_reScheduleSave",
-        value: function _reScheduleSave() {
+        key: "_scheduleSave",
+        value: function _scheduleSave() {
             var _this3 = this;
 
             clearTimeout(this._timer);
@@ -371,11 +382,32 @@ var DeveloperQuestion = function (_React$Component) {
     }, {
         key: "_saveCallback",
         value: function _saveCallback(result) {
+            var _this4 = this;
+
             if (!result) {
                 this.props.errorOut();
                 return;
             }
-            this._pokeComponent();
+            this._$quickModal.css("display", "block");
+            this._quickModalTimer = setTimeout(function () {
+                _this4._$quickModal.addClass("in");
+                _this4._quickModalTimer = setTimeout(function () {
+                    _this4._$quickModal.removeClass("in");
+                    _this4._quickModalIsClosing = true;
+                }, _this4._quickModalTimeout);
+            });
+        }
+    }, {
+        key: "_quickModalTransitioned",
+        value: function _quickModalTransitioned(event) {
+            if (event.currentTarget !== event.target) {
+                return;
+            }
+            if (!this._quickModalIsClosing) {
+                return;
+            }
+            this._quickModalIsClosing = false;
+            this._$quickModal.css("display", "");
         }
     }]);
 
