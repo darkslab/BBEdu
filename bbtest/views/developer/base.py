@@ -1,7 +1,7 @@
 from django.views.generic import View, TemplateView, FormView
 from django.shortcuts import get_object_or_404
 from django.http import Http404
-from django.utils.translation import ugettext as _, pgettext
+from django.utils.translation import ugettext as _, pgettext, get_language
 from django.urls import reverse
 from django.contrib.messages import success
 from json import loads
@@ -26,6 +26,16 @@ class TestsView(DeveloperLoginRequiredMixin, FormView):
 
     def get_context_data(self, **kwargs):
         kwargs["nis"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7911)
+        kwargs["nis_data"] = []
+        for section in kwargs["nis"].sections.all():
+            data = {
+                "section": section,
+                "specification": None,
+            }
+            if section.specification and get_language() in section.specification:
+                data["specification"] = section.specification[get_language()]
+            kwargs["nis_data"].append(data)
+
         kwargs["unt"] = get_object_or_404(TestDomain.objects, pk=7912)
 
         kwargs["languages"] = Test.LANGUAGES
