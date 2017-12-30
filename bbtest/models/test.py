@@ -102,6 +102,7 @@ class Test(Model):
     language     = CharField      ( pgettext_lazy("Model field", "language of the test"), max_length=2,      choices=LANGUAGES,                db_index=True, )
     is_active    = BooleanField   ( pgettext_lazy("Model field", "is active?"),                                                 default=True,  db_index=True, )
     is_approved  = BooleanField   ( pgettext_lazy("Model field", "is approved?"),                                               default=False, db_index=True, )
+    is_pending   = BooleanField   ( pgettext_lazy("Model field", "is pending approval?"),                                       default=False, db_index=True, )
     created_at   = DateTimeField  ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                  )
 
     class Meta:
