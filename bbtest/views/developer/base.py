@@ -25,20 +25,39 @@ class TestsView(DeveloperLoginRequiredMixin, FormView):
     form_class = TestForm
 
     def get_context_data(self, **kwargs):
+        kwargs["empty_language_code"] = Test.LANGUAGE_XX
+
         kwargs["nis"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7911)
         kwargs["nis_data"] = []
         for section in kwargs["nis"].sections.all():
             data = {
                 "section": section,
                 "specification": None,
+                "languages_title": None,
+                "languages": [],
             }
+
+            if section.id in (9540, 9544):
+                data["languages_title"] = pgettext("/developer/tests/", "Choose test language")
+                for language in Test.LANGUAGES:
+                    if language[0] == Test.LANGUAGE_XX:
+                        continue
+                    data["languages"].append(language)
+            elif section.id == 9541:
+                data["languages_title"] = pgettext("/developer/tests/", "Choose type")
+                data["languages"].append((Test.LANGUAGE_KK, pgettext("Test language", "Kazakh 1")))
+                data["languages"].append((Test.LANGUAGE_RU, pgettext("Test language", "Kazakh 2")))
+            elif section.id == 9542:
+                data["languages_title"] = pgettext("/developer/tests/", "Choose type")
+                data["languages"].append((Test.LANGUAGE_RU, pgettext("Test language", "Russian 1")))
+                data["languages"].append((Test.LANGUAGE_KK, pgettext("Test language", "Russian 2")))
+
             if section.specification and get_language() in section.specification:
                 data["specification"] = section.specification[get_language()]
+
             kwargs["nis_data"].append(data)
 
         kwargs["unt"] = get_object_or_404(TestDomain.objects, pk=7912)
-
-        kwargs["languages"] = Test.LANGUAGES
 
         return super().get_context_data(**kwargs)
 

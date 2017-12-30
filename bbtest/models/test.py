@@ -86,9 +86,11 @@ class TestTopicSection(Model):
 
 
 class Test(Model):
+    LANGUAGE_XX = "xx"
     LANGUAGE_KK = "kk"
     LANGUAGE_RU = "ru"
     LANGUAGES = (
+        ( LANGUAGE_XX, pgettext_lazy("Test language", "N/A")     ),
         ( LANGUAGE_KK, pgettext_lazy("Test language", "Kazakh")  ),
         ( LANGUAGE_RU, pgettext_lazy("Test language", "Russian") ),
     )
