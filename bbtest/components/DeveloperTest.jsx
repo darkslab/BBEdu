@@ -246,14 +246,20 @@ class DeveloperTest extends React.Component {
         this._cleanUp();
     }
     _confirmIsSaved(event) {
-        if (this.state.isQuestionSaving && !this.state.isErrored) {
+        if (this.state.isErrored) {
+            return;
+        }
+        if (this.state.isQuestionSaving || !this._questionObject.isSaved()) {
             let confirmationMessage = "\o/";
             event.returnValue = confirmationMessage;
             return confirmationMessage;
         }
     }
     _confirmIsSavedTurbolinks(event) {
-        if (this.state.isQuestionSaving && !this.state.isErrored) {
+        if (this.state.isErrored) {
+            return;
+        }
+        if (this.state.isQuestionSaving || !this._questionObject.isSaved()) {
             event.preventDefault();
         }
     }

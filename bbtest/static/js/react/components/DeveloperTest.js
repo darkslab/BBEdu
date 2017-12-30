@@ -307,7 +307,10 @@ var DeveloperTest = function (_React$Component) {
     }, {
         key: "_confirmIsSaved",
         value: function _confirmIsSaved(event) {
-            if (this.state.isQuestionSaving && !this.state.isErrored) {
+            if (this.state.isErrored) {
+                return;
+            }
+            if (this.state.isQuestionSaving || !this._questionObject.isSaved()) {
                 var confirmationMessage = "\o/";
                 event.returnValue = confirmationMessage;
                 return confirmationMessage;
@@ -316,7 +319,10 @@ var DeveloperTest = function (_React$Component) {
     }, {
         key: "_confirmIsSavedTurbolinks",
         value: function _confirmIsSavedTurbolinks(event) {
-            if (this.state.isQuestionSaving && !this.state.isErrored) {
+            if (this.state.isErrored) {
+                return;
+            }
+            if (this.state.isQuestionSaving || !this._questionObject.isSaved()) {
                 event.preventDefault();
             }
         }
