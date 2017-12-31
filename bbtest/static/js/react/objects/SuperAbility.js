@@ -1,6 +1,9 @@
 function SuperAbility(questionObject) {
     this._question = questionObject;
 }
+SuperAbility.prototype.question = function() {
+    return this._question;
+}
 
 SuperAbility.prototype.canAddParagraph = function() { return true; }
 SuperAbility.prototype.canDeleteParagraph = function(id) { return true; }
