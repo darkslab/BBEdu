@@ -1,0 +1,117 @@
+{% extends './developer_base_2.html' %}
+{% load i18n widget_tweaks %}
+
+{% block header %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+            <h3 class="mb-23 mt-0">{% block title %}{% trans 'Choose your Developer Plan' context 'Page title' %}{% endblock %}</h3>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "DeveloperAcknowledgementPageModule"
+        });
+    </script>
+    <form method="post" action="{{ request.path }}" data-bb-form data-agreement-form>
+        {% csrf_token %}
+        {{ form.plan|set_data:'set-plan:' }}
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <div class="list-group">
+                    <a href="javascript:void(0);" class="list-group-item" data-get-plan="{{ plan_a.value }}">
+                        <div class="row">
+                            <div class="col-xs-9 col-sm-10 pr-0">
+                                <h4 class="list-group-item-heading">{{ plan_a.name }}</h4>
+                                <ul class="list-narrow list-group-item-text">
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante.</li>
+                                    <li>Nulla facilisi. Nunc volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut sit amet orci vel mauris blandit vehicula.</li>
+                                    <li>Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit.</li>
+                                    <li>Donec semper, sem nec tristique tempus, justo neque commodo nisl, ut gravida sem tellus suscipit nunc. Aliquam erat volutpat.</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-3 col-sm-2">
+                                <h1 class="list-group-item-heading bb-list-group-heading-active text-right mb-0">
+                                    <i class="fa fa-check-circle"></i>
+                                </h1>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0);" class="list-group-item" data-get-plan="{{ plan_b.value }}">
+                        <div class="row">
+                            <div class="col-xs-9 col-sm-10 pr-0">
+                                <h4 class="list-group-item-heading">{{ plan_b.name }}</h4>
+                                <ul class="list-narrow list-group-item-text">
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante.</li>
+                                    <li>Nulla facilisi. Nunc volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut sit amet orci vel mauris blandit vehicula.</li>
+                                    <li>Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit.</li>
+                                    <li>Donec semper, sem nec tristique tempus, justo neque commodo nisl, ut gravida sem tellus suscipit nunc. Aliquam erat volutpat.</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-3 col-sm-2">
+                                <h1 class="list-group-item-heading bb-list-group-heading-active text-right mb-0">
+                                    <i class="fa fa-check-circle"></i>
+                                </h1>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0);" class="list-group-item" data-get-plan="{{ plan_c.value }}">
+                        <div class="row">
+                            <div class="col-xs-9 col-sm-10 pr-0">
+                                <h4 class="list-group-item-heading">{{ plan_c.name }}</h4>
+                                <ul class="list-narrow list-group-item-text">
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante.</li>
+                                    <li>Nulla facilisi. Nunc volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut sit amet orci vel mauris blandit vehicula.</li>
+                                    <li>Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit.</li>
+                                    <li>Donec semper, sem nec tristique tempus, justo neque commodo nisl, ut gravida sem tellus suscipit nunc. Aliquam erat volutpat.</li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-3 col-sm-2">
+                                <h1 class="list-group-item-heading bb-list-group-heading-active text-right mb-0">
+                                    <i class="fa fa-check-circle"></i>
+                                </h1>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                <button type="button" class="btn btn-primary btn-block btn-lg" data-agreement-view disabled data-toggle="modal" data-target="[data-agreement-modal]">{% trans 'View Agreement' context '/developer/acknowledgement/' %}</button>
+            </div>
+        </div>
+        <div class="modal fade" data-agreement-modal>
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" data-bb-submit>&times;</button>
+                        <h4 class="modal-title text-center">{% trans 'Agreement' context '/developer/acknowledgement/' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris eleifend, quam a vulputate dictum, massa quam dapibus leo, eget vulputate orci purus ut lorem. In fringilla mi in ligula. Pellentesque aliquam quam vel dolor. Nunc adipiscing. Sed quam odio, tempus ac, aliquam molestie, varius ac, tellus. Vestibulum ut nulla aliquam risus rutrum interdum. Pellentesque lorem. Curabitur sit amet erat quis risus feugiat viverra. Pellentesque augue justo, sagittis et, lacinia at, venenatis non, arcu. Nunc nec libero. In cursus dictum risus. Etiam tristique nisl a nulla. Ut a orci. Curabitur dolor nunc, egestas at, accumsan at, malesuada nec, magna.</p>
+                        <p>Nulla facilisi. Nunc volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut sit amet orci vel mauris blandit vehicula. Nullam quis enim. Integer dignissim viverra velit. Curabitur in odio. In hac habitasse platea dictumst. Ut consequat, tellus eu volutpat varius, justo orci elementum dolor, sed imperdiet nulla tellus ut diam. Vestibulum ipsum ante, malesuada quis, tempus ac, placerat sit amet, elit.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" data-agreement-read> {% trans 'I have read the agreement' context '/developer/acknowledgement/' %}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+                            <button type="button" class="btn btn-success btn-block btn-lg" data-agreement-accept disabled data-bb-submit>{% trans 'Accept' context '/developer/acknowledgement/' %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

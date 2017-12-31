@@ -28,14 +28,16 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
         key: "render",
         value: function render() {
             var buttons = [];
-            buttons.push(React.createElement(
-                "button",
-                { key: "delete",
-                    type: "button",
-                    className: "btn btn-danger btn-xs pull-right ml-5",
-                    onClick: this._renderModal.bind(this) },
-                React.createElement("i", { className: "fa fa-fw fa-times" })
-            ));
+            if (this.props.canDelete) {
+                buttons.push(React.createElement(
+                    "button",
+                    { key: "delete",
+                        type: "button",
+                        className: "btn btn-danger btn-xs pull-right ml-5",
+                        onClick: this._renderModal.bind(this) },
+                    React.createElement("i", { className: "fa fa-fw fa-times" })
+                ));
+            }
 
             var leftClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
             if (!this.props.data.left.text) {
