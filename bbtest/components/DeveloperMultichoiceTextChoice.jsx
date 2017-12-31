@@ -7,14 +7,16 @@ class DeveloperMultichoiceTextChoice extends React.Component {
     }
     render() {
         let buttons = [];
-        buttons.push(
-            <button key="delete"
-                    type="button"
-                    className="btn btn-danger btn-xs pull-right ml-5"
-                    onClick={this._renderModal.bind(this)}>
-                <i className="fa fa-fw fa-times"></i>
-            </button>
-        );
+        if (this.props.canDelete) {
+            buttons.push(
+                <button key="delete"
+                        type="button"
+                        className="btn btn-danger btn-xs pull-right ml-5"
+                        onClick={this._renderModal.bind(this)}>
+                    <i className="fa fa-fw fa-times"></i>
+                </button>
+            );
+        }
         buttons.push(
             <button key="chosen"
                     type="button"
@@ -60,7 +62,8 @@ class DeveloperMultichoiceTextChoice extends React.Component {
                             <textarea className={className}
                                       placeholder={this.props.texts.choiceTextareaPlaceholder}
                                       value={this.props.data.text}
-                                      onChange={this._handleChange.bind(this)} />
+                                      onChange={this._handleChange.bind(this)}
+                                      readOnly={this.props.canEdit ? false : true} />
                         </div>
                     </div>
                 </div>

@@ -24,6 +24,7 @@ var DeveloperTest = function (_React$Component) {
             questionIndex: 0
         };
         _this._questionObject = null;
+        _this._abilityObject = null;
         _this._oldQuestionObjects = [];
         _this._questionAttributes = null;
         _this._$xhrs = {
@@ -76,6 +77,7 @@ var DeveloperTest = function (_React$Component) {
                 content = React.createElement(DeveloperQuestion, { count: this.state.questionIndex + 1,
                     attributes: this._questionAttributes,
                     object: this._questionObject,
+                    ability: this._abilityObject,
                     texts: this.props.texts,
                     errorOut: this._errorOut.bind(this) });
             } else {
@@ -221,6 +223,7 @@ var DeveloperTest = function (_React$Component) {
                 });
                 var object = this._questionObject;
                 this._questionObject = null;
+                this._abilityObject = null;
                 object.save("test", this._questionSave.bind(this));
                 this._oldQuestionObjects.push(object);
             }
@@ -231,6 +234,7 @@ var DeveloperTest = function (_React$Component) {
         value: function _ajaxSuccess(type, data, status, $xhr) {
             if (type === "question") {
                 this._questionObject = new DeveloperQuestionObject(data.id, data.data, data.paragraphs, this.props.questionUrl, this.props.paragraphsUrl);
+                this._abilityObject = new (eval(this.props.ability))(this._questionObject);
                 this.setState({
                     isQuestionLoading: false
                 });

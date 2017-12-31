@@ -35,6 +35,11 @@ BASE2_DEVELOPMENT_SOURCE_FILENAMES = (
 BASE3_SOURCE_FILENAMES = (
     "js/react/objects/DeveloperQuestionObject.js",
 
+    "js/react/objects/SuperAbility.js",
+    "js/react/objects/DeveloperNISMathematicsAbility.js",
+    "js/react/objects/DeveloperNISLanguageAbility.js",
+    "js/react/objects/DeveloperNISQuantitativeAbility.js",
+
     "js/react/components/DeveloperTest.js",
     "js/react/components/DeveloperQuestion.js",
     "js/react/components/DeveloperAttribute.js",

@@ -9,6 +9,7 @@ class DeveloperTest extends React.Component {
             questionIndex: 0
         };
         this._questionObject = null;
+        this._abilityObject = null;
         this._oldQuestionObjects = [];
         this._questionAttributes = null;
         this._$xhrs = {
@@ -52,6 +53,7 @@ class DeveloperTest extends React.Component {
                 <DeveloperQuestion count={this.state.questionIndex + 1}
                                    attributes={this._questionAttributes}
                                    object={this._questionObject}
+                                   ability={this._abilityObject}
                                    texts={this.props.texts}
                                    errorOut={this._errorOut.bind(this)} />
             );
@@ -168,6 +170,7 @@ class DeveloperTest extends React.Component {
             });
             let object = this._questionObject;
             this._questionObject = null;
+            this._abilityObject = null;
             object.save("test", this._questionSave.bind(this));
             this._oldQuestionObjects.push(object);
         }
@@ -182,6 +185,7 @@ class DeveloperTest extends React.Component {
                 this.props.questionUrl,
                 this.props.paragraphsUrl
             );
+            this._abilityObject = new (eval(this.props.ability))(this._questionObject);
             this.setState({
                 isQuestionLoading: false
             });
