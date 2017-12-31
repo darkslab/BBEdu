@@ -64,6 +64,7 @@ class DeveloperQuestion extends React.Component {
                                          data={paragraphData.meta_data}
                                          onChange={this._paragraphChange.bind(this, id)}
                                          onDelete={this._paragraphDelete.bind(this, id)}
+                                         canDelete={this.props.ability.canDeleteParagraph(id)}
                                          texts={this.props.texts} />
             );
             paragraphs.push(
@@ -88,6 +89,7 @@ class DeveloperQuestion extends React.Component {
                 <AnswerClass data={answerData.meta_data}
                              onChange={this._answerChange.bind(this)}
                              onDelete={this._answerDelete.bind(this)}
+                             ability={this.props.ability}
                              texts={this.props.texts} />
             );
         } else {
@@ -104,19 +106,23 @@ class DeveloperQuestion extends React.Component {
 
         let modal = null;
         if (this.state.paragraphsModal) {
+            let paragraphClassData = [];
+            if (this.props.ability.canChooseTextParagraph()) {
+                paragraphClassData.push({
+                    class: "TextParagraph",
+                    caption: this.props.texts.paragraphsModalButtonTextParagraph
+                });
+            }
+            if (this.props.ability.canChooseSplitTextParagraph()) {
+                paragraphClassData.push({
+                    class: "SplitTextParagraph",
+                    caption: this.props.texts.paragraphsModalButtonSplitTextParagraph
+                });
+            }
             modal = (
                 <DeveloperSelectorModal title={this.props.texts.paragraphsModalTitle}
                                         complete={this._completeModal.bind(this, "paragraphs")}
-                                        classData={[
-                                            {
-                                                class: "TextParagraph",
-                                                caption: this.props.texts.paragraphsModalButtonTextParagraph
-                                            },
-                                            {
-                                                class: "SplitTextParagraph",
-                                                caption: this.props.texts.paragraphsModalButtonSplitTextParagraph
-                                            }
-                                        ]} />
+                                        classData={paragraphClassData} />
             );
         } else if (this.state.answersModal) {
             modal = (
@@ -132,7 +138,7 @@ class DeveloperQuestion extends React.Component {
         }
 
         let addParagaphButton = null;
-        if (developerParagraphs.length < this._maxParagraphs) {
+        if (this.props.ability.canAddParagraph() && developerParagraphs.length < this._maxParagraphs) {
             addParagaphButton = (
                 <div className="form-group text-center mt-23">
                     <button type="button"

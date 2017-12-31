@@ -60,6 +60,8 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                                       onChange={this._choiceChange.bind(this, choice.id)}
                                       onSelect={this._choiceSelect.bind(this, choice.id)}
                                       onDelete={this._choiceDelete.bind(this, choice.id)}
+                                      canEdit={this.props.ability.canEditAnswerChoice(choice.id)}
+                                      canDelete={this.props.ability.canDeleteAnswerChoice(choice.id)}
                                       texts={this.props.texts}
                                       chosen={chosen} />
             );
@@ -104,13 +106,24 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
         }
 
         let addAnswerChoiceButton = null;
-        if (developerChoices.length < this._alphabet.length) {
+        if (this.props.ability.canAddAnswerChoice() && developerChoices.length < this._alphabet.length) {
             addAnswerChoiceButton = (
                 <div className="form-group text-center mt-23">
                     <button type="button"
                             className="btn btn-success"
                             onClick={this._renderModal.bind(this, "choices")}>{this.props.texts.addAnswerChoice}</button>
                 </div>
+            );
+        }
+
+        let deleteButton = null;
+        if (this.props.ability.canDeleteAnswer()) {
+            deleteButton = (
+                <button type="button"
+                        className="btn btn-danger btn-sm"
+                        onClick={this._renderModal.bind(this, "confirm")}>
+                    <i className="fa fa-fw fa-times"></i>
+                </button>
             );
         }
 
@@ -123,13 +136,7 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                             <div className="panel-heading">
                                 <div className="row">
                                     <h4 className="col-xs-9 col-sm-11 mt-5 mb-5">{this.props.texts.multichoiceOneAnswerTitle}</h4>
-                                    <div className="col-xs-3 col-sm-1 text-right pl-0">
-                                        <button type="button"
-                                                className="btn btn-danger btn-sm"
-                                                onClick={this._renderModal.bind(this, "confirm")}>
-                                            <i className="fa fa-fw fa-times"></i>
-                                        </button>
-                                    </div>
+                                    <div className="col-xs-3 col-sm-1 text-right pl-0">{deleteButton}</div>
                                 </div>
                             </div>
                             <div className="panel-body">

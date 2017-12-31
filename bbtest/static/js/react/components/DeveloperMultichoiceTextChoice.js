@@ -28,14 +28,16 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
         key: "render",
         value: function render() {
             var buttons = [];
-            buttons.push(React.createElement(
-                "button",
-                { key: "delete",
-                    type: "button",
-                    className: "btn btn-danger btn-xs pull-right ml-5",
-                    onClick: this._renderModal.bind(this) },
-                React.createElement("i", { className: "fa fa-fw fa-times" })
-            ));
+            if (this.props.canDelete) {
+                buttons.push(React.createElement(
+                    "button",
+                    { key: "delete",
+                        type: "button",
+                        className: "btn btn-danger btn-xs pull-right ml-5",
+                        onClick: this._renderModal.bind(this) },
+                    React.createElement("i", { className: "fa fa-fw fa-times" })
+                ));
+            }
             buttons.push(React.createElement(
                 "button",
                 { key: "chosen",
@@ -96,7 +98,8 @@ var DeveloperMultichoiceTextChoice = function (_React$Component) {
                             React.createElement("textarea", { className: className,
                                 placeholder: this.props.texts.choiceTextareaPlaceholder,
                                 value: this.props.data.text,
-                                onChange: this._handleChange.bind(this) })
+                                onChange: this._handleChange.bind(this),
+                                readOnly: this.props.canEdit ? false : true })
                         )
                     )
                 )

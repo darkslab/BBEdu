@@ -742,11 +742,12 @@ html {
 }
 
 .bb-test-paragraph-textarea,
-.form-control.bb-test-paragraph-textarea {
+.bb-test-paragraph-textarea[readonly],
+.form-control.bb-test-paragraph-textarea,
+.form-control.bb-test-paragraph-textarea[readonly] {
     border-radius: 2px;
     height: 170px;
-    border-style: dashed;
-    border-color: #2196f3;
+    border: 2px dashed #2196f3;
     background-color: #fff;
     resize: none;
     -webkit-box-shadow: none !important;
@@ -754,7 +755,9 @@ html {
 }
 
 .bb-test-paragraph-textarea-empty,
-.form-control.bb-test-paragraph-textarea-empty {
+.bb-test-paragraph-textarea-empty[readonly],
+.form-control.bb-test-paragraph-textarea-empty,
+.form-control.bb-test-paragraph-textarea-empty[readonly] {
     border-color: #e51c23;
 }
 
@@ -798,11 +801,12 @@ html {
 }
 
 .bb-test-answer-textarea,
-.form-control.bb-test-answer-textarea {
+.bb-test-answer-textarea[readonly],
+.form-control.bb-test-answer-textarea,
+.form-control.bb-test-answer-textarea[readonly] {
     border-radius: 2px;
     height: 70px;
-    border-style: dashed;
-    border-color: #2196f3;
+    border: 2px dashed #2196f3;
     background-color: #fff;
     resize: none;
     -webkit-box-shadow: none !important;
@@ -810,7 +814,9 @@ html {
 }
 
 .bb-test-answer-textarea-empty,
-.form-control.bb-test-answer-textarea-empty {
+.bb-test-answer-textarea-empty[readonly],
+.form-control.bb-test-answer-textarea-empty,
+.form-control.bb-test-answer-textarea-empty[readonly] {
     border-color: #e51c23;
 }
 

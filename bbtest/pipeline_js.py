@@ -22,6 +22,7 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/SettingsPageModule.js",
     "js/modules/RegisterPageModule.js",
     "js/modules/DeveloperTestsPageModule.js",
+    "js/modules/DeveloperAcknowledgementPageModule.js",
 )
 BASE2_PRODUCTION_SOURCE_FILENAMES = (
     "js/react/react.production.min.js",
@@ -33,6 +34,11 @@ BASE2_DEVELOPMENT_SOURCE_FILENAMES = (
 )
 BASE3_SOURCE_FILENAMES = (
     "js/react/objects/DeveloperQuestionObject.js",
+
+    "js/react/objects/SuperAbility.js",
+    "js/react/objects/DeveloperNISMathematicsAbility.js",
+    "js/react/objects/DeveloperNISLanguageAbility.js",
+    "js/react/objects/DeveloperNISQuantitativeAbility.js",
 
     "js/react/components/DeveloperTest.js",
     "js/react/components/DeveloperQuestion.js",

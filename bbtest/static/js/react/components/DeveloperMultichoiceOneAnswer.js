@@ -92,6 +92,8 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                     onChange: _this2._choiceChange.bind(_this2, choice.id),
                     onSelect: _this2._choiceSelect.bind(_this2, choice.id),
                     onDelete: _this2._choiceDelete.bind(_this2, choice.id),
+                    canEdit: _this2.props.ability.canEditAnswerChoice(choice.id),
+                    canDelete: _this2.props.ability.canDeleteAnswerChoice(choice.id),
                     texts: _this2.props.texts,
                     chosen: chosen }));
                 choices.push(React.createElement(ChoiceClass, { key: choice.id,
@@ -133,7 +135,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
             }
 
             var addAnswerChoiceButton = null;
-            if (developerChoices.length < this._alphabet.length) {
+            if (this.props.ability.canAddAnswerChoice() && developerChoices.length < this._alphabet.length) {
                 addAnswerChoiceButton = React.createElement(
                     "div",
                     { className: "form-group text-center mt-23" },
@@ -144,6 +146,17 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                             onClick: this._renderModal.bind(this, "choices") },
                         this.props.texts.addAnswerChoice
                     )
+                );
+            }
+
+            var deleteButton = null;
+            if (this.props.ability.canDeleteAnswer()) {
+                deleteButton = React.createElement(
+                    "button",
+                    { type: "button",
+                        className: "btn btn-danger btn-sm",
+                        onClick: this._renderModal.bind(this, "confirm") },
+                    React.createElement("i", { className: "fa fa-fw fa-times" })
                 );
             }
 
@@ -174,13 +187,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                                     React.createElement(
                                         "div",
                                         { className: "col-xs-3 col-sm-1 text-right pl-0" },
-                                        React.createElement(
-                                            "button",
-                                            { type: "button",
-                                                className: "btn btn-danger btn-sm",
-                                                onClick: this._renderModal.bind(this, "confirm") },
-                                            React.createElement("i", { className: "fa fa-fw fa-times" })
-                                        )
+                                        deleteButton
                                     )
                                 )
                             ),

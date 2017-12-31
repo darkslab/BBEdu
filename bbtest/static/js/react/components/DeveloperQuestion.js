@@ -92,6 +92,7 @@ var DeveloperQuestion = function (_React$Component) {
                     data: paragraphData.meta_data,
                     onChange: _this2._paragraphChange.bind(_this2, id),
                     onDelete: _this2._paragraphDelete.bind(_this2, id),
+                    canDelete: _this2.props.ability.canDeleteParagraph(id),
                     texts: _this2.props.texts }));
                 paragraphs.push(React.createElement(ParagraphClass, { key: id,
                     data: paragraphData.meta_data,
@@ -116,6 +117,7 @@ var DeveloperQuestion = function (_React$Component) {
                 answerContent = React.createElement(AnswerClass, { data: answerData.meta_data,
                     onChange: this._answerChange.bind(this),
                     onDelete: this._answerDelete.bind(this),
+                    ability: this.props.ability,
                     texts: this.props.texts });
             } else {
                 answerContent = React.createElement(
@@ -137,15 +139,22 @@ var DeveloperQuestion = function (_React$Component) {
 
             var modal = null;
             if (this.state.paragraphsModal) {
-                modal = React.createElement(DeveloperSelectorModal, { title: this.props.texts.paragraphsModalTitle,
-                    complete: this._completeModal.bind(this, "paragraphs"),
-                    classData: [{
+                var paragraphClassData = [];
+                if (this.props.ability.canChooseTextParagraph()) {
+                    paragraphClassData.push({
                         class: "TextParagraph",
                         caption: this.props.texts.paragraphsModalButtonTextParagraph
-                    }, {
+                    });
+                }
+                if (this.props.ability.canChooseSplitTextParagraph()) {
+                    paragraphClassData.push({
                         class: "SplitTextParagraph",
                         caption: this.props.texts.paragraphsModalButtonSplitTextParagraph
-                    }] });
+                    });
+                }
+                modal = React.createElement(DeveloperSelectorModal, { title: this.props.texts.paragraphsModalTitle,
+                    complete: this._completeModal.bind(this, "paragraphs"),
+                    classData: paragraphClassData });
             } else if (this.state.answersModal) {
                 modal = React.createElement(DeveloperSelectorModal, { title: this.props.texts.answersModalTitle,
                     complete: this._completeModal.bind(this, "answers"),
@@ -156,7 +165,7 @@ var DeveloperQuestion = function (_React$Component) {
             }
 
             var addParagaphButton = null;
-            if (developerParagraphs.length < this._maxParagraphs) {
+            if (this.props.ability.canAddParagraph() && developerParagraphs.length < this._maxParagraphs) {
                 addParagaphButton = React.createElement(
                     "div",
                     { className: "form-group text-center mt-23" },
