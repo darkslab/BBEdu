@@ -31,19 +31,19 @@ class DeveloperDeleteConfirmModal extends React.Component {
 
         return (
             <div className="modal fade" data-modal>
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-sm">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h4 className="modal-title">{this.props.title}</h4>
                         </div>
                         <div className="modal-body">
                             <div className="row">
-                                <div className="col-xs-6 col-sm-5 col-sm-offset-1">
+                                <div className="col-xs-6 pr-5">
                                     <button type="button"
                                             className={yesClassName}
                                             onClick={this._chooseResult.bind(this, true)}>{this.props.yesCaption}</button>
                                 </div>
-                                <div className="col-xs-6 col-sm-5">
+                                <div className="col-xs-6 pl-5">
                                     <button type="button"
                                             className={noClassName}
                                             onClick={this._chooseResult.bind(this, false)}>{this.props.noCaption}</button>
