@@ -5,29 +5,21 @@ from django.urls import reverse
 from django.contrib.messages import success
 from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
-from bbtest.models import TestQuestion, TestDomain, Test, DeveloperAcknowledgement, TestParagraph
+from bbtest.models import TestQuestion, TestDomain, Test, TestParagraph
 from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm
 from bbtest.utils.json import tight_dumps
 from bbtest.http import TightJsonResponse
+from .mixins import DeveloperAcknowledgementRequiredMixin
 
 
 def get_test_or_404(user, code):
-    return get_object_or_404(user.tests.select_related("section"), code=code)
+    return get_object_or_404(user.tests(manager="drafts").select_related("section"), code=code)
 
 
-class TestsView(DeveloperLoginRequiredMixin, FormView):
+class TestsView(DeveloperLoginRequiredMixin, DeveloperAcknowledgementRequiredMixin, FormView):
     template_name = "developer/tests.html"
     form_class = TestForm
-
-    def get(self, request, *args, **kwargs):
-        if not self.__is_acknowledgement_accepted():
-            return redirect("bbtest:developer_acknowledgement")
-        return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        if not self.__is_acknowledgement_accepted():
-            return redirect("bbtest:developer_acknowledgement")
-        return super().post(request, *args, **kwargs)
+    unaccepted_acknowledgement_redirect_urlpattern = "bbtest:developer_acknowledgement"
 
     def get_context_data(self, **kwargs):
         kwargs["empty_language_code"] = Test.LANGUAGE_XX
@@ -74,9 +66,6 @@ class TestsView(DeveloperLoginRequiredMixin, FormView):
     def get_success_url(self):
         return reverse("bbtest:developer_test", kwargs={ "code": self._test.code })
 
-    def __is_acknowledgement_accepted(self):
-        return DeveloperAcknowledgement.objects.filter(developer=self.request.user).exists()
-
 
 class TestView(DeveloperLoginRequiredMixin, TemplateView):
     template_name = "developer/test.html"
@@ -107,7 +96,7 @@ class TestDeleteView(DeveloperLoginRequiredMixin, View):
 
 class QuestionView(DeveloperLoginRequiredMixin, View):
     def get(self, request, code, question_id, *args, **kwargs):
-        test = get_object_or_404(request.user.tests, code=code)
+        test = get_object_or_404(request.user.tests(manager="drafts"), code=code)
         question = get_object_or_404(test.questions, pk=question_id)
 
         question_data = {
@@ -138,7 +127,7 @@ class QuestionView(DeveloperLoginRequiredMixin, View):
         return TightJsonResponse(question_data)
 
     def post(self, request, code, question_id, *args, **kwargs):
-        test = get_object_or_404(request.user.tests, code=code)
+        test = get_object_or_404(request.user.tests(manager="drafts"), code=code)
         question = get_object_or_404(test.questions, pk=question_id)
 
         form = TestQuestionForm(data=request.POST, instance=question)
@@ -154,7 +143,7 @@ class QuestionView(DeveloperLoginRequiredMixin, View):
 
 class ParagraphsView(DeveloperLoginRequiredMixin, View):
     def post(self, request, code, question_id, *args, **kwargs):
-        test = get_object_or_404(request.user.tests, code=code)
+        test = get_object_or_404(request.user.tests(manager="drafts"), code=code)
         question = get_object_or_404(test.questions, pk=question_id)
 
         form = TestParagraphsContainerForm(question, data=request.POST)
