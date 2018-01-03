@@ -4,22 +4,14 @@ from django.shortcuts import redirect
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
 from bbtest.forms.acknowledgement import DeveloperAcknowledgementForm
 from bbtest.models import DeveloperAcknowledgement
+from .mixins import DeveloperUnacceptedAcknowledgementRequiredMixin
 
 
-class AcknowledgementView(DeveloperLoginRequiredMixin, FormView):
+class AcknowledgementView(DeveloperLoginRequiredMixin, DeveloperUnacceptedAcknowledgementRequiredMixin, FormView):
     template_name = "developer/acknowledgement.html"
     form_class = DeveloperAcknowledgementForm
     success_url = reverse_lazy("bbtest:developer_tests")
-
-    def get(self, request, *args, **kwargs):
-        if self.__is_acknowledgement_accepted():
-            return redirect("bbtest:developer_tests")
-        return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        if self.__is_acknowledgement_accepted():
-            return redirect("bbtest:developer_tests")
-        return super().post(request, *args, **kwargs)
+    accepted_acknowledgement_redirect_urlpattern = "bbtest:developer_tests"
 
     def get_context_data(self, **kwargs):
         kwargs["plan_a"] = {
@@ -39,6 +31,3 @@ class AcknowledgementView(DeveloperLoginRequiredMixin, FormView):
     def form_valid(self, form):
         form.make_acknowledgement(self.request)
         return super().form_valid(form)
-
-    def __is_acknowledgement_accepted(self):
-        return DeveloperAcknowledgement.objects.filter(developer=self.request.user).exists()

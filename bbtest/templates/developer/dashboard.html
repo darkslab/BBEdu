@@ -50,45 +50,32 @@
                                 <th class="pr-15 pl-15">{% trans 'Domain' context '/developer/' %}</th>
                                 <th class="pr-15 pl-15">{% trans 'Section' context '/developer/' %}</th>
                                 <th class="pr-15 pl-15 text-center">{% trans 'Variant' context '/developer/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Sales' context '/developer/' %}</th>
                                 <th class="pr-15 pl-15 text-center">{% trans 'Status' context '/developer/' %}</th>
                                 <th class="pr-15 pl-15 text-center">{% trans 'Actions' context '/developer/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for test in tests %}
-                                {% if not test.is_active %}
-                                <tr class="danger">
-                                {% elif test.is_pending %}
-                                <tr class="info">
-                                {% elif test.is_approved %}
-                                <tr class="success">
-                                {% else %}
                                 <tr>
-                                {% endif %}
                                     <td class="pr-15 pl-15">{% trans test.section.domain.name %}</td>
                                     <td class="pr-15 pl-15">{% trans test.section.name %}</td>
                                     <td class="pr-15 pl-15 text-center">#{{ test.code|upper }}</td>
                                     {% if not test.is_active %}
-                                        <td class="pr-15 pl-15 text-center">0</td>
                                         <td class="pr-15 pl-15 text-center">
                                             <span class="label label-danger">{% trans 'Inactive' context '/developer/' %}</span>
                                         </td>
                                         <td class="pr-15 pl-15 text-center"></td>
                                     {% elif test.is_pending %}
-                                        <td class="pr-15 pl-15 text-center">&#8212;</td>
                                         <td class="pr-15 pl-15 text-center">
-                                            <span class="label label-warning">{% trans 'Pending' context '/developer/' %}</span>
+                                            <span class="label label-info">{% trans 'Pending' context '/developer/' %}</span>
                                         </td>
                                         <td class="pr-15 pl-15 text-center"></td>
                                     {% elif test.is_approved %}
-                                        <td class="pr-15 pl-15 text-center">0</td>
                                         <td class="pr-15 pl-15 text-center">
                                             <span class="label label-success">{% trans 'Approved' context '/developer/' %}</span>
                                         </td>
                                         <td class="pr-15 pl-15 text-center"></td>
                                     {% else %}
-                                        <td class="pr-15 pl-15 text-center">&#8212;</td>
                                         <td class="pr-15 pl-15 text-center">
                                             <span class="label label-default">{% trans 'Draft' context '/developer/' %}</span>
                                         </td>
