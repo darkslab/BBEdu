@@ -23,6 +23,7 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/RegisterPageModule.js",
     "js/modules/DeveloperTestsPageModule.js",
     "js/modules/DeveloperAcknowledgementPageModule.js",
+    "js/modules/DeveloperDashboardPageModule.js",
 )
 BASE2_PRODUCTION_SOURCE_FILENAMES = (
     "js/react/react.production.min.js",

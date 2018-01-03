@@ -57,7 +57,7 @@ var DeveloperDeleteConfirmModal = function (_React$Component) {
                 { className: "modal fade", "data-modal": true },
                 React.createElement(
                     "div",
-                    { className: "modal-dialog" },
+                    { className: "modal-dialog modal-sm" },
                     React.createElement(
                         "div",
                         { className: "modal-content" },
@@ -78,7 +78,7 @@ var DeveloperDeleteConfirmModal = function (_React$Component) {
                                 { className: "row" },
                                 React.createElement(
                                     "div",
-                                    { className: "col-xs-6 col-sm-5 col-sm-offset-1" },
+                                    { className: "col-xs-6 pr-5" },
                                     React.createElement(
                                         "button",
                                         { type: "button",
@@ -89,7 +89,7 @@ var DeveloperDeleteConfirmModal = function (_React$Component) {
                                 ),
                                 React.createElement(
                                     "div",
-                                    { className: "col-xs-6 col-sm-5" },
+                                    { className: "col-xs-6 pl-5" },
                                     React.createElement(
                                         "button",
                                         { type: "button",

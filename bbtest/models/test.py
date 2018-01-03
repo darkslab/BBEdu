@@ -1,4 +1,5 @@
 from django.db.models import (
+    Manager,
     Model, ForeignKey, CASCADE, ManyToManyField,
     CharField, PositiveSmallIntegerField, BooleanField, DateTimeField,
 )
@@ -85,6 +86,10 @@ class TestTopicSection(Model):
         unique_together = ("section", "topic")
 
 
+class DraftTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True, is_approved=False, is_pending=False)
+
 class Test(Model):
     LANGUAGE_XX = "xx"
     LANGUAGE_KK = "kk"
@@ -104,6 +109,9 @@ class Test(Model):
     is_approved  = BooleanField   ( pgettext_lazy("Model field", "is approved?"),                                               default=False, db_index=True, )
     is_pending   = BooleanField   ( pgettext_lazy("Model field", "is pending approval?"),                                       default=False, db_index=True, )
     created_at   = DateTimeField  ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                  )
+
+    objects = Manager()
+    drafts = DraftTestManager()
 
     class Meta:
         default_permissions = ()

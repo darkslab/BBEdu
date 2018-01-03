@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.messages import success
 from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
-from bbtest.models import TestQuestion, TestDomain, Test, DeveloperAcknowledgement
+from bbtest.models import TestQuestion, TestDomain, Test, DeveloperAcknowledgement, TestParagraph
 from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm
 from bbtest.utils.json import tight_dumps
 from bbtest.http import TightJsonResponse
@@ -89,6 +89,20 @@ class TestView(DeveloperLoginRequiredMixin, TemplateView):
             question_ids.append(data["id"])
         kwargs["question_ids"] = tight_dumps(question_ids)
         return super().get_context_data(**kwargs)
+
+
+class TestDeleteView(DeveloperLoginRequiredMixin, View):
+    def post(self, request, code, *args, **kwargs):
+        test = get_object_or_404(request.user.tests(manager="drafts").prefetch_related("questions__paragraphs"), code=code)
+        paragraph_ids = []
+        for question in test.questions.all():
+            for paragraph in question.paragraphs.all():
+                paragraph_ids.append(paragraph.id)
+        TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
+        test.delete()
+
+        success(request, pgettext("Success alert message", "You have deleted a Test."))
+        return redirect("bbtest:developer_dashboard")
 
 
 class QuestionView(DeveloperLoginRequiredMixin, View):
