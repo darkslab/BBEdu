@@ -14,6 +14,8 @@ class DeveloperQuestion extends React.Component {
         this._quickModalIsClosing = false;
         this._quickModalTimer = null;
         this._quickModalTimeout = 1500;  // this time should be at least twice less than this._saveTimeout
+
+        this._boundQuickModalTransitioned = this._quickModalTransitioned.bind(this);
     }
     componentDidMount() {
         this._$paragraphsContainer = $("[data-paragraphs]");
@@ -32,7 +34,7 @@ class DeveloperQuestion extends React.Component {
         });
 
         this._$quickModal = $("[data-quick-modal]");
-        this._$quickModal.on("webkitTransitionEnd otransitionend transitionend", this._quickModalTransitioned.bind(this));
+        this._$quickModal.on("webkitTransitionEnd otransitionend transitionend", this._boundQuickModalTransitioned);
     }
     componentWillUpdate() {
         this._$paragraphsContainer.css("height", "");
@@ -46,7 +48,7 @@ class DeveloperQuestion extends React.Component {
         clearTimeout(this._timer);
         this.props.object.stop("question");
 
-        this._$quickModal.off("webkitTransitionEnd otransitionend transitionend", this._quickModalTransitioned.bind(this));
+        this._$quickModal.off("webkitTransitionEnd otransitionend transitionend", this._boundQuickModalTransitioned);
         clearTimeout(this._quickModalTimer);
     }
     render() {

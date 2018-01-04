@@ -233,7 +233,10 @@ function _ProgressPieChartHelper(progress_pie_chart, index, $path, $group, $text
     this._is_active = false;
     this._activation_timer = null;
     this._$group[0]._progress1 = 1;
-    this._$group.on("click", this.activate.bind(this));
+
+    this._boundActivate = this.activate.bind(this);
+
+    this._$group.on("click", this._boundActivate);
 }
 _ProgressPieChartHelper.prototype.activate = function(event) {
     if (event !== undefined) {
@@ -297,7 +300,7 @@ _ProgressPieChartHelper.prototype.stop_animation = function() {
     clearTimeout(this._activation_timer);
     this._$path.stop(true);
     this._$group.stop(true);
-    this._$group.off("click", this.activate.bind(this));
+    this._$group.off("click", this._boundActivate);
 }
 _ProgressPieChartHelper.prototype._render_pie = function(percentage) {
     var rad_angle = this._progress_pie_chart._deg2rad(this._progress_pie_chart._angles[this._index]);

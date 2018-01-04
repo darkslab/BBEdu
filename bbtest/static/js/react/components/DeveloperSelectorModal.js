@@ -18,6 +18,8 @@ var DeveloperSelectorModal = function (_React$Component) {
 
         _this._$modal;
         _this._selectedClass;
+
+        _this._boundModalHidden = _this._modalHidden.bind(_this);
         return _this;
     }
 
@@ -27,7 +29,7 @@ var DeveloperSelectorModal = function (_React$Component) {
             this._$modal = $("[data-modal]");
             if (this._$modal.length) {
                 this._$modal.modal();
-                this._$modal.on("hidden.bs.modal", this._modalHidden.bind(this));
+                this._$modal.on("hidden.bs.modal", this._boundModalHidden);
             } else {
                 this._$modal = undefined;
             }
@@ -36,7 +38,7 @@ var DeveloperSelectorModal = function (_React$Component) {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
             if (this._$modal) {
-                this._$modal.off("hidden.bs.modal", this._modalHidden.bind(this));
+                this._$modal.off("hidden.bs.modal", this._boundModalHidden);
                 this._$modal = undefined;
             }
         }

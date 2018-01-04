@@ -22,7 +22,9 @@ function StudentDashboardPageModule(data) {
     }
     this._columnCharts[this._chartIndex].create();
 
-    this._$row.on("click", this._activateRow.bind(this));
+    this._boundActivateRow = this._activateRow.bind(this);
+
+    this._$row.on("click", this._boundActivateRow);
 
     Module.call(this);
 }
@@ -43,5 +45,5 @@ StudentDashboardPageModule.prototype.unMount = function() {
     }
     this._columnCharts[this._chartIndex].destroy();
 
-    this._$row.off("click", this._activateRow.bind(this));
+    this._$row.off("click", this._boundActivateRow);
 }

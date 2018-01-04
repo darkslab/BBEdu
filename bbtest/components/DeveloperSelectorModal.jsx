@@ -3,19 +3,21 @@ class DeveloperSelectorModal extends React.Component {
         super(props);
         this._$modal;
         this._selectedClass;
+
+        this._boundModalHidden = this._modalHidden.bind(this);
     }
     componentDidMount() {
         this._$modal = $("[data-modal]");
         if (this._$modal.length) {
             this._$modal.modal();
-            this._$modal.on("hidden.bs.modal", this._modalHidden.bind(this));
+            this._$modal.on("hidden.bs.modal", this._boundModalHidden);
         } else {
             this._$modal = undefined;
         }
     }
     componentWillUnmount() {
         if (this._$modal) {
-            this._$modal.off("hidden.bs.modal", this._modalHidden.bind(this));
+            this._$modal.off("hidden.bs.modal", this._boundModalHidden);
             this._$modal = undefined;
         }
     }

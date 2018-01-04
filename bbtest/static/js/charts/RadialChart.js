@@ -17,6 +17,8 @@ function RadialChart($container, value, max_value, options) {
     this._$arc = null;
     this._$text = null;
 
+    this._boundToggleText = this._toggleText.bind(this);
+
     SVGChart.call(this, $container);
 }
 RadialChart.prototype._afterCreate = function(svg) {
@@ -68,7 +70,7 @@ RadialChart.prototype._afterCreate = function(svg) {
 
     svg.appendChild(group);
 
-    this._$text.on("click", this._toggleText.bind(this));
+    this._$text.on("click", this._boundToggleText);
 
     this._animation_complete = false;
     this._$arc.animate({
@@ -84,7 +86,7 @@ RadialChart.prototype._afterCreate = function(svg) {
 }
 RadialChart.prototype._beforeDestroy = function(svg) {
     this._$arc.stop(true);
-    this._$text.off("click", this._toggleText.bind(this));
+    this._$text.off("click", this._boundToggleText);
     this._$arc = null;
 }
 RadialChart.prototype._render_arc = function(percentage) {
