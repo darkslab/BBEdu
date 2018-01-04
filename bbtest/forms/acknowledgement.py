@@ -19,6 +19,11 @@ class DeveloperAcknowledgementForm(ModelForm):
             },
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # DARK_TODO  remove this when more developer plans are available
+        self.fields["plan"].choices = [ DeveloperAcknowledgement.PLANS[0] ]
+
     def make_acknowledgement(self, request):
         acknowledgement = self.save(commit=False)
         acknowledgement.signature = "(signed)"
