@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2017-11-23 10:44+0600\n"
+"POT-Creation-Date: 2018-01-04 11:38+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -21,7 +21,10 @@ msgctxt "Form label"
 msgid "Email"
 msgstr "Электрондық пошта"
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter email."
+msgctxt "Validation error"
 msgid "Please enter email."
 msgstr "Электрондық поштаңызды енгізіңіз."
 
@@ -29,15 +32,24 @@ msgctxt "Form label"
 msgid "Password"
 msgstr "Құпиясөз"
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter password."
+msgctxt "Validation error"
 msgid "Please enter password."
 msgstr "Құпиясөзді енгізіңіз."
 
-msgctxt "Form validation error"
+#, fuzzy
+#| msgctxt "Form validation error"
+#| msgid "Please enter a correct email and password."
+msgctxt "Validation error"
 msgid "Please enter a correct email and password."
 msgstr "Дұрыс электрондық поштаңызбен құпиясөзді енгізіңіз."
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
 msgid "Incorrect email."
 msgstr "Электрондық поштаңыз дұрыс емес."
 
@@ -47,7 +59,10 @@ msgstr ""
 "Электрондық поштаңызға жіберілген хаттағы нұсқаулық бойынша құпиясөзіңізді "
 "өзгертіңіз."
 
-msgctxt "Form validation error"
+#, fuzzy
+#| msgctxt "Form validation error"
+#| msgid "Passwords do not match."
+msgctxt "Validation error"
 msgid "Passwords do not match."
 msgstr "Құпиясөздер сәйкес келмейді."
 
@@ -55,7 +70,10 @@ msgctxt "Form label"
 msgid "New password"
 msgstr "Жаңа құпиясөз"
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter new password."
+msgctxt "Validation error"
 msgid "Please enter new password."
 msgstr "Жаңа құпиясөзді енгізіңіз."
 
@@ -63,7 +81,10 @@ msgctxt "Form label"
 msgid "Confirm new password"
 msgstr "Жаңа құпиясөзді растаңыз"
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter new password confirmation."
+msgctxt "Validation error"
 msgid "Please enter new password confirmation."
 msgstr "Жаңа құпиясөздің растауын енгізіңіз."
 
@@ -91,13 +112,19 @@ msgctxt "Model field"
 msgid "active?"
 msgstr "активті?"
 
-#, python-format
-msgctxt "Password validation error"
+#, fuzzy, python-format
+#| msgctxt "Password validation error"
+#| msgid "The password has to be at least %(min_length)d characters."
+msgctxt "Validation error"
 msgid "The password has to be at least %(min_length)d characters."
 msgstr "Құпиясөз кем дегенде %(min_length)d белгіден тұру керек."
 
-#, python-format
-msgctxt "Password validation error"
+#, fuzzy, python-format
+#| msgctxt "Password validation error"
+#| msgid ""
+#| "If the password is less than %(secure_length)d characters, it has to "
+#| "contain at least one uppercase character."
+msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one uppercase character."
@@ -105,8 +132,12 @@ msgstr ""
 "Құпиясөз %(secure_length)d белгіден аз болса, құрамында кем дегенде бір бас "
 "әріп болу керек."
 
-#, python-format
-msgctxt "Password validation error"
+#, fuzzy, python-format
+#| msgctxt "Password validation error"
+#| msgid ""
+#| "If the password is less than %(secure_length)d characters, it has to "
+#| "contain at least one lowercase character."
+msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one lowercase character."
@@ -114,8 +145,12 @@ msgstr ""
 "Құпиясөз %(secure_length)d белгіден аз болса, құрамында кем дегенде бір кіші "
 "әріп болу керек."
 
-#, python-format
-msgctxt "Password validation error"
+#, fuzzy, python-format
+#| msgctxt "Password validation error"
+#| msgid ""
+#| "If the password is less than %(secure_length)d characters, it has to "
+#| "contain at least one numeric character."
+msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one numeric character."
@@ -123,8 +158,12 @@ msgstr ""
 "Құпиясөз %(secure_length)d белгіден аз болса, құрамында кем дегенде бір цифр "
 "болу керек."
 
-#, python-format
-msgctxt "Password validation error"
+#, fuzzy, python-format
+#| msgctxt "Password validation error"
+#| msgid ""
+#| "If the password is less than %(secure_length)d characters, it has to "
+#| "contain at least one symbol character."
+msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one symbol character."
@@ -143,8 +182,10 @@ msgstr ""
 "кіші әріпі мен бір символы бар кем дегенде %(min_length)d белгіден тұратын "
 "болу керек."
 
-#, python-format
-msgctxt "Password validation error"
+#, fuzzy, python-format
+#| msgctxt "Password validation error"
+#| msgid "The password is too similar to the %(verbose_name)s."
+msgctxt "Validation error"
 msgid "The password is too similar to the %(verbose_name)s."
 msgstr "Құпиясөз сіздің жеке мәліметтеріңізге тым ұқсас: %(verbose_name)s."
 
@@ -152,7 +193,10 @@ msgctxt "Password validation help text"
 msgid "The password can't be too similar to your other personal information."
 msgstr "Құпиясөз сіздің жеке мәліметтеріңізге ұқсас бола алмайды."
 
-msgctxt "Password validation error"
+#, fuzzy
+#| msgctxt "Password validation error"
+#| msgid "The password is too common."
+msgctxt "Validation error"
 msgid "The password is too common."
 msgstr "Бұл құпиясөз өте оңай. Тағы ойланып көріңіз."
 
@@ -168,49 +212,384 @@ msgctxt "Email subject"
 msgid "Password reset"
 msgstr "Құпиясөзді өзгерту"
 
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter last name."
+msgctxt "Validation error"
+msgid "Please select plan."
+msgstr "Тегіңізді енгізіңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect plan value."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
 msgctxt "Form label"
 msgid "Confirm password"
 msgstr "Құпиясөзді растау"
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter password confirmation."
+msgctxt "Validation error"
 msgid "Please enter password confirmation."
 msgstr "Құпиясөздің растауын енгізіңіз."
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter first name."
+msgctxt "Validation error"
 msgid "Please enter first name."
 msgstr "Атыңызды енгізіңіз."
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "First name is too long."
+msgctxt "Validation error"
 msgid "First name is too long."
 msgstr "Атыңыздың ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter last name."
+msgctxt "Validation error"
 msgid "Please enter last name."
 msgstr "Тегіңізді енгізіңіз."
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Last name is too long."
+msgctxt "Validation error"
 msgid "Last name is too long."
 msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Email is too long."
+msgctxt "Validation error"
 msgid "Email is too long."
 msgstr "Электрондық поштаңыздың ұзындығын тексеріңіз."
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "This email is already taken."
+msgctxt "Validation error"
 msgid "This email is already taken."
 msgstr "Бұл электрондық пошта тіркелген."
+
+msgctxt "Validation error"
+msgid "Invalid JSON format."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect data."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "Validation error"
+msgid "Please select difficulty."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect difficulty value."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect taxonomy value."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect topic value."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect answer class."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "Validation error"
+msgid "Please provide paragraph class."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect paragraph class."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "Validation error"
+msgid "Please provide meta data."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Data"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter email."
+msgctxt "Validation error"
+msgid "Please select test section."
+msgstr "Электрондық поштаңызды енгізіңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect test section value."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter last name."
+msgctxt "Validation error"
+msgid "Please select test language."
+msgstr "Тегіңізді енгізіңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect test language value."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "NIS Quantitative section answer"
+msgid "Quantity A is greater."
+msgstr ""
+
+msgctxt "NIS Quantitative section answer"
+msgid "Quantity B is greater."
+msgstr ""
+
+msgctxt "NIS Quantitative section answer"
+msgid "The two quantities are equal."
+msgstr ""
+
+msgctxt "NIS Quantitative section answer"
+msgid "The relationship cannot be determined from the information given."
+msgstr ""
 
 msgctxt "Form label"
 msgid "Old password"
 msgstr "Ескі құпиясөз"
 
-msgctxt "Form field error"
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter old password."
+msgctxt "Validation error"
 msgid "Please enter old password."
 msgstr "Ескі құпиясөзді енгізіңіз."
 
-msgctxt "Form validation error"
+#, fuzzy
+#| msgctxt "Form validation error"
+#| msgid "Incorrect old password."
+msgctxt "Validation error"
 msgid "Incorrect old password."
 msgstr "Ескі құпиясөз дұрыс емес."
+
+msgid "Knowledge"
+msgstr ""
+
+msgid "Application"
+msgstr ""
+
+msgid "Meaning"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Structure"
+msgstr ""
+
+msgid "Ratios and Proportions"
+msgstr ""
+
+msgid "Rational Numbers"
+msgstr ""
+
+msgid "Modulus"
+msgstr ""
+
+msgid "Linear Equations and Inequalities"
+msgstr ""
+
+msgid "Factorization"
+msgstr ""
+
+msgid "Division"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "recipients"
+msgid "Percents"
+msgstr "қабылдаушылар"
+
+msgid "Geometry"
+msgstr ""
+
+msgid "Algebraic Operations and Analysis"
+msgstr ""
+
+msgid "Numbers and Decimal Arithmetic Operations"
+msgstr ""
+
+msgid "Numbers and Fractional Arithmetic Operations"
+msgstr ""
+
+msgid "Measurement Units and Data"
+msgstr ""
+
+msgid "Notation"
+msgstr ""
+
+msgid "Expressions and Equations"
+msgstr ""
+
+msgid "Functions"
+msgstr ""
+
+msgid "Modeling"
+msgstr ""
+
+msgid "Scores"
+msgstr ""
+
+msgid "Sequence Rules"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Combinatorics"
+msgstr ""
+
+msgid "People"
+msgstr ""
+
+msgid "Animals"
+msgstr ""
+
+msgid "Nature"
+msgstr ""
+
+msgid "Weather"
+msgstr ""
+
+msgid "Food"
+msgstr ""
+
+msgid "Science"
+msgstr ""
+
+msgid "Education"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "Ethics"
+msgstr ""
+
+msgid "Sports"
+msgstr ""
+
+msgid "Art"
+msgstr ""
+
+msgid "Health"
+msgstr ""
+
+msgid "Traditions"
+msgstr ""
+
+msgid "Upbringing"
+msgstr ""
+
+msgid "Culture"
+msgstr ""
+
+msgid "Hobby"
+msgstr ""
+
+msgid "Ecology"
+msgstr ""
+
+msgid "Fables and Fairy Tales"
+msgstr ""
+
+msgid "NIS"
+msgstr ""
+
+msgid "Mathematics"
+msgstr ""
+
+msgid "Kazakh Language"
+msgstr ""
+
+msgid "Russian Language"
+msgstr ""
+
+msgid "English Language"
+msgstr ""
+
+msgid "Quantitative"
+msgstr ""
+
+msgid "UNT"
+msgstr ""
+
+msgctxt "Developer acknowledgement plan"
+msgid "Immediate"
+msgstr ""
+
+msgctxt "Developer acknowledgement plan"
+msgid "Qualitative"
+msgstr ""
+
+msgctxt "Developer acknowledgement plan"
+msgid "Profitable"
+msgstr ""
+
+msgctxt "Model field"
+msgid "plan"
+msgstr ""
+
+msgctxt "Model field"
+msgid "signature"
+msgstr ""
+
+msgctxt "Model field"
+msgid "acknowledged at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "ip address"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "username"
+msgctxt "Model field"
+msgid "user agent"
+msgstr "аты-жөні"
 
 msgctxt "Model field"
 msgid "from email"
@@ -237,6 +616,114 @@ msgctxt "Model field"
 msgid "sent at"
 msgstr "жіберілген уақыты"
 
+msgctxt "Field class description"
+msgid "JSON"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "username"
+msgctxt "Model field"
+msgid "name"
+msgstr "аты-жөні"
+
+msgctxt "Model field"
+msgid "order"
+msgstr ""
+
+msgctxt "Model field"
+msgid "duration in seconds"
+msgstr ""
+
+msgctxt "Model field"
+msgid "question count"
+msgstr ""
+
+msgctxt "Model field"
+msgid "question weight by default"
+msgstr ""
+
+msgctxt "Model field"
+msgid "specification"
+msgstr ""
+
+msgctxt "Test language"
+msgid "N/A"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Kazakh"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Russian"
+msgstr ""
+
+msgctxt "Model field"
+msgid "code of the test"
+msgstr ""
+
+msgctxt "Model field"
+msgid "language of the test"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "active?"
+msgctxt "Model field"
+msgid "is active?"
+msgstr "активті?"
+
+msgctxt "Model field"
+msgid "is approved?"
+msgstr ""
+
+msgctxt "Model field"
+msgid "is pending approval?"
+msgstr ""
+
+msgctxt "Question difficulty"
+msgid "High"
+msgstr ""
+
+msgctxt "Question difficulty"
+msgid "Normal"
+msgstr ""
+
+msgctxt "Question difficulty"
+msgid "Low"
+msgstr ""
+
+msgctxt "Model field"
+msgid "answer class"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "mime data"
+msgctxt "Model field"
+msgid "meta data"
+msgstr "MIME мәліметі"
+
+msgctxt "Model field"
+msgid "difficulty"
+msgstr ""
+
+msgctxt "Model field"
+msgid "weight of question"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "created at"
+msgctxt "Model field"
+msgid "updated at"
+msgstr "жасалған уақыты"
+
+msgctxt "Model field"
+msgid "paragraph class"
+msgstr ""
+
 msgctxt "Page title"
 msgid "Something went wrong"
 msgstr "Бірдеңе дұрыс болмады"
@@ -254,8 +741,103 @@ msgid "Administrator"
 msgstr "Администратор"
 
 msgctxt "Page title"
+msgid "Choose your Developer Plan"
+msgstr ""
+
+msgctxt "/developer/acknowledgement/"
+msgid "View Agreement"
+msgstr ""
+
+msgctxt "/developer/acknowledgement/"
+msgid "Agreement"
+msgstr ""
+
+msgctxt "/developer/acknowledgement/"
+msgid "I have read the agreement"
+msgstr ""
+
+msgctxt "/developer/acknowledgement/"
+msgid "Accept"
+msgstr ""
+
+msgctxt "Page title"
 msgid "Dashboard"
 msgstr "Жеке кабинет"
+
+msgctxt "/developer/"
+msgid "Are you sure?"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Yes"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "No"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Tests"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Domain"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Section"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Variant"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Status"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Actions"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "active?"
+msgctxt "/developer/"
+msgid "Inactive"
+msgstr "активті?"
+
+msgctxt "/developer/"
+msgid "Pending"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Approved"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Draft"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Edit"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Delete"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "You have not created tests yet"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Previous"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Next"
+msgstr ""
 
 msgctxt "Badge label under avatar"
 msgid "Developer"
@@ -264,6 +846,141 @@ msgstr "Құрастырушы"
 msgctxt "Navigation link"
 msgid "Dashboard"
 msgstr "Жеке кабинет"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "created at"
+msgctxt "Navigation link"
+msgid "Create Test"
+msgstr "жасалған уақыты"
+
+#, python-format
+msgctxt "Page title"
+msgid "%(section_name)s (Test #%(code)s)"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "There was an error, please reload the page."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Question"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Difficulty"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Taxonomy"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Topic"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Add Section"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Type your question here"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Your question will be previewed here"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Add Answer"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Multi-choice with 1 answer"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Add Answer Choice"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Type your answer choice here"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Your answer choice will be previewed here"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please choose Section type"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Text Section"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Split Text Section"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please choose Answer type"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please add a Section above to preview it here."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please add an Answer Choice above to preview it here."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please choose Answer Choice type"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Text Answer Choice"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Correct"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Solution"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Are you sure?"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Yes"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "No"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "created at"
+msgctxt "Page title"
+msgid "Create Test"
+msgstr "жасалған уақыты"
+
+msgctxt "/developer/tests/"
+msgid "Entrance Tests"
+msgstr ""
+
+msgctxt "/developer/tests/"
+msgid "Test Specification"
+msgstr ""
+
+msgctxt "/developer/tests/"
+msgid "Close"
+msgstr ""
 
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"
@@ -421,3 +1138,35 @@ msgstr "Тестілеудің нәтижелері"
 msgctxt "Navigation link"
 msgid "Refill Balance"
 msgstr "Шотты толтыру"
+
+msgctxt "/developer/tests/"
+msgid "Choose test language"
+msgstr ""
+
+msgctxt "/developer/tests/"
+msgid "Choose type"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Kazakh 1"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Kazakh 2"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Russian 1"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Russian 2"
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have created a new Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have deleted a Test."
+msgstr ""
