@@ -5,8 +5,11 @@ function PersonalizedTemplateModule() {
     this._$button = $("[data-bb-bar-button]");
     this._$overlay = $("[data-bb-overlay]");
 
-    this._$button.on("click", this._controlWindow.bind(this));
-    $(window).on("resize", this._normalizeScroll.bind(this));
+    this._boundControlWindow = this._controlWindow.bind(this);
+    this._boundNormalizeScroll = this._normalizeScroll.bind(this);
+
+    this._$button.on("click", this._boundControlWindow);
+    $(window).on("resize", this._boundNormalizeScroll);
 
     Module.call(this);
 }
@@ -38,6 +41,6 @@ PersonalizedTemplateModule.prototype._normalizeScroll = function() {
     }
 }
 PersonalizedTemplateModule.prototype.unMount = function() {
-    this._$button.off("click", this._controlWindow.bind(this));
-    $(window).off("resize", this._normalizeScroll.bind(this));
+    this._$button.off("click", this._boundControlWindow);
+    $(window).off("resize", this._boundNormalizeScroll);
 }

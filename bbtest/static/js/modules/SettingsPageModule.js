@@ -8,7 +8,9 @@ function SettingsPageModule() {
         this._hidden = false;
     }
 
-    this._$button.on("click", this._process.bind(this));
+    this._boundProcess = this._process.bind(this);
+
+    this._$button.on("click", this._boundProcess);
 
     Module.call(this);
 }
@@ -26,5 +28,5 @@ SettingsPageModule.prototype._process = function() {
     }
 }
 SettingsPageModule.prototype.unMount = function() {
-    this._$button.off("click", this._process.bind(this));
+    this._$button.off("click", this._boundProcess);
 }

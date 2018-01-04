@@ -18,6 +18,8 @@ var DeveloperDeleteConfirmModal = function (_React$Component) {
 
         _this._$modal;
         _this._result;
+
+        _this._boundModalHidden = _this._modalHidden.bind(_this);
         return _this;
     }
 
@@ -30,7 +32,7 @@ var DeveloperDeleteConfirmModal = function (_React$Component) {
                     backdrop: "static",
                     keyboard: false
                 });
-                this._$modal.on("hidden.bs.modal", this._modalHidden.bind(this));
+                this._$modal.on("hidden.bs.modal", this._boundModalHidden);
             } else {
                 this._$modal = undefined;
             }
@@ -39,7 +41,7 @@ var DeveloperDeleteConfirmModal = function (_React$Component) {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
             if (this._$modal) {
-                this._$modal.off("hidden.bs.modal", this._modalHidden.bind(this));
+                this._$modal.off("hidden.bs.modal", this._boundModalHidden);
                 this._$modal = undefined;
             }
         }

@@ -10,18 +10,23 @@ function DeveloperAcknowledgementPageModule() {
     this._$agreementReadCheckbox = $("[data-agreement-read]");
     this._$agreementAcceptButton = $("[data-agreement-accept]");
 
-    this._$planButtons.on("click", this._planClick.bind(this));
-    this._$agreementModal.on("hide.bs.modal", this._modalHide.bind(this));
-    this._$agreementReadCheckbox.on("change", this._readChecked.bind(this));
-    this._$agreementAcceptButton.on("click", this._agreementAccepted.bind(this));
+    this._boundPlanClick = this._planClick.bind(this);
+    this._boundModalHide = this._modalHide.bind(this);
+    this._boundReadChecked = this._readChecked.bind(this);
+    this._boundAgreementAccepted = this._agreementAccepted.bind(this);
+
+    this._$planButtons.on("click", this._boundPlanClick);
+    this._$agreementModal.on("hide.bs.modal", this._boundModalHide);
+    this._$agreementReadCheckbox.on("change", this._boundReadChecked);
+    this._$agreementAcceptButton.on("click", this._boundAgreementAccepted);
 
     Module.call(this);
 }
 DeveloperAcknowledgementPageModule.prototype.unMount = function() {
-    this._$planButtons.off("click", this._planClick.bind(this));
-    this._$agreementModal.off("hide.bs.modal", this._modalHide.bind(this));
-    this._$agreementReadCheckbox.off("change", this._readChecked.bind(this));
-    this._$agreementAcceptButton.off("click", this._agreementAccepted.bind(this));
+    this._$planButtons.off("click", this._boundPlanClick);
+    this._$agreementModal.off("hide.bs.modal", this._boundModalHide);
+    this._$agreementReadCheckbox.off("change", this._boundReadChecked);
+    this._$agreementAcceptButton.off("click", this._boundAgreementAccepted);
 }
 DeveloperAcknowledgementPageModule.prototype._planClick = function(event) {
     var $button = $(event.currentTarget);

@@ -31,6 +31,9 @@ var DeveloperTest = function (_React$Component) {
             question: null,
             attributes: null
         };
+
+        _this._boundConfirmIsSaved = _this._confirmIsSaved.bind(_this);
+        _this._boundConfirmIsSavedTurbolinks = _this._confirmIsSavedTurbolinks.bind(_this);
         return _this;
     }
 
@@ -52,16 +55,16 @@ var DeveloperTest = function (_React$Component) {
                 error: this._ajaxError.bind(this, "attributes")
             });
 
-            $(window).on("beforeunload", this._confirmIsSaved.bind(this));
-            $(document).on("turbolinks:before-visit", this._confirmIsSavedTurbolinks.bind(this));
+            $(window).on("beforeunload", this._boundConfirmIsSaved);
+            $(document).on("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
         }
     }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
             this._cleanUp();
 
-            $(window).off("beforeunload", this._confirmIsSaved.bind(this));
-            $(document).off("turbolinks:before-visit", this._confirmIsSavedTurbolinks.bind(this));
+            $(window).off("beforeunload", this._boundConfirmIsSaved);
+            $(document).off("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
         }
     }, {
         key: "render",

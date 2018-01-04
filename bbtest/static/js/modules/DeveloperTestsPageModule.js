@@ -4,18 +4,20 @@ function DeveloperTestsPageModule() {
     this._$sectionInput = this._$form.find("[data-set-section]");
     this._$languageInput = this._$form.find("[data-set-language]");
 
-    $("[data-get-section]").on("click", this._sectionClick.bind(this));
-    $("[data-get-language]").on("click", this._languageClick.bind(this));
+    this._boundSectionClick = this._sectionClick.bind(this);
+    this._boundLanguageClick = this._languageClick.bind(this);
+    this._boundModalHide = this._modalHide.bind(this);
 
-    $("[data-language-modal]").on("hide.bs.modal", this._modalHide.bind(this));
+    $("[data-get-section]").on("click", this._boundSectionClick);
+    $("[data-get-language]").on("click", this._boundLanguageClick);
+    $("[data-language-modal]").on("hide.bs.modal", this._boundModalHide);
 
     Module.call(this);
 }
 DeveloperTestsPageModule.prototype.unMount = function() {
-    $("[data-get-section]").off("click", this._sectionClick.bind(this));
-    $("[data-get-language]").off("click", this._languageClick.bind(this));
-
-    $("[data-language-modal]").off("hide.bs.modal", this._modalHide.bind(this));
+    $("[data-get-section]").off("click", this._boundSectionClick);
+    $("[data-get-language]").off("click", this._boundLanguageClick);
+    $("[data-language-modal]").off("hide.bs.modal", this._boundModalHide);
 }
 DeveloperTestsPageModule.prototype._sectionClick = function(event) {
     var $button = $(event.currentTarget);

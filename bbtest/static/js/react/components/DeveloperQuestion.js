@@ -29,6 +29,8 @@ var DeveloperQuestion = function (_React$Component) {
         _this._quickModalIsClosing = false;
         _this._quickModalTimer = null;
         _this._quickModalTimeout = 1500; // this time should be at least twice less than this._saveTimeout
+
+        _this._boundQuickModalTransitioned = _this._quickModalTransitioned.bind(_this);
         return _this;
     }
 
@@ -51,7 +53,7 @@ var DeveloperQuestion = function (_React$Component) {
             });
 
             this._$quickModal = $("[data-quick-modal]");
-            this._$quickModal.on("webkitTransitionEnd otransitionend transitionend", this._quickModalTransitioned.bind(this));
+            this._$quickModal.on("webkitTransitionEnd otransitionend transitionend", this._boundQuickModalTransitioned);
         }
     }, {
         key: "componentWillUpdate",
@@ -71,7 +73,7 @@ var DeveloperQuestion = function (_React$Component) {
             clearTimeout(this._timer);
             this.props.object.stop("question");
 
-            this._$quickModal.off("webkitTransitionEnd otransitionend transitionend", this._quickModalTransitioned.bind(this));
+            this._$quickModal.off("webkitTransitionEnd otransitionend transitionend", this._boundQuickModalTransitioned);
             clearTimeout(this._quickModalTimer);
         }
     }, {

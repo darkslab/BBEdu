@@ -16,6 +16,9 @@ class DeveloperTest extends React.Component {
             question: null,
             attributes: null
         };
+
+        this._boundConfirmIsSaved = this._confirmIsSaved.bind(this);
+        this._boundConfirmIsSavedTurbolinks = this._confirmIsSavedTurbolinks.bind(this);
     }
     componentDidMount() {
         let questionNumber = 1;
@@ -33,14 +36,14 @@ class DeveloperTest extends React.Component {
             error: this._ajaxError.bind(this, "attributes")
         });
 
-        $(window).on("beforeunload", this._confirmIsSaved.bind(this));
-        $(document).on("turbolinks:before-visit", this._confirmIsSavedTurbolinks.bind(this));
+        $(window).on("beforeunload", this._boundConfirmIsSaved);
+        $(document).on("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
     }
     componentWillUnmount() {
         this._cleanUp();
 
-        $(window).off("beforeunload", this._confirmIsSaved.bind(this));
-        $(document).off("turbolinks:before-visit", this._confirmIsSavedTurbolinks.bind(this));
+        $(window).off("beforeunload", this._boundConfirmIsSaved);
+        $(document).off("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
     }
     render() {
         let content = null;

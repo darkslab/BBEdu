@@ -4,6 +4,8 @@ function SVGChart($container) {
     this._active = false;
     this._last_width = this._$container.width();
     this._timer = null;
+
+    this._boundResize = this._resize.bind(this);
 }
 SVGChart.prototype._resize = function() {
     if (this._$container.width() != this._last_width) {
@@ -108,10 +110,10 @@ SVGChart.prototype._beforeDestroy = function(svg) {}
 SVGChart.prototype.create = function() {
     this._active = true;
     this._create();
-    $(window).on("resize", this._resize.bind(this));
+    $(window).on("resize", this._boundResize);
 }
 SVGChart.prototype.destroy = function() {
-    $(window).off("resize", this._resize.bind(this));
+    $(window).off("resize", this._boundResize);
     this._destroy();
     this._active = false;
 }
