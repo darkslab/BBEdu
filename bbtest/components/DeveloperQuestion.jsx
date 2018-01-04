@@ -175,7 +175,7 @@ class DeveloperQuestion extends React.Component {
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-body">
-                                <p className="lead text-center mb-0">Saved</p>
+                                <p className="lead text-center mb-0">{this.props.texts.saved}</p>
                             </div>
                         </div>
                     </div>

@@ -214,7 +214,7 @@ var DeveloperQuestion = function (_React$Component) {
                                 React.createElement(
                                     "p",
                                     { className: "lead text-center mb-0" },
-                                    "Saved"
+                                    this.props.texts.saved
                                 )
                             )
                         )
