@@ -25,6 +25,17 @@
     <script>
         var moduleDataStack = [];
     </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            skipStartupTypeset: true,
+            showMathMenu: false,
+            showMathMenuMSIE: false,
+            menuSettings: {
+                zoom: "Hover"
+            }
+        });
+    </script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML"></script>
 </head>
 <body class="bb-body {% block _d0_body_class %}{% endblock %}">
     {% block _d0_content %}{% endblock %}
