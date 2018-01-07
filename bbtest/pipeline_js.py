@@ -52,6 +52,8 @@ BASE3_SOURCE_FILENAMES = (
     "js/react/components/DeveloperSelectorModal.js",
     "js/react/components/DeveloperDeleteConfirmModal.js",
 
+    "js/react/objects/SimpleFormattedFragment.js",
+
     "js/react/components/TextParagraph.js",
     "js/react/components/SplitTextParagraph.js",
     "js/react/components/MultichoiceTextChoice.js",
