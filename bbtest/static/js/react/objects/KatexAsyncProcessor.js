@@ -4,9 +4,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var MathJaxAsyncProcessor = function () {
-    function MathJaxAsyncProcessor(callback, text) {
-        _classCallCheck(this, MathJaxAsyncProcessor);
+var KatexAsyncProcessor = function () {
+    function KatexAsyncProcessor(callback, text) {
+        _classCallCheck(this, KatexAsyncProcessor);
 
         this._callback = callback;
         this._originalText = text;
@@ -16,7 +16,7 @@ var MathJaxAsyncProcessor = function () {
         ReactDOM.render(SimpleFormattedFragment(this._originalText), this._$container[0], this._doneRendering.bind(this));
     }
 
-    _createClass(MathJaxAsyncProcessor, [{
+    _createClass(KatexAsyncProcessor, [{
         key: "stop",
         value: function stop() {
             this._isActive = false;
@@ -27,17 +27,13 @@ var MathJaxAsyncProcessor = function () {
             if (!this._isActive) {
                 return;
             }
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, this._$container[0]], ["_doneTypesetting", this]);
-        }
-    }, {
-        key: "_doneTypesetting",
-        value: function _doneTypesetting() {
-            if (!this._isActive) {
-                return;
-            }
+            renderMathInElement(this._$container[0], {
+                throwOnError: false,
+                delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$", right: "$", display: false }]
+            });
             this._callback(this._$container.html(), this._originalText);
         }
     }]);
 
-    return MathJaxAsyncProcessor;
+    return KatexAsyncProcessor;
 }();

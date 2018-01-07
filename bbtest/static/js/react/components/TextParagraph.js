@@ -20,14 +20,14 @@ var TextParagraph = function (_React$Component) {
             rawHtml: ""
         };
         _this._processor;
+        _this._scheduleProcessor = false;
         return _this;
     }
 
     _createClass(TextParagraph, [{
         key: "componentDidMount",
         value: function componentDidMount() {
-            // if (!this.props.data.hasFormulas) {
-            if (false) {
+            if (!this.props.data.hasFormulas) {
                 return;
             }
             this._setupProcessor();
@@ -40,19 +40,31 @@ var TextParagraph = function (_React$Component) {
             }
         }
     }, {
+        key: "componentWillReceiveProps",
+        value: function componentWillReceiveProps(nextProps) {
+            if (!this.props.data.hasFormulas) {
+                return;
+            }
+            if (this.props.data.text !== nextProps.data.text) {
+                this._scheduleProcessor = true;
+            }
+        }
+    }, {
         key: "componentDidUpdate",
         value: function componentDidUpdate() {
             if (this._processor) {
                 return;
             }
-            this._setupProcessor();
+            if (this._scheduleProcessor) {
+                this._scheduleProcessor = false;
+                this._setupProcessor();
+            }
         }
     }, {
         key: "render",
         value: function render() {
             var className = "bb-test-paragraph";
-            // if (!this.props.data.hasFormulas) {
-            if (false) {
+            if (!this.props.data.hasFormulas) {
                 var content = null;
                 if (this.props.data.text) {
                     content = SimpleFormattedFragment(this.props.data.text);
@@ -73,7 +85,7 @@ var TextParagraph = function (_React$Component) {
     }, {
         key: "_setupProcessor",
         value: function _setupProcessor() {
-            this._processor = new MathJaxAsyncProcessor(this._doneProcessing.bind(this), this.props.data.text);
+            this._processor = new KatexAsyncProcessor(this._doneProcessing.bind(this), this.props.data.text);
         }
     }, {
         key: "_doneProcessing",

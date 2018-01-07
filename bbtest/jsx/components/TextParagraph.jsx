@@ -5,10 +5,10 @@ class TextParagraph extends React.Component {
             rawHtml: ""
         };
         this._processor;
+        this._scheduleProcessor = false;
     }
     componentDidMount() {
-        // if (!this.props.data.hasFormulas) {
-        if (false) {
+        if (!this.props.data.hasFormulas) {
             return;
         }
         this._setupProcessor();
@@ -18,16 +18,26 @@ class TextParagraph extends React.Component {
             this._processor.stop();
         }
     }
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.data.hasFormulas) {
+            return;
+        }
+        if (this.props.data.text !== nextProps.data.text) {
+            this._scheduleProcessor = true;
+        }
+    }
     componentDidUpdate() {
         if (this._processor) {
             return;
         }
-        this._setupProcessor();
+        if (this._scheduleProcessor) {
+            this._scheduleProcessor = false;
+            this._setupProcessor();
+        }
     }
     render() {
         let className = "bb-test-paragraph";
-        // if (!this.props.data.hasFormulas) {
-        if (false) {
+        if (!this.props.data.hasFormulas) {
             let content = null;
             if (this.props.data.text) {
                 content = SimpleFormattedFragment(this.props.data.text);
@@ -47,7 +57,7 @@ class TextParagraph extends React.Component {
     }
 
     _setupProcessor() {
-        this._processor = new MathJaxAsyncProcessor(this._doneProcessing.bind(this), this.props.data.text);
+        this._processor = new KatexAsyncProcessor(this._doneProcessing.bind(this), this.props.data.text);
     }
     _doneProcessing(rawHtml, originalText) {
         this.setState({

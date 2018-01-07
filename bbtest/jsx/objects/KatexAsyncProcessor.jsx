@@ -1,4 +1,4 @@
-class MathJaxAsyncProcessor {
+class KatexAsyncProcessor {
     constructor(callback, text) {
         this._callback = callback;
         this._originalText = text;
@@ -19,15 +19,13 @@ class MathJaxAsyncProcessor {
         if (!this._isActive) {
             return;
         }
-        MathJax.Hub.Queue(
-            ["Typeset", MathJax.Hub, this._$container[0]],
-            ["_doneTypesetting", this]
-        );
-    }
-    _doneTypesetting() {
-        if (!this._isActive) {
-            return;
-        }
+        renderMathInElement(this._$container[0], {
+            throwOnError: false,
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+            ]
+        });
         this._callback(this._$container.html(), this._originalText);
     }
 }
