@@ -27,15 +27,21 @@
     </script>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
+            messageStyle: "none",
             skipStartupTypeset: true,
             showMathMenu: false,
             showMathMenuMSIE: false,
             menuSettings: {
-                zoom: "Hover"
+                zoom: "None"
+            },
+            tex2jax: {
+                inlineMath: [["$", "$"]],
+                displayMath: [["$$", "$$"]],
+                processEscapes: true
             }
         });
     </script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body class="bb-body {% block _d0_body_class %}{% endblock %}">
     {% block _d0_content %}{% endblock %}

@@ -54,6 +54,8 @@ BASE3_SOURCE_FILENAMES = (
 
     "js/react/objects/SimpleFormattedFragment.js",
 
+    "js/react/objects/MathJaxAsyncProcessor.js",
+
     "js/react/components/TextParagraph.js",
     "js/react/components/SplitTextParagraph.js",
     "js/react/components/MultichoiceTextChoice.js",
