@@ -2,13 +2,13 @@ class TextParagraph extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            originalText: "",
             rawHtml: ""
         };
         this._processor;
-        this._scheduleProcessor = false;
     }
     componentDidMount() {
-        if (!this.props.data.hasFormulas) {
+        if (!this.props.data.has_formulas) {
             return;
         }
         this._setupProcessor();
@@ -18,42 +18,39 @@ class TextParagraph extends React.Component {
             this._processor.stop();
         }
     }
-    componentWillReceiveProps(nextProps) {
-        if (!this.props.data.hasFormulas) {
-            return;
-        }
-        if (this.props.data.text !== nextProps.data.text) {
-            this._scheduleProcessor = true;
-        }
-    }
     componentDidUpdate() {
-        if (this._processor) {
+        if (this._processor || !this.props.data.has_formulas) {
             return;
         }
-        if (this._scheduleProcessor) {
-            this._scheduleProcessor = false;
+        if (this.props.data.text !== this.state.originalText) {
             this._setupProcessor();
         }
     }
     render() {
+        let content = null;
         let className = "bb-test-paragraph";
-        if (!this.props.data.hasFormulas) {
-            let content = null;
-            if (this.props.data.text) {
-                content = SimpleFormattedFragment(this.props.data.text);
-            } else if (this.props.optionalTexts) {
+
+        if (!this.props.data.text) {
+            let _content = null;
+            if (this.props.optionalTexts) {
                 className += " bb-placeholder";
-                content = this.props.optionalTexts.paragraphEmptyPlaceholder;
+                _content = this.props.optionalTexts.paragraphEmptyPlaceholder;
             }
-            return (
-                <div className={className}>{content}</div>
+            content = (
+                <div className={className}>{_content}</div>
+            );
+        } else if (this.props.data.has_formulas) {
+            content = (
+                <div className={className}
+                     dangerouslySetInnerHTML={{ __html: this.state.rawHtml }}></div>
+            );
+        } else {
+            content = (
+                <div className={className}>{SimpleFormattedFragment(this.props.data.text)}</div>
             );
         }
 
-        return (
-            <div className={className}
-                 dangerouslySetInnerHTML={{ __html: this.state.rawHtml }}></div>
-        );
+        return content;
     }
 
     _setupProcessor() {
@@ -61,11 +58,9 @@ class TextParagraph extends React.Component {
     }
     _doneProcessing(rawHtml, originalText) {
         this.setState({
+            originalText: originalText,
             rawHtml: rawHtml
         });
         this._processor = undefined;
-        if (originalText !== this.props.data.text) {
-            this._setupProcessor();
-        }
     }
 }

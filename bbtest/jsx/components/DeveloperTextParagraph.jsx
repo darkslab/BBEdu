@@ -17,6 +17,12 @@ class DeveloperTextParagraph extends React.Component {
                 </button>
             );
         }
+        buttons.push(
+            <button key="formulas"
+                    type="button"
+                    className={"btn btn-xs pull-right ml-5" + (this.props.data.has_formulas ? " btn-success active" : " btn-default")}
+                    onClick={this._handleFormulas.bind(this)}>{this.props.texts.controlFormulasButton}</button>
+        );
 
         let className = "form-control bb-test-paragraph bb-test-paragraph-textarea";
         if (!this.props.data.text) {
@@ -55,6 +61,13 @@ class DeveloperTextParagraph extends React.Component {
             ...this.props.data,
             text: event.target.value
         });
+    }
+    _handleFormulas() {
+        let { has_formulas, ...data } = this.props.data;
+        if (has_formulas === undefined) {
+            data.has_formulas = true;
+        }
+        this.props.onChange(data);
     }
     _renderModal() {
         this.setState({

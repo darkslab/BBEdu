@@ -18,9 +18,15 @@ class DeveloperMultichoiceTextChoice extends React.Component {
             );
         }
         buttons.push(
+            <button key="formulas"
+                    type="button"
+                    className={"btn btn-xs pull-right ml-5" + (this.props.data.has_formulas ? " btn-success active" : " btn-default")}
+                    onClick={this._handleFormulas.bind(this)}>{this.props.texts.controlFormulasButton}</button>
+        );
+        buttons.push(
             <button key="chosen"
                     type="button"
-                    className={"btn btn-default btn-xs pull-right ml-5" + (this.props.chosen ? " active" : "")}
+                    className={"btn btn-xs pull-right ml-5" + (this.props.chosen ? " btn-success active" : " btn-default")}
                     onClick={this.props.onSelect.bind(null, !this.props.chosen)}>{this.props.texts.answerChoiceSelectButton}</button>
         );
         if (this.props.chosen) {
@@ -75,6 +81,13 @@ class DeveloperMultichoiceTextChoice extends React.Component {
             ...this.props.data,
             text: event.target.value
         });
+    }
+    _handleFormulas() {
+        let { has_formulas, ...data } = this.props.data;
+        if (has_formulas === undefined) {
+            data.has_formulas = true;
+        }
+        this.props.onChange(data);
     }
     _renderModal() {
         this.setState({

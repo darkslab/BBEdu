@@ -105,19 +105,23 @@ class TestQuestionForm(ModelForm):
         return clean_meta_data
 
     def __clean_multichoice_text_choice_meta_data(self, meta_data):
+        clean_meta_data = {}
         try:
             if not isinstance(meta_data, dict):
                 raise ValueError("Incorrect meta_data")
             if not isinstance(meta_data["text"], str):
                 raise ValueError("Incorrect meta_data")
-            return {
-                "text": meta_data["text"]
-            }
+            clean_meta_data["text"] = meta_data["text"]
+            if "has_formulas" in meta_data:
+                if not isinstance(meta_data["has_formulas"], bool) or not meta_data["has_formulas"]:
+                    raise ValueError("Incorrect meta_data")
+                clean_meta_data["has_formulas"] = meta_data["has_formulas"]
         except (KeyError, ValueError):
             raise ValidationError(
                 self.error_messages["incorrect"],
                 code="incorrect",
             )
+        return clean_meta_data
 
 
 class TestParagraphForm(ModelForm):
@@ -164,6 +168,10 @@ class TestParagraphForm(ModelForm):
             if not isinstance(meta_data["text"], str):
                 raise ValueError("Incorrect meta_data")
             clean_meta_data["text"] = meta_data["text"]
+            if "has_formulas" in meta_data:
+                if not isinstance(meta_data["has_formulas"], bool) or not meta_data["has_formulas"]:
+                    raise ValueError("Incorrect meta_data")
+                clean_meta_data["has_formulas"] = meta_data["has_formulas"]
         except (KeyError, ValueError):
             raise ValidationError(
                 self.error_messages["incorrect"],
@@ -195,6 +203,11 @@ class TestParagraphForm(ModelForm):
             if not isinstance(meta_data["left"]["text"], str):
                 raise ValueError("Incorrect meta_data")
             clean_meta_data["left"]["text"] = meta_data["left"]["text"]
+
+            if "has_formulas" in meta_data:
+                if not isinstance(meta_data["has_formulas"], bool) or not meta_data["has_formulas"]:
+                    raise ValueError("Incorrect meta_data")
+                clean_meta_data["has_formulas"] = meta_data["has_formulas"]
 
         except (KeyError, ValueError):
             raise ValidationError(

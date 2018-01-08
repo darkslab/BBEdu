@@ -17,17 +17,17 @@ var TextParagraph = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (TextParagraph.__proto__ || Object.getPrototypeOf(TextParagraph)).call(this, props));
 
         _this.state = {
+            originalText: "",
             rawHtml: ""
         };
         _this._processor;
-        _this._scheduleProcessor = false;
         return _this;
     }
 
     _createClass(TextParagraph, [{
         key: "componentDidMount",
         value: function componentDidMount() {
-            if (!this.props.data.hasFormulas) {
+            if (!this.props.data.has_formulas) {
                 return;
             }
             this._setupProcessor();
@@ -40,47 +40,44 @@ var TextParagraph = function (_React$Component) {
             }
         }
     }, {
-        key: "componentWillReceiveProps",
-        value: function componentWillReceiveProps(nextProps) {
-            if (!this.props.data.hasFormulas) {
-                return;
-            }
-            if (this.props.data.text !== nextProps.data.text) {
-                this._scheduleProcessor = true;
-            }
-        }
-    }, {
         key: "componentDidUpdate",
         value: function componentDidUpdate() {
-            if (this._processor) {
+            if (this._processor || !this.props.data.has_formulas) {
                 return;
             }
-            if (this._scheduleProcessor) {
-                this._scheduleProcessor = false;
+            if (this.props.data.text !== this.state.originalText) {
                 this._setupProcessor();
             }
         }
     }, {
         key: "render",
         value: function render() {
+            var content = null;
             var className = "bb-test-paragraph";
-            if (!this.props.data.hasFormulas) {
-                var content = null;
-                if (this.props.data.text) {
-                    content = SimpleFormattedFragment(this.props.data.text);
-                } else if (this.props.optionalTexts) {
+
+            if (!this.props.data.text) {
+                var _content = null;
+                if (this.props.optionalTexts) {
                     className += " bb-placeholder";
-                    content = this.props.optionalTexts.paragraphEmptyPlaceholder;
+                    _content = this.props.optionalTexts.paragraphEmptyPlaceholder;
                 }
-                return React.createElement(
+                content = React.createElement(
                     "div",
                     { className: className },
-                    content
+                    _content
+                );
+            } else if (this.props.data.has_formulas) {
+                content = React.createElement("div", { className: className,
+                    dangerouslySetInnerHTML: { __html: this.state.rawHtml } });
+            } else {
+                content = React.createElement(
+                    "div",
+                    { className: className },
+                    SimpleFormattedFragment(this.props.data.text)
                 );
             }
 
-            return React.createElement("div", { className: className,
-                dangerouslySetInnerHTML: { __html: this.state.rawHtml } });
+            return content;
         }
     }, {
         key: "_setupProcessor",
@@ -91,12 +88,10 @@ var TextParagraph = function (_React$Component) {
         key: "_doneProcessing",
         value: function _doneProcessing(rawHtml, originalText) {
             this.setState({
+                originalText: originalText,
                 rawHtml: rawHtml
             });
             this._processor = undefined;
-            if (originalText !== this.props.data.text) {
-                this._setupProcessor();
-            }
         }
     }]);
 
