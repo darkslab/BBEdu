@@ -213,7 +213,7 @@ class TestParagraphsContainerForm(Form):
 
     def __init__(self, question, *args, **kwargs):
         self._question = question
-        self._forms = []
+        self._form_data = []
         self._removed_paragraphs = []
         super().__init__(*args, **kwargs)
 
@@ -224,14 +224,24 @@ class TestParagraphsContainerForm(Form):
             if not isinstance(data, list):
                 raise ValueError("Incorrect data")
 
+            new_paragraph_ids = []
+            old_paragraph_ids = []
             for _data in data:
                 _clean_data = {}
                 if not isinstance(_data, dict):
                     raise ValueError("Incorrect data")
+                _clean_data["id"] = int(_data["id"])
                 if not isinstance(_data["is_new"], bool):
                     raise ValueError("Incorrect data")
-                if not _data["is_new"]:
-                    _clean_data["id"] = int(_data["id"])
+                _clean_data["is_new"] = _data["is_new"]
+                if _clean_data["is_new"]:
+                    if _clean_data["id"] in new_paragraph_ids:
+                        raise ValueError("Incorrect data")
+                    new_paragraph_ids.append(_clean_data["id"])
+                else:
+                    if _clean_data["id"] in old_paragraph_ids:
+                        raise ValueError("Incorrect data")
+                    old_paragraph_ids.append(_clean_data["id"])
                 if not isinstance(_data["data"], dict):
                     raise ValueError("Incorrect data")
                 _clean_data["data"] = {
@@ -257,31 +267,32 @@ class TestParagraphsContainerForm(Form):
             paragraph_ids.append(paragraph.id)
 
         for data in self.cleaned_data["data"]:
-            if "id" in data and data["id"] not in paragraph_ids:
-                raise ValidationError({
-                    "data": ValidationError(
-                        self.error_messages["incorrect"],
-                        code="incorrect",
-                    ),
+            if data["is_new"]:
+                self._form_data.append({
+                    "form": TestParagraphForm(data=data["data"]),
+                    "old": data["id"],
                 })
-            if "id" in data:
+            else:
+                if data["id"] not in paragraph_ids:
+                    raise ValidationError({
+                        "data": ValidationError(
+                            self.error_messages["incorrect"],
+                            code="incorrect",
+                        ),
+                    })
                 paragraph_index = paragraph_ids.index(data["id"])
-                self._forms.append(
-                    TestParagraphForm(
+                self._form_data.append({
+                    "form": TestParagraphForm(
                         data=data["data"],
                         instance=paragraphs.pop(paragraph_index),
-                    )
-                )
+                    ),
+                })
                 paragraph_ids.pop(paragraph_index)
-            else:
-                self._forms.append(
-                    TestParagraphForm(data=data["data"])
-                )
 
-        for form in self._forms:
-            if not form.is_valid():
+        for form_datum in self._form_data:
+            if not form_datum["form"].is_valid():
                 _error_messages = []
-                for key, validation_errors in form.errors.as_data().items():
+                for key, validation_errors in form_datum["form"].errors.as_data().items():
                     for validation_error in validation_errors:
                         _error_messages.append(validation_error.message)
                 raise ValidationError({
@@ -295,6 +306,8 @@ class TestParagraphsContainerForm(Form):
         return self.cleaned_data
 
     def save_paragraphs(self):
+        paragraph_morphs = []
+
         try:
             while True:
                 self._removed_paragraphs.pop().delete()
@@ -303,27 +316,39 @@ class TestParagraphsContainerForm(Form):
 
         paragraphs = []
         paragraph_ids = []
-        self._forms.reverse()
+        self._form_data.reverse()
         try:
             while True:
-                paragraph = self._forms.pop().save()
+                paragraph_morph = None
+                form_datum = self._form_data.pop()
+                if "old" in form_datum:
+                    paragraph_morph = {
+                        "old": form_datum["old"],
+                    }
+                paragraph = form_datum["form"].save()
+                if paragraph_morph is not None:
+                    paragraph_morph["new"] = paragraph.id
+                    paragraph_morphs.append(paragraph_morph)
                 paragraphs.append(paragraph)
                 paragraph_ids.append(paragraph.id)
         except IndexError:
             pass
 
         for paragraph_question in self._question.testparagraphquestion_set.all():
+            if paragraph_question.paragraph_id not in paragraph_ids:
+                continue
             paragraph_index = paragraph_ids.index(paragraph_question.paragraph_id)
             if paragraph_question.order != paragraph_index:
                 paragraph_question.order = paragraph_index
                 paragraph_question.save()
-            paragraphs.pop(paragraph_index)
-            paragraph_ids.pop(paragraph_index)
+            paragraphs[paragraph_index] = None
 
         paragraphs.reverse()
         try:
             while True:
                 paragraph = paragraphs.pop()
+                if paragraph is None:
+                    continue
                 paragraph_index = paragraph_ids.index(paragraph.id)
                 TestParagraphQuestion.objects.create(
                     question=self._question,
@@ -332,6 +357,8 @@ class TestParagraphsContainerForm(Form):
                 )
         except IndexError:
             pass
+
+        return paragraph_morphs
 
 
 class TestForm(ModelForm):

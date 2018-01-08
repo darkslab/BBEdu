@@ -322,7 +322,9 @@ var DeveloperQuestion = function (_React$Component) {
             var paragraphIds = this._$paragraphsContainer.sortable("toArray", {
                 attribute: "data-paragraph-id"
             });
-            this.props.object.setParagraphOrder(paragraphIds);
+            this.props.object.setParagraphOrder(paragraphIds.map(function (id) {
+                return parseInt(id, 10);
+            }));
             this._pokeComponent();
             this._scheduleSave();
         }

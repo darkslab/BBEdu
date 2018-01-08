@@ -247,7 +247,7 @@ class DeveloperQuestion extends React.Component {
         let paragraphIds = this._$paragraphsContainer.sortable("toArray", {
             attribute: "data-paragraph-id"
         });
-        this.props.object.setParagraphOrder(paragraphIds);
+        this.props.object.setParagraphOrder(paragraphIds.map(id => parseInt(id, 10)));
         this._pokeComponent();
         this._scheduleSave();
     }
