@@ -175,7 +175,7 @@ class DeveloperQuestion extends React.Component {
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-body">
-                                <p className="lead text-center mb-0">Saved</p>
+                                <p className="lead text-center mb-0">{this.props.texts.saved}</p>
                             </div>
                         </div>
                     </div>
@@ -247,7 +247,7 @@ class DeveloperQuestion extends React.Component {
         let paragraphIds = this._$paragraphsContainer.sortable("toArray", {
             attribute: "data-paragraph-id"
         });
-        this.props.object.setParagraphOrder(paragraphIds);
+        this.props.object.setParagraphOrder(paragraphIds.map(id => parseInt(id, 10)));
         this._pokeComponent();
         this._scheduleSave();
     }

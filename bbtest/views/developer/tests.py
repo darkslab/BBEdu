@@ -148,8 +148,11 @@ class ParagraphsView(DeveloperLoginRequiredMixin, View):
 
         form = TestParagraphsContainerForm(question, data=request.POST)
         if form.is_valid():
-            form.save_paragraphs()
-            return TightJsonResponse({"success": True})
+            paragraph_morphs = form.save_paragraphs()
+            return TightJsonResponse({
+                "success": True,
+                "update": paragraph_morphs,
+            })
 
         return TightJsonResponse({
             "success": False,

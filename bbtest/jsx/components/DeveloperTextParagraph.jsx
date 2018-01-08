@@ -1,4 +1,4 @@
-class DeveloperMultichoiceTextChoice extends React.Component {
+class DeveloperTextParagraph extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,23 +18,15 @@ class DeveloperMultichoiceTextChoice extends React.Component {
             );
         }
         buttons.push(
-            <button key="chosen"
+            <button key="formulas"
                     type="button"
-                    className={"btn btn-default btn-xs pull-right ml-5" + (this.props.chosen ? " active" : "")}
-                    onClick={this.props.onSelect.bind(null, !this.props.chosen)}>{this.props.texts.answerChoiceSelectButton}</button>
+                    className={"btn btn-xs pull-right ml-5" + (this.props.data.has_formulas ? " btn-success active" : " btn-default")}
+                    onClick={this._handleFormulas.bind(this)}>{this.props.texts.controlFormulasButton}</button>
         );
-        if (this.props.chosen) {
-            buttons.push(
-                <button disabled
-                        key="solution"
-                        type="button"
-                        className="btn btn-primary btn-xs pull-right ml-5">{this.props.texts.answerChoiceSolutionButton}</button>
-            );
-        }
 
-        let className = "form-control bb-test-answer bb-test-answer-textarea";
+        let className = "form-control bb-test-paragraph bb-test-paragraph-textarea";
         if (!this.props.data.text) {
-            className += " bb-test-answer-textarea-empty";
+            className += " bb-test-paragraph-textarea-empty";
         }
 
         let modal = null;
@@ -51,21 +43,15 @@ class DeveloperMultichoiceTextChoice extends React.Component {
         return (
             <React.Fragment>
                 {modal}
-                <div className="form-group bb-test-section-movable bb-test-section-background" data-choice-id={this.props.choiceId}>
+                <div className="form-group bb-test-section-movable bb-test-section-background" data-paragraph-id={this.props.paragraphId}>
                     <div className="pt-5 pr-5 pb-5 pl-5 clearfix">
                         {buttons}
                         <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
                     </div>
-                    <div className="row">
-                        <div className="col-xs-2 col-sm-3 pr-0"></div>
-                        <div className="col-xs-10 col-sm-7 pl-0">
-                            <textarea className={className}
-                                      placeholder={this.props.texts.choiceTextareaPlaceholder}
-                                      value={this.props.data.text}
-                                      onChange={this._handleChange.bind(this)}
-                                      readOnly={this.props.canEdit ? false : true} />
-                        </div>
-                    </div>
+                    <textarea className={className}
+                              placeholder={this.props.texts.paragraphTextareaPlaceholder}
+                              value={this.props.data.text}
+                              onChange={this._handleChange.bind(this)} />
                 </div>
             </React.Fragment>
         );
@@ -75,6 +61,13 @@ class DeveloperMultichoiceTextChoice extends React.Component {
             ...this.props.data,
             text: event.target.value
         });
+    }
+    _handleFormulas() {
+        let { has_formulas, ...data } = this.props.data;
+        if (has_formulas === undefined) {
+            data.has_formulas = true;
+        }
+        this.props.onChange(data);
     }
     _renderModal() {
         this.setState({

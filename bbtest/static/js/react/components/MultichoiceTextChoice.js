@@ -14,10 +14,42 @@ var MultichoiceTextChoice = function (_React$Component) {
     function MultichoiceTextChoice(props) {
         _classCallCheck(this, MultichoiceTextChoice);
 
-        return _possibleConstructorReturn(this, (MultichoiceTextChoice.__proto__ || Object.getPrototypeOf(MultichoiceTextChoice)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (MultichoiceTextChoice.__proto__ || Object.getPrototypeOf(MultichoiceTextChoice)).call(this, props));
+
+        _this.state = {
+            originalText: "",
+            rawHtml: ""
+        };
+        _this._processor;
+        return _this;
     }
 
     _createClass(MultichoiceTextChoice, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            if (!this.props.data.has_formulas) {
+                return;
+            }
+            this._setupProcessor();
+        }
+    }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+            if (this._processor) {
+                this._processor.stop();
+            }
+        }
+    }, {
+        key: "componentDidUpdate",
+        value: function componentDidUpdate() {
+            if (this._processor || !this.props.data.has_formulas) {
+                return;
+            }
+            if (this.props.data.text !== this.state.originalText) {
+                this._setupProcessor();
+            }
+        }
+    }, {
         key: "render",
         value: function render() {
             var choiceClassName = "bb-test-answer-choice";
@@ -25,13 +57,29 @@ var MultichoiceTextChoice = function (_React$Component) {
                 choiceClassName += " bb-test-answer-choice-selected";
             }
 
-            var contentClassName = "bb-test-answer";
             var content = null;
-            if (this.props.data.text) {
-                content = this.props.data.text;
-            } else if (this.props.optionalTexts) {
-                contentClassName += " bb-placeholder";
-                content = this.props.optionalTexts.choiceEmptyPlaceholder;
+            var contentClassName = "bb-test-answer";
+
+            if (!this.props.data.text) {
+                var _content = null;
+                if (this.props.optionalTexts) {
+                    contentClassName += " bb-placeholder";
+                    _content = this.props.optionalTexts.paragraphEmptyPlaceholder;
+                }
+                content = React.createElement(
+                    "div",
+                    { className: contentClassName },
+                    _content
+                );
+            } else if (this.props.data.has_formulas) {
+                content = React.createElement("div", { className: contentClassName,
+                    dangerouslySetInnerHTML: { __html: this.state.rawHtml } });
+            } else {
+                content = React.createElement(
+                    "div",
+                    { className: contentClassName },
+                    SimpleFormattedFragment(this.props.data.text)
+                );
             }
 
             return React.createElement(
@@ -54,13 +102,23 @@ var MultichoiceTextChoice = function (_React$Component) {
                 React.createElement(
                     "div",
                     { className: "col-xs-10 col-sm-7 pl-0" },
-                    React.createElement(
-                        "div",
-                        { className: contentClassName },
-                        content
-                    )
+                    content
                 )
             );
+        }
+    }, {
+        key: "_setupProcessor",
+        value: function _setupProcessor() {
+            this._processor = new KatexAsyncProcessor(this._doneProcessing.bind(this), this.props.data.text);
+        }
+    }, {
+        key: "_doneProcessing",
+        value: function _doneProcessing(rawHtml, originalText) {
+            this.setState({
+                originalText: originalText,
+                rawHtml: rawHtml
+            });
+            this._processor = undefined;
         }
     }]);
 

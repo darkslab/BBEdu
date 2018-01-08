@@ -3,6 +3,8 @@ BASE0_SOURCE_FILENAMES = (
     "js/bootstrap.js",
     "js/turbolinks.min.js",
     "js/js.cookie.js",
+    "js/katex.min.js",
+    "js/auto-render.min.js",
     "js/script.js",
 )
 BASE1_SOURCE_FILENAMES = (
@@ -51,6 +53,10 @@ BASE3_SOURCE_FILENAMES = (
 
     "js/react/components/DeveloperSelectorModal.js",
     "js/react/components/DeveloperDeleteConfirmModal.js",
+
+    "js/react/objects/SimpleFormattedFragment.js",
+
+    "js/react/objects/KatexAsyncProcessor.js",
 
     "js/react/components/TextParagraph.js",
     "js/react/components/SplitTextParagraph.js",

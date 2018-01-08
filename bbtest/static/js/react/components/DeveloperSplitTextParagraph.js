@@ -4,6 +4,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -38,6 +40,14 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                     React.createElement("i", { className: "fa fa-fw fa-times" })
                 ));
             }
+            buttons.push(React.createElement(
+                "button",
+                { key: "formulas",
+                    type: "button",
+                    className: "btn btn-xs pull-right ml-5" + (this.props.data.has_formulas ? " btn-success active" : " btn-default"),
+                    onClick: this._handleFormulas.bind(this) },
+                this.props.texts.controlFormulasButton
+            ));
 
             var leftClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
             if (!this.props.data.left.text) {
@@ -116,6 +126,20 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                 case "right":
                     data[side].text = event.target.value;
                     break;
+            }
+            this.props.onChange(data);
+        }
+    }, {
+        key: "_handleFormulas",
+        value: function _handleFormulas() {
+            var _props$data = this.props.data,
+                has_formulas = _props$data.has_formulas,
+                data = _objectWithoutProperties(_props$data, ["has_formulas"]);
+
+            data.left = _extends({}, this.props.data.left);
+            data.right = _extends({}, this.props.data.right);
+            if (has_formulas === undefined) {
+                data.has_formulas = true;
             }
             this.props.onChange(data);
         }
