@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-01-04 13:00+0600\n"
+"POT-Creation-Date: 2018-01-08 14:38+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -872,6 +872,10 @@ msgid "Edit"
 msgstr ""
 
 msgctxt "/developer/"
+msgid "Preview"
+msgstr ""
+
+msgctxt "/developer/"
 msgid "Delete"
 msgstr ""
 
@@ -1009,6 +1013,17 @@ msgstr ""
 
 msgctxt "Developer tools"
 msgid "No"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form button"
+#| msgid "Save"
+msgctxt "Developer tools"
+msgid "Saved"
+msgstr "Сақтау"
+
+msgctxt "Developer tools"
+msgid "Formulas"
 msgstr ""
 
 #, fuzzy
