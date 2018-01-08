@@ -3,6 +3,8 @@ BASE0_SOURCE_FILENAMES = (
     "js/bootstrap.js",
     "js/turbolinks.min.js",
     "js/js.cookie.js",
+    "js/katex.min.js",
+    "js/auto-render.min.js",
     "js/script.js",
 )
 BASE1_SOURCE_FILENAMES = (
