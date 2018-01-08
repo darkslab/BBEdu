@@ -81,7 +81,7 @@
                                         </td>
                                         <td class="pr-15 pl-15 text-center">
                                             <a href="{% url 'bbtest:developer_test' test.code %}" class="btn btn-default btn-xs">{% trans 'Edit' context '/developer/' %}</a>
-                                            <a href="javascript:void(0);" class="btn btn-primary btn-xs disabled">Preview</a>
+                                            <a href="javascript:void(0);" class="btn btn-primary btn-xs disabled">{% trans 'Preview' context '/developer/' %}</a>
                                             <button class="btn btn-danger btn-xs" data-delete-test-url="{% url 'bbtest:developer_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
                                         </td>
                                     {% endif %}

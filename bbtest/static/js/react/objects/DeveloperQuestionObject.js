@@ -1,14 +1,17 @@
 function DeveloperQuestionObject(id, data, paragraphs, questionUrl, paragraphsUrl) {
     this._id = id;
     this._data = data;
-    this._paragraphs = paragraphs;
+    this._paragraphs = [];
 
-    this._newParagraphCounter = 0;
-
+    this._paragraphCounter = 0;
     var i;
-    for (i = 0; i < this._paragraphs.length; i++) {
-        this._paragraphs[i].id = this._paragraphs[i].id.toString();
-        this._paragraphs[i].is_new = false;
+    for (i = 0; i < paragraphs.length; i++) {
+        this._paragraphs.push({
+            id: this._paragraphCounter++,
+            token: paragraphs[i].id,
+            questionIds: paragraphs[i].question_ids,
+            data: paragraphs[i].data
+        });
     }
 
     this._contextData = {};
@@ -80,8 +83,8 @@ DeveloperQuestionObject.prototype.save = function(context, callback) {
         var i;
         for (i = 0; i < this._paragraphs.length; i++) {
             paragraphs.push({
-                id: this._paragraphs[i].id,
-                is_new: this._paragraphs[i].is_new,
+                id: this._paragraphs[i].token ? this._paragraphs[i].token : this._paragraphs[i].id,
+                is_new: this._paragraphs[i].token ? false : true,
                 data: this._paragraphs[i].data
             });
         }
@@ -138,9 +141,9 @@ DeveloperQuestionObject.prototype.updateParagraph = function(id, data) {
 }
 DeveloperQuestionObject.prototype.addParagraph = function(type) {
     var newParagraph = {
-        id: "p_" + (this._newParagraphCounter++),
-        is_new: true,
-        question_ids: [],
+        id: this._paragraphCounter++,
+        token: undefined,
+        questionIds: [],
         data: {
             paragraph_class: type
         }
@@ -225,11 +228,20 @@ DeveloperQuestionObject.prototype._ajaxSuccess = function(context, type, data, s
         this._contextData[context].result = this._contextData[context].result && true;
     }
 
+    var i, j;
     switch (type) {
         case "question":
             this._isQuestionSaved = true;
             break;
         case "paragraphs":
+            for (i = 0; i < data.update.length; i++) {
+                for (j = 0; j < this._paragraphs.length; j++) {
+                    if (data.update[i].old === this._paragraphs[j].id) {
+                        this._paragraphs[j].token = data.update[i].new;
+                        break;
+                    }
+                }
+            }
             this._isParagraphsSaved = true;
             break;
     }

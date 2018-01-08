@@ -1,7 +1,7 @@
 {
     "name": "BBEdu",
     "scripts": {
-        "build": "./node_modules/.bin/babel bbtest/components -d bbtest/static/js/react/components"
+        "build": "./node_modules/.bin/babel bbtest/jsx -d bbtest/static/js/react"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",

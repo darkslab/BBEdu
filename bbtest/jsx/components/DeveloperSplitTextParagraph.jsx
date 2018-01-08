@@ -17,6 +17,12 @@ class DeveloperSplitTextParagraph extends React.Component {
                 </button>
             );
         }
+        buttons.push(
+            <button key="formulas"
+                    type="button"
+                    className={"btn btn-xs pull-right ml-5" + (this.props.data.has_formulas ? " btn-success active" : " btn-default")}
+                    onClick={this._handleFormulas.bind(this)}>{this.props.texts.controlFormulasButton}</button>
+        );
 
         let leftClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
         if (!this.props.data.left.text) {
@@ -77,6 +83,15 @@ class DeveloperSplitTextParagraph extends React.Component {
             case "right":
                 data[side].text = event.target.value;
                 break;
+        }
+        this.props.onChange(data);
+    }
+    _handleFormulas() {
+        let { has_formulas, ...data } = this.props.data;
+        data.left = {...this.props.data.left};
+        data.right = {...this.props.data.right};
+        if (has_formulas === undefined) {
+            data.has_formulas = true;
         }
         this.props.onChange(data);
     }
