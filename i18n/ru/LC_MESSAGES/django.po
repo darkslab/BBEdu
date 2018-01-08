@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "POT-Creation-Date: 2018-01-04 13:00+0600\n"
-"PO-Revision-Date: 2018-01-04 14:36+0600\n"
+"PO-Revision-Date: 2018-01-05 11:12+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -23,34 +23,22 @@ msgctxt "Form label"
 msgid "Email"
 msgstr "Адрес электронной почты"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter email."
 msgctxt "Validation error"
 msgid "Please enter email."
-msgstr "Пожалуйста введите адрес электронной почты."
+msgstr "Пожалуйста, введите адрес электронной почты."
 
 msgctxt "Form label"
 msgid "Password"
 msgstr "Пароль"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter password."
 msgctxt "Validation error"
 msgid "Please enter password."
-msgstr "Пожалуйста введите пароль."
+msgstr "Пожалуйста, введите пароль."
 
-#, fuzzy
-#| msgctxt "Form validation error"
-#| msgid "Please enter a correct email and password."
 msgctxt "Validation error"
 msgid "Please enter a correct email and password."
-msgstr "Пожалуйста введите верный адрес электронной почты и пароль."
+msgstr "Пожалуйста, введите верный адрес электронной почты и пароль."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect email."
 msgstr "Неверный адрес электронной почты."
@@ -61,12 +49,9 @@ msgstr ""
 "Для восстановления пароля, пожалуйста, следуйте инструкциям которые мы "
 "выслали Вам на электронную почту."
 
-#, fuzzy
-#| msgctxt "Form validation error"
-#| msgid "Passwords do not match."
 msgctxt "Validation error"
 msgid "Passwords do not match."
-msgstr "Введенные пароли не совпадают."
+msgstr "Пароли не совпадают."
 
 msgctxt "Form label"
 msgid "New password"
@@ -108,62 +93,44 @@ msgctxt "Model field"
 msgid "active?"
 msgstr "активный?"
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid "The password has to be at least %(min_length)d characters."
+#, python-format
 msgctxt "Validation error"
 msgid "The password has to be at least %(min_length)d characters."
 msgstr "В пароле должно быть не меньше %(min_length)d символов."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid ""
-#| "If the password is less than %(secure_length)d characters, it has to "
-#| "contain at least one uppercase character."
+#, python-format
 msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one uppercase character."
 msgstr ""
-"Если пароль меньше %(secure_length)d знаков, добавьте хотя бы одну заглавную "
+"Если пароль меньше %(secure_length)d знаков, добавьте минимум одну заглавную "
 "букву."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid ""
-#| "If the password is less than %(secure_length)d characters, it has to "
-#| "contain at least one lowercase character."
+#, python-format
 msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one lowercase character."
 msgstr ""
-"Если пароль меньше %(secure_length)d знаков, добавьте хотя бы одну маленькую "
+"Если пароль меньше %(secure_length)d знаков, добавьте минимум одну маленькую "
 "букву."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid ""
-#| "If the password is less than %(secure_length)d characters, it has to "
-#| "contain at least one numeric character."
+#, python-format
 msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one numeric character."
 msgstr ""
-"Если пароль меньше %(secure_length)d знаков, добавьте хотя бы одну цифру."
+"Если пароль меньше %(secure_length)d знаков, добавьте минимум одну цифру."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid ""
-#| "If the password is less than %(secure_length)d characters, it has to "
-#| "contain at least one symbol character."
+#, python-format
 msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
 "at least one symbol character."
 msgstr ""
-"Если пароль меньше %(secure_length)d знаков, добавьте хотя бы один символ."
+"Если пароль меньше %(secure_length)d знаков, добавьте минимум один символ."
 
 #, python-format
 msgctxt "Password validation help text"
@@ -176,9 +143,7 @@ msgstr ""
 "который должен состоять хотя бы из %(min_length)d знаков в которой есть "
 "заглавная буква, маленькая буква, цифра и символ."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid "The password is too similar to the %(verbose_name)s."
+#, python-format
 msgctxt "Validation error"
 msgid "The password is too similar to the %(verbose_name)s."
 msgstr "Пароль слишком похож на %(verbose_name)s."
@@ -203,45 +168,30 @@ msgctxt "Email subject"
 msgid "Password reset"
 msgstr "Сброс пароля"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter last name."
 msgctxt "Validation error"
 msgid "Please select plan."
-msgstr "Пожалуйста, введите Вашу фамилию."
+msgstr "Пожалуйста, выберите тарифный план."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect plan value."
-msgstr "Неверный адрес электронной почты."
+msgstr "тарифный план."
 
 msgctxt "Form label"
 msgid "Confirm password"
 msgstr "Подтверждение пароля"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter password confirmation."
 msgctxt "Validation error"
 msgid "Please enter password confirmation."
-msgstr "Пожалуйста введите подтверждение пароля."
+msgstr "Пожалуйста, введите подтверждение пароля."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter first name."
 msgctxt "Validation error"
 msgid "Please enter first name."
-msgstr "Пожалуйста введите Ваше имя."
+msgstr "Пожалуйста, введите Ваше имя."
 
 msgctxt "Validation error"
 msgid "First name is too long."
 msgstr "Слишком длинное имя"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter last name."
 msgctxt "Validation error"
 msgid "Please enter last name."
 msgstr "Пожалуйста, введите Вашу фамилию."
@@ -250,16 +200,10 @@ msgctxt "Validation error"
 msgid "Last name is too long."
 msgstr "Слишком длинная фамилия."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Email is too long."
 msgctxt "Validation error"
 msgid "Email is too long."
 msgstr "Адрес электронной почты слишком длинный."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "This email is already taken."
 msgctxt "Validation error"
 msgid "This email is already taken."
 msgstr "Данный адрес электронной почты уже используется."
@@ -530,9 +474,6 @@ msgctxt "Model field"
 msgid "ip address"
 msgstr "адрес IP"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "username"
 msgctxt "Model field"
 msgid "user agent"
 msgstr "имя пользователя"
@@ -595,11 +536,11 @@ msgstr "не указано"
 
 msgctxt "Test language"
 msgid "Kazakh"
-msgstr "Казахский язык"
+msgstr "Казахский"
 
 msgctxt "Test language"
 msgid "Russian"
-msgstr "Русский язык"
+msgstr "Русский"
 
 msgctxt "Model field"
 msgid "code of the test"
@@ -609,9 +550,6 @@ msgctxt "Model field"
 msgid "language of the test"
 msgstr "язык теста"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "active?"
 msgctxt "Model field"
 msgid "is active?"
 msgstr "активный?"
@@ -678,7 +616,7 @@ msgstr "Администратор"
 
 msgctxt "Page title"
 msgid "Choose your Developer Plan"
-msgstr "Выберите тарифный план сотрудничества"
+msgstr "Выберите тарифный план для сотрудничества"
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 1."
@@ -686,7 +624,7 @@ msgstr "Стоимость 1 тестового задания составля�
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 2."
-msgstr "Оплата производится после экспертизы тестовых заданий"
+msgstr "Оплата производится после экспертизы тестовых заданий"
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 3."
@@ -695,7 +633,7 @@ msgstr "Авторское право передается от Разработ
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 4."
 msgstr ""
-"Разработчик НЕ получает данные психометрического анализа тестовых заданий"
+"Разработчик НЕ получает данные психометрического анализа тестовых заданий"
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan B line 1."
@@ -705,7 +643,7 @@ msgctxt "Developer acknowledgement page"
 msgid "Plan B line 2."
 msgstr ""
 "Оплата производится после экспертизы и определения качества тестовых "
-"заданий\n"
+"заданий\n"
 "(от 1 месяца)"
 
 msgctxt "Developer acknowledgement page"
@@ -715,8 +653,8 @@ msgstr "Авторское право передается от Разработ
 msgctxt "Developer acknowledgement page"
 msgid "Plan B line 4."
 msgstr ""
-"Разработчик получает данные психометрического анализа тестовых заданий в\n"
-"целях улучшения качества тестовых заданий"
+"Разработчик получает данные психометрического анализа тестовых заданий в\n"
+"целях улучшения качества тестовых заданий"
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 1."
@@ -726,17 +664,17 @@ msgctxt "Developer acknowledgement page"
 msgid "Plan C line 2."
 msgstr ""
 "Оплата производится по договору согласно расчета разделения дохода после\n"
-"экспертизы и определения качества тестовых заданий"
+"экспертизы и определения качества тестовых заданий"
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 3."
-msgstr "Авторское право оставляет за собой Разработчик"
+msgstr "Авторское право оставляет за собой Разработчик"
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 4."
 msgstr ""
-"Разработчик получает данные психометрического анализа тестовых заданий в\n"
-"целях улучшения качества тестовых заданий"
+"Разработчик получает данные психометрического анализа тестовых заданий в\n"
+"целях улучшения качества тестовых заданий"
 
 msgctxt "/developer/acknowledgement/"
 msgid "View Agreement"
@@ -776,15 +714,15 @@ msgstr "Тесты"
 
 msgctxt "/developer/"
 msgid "Domain"
-msgstr "Раздел"
+msgstr "Тестирование"
 
 msgctxt "/developer/"
 msgid "Section"
-msgstr "Секция"
+msgstr "Предмет"
 
 msgctxt "/developer/"
 msgid "Variant"
-msgstr "Вариант"
+msgstr "Код теста"
 
 msgctxt "/developer/"
 msgid "Status"
@@ -885,7 +823,7 @@ msgstr "Добавить ответ"
 
 msgctxt "Developer tools"
 msgid "Multi-choice with 1 answer"
-msgstr "Многовариантный вопрос с выбором 1-го ответа"
+msgstr "Варианты ответов"
 
 msgctxt "Developer tools"
 msgid "Add Answer Choice"
@@ -893,11 +831,11 @@ msgstr "Добавить ответ"
 
 msgctxt "Developer tools"
 msgid "Type your answer choice here"
-msgstr "Введите ответ"
+msgstr "Введите вариант ответа"
 
 msgctxt "Developer tools"
 msgid "Your answer choice will be previewed here"
-msgstr "Просмотр ответов"
+msgstr "Просмотр варианта ответа"
 
 msgctxt "Developer tools"
 msgid "Please choose Section type"
@@ -1149,7 +1087,7 @@ msgstr "Русский язык как второй"
 
 msgctxt "Success alert message"
 msgid "You have created a new Test."
-msgstr "Вы загрузили новый тест."
+msgstr "Вы загружаете новый тест."
 
 msgctxt "Success alert message"
 msgid "You have deleted a Test."
