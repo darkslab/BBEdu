@@ -15,14 +15,24 @@ class DeveloperAcknowledgement(Model):
         ( PLAN_B, pgettext_lazy("Developer acknowledgement plan", "Qualitative") ),
         ( PLAN_C, pgettext_lazy("Developer acknowledgement plan", "Profitable")  ),
     )
+    AGREEMENT_CODES_FOR_PLANS = {
+        PLAN_A: "09b90737225eb2551d9e9344bbb68ba0",
+        PLAN_B: "",
+        PLAN_C: "",
+    }
+    AGREEMENT_CODES = []
+    AGREEMENT_CODES.append((AGREEMENT_CODES_FOR_PLANS[PLAN_A], AGREEMENT_CODES_FOR_PLANS[PLAN_A]))
+    AGREEMENT_CODES.append((AGREEMENT_CODES_FOR_PLANS[PLAN_B], AGREEMENT_CODES_FOR_PLANS[PLAN_B]))
+    AGREEMENT_CODES.append((AGREEMENT_CODES_FOR_PLANS[PLAN_C], AGREEMENT_CODES_FOR_PLANS[PLAN_C]))
 
     developer  = OneToOneField  ( get_user_model(), on_delete=CASCADE, related_name="acknowledgement", )
 
-    plan             = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "plan"),                                           choices=PLANS, db_index=True, )
-    signature        = CharField                  ( pgettext_lazy("Model field", "signature"),       max_length=200,                                              )
-    acknowledged_at  = DateTimeField              ( pgettext_lazy("Model field", "acknowledged at"), auto_now_add=True,                                           )
-    ip_address       = GenericIPAddressField      ( pgettext_lazy("Model field", "ip address"),      protocol="IPv4",                                             )
-    user_agent       = CharField                  ( pgettext_lazy("Model field", "user agent"),      max_length=200,    blank=True,                               )
+    plan             = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "plan"),                                           choices=PLANS,           db_index=True, )
+    agreement_code   = CharField                  ( pgettext_lazy("Model field", "agreement code"),  max_length=32,                 choices=AGREEMENT_CODES, db_index=True, )
+    signature        = CharField                  ( pgettext_lazy("Model field", "signature"),       max_length=200,                                                        )
+    acknowledged_at  = DateTimeField              ( pgettext_lazy("Model field", "acknowledged at"), auto_now_add=True,                                                     )
+    ip_address       = GenericIPAddressField      ( pgettext_lazy("Model field", "ip address"),      protocol="IPv4",                                                       )
+    user_agent       = CharField                  ( pgettext_lazy("Model field", "user agent"),      max_length=200,    blank=True,                                         )
 
     class Meta:
         default_permissions = ()
