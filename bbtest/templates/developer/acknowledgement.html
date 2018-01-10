@@ -93,21 +93,35 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" data-bb-submit data-agreement-close>&times;</button>
-                        <h4 class="modal-title text-center">{% trans 'Agreement' context '/developer/acknowledgement/' %}</h4>
+                        <h4 class="modal-title text-center text-uppercase">{% trans 'Agreement' context '/developer/acknowledgement/' %}</h4>
                     </div>
-                    <div class="modal-body hidden" data-agreement-text="{{ plan_a.agreement_code }}">{{ plan_a.agreement_text|safe }}</div>
-                    <div class="modal-body hidden" data-agreement-text="{{ plan_b.agreement_code }}">{{ plan_b.agreement_text|safe }}</div>
-                    <div class="modal-body hidden" data-agreement-text="{{ plan_c.agreement_code }}">{{ plan_c.agreement_text|safe }}</div>
-                    <div class="modal-footer">
-                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" data-agreement-read> {% trans 'I have read the agreement' context '/developer/acknowledgement/' %}
-                                </label>
-                            </div>
+                    <div class="modal-body hidden" data-agreement-text="{{ plan_a.agreement_code }}">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-10 col-sm-offset-1">{{ plan_a.agreement_text|safe }}</div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
-                            <button type="button" class="btn btn-success btn-block btn-lg" data-agreement-accept disabled data-bb-submit>{% trans 'Accept' context '/developer/acknowledgement/' %}</button>
+                    </div>
+                    <div class="modal-body hidden" data-agreement-text="{{ plan_b.agreement_code }}">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-10 col-sm-offset-1">{{ plan_b.agreement_text|safe }}</div>
+                        </div>
+                    </div>
+                    <div class="modal-body hidden" data-agreement-text="{{ plan_c.agreement_code }}">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-10 col-sm-offset-1">{{ plan_c.agreement_text|safe }}</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-left">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" data-agreement-read> {% trans 'I have read the agreement' context '/developer/acknowledgement/' %}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+                                <button type="button" class="btn btn-success btn-block btn-lg" data-agreement-accept disabled data-bb-submit>{% trans 'Accept' context '/developer/acknowledgement/' %}</button>
+                            </div>
                         </div>
                     </div>
                 </div>

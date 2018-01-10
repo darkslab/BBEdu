@@ -54,6 +54,10 @@
 .pr-30   { padding-right:    30px !important; }
 .pb-30   { padding-bottom:   30px !important; }
 .pl-30   { padding-left:     30px !important; }
+.text-normal {
+    line-height: normal;
+    letter-spacing: normal;
+}
 .text-bright {
     color: rgba(237, 244, 247, 1);
 }
