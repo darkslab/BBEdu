@@ -124,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "ru"
 LANGUAGES = [
-    ("kk", "Kazakh"),
+    # ("kk", "Kazakh"),
     ("ru", "Russian"),
 ]
 LOCALE_PATHS = [
