@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-01-08 14:38+0600\n"
-"PO-Revision-Date: 2018-01-05 11:12+0600\n"
+"POT-Creation-Date: 2018-01-11 12:14+0600\n"
+"PO-Revision-Date: 2018-01-10 22:18-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.4\n"
 
 msgctxt "Form label"
 msgid "Email"
@@ -174,7 +174,19 @@ msgstr "Пожалуйста, выберите тарифный план."
 
 msgctxt "Validation error"
 msgid "Incorrect plan value."
-msgstr "тарифный план."
+msgstr "Неверный тарифный план."
+
+msgctxt "Validation error"
+msgid "Please select agreement code."
+msgstr "Пожалуйста, выберите код публичной оферты."
+
+msgctxt "Validation error"
+msgid "Incorrect agreement code value."
+msgstr "Неверный код публичной оферты."
+
+msgctxt "Validation error"
+msgid "Agreement code does not match the plan."
+msgstr "Код публичной оферты не соответствует тарифному плану."
 
 msgctxt "Form label"
 msgid "Confirm password"
@@ -190,7 +202,7 @@ msgstr "Пожалуйста, введите Ваше имя."
 
 msgctxt "Validation error"
 msgid "First name is too long."
-msgstr "Слишком длинное имя"
+msgstr "Слишком длинное имя."
 
 msgctxt "Validation error"
 msgid "Please enter last name."
@@ -402,7 +414,7 @@ msgid "Sports"
 msgstr "Спорт"
 
 msgid "Art"
-msgstr "Исскуство "
+msgstr "Искуство"
 
 msgid "Health"
 msgstr "Здоровье"
@@ -460,11 +472,15 @@ msgstr "Выгодный"
 
 msgctxt "Model field"
 msgid "plan"
-msgstr "Тарифный план"
+msgstr "тарифный план"
+
+msgctxt "Model field"
+msgid "agreement code"
+msgstr "код публичной оферты"
 
 msgctxt "Model field"
 msgid "signature"
-msgstr "Подпись"
+msgstr "подпись"
 
 msgctxt "Model field"
 msgid "acknowledged at"
@@ -750,14 +766,11 @@ msgstr "Черновая версия"
 
 msgctxt "/developer/"
 msgid "Edit"
-msgstr "редактировать"
+msgstr "Редактировать"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Previous"
 msgctxt "/developer/"
 msgid "Preview"
-msgstr "Предыдущий"
+msgstr "Просмотреть"
 
 msgctxt "/developer/"
 msgid "Delete"
@@ -896,16 +909,13 @@ msgctxt "Developer tools"
 msgid "No"
 msgstr "Нет"
 
-#, fuzzy
-#| msgctxt "Form button"
-#| msgid "Save"
 msgctxt "Developer tools"
 msgid "Saved"
-msgstr "Сохранить"
+msgstr "Сохранено"
 
 msgctxt "Developer tools"
 msgid "Formulas"
-msgstr ""
+msgstr "Формулы"
 
 msgctxt "Page title"
 msgid "Create Test"
@@ -950,6 +960,56 @@ msgstr ""
 msgctxt "Bottom copyright"
 msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
 msgstr "Сделано с %(heart_icon)s в Казахстане. %(copyright_code)s bbTest.kz"
+
+#, python-format
+msgctxt "Splash page title"
+msgid "bbTest.kz %(dash_code)s Powerful and simple online testing platform"
+msgstr ""
+"bbTest.kz %(dash_code)s Самая простая и удобная платформа онлайн тестирования"
+
+#, python-format
+msgctxt "Splash page description"
+msgid ""
+"bbTest.kz %(dash_code)s Powerful and simple online testing platform. Coming "
+"soon..."
+msgstr ""
+"bbTest.kz %(dash_code)s Самая простая и удобная платформа онлайн "
+"тестирования. Уже скоро…"
+
+#, python-format
+msgctxt "Splash page content"
+msgid ""
+"%(quote_code)sPowerful and simple online testing platform.%(quote_code)s"
+msgstr ""
+"%(quote_code)sСамая простая и удобная платформа онлайн тестирования."
+"%(quote_code)s"
+
+#, python-format
+msgctxt "Splash page content"
+msgid ""
+"%(quote_code)sThorough testing, productive results, personal approach."
+"%(quote_code)s"
+msgstr ""
+"%(quote_code)sКачественные тесты, расширенные результаты, индивидуальный "
+"подход к каждому.%(quote_code)s"
+
+msgctxt "Splash page content"
+msgid "coming soon..."
+msgstr "уже скоро…"
+
+msgctxt "Splash page content"
+msgid "Leave your email and you will be the first to know when we are live!"
+msgstr ""
+"Оставьте нам свою электронную почту и Вы первым узнаете когда сайт будет "
+"запущен."
+
+msgctxt "Splash page content"
+msgid "Your Email"
+msgstr "Электронная почта"
+
+msgctxt "Splash page button"
+msgid "Send"
+msgstr "Отправить"
 
 msgctxt "Page title"
 msgid "Login"

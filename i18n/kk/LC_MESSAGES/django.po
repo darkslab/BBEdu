@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-01-08 14:38+0600\n"
+"POT-Creation-Date: 2018-01-11 12:14+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -225,6 +225,24 @@ msgstr "Тегіңізді енгізіңіз."
 msgctxt "Validation error"
 msgid "Incorrect plan value."
 msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter email."
+msgctxt "Validation error"
+msgid "Please select agreement code."
+msgstr "Электрондық поштаңызды енгізіңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect agreement code value."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "Validation error"
+msgid "Agreement code does not match the plan."
+msgstr ""
 
 msgctxt "Form label"
 msgid "Confirm password"
@@ -570,6 +588,10 @@ msgstr ""
 
 msgctxt "Model field"
 msgid "plan"
+msgstr ""
+
+msgctxt "Model field"
+msgid "agreement code"
 msgstr ""
 
 msgctxt "Model field"
@@ -1073,6 +1095,53 @@ msgstr ""
 msgctxt "Bottom copyright"
 msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
 msgstr "Қазақстанда %(heart_icon)s-пен жасалған. %(copyright_code)s bbTest.kz"
+
+#, python-format
+msgctxt "Splash page title"
+msgid "bbTest.kz %(dash_code)s Powerful and simple online testing platform"
+msgstr ""
+
+#, python-format
+msgctxt "Splash page description"
+msgid ""
+"bbTest.kz %(dash_code)s Powerful and simple online testing platform. Coming "
+"soon..."
+msgstr ""
+
+#, python-format
+msgctxt "Splash page content"
+msgid ""
+"%(quote_code)sPowerful and simple online testing platform.%(quote_code)s"
+msgstr ""
+
+#, python-format
+msgctxt "Splash page content"
+msgid ""
+"%(quote_code)sThorough testing, productive results, personal approach."
+"%(quote_code)s"
+msgstr ""
+
+msgctxt "Splash page content"
+msgid "coming soon..."
+msgstr ""
+
+msgctxt "Splash page content"
+msgid "Leave your email and you will be the first to know when we are live!"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Email"
+msgctxt "Splash page content"
+msgid "Your Email"
+msgstr "Электрондық пошта"
+
+#, fuzzy
+#| msgctxt "Form button"
+#| msgid "Send"
+msgctxt "Splash page button"
+msgid "Send"
+msgstr "Жіберу"
 
 msgctxt "Page title"
 msgid "Login"

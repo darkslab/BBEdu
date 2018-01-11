@@ -2,12 +2,25 @@ from django.views.generic import TemplateView, RedirectView, FormView
 from django.shortcuts import resolve_url
 from django.urls import reverse_lazy
 from django.contrib.auth import login
+from django.urls import reverse
+from urllib.parse import urlencode
 from bbtest.auth.mixins import LoginRequiredMixin
 from bbtest.forms.user import SettingsForm
+from bbtest.forms.subscription import SubscriptionForm
 
 
-class HomeView(TemplateView):
+class HomeView(FormView):
     template_name = "home.html"
+    form_class = SubscriptionForm
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return "%s?%s" % (reverse("bbtest:home"), urlencode({
+            "subscribed": "true",
+        }))
 
 
 class DashboardView(LoginRequiredMixin, RedirectView):
