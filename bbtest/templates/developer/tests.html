@@ -84,9 +84,13 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal" data-specification-close>&times;</button>
-                                                                <h4 class="modal-title">{% trans 'Test Specification' context '/developer/tests/' %}</h4>
+                                                                <h4 class="modal-title text-center">{% trans 'Test Specification' context '/developer/tests/' %}</h4>
                                                             </div>
-                                                            <div class="modal-body">{{ specification|safe }}</div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-xs-12 col-sm-10 col-sm-offset-1">{{ specification|safe }}</div>
+                                                                </div>
+                                                            </div>
                                                             <div class="modal-footer text-center">
                                                                 <div class="row">
                                                                     <div class="col-xs-12 text-center">
