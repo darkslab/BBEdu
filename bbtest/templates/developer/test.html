@@ -62,6 +62,29 @@
             moduleDataStack.push(moduleData);
         })();
     </script>
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="[data-specification-modal]">{% trans 'Test Specification' context 'Developer tools' %}</button>
+            <div class="modal fade" data-specification-modal>
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" data-specification-close>&times;</button>
+                            <h4 class="modal-title text-center">{% trans 'Test Specification' context 'Developer tools' %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">{{ specification|safe }}</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' context 'Developer tools' %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="root">
         <div class="row">
             <div class="col-xs-12 bb-developer-container">

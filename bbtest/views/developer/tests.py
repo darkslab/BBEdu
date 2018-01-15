@@ -90,6 +90,7 @@ class TestView(DeveloperLoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         kwargs["test"] = get_test_or_404(self.request.user, kwargs.get("code"))
         kwargs["section_name"] = _(kwargs["test"].section.name)
+        kwargs["specification"] = kwargs["test"].section.specification[kwargs["test"].language][get_language()]
         question_ids = []
         for data in kwargs["test"].questions.values("id").order_by("order"):
             question_ids.append(data["id"])
