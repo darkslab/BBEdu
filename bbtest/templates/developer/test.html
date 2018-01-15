@@ -16,6 +16,7 @@
                         questionIds: {{ question_ids|safe }},
                         paragraphsUrl: "{% url 'bbtest:developer_paragraphs' code %}",
                         attributesUrl: "{% url 'bbtest:developer_attributes' code %}",
+                        dashboardUrl: "{% url 'bbtest:developer_dashboard' %}",
                         texts: {
                             error:                                               "{% trans 'There was an error, please reload the page.'            context 'Developer tools' %}",
                             question:                                            "{% trans 'Question'                                               context 'Developer tools' %}",
@@ -44,7 +45,8 @@
                             deleteModalYesCaption:                               "{% trans 'Yes'                                                    context 'Developer tools' %}",
                             deleteModalNoCaption:                                "{% trans 'No'                                                     context 'Developer tools' %}",
                             saved:                                               "{% trans 'Saved'                                                  context 'Developer tools' %}",
-                            controlFormulasButton:                               "{% trans 'Formulas'                                               context 'Developer tools' %}"
+                            controlFormulasButton:                               "{% trans 'Formulas'                                               context 'Developer tools' %}",
+                            saveAndExitButton:                                   "{% trans 'Save and Exit'                                          context 'Developer tools' %}"
                         },
                         ability: undefined
                     }
@@ -63,7 +65,7 @@
         })();
     </script>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 mb-5">
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="[data-specification-modal]">{% trans 'Test Specification' context 'Developer tools' %}</button>
             <div class="modal fade" data-specification-modal>
                 <div class="modal-dialog modal-lg">
