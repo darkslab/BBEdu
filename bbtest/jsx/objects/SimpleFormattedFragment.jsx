@@ -82,6 +82,23 @@ class _FormattedNestedSet {
             } else {
                 let string = this._string.substring(ranges[i].start, ranges[i].end);
                 if (string.length) {
+                    let parts = string.split("  \n");
+                    if (parts.length > 1) {
+                        string = [];
+                        let j = 0;
+                        string.push(
+                            <React.Fragment key={j++}>{parts.shift()}</React.Fragment>
+                        );
+                        let part;
+                        while (part = parts.shift()) {
+                            string.push(
+                                <React.Fragment key={j++}><br /></React.Fragment>
+                            );
+                            string.push(
+                                <React.Fragment key={j++}>{part}</React.Fragment>
+                            );
+                        }
+                    }
                     elems.push(
                         <React.Fragment key={i}>{string}</React.Fragment>
                     );

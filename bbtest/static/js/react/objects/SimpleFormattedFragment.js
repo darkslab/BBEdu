@@ -102,6 +102,29 @@ var _FormattedNestedSet = function () {
                 } else {
                     var string = this._string.substring(ranges[_i].start, ranges[_i].end);
                     if (string.length) {
+                        var parts = string.split("  \n");
+                        if (parts.length > 1) {
+                            string = [];
+                            var j = 0;
+                            string.push(React.createElement(
+                                React.Fragment,
+                                { key: j++ },
+                                parts.shift()
+                            ));
+                            var part = void 0;
+                            while (part = parts.shift()) {
+                                string.push(React.createElement(
+                                    React.Fragment,
+                                    { key: j++ },
+                                    React.createElement("br", null)
+                                ));
+                                string.push(React.createElement(
+                                    React.Fragment,
+                                    { key: j++ },
+                                    part
+                                ));
+                            }
+                        }
                         elems.push(React.createElement(
                             React.Fragment,
                             { key: _i },
