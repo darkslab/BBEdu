@@ -29,28 +29,45 @@ class TestsView(DeveloperLoginRequiredMixin, DeveloperAcknowledgementRequiredMix
         for section in kwargs["nis"].sections.all():
             data = {
                 "section": section,
-                "specification": None,
-                "languages_title": None,
-                "languages": [],
+                "language": None,
+                "specification": {},
             }
 
             if section.id in (9540, 9544):
-                data["languages_title"] = pgettext("/developer/tests/", "Choose test language")
+                data["language"] = {
+                    "title": pgettext("/developer/tests/", "Choose test language"),
+                    "choices": [],
+                }
                 for language in Test.LANGUAGES:
                     if language[0] == Test.LANGUAGE_XX:
                         continue
-                    data["languages"].append(language)
-            elif section.id == 9541:
-                data["languages_title"] = pgettext("/developer/tests/", "Choose type")
-                data["languages"].append((Test.LANGUAGE_KK, pgettext("Test language", "Kazakh 1")))
-                data["languages"].append((Test.LANGUAGE_RU, pgettext("Test language", "Kazakh 2")))
-            elif section.id == 9542:
-                data["languages_title"] = pgettext("/developer/tests/", "Choose type")
-                data["languages"].append((Test.LANGUAGE_RU, pgettext("Test language", "Russian 1")))
-                data["languages"].append((Test.LANGUAGE_KK, pgettext("Test language", "Russian 2")))
+                    data["language"]["choices"].append(language)
+                    data["specification"][language[0]] = section.specification[language[0]][get_language()]
 
-            if section.specification and get_language() in section.specification:
-                data["specification"] = section.specification[get_language()]
+            elif section.id == 9541:
+                data["language"] = {
+                    "title": pgettext("/developer/tests/", "Choose type"),
+                    "choices": [
+                        (Test.LANGUAGE_KK, pgettext("Test language", "Kazakh 1")),
+                        (Test.LANGUAGE_RU, pgettext("Test language", "Kazakh 2")),
+                    ],
+                }
+                data["specification"][Test.LANGUAGE_KK] = section.specification[Test.LANGUAGE_KK][get_language()]
+                data["specification"][Test.LANGUAGE_RU] = section.specification[Test.LANGUAGE_RU][get_language()]
+
+            elif section.id == 9542:
+                data["language"] = {
+                    "title": pgettext("/developer/tests/", "Choose type"),
+                    "choices": [
+                        (Test.LANGUAGE_RU, pgettext("Test language", "Russian 1")),
+                        (Test.LANGUAGE_KK, pgettext("Test language", "Russian 2")),
+                    ],
+                }
+                data["specification"][Test.LANGUAGE_RU] = section.specification[Test.LANGUAGE_RU][get_language()]
+                data["specification"][Test.LANGUAGE_KK] = section.specification[Test.LANGUAGE_KK][get_language()]
+
+            elif section.id == 9543:
+                data["specification"][Test.LANGUAGE_XX] = section.specification[Test.LANGUAGE_XX][get_language()]
 
             kwargs["nis_data"].append(data)
 
@@ -73,6 +90,7 @@ class TestView(DeveloperLoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         kwargs["test"] = get_test_or_404(self.request.user, kwargs.get("code"))
         kwargs["section_name"] = _(kwargs["test"].section.name)
+        kwargs["specification"] = kwargs["test"].section.specification[kwargs["test"].language][get_language()]
         question_ids = []
         for data in kwargs["test"].questions.values("id").order_by("order"):
             question_ids.append(data["id"])

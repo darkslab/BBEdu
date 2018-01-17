@@ -31,6 +31,7 @@ var DeveloperTest = function (_React$Component) {
             question: null,
             attributes: null
         };
+        _this._finalSave = false;
 
         _this._boundConfirmIsSaved = _this._confirmIsSaved.bind(_this);
         _this._boundConfirmIsSavedTurbolinks = _this._confirmIsSavedTurbolinks.bind(_this);
@@ -88,8 +89,8 @@ var DeveloperTest = function (_React$Component) {
             }
 
             var pagination = null;
-            if (!this.state.isErrored && !this.state.isTestLoading) {
-                var width = 5;
+            if (!this.state.isErrored && !this.state.isTestLoading && !this._finalSave) {
+                var width = 6;
                 if (width < 1) {
                     width = 1;
                 } else if (width > this.props.questionIds.length) {
@@ -194,10 +195,10 @@ var DeveloperTest = function (_React$Component) {
                 }
                 pagination = React.createElement(
                     "div",
-                    { className: "col-xs-12 text-right" },
+                    { className: "col-xs-12 col-sm-6 text-center" },
                     React.createElement(
                         "ul",
-                        { className: "pagination mt-5 mb-5" },
+                        { className: "pagination pagination-sm mt-0 mb-0" },
                         paginationElements
                     )
                 );
@@ -206,6 +207,18 @@ var DeveloperTest = function (_React$Component) {
             return React.createElement(
                 "div",
                 { className: "row" },
+                React.createElement(
+                    "div",
+                    { className: "col-xs-12 col-sm-6 mb-5" },
+                    React.createElement(
+                        "button",
+                        { type: "button",
+                            disabled: this.state.isQuestionSaving,
+                            className: "btn btn-success",
+                            onClick: this._saveAndExit.bind(this) },
+                        this.props.texts.saveAndExitButton
+                    )
+                ),
                 pagination,
                 React.createElement(
                     "div",
@@ -213,6 +226,22 @@ var DeveloperTest = function (_React$Component) {
                     content
                 )
             );
+        }
+    }, {
+        key: "_saveAndExit",
+        value: function _saveAndExit() {
+            if (!this._questionObject) {
+                return;
+            }
+            this.setState({
+                isQuestionSaving: true
+            });
+            this._finalSave = true;
+            var object = this._questionObject;
+            this._questionObject = null;
+            this._abilityObject = null;
+            object.save("test", this._questionLastSave.bind(this));
+            this._oldQuestionObjects.push(object);
         }
     }, {
         key: "_nextQuestion",
@@ -285,6 +314,22 @@ var DeveloperTest = function (_React$Component) {
             this.setState({
                 isQuestionSaving: false
             });
+        }
+    }, {
+        key: "_questionLastSave",
+        value: function _questionLastSave(success, object) {
+            var index = this._oldQuestionObjects.indexOf(object);
+            if (index > -1) {
+                this._oldQuestionObjects.splice(index, 1);
+            }
+
+            if (!success || this._oldQuestionObjects.length) {
+                this._errorOut();
+                return;
+            }
+
+            $(document).off("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
+            Turbolinks.visit(this.props.dashboardUrl);
         }
     }, {
         key: "_getQuestionData",

@@ -122,10 +122,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = "ru"
+BB_LANGUAGE_CODE_KK = "kk"
+BB_LANGUAGE_CODE_RU = "ru"
+
+LANGUAGE_CODE = BB_LANGUAGE_CODE_RU
 LANGUAGES = [
-    # ("kk", "Kazakh"),
-    ("ru", "Russian"),
+    # (BB_LANGUAGE_CODE_KK, "Kazakh"),
+    (BB_LANGUAGE_CODE_RU, "Russian"),
 ]
 LOCALE_PATHS = [
     str(BASE_DIR_PATH / "i18n"),

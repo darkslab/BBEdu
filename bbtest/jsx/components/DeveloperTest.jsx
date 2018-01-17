@@ -16,6 +16,7 @@ class DeveloperTest extends React.Component {
             question: null,
             attributes: null
         };
+        this._finalSave = false;
 
         this._boundConfirmIsSaved = this._confirmIsSaved.bind(this);
         this._boundConfirmIsSavedTurbolinks = this._confirmIsSavedTurbolinks.bind(this);
@@ -67,8 +68,8 @@ class DeveloperTest extends React.Component {
         }
 
         let pagination = null;
-        if (!this.state.isErrored && !this.state.isTestLoading) {
-            let width = 5;
+        if (!this.state.isErrored && !this.state.isTestLoading && !this._finalSave) {
+            let width = 6;
             if (width < 1) {
                 width = 1;
             } else if (width > this.props.questionIds.length) {
@@ -148,20 +149,40 @@ class DeveloperTest extends React.Component {
                 );
             }
             pagination = (
-                <div className="col-xs-12 text-right">
-                    <ul className="pagination mt-5 mb-5">{paginationElements}</ul>
+                <div className="col-xs-12 col-sm-6 text-center">
+                    <ul className="pagination pagination-sm mt-0 mb-0">{paginationElements}</ul>
                 </div>
             );
         }
 
         return (
             <div className="row">
+                <div className="col-xs-12 col-sm-6 mb-5">
+                    <button type="button"
+                            disabled={this.state.isQuestionSaving}
+                            className="btn btn-success"
+                            onClick={this._saveAndExit.bind(this)}>{this.props.texts.saveAndExitButton}</button>
+                </div>
                 {pagination}
                 <div className="col-xs-12 bb-developer-container">
                     {content}
                 </div>
             </div>
         );
+    }
+    _saveAndExit() {
+        if (!this._questionObject) {
+            return;
+        }
+        this.setState({
+            isQuestionSaving: true
+        });
+        this._finalSave = true;
+        let object = this._questionObject;
+        this._questionObject = null;
+        this._abilityObject = null;
+        object.save("test", this._questionLastSave.bind(this));
+        this._oldQuestionObjects.push(object);
     }
     _nextQuestion(index) {
         this.setState({
@@ -230,6 +251,20 @@ class DeveloperTest extends React.Component {
         this.setState({
             isQuestionSaving: false
         });
+    }
+    _questionLastSave(success, object) {
+        let index = this._oldQuestionObjects.indexOf(object);
+        if (index > -1) {
+            this._oldQuestionObjects.splice(index, 1);
+        }
+
+        if (!success || this._oldQuestionObjects.length) {
+            this._errorOut();
+            return;
+        }
+
+        $(document).off("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
+        Turbolinks.visit(this.props.dashboardUrl);
     }
     _getQuestionData(index) {
         this.setState({

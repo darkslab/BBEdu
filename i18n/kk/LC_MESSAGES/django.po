@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-01-11 12:14+0600\n"
+"POT-Creation-Date: 2018-01-17 11:37+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1048,6 +1048,18 @@ msgctxt "Developer tools"
 msgid "Formulas"
 msgstr ""
 
+msgctxt "Developer tools"
+msgid "Save and Exit"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Test Specification"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Close"
+msgstr ""
+
 #, fuzzy
 #| msgctxt "Model field"
 #| msgid "created at"
@@ -1063,9 +1075,12 @@ msgctxt "/developer/tests/"
 msgid "Test Specification"
 msgstr ""
 
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "created at"
 msgctxt "/developer/tests/"
-msgid "Close"
-msgstr ""
+msgid "Create Test"
+msgstr "жасалған уақыты"
 
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"
