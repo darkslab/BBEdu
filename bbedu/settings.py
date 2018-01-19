@@ -24,7 +24,7 @@ VERSION = "dev"
 if match(r"^v\d\.\d\.\d", BASE_DIR_PATH.name):
     VERSION = BASE_DIR_PATH.name
 try:
-    with (BASE_DIR_PATH / "settings.json").open() as settings_file:
+    with (BASE_DIR_PATH / "secrets.json").open() as settings_file:
         SECRETS = load(settings_file)
 except (OSError, ValueError):
     pass
@@ -33,12 +33,12 @@ except (OSError, ValueError):
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRETS.get("SECRET_KEY", "secret")
+SECRET_KEY = SECRETS["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = SECRETS.get("DEBUG", True)
+DEBUG = SECRETS["DEBUG"]
 
-ALLOWED_HOSTS = SECRETS.get("ALLOWED_HOSTS", ["*"])
+ALLOWED_HOSTS = SECRETS["ALLOWED_HOSTS"]
 
 
 # Application definition
@@ -95,10 +95,10 @@ WSGI_APPLICATION = 'bbedu.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.mysql",
-        "HOST": SECRETS.get("DATABASES_DEFAULT_HOST", "bbedu"),
-        "NAME": SECRETS.get("DATABASES_DEFAULT_NAME", "bbtest"),
-        "USER": SECRETS.get("DATABASES_DEFAULT_USER", "root"),
-        "PASSWORD": SECRETS.get("DATABASES_DEFAULT_PASSWORD", "monkey"),
+        "HOST": SECRETS["DATABASES_DEFAULT_HOST"],
+        "NAME": SECRETS["DATABASES_DEFAULT_NAME"],
+        "USER": SECRETS["DATABASES_DEFAULT_USER"],
+        "PASSWORD": SECRETS["DATABASES_DEFAULT_PASSWORD"],
     }
 }
 
@@ -225,13 +225,13 @@ LOGOUT_REDIRECT_URL = "/"
 BB_REDIRECT_FIELDNAME = "r"
 
 if not DEBUG:
-    CSRF_COOKIE_SECURE = SECRETS.get("CSRF_COOKIE_SECURE", False)
-    SESSION_COOKIE_SECURE = SECRETS.get("SESSION_COOKIE_SECURE", False)
-    SECURE_CONTENT_TYPE_NOSNIFF = SECRETS.get("SECURE_CONTENT_TYPE_NOSNIFF", False)
-    SECURE_BROWSER_XSS_FILTER = SECRETS.get("SECURE_BROWSER_XSS_FILTER", False)
-    SECURE_SSL_REDIRECT = SECRETS.get("SECURE_SSL_REDIRECT", False)
+    CSRF_COOKIE_SECURE = SECRETS["CSRF_COOKIE_SECURE"]
+    SESSION_COOKIE_SECURE = SECRETS["SESSION_COOKIE_SECURE"]
+    SECURE_CONTENT_TYPE_NOSNIFF = SECRETS["SECURE_CONTENT_TYPE_NOSNIFF"]
+    SECURE_BROWSER_XSS_FILTER = SECRETS["SECURE_BROWSER_XSS_FILTER"]
+    SECURE_SSL_REDIRECT = SECRETS["SECURE_SSL_REDIRECT"]
 
-    CONN_MAX_AGE = SECRETS.get("CONN_MAX_AGE", 0)
+    CONN_MAX_AGE = SECRETS["CONN_MAX_AGE"]
 
     SILENCED_SYSTEM_CHECKS = [
         "security.W004",
@@ -321,16 +321,16 @@ if DEBUG:
     EMAIL_PORT = 1025
 else:
     EMAIL_BACKEND = "bbtest.mail.backends.async.EmailBackend"
-    AWS_ACCESS_KEY_ID = SECRETS.get("AWS_ACCESS_KEY_ID", None)
-    AWS_SECRET_ACCESS_KEY = SECRETS.get("AWS_SECRET_ACCESS_KEY", None)
-    AWS_REGION_NAME = SECRETS.get("AWS_REGION_NAME", None)
+    AWS_ACCESS_KEY_ID = SECRETS["AWS_ACCESS_KEY_ID"]
+    AWS_SECRET_ACCESS_KEY = SECRETS["AWS_SECRET_ACCESS_KEY"]
+    AWS_REGION_NAME = SECRETS["AWS_REGION_NAME"]
 
 RQ_QUEUES = {
     "default": {
-        "HOST": SECRETS.get("BROKER_HOST", "bbedu"),
+        "HOST": SECRETS["BROKER_HOST"],
         "PORT": 6379,
         "DB": 0,
-        "PASSWORD": SECRETS.get("BROKER_PASSWORD", "monkey"),
+        "PASSWORD": SECRETS["BROKER_PASSWORD"],
         "DEFAULT_TIMEOUT": 300,
     },
 }
