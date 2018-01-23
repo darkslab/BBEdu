@@ -1,6 +1,9 @@
 from django.conf.urls import url
 from .auth.views import LoginView, LogoutView, RegisterView, PasswordResetView, PasswordResetConfirmView
-from .views import HomeView, DashboardView, SettingsView
+from .views import (
+    HomeView, DashboardView, SettingsView,
+    UploadStartView, UploadCompleteView, UploadAdoptView,
+)
 from .views.student import DashboardView as StudentDashboardView
 from .views.developer import (
     DashboardView as DeveloperDashboardView,
@@ -22,6 +25,11 @@ urlpatterns = [
     # USER URLS
     url(r"^dashboard/$", DashboardView.as_view(), name="dashboard"),
     url(r"^settings/$", SettingsView.as_view(), name="settings"),
+
+    # UPLOAD URLS
+    url(r"^uploads/start/$", UploadStartView.as_view(), name="upload_start"),
+    url(r"^uploads/(?P<uuid>[0-9A-Fa-f]{32})/complete/$", UploadCompleteView.as_view(), name="upload_complete"),
+    url(r"^uploads/(?P<uuid>[0-9A-Fa-f]{32})/adopt/$", UploadAdoptView.as_view(), name="upload_adopt"),
 
     # STUDENT URLS
     url(r"^student/$", StudentDashboardView.as_view(), name="student_dashboard"),

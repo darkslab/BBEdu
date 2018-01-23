@@ -3,3 +3,4 @@ from .email import Email
 from .test import TestDomain, TestSection, TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, Test, TestQuestion, TestParagraph, TestParagraphQuestion
 from .acknowledgement import DeveloperAcknowledgement
 from .subscription import Subscription
+from .upload import Upload, Asset
