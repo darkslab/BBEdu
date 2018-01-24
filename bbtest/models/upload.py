@@ -1,8 +1,9 @@
-from django.db.models import Model, CharField, DateTimeField, BigIntegerField, BooleanField, URLField
+from django.db.models import Manager, Model, CharField, DateTimeField, BigIntegerField, BooleanField, URLField
 from django.utils.translation import pgettext_lazy
 from django.conf import settings
 from google.oauth2.service_account import Credentials
 from google.cloud.storage import Client
+from uuid import uuid4
 from .fields import JSONField
 
 
@@ -12,6 +13,11 @@ def storage_bucket():
         credentials=Credentials.from_service_account_info(settings.SECRETS["GOOGLE_SERVICE_ACCOUNT_CREDENTIALS"]),
     ).bucket(settings.SECRETS["GOOGLE_STORAGE_BUCKET"])
 
+
+class UploadingObjectsManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(expire_at__isnull=False)
+
 class Upload(Model):
     uuid              = CharField        ( pgettext_lazy("Model field", "uuid"),              max_length=32,                                         primary_key=True, )
     expire_at         = DateTimeField    ( pgettext_lazy("Model field", "expire at"),                          null=True, blank=True, db_index=True,                   )
@@ -20,6 +26,9 @@ class Upload(Model):
     file_name         = CharField        ( pgettext_lazy("Model field", "file name"),         max_length=200,                                                          )
     file_size         = BigIntegerField  ( pgettext_lazy("Model field", "file size"),                                                                                  )
     file_type         = CharField        ( pgettext_lazy("Model field", "file content type"), max_length=200,             blank=True,                                  )
+
+    objects = Manager()
+    uploading_objects = UploadingObjectsManager()
 
     class Meta:
         default_permissions = ()
@@ -32,12 +41,31 @@ class Upload(Model):
     def is_uploading(self):
         return self.expire_at is not None
 
+    def is_uploaded(self):
+        if not self.uuid:
+            return False
+        return self.__blob().exists()
+
     def generate_upload_url(self, origin):
         if not self.uuid or not self.file_size:
             return None
-        storage_object = storage_bucket().blob("uploads/%s" % self.uuid)
-        return storage_object.create_resumable_upload_session(size=self.file_size, origin=origin)
+        return self.__blob().create_resumable_upload_session(size=self.file_size, origin=origin)
 
+    def __blob(self):
+        if not self.uuid:
+            return None
+        return storage_bucket().blob("uploads/%s" % self.uuid)
+
+
+class AssetManager(Manager):
+    def create(self, **kwargs):
+        uuid = None
+        while True:
+            uuid = uuid4().hex
+            if not self.model.objects.filter(uuid=uuid).exists():
+                break
+        kwargs.update({"uuid": uuid})
+        return super().create(**kwargs)
 
 class Asset(Model):
     uuid          = CharField      ( pgettext_lazy("Model field", "uuid"),         max_length=32,                                                       primary_key=True, )
@@ -46,6 +74,8 @@ class Asset(Model):
     is_broken     = BooleanField   ( pgettext_lazy("Model field", "broken?"),                                                            default=False,                   )
     file_class    = CharField      ( pgettext_lazy("Model field", "file class"),   max_length=100, null=True, blank=True,                                                 )
     meta_data     = JSONField      ( pgettext_lazy("Model field", "meta data"),                    null=True, blank=True,                                                 )
+
+    objects = AssetManager()
 
     class Meta:
         default_permissions = ()
