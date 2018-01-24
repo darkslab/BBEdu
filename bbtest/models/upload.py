@@ -6,6 +6,12 @@ from google.cloud.storage import Client
 from .fields import JSONField
 
 
+def storage_bucket():
+    return Client(
+        project=settings.SECRETS["GOOGLE_SERVICE_ACCOUNT_CREDENTIALS"].get("project_id"),
+        credentials=Credentials.from_service_account_info(settings.SECRETS["GOOGLE_SERVICE_ACCOUNT_CREDENTIALS"]),
+    ).bucket(settings.SECRETS["GOOGLE_STORAGE_BUCKET"])
+
 class Upload(Model):
     uuid              = CharField        ( pgettext_lazy("Model field", "uuid"),              max_length=32,                                         primary_key=True, )
     expire_at         = DateTimeField    ( pgettext_lazy("Model field", "expire at"),                          null=True, blank=True, db_index=True,                   )
@@ -26,15 +32,11 @@ class Upload(Model):
     def is_uploading(self):
         return self.expire_at is not None
 
-    def generate_upload_url(self):
+    def generate_upload_url(self, origin):
         if not self.uuid or not self.file_size:
             return None
-        storage_client = Client(
-            project=settings.SECRETS["GOOGLE_SERVICE_ACCOUNT_CREDENTIALS"].get("project_id"),
-            credentials=Credentials.from_service_account_info(settings.SECRETS["GOOGLE_SERVICE_ACCOUNT_CREDENTIALS"]),
-        )
-        storage_object = storage_client.bucket(settings.SECRETS["GOOGLE_STORAGE_BUCKET"]).blob("uploads/%s" % self.uuid)
-        return storage_object.create_resumable_upload_session(size=self.file_size)
+        storage_object = storage_bucket().blob("uploads/%s" % self.uuid)
+        return storage_object.create_resumable_upload_session(size=self.file_size, origin=origin)
 
 
 class Asset(Model):

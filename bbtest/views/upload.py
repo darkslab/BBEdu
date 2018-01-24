@@ -8,7 +8,7 @@ from bbtest.http import TightJsonResponse
 
 class UploadStartView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        form = UploadStartForm(data=request.POST)
+        form = UploadStartForm("%s://%s" % (request.scheme, request.get_host()), data=request.POST)
         if form.is_valid():
             upload = form.save()
             try:

@@ -35,8 +35,9 @@ class UploadStartForm(ModelForm):
             },
         }
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, origin, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self._origin = origin
         self._upload_starter = None
         self._upload_starter_kwargs = {}
 
@@ -83,7 +84,7 @@ class UploadStartForm(ModelForm):
                 if not Upload.objects.filter(uuid=upload.uuid).exists():
                     break
         upload.expire_at = now() + timedelta(days=7)
-        upload.upload_url = upload.generate_upload_url()
+        upload.upload_url = upload.generate_upload_url(self._origin)
 
         if commit:
             upload.save()
