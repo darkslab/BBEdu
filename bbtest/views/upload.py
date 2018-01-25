@@ -93,7 +93,7 @@ class UploadAdoptView(LoginRequiredMixin, View):
             })
 
         try:
-            result = getattr(bbtest.asset_adopters, asset.asset_adopter)(asset)
+            result = getattr(bbtest.asset_adopters, asset.asset_adopter)(asset, **form.cleaned_data["data"])
         except Exception:
             Asset.objects.filter(uuid=asset.uuid).update(asset_adopter=asset.asset_adopter, expire_at=asset.expire_at)
             raise
