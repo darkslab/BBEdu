@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, Form
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy
 from django.utils.timezone import now
@@ -95,3 +95,29 @@ class UploadStartForm(ModelForm):
 
     def upload_starter_kwargs(self):
         return self._upload_starter_kwargs
+
+
+class UploadAdoptForm(Form):
+    error_messages = {
+        "incorrect": pgettext_lazy("Validation error", "Incorrect data."),
+    }
+
+    data = JSONField(label=pgettext_lazy("Form label", "Data"), error_messages={
+        "required": pgettext_lazy("Validation error", "Please provide data."),
+    })
+
+    def clean_data(self):
+        data = self.cleaned_data["data"]
+        try:
+            if not isinstance(data, dict):
+                raise ValueError("Incorrect data")
+            for key, value in data.items():
+                if not isinstance(value, str):
+                    raise ValueError("Incorrect data")
+
+        except ValueError:
+            raise ValidationError(
+                self.error_messages["incorrect"],
+                code="incorrect",
+            )
+        return data

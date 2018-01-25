@@ -67,6 +67,10 @@ class AssetManager(Manager):
         kwargs.update({"uuid": uuid})
         return super().create(**kwargs)
 
+class UnadoptedObjectsManager(AssetManager):
+    def get_queryset(self):
+        return super().get_queryset().filter(asset_adopter__isnull=False)
+
 class Asset(Model):
     uuid           = CharField      ( pgettext_lazy("Model field", "uuid"),          max_length=32,                                                       primary_key=True, )
     expire_at      = DateTimeField  ( pgettext_lazy("Model field", "expire at"),                     null=True, blank=True, db_index=True,                                  )
@@ -76,6 +80,7 @@ class Asset(Model):
     meta_data      = JSONField      ( pgettext_lazy("Model field", "meta data"),                     null=True, blank=True,                                                 )
 
     objects = AssetManager()
+    unadopted_objects = UnadoptedObjectsManager()
 
     class Meta:
         default_permissions = ()
@@ -84,3 +89,6 @@ class Asset(Model):
         if not self.uuid:
             return "New Asset"
         return "Asset <%s>" % self.uuid
+
+    def is_ready_for_adoption(self):
+        return self.asset_adopter is not None and self.expire_at is not None
