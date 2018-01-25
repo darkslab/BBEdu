@@ -5,6 +5,7 @@ from google.oauth2.service_account import Credentials
 from google.cloud.storage import Client
 from uuid import uuid4
 from .fields import JSONField
+from . import asset_classes
 
 
 def storage_bucket():
@@ -47,9 +48,16 @@ class Upload(Model):
         return self.__blob().exists()
 
     def generate_upload_url(self, origin):
-        if not self.uuid or not self.file_size:
+        if not self.uuid or self.file_size is None:
             return None
         return self.__blob().create_resumable_upload_session(size=self.file_size, origin=origin)
+
+    def download_to_file(self, file):
+        self.__blob().download_to_file(file)
+
+    def delete(self, **kwargs):
+        self.__blob().delete()
+        super().delete(**kwargs)
 
     def __blob(self):
         if not self.uuid:
@@ -92,3 +100,13 @@ class Asset(Model):
 
     def is_ready_for_adoption(self):
         return self.asset_adopter is not None and self.expire_at is not None
+
+    def prefix(self):
+        if not self.uuid:
+            return None
+        return "assets/%s" % self.uuid
+
+    def asset_object(self):
+        if self.asset_class is None or self.meta_data is None:
+            return None
+        return getattr(asset_classes, self.asset_class)(self, storage_bucket(), **self.meta_data)
