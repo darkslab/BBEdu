@@ -68,12 +68,12 @@ class AssetManager(Manager):
         return super().create(**kwargs)
 
 class Asset(Model):
-    uuid          = CharField      ( pgettext_lazy("Model field", "uuid"),         max_length=32,                                                       primary_key=True, )
-    expire_at     = DateTimeField  ( pgettext_lazy("Model field", "expire at"),                    null=True, blank=True, db_index=True,                                  )
-    file_adopter  = CharField      ( pgettext_lazy("Model field", "file adopter"), max_length=100, null=True, blank=True,                                                 )
-    is_broken     = BooleanField   ( pgettext_lazy("Model field", "broken?"),                                                            default=False,                   )
-    file_class    = CharField      ( pgettext_lazy("Model field", "file class"),   max_length=100, null=True, blank=True,                                                 )
-    meta_data     = JSONField      ( pgettext_lazy("Model field", "meta data"),                    null=True, blank=True,                                                 )
+    uuid           = CharField      ( pgettext_lazy("Model field", "uuid"),          max_length=32,                                                       primary_key=True, )
+    expire_at      = DateTimeField  ( pgettext_lazy("Model field", "expire at"),                     null=True, blank=True, db_index=True,                                  )
+    asset_adopter  = CharField      ( pgettext_lazy("Model field", "asset adopter"), max_length=100, null=True, blank=True,                                                 )
+    is_broken      = BooleanField   ( pgettext_lazy("Model field", "broken?"),                                                             default=False,                   )
+    asset_class    = CharField      ( pgettext_lazy("Model field", "asset class"),   max_length=100, null=True, blank=True,                                                 )
+    meta_data      = JSONField      ( pgettext_lazy("Model field", "meta data"),                     null=True, blank=True,                                                 )
 
     objects = AssetManager()
 
