@@ -52,11 +52,11 @@ class UploadCompleteView(LoginRequiredMixin, View):
             result = getattr(bbtest.upload_processors, upload.upload_processor)(upload, asset)
             asset.asset_adopter = result.get("asset_adopter", None)
             asset.save()
+            result["job"].delay(upload.uuid, asset.uuid)
         except Exception:
             asset.delete()
             Upload.objects.filter(uuid=upload.uuid).update(expire_at=upload.expire_at)
             raise
-        result["job"].delay(upload.uuid, asset.uuid)
 
         response = {
             "success": True,
