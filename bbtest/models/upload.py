@@ -1,9 +1,11 @@
 from django.db.models import Manager, Model, CharField, DateTimeField, BigIntegerField, BooleanField, URLField
 from django.utils.translation import pgettext_lazy
+from django.utils.timezone import now
 from django.conf import settings
 from google.oauth2.service_account import Credentials
 from google.cloud.storage import Client
 from uuid import uuid4
+from datetime import timedelta
 from .fields import JSONField
 from . import asset_classes
 
@@ -13,6 +15,10 @@ def storage_bucket():
         project=settings.SECRETS["GOOGLE_SERVICE_ACCOUNT_CREDENTIALS"].get("project_id"),
         credentials=Credentials.from_service_account_info(settings.SECRETS["GOOGLE_SERVICE_ACCOUNT_CREDENTIALS"]),
     ).bucket(settings.SECRETS["GOOGLE_STORAGE_BUCKET"])
+
+
+def expiring_url(asset_object_name):
+    return storage_bucket().blob(asset_object_name).generate_signed_url(now() + timedelta(days=1))
 
 
 class UploadingObjectsManager(Manager):
