@@ -154,6 +154,12 @@ var DeveloperQuestion = function (_React$Component) {
                         caption: this.props.texts.paragraphsModalButtonSplitTextParagraph
                     });
                 }
+                if (this.props.ability.canChooseImageParagraph()) {
+                    paragraphClassData.push({
+                        class: "ImageParagraph",
+                        caption: this.props.texts.paragraphsModalButtonImageParagraph
+                    });
+                }
                 modal = React.createElement(DeveloperSelectorModal, { title: this.props.texts.paragraphsModalTitle,
                     complete: this._completeModal.bind(this, "paragraphs"),
                     classData: paragraphClassData });
@@ -365,20 +371,20 @@ var DeveloperQuestion = function (_React$Component) {
                 case "paragraphs":
                     if (data) {
                         this.props.object.addParagraph(data);
+                        this._scheduleSave();
                     }
                     this.setState({
                         paragraphsModal: false
                     });
-                    this._scheduleSave();
                     break;
                 case "answers":
                     if (data) {
                         this.props.object.setAnswer(data);
+                        this._scheduleSave();
                     }
                     this.setState({
                         answersModal: false
                     });
-                    this._scheduleSave();
                     break;
             }
         }

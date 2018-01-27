@@ -107,6 +107,9 @@ class Asset(Model):
     def is_ready_for_adoption(self):
         return self.asset_adopter is not None and self.expire_at is not None
 
+    def is_adopted(self):
+        return not self.is_broken and self.asset_adopter is None and self.expire_at is None
+
     def prefix(self):
         if not self.uuid:
             return None

@@ -10,7 +10,7 @@ function DeveloperQuestionObject(id, data, paragraphs, questionUrl, paragraphsUr
             id: this._paragraphCounter++,
             token: paragraphs[i].id,
             questionIds: paragraphs[i].question_ids,
-            data: paragraphs[i].data
+            data: this._beforeLoadParagraphDataTransform(paragraphs[i].data)
         });
     }
 
@@ -82,10 +82,13 @@ DeveloperQuestionObject.prototype.save = function(context, callback) {
         var paragraphs = [];
         var i;
         for (i = 0; i < this._paragraphs.length; i++) {
+            if (this._shouldSkipParagraphSave(this._paragraphs[i].data)) {
+                continue;
+            }
             paragraphs.push({
                 id: this._paragraphs[i].token ? this._paragraphs[i].token : this._paragraphs[i].id,
                 is_new: this._paragraphs[i].token ? false : true,
-                data: this._paragraphs[i].data
+                data: this._beforeSaveParagraphDataTransform(this._paragraphs[i].data)
             });
         }
         this._contextData[context].$xhrs.push($.post({
@@ -161,6 +164,16 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
                 },
                 right: {
                     text: ""
+                }
+            };
+            break;
+        case "ImageParagraph":
+            newParagraph.data.meta_data = {
+                asset_uuid: undefined,
+                asset_url: undefined,
+                status: {
+                    mode: "waiting",
+                    progress: 0
                 }
             };
             break;
@@ -271,4 +284,51 @@ DeveloperQuestionObject.prototype._runCallback = function(context) {
     setTimeout(function() {
         callback(result, this);
     }.bind(this));
+}
+DeveloperQuestionObject.prototype._beforeLoadParagraphDataTransform = function(data) {
+    switch (data.paragraph_class) {
+        case "ImageParagraph":
+            return {
+                paragraph_class: data.paragraph_class,
+                meta_data: {
+                    asset_uuid: data.meta_data.asset_uuid,
+                    asset_url: data.meta_data.asset_url,
+                    status: {
+                        mode: "staring",
+                        progress: 100
+                    }
+                }
+            };
+            break;
+        default:
+            return data;
+            break;
+    }
+}
+DeveloperQuestionObject.prototype._beforeSaveParagraphDataTransform = function(data) {
+    switch (data.paragraph_class) {
+        case "ImageParagraph":
+            return {
+                paragraph_class: data.paragraph_class,
+                meta_data: {
+                    asset_uuid: data.meta_data.asset_uuid
+                }
+            };
+            break;
+        default:
+            return data;
+            break;
+    }
+}
+DeveloperQuestionObject.prototype._shouldSkipParagraphSave = function(data) {
+    switch (data.paragraph_class) {
+        case "ImageParagraph":
+            if (data.meta_data.status.mode !== "staring") {
+                return true;
+            }
+            break;
+        default:
+            break;
+    }
+    return false;
 }

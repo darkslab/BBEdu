@@ -22,7 +22,7 @@ def image_paragraph_processor(upload_uuid, asset_uuid):
                 background = Image.new("RGB", image.size, (255, 255, 255))
                 background.paste(image, mask=image.split()[3])
                 image = background
-            image.thumbnail((600, 600))
+            image.thumbnail((800, 400))
             with NamedTemporaryFile() as asset_file:
                 image.save(asset_file, "JPEG", quality=95)
 
