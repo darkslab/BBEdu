@@ -1,7 +1,16 @@
-function DeveloperQuestionObject(id, data, paragraphs, questionUrl, paragraphsUrl) {
+function DeveloperQuestionObject(id, data, paragraphs, questionUrl, paragraphsUrl, uploadStartUrl, spinnerLogoUrl) {
     this._id = id;
     this._data = data;
     this._paragraphs = [];
+
+    this._contextData = {};
+    this._questionUrl = questionUrl;
+    this._paragraphsUrl = paragraphsUrl;
+    this._uploadStartUrl = uploadStartUrl;
+    this._spinnerLogoUrl = spinnerLogoUrl;
+
+    this._isQuestionSaved = true;
+    this._isParagraphsSaved = true;
 
     this._paragraphCounter = 0;
     var i;
@@ -13,13 +22,6 @@ function DeveloperQuestionObject(id, data, paragraphs, questionUrl, paragraphsUr
             data: this._beforeLoadParagraphDataTransform(paragraphs[i].data)
         });
     }
-
-    this._contextData = {};
-    this._questionUrl = questionUrl;
-    this._paragraphsUrl = paragraphsUrl;
-
-    this._isQuestionSaved = true;
-    this._isParagraphsSaved = true;
 }
 DeveloperQuestionObject.prototype.difficulty = function() {
     return this._data.difficulty;
@@ -171,10 +173,10 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
             newParagraph.data.meta_data = {
                 asset_uuid: undefined,
                 asset_url: undefined,
-                status: {
-                    mode: "waiting",
-                    progress: 0
-                }
+                upload_start_url: this._uploadStartUrl,
+                spinner_logo_url: this._spinnerLogoUrl,
+                status: "waiting",
+                progress: 0
             };
             break;
     }
@@ -293,10 +295,10 @@ DeveloperQuestionObject.prototype._beforeLoadParagraphDataTransform = function(d
                 meta_data: {
                     asset_uuid: data.meta_data.asset_uuid,
                     asset_url: data.meta_data.asset_url,
-                    status: {
-                        mode: "staring",
-                        progress: 100
-                    }
+                    upload_start_url: this._uploadStartUrl,
+                    spinner_logo_url: this._spinnerLogoUrl,
+                    status: "staring",
+                    progress: 100
                 }
             };
             break;
@@ -323,7 +325,7 @@ DeveloperQuestionObject.prototype._beforeSaveParagraphDataTransform = function(d
 DeveloperQuestionObject.prototype._shouldSkipParagraphSave = function(data) {
     switch (data.paragraph_class) {
         case "ImageParagraph":
-            if (data.meta_data.status.mode !== "staring") {
+            if (data.meta_data.status !== "staring") {
                 return true;
             }
             break;

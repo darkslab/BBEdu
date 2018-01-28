@@ -20,11 +20,22 @@ var ImageParagraph = function (_React$Component) {
     _createClass(ImageParagraph, [{
         key: "render",
         value: function render() {
+            var className = "bb-test-paragraph";
+            var imgClassName = void 0;
+            var imgSrc = void 0;
+            if (this.props.data.asset_url) {
+                imgClassName = "img-responsive center-block bb-test-paragraph-image";
+                imgSrc = this.props.data.asset_url;
+            } else {
+                className += " bb-test-paragraph-image-waiting";
+                imgClassName = "bb-spinner";
+                imgSrc = this.props.data.spinner_logo_url;
+            }
+
             return React.createElement(
                 "div",
-                { className: "bb-test-paragraph" },
-                React.createElement("img", { className: "img-responsive center-block bb-test-paragraph-image",
-                    src: "/static/img/logo.png" })
+                { className: className },
+                React.createElement("img", { className: imgClassName, src: imgSrc })
             );
         }
     }]);

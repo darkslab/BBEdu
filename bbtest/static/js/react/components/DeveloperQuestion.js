@@ -40,6 +40,7 @@ var DeveloperQuestion = function (_React$Component) {
             this._$paragraphsContainer = $("[data-paragraphs]");
             this._$paragraphsContainer.sortable({
                 axis: "y",
+                cancel: "input,textarea,button,select,option,[data-bb-non-sortable]",
                 forceHelperSize: true,
                 forcePlaceholderSize: true,
                 items: "> [data-paragraph-id]",
@@ -310,9 +311,12 @@ var DeveloperQuestion = function (_React$Component) {
         }
     }, {
         key: "_paragraphChange",
-        value: function _paragraphChange(id, data) {
+        value: function _paragraphChange(id, data, skipSave) {
             this.props.object.updateParagraph(id, data);
             this._pokeComponent();
+            if (skipSave) {
+                return;
+            }
             this._scheduleSave();
         }
     }, {

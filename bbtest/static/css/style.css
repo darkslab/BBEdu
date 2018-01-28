@@ -773,6 +773,16 @@ html {
     max-height: 400px;
 }
 
+.bb-test-paragraph-image-waiting {
+    position: relative;
+    height: 200px;
+}
+
+.bb-test-paragraph-progress {
+    height: 35px;
+    cursor: pointer;
+}
+
 .bb-test-answer,
 .form-control.bb-test-answer {
     min-height: 44px;
