@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-01-17 11:37+0600\n"
+"POT-Creation-Date: 2018-01-29 03:49+0600\n"
 "PO-Revision-Date: 2018-01-16 23:12-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -295,6 +295,66 @@ msgstr "Оба значения равны."
 msgctxt "NIS Quantitative section answer"
 msgid "The relationship cannot be determined from the information given."
 msgstr "Не достаточно информации."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Incorrect data."
+msgctxt "Validation error"
+msgid "Incorrect upload starter data."
+msgstr "Данные указаны неверно."
+
+msgctxt "Form label"
+msgid "Upload starter"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Please provide meta data."
+msgctxt "Validation error"
+msgid "Please provide upload starter data."
+msgstr "Пожалуйста, предоставьте мета данные."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Please provide meta data."
+msgctxt "Validation error"
+msgid "Please provide file name."
+msgstr "Пожалуйста, предоставьте мета данные."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "First name is too long."
+msgctxt "Validation error"
+msgid "File name is too long."
+msgstr "Слишком длинное имя."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Please provide meta data."
+msgctxt "Validation error"
+msgid "Please provide file size."
+msgstr "Пожалуйста, предоставьте мета данные."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Incorrect plan value."
+msgctxt "Validation error"
+msgid "Incorrect file size value."
+msgstr "Неверный тарифный план."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "First name is too long."
+msgctxt "Validation error"
+msgid "File content type value is too long."
+msgstr "Слишком длинное имя."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Please provide meta data."
+msgctxt "Validation error"
+msgid "Please provide data."
+msgstr "Пожалуйста, предоставьте мета данные."
 
 msgctxt "Form label"
 msgid "Old password"
@@ -614,6 +674,52 @@ msgctxt "Model field"
 msgid "paragraph class"
 msgstr "текст"
 
+msgctxt "Model field"
+msgid "uuid"
+msgstr ""
+
+msgctxt "Model field"
+msgid "expire at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "upload processor"
+msgstr ""
+
+msgctxt "Model field"
+msgid "upload URL"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "first name"
+msgctxt "Model field"
+msgid "file name"
+msgstr "имя"
+
+msgctxt "Model field"
+msgid "file size"
+msgstr ""
+
+msgctxt "Model field"
+msgid "file content type"
+msgstr ""
+
+msgctxt "Model field"
+msgid "asset adopter"
+msgstr ""
+
+msgctxt "Model field"
+msgid "broken?"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "answer class"
+msgctxt "Model field"
+msgid "asset class"
+msgstr "ответ"
+
 msgctxt "Page title"
 msgid "Something went wrong"
 msgstr "Что-то пошло не так"
@@ -868,6 +974,30 @@ msgstr "Текст"
 msgctxt "Developer tools"
 msgid "Split Text Section"
 msgstr "Две колонки"
+
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "Text Section"
+msgctxt "Developer tools"
+msgid "Image Section"
+msgstr "Текст"
+
+msgctxt "Developer tools"
+msgid "Upload Image"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/password_reset/"
+#| msgid "Please provide your email to get a reset link"
+msgctxt "Developer tools"
+msgid "Please preview your image below."
+msgstr ""
+"Для получения ссылки на сброс пароля, пожалуйста введите адрес электронной "
+"почты"
+
+msgctxt "Developer tools"
+msgid "Could not process the file. Please try another one."
+msgstr ""
 
 msgctxt "Developer tools"
 msgid "Please choose Answer type"
