@@ -779,6 +779,11 @@ html {
     height: 200px;
 }
 
+.bb-test-paragraph-image-processing-icon {
+    font-size: 56px;
+    cursor: pointer;
+}
+
 .bb-test-paragraph-progress {
     height: 35px;
     cursor: pointer;

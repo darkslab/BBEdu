@@ -115,14 +115,10 @@ var DeveloperImageParagraph = function (_React$Component) {
                     React.createElement("div", { className: "progress-bar", style: labelStyle })
                 );
             } else if (this.props.data.status === "completing" || this.props.data.status === "adopting") {
-                var _labelStyle = {
-                    fontSize: "56px"
-                };
                 label = React.createElement(
                     "div",
                     { className: "mt-23 text-center" },
-                    React.createElement("i", { className: "fa fa-fw fa-spin fa-refresh",
-                        style: _labelStyle,
+                    React.createElement("i", { className: "fa fa-fw fa-spin fa-refresh bb-test-paragraph-image-processing-icon",
                         "data-bb-non-sortable": true })
                 );
             } else if (this.props.data.status === "staring") {
@@ -160,7 +156,11 @@ var DeveloperImageParagraph = function (_React$Component) {
                                 "div",
                                 { className: "col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" },
                                 label,
-                                React.createElement("input", { id: uploadId, className: "hidden", type: "file", "data-bb-file-input": true })
+                                React.createElement("input", { id: uploadId,
+                                    className: "hidden",
+                                    type: "file",
+                                    accept: "image/*",
+                                    "data-bb-file-input": true })
                             )
                         )
                     )

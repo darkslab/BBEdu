@@ -86,13 +86,9 @@ class DeveloperImageParagraph extends React.Component {
                 </div>
             );
         } else if (this.props.data.status === "completing" || this.props.data.status === "adopting") {
-            let labelStyle = {
-                fontSize: "56px"
-            };
             label = (
                 <div className="mt-23 text-center">
-                    <i className="fa fa-fw fa-spin fa-refresh"
-                       style={labelStyle}
+                    <i className="fa fa-fw fa-spin fa-refresh bb-test-paragraph-image-processing-icon"
                        data-bb-non-sortable />
                 </div>
             );
@@ -114,7 +110,11 @@ class DeveloperImageParagraph extends React.Component {
                         <div className="row">
                             <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                                 {label}
-                                <input id={uploadId} className="hidden" type="file" data-bb-file-input />
+                                <input id={uploadId}
+                                       className="hidden"
+                                       type="file"
+                                       accept="image/*"
+                                       data-bb-file-input />
                             </div>
                         </div>
                     </div>
