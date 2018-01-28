@@ -60,45 +60,46 @@ class DeveloperImageParagraph extends React.Component {
         }
 
         let label = null;
-        let labelStyle;
-        switch (this.props.data.status) {
-            case "waiting":
-                label = (
+        if (this.props.data.status === "waiting" || this.state.isErrored) {
+            let errorMessage = null;
+            if (this.state.isErrored) {
+                errorMessage = (
+                    <p className="text-danger text-center">{this.props.texts.paragraphsImageErrorImageParagraph}</p>
+                );
+            }
+            label = (
+                <React.Fragment>
+                    {errorMessage}
                     <label htmlFor={uploadId}
                            className="btn btn-success btn-lg btn-block mt-23"
                            data-bb-non-sortable>{this.props.texts.paragraphsUploadButtonImageParagraph}</label>
-                );
-                break;
-            case "starting":
-            case "uploading":
-                labelStyle = {
-                    width: this.props.data.progress + "%"
-                };
-                label = (
-                    <div className="bb-test-paragraph-progress progress progress-striped active mt-23"
-                         data-bb-non-sortable>
-                        <div className="progress-bar" style={labelStyle} />
-                    </div>
-                );
-                break;
-            case "completing":
-            case "adopting":
-                labelStyle = {
-                    fontSize: "56px"
-                };
-                label = (
-                    <div className="mt-23 text-center">
-                        <i className="fa fa-fw fa-spin fa-refresh"
-                           style={labelStyle}
-                           data-bb-non-sortable />
-                    </div>
-                );
-                break;
-            case "staring":
-                label = (
-                    <p className="lead text-center mt-23 mb-0">{this.props.texts.paragraphsImagePreviewImageParagraph}</p>
-                );
-                break;
+                </React.Fragment>
+            );
+        } else if (this.props.data.status === "starting" || this.props.data.status === "uploading") {
+            let labelStyle = {
+                width: this.props.data.progress + "%"
+            };
+            label = (
+                <div className="bb-test-paragraph-progress progress progress-striped active mt-23"
+                     data-bb-non-sortable>
+                    <div className="progress-bar" style={labelStyle} />
+                </div>
+            );
+        } else if (this.props.data.status === "completing" || this.props.data.status === "adopting") {
+            let labelStyle = {
+                fontSize: "56px"
+            };
+            label = (
+                <div className="mt-23 text-center">
+                    <i className="fa fa-fw fa-spin fa-refresh"
+                       style={labelStyle}
+                       data-bb-non-sortable />
+                </div>
+            );
+        } else if (this.props.data.status === "staring") {
+            label = (
+                <p className="lead text-center mt-23 mb-0">{this.props.texts.paragraphsImagePreviewImageParagraph}</p>
+            );
         }
 
         return (
@@ -204,10 +205,7 @@ class DeveloperImageParagraph extends React.Component {
                 break;
             case "completing":
                 if (!data.success) {
-                    this.setState({
-                        isErrored: true
-                    });
-                    this._$xhr = undefined;
+                    this._errorOut();
                     return;
                 }
                 this._xhrData.push({
@@ -219,11 +217,7 @@ class DeveloperImageParagraph extends React.Component {
             case "adopting":
                 if (!data.success) {
                     if (data.broken) {
-                        this.setState({
-                            isErrored: true
-                        });
-                        this._$xhr = undefined;
-                        this._xhrData.pop();
+                        this._errorOut();
                         return;
                     }
                     this._scheduleAdoptCheck();
@@ -237,11 +231,7 @@ class DeveloperImageParagraph extends React.Component {
         if (status === "abort") {
             return;
         }
-        this.setState({
-            isErrored: true
-        });
-        this._$xhr = undefined;
-        this._xhrData.pop();
+        this._errorOut();
     }
     _changeStatus(status, options) {
         let data = {...this.props.data};
@@ -294,5 +284,16 @@ class DeveloperImageParagraph extends React.Component {
                 adopt_url: xhrData.adopt_url
             });
         }.bind(this), this._adoptCheckTimerInterval);
+    }
+    _errorOut() {
+        this.setState({
+            isErrored: true
+        });
+        this._$xhr = undefined;
+        this._xhrData.pop();
+
+        let data = {...this.props.data};
+        data.progress = 0;
+        this.props.onChange(data, true);
     }
 }

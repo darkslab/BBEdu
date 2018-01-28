@@ -7,6 +7,7 @@ from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Te
 from bbtest.forms.fields import JSONField
 from bbtest.utils.json import tight_dumps
 from bbtest.models.asset_classes import ImageParagraphAsset
+from bbtest.jobs.upload import image_paragraph_destroyer
 
 
 class TestQuestionForm(ModelForm):
@@ -351,7 +352,10 @@ class TestParagraphsContainerForm(Form):
 
         try:
             while True:
-                self._removed_paragraphs.pop().delete()
+                paragraph = self._removed_paragraphs.pop()
+                if paragraph.paragraph_class == "ImageParagraph":
+                    image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
+                paragraph.delete()
         except IndexError:
             pass
 

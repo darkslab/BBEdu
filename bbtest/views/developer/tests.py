@@ -6,6 +6,7 @@ from django.contrib.messages import success
 from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
 from bbtest.models import TestQuestion, TestDomain, Test, TestParagraph
+from bbtest.models.upload import expiring_url
 from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm
 from bbtest.utils.json import tight_dumps
 from bbtest.http import TightJsonResponse
@@ -129,6 +130,9 @@ class QuestionView(DeveloperLoginRequiredMixin, View):
             "paragraphs": [],
         }
         for paragraph in question.paragraphs.prefetch_related("through").order_by("through"):
+            if paragraph.paragraph_class == "ImageParagraph":
+                paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"])
+
             paragraph_data = {
                 "id": paragraph.id,
                 "data": {

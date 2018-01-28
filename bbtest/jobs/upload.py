@@ -36,3 +36,11 @@ def image_paragraph_processor(upload_uuid, asset_uuid):
 
     asset.expire_at = now() + timedelta(hours=1)
     asset.save()
+
+
+@job("low")
+def image_paragraph_destroyer(asset_uuid):
+    try:
+        Asset.objects.get(uuid=asset_uuid).delete()
+    except Asset.DoesNotExist:
+        pass

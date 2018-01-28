@@ -83,49 +83,54 @@ var DeveloperImageParagraph = function (_React$Component) {
             }
 
             var label = null;
-            var labelStyle = void 0;
-            switch (this.props.data.status) {
-                case "waiting":
-                    label = React.createElement(
+            if (this.props.data.status === "waiting" || this.state.isErrored) {
+                var errorMessage = null;
+                if (this.state.isErrored) {
+                    errorMessage = React.createElement(
+                        "p",
+                        { className: "text-danger text-center" },
+                        this.props.texts.paragraphsImageErrorImageParagraph
+                    );
+                }
+                label = React.createElement(
+                    React.Fragment,
+                    null,
+                    errorMessage,
+                    React.createElement(
                         "label",
                         { htmlFor: uploadId,
                             className: "btn btn-success btn-lg btn-block mt-23",
                             "data-bb-non-sortable": true },
                         this.props.texts.paragraphsUploadButtonImageParagraph
-                    );
-                    break;
-                case "starting":
-                case "uploading":
-                    labelStyle = {
-                        width: this.props.data.progress + "%"
-                    };
-                    label = React.createElement(
-                        "div",
-                        { className: "bb-test-paragraph-progress progress progress-striped active mt-23",
-                            "data-bb-non-sortable": true },
-                        React.createElement("div", { className: "progress-bar", style: labelStyle })
-                    );
-                    break;
-                case "completing":
-                case "adopting":
-                    labelStyle = {
-                        fontSize: "56px"
-                    };
-                    label = React.createElement(
-                        "div",
-                        { className: "mt-23 text-center" },
-                        React.createElement("i", { className: "fa fa-fw fa-spin fa-refresh",
-                            style: labelStyle,
-                            "data-bb-non-sortable": true })
-                    );
-                    break;
-                case "staring":
-                    label = React.createElement(
-                        "p",
-                        { className: "lead text-center mt-23 mb-0" },
-                        this.props.texts.paragraphsImagePreviewImageParagraph
-                    );
-                    break;
+                    )
+                );
+            } else if (this.props.data.status === "starting" || this.props.data.status === "uploading") {
+                var labelStyle = {
+                    width: this.props.data.progress + "%"
+                };
+                label = React.createElement(
+                    "div",
+                    { className: "bb-test-paragraph-progress progress progress-striped active mt-23",
+                        "data-bb-non-sortable": true },
+                    React.createElement("div", { className: "progress-bar", style: labelStyle })
+                );
+            } else if (this.props.data.status === "completing" || this.props.data.status === "adopting") {
+                var _labelStyle = {
+                    fontSize: "56px"
+                };
+                label = React.createElement(
+                    "div",
+                    { className: "mt-23 text-center" },
+                    React.createElement("i", { className: "fa fa-fw fa-spin fa-refresh",
+                        style: _labelStyle,
+                        "data-bb-non-sortable": true })
+                );
+            } else if (this.props.data.status === "staring") {
+                label = React.createElement(
+                    "p",
+                    { className: "lead text-center mt-23 mb-0" },
+                    this.props.texts.paragraphsImagePreviewImageParagraph
+                );
             }
 
             return React.createElement(
@@ -252,10 +257,7 @@ var DeveloperImageParagraph = function (_React$Component) {
                     break;
                 case "completing":
                     if (!data.success) {
-                        this.setState({
-                            isErrored: true
-                        });
-                        this._$xhr = undefined;
+                        this._errorOut();
                         return;
                     }
                     this._xhrData.push({
@@ -267,11 +269,7 @@ var DeveloperImageParagraph = function (_React$Component) {
                 case "adopting":
                     if (!data.success) {
                         if (data.broken) {
-                            this.setState({
-                                isErrored: true
-                            });
-                            this._$xhr = undefined;
-                            this._xhrData.pop();
+                            this._errorOut();
                             return;
                         }
                         this._scheduleAdoptCheck();
@@ -287,11 +285,7 @@ var DeveloperImageParagraph = function (_React$Component) {
             if (status === "abort") {
                 return;
             }
-            this.setState({
-                isErrored: true
-            });
-            this._$xhr = undefined;
-            this._xhrData.pop();
+            this._errorOut();
         }
     }, {
         key: "_changeStatus",
@@ -350,6 +344,19 @@ var DeveloperImageParagraph = function (_React$Component) {
                     adopt_url: xhrData.adopt_url
                 });
             }.bind(this), this._adoptCheckTimerInterval);
+        }
+    }, {
+        key: "_errorOut",
+        value: function _errorOut() {
+            this.setState({
+                isErrored: true
+            });
+            this._$xhr = undefined;
+            this._xhrData.pop();
+
+            var data = _extends({}, this.props.data);
+            data.progress = 0;
+            this.props.onChange(data, true);
         }
     }]);
 

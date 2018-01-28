@@ -18,7 +18,7 @@ def storage_bucket():
 
 
 def expiring_url(asset_object_name):
-    return storage_bucket().blob(asset_object_name).generate_signed_url(now() + timedelta(days=1))
+    return storage_bucket().blob(asset_object_name).generate_signed_url(now() + timedelta(hours=2))
 
 
 class UploadingObjectsManager(Manager):
@@ -62,7 +62,9 @@ class Upload(Model):
         self.__blob().download_to_file(file)
 
     def delete(self, **kwargs):
-        self.__blob().delete()
+        blob = self.__blob()
+        if blob:
+            blob.delete()
         super().delete(**kwargs)
 
     def __blob(self):
@@ -119,3 +121,9 @@ class Asset(Model):
         if self.asset_class is None or self.meta_data is None:
             return None
         return getattr(asset_classes, self.asset_class)(self, storage_bucket(), **self.meta_data)
+
+    def delete(self, **kwargs):
+        asset_object = self.asset_object()
+        if asset_object:
+            asset_object.delete()
+        super().delete(**kwargs)

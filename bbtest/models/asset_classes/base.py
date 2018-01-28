@@ -8,3 +8,6 @@ class Asset:
 
     def storage_bucket(self):
         return self._storage_bucket
+
+    def delete(self):
+        raise NotImplementedError("%s has to implement 'delete' method" % type(self).__name__)
