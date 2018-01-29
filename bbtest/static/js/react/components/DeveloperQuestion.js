@@ -40,6 +40,7 @@ var DeveloperQuestion = function (_React$Component) {
             this._$paragraphsContainer = $("[data-paragraphs]");
             this._$paragraphsContainer.sortable({
                 axis: "y",
+                cancel: "input,textarea,button,select,option,[data-bb-non-sortable]",
                 forceHelperSize: true,
                 forcePlaceholderSize: true,
                 items: "> [data-paragraph-id]",
@@ -152,6 +153,12 @@ var DeveloperQuestion = function (_React$Component) {
                     paragraphClassData.push({
                         class: "SplitTextParagraph",
                         caption: this.props.texts.paragraphsModalButtonSplitTextParagraph
+                    });
+                }
+                if (this.props.ability.canChooseImageParagraph()) {
+                    paragraphClassData.push({
+                        class: "ImageParagraph",
+                        caption: this.props.texts.paragraphsModalButtonImageParagraph
                     });
                 }
                 modal = React.createElement(DeveloperSelectorModal, { title: this.props.texts.paragraphsModalTitle,
@@ -304,9 +311,12 @@ var DeveloperQuestion = function (_React$Component) {
         }
     }, {
         key: "_paragraphChange",
-        value: function _paragraphChange(id, data) {
+        value: function _paragraphChange(id, data, skipSave) {
             this.props.object.updateParagraph(id, data);
             this._pokeComponent();
+            if (skipSave) {
+                return;
+            }
             this._scheduleSave();
         }
     }, {
@@ -365,20 +375,20 @@ var DeveloperQuestion = function (_React$Component) {
                 case "paragraphs":
                     if (data) {
                         this.props.object.addParagraph(data);
+                        this._scheduleSave();
                     }
                     this.setState({
                         paragraphsModal: false
                     });
-                    this._scheduleSave();
                     break;
                 case "answers":
                     if (data) {
                         this.props.object.setAnswer(data);
+                        this._scheduleSave();
                     }
                     this.setState({
                         answersModal: false
                     });
-                    this._scheduleSave();
                     break;
             }
         }

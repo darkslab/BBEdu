@@ -3,9 +3,11 @@ from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy, pgettext
 from random import randint
-from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test
+from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset
 from bbtest.forms.fields import JSONField
 from bbtest.utils.json import tight_dumps
+from bbtest.models.asset_classes import ImageParagraphAsset
+from bbtest.jobs.upload import image_paragraph_destroyer
 
 
 class TestQuestionForm(ModelForm):
@@ -152,6 +154,8 @@ class TestParagraphForm(ModelForm):
             return self.__clean_text_paragraph_meta_data(meta_data)
         elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_SPLIT_TEXT:
             return self.__clean_split_text_paragraph_meta_data(meta_data)
+        elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+            return self.__clean_image_paragraph_meta_data(meta_data)
 
         raise ValidationError(
             self.error_messages["incorrect"],
@@ -210,6 +214,31 @@ class TestParagraphForm(ModelForm):
                 clean_meta_data["has_formulas"] = meta_data["has_formulas"]
 
         except (KeyError, ValueError):
+            raise ValidationError(
+                self.error_messages["incorrect"],
+                code="incorrect",
+            )
+        return clean_meta_data
+
+    def __clean_image_paragraph_meta_data(self, meta_data):
+        clean_meta_data = {
+            "asset_uuid": None,
+            "asset_object_name": None,
+        }
+        try:
+            if not isinstance(meta_data, dict):
+                raise ValueError("Incorrect meta_data")
+            if not isinstance(meta_data["asset_uuid"], str):
+                raise ValueError("Incorrect meta_data")
+
+            asset = Asset.objects.get(uuid=meta_data["asset_uuid"])
+            if not asset.is_adopted() or not isinstance(asset.asset_object(), ImageParagraphAsset):
+                raise ValueError("Incorrect meta_data")
+
+            clean_meta_data["asset_uuid"] = asset.uuid
+            clean_meta_data["asset_object_name"] = asset.asset_object().object_name()
+
+        except (KeyError, ValueError, Asset.DoesNotExist):
             raise ValidationError(
                 self.error_messages["incorrect"],
                 code="incorrect",
@@ -307,7 +336,7 @@ class TestParagraphsContainerForm(Form):
                 _error_messages = []
                 for key, validation_errors in form_datum["form"].errors.as_data().items():
                     for validation_error in validation_errors:
-                        _error_messages.append(validation_error.message)
+                        _error_messages.append(str(validation_error.message))
                 raise ValidationError({
                     "data": ValidationError(
                         " ".join(_error_messages),
@@ -323,7 +352,10 @@ class TestParagraphsContainerForm(Form):
 
         try:
             while True:
-                self._removed_paragraphs.pop().delete()
+                paragraph = self._removed_paragraphs.pop()
+                if paragraph.paragraph_class == "ImageParagraph":
+                    image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
+                paragraph.delete()
         except IndexError:
             pass
 
