@@ -3,8 +3,11 @@ function DeveloperNISLanguageAbility(questionObject) {
     SuperAbility.call(this, questionObject);
 }
 
-DeveloperNISLanguageAbility.prototype.canAddParagraph = function() { return false; }
-DeveloperNISLanguageAbility.prototype.canDeleteParagraph = function(id) { return false; }
+DeveloperNISLanguageAbility.prototype.canDeleteParagraph = function(id) {
+    return this.question().paragraph(id).paragraph_class === "ImageParagraph" ? true : false;
+}
+DeveloperNISLanguageAbility.prototype.canChooseTextParagraph = function() { return false; }
+DeveloperNISLanguageAbility.prototype.canChooseSplitTextParagraph = function() { return false; }
 
 DeveloperNISLanguageAbility.prototype.canDeleteAnswer = function() { return false; }
 DeveloperNISLanguageAbility.prototype.canAddAnswerChoice = function() { return false; }
