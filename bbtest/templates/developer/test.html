@@ -57,15 +57,18 @@
                     }
                 }
             };
-            {% if test.section.id == 9540 %}
-                moduleData.data.props.ability = "DeveloperNISMathematicsAbility";
-            {% elif test.section.id == 9541 or test.section.id == 9542 or test.section.id == 9543 %}
-                moduleData.data.props.ability = "DeveloperNISLanguageAbility";
-            {% elif test.section.id == 9544 %}
-                moduleData.data.props.ability = "DeveloperNISQuantitativeAbility";
-            {% else %}
-                moduleData.data.props.ability = "SuperAbility";
-            {% endif %}
+            {% comment %}
+                {% if test.section.id == 9540 %}
+                    moduleData.data.props.ability = "DeveloperNISMathematicsAbility";
+                {% elif test.section.id == 9541 or test.section.id == 9542 or test.section.id == 9543 %}
+                    moduleData.data.props.ability = "DeveloperNISLanguageAbility";
+                {% elif test.section.id == 9544 %}
+                    moduleData.data.props.ability = "DeveloperNISQuantitativeAbility";
+                {% else %}
+                    moduleData.data.props.ability = "SuperAbility";
+                {% endif %}
+            {% endcomment %}
+            moduleData.data.props.ability = "SuperAbility";
             moduleDataStack.push(moduleData);
         })();
     </script>
