@@ -36,6 +36,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
             if (this._$choicesContainer.length) {
                 this._$choicesContainer.sortable({
                     axis: "y",
+                    cancel: "input,textarea,button,select,option,[data-bb-non-sortable]",
                     forceHelperSize: true,
                     forcePlaceholderSize: true,
                     items: "> [data-choice-id]",

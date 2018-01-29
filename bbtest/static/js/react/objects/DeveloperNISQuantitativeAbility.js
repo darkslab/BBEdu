@@ -3,11 +3,18 @@ function DeveloperNISQuantitativeAbility(questionObject) {
     SuperAbility.call(this, questionObject);
 }
 
-DeveloperNISQuantitativeAbility.prototype.canAddParagraph = function() {
-    return this.question().paragraphIds().length > 1 ? false : true;
-}
 DeveloperNISQuantitativeAbility.prototype.canDeleteParagraph = function(id) {
     return this.question().paragraph(id).paragraph_class === "SplitTextParagraph" ? false : true;
+}
+DeveloperNISQuantitativeAbility.prototype.canChooseTextParagraph = function() {
+    var paragraphIds = this.question().paragraphIds();
+    var i;
+    for (i = 0; i < paragraphIds.length; i++) {
+        if (this.question().paragraph(paragraphIds[i]).paragraph_class === "TextParagraph") {
+            return false;
+        }
+    }
+    return true;
 }
 DeveloperNISQuantitativeAbility.prototype.canChooseSplitTextParagraph = function() { return false; }
 

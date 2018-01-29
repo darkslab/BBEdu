@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-01-17 11:37+0600\n"
-"PO-Revision-Date: 2018-01-16 23:12-0800\n"
+"POT-Creation-Date: 2018-01-29 03:49+0600\n"
+"PO-Revision-Date: 2018-01-28 19:46-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -296,6 +296,42 @@ msgctxt "NIS Quantitative section answer"
 msgid "The relationship cannot be determined from the information given."
 msgstr "Не достаточно информации."
 
+msgctxt "Validation error"
+msgid "Incorrect upload starter data."
+msgstr "Загружаемые данные указаны неверно."
+
+msgctxt "Form label"
+msgid "Upload starter"
+msgstr "Стартер загрузки"
+
+msgctxt "Validation error"
+msgid "Please provide upload starter data."
+msgstr "Пожалуйста, предоставьте загружаемые данные."
+
+msgctxt "Validation error"
+msgid "Please provide file name."
+msgstr "Пожалуйста, укажите название файла."
+
+msgctxt "Validation error"
+msgid "File name is too long."
+msgstr "Название файла слишком длинное."
+
+msgctxt "Validation error"
+msgid "Please provide file size."
+msgstr "Пожалуйста, укажите размер файла."
+
+msgctxt "Validation error"
+msgid "Incorrect file size value."
+msgstr "Неверное значение размера файла."
+
+msgctxt "Validation error"
+msgid "File content type value is too long."
+msgstr "Значение типа файла слишком длинное."
+
+msgctxt "Validation error"
+msgid "Please provide data."
+msgstr "Пожалуйста, предоставьте данные."
+
 msgctxt "Form label"
 msgid "Old password"
 msgstr "Старый пароль"
@@ -548,7 +584,7 @@ msgstr "спецификация"
 
 msgctxt "Test language"
 msgid "N/A"
-msgstr "не указано"
+msgstr "Не указано"
 
 msgctxt "Test language"
 msgid "Kazakh"
@@ -614,6 +650,46 @@ msgctxt "Model field"
 msgid "paragraph class"
 msgstr "текст"
 
+msgctxt "Model field"
+msgid "uuid"
+msgstr "универсальный уникальный идентификатор"
+
+msgctxt "Model field"
+msgid "expire at"
+msgstr "годен до"
+
+msgctxt "Model field"
+msgid "upload processor"
+msgstr "процессор загрузки"
+
+msgctxt "Model field"
+msgid "upload URL"
+msgstr "URL загрузки"
+
+msgctxt "Model field"
+msgid "file name"
+msgstr "название файла"
+
+msgctxt "Model field"
+msgid "file size"
+msgstr "размер файла"
+
+msgctxt "Model field"
+msgid "file content type"
+msgstr "тип файла"
+
+msgctxt "Model field"
+msgid "asset adopter"
+msgstr "приниматель файла"
+
+msgctxt "Model field"
+msgid "broken?"
+msgstr "сломан?"
+
+msgctxt "Model field"
+msgid "asset class"
+msgstr "класс файла"
+
 msgctxt "Page title"
 msgid "Something went wrong"
 msgstr "Что-то пошло не так"
@@ -624,7 +700,7 @@ msgstr "Извините, но Вас не должно было быть зде
 
 msgctxt "Page title"
 msgid "Page not found"
-msgstr "Страница не найдена :("
+msgstr "Страница не найдена"
 
 msgctxt "Badge label under avatar"
 msgid "Administrator"
@@ -636,24 +712,24 @@ msgstr "Выберите тарифный план для сотрудничес
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 1."
-msgstr "Стоимость 1 тестового задания составляет 300 тенге"
+msgstr "Стоимость 1 тестового задания составляет 300 тенге."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 2."
-msgstr "Оплата производится после экспертизы тестовых заданий"
+msgstr "Оплата производится после экспертизы тестовых заданий."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 3."
-msgstr "Авторское право передается от Разработчика к Заказчику"
+msgstr "Авторское право передается от Разработчика к Заказчику."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 4."
 msgstr ""
-"Разработчик НЕ получает данные психометрического анализа тестовых заданий"
+"Разработчик НЕ получает данные психометрического анализа тестовых заданий."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan B line 1."
-msgstr "Стоимость 1 тестового задания варьируется от 300 до 1000 тенге"
+msgstr "Стоимость 1 тестового задания варьируется от 300 до 1000 тенге."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan B line 2."
@@ -664,33 +740,33 @@ msgstr ""
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan B line 3."
-msgstr "Авторское право передается от Разработчика к Заказчику"
+msgstr "Авторское право передается от Разработчика к Заказчику."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan B line 4."
 msgstr ""
 "Разработчик получает данные психометрического анализа тестовых заданий в\n"
-"целях улучшения качества тестовых заданий"
+"целях улучшения качества тестовых заданий."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 1."
-msgstr "Стоимость 1 тестового задания зависит от количества продаж"
+msgstr "Стоимость 1 тестового задания зависит от количества продаж."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 2."
 msgstr ""
 "Оплата производится по договору согласно расчета разделения дохода после\n"
-"экспертизы и определения качества тестовых заданий"
+"экспертизы и определения качества тестовых заданий."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 3."
-msgstr "Авторское право оставляет за собой Разработчик"
+msgstr "Авторское право оставляет за собой Разработчик."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 4."
 msgstr ""
 "Разработчик получает данные психометрического анализа тестовых заданий в\n"
-"целях улучшения качества тестовых заданий"
+"целях улучшения качества тестовых заданий."
 
 msgctxt "/developer/acknowledgement/"
 msgid "View Agreement"
@@ -831,7 +907,7 @@ msgstr "Добавить секцию"
 
 msgctxt "Developer tools"
 msgid "Type your question here"
-msgstr "Введите вопрос"
+msgstr "Введите текст/вопрос"
 
 msgctxt "Developer tools"
 msgid "Your question will be previewed here"
@@ -868,6 +944,22 @@ msgstr "Текст"
 msgctxt "Developer tools"
 msgid "Split Text Section"
 msgstr "Две колонки"
+
+msgctxt "Developer tools"
+msgid "Image Section"
+msgstr "Рисунок"
+
+msgctxt "Developer tools"
+msgid "Upload Image"
+msgstr "Загрузить рисунок"
+
+msgctxt "Developer tools"
+msgid "Please preview your image below."
+msgstr "Просмотр рисунка."
+
+msgctxt "Developer tools"
+msgid "Could not process the file. Please try another one."
+msgstr "Неверный файл. Попробуйте загрузить другой."
 
 msgctxt "Developer tools"
 msgid "Please choose Answer type"
@@ -947,7 +1039,7 @@ msgstr "Создать тест"
 
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"
-msgstr "Логотип bbTest.kz"
+msgstr "логотип bbTest.kz"
 
 msgctxt "Email body element"
 msgid "link"
@@ -1013,7 +1105,7 @@ msgctxt "Splash page content"
 msgid "Leave your email and you will be the first to know when we are live!"
 msgstr ""
 "Оставьте нам свою электронную почту и Вы первым узнаете когда сайт будет "
-"запущен."
+"запущен!"
 
 msgctxt "Splash page content"
 msgid "Your Email"
@@ -1177,7 +1269,7 @@ msgstr "Русский язык как второй"
 
 msgctxt "Success alert message"
 msgid "You have created a new Test."
-msgstr "Вы загружаете новый тест."
+msgstr "Вы создали новый тест."
 
 msgctxt "Success alert message"
 msgid "You have deleted a Test."

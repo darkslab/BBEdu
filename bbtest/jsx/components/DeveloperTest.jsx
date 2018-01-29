@@ -207,7 +207,9 @@ class DeveloperTest extends React.Component {
                 data.data,
                 data.paragraphs,
                 this.props.questionUrl,
-                this.props.paragraphsUrl
+                this.props.paragraphsUrl,
+                this.props.uploadStartUrl,
+                this.props.spinnerLogo
             );
             this._abilityObject = new (eval(this.props.ability))(this._questionObject);
             this.setState({

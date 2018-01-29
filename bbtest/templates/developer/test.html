@@ -17,6 +17,7 @@
                         paragraphsUrl: "{% url 'bbtest:developer_paragraphs' code %}",
                         attributesUrl: "{% url 'bbtest:developer_attributes' code %}",
                         dashboardUrl: "{% url 'bbtest:developer_dashboard' %}",
+                        uploadStartUrl: "{% url 'bbtest:upload_start' %}",
                         texts: {
                             error:                                               "{% trans 'There was an error, please reload the page.'            context 'Developer tools' %}",
                             question:                                            "{% trans 'Question'                                               context 'Developer tools' %}",
@@ -34,6 +35,10 @@
                             paragraphsModalTitle:                                "{% trans 'Please choose Section type'                             context 'Developer tools' %}",
                             paragraphsModalButtonTextParagraph:                  "{% trans 'Text Section'                                           context 'Developer tools' %}",
                             paragraphsModalButtonSplitTextParagraph:             "{% trans 'Split Text Section'                                     context 'Developer tools' %}",
+                            paragraphsModalButtonImageParagraph:                 "{% trans 'Image Section'                                          context 'Developer tools' %}",
+                            paragraphsUploadButtonImageParagraph:                "{% trans 'Upload Image'                                           context 'Developer tools' %}",
+                            paragraphsImagePreviewImageParagraph:                "{% trans 'Please preview your image below.'                       context 'Developer tools' %}",
+                            paragraphsImageErrorImageParagraph:                  "{% trans 'Could not process the file. Please try another one.'    context 'Developer tools' %}",
                             answersModalTitle:                                   "{% trans 'Please choose Answer type'                              context 'Developer tools' %}",
                             noParagraphs:                                        "{% trans 'Please add a Section above to preview it here.'         context 'Developer tools' %}",
                             noAnswerChoices:                                     "{% trans 'Please add an Answer Choice above to preview it here.'  context 'Developer tools' %}",

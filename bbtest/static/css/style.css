@@ -743,6 +743,7 @@ html {
 .bb-test-paragraph-placeholder {
     background-color: rgba(255, 152, 0, 0.25) !important;
     margin-bottom: 15px;
+    border-radius: 2px;
 }
 
 .bb-test-paragraph-textarea,
@@ -771,6 +772,21 @@ html {
 
 .bb-test-paragraph-image {
     max-height: 400px;
+}
+
+.bb-test-paragraph-image-waiting {
+    position: relative;
+    height: 200px;
+}
+
+.bb-test-paragraph-image-processing-icon {
+    font-size: 56px;
+    cursor: pointer;
+}
+
+.bb-test-paragraph-progress {
+    height: 35px;
+    cursor: pointer;
 }
 
 .bb-test-answer,
