@@ -29,6 +29,9 @@ class UserManager(BaseUserManager):
             raise ValueError("Given arguments have to be: username is required and has to be unique, email is not required but has to be unique")
         return user
 
+class ActiveUsersManager(UserManager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True)
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = CharField(pgettext_lazy("Model field", "username"), max_length=100, unique=True)
@@ -43,6 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     objects = UserManager()
+    active_users = ActiveUsersManager()
 
     class Meta:
         default_permissions = ()
