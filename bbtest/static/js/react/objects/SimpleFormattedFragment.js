@@ -28,7 +28,7 @@ function SimpleFormattedFragment(text) {
     var paragraphs = text.split("\n\n");
     for (var i = 0; i < paragraphs.length; i++) {
         paragraphs[i] = $.trim(paragraphs[i]);
-        var rootNestedSet = new _RootFormattedNestedSet(paragraphs[i], 0, paragraphs[i].length - 1);
+        var rootNestedSet = new _RootFormattedNestedSet(paragraphs[i], 0, paragraphs[i].length - 1, i + 1 === paragraphs.length);
         for (var j = 0; j < formats.length; j++) {
             var match = void 0;
             while (match = formats[j].regex.exec(paragraphs[i])) {
@@ -135,9 +135,10 @@ var _FormattedNestedSet = function () {
             }
 
             var Tag = this.tag();
+            var className = this.className();
             return React.createElement(
                 Tag,
-                null,
+                { className: className },
                 elems
             );
         }
@@ -188,6 +189,11 @@ var _FormattedNestedSet = function () {
             this._innerSets = newInnerSets;
         }
     }, {
+        key: "className",
+        value: function className() {
+            return null;
+        }
+    }, {
         key: "_doOrderedSetsOverlap",
         value: function _doOrderedSetsOverlap(nestedSets) {
             if (!nestedSets.length) {
@@ -218,10 +224,13 @@ var _FormattedNestedSet = function () {
 var _RootFormattedNestedSet = function (_FormattedNestedSet2) {
     _inherits(_RootFormattedNestedSet, _FormattedNestedSet2);
 
-    function _RootFormattedNestedSet() {
+    function _RootFormattedNestedSet(string, startPos, endPos, lastParagraph) {
         _classCallCheck(this, _RootFormattedNestedSet);
 
-        return _possibleConstructorReturn(this, (_RootFormattedNestedSet.__proto__ || Object.getPrototypeOf(_RootFormattedNestedSet)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (_RootFormattedNestedSet.__proto__ || Object.getPrototypeOf(_RootFormattedNestedSet)).call(this, string, startPos, endPos));
+
+        _this._lastParagraph = !!lastParagraph;
+        return _this;
     }
 
     _createClass(_RootFormattedNestedSet, [{
@@ -238,6 +247,14 @@ var _RootFormattedNestedSet = function (_FormattedNestedSet2) {
         key: "delimiterLength",
         value: function delimiterLength() {
             return 0;
+        }
+    }, {
+        key: "className",
+        value: function className() {
+            if (this._lastParagraph) {
+                return "mb-0";
+            }
+            return "mb-10";
         }
     }]);
 
