@@ -1,0 +1,50 @@
+{% extends './super_base_2.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Dashboard' context 'Page title' %}{% endblock %}
+
+{% block nav_dashboard_class %}active{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'User Statistics' context '/super/' %}</h4>
+                </div>
+                <div class="panel-body">
+                    <p class="mb-0">{% trans 'Students' context '/super/' %}: {{ student_count }}</p>
+                    <p class="mb-0">{% trans 'Developers' context '/super/' %}: {{ developer_count }}</p>
+                    <p class="mb-0">{% trans 'Admins' context '/super/' %}: {{ admin_count }}</p>
+                    <p class="mb-0">{% trans 'Superusers' context '/super/' %}: {{ super_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Tests by Developers' context '/super/' %}</h4>
+                </div>
+                <div class="panel-body">
+                    {% for developer in developer_stats %}
+                        <p class="mb-0">{{ developer.get_full_name }}: {{ developer.tests_count }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Subscriptions' context '/super/' %}</h4>
+                </div>
+                <div class="panel-body">
+                    <p class="mb-0">{% trans 'Total' context '/super/' %}: {{ subscriptions_total }}</p>
+                    <p class="mb-0">{% trans 'Last subscription' context '/super/' %}: {{ subscriptions_last.created_at|timesince }}</p>
+                    <p class="mb-0 text-center">
+                        <em>{{ subscriptions_last.email }}</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
