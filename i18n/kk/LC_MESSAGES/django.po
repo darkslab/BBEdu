@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-01-29 03:49+0600\n"
+"POT-Creation-Date: 2018-01-30 11:31+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1403,6 +1403,54 @@ msgstr "Тестілеудің нәтижелері"
 msgctxt "Navigation link"
 msgid "Refill Balance"
 msgstr "Шотты толтыру"
+
+msgctxt "/super/"
+msgid "User Statistics"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Student"
+msgctxt "/super/"
+msgid "Students"
+msgstr "Тестілеуге қатысушы"
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Developer"
+msgctxt "/super/"
+msgid "Developers"
+msgstr "Құрастырушы"
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Administrator"
+msgctxt "/super/"
+msgid "Admins"
+msgstr "Администратор"
+
+msgctxt "/super/"
+msgid "Superusers"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Test developer"
+msgctxt "/super/"
+msgid "Tests by Developers"
+msgstr "Тестілеуді құрастырушы"
+
+msgctxt "/super/"
+msgid "Subscriptions"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Total"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Last subscription"
+msgstr ""
 
 msgctxt "/developer/tests/"
 msgid "Choose test language"
