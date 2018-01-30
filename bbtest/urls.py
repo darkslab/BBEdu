@@ -15,6 +15,7 @@ from .views.developer import (
     ParagraphsView,
     AttributesView,
 )
+from .views.super import DashboardView as SuperDashboardView
 
 
 app_name = "bbtest"
@@ -43,6 +44,9 @@ urlpatterns = [
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/)?$", QuestionView.as_view(), name="developer_question"),
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", ParagraphsView.as_view(), name="developer_paragraphs"),
     url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/attributes/$", AttributesView.as_view(), name="developer_attributes"),
+
+    # SUPER URLS
+    url(r"^super/$", SuperDashboardView.as_view(), name="super_dashboard"),
 
     # SYSTEM URLS
     url(r"^login/$", LoginView.as_view(), name="login"),

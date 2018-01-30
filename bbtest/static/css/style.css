@@ -168,6 +168,10 @@ html {
     background-color: rgba(40, 100, 90, 1);
 }
 
+.bb-container-super {
+    background-color: #175676;
+}
+
 .bb-overlay {
     position: absolute;
     right: 0px;
