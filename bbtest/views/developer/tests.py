@@ -1,16 +1,15 @@
-from django.views.generic import View, FormView, DetailView
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _, pgettext, get_language
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.messages import success
 from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
+from bbtest.views.generic import View, TemplateView, FormView
 from bbtest.models import TestQuestion, TestDomain, Test, TestParagraph
 from bbtest.models.upload import expiring_url
-from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm
+from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm, TestSendForm
 from bbtest.utils.json import tight_dumps
 from bbtest.http import TightJsonResponse
-from bbtest.views.generic import DetailFormView
 from .mixins import DeveloperAcknowledgementRequiredMixin
 
 
@@ -82,31 +81,58 @@ class TestsView(DeveloperLoginRequiredMixin, DeveloperAcknowledgementRequiredMix
         return reverse("bbtest:developer_test", kwargs={ "code": self._test.code })
 
 
-class TestView(DeveloperLoginRequiredMixin, DetailView):
+class TestView(DeveloperLoginRequiredMixin, TemplateView):
     template_name = "developer/test.html"
-    slug_field = "code"
-    slug_url_kwarg = "code"
-    context_object_name = "test"
-
-    def get_queryset(self):
-        return self.request.user.tests(manager="draft_tests").select_related("section")
 
     def get_context_data(self, **kwargs):
+        test = get_object_or_404(
+            self.request.user.tests(manager="draft_tests").select_related("section"),
+            code=self.kwargs["code"],
+        )
+
         kwargs["code"] = self.kwargs["code"]
-        kwargs["section_name"] = _(self.object.section.name)
-        kwargs["specification"] = self.object.section.specification[self.object.language][get_language()]
+        kwargs["section_name"] = _(test.section.name)
+        kwargs["specification"] = test.section.specification[test.language][get_language()]
         question_ids = []
-        for data in self.object.questions.values("id").order_by("order"):
+        for data in test.questions.values("id").order_by("order"):
             question_ids.append(data["id"])
         kwargs["question_ids"] = tight_dumps(question_ids)
         return super().get_context_data(**kwargs)
 
 
-class TestPreviewView(DeveloperLoginRequiredMixin, DetailFormView):
+class TestPreviewView(DeveloperLoginRequiredMixin, FormView):
     template_name = "developer/test_preview.html"
-    form_class = TestForm
+    form_class = TestSendForm
+    success_url = reverse_lazy("bbtest:developer_dashboard")
 
-    # DARK_TODO  implement this
+    def get(self, request, *args, **kwargs):
+        self._test = get_object_or_404(
+            self.request.user.tests(manager="active_tests").select_related("section"),
+            code=self.kwargs["code"],
+        )
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self._test = get_object_or_404(
+            self.request.user.tests(manager="draft_tests").select_related("section"),
+            code=self.kwargs["code"],
+        )
+        return super().post(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        kwargs["test"] = self._test
+        kwargs["code"] = self.kwargs["code"]
+        kwargs["section_name"] = _(self._test.section.name)
+        return super().get_context_data(**kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["instance"] = self._test
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 
 
 class TestDeleteView(DeveloperLoginRequiredMixin, View):

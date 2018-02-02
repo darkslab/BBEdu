@@ -98,6 +98,10 @@ class ApprovedTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_active=True, is_approved=True)
 
+class ActiveTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True)
+
 class ArchivedTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_active=False)
@@ -126,6 +130,7 @@ class Test(Model):
     draft_tests = DraftTestManager()
     pending_tests = PendingTestManager()
     approved_tests = ApprovedTestManager()
+    active_tests = ActiveTestManager()
     archived_tests = ArchivedTestManager()
 
     class Meta:

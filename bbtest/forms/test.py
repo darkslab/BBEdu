@@ -536,3 +536,16 @@ class TestForm(ModelForm):
         if commit:
             test.save()
         return test
+
+
+class TestSendForm(ModelForm):
+    class Meta:
+        model = Test
+        fields = ()
+
+    def save(self, commit=True):
+        test = super().save(commit=False)
+        test.is_pending = True
+        if commit:
+            test.save()
+        return test

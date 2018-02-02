@@ -1,0 +1,84 @@
+{% extends './developer_base_2.html' %}
+{% load i18n static %}
+
+{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        // moduleDataStack.push({
+        //     module: "ReactModule",
+        //     data: {
+        //         class: "",
+        //         props: {}
+        //     }
+        // });
+    </script>
+    {% if not test.is_approved and not test.is_pending %}
+        <form method="post" action="{{ request.path }}" data-bb-form>
+            {% csrf_token %}
+            <div class="modal fade" data-send-modal data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{% trans 'Are you sure?' context 'Developer tools' %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-6 pr-5">
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg" data-bb-submit>{% trans 'Yes' context '/developer/' %}</button>
+                                </div>
+                                <div class="col-xs-6 pl-5">
+                                    <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context '/developer/' %}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form method="post" action="{% url 'bbtest:developer_delete_test' code %}" data-bb-form>
+            {% csrf_token %}
+            <div class="modal fade" data-delete-modal data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{% trans 'Are you sure?' context '/developer/' %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-6 pr-5">
+                                    <button type="submit" class="btn btn-danger btn-block btn-lg" data-bb-submit>{% trans 'Yes' context '/developer/' %}</button>
+                                </div>
+                                <div class="col-xs-6 pl-5">
+                                    <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context '/developer/' %}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+    <div class="row">
+        <div class="col-xs-12 mb-5">
+            {% if not test.is_approved and not test.is_pending %}
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
+                <a href="{% url 'bbtest:developer_test' code %}" class="btn btn-default ml-5">{% trans 'Edit' context 'Developer tools' %}</a>
+                <button type="button" class="btn btn-danger ml-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
+            {% endif %}
+            <a href="{% url 'bbtest:developer_dashboard' %}" class="btn btn-default ml-5">{% trans 'Exit' context 'Developer tools' %}</a>
+        </div>
+    </div>
+    <div id="root">
+        <div class="row">
+            <div class="col-xs-12 bb-developer-container">
+                <img class="bb-spinner" src="{% static 'img/logo.png' %}">
+            </div>
+        </div>
+    </div>
+{% endblock %}
