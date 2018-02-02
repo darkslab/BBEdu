@@ -1,10 +1,9 @@
-from django.views.generic import RedirectView
 from django.shortcuts import resolve_url
 from django.urls import reverse
 from django.contrib.auth import login
 from urllib.parse import urlencode
 from bbtest.auth.mixins import LoginRequiredMixin
-from bbtest.views.generic import FormView
+from bbtest.views.generic import FormView, RedirectView
 from bbtest.forms.user import SettingsForm
 from bbtest.forms.subscription import SubscriptionForm
 
