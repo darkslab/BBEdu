@@ -55,7 +55,9 @@ class DetailView(SingleObjectTemplateResponseMixin, BaseDetailView):
     template_name = None  # name of the template
     content_type = None   # content type of the HTTP response
 
-    pk_url_kwarg = 'pk'
+    slug_field = "slug"         # key in model to get
+    slug_url_kwarg = "slug"     # key of request kwargs
+    context_object_name = None  # another name for "object" in context
 
     def get_queryset(self):
         # OVERRIDE THIS!
@@ -78,7 +80,9 @@ class DetailFormView(SingleObjectTemplateResponseMixin, FormMixin, SingleObjectM
     form_class = None   # form class
     success_url = None  # redirect URL if form is valid
 
-    pk_url_kwarg = 'pk'
+    slug_field = "slug"         # key in model to get
+    slug_url_kwarg = "slug"     # key of request kwargs
+    context_object_name = None  # another name for "object" in context
 
     def get_queryset(self):
         # OVERRIDE THIS!
