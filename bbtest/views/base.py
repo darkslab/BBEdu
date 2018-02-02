@@ -1,9 +1,10 @@
-from django.views.generic import RedirectView, FormView
+from django.views.generic import RedirectView
 from django.shortcuts import resolve_url
 from django.urls import reverse
 from django.contrib.auth import login
 from urllib.parse import urlencode
 from bbtest.auth.mixins import LoginRequiredMixin
+from bbtest.views.generic import FormView
 from bbtest.forms.user import SettingsForm
 from bbtest.forms.subscription import SubscriptionForm
 
@@ -36,9 +37,7 @@ class SettingsView(LoginRequiredMixin, FormView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs.update({
-            "instance": self.request.user,
-        })
+        kwargs["instance"] = self.request.user
         return kwargs
 
     def form_valid(self, form):
