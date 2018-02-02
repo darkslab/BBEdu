@@ -1,6 +1,5 @@
 from django.views.generic import FormView
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
 from django.utils.translation import get_language
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
 from bbtest.forms.acknowledgement import DeveloperAcknowledgementForm
