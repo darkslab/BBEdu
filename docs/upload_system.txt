@@ -1,0 +1,104 @@
+
+
++-------------------------------------------------------------------------+
+| uploads                                                                 |
++------+-----------+------------------+-----------+-----------+-----------+
+| uuid | expire_at | upload_processor | file_name | file_size | file_type |
++------+-----------+------------------+-----------+-----------+-----------+
+blob name is: /uploads/uuid
+expiration is in: 1 week
+
+
++----------------------------------------------------------------------+
+| files                                                                |
++------+-----------+--------------+-----------+------------+-----------+
+| uuid | expire_at | file_adopter | is_broken | file_class | meta_data |
++------+-----------+--------------+-----------+------------+-----------+
+blob name is: /files/uuid/...
+expiration is in: 1 day
+
+
+
+
+POST /uploads/start
+{
+    "file_name": "..."   (REQUIRED)
+    "file_size": "..."   (REQUIRED)
+    "file_type": "..."   (REQUIRED)
+    "upload_starter": {  (REQUIRED)
+        "name": "..."
+        "kwargs": {
+            "key0": "..."
+            "key1": "..."
+            ...
+            "keyn": "..."
+        }
+    }
+}
+
+- make sure upload_starter function is importable
+- create `upload` (uuid, expire_at, file_name, file_size, file_type)  or [F]
+- upload_starter_result = upload_starter(`upload`, **kwargs)  or [F] (remove `upload`)
+- set: upload_starter_result["upload_processor"]
+= { upload_url, complete_url, upload_starter_result["response"] }
+
+
+
+
+POST /uploads/uuid/complete
+{
+}
+
+- find `upload` where uuid && expire_at  or [F]
+- make sure upload is complete  or [U]
+- unset expire_at  or [F]
+- create `file` (uuid)  or [F]
+- upload_processor_result = upload_processor(`upload`, `file`)  or [F] (remove `file` record, and set back expire_at)
+- set: upload_processor_result["file_adopter"]  (if is None, it means self adoption)
+- upload_processor_result["job"].delay(`upload`.uuid, `file`.uuid)
+= { adopt_url (if client adoption) }
+
+
+processor job's responsibilities:
+- download cloud object
+- remove cloud object and remove `upload`
+- process object, and upload to cloud if successful, if object processing is unsuccessful, nothing should be uploaded to the cloud
+- client adoption:
+    - if process fails, set broken and expiration of `file` and return
+    - fill in information to `file` and set expiration
+- self adoption:
+    - if process fails, remove the `file`
+
+
+
+
+POST /uploads/uuid/adopt
+{
+    "data": {
+        "key0": "..."
+        "key1": "..."
+        ...
+        "keyn": "..."
+    }
+}
+
+- find `file` record where uuid && file_adopter  or [F]
+- if expiration is not set  [U] { "success": false, "broken": false }  (file is still being processed)
+- unset expire_at && file_adopter  or [F]
+- if broken, remove `file`  [U] { "success": false, "broken": true }  (could not process the file)
+- file_adopter_result = file_adopter(`file`, **kwargs)  or [F]  (set back expire_at, adopter)
+= { file_adopter_result }
+
+
+
+
+
+
+waiting
+starting
+uploading
+completing
+adopting
+staring
+
+
