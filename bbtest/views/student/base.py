@@ -1,5 +1,5 @@
-from django.views.generic import TemplateView
 from bbtest.auth.mixins import StudentLoginRequiredMixin
+from bbtest.views.generic import TemplateView
 
 
 class DashboardView(StudentLoginRequiredMixin, TemplateView):
