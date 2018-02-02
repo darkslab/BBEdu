@@ -1,10 +1,8 @@
-
-
-+-------------------------------------------------------------------------+
-| uploads                                                                 |
-+------+-----------+------------------+-----------+-----------+-----------+
-| uuid | expire_at | upload_processor | file_name | file_size | file_type |
-+------+-----------+------------------+-----------+-----------+-----------+
++--------------------------------------------------------------------------------------+
+| uploads                                                                              |
++------+-----------+------------------+------------+-----------+-----------+-----------+
+| uuid | expire_at | upload_processor | upload_url | file_name | file_size | file_type |
++------+-----------+------------------+------------+-----------+-----------+-----------+
 blob name is: /uploads/uuid
 expiration is in: 1 week
 
@@ -88,17 +86,3 @@ POST /uploads/uuid/adopt
 - if broken, remove `file`  [U] { "success": false, "broken": true }  (could not process the file)
 - file_adopter_result = file_adopter(`file`, **kwargs)  or [F]  (set back expire_at, adopter)
 = { file_adopter_result }
-
-
-
-
-
-
-waiting
-starting
-uploading
-completing
-adopting
-staring
-
-
