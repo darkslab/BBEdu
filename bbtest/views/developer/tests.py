@@ -1,4 +1,4 @@
-from django.views.generic import View, TemplateView, FormView
+from django.views.generic import View, FormView, DetailView
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _, pgettext, get_language
 from django.urls import reverse
@@ -10,11 +10,8 @@ from bbtest.models.upload import expiring_url
 from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm
 from bbtest.utils.json import tight_dumps
 from bbtest.http import TightJsonResponse
+from bbtest.views.generic import DetailFormView
 from .mixins import DeveloperAcknowledgementRequiredMixin
-
-
-def get_test_or_404(user, code):
-    return get_object_or_404(user.tests(manager="drafts").select_related("section"), code=code)
 
 
 class TestsView(DeveloperLoginRequiredMixin, DeveloperAcknowledgementRequiredMixin, FormView):
@@ -85,27 +82,44 @@ class TestsView(DeveloperLoginRequiredMixin, DeveloperAcknowledgementRequiredMix
         return reverse("bbtest:developer_test", kwargs={ "code": self._test.code })
 
 
-class TestView(DeveloperLoginRequiredMixin, TemplateView):
+class TestView(DeveloperLoginRequiredMixin, DetailView):
     template_name = "developer/test.html"
+    slug_field = "code"
+    slug_url_kwarg = "code"
+    context_object_name = "test"
+
+    def get_queryset(self):
+        return self.request.user.tests(manager="draft_tests").select_related("section")
 
     def get_context_data(self, **kwargs):
-        kwargs["test"] = get_test_or_404(self.request.user, kwargs.get("code"))
-        kwargs["section_name"] = _(kwargs["test"].section.name)
-        kwargs["specification"] = kwargs["test"].section.specification[kwargs["test"].language][get_language()]
+        kwargs["code"] = self.kwargs["code"]
+        kwargs["section_name"] = _(self.object.section.name)
+        kwargs["specification"] = self.object.section.specification[self.object.language][get_language()]
         question_ids = []
-        for data in kwargs["test"].questions.values("id").order_by("order"):
+        for data in self.object.questions.values("id").order_by("order"):
             question_ids.append(data["id"])
         kwargs["question_ids"] = tight_dumps(question_ids)
         return super().get_context_data(**kwargs)
 
 
+class TestPreviewView(DeveloperLoginRequiredMixin, DetailFormView):
+    template_name = "developer/test_preview.html"
+    form_class = TestForm
+
+    # DARK_TODO  implement this
+
+
 class TestDeleteView(DeveloperLoginRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
-        test = get_object_or_404(request.user.tests(manager="drafts").prefetch_related("questions__paragraphs"), code=code)
+        test = get_object_or_404(
+            request.user.tests(manager="draft_tests").prefetch_related("questions__paragraphs"),
+            code=code,
+        )
         paragraph_ids = []
         for question in test.questions.all():
             for paragraph in question.paragraphs.all():
                 paragraph_ids.append(paragraph.id)
+        # DARK_TODO  schedule jobs to delete assets
         TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
         test.delete()
 
@@ -115,8 +129,7 @@ class TestDeleteView(DeveloperLoginRequiredMixin, View):
 
 class QuestionView(DeveloperLoginRequiredMixin, View):
     def get(self, request, code, question_id, *args, **kwargs):
-        test = get_object_or_404(request.user.tests(manager="drafts"), code=code)
-        question = get_object_or_404(test.questions, pk=question_id)
+        question = self.__question(request, code, question_id)
 
         question_data = {
             "id": question.id,
@@ -149,42 +162,45 @@ class QuestionView(DeveloperLoginRequiredMixin, View):
         return TightJsonResponse(question_data)
 
     def post(self, request, code, question_id, *args, **kwargs):
-        test = get_object_or_404(request.user.tests(manager="drafts"), code=code)
-        question = get_object_or_404(test.questions, pk=question_id)
+        question = self.__question(request, code, question_id)
 
         form = TestQuestionForm(data=request.POST, instance=question)
-        if form.is_valid():
-            form.save()
-            return TightJsonResponse({"success": True})
+        if not form.is_valid():
+            return TightJsonResponse({
+                "success": False,
+                "errors": loads(form.errors.as_json()),
+            }, status=400)
 
-        return TightJsonResponse({
-            "success": False,
-            "errors": loads(form.errors.as_json()),
-        }, status=400)
+        form.save()
+        return TightJsonResponse({"success": True})
+
+    def __question(self, request, code, question_id):
+        test = get_object_or_404(request.user.tests(manager="draft_tests"), code=code)
+        return get_object_or_404(test.questions, pk=question_id)
 
 
 class ParagraphsView(DeveloperLoginRequiredMixin, View):
     def post(self, request, code, question_id, *args, **kwargs):
-        test = get_object_or_404(request.user.tests(manager="drafts"), code=code)
+        test = get_object_or_404(request.user.tests(manager="draft_tests"), code=code)
         question = get_object_or_404(test.questions, pk=question_id)
 
         form = TestParagraphsContainerForm(question, data=request.POST)
-        if form.is_valid():
-            paragraph_morphs = form.save_paragraphs()
+        if not form.is_valid():
             return TightJsonResponse({
-                "success": True,
-                "update": paragraph_morphs,
-            })
+                "success": False,
+                "errors": loads(form.errors.as_json()),
+            }, status=400)
 
+        paragraph_morphs = form.save_paragraphs()
         return TightJsonResponse({
-            "success": False,
-            "errors": loads(form.errors.as_json()),
-        }, status=400)
+            "success": True,
+            "update": paragraph_morphs,
+        })
 
 
 class AttributesView(DeveloperLoginRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
-        test = get_test_or_404(request.user, code)
+        test = get_object_or_404(request.user.tests(manager="draft_tests").select_related("section"), code=code)
         attributes_data = {
             "difficulties": [],
             "taxonomies": [],
