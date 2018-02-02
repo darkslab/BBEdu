@@ -6,15 +6,7 @@ class RedirectView(View):
 
     def get_redirect_url(self, *args, **kwargs):
         # Override redirect url if above attributes are not enough
-        pass
-
-    def get(self, request, *args, **kwargs): pass
-    def head(self, request, *args, **kwargs): pass
-    def post(self, request, *args, **kwargs): pass
-    def options(self, request, *args, **kwargs): pass
-    def delete(self, request, *args, **kwargs): pass
-    def put(self, request, *args, **kwargs): pass
-    def patch(self, request, *args, **kwargs): pass
+        return "https://google.com/"
 
 
 class TemplateView(TemplateResponseMixin, ContextMixin, View):
@@ -22,83 +14,57 @@ class TemplateView(TemplateResponseMixin, ContextMixin, View):
     content_type = None   # content type of the HTTP response
 
     def get_context_data(self, **kwargs):
-        # Pass some extra context data to kwargs
-        pass
-
-    def get(self, request, *args, **kwargs): pass
-    def head(self, request, *args, **kwargs): pass
+        # Optionally add to context, i.e.:
+        #     kwargs["monkey"] = "shmonkey"
+        return super().get_context_data(**kwargs)
 
 
-class FormView(TemplateResponseMixin, BaseFormView):
+class FormView(TemplateResponseMixin, FormMixin, View):
     template_name = None  # name of the template
     content_type = None   # content type of the HTTP response
 
     initial = {}        # initial data for form
     form_class = None   # form class
     success_url = None  # redirect URL if form is valid
+    prefix = None       # prefix data
 
-    def get_context_data(self, **kwargs):
-        # Pass some extra context data to kwargs
-        pass
+    def get_initial(self):
+        # Override initial data if above attribute is not enough
+        return {"monkey": "shmonkey"}
 
-    def form_valid(self, form):
-        # Do something with form before success redirection
-        pass
+    def get_prefix(self):
+        # Override form prefix if above attribute is not enough
+        return "monkey"
 
-    def get(self, request, *args, **kwargs): pass
-    def head(self, request, *args, **kwargs): pass
-    def post(self, request, *args, **kwargs): pass
-    def put(self, request, *args, **kwargs): pass
+    def get_form_class(self):
+        # Override form class if above attribute is not enough
+        return MonkeyForm
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        # Optionally add kwargs to form, i.e.:
+        #     kwargs["instance"] = object
+        return kwargs
 
-class DetailView(SingleObjectTemplateResponseMixin, BaseDetailView):
-    template_name = None  # name of the template
-    content_type = None   # content type of the HTTP response
-
-    slug_field = "slug"         # key in model to get
-    slug_url_kwarg = "slug"     # key of request kwargs
-    context_object_name = None  # another name for "object" in context
-
-    def get_queryset(self):
-        # OVERRIDE THIS!
-        pass
-
-    def get_context_data(self, **kwargs):
-        # Pass some extra context data to kwargs
-        # self.object is useful here
-        pass
-
-    def get(self, request, *args, **kwargs): pass
-    def head(self, request, *args, **kwargs): pass
-
-
-class DetailFormView(SingleObjectTemplateResponseMixin, FormMixin, SingleObjectMixin, ProcessFormView):
-    template_name = None  # name of the template
-    content_type = None   # content type of the HTTP response
-
-    initial = {}        # initial data for form
-    form_class = None   # form class
-    success_url = None  # redirect URL if form is valid
-
-    slug_field = "slug"         # key in model to get
-    slug_url_kwarg = "slug"     # key of request kwargs
-    context_object_name = None  # another name for "object" in context
-
-    def get_queryset(self):
-        # OVERRIDE THIS!
-        pass
-
-    def get_context_data(self, **kwargs):
-        # Pass some extra context data to kwargs
-        # self.object is useful here
-        pass
+    def get_success_url(self):
+        # Override redirect url if above attribute is not enough
+        return "https://google.com"
 
     def form_valid(self, form):
-        # Do something with form before success redirection
-        # self.object is useful here
-        pass
+        # Optionally do something with a form, i.e.:
+        #     form.save()
+        return super().form_valid(form)
 
-    def get(self, request, *args, **kwargs): pass
-    def head(self, request, *args, **kwargs): pass
-    def post(self, request, *args, **kwargs): pass
-    def put(self, request, *args, **kwargs): pass
+    def get_context_data(self, **kwargs):
+        # Optionally add to context, i.e.:
+        #     kwargs["monkey"] = "shmonkey"
+        return super().get_context_data(**kwargs)
+
+
+    def get(self, request, *args, **kwargs):
+        # Optionally do stuff here
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        # Optionally do stuff here
+        return super().post(request, *args, **kwargs)
