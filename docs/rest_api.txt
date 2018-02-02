@@ -1,0 +1,13 @@
+
+
+GET   /monkeys/           index
+POST  /monkeys/           create   ↓
+GET   /monkeys/8/         show
+POST  /monkeys/8/         update   ↓
+GET   /monkeys/create/    new
+POST  /monkeys/create/    create   ↑
+GET   /monkeys/8/update/  edit
+POST  /monkeys/8/update/  update   ↑
+POST  /monkeys/8/delete/  destroy
+
+
