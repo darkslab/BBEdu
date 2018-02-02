@@ -1,1 +1,1 @@
-from .base import DetailFormView
+from .base import TemplateView, FormView
