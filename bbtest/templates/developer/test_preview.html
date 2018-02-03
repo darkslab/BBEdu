@@ -67,11 +67,11 @@
     <div class="row">
         <div class="col-xs-12 mb-5">
             {% if not test.is_approved and not test.is_pending %}
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
-                <a href="{% url 'bbtest:developer_test' code %}" class="btn btn-default ml-5">{% trans 'Edit' context 'Developer tools' %}</a>
-                <button type="button" class="btn btn-danger ml-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
+                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
+                <a href="{% url 'bbtest:developer_test' code %}" class="btn btn-default mr-5">{% trans 'Edit' context 'Developer tools' %}</a>
+                <button type="button" class="btn btn-danger mr-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
             {% endif %}
-            <a href="{% url 'bbtest:developer_dashboard' %}" class="btn btn-default ml-5">{% trans 'Exit' context 'Developer tools' %}</a>
+            <a href="{% url 'bbtest:developer_dashboard' %}" class="btn btn-default mr-5">{% trans 'Exit' context 'Developer tools' %}</a>
         </div>
     </div>
     <div id="root">

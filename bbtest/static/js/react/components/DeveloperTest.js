@@ -214,7 +214,7 @@ var DeveloperTest = function (_React$Component) {
                         "button",
                         { type: "button",
                             disabled: this.state.isQuestionSaving,
-                            className: "btn btn-success",
+                            className: "btn btn-success mr-5",
                             onClick: this._saveAndExit.bind(this) },
                         this.props.texts.saveAndExitButton
                     )

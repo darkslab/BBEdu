@@ -160,7 +160,7 @@ class DeveloperTest extends React.Component {
                 <div className="col-xs-12 col-sm-6 mb-5">
                     <button type="button"
                             disabled={this.state.isQuestionSaving}
-                            className="btn btn-success"
+                            className="btn btn-success mr-5"
                             onClick={this._saveAndExit.bind(this)}>{this.props.texts.saveAndExitButton}</button>
                 </div>
                 {pagination}
