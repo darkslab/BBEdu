@@ -11,6 +11,7 @@ from bbtest.models.upload import expiring_url
 from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm, TestSendForm
 from bbtest.utils.json import tight_dumps
 from bbtest.http import TightJsonResponse
+from bbtest.jobs.upload import image_paragraph_destroyer
 from .mixins import DeveloperAcknowledgementRequiredMixin
 
 
@@ -192,7 +193,10 @@ class TestDeleteView(DeveloperLoginRequiredMixin, View):
         for question in test.questions.all():
             for paragraph in question.paragraphs.all():
                 paragraph_ids.append(paragraph.id)
-        # DARK_TODO  schedule jobs to delete assets
+
+                if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+                    image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
+
         TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
         test.delete()
 
