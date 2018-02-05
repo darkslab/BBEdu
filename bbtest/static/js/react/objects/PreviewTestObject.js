@@ -9,3 +9,6 @@ PreviewTestObject.prototype.push = function(callback) {
         callback(true);
     });
 }
+PreviewTestObject.prototype.answerUpdate = function(questionIndex, data) {
+    // DARK_TODO  implement this
+}

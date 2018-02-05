@@ -74,12 +74,14 @@ var Test = function (_React$Component) {
             } else {
                 content = React.createElement(Question, { count: this.state.questionIndex + 1,
                     object: this._testObject.question(this.state.questionIndex),
+                    onAnswerUpdate: this._testObject.answerUpdate.bind(this._testObject, this.state.questionIndex),
                     secondsLeft: this.state.secondsLeft,
                     texts: this.props.texts });
             }
 
             var pagination = null;
-            if (!this.state.isErrored && !this.state.isTestLoading && !this.state.isCompleting && !this.state.isTimedOut) {
+            var bottomPagination = null;
+            if (this.props.questionsCount > 1 && !this.state.isErrored && !this.state.isTestLoading && !this.state.isCompleting && !this.state.isTimedOut) {
                 pagination = React.createElement(
                     React.Fragment,
                     null,
@@ -102,6 +104,63 @@ var Test = function (_React$Component) {
                         )
                     )
                 );
+
+                var bottomPaginationLeft = null;
+                var bottomPaginationRight = null;
+                if (this.state.questionIndex > 0) {
+                    bottomPaginationLeft = React.createElement(
+                        "li",
+                        { className: "previous" },
+                        React.createElement(
+                            "a",
+                            { href: "javascript:void(0);",
+                                onClick: this._setQuestionIndex.bind(this, this.state.questionIndex - 1) },
+                            "\u2190 ",
+                            this.props.texts.previousPager
+                        )
+                    );
+                } else {
+                    bottomPaginationLeft = React.createElement(
+                        "li",
+                        { className: "previous disabled" },
+                        React.createElement(
+                            "a",
+                            { href: "javascript:void(0);" },
+                            "\u2190 ",
+                            this.props.texts.previousPager
+                        )
+                    );
+                }
+                if (this.state.questionIndex < this.props.questionsCount - 1) {
+                    bottomPaginationRight = React.createElement(
+                        "li",
+                        { className: "next" },
+                        React.createElement(
+                            "a",
+                            { href: "javascript:void(0);",
+                                onClick: this._setQuestionIndex.bind(this, this.state.questionIndex + 1) },
+                            this.props.texts.nextPager,
+                            " \u2192"
+                        )
+                    );
+                } else {
+                    bottomPaginationRight = React.createElement(
+                        "li",
+                        { className: "next disabled" },
+                        React.createElement(
+                            "a",
+                            { href: "javascript:void(0);" },
+                            this.props.texts.nextPager,
+                            " \u2192"
+                        )
+                    );
+                }
+                bottomPagination = React.createElement(
+                    "ul",
+                    { className: "pager mt-0 mb-0" },
+                    bottomPaginationLeft,
+                    bottomPaginationRight
+                );
             }
 
             return React.createElement(
@@ -112,6 +171,11 @@ var Test = function (_React$Component) {
                     "div",
                     { className: "col-xs-12 bb-test-container" },
                     content
+                ),
+                React.createElement(
+                    "div",
+                    { className: "col-xs-12" },
+                    bottomPagination
                 )
             );
         }

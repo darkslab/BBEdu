@@ -20,11 +20,21 @@ class Question extends React.Component {
             countDownClassName += " label-danger";
         }
 
+        let answerContent = null;
+        if (this.props.object.answer_class) {
+            let AnswerClass = eval(this.props.object.answer_class);
+            answerContent = (
+                <AnswerClass data={this.props.object.meta_data}
+                             onUpdate={this.props.onAnswerUpdate}
+                             texts={this.props.texts} />
+            );
+        }
+
         return (
             <React.Fragment>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="panel panel-primary">
+                        <div className="panel panel-primary mb-15">
                             <div className="panel-heading bb-rel clearfix">
                                 <div className="bb-test-number">{this.props.count}</div>
                                 <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question}</h4>
@@ -41,6 +51,7 @@ class Question extends React.Component {
                         </div>
                     </div>
                 </div>
+                {answerContent}
             </React.Fragment>
         );
     }

@@ -7,3 +7,6 @@ StudentTestObject.prototype.question = function(index) {
 StudentTestObject.prototype.push = function(callback) {
     // DARK_TODO  implement this
 }
+StudentTestObject.prototype.answerUpdate = function(questionIndex, data) {
+    // DARK_TODO  implement this
+}

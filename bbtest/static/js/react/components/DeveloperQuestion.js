@@ -236,7 +236,7 @@ var DeveloperQuestion = function (_React$Component) {
                         { className: "col-xs-12" },
                         React.createElement(
                             "div",
-                            { className: "panel panel-primary" },
+                            { className: "panel panel-primary mb-15" },
                             React.createElement(
                                 "div",
                                 { className: "panel-heading bb-rel clearfix" },

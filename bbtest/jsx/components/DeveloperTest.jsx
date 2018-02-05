@@ -68,7 +68,7 @@ class DeveloperTest extends React.Component {
         }
 
         let pagination = null;
-        if (!this.state.isErrored && !this.state.isTestLoading && !this._finalSave) {
+        if (this.props.questionIds.length > 1 && !this.state.isErrored && !this.state.isTestLoading && !this._finalSave) {
             let width = 6;
             if (width < 1) {
                 width = 1;

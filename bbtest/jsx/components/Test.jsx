@@ -50,13 +50,15 @@ class Test extends React.Component {
             content = (
                 <Question count={this.state.questionIndex + 1}
                           object={this._testObject.question(this.state.questionIndex)}
+                          onAnswerUpdate={this._testObject.answerUpdate.bind(this._testObject, this.state.questionIndex)}
                           secondsLeft={this.state.secondsLeft}
                           texts={this.props.texts} />
             );
         }
 
         let pagination = null;
-        if (!this.state.isErrored && !this.state.isTestLoading && !this.state.isCompleting && !this.state.isTimedOut) {
+        let bottomPagination = null;
+        if (this.props.questionsCount > 1 && !this.state.isErrored && !this.state.isTestLoading && !this.state.isCompleting && !this.state.isTimedOut) {
             pagination = (
                 <React.Fragment>
                     <div className="col-xs-12 text-center hidden-xs">
@@ -67,6 +69,43 @@ class Test extends React.Component {
                     </div>
                 </React.Fragment>
             );
+
+            let bottomPaginationLeft = null;
+            let bottomPaginationRight = null;
+            if (this.state.questionIndex > 0) {
+                bottomPaginationLeft = (
+                    <li className="previous">
+                        <a href="javascript:void(0);"
+                           onClick={this._setQuestionIndex.bind(this, this.state.questionIndex - 1)}>&larr; {this.props.texts.previousPager}</a>
+                    </li>
+                );
+            } else {
+                bottomPaginationLeft = (
+                    <li className="previous disabled">
+                        <a href="javascript:void(0);">&larr; {this.props.texts.previousPager}</a>
+                    </li>
+                );
+            }
+            if (this.state.questionIndex < this.props.questionsCount - 1) {
+                bottomPaginationRight = (
+                    <li className="next">
+                        <a href="javascript:void(0);"
+                           onClick={this._setQuestionIndex.bind(this, this.state.questionIndex + 1)}>{this.props.texts.nextPager} &rarr;</a>
+                    </li>
+                );
+            } else {
+                bottomPaginationRight = (
+                    <li className="next disabled">
+                        <a href="javascript:void(0);">{this.props.texts.nextPager} &rarr;</a>
+                    </li>
+                );
+            }
+            bottomPagination = (
+                <ul className="pager mt-0 mb-0">
+                    {bottomPaginationLeft}
+                    {bottomPaginationRight}
+                </ul>
+            );
         }
 
         return (
@@ -74,6 +113,9 @@ class Test extends React.Component {
                 {pagination}
                 <div className="col-xs-12 bb-test-container">
                     {content}
+                </div>
+                <div className="col-xs-12">
+                    {bottomPagination}
                 </div>
             </div>
         );

@@ -35,6 +35,14 @@ var Question = function (_React$Component) {
                 countDownClassName += " label-danger";
             }
 
+            var answerContent = null;
+            if (this.props.object.answer_class) {
+                var AnswerClass = eval(this.props.object.answer_class);
+                answerContent = React.createElement(AnswerClass, { data: this.props.object.meta_data,
+                    onUpdate: this.props.onAnswerUpdate,
+                    texts: this.props.texts });
+            }
+
             return React.createElement(
                 React.Fragment,
                 null,
@@ -46,7 +54,7 @@ var Question = function (_React$Component) {
                         { className: "col-xs-12" },
                         React.createElement(
                             "div",
-                            { className: "panel panel-primary" },
+                            { className: "panel panel-primary mb-15" },
                             React.createElement(
                                 "div",
                                 { className: "panel-heading bb-rel clearfix" },
@@ -78,7 +86,8 @@ var Question = function (_React$Component) {
                             )
                         )
                     )
-                )
+                ),
+                answerContent
             );
         }
     }]);
