@@ -25,16 +25,24 @@ class Question extends React.Component {
             let AnswerClass = eval(this.props.object.answer_class);
             answerContent = (
                 <AnswerClass data={this.props.object.meta_data}
+                             answer={this.props.answerData}
                              onUpdate={this.props.onAnswerUpdate}
                              texts={this.props.texts} />
             );
+        }
+
+        let panelClassName = "panel mb-15";
+        if (this.props.answerData) {
+            panelClassName += " panel-success";
+        } else {
+            panelClassName += " panel-primary";
         }
 
         return (
             <React.Fragment>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="panel panel-primary mb-15">
+                        <div className={panelClassName}>
                             <div className="panel-heading bb-rel clearfix">
                                 <div className="bb-test-number">{this.props.count}</div>
                                 <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question}</h4>

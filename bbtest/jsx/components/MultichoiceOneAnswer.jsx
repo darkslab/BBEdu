@@ -7,11 +7,16 @@ class MultichoiceOneAnswer extends React.Component {
         let choices = [];
         for (let i = 0; i < this.props.data.choices.length; i++) {
             let ChoiceClass = eval(this.props.data.choices[i].choice_class);
+            let chosen = false;
+            if (this.props.answer && this.props.answer.correct_id === this.props.data.choices[i].id) {
+                chosen = true;
+            }
             choices.push(
                 <ChoiceClass key={this.props.data.choices[i].id}
                              data={this.props.data.choices[i].meta_data}
                              label={this._alphabet[i]}
-                             chosen={false} />
+                             chosen={chosen}
+                             onChoose={this._handleChoose.bind(this, this.props.data.choices[i].id)} />
             );
         }
 
@@ -31,5 +36,15 @@ class MultichoiceOneAnswer extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    _handleChoose(choiceId) {
+        let data = {
+            answer: {
+                correct_id: choiceId
+            },
+            observation: {}
+        };
+        this.props.onUpdate(data);
     }
 }

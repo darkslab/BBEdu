@@ -39,8 +39,16 @@ var Question = function (_React$Component) {
             if (this.props.object.answer_class) {
                 var AnswerClass = eval(this.props.object.answer_class);
                 answerContent = React.createElement(AnswerClass, { data: this.props.object.meta_data,
+                    answer: this.props.answerData,
                     onUpdate: this.props.onAnswerUpdate,
                     texts: this.props.texts });
+            }
+
+            var panelClassName = "panel mb-15";
+            if (this.props.answerData) {
+                panelClassName += " panel-success";
+            } else {
+                panelClassName += " panel-primary";
             }
 
             return React.createElement(
@@ -54,7 +62,7 @@ var Question = function (_React$Component) {
                         { className: "col-xs-12" },
                         React.createElement(
                             "div",
-                            { className: "panel panel-primary mb-15" },
+                            { className: panelClassName },
                             React.createElement(
                                 "div",
                                 { className: "panel-heading bb-rel clearfix" },

@@ -22,7 +22,8 @@ var Test = function (_React$Component) {
             isErrored: false,
             isTimedOut: false,
             questionIndex: 0,
-            secondsLeft: undefined
+            secondsLeft: undefined,
+            toggleFlag: true
         };
         _this._testObject;
         _this._$xhr;
@@ -74,6 +75,7 @@ var Test = function (_React$Component) {
             } else {
                 content = React.createElement(Question, { count: this.state.questionIndex + 1,
                     object: this._testObject.question(this.state.questionIndex),
+                    answerData: this._testObject.answerData(this.state.questionIndex),
                     onAnswerUpdate: this._testObject.answerUpdate.bind(this._testObject, this.state.questionIndex),
                     secondsLeft: this.state.secondsLeft,
                     texts: this.props.texts });
@@ -182,7 +184,7 @@ var Test = function (_React$Component) {
     }, {
         key: "_ajaxSuccess",
         value: function _ajaxSuccess(data, status, $xhr) {
-            this._testObject = new (eval(this.props.objectClass))(data.questions);
+            this._testObject = new (eval(this.props.objectClass))(this, data.questions, data.answer_submission);
             this.setState({
                 isTestLoading: false,
                 secondsLeft: data.seconds_left
@@ -324,7 +326,8 @@ var Test = function (_React$Component) {
                         React.createElement(
                             "a",
                             { href: "javascript:void(0);",
-                                onClick: this._setQuestionIndex.bind(this, indexes[_i2]) },
+                                onClick: this._setQuestionIndex.bind(this, indexes[_i2]),
+                                className: this._testObject.answerData(indexes[_i2]) ? "bb-pagination-success" : "" },
                             indexes[_i2] + 1
                         )
                     ));

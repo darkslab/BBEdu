@@ -353,7 +353,7 @@ class TestParagraphsContainerForm(Form):
         try:
             while True:
                 paragraph = self._removed_paragraphs.pop()
-                if paragraph.paragraph_class == "ImageParagraph":
+                if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
                     image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
                 paragraph.delete()
         except IndexError:
@@ -453,7 +453,7 @@ class TestForm(ModelForm):
                     meta_data["choices"][3]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer", "The relationship cannot be determined from the information given."))
 
                 question = test.questions.create(
-                    answer_class="MultichoiceOneAnswer",
+                    answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
                     meta_data=meta_data,
                     weight=test.section.question_weight,
                     order=i,
@@ -461,7 +461,7 @@ class TestForm(ModelForm):
 
                 if test.section.id == 9540:
                     paragraph = TestParagraph.objects.create(
-                        paragraph_class="TextParagraph",
+                        paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
                         meta_data={ "text": "" },
                     )
                     TestParagraphQuestion.objects.create(
@@ -474,14 +474,14 @@ class TestForm(ModelForm):
                         TestParagraphQuestion.objects.create(
                             question=question,
                             paragraph=TestParagraph.objects.create(
-                                paragraph_class="TextParagraph",
+                                paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
                                 meta_data={ "text": "" },
                             ),
                             order=0,
                         )
                     elif i in (6, 9, 12, 15):
                         shared_paragraph = TestParagraph.objects.create(
-                            paragraph_class="TextParagraph",
+                            paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
                             meta_data={ "text": "" },
                         )
                         TestParagraphQuestion.objects.create(
@@ -492,7 +492,7 @@ class TestForm(ModelForm):
                         TestParagraphQuestion.objects.create(
                             question=question,
                             paragraph=TestParagraph.objects.create(
-                                paragraph_class="TextParagraph",
+                                paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
                                 meta_data={ "text": "" },
                             ),
                             order=1,
@@ -506,14 +506,14 @@ class TestForm(ModelForm):
                         TestParagraphQuestion.objects.create(
                             question=question,
                             paragraph=TestParagraph.objects.create(
-                                paragraph_class="TextParagraph",
+                                paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
                                 meta_data={ "text": "" },
                             ),
                             order=1,
                         )
                 elif test.section.id == 9544:
                     paragraph = TestParagraph.objects.create(
-                        paragraph_class="SplitTextParagraph",
+                        paragraph_class=TestParagraph.PARAGRAPH_CLASS_SPLIT_TEXT,
                         meta_data={ "right": { "text": "" }, "left": { "text": "" } },
                     )
                     TestParagraphQuestion.objects.create(

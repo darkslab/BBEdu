@@ -143,6 +143,10 @@ class TestPreviewDataView(DeveloperLoginRequiredMixin, View):
         data = {
             "seconds_left": test.section.duration,
             "questions": [],
+            "answer_submission": {
+                "answers": [],
+                "observation": {},
+            },
         }
 
         for question in test.questions.prefetch_related(
@@ -154,12 +158,26 @@ class TestPreviewDataView(DeveloperLoginRequiredMixin, View):
                 "paragraphs": [],
             }
             for paragraph in question.paragraphs.all():
+                if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+                    paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"], expire_in=test.section.duration)
+
                 _paragraph = {
                     "paragraph_class": paragraph.paragraph_class,
                     "meta_data": paragraph.meta_data,
                 }
                 _question["paragraphs"].append(_paragraph)
             data["questions"].append(_question)
+
+            _answer = {
+                "answer": None,
+                "observation": {},
+            }
+            if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                if question.meta_data["correct_id"]:
+                    _answer["answer"] = {
+                        "correct_id": question.meta_data["correct_id"],
+                    }
+            data["answer_submission"]["answers"].append(_answer)
 
         return TightJsonResponse(data)
 
@@ -198,7 +216,7 @@ class QuestionView(DeveloperLoginRequiredMixin, View):
             "paragraphs": [],
         }
         for paragraph in question.paragraphs.prefetch_related("through").order_by("through"):
-            if paragraph.paragraph_class == "ImageParagraph":
+            if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
                 paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"])
 
             paragraph_data = {

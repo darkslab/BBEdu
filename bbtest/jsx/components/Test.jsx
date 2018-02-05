@@ -7,7 +7,8 @@ class Test extends React.Component {
             isErrored: false,
             isTimedOut: false,
             questionIndex: 0,
-            secondsLeft: undefined
+            secondsLeft: undefined,
+            toggleFlag: true
         };
         this._testObject;
         this._$xhr;
@@ -50,6 +51,7 @@ class Test extends React.Component {
             content = (
                 <Question count={this.state.questionIndex + 1}
                           object={this._testObject.question(this.state.questionIndex)}
+                          answerData={this._testObject.answerData(this.state.questionIndex)}
                           onAnswerUpdate={this._testObject.answerUpdate.bind(this._testObject, this.state.questionIndex)}
                           secondsLeft={this.state.secondsLeft}
                           texts={this.props.texts} />
@@ -122,7 +124,7 @@ class Test extends React.Component {
     }
 
     _ajaxSuccess(data, status, $xhr) {
-        this._testObject = new (eval(this.props.objectClass))(data.questions);
+        this._testObject = new (eval(this.props.objectClass))(this, data.questions, data.answer_submission);
         this.setState({
             isTestLoading: false,
             secondsLeft: data.seconds_left
@@ -235,7 +237,8 @@ class Test extends React.Component {
                 paginationElements.push(
                     <li key={indexes[i].toString()}>
                         <a href="javascript:void(0);"
-                           onClick={this._setQuestionIndex.bind(this, indexes[i])}>{indexes[i] + 1}</a>
+                           onClick={this._setQuestionIndex.bind(this, indexes[i])}
+                           className={this._testObject.answerData(indexes[i]) ? "bb-pagination-success" : ""}>{indexes[i] + 1}</a>
                     </li>
                 );
             }

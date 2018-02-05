@@ -26,10 +26,15 @@ var MultichoiceOneAnswer = function (_React$Component) {
             var choices = [];
             for (var i = 0; i < this.props.data.choices.length; i++) {
                 var ChoiceClass = eval(this.props.data.choices[i].choice_class);
+                var chosen = false;
+                if (this.props.answer && this.props.answer.correct_id === this.props.data.choices[i].id) {
+                    chosen = true;
+                }
                 choices.push(React.createElement(ChoiceClass, { key: this.props.data.choices[i].id,
                     data: this.props.data.choices[i].meta_data,
                     label: this._alphabet[i],
-                    chosen: false }));
+                    chosen: chosen,
+                    onChoose: this._handleChoose.bind(this, this.props.data.choices[i].id) }));
             }
 
             return React.createElement(
@@ -62,6 +67,17 @@ var MultichoiceOneAnswer = function (_React$Component) {
                     )
                 )
             );
+        }
+    }, {
+        key: "_handleChoose",
+        value: function _handleChoose(choiceId) {
+            var data = {
+                answer: {
+                    correct_id: choiceId
+                },
+                observation: {}
+            };
+            this.props.onUpdate(data);
         }
     }]);
 
