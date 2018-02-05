@@ -191,9 +191,9 @@ class DeveloperQuestion extends React.Component {
                 <div className="row">
                     <div className="col-xs-12">
                         <div className="panel panel-primary">
-                            <div className="panel-heading bb-rel">
+                            <div className="panel-heading bb-rel clearfix">
                                 <div className="bb-test-number">{this.props.count}</div>
-                                <h4 className="panel-title bb-test-title mt-15 mb-15">{this.props.texts.question}</h4>
+                                <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question}</h4>
                             </div>
                             <div className="panel-body">
                                 <div className="form-horizontal">

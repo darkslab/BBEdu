@@ -50,7 +50,7 @@ class DeveloperTest extends React.Component {
         let content = null;
         if (this.state.isErrored) {
             content = (
-                <h4 className="text-center text-danger">{this.props.texts.error}</h4>
+                <h4 className="text-center text-danger mt-100 mb-0">{this.props.texts.error}</h4>
             );
         } else if (!this.state.isTestLoading && !this.state.isQuestionLoading && !this.state.isQuestionSaving) {
             content = (
@@ -164,7 +164,7 @@ class DeveloperTest extends React.Component {
                             onClick={this._saveAndExit.bind(this)}>{this.props.texts.saveAndExitButton}</button>
                 </div>
                 {pagination}
-                <div className="col-xs-12 bb-developer-container">
+                <div className="col-xs-12 bb-test-container">
                     {content}
                 </div>
             </div>

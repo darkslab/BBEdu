@@ -36,31 +36,35 @@ BASE2_DEVELOPMENT_SOURCE_FILENAMES = (
     "js/react/react-dom.development.js",
 )
 BASE3_SOURCE_FILENAMES = (
-    "js/react/objects/DeveloperQuestionObject.js",
+    "js/react/objects/SimpleFormattedFragment.js",
+    "js/react/objects/KatexAsyncProcessor.js",
 
+    "js/react/objects/DeveloperQuestionObject.js",
     "js/react/objects/SuperAbility.js",
     "js/react/objects/DeveloperNISMathematicsAbility.js",
     "js/react/objects/DeveloperNISLanguageAbility.js",
     "js/react/objects/DeveloperNISQuantitativeAbility.js",
 
-    "js/react/components/DeveloperTest.js",
-    "js/react/components/DeveloperQuestion.js",
-    "js/react/components/DeveloperAttribute.js",
+    "js/react/objects/StudentTestObject.js",
+    "js/react/objects/PreviewTestObject.js",
+
+    "js/react/components/TextParagraph.js",
+    "js/react/components/SplitTextParagraph.js",
+    "js/react/components/ImageParagraph.js",
+    "js/react/components/MultichoiceTextChoice.js",
+
     "js/react/components/DeveloperTextParagraph.js",
     "js/react/components/DeveloperSplitTextParagraph.js",
     "js/react/components/DeveloperImageParagraph.js",
     "js/react/components/DeveloperMultichoiceOneAnswer.js",
     "js/react/components/DeveloperMultichoiceTextChoice.js",
 
+    "js/react/components/Test.js",
+    "js/react/components/Question.js",
+
+    "js/react/components/DeveloperTest.js",
+    "js/react/components/DeveloperQuestion.js",
+    "js/react/components/DeveloperAttribute.js",
     "js/react/components/DeveloperSelectorModal.js",
     "js/react/components/DeveloperDeleteConfirmModal.js",
-
-    "js/react/objects/SimpleFormattedFragment.js",
-
-    "js/react/objects/KatexAsyncProcessor.js",
-
-    "js/react/components/TextParagraph.js",
-    "js/react/components/SplitTextParagraph.js",
-    "js/react/components/ImageParagraph.js",
-    "js/react/components/MultichoiceTextChoice.js",
 )

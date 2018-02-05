@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _, pgettext, get_language
 from django.urls import reverse, reverse_lazy
 from django.contrib.messages import success
+from django.db.models import Prefetch
 from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
 from bbtest.views.generic import View, TemplateView, FormView
@@ -121,6 +122,7 @@ class TestPreviewView(DeveloperLoginRequiredMixin, FormView):
 
     def get_context_data(self, **kwargs):
         kwargs["test"] = self._test
+        kwargs["questions_count"] = self._test.questions.count()
         kwargs["code"] = self.kwargs["code"]
         kwargs["section_name"] = _(self._test.section.name)
         return super().get_context_data(**kwargs)
@@ -133,6 +135,33 @@ class TestPreviewView(DeveloperLoginRequiredMixin, FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+class TestPreviewDataView(DeveloperLoginRequiredMixin, View):
+    def get(self, request, code, *args, **kwargs):
+        test = get_object_or_404(request.user.tests(manager="active_tests").select_related("section"), code=code)
+        data = {
+            "seconds_left": test.section.duration,
+            "questions": [],
+        }
+
+        for question in test.questions.prefetch_related(
+            Prefetch("paragraphs", queryset=TestParagraph.objects.order_by("through").all()),
+        ).all():
+            _question = {
+                "answer_class": question.answer_class,
+                "meta_data": question.meta_data,
+                "paragraphs": [],
+            }
+            for paragraph in question.paragraphs.all():
+                _paragraph = {
+                    "paragraph_class": paragraph.paragraph_class,
+                    "meta_data": paragraph.meta_data,
+                }
+                _question["paragraphs"].append(_paragraph)
+            data["questions"].append(_question)
+
+        return TightJsonResponse(data)
 
 
 class TestDeleteView(DeveloperLoginRequiredMixin, View):

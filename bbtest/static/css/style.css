@@ -696,7 +696,7 @@ html {
             animation: bb-spinner-animation 2s ease infinite;
 }
 
-.bb-developer-container {
+.bb-test-container {
     min-height: 420px;
 }
 
@@ -722,6 +722,17 @@ html {
 .bb-test-title {
     font-size: 24px;
     margin-left: 64px;
+}
+
+.bb-test-timer {
+    font-size: 12px;
+    padding: 0.4em 0.5em;
+}
+
+@media (min-width: 768px) {
+    .bb-test-timer {
+        font-size: 20px;
+    }
 }
 
 .bb-test-section-background {

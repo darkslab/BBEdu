@@ -74,7 +74,7 @@ var DeveloperTest = function (_React$Component) {
             if (this.state.isErrored) {
                 content = React.createElement(
                     "h4",
-                    { className: "text-center text-danger" },
+                    { className: "text-center text-danger mt-100 mb-0" },
                     this.props.texts.error
                 );
             } else if (!this.state.isTestLoading && !this.state.isQuestionLoading && !this.state.isQuestionSaving) {
@@ -222,7 +222,7 @@ var DeveloperTest = function (_React$Component) {
                 pagination,
                 React.createElement(
                     "div",
-                    { className: "col-xs-12 bb-developer-container" },
+                    { className: "col-xs-12 bb-test-container" },
                     content
                 )
             );

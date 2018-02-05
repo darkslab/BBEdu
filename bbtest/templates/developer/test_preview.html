@@ -8,13 +8,22 @@
         moduleDataStack.push({
             module: "SubmitModule"
         });
-        // moduleDataStack.push({
-        //     module: "ReactModule",
-        //     data: {
-        //         class: "",
-        //         props: {}
-        //     }
-        // });
+        moduleDataStack.push({
+            module: "ReactModule",
+            data: {
+                class: "Test",
+                props: {
+                    spinnerLogo: "{% static 'img/logo.png' %}",
+                    testUrl: "{% url 'bbtest:developer_preview_data_test' code %}",
+                    objectClass: "PreviewTestObject",
+                    questionsCount: {{ questions_count }},
+                    texts: {
+                        error: "{% trans 'There was an error, please reload the page.' context 'Test content' %}",
+                        question: "{% trans 'Question' context 'Test content' %}"
+                    }
+                }
+            }
+        });
     </script>
     {% if not test.is_approved and not test.is_pending %}
         <form method="post" action="{{ request.path }}" data-bb-form>
@@ -65,18 +74,18 @@
         </form>
     {% endif %}
     <div class="row">
-        <div class="col-xs-12 mb-5">
+        <div class="col-xs-12 mb-23">
             {% if not test.is_approved and not test.is_pending %}
-                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
-                <a href="{% url 'bbtest:developer_test' code %}" class="btn btn-default mr-5">{% trans 'Edit' context 'Developer tools' %}</a>
-                <button type="button" class="btn btn-danger mr-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
+                <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
+                <a href="{% url 'bbtest:developer_test' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
+                <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
             {% endif %}
-            <a href="{% url 'bbtest:developer_dashboard' %}" class="btn btn-default mr-5">{% trans 'Exit' context 'Developer tools' %}</a>
+            <a href="{% url 'bbtest:developer_dashboard' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
         </div>
     </div>
     <div id="root">
         <div class="row">
-            <div class="col-xs-12 bb-developer-container">
+            <div class="col-xs-12 bb-test-container">
                 <img class="bb-spinner" src="{% static 'img/logo.png' %}">
             </div>
         </div>
