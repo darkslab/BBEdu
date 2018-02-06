@@ -1,20 +1,18 @@
-from django.views.generic import View, TemplateView, FormView
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _, pgettext, get_language
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.messages import success
+from django.db.models import Prefetch
 from json import loads
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
+from bbtest.views.generic import View, TemplateView, FormView
 from bbtest.models import TestQuestion, TestDomain, Test, TestParagraph
 from bbtest.models.upload import expiring_url
-from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm
+from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestForm, TestSendForm
 from bbtest.utils.json import tight_dumps
 from bbtest.http import TightJsonResponse
+from bbtest.jobs.upload import image_paragraph_destroyer
 from .mixins import DeveloperAcknowledgementRequiredMixin
-
-
-def get_test_or_404(user, code):
-    return get_object_or_404(user.tests(manager="drafts").select_related("section"), code=code)
 
 
 class TestsView(DeveloperLoginRequiredMixin, DeveloperAcknowledgementRequiredMixin, FormView):
@@ -89,23 +87,116 @@ class TestView(DeveloperLoginRequiredMixin, TemplateView):
     template_name = "developer/test.html"
 
     def get_context_data(self, **kwargs):
-        kwargs["test"] = get_test_or_404(self.request.user, kwargs.get("code"))
-        kwargs["section_name"] = _(kwargs["test"].section.name)
-        kwargs["specification"] = kwargs["test"].section.specification[kwargs["test"].language][get_language()]
+        test = get_object_or_404(
+            self.request.user.tests(manager="draft_tests").select_related("section"),
+            code=self.kwargs["code"],
+        )
+
+        kwargs["code"] = self.kwargs["code"]
+        kwargs["section_name"] = _(test.section.name)
+        kwargs["specification"] = test.section.specification[test.language][get_language()]
         question_ids = []
-        for data in kwargs["test"].questions.values("id").order_by("order"):
+        for data in test.questions.values("id").order_by("order"):
             question_ids.append(data["id"])
         kwargs["question_ids"] = tight_dumps(question_ids)
         return super().get_context_data(**kwargs)
 
 
+class TestPreviewView(DeveloperLoginRequiredMixin, FormView):
+    template_name = "developer/test_preview.html"
+    form_class = TestSendForm
+    success_url = reverse_lazy("bbtest:developer_dashboard")
+
+    def get(self, request, *args, **kwargs):
+        self._test = get_object_or_404(
+            self.request.user.tests(manager="active_tests").select_related("section"),
+            code=self.kwargs["code"],
+        )
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self._test = get_object_or_404(
+            self.request.user.tests(manager="draft_tests").select_related("section"),
+            code=self.kwargs["code"],
+        )
+        return super().post(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        kwargs["test"] = self._test
+        kwargs["questions_count"] = self._test.questions.count()
+        kwargs["code"] = self.kwargs["code"]
+        kwargs["section_name"] = _(self._test.section.name)
+        return super().get_context_data(**kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["instance"] = self._test
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+class TestPreviewDataView(DeveloperLoginRequiredMixin, View):
+    def get(self, request, code, *args, **kwargs):
+        test = get_object_or_404(request.user.tests(manager="active_tests").select_related("section"), code=code)
+        data = {
+            "seconds_left": test.section.duration,
+            "questions": [],
+            "answer_submission": {
+                "answers": [],
+                "observation": {},
+            },
+        }
+
+        for question in test.questions.prefetch_related(
+            Prefetch("paragraphs", queryset=TestParagraph.objects.order_by("through").all()),
+        ).all():
+            _question = {
+                "answer_class": question.answer_class,
+                "meta_data": question.meta_data,
+                "paragraphs": [],
+            }
+            for paragraph in question.paragraphs.all():
+                if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+                    paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"], expire_in=test.section.duration)
+
+                _paragraph = {
+                    "paragraph_class": paragraph.paragraph_class,
+                    "meta_data": paragraph.meta_data,
+                }
+                _question["paragraphs"].append(_paragraph)
+            data["questions"].append(_question)
+
+            _answer = {
+                "answer": None,
+                "observation": {},
+            }
+            if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                if question.meta_data["correct_id"]:
+                    _answer["answer"] = {
+                        "correct_id": question.meta_data["correct_id"],
+                    }
+            data["answer_submission"]["answers"].append(_answer)
+
+        return TightJsonResponse(data)
+
+
 class TestDeleteView(DeveloperLoginRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
-        test = get_object_or_404(request.user.tests(manager="drafts").prefetch_related("questions__paragraphs"), code=code)
+        test = get_object_or_404(
+            request.user.tests(manager="draft_tests").prefetch_related("questions__paragraphs"),
+            code=code,
+        )
         paragraph_ids = []
         for question in test.questions.all():
             for paragraph in question.paragraphs.all():
                 paragraph_ids.append(paragraph.id)
+
+                if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+                    image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
+
         TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
         test.delete()
 
@@ -115,8 +206,7 @@ class TestDeleteView(DeveloperLoginRequiredMixin, View):
 
 class QuestionView(DeveloperLoginRequiredMixin, View):
     def get(self, request, code, question_id, *args, **kwargs):
-        test = get_object_or_404(request.user.tests(manager="drafts"), code=code)
-        question = get_object_or_404(test.questions, pk=question_id)
+        question = self.__question(request, code, question_id)
 
         question_data = {
             "id": question.id,
@@ -130,7 +220,7 @@ class QuestionView(DeveloperLoginRequiredMixin, View):
             "paragraphs": [],
         }
         for paragraph in question.paragraphs.prefetch_related("through").order_by("through"):
-            if paragraph.paragraph_class == "ImageParagraph":
+            if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
                 paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"])
 
             paragraph_data = {
@@ -149,42 +239,45 @@ class QuestionView(DeveloperLoginRequiredMixin, View):
         return TightJsonResponse(question_data)
 
     def post(self, request, code, question_id, *args, **kwargs):
-        test = get_object_or_404(request.user.tests(manager="drafts"), code=code)
-        question = get_object_or_404(test.questions, pk=question_id)
+        question = self.__question(request, code, question_id)
 
         form = TestQuestionForm(data=request.POST, instance=question)
-        if form.is_valid():
-            form.save()
-            return TightJsonResponse({"success": True})
+        if not form.is_valid():
+            return TightJsonResponse({
+                "success": False,
+                "errors": loads(form.errors.as_json()),
+            }, status=400)
 
-        return TightJsonResponse({
-            "success": False,
-            "errors": loads(form.errors.as_json()),
-        }, status=400)
+        form.save()
+        return TightJsonResponse({"success": True})
+
+    def __question(self, request, code, question_id):
+        test = get_object_or_404(request.user.tests(manager="draft_tests"), code=code)
+        return get_object_or_404(test.questions, pk=question_id)
 
 
 class ParagraphsView(DeveloperLoginRequiredMixin, View):
     def post(self, request, code, question_id, *args, **kwargs):
-        test = get_object_or_404(request.user.tests(manager="drafts"), code=code)
+        test = get_object_or_404(request.user.tests(manager="draft_tests"), code=code)
         question = get_object_or_404(test.questions, pk=question_id)
 
         form = TestParagraphsContainerForm(question, data=request.POST)
-        if form.is_valid():
-            paragraph_morphs = form.save_paragraphs()
+        if not form.is_valid():
             return TightJsonResponse({
-                "success": True,
-                "update": paragraph_morphs,
-            })
+                "success": False,
+                "errors": loads(form.errors.as_json()),
+            }, status=400)
 
+        paragraph_morphs = form.save_paragraphs()
         return TightJsonResponse({
-            "success": False,
-            "errors": loads(form.errors.as_json()),
-        }, status=400)
+            "success": True,
+            "update": paragraph_morphs,
+        })
 
 
 class AttributesView(DeveloperLoginRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
-        test = get_test_or_404(request.user, code)
+        test = get_object_or_404(request.user.tests(manager="draft_tests").select_related("section"), code=code)
         attributes_data = {
             "difficulties": [],
             "taxonomies": [],

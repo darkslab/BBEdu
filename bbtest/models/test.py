@@ -90,6 +90,22 @@ class DraftTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_active=True, is_approved=False, is_pending=False)
 
+class PendingTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True, is_approved=False, is_pending=True)
+
+class ApprovedTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True, is_approved=True)
+
+class ActiveTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True)
+
+class ArchivedTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=False)
+
 class Test(Model):
     LANGUAGE_XX = "xx"
     LANGUAGE_KK = "kk"
@@ -111,7 +127,11 @@ class Test(Model):
     created_at   = DateTimeField  ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                  )
 
     objects = Manager()
-    drafts = DraftTestManager()
+    draft_tests = DraftTestManager()
+    pending_tests = PendingTestManager()
+    approved_tests = ApprovedTestManager()
+    active_tests = ActiveTestManager()
+    archived_tests = ArchivedTestManager()
 
     class Meta:
         default_permissions = ()

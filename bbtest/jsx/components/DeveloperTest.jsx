@@ -50,7 +50,7 @@ class DeveloperTest extends React.Component {
         let content = null;
         if (this.state.isErrored) {
             content = (
-                <h4 className="text-center text-danger">{this.props.texts.error}</h4>
+                <h4 className="text-center text-danger mt-100 mb-0">{this.props.texts.error}</h4>
             );
         } else if (!this.state.isTestLoading && !this.state.isQuestionLoading && !this.state.isQuestionSaving) {
             content = (
@@ -68,7 +68,7 @@ class DeveloperTest extends React.Component {
         }
 
         let pagination = null;
-        if (!this.state.isErrored && !this.state.isTestLoading && !this._finalSave) {
+        if (this.props.questionIds.length > 1 && !this.state.isErrored && !this.state.isTestLoading && !this._finalSave) {
             let width = 6;
             if (width < 1) {
                 width = 1;
@@ -157,20 +157,24 @@ class DeveloperTest extends React.Component {
 
         return (
             <div className="row">
-                <div className="col-xs-12 col-sm-6 mb-5">
+                <div className="col-xs-12 col-sm-6">
                     <button type="button"
                             disabled={this.state.isQuestionSaving}
-                            className="btn btn-success"
-                            onClick={this._saveAndExit.bind(this)}>{this.props.texts.saveAndExitButton}</button>
+                            className="btn btn-success mr-5 mb-5"
+                            onClick={this._saveAndExit.bind(this, this.props.dashboardUrl)}>{this.props.texts.saveAndExitButton}</button>
+                    <button type="button"
+                            disabled={this.state.isQuestionSaving}
+                            className="btn btn-success mr-5 mb-5"
+                            onClick={this._saveAndExit.bind(this, this.props.previewUrl)}>{this.props.texts.saveAndPreviewButton}</button>
                 </div>
                 {pagination}
-                <div className="col-xs-12 bb-developer-container">
+                <div className="col-xs-12 bb-test-container">
                     {content}
                 </div>
             </div>
         );
     }
-    _saveAndExit() {
+    _saveAndExit(followUrl) {
         if (!this._questionObject) {
             return;
         }
@@ -181,7 +185,7 @@ class DeveloperTest extends React.Component {
         let object = this._questionObject;
         this._questionObject = null;
         this._abilityObject = null;
-        object.save("test", this._questionLastSave.bind(this));
+        object.save("test", this._questionLastSave.bind(this, followUrl));
         this._oldQuestionObjects.push(object);
     }
     _nextQuestion(index) {
@@ -254,7 +258,7 @@ class DeveloperTest extends React.Component {
             isQuestionSaving: false
         });
     }
-    _questionLastSave(success, object) {
+    _questionLastSave(followUrl, success, object) {
         let index = this._oldQuestionObjects.indexOf(object);
         if (index > -1) {
             this._oldQuestionObjects.splice(index, 1);
@@ -266,7 +270,7 @@ class DeveloperTest extends React.Component {
         }
 
         $(document).off("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
-        Turbolinks.visit(this.props.dashboardUrl);
+        Turbolinks.visit(followUrl);
     }
     _getQuestionData(index) {
         this.setState({

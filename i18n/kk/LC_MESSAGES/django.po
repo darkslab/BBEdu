@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-01-30 11:31+0600\n"
+"POT-Creation-Date: 2018-02-06 13:55+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -967,15 +967,16 @@ msgctxt "/developer/"
 msgid "Actions"
 msgstr ""
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "active?"
 msgctxt "/developer/"
-msgid "Inactive"
-msgstr "активті?"
+msgid "Archived"
+msgstr ""
 
 msgctxt "/developer/"
 msgid "Pending"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Preview"
 msgstr ""
 
 msgctxt "/developer/"
@@ -988,10 +989,6 @@ msgstr ""
 
 msgctxt "/developer/"
 msgid "Edit"
-msgstr ""
-
-msgctxt "/developer/"
-msgid "Preview"
 msgstr ""
 
 msgctxt "/developer/"
@@ -1171,11 +1168,55 @@ msgid "Save and Exit"
 msgstr ""
 
 msgctxt "Developer tools"
+msgid "Save and Preview"
+msgstr ""
+
+msgctxt "Developer tools"
 msgid "Test Specification"
 msgstr ""
 
 msgctxt "Developer tools"
 msgid "Close"
+msgstr ""
+
+msgctxt "Test content"
+msgid "There was an error, please reload the page."
+msgstr ""
+
+msgctxt "Test content"
+msgid "Question"
+msgstr ""
+
+msgctxt "Test content"
+msgid "Please choose an answer choice"
+msgstr ""
+
+msgctxt "Test content"
+msgid "Previous"
+msgstr ""
+
+msgctxt "Test content"
+msgid "Next"
+msgstr ""
+
+msgctxt "Test content"
+msgid "The allotted time has run out."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Send for Approval"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Edit"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Delete"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Exit"
 msgstr ""
 
 #, fuzzy
@@ -1450,6 +1491,81 @@ msgstr ""
 
 msgctxt "/super/"
 msgid "Last subscription"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "All Tests"
+msgstr ""
+
+msgctxt "Page title"
+msgid "All tests"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "All tests"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Developer"
+msgctxt "/super/tests/"
+msgid "Developer"
+msgstr "Құрастырушы"
+
+msgctxt "/super/tests/"
+msgid "Domain"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Section"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Variant"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Status"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Actions"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Archived"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Pending"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Edit"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Preview"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Approved"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Draft"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "There are no tests yet"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Previous"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Next"
 msgstr ""
 
 msgctxt "/developer/tests/"

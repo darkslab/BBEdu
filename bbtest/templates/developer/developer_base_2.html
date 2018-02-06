@@ -7,8 +7,8 @@
 
 {% block _d1_navigation %}
     <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
-        <li class="{% block nav_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:developer_dashboard' %}"><i class="fa fa-fw fa-tachometer"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
-        <li class="{% block nav_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-list-ul"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
+        <li class="{% block nav_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:developer_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
+        <li class="{% block nav_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
     </ul>
 {% endblock %}
 

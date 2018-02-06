@@ -60,7 +60,7 @@ class MultichoiceTextChoice extends React.Component {
                 <div className="col-xs-2 col-sm-3 pr-0">
                     <div className="bb-rel bb-test-answer">
                         <div className={choiceClassName}
-                             onClick={()=>{}}>{this.props.label}</div>
+                             onClick={this._handleClick.bind(this)}>{this.props.label}</div>
                     </div>
                 </div>
                 <div className="col-xs-10 col-sm-7 pl-0">
@@ -79,5 +79,10 @@ class MultichoiceTextChoice extends React.Component {
             rawHtml: rawHtml
         });
         this._processor = undefined;
+    }
+    _handleClick() {
+        if (this.props.onChoose) {
+            this.props.onChoose();
+        }
     }
 }

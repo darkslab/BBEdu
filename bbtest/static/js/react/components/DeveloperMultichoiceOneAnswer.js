@@ -173,7 +173,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                         { className: "col-xs-12" },
                         React.createElement(
                             "div",
-                            { className: "panel panel-default" },
+                            { className: "panel panel-default mb-15" },
                             React.createElement(
                                 "div",
                                 { className: "panel-heading" },
@@ -204,7 +204,7 @@ var DeveloperMultichoiceOneAnswer = function (_React$Component) {
                                 React.createElement("hr", { className: "bb-separator" }),
                                 React.createElement(
                                     "div",
-                                    { className: "mb-23" },
+                                    { className: "mb-15" },
                                     choices
                                 )
                             )

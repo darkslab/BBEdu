@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-01-30 11:31+0600\n"
-"PO-Revision-Date: 2018-01-29 21:57-0800\n"
+"POT-Creation-Date: 2018-02-06 13:55+0600\n"
+"PO-Revision-Date: 2018-02-06 00:10-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -608,7 +608,7 @@ msgstr "активный?"
 
 msgctxt "Model field"
 msgid "is approved?"
-msgstr "согласован?"
+msgstr "одобрен?"
 
 msgctxt "Model field"
 msgid "is pending approval?"
@@ -825,16 +825,20 @@ msgid "Actions"
 msgstr "Действия"
 
 msgctxt "/developer/"
-msgid "Inactive"
-msgstr "Неактивный"
+msgid "Archived"
+msgstr "В архиве"
 
 msgctxt "/developer/"
 msgid "Pending"
 msgstr "В процессе"
 
 msgctxt "/developer/"
+msgid "Preview"
+msgstr "Просмотреть"
+
+msgctxt "/developer/"
 msgid "Approved"
-msgstr "Согласован"
+msgstr "Одобрен"
 
 msgctxt "/developer/"
 msgid "Draft"
@@ -843,10 +847,6 @@ msgstr "Черновая версия"
 msgctxt "/developer/"
 msgid "Edit"
 msgstr "Редактировать"
-
-msgctxt "/developer/"
-msgid "Preview"
-msgstr "Просмотреть"
 
 msgctxt "/developer/"
 msgid "Delete"
@@ -1014,12 +1014,56 @@ msgid "Save and Exit"
 msgstr "Сохранить и выйти"
 
 msgctxt "Developer tools"
+msgid "Save and Preview"
+msgstr "Сохранить и просмотреть"
+
+msgctxt "Developer tools"
 msgid "Test Specification"
 msgstr "Тестовая спецификация"
 
 msgctxt "Developer tools"
 msgid "Close"
 msgstr "Закрыть"
+
+msgctxt "Test content"
+msgid "There was an error, please reload the page."
+msgstr "Произошла ошибка, пожалуйста, обновите страницу."
+
+msgctxt "Test content"
+msgid "Question"
+msgstr "Вопрос"
+
+msgctxt "Test content"
+msgid "Please choose an answer choice"
+msgstr "Пожалуйста, выберите один ответ"
+
+msgctxt "Test content"
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgctxt "Test content"
+msgid "Next"
+msgstr "Следующий"
+
+msgctxt "Test content"
+msgid "The allotted time has run out."
+msgstr "Отведенное время закончилось."
+
+msgctxt "Developer tools"
+msgid "Send for Approval"
+msgstr "Отправить на oдобрение"
+
+msgctxt "Developer tools"
+msgid "Edit"
+msgstr "Редактировать"
+
+msgctxt "Developer tools"
+msgid "Delete"
+msgstr "Удалить"
+
+msgctxt "Developer tools"
+msgid "Exit"
+msgstr "Выйти"
 
 msgctxt "Page title"
 msgid "Create Test"
@@ -1278,6 +1322,78 @@ msgstr "Всего"
 msgctxt "/super/"
 msgid "Last subscription"
 msgstr "Последняя подписка"
+
+msgctxt "Navigation link"
+msgid "All Tests"
+msgstr "Все Тесты"
+
+msgctxt "Page title"
+msgid "All tests"
+msgstr "Все Тесты"
+
+msgctxt "/super/tests/"
+msgid "All tests"
+msgstr "Все Тесты"
+
+msgctxt "/super/tests/"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "/super/tests/"
+msgid "Domain"
+msgstr "Тестирование"
+
+msgctxt "/super/tests/"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "/super/tests/"
+msgid "Variant"
+msgstr "Код теста"
+
+msgctxt "/super/tests/"
+msgid "Status"
+msgstr "Статус"
+
+msgctxt "/super/tests/"
+msgid "Actions"
+msgstr "Действия"
+
+msgctxt "/super/tests/"
+msgid "Archived"
+msgstr "В архиве"
+
+msgctxt "/super/tests/"
+msgid "Pending"
+msgstr "В процессе"
+
+msgctxt "/super/tests/"
+msgid "Edit"
+msgstr "Редактировать"
+
+msgctxt "/super/tests/"
+msgid "Preview"
+msgstr "Просмотреть"
+
+msgctxt "/super/tests/"
+msgid "Approved"
+msgstr "Одобрен"
+
+msgctxt "/super/tests/"
+msgid "Draft"
+msgstr "Черновая версия"
+
+msgctxt "/super/tests/"
+msgid "There are no tests yet"
+msgstr "Нет загруженных тестов"
+
+msgctxt "/super/tests/"
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgctxt "/super/tests/"
+msgid "Next"
+msgstr "Следующий"
 
 msgctxt "/developer/tests/"
 msgid "Choose test language"

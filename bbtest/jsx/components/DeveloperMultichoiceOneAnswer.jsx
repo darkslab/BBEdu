@@ -133,7 +133,7 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                 {modal}
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="panel panel-default">
+                        <div className="panel panel-default mb-15">
                             <div className="panel-heading">
                                 <div className="row">
                                     <h4 className="col-xs-9 col-sm-11 mt-5 mb-5">{this.props.texts.multichoiceOneAnswerTitle}</h4>
@@ -146,7 +146,7 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                                 </div>
                                 {addAnswerChoiceButton}
                                 <hr className="bb-separator" />
-                                <div className="mb-23">
+                                <div className="mb-15">
                                     {choices}
                                 </div>
                             </div>

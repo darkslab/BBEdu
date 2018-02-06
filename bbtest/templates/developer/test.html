@@ -17,6 +17,7 @@
                         paragraphsUrl: "{% url 'bbtest:developer_paragraphs' code %}",
                         attributesUrl: "{% url 'bbtest:developer_attributes' code %}",
                         dashboardUrl: "{% url 'bbtest:developer_dashboard' %}",
+                        previewUrl: "{% url 'bbtest:developer_preview_test' code %}",
                         uploadStartUrl: "{% url 'bbtest:upload_start' %}",
                         texts: {
                             error:                                               "{% trans 'There was an error, please reload the page.'            context 'Developer tools' %}",
@@ -51,7 +52,8 @@
                             deleteModalNoCaption:                                "{% trans 'No'                                                     context 'Developer tools' %}",
                             saved:                                               "{% trans 'Saved'                                                  context 'Developer tools' %}",
                             controlFormulasButton:                               "{% trans 'Formulas'                                               context 'Developer tools' %}",
-                            saveAndExitButton:                                   "{% trans 'Save and Exit'                                          context 'Developer tools' %}"
+                            saveAndExitButton:                                   "{% trans 'Save and Exit'                                          context 'Developer tools' %}",
+                            saveAndPreviewButton:                                "{% trans 'Save and Preview'                                       context 'Developer tools' %}"
                         },
                         ability: undefined
                     }
@@ -73,8 +75,8 @@
         })();
     </script>
     <div class="row">
-        <div class="col-xs-12 mb-5">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="[data-specification-modal]">{% trans 'Test Specification' context 'Developer tools' %}</button>
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-info mr-5 mb-5" data-toggle="modal" data-target="[data-specification-modal]">{% trans 'Test Specification' context 'Developer tools' %}</button>
             <div class="modal fade" data-specification-modal>
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -97,7 +99,7 @@
     </div>
     <div id="root">
         <div class="row">
-            <div class="col-xs-12 bb-developer-container">
+            <div class="col-xs-12 bb-test-container">
                 <img class="bb-spinner" src="{% static 'img/logo.png' %}">
             </div>
         </div>
