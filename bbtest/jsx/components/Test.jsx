@@ -45,7 +45,7 @@ class Test extends React.Component {
             );
         } else if (this.state.isTimedOut) {
             content = (
-                <h4 className="text-center mt-100 mb-0">Time is up!</h4>
+                <h4 className="text-center mt-100 mb-0">{this.props.texts.timeIsUpText}</h4>
             );
         } else {
             content = (

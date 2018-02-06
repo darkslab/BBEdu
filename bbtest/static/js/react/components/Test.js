@@ -70,7 +70,7 @@ var Test = function (_React$Component) {
                 content = React.createElement(
                     "h4",
                     { className: "text-center mt-100 mb-0" },
-                    "Time is up!"
+                    this.props.texts.timeIsUpText
                 );
             } else {
                 content = React.createElement(Question, { count: this.state.questionIndex + 1,
