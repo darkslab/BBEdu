@@ -17,7 +17,10 @@ from .views.developer import (
     ParagraphsView,
     AttributesView,
 )
-from .views.super import DashboardView as SuperDashboardView
+from .views.super import (
+    DashboardView as SuperDashboardView,
+    TestsView as SuperTestsView,
+)
 
 
 app_name = "bbtest"
@@ -51,6 +54,15 @@ urlpatterns = [
 
     # SUPER URLS
     url(r"^super/$", SuperDashboardView.as_view(), name="super_dashboard"),
+    url(r"^super/tests/$", SuperTestsView.as_view(), name="super_tests"),
+    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/$", SuperTestView.as_view(), name="super_test"),
+    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$", SuperTestPreviewView.as_view(), name="super_preview_test"),
+    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$", SuperTestPreviewDataView.as_view(), name="super_preview_data_test"),
+    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/)?$", SuperQuestionView.as_view(), name="super_question"),
+    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", SuperParagraphsView.as_view(), name="super_paragraphs"),
+    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/attributes/$", SuperAttributesView.as_view(), name="super_attributes"),
+    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/approve/$", ApproveTestView.as_view(), name="super_approve_test"),
+    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/refuse/$", RefuseTestView.as_view(), name="super_refuse_test"),
 
     # SYSTEM URLS
     url(r"^login/$", LoginView.as_view(), name="login"),

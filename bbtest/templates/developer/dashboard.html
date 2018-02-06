@@ -44,7 +44,7 @@
                     <h4 class="panel-title">{% trans 'Tests' context '/developer/' %}</h4>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped bb-developer-table">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th class="pr-15 pl-15">{% trans 'Domain' context '/developer/' %}</th>
@@ -62,7 +62,7 @@
                                     <td class="pr-15 pl-15 text-center">#{{ test.code|upper }}</td>
                                     {% if not test.is_active %}
                                         <td class="pr-15 pl-15 text-center">
-                                            <span class="label label-danger">{% trans 'Inactive' context '/developer/' %}</span>
+                                            <span class="label label-danger">{% trans 'Archived' context '/developer/' %}</span>
                                         </td>
                                         <td class="pr-15 pl-15 text-center"></td>
                                     {% elif test.is_pending %}
