@@ -22,7 +22,7 @@ function SimpleFormattedFragment(text) {
     let paragraphs = text.split("\n\n");
     for (let i = 0; i < paragraphs.length; i++) {
         paragraphs[i] = $.trim(paragraphs[i]);
-        let rootNestedSet = new _RootFormattedNestedSet(paragraphs[i], 0, paragraphs[i].length - 1);
+        let rootNestedSet = new _RootFormattedNestedSet(paragraphs[i], 0, paragraphs[i].length - 1, i + 1 === paragraphs.length);
         for (let j = 0; j < formats.length; j++) {
             let match;
             while (match = formats[j].regex.exec(paragraphs[i])) {
@@ -107,8 +107,9 @@ class _FormattedNestedSet {
         }
 
         let Tag = this.tag();
+        let className = this.className();
         return (
-            <Tag>{elems}</Tag>
+            <Tag className={className}>{elems}</Tag>
         );
     }
     canContain(nestedSet) {
@@ -153,6 +154,9 @@ class _FormattedNestedSet {
 
         this._innerSets = newInnerSets;
     }
+    className() {
+        return null;
+    }
 
     _doOrderedSetsOverlap(nestedSets) {
         if (!nestedSets.length) {
@@ -176,6 +180,10 @@ class _FormattedNestedSet {
 }
 
 class _RootFormattedNestedSet extends _FormattedNestedSet {
+    constructor(string, startPos, endPos, lastParagraph) {
+        super(string, startPos, endPos);
+        this._lastParagraph = !!lastParagraph;
+    }
     canContain(nestedSet) {
         return true;
     }
@@ -184,6 +192,12 @@ class _RootFormattedNestedSet extends _FormattedNestedSet {
     }
     delimiterLength() {
         return 0;
+    }
+    className() {
+        if (this._lastParagraph) {
+            return "mb-0";
+        }
+        return "mb-10";
     }
 }
 

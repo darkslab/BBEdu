@@ -29,7 +29,7 @@
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     {% javascript 'base0' %}
     {% javascript 'base1' %}
-    {% if perms.bbtest.developer %}
+    {% if user.is_authenticated %}
         {% javascript 'base2' %}
         {% javascript 'base3' %}
     {% endif %}

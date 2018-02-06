@@ -1,6 +1,6 @@
-from django.views.generic import TemplateView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from bbtest.auth.mixins import DeveloperLoginRequiredMixin
+from bbtest.views.generic import TemplateView
 
 
 class DashboardView(DeveloperLoginRequiredMixin, TemplateView):

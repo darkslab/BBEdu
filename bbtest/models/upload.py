@@ -17,8 +17,8 @@ def storage_bucket():
     ).bucket(settings.SECRETS["GOOGLE_STORAGE_BUCKET"])
 
 
-def expiring_url(asset_object_name):
-    return storage_bucket().blob(asset_object_name).generate_signed_url(now() + timedelta(hours=2))
+def expiring_url(asset_object_name, expire_in=3600):
+    return storage_bucket().blob(asset_object_name).generate_signed_url(now() + timedelta(seconds=(expire_in + 5)))
 
 
 class UploadingObjectsManager(Manager):

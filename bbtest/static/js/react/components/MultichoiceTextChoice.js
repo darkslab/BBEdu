@@ -94,7 +94,7 @@ var MultichoiceTextChoice = function (_React$Component) {
                         React.createElement(
                             "div",
                             { className: choiceClassName,
-                                onClick: function onClick() {} },
+                                onClick: this._handleClick.bind(this) },
                             this.props.label
                         )
                     )
@@ -119,6 +119,13 @@ var MultichoiceTextChoice = function (_React$Component) {
                 rawHtml: rawHtml
             });
             this._processor = undefined;
+        }
+    }, {
+        key: "_handleClick",
+        value: function _handleClick() {
+            if (this.props.onChoose) {
+                this.props.onChoose();
+            }
         }
     }]);
 

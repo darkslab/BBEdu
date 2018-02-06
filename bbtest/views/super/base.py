@@ -1,7 +1,7 @@
-from django.views.generic import TemplateView
 from django.contrib.auth import get_user_model
 from django.db.models import Count
 from bbtest.auth.mixins import SuperLoginRequiredMixin
+from bbtest.views.generic import TemplateView
 from bbtest.models import Subscription
 
 

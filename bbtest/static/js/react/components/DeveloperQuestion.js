@@ -236,10 +236,10 @@ var DeveloperQuestion = function (_React$Component) {
                         { className: "col-xs-12" },
                         React.createElement(
                             "div",
-                            { className: "panel panel-primary" },
+                            { className: "panel panel-primary mb-15" },
                             React.createElement(
                                 "div",
-                                { className: "panel-heading bb-rel" },
+                                { className: "panel-heading bb-rel clearfix" },
                                 React.createElement(
                                     "div",
                                     { className: "bb-test-number" },
@@ -247,7 +247,7 @@ var DeveloperQuestion = function (_React$Component) {
                                 ),
                                 React.createElement(
                                     "h4",
-                                    { className: "panel-title bb-test-title mt-15 mb-15" },
+                                    { className: "panel-title bb-test-title mt-15 mb-15 pull-left" },
                                     this.props.texts.question
                                 )
                             ),

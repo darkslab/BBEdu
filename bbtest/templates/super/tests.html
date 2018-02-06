@@ -1,0 +1,91 @@
+{% extends './super_base_2.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'All tests' context 'Page title' %}{% endblock %}
+
+{# DARK_TODO  highlight the navigation item #}
+{% block nav_dashboard_class %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'All tests' context '/super/tests/' %}</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="pr-15 pl-15">{% trans 'Developer' context '/super/tests/' %}</th>
+                                <th class="pr-15 pl-15">{% trans 'Domain' context '/super/tests/' %}</th>
+                                <th class="pr-15 pl-15">{% trans 'Section' context '/super/tests/' %}</th>
+                                <th class="pr-15 pl-15 text-center">{% trans 'Variant' context '/super/tests/' %}</th>
+                                <th class="pr-15 pl-15 text-center">{% trans 'Status' context '/super/tests/' %}</th>
+                                <th class="pr-15 pl-15 text-center">{% trans 'Actions' context '/super/tests/' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for test in tests %}
+                                <tr>
+                                    <td class="pr-15 pl-15">{{ test.developer.get_full_name }}</td>
+                                    <td class="pr-15 pl-15">{% trans test.section.domain.name %}</td>
+                                    <td class="pr-15 pl-15">{% trans test.section.name %}</td>
+                                    <td class="pr-15 pl-15 text-center">#{{ test.code|upper }}</td>
+                                    {% if not test.is_active %}
+                                        <td class="pr-15 pl-15 text-center">
+                                            <span class="label label-danger">{% trans 'Archived' context '/super/tests/' %}</span>
+                                        </td>
+                                        <td class="pr-15 pl-15 text-center"></td>
+                                    {% elif test.is_pending %}
+                                        <td class="pr-15 pl-15 text-center">
+                                            <span class="label label-info">{% trans 'Pending' context '/super/tests/' %}</span>
+                                        </td>
+                                        <td class="pr-15 pl-15 text-center">
+                                            <a href="javascript:void(0);" class="btn btn-default btn-xs disabled">{% trans 'Edit' context '/super/tests/' %}</a>
+                                            <a href="javascript:void(0);" class="btn btn-primary btn-xs disabled">{% trans 'Preview' context '/super/tests/' %}</a>
+                                        </td>
+                                    {% elif test.is_approved %}
+                                        <td class="pr-15 pl-15 text-center">
+                                            <span class="label label-success">{% trans 'Approved' context '/super/tests/' %}</span>
+                                        </td>
+                                        <td class="pr-15 pl-15 text-center">
+                                            <a href="javascript:void(0);" class="btn btn-primary btn-xs disabled">{% trans 'Preview' context '/super/tests/' %}</a>
+                                        </td>
+                                    {% else %}
+                                        <td class="pr-15 pl-15 text-center">
+                                            <span class="label label-default">{% trans 'Draft' context '/super/tests/' %}</span>
+                                        </td>
+                                        <td class="pr-15 pl-15 text-center">
+                                            <a href="javascript:void(0);" class="btn btn-primary btn-xs disabled">{% trans 'Preview' context '/super/tests/' %}</a>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="6">{% trans 'There are no tests yet' context '/super/tests/' %}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if tests.has_other_pages %}
+                    <div class="panel-body">
+                        <ul class="pager mt-0 mb-0">
+                            {% if tests.has_previous %}
+                                <li class="previous"><a href="{{ request.path }}?page={{ tests.previous_page_number }}">&larr; {% trans 'Previous' context '/super/tests/' %}</a></li>
+                            {% else %}
+                                <li class="previous disabled"><a href="javascript:void(0);">&larr; {% trans 'Previous' context '/super/tests/' %}</a></li>
+                            {% endif %}
+                            {% if tests.has_next %}
+                                <li class="next"><a href="{{ request.path }}?page={{ tests.next_page_number }}">{% trans 'Next' context '/super/tests/' %} &rarr;</a></li>
+                            {% else %}
+                                <li class="next disabled"><a href="javascript:void(0);">{% trans 'Next' context '/super/tests/' %} &rarr;</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

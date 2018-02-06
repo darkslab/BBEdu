@@ -1,9 +1,9 @@
-from django.views.generic import View
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from json import loads
 from bbtest.auth.mixins import LoginRequiredMixin
+from bbtest.views.generic import View
 from bbtest.forms.upload import UploadStartForm, UploadAdoptForm
 from bbtest.http import TightJsonResponse
 from bbtest.models import Upload, Asset
