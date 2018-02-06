@@ -17,6 +17,7 @@
                         paragraphsUrl: "{% url 'bbtest:developer_paragraphs' code %}",
                         attributesUrl: "{% url 'bbtest:developer_attributes' code %}",
                         dashboardUrl: "{% url 'bbtest:developer_dashboard' %}",
+                        previewUrl: "{% url 'bbtest:developer_preview_test' code %}",
                         uploadStartUrl: "{% url 'bbtest:upload_start' %}",
                         texts: {
                             error:                                               "{% trans 'There was an error, please reload the page.'            context 'Developer tools' %}",
@@ -51,7 +52,8 @@
                             deleteModalNoCaption:                                "{% trans 'No'                                                     context 'Developer tools' %}",
                             saved:                                               "{% trans 'Saved'                                                  context 'Developer tools' %}",
                             controlFormulasButton:                               "{% trans 'Formulas'                                               context 'Developer tools' %}",
-                            saveAndExitButton:                                   "{% trans 'Save and Exit'                                          context 'Developer tools' %}"
+                            saveAndExitButton:                                   "{% trans 'Save and Exit'                                          context 'Developer tools' %}",
+                            saveAndPreviewButton:                                "{% trans 'Save and Preview'                                       context 'Developer tools' %}"
                         },
                         ability: undefined
                     }
