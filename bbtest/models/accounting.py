@@ -2,11 +2,13 @@ from django.db.models import (
     Manager,
     Model, ForeignKey, CASCADE, ManyToManyField,
     CharField, PositiveSmallIntegerField, BooleanField, DateTimeField, IntegerField, DecimalField,
+    Sum, Q,
 )
 from django.db.transaction import atomic
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.utils.translation import pgettext_lazy
+from decimal import Decimal, ROUND_HALF_UP
 
 
 class AccountManager(Manager):
@@ -27,6 +29,16 @@ class AccountManager(Manager):
 
     def create_revenue_account(self, name, is_contra=False):
         return self.create(name=name, type=Account.TYPE_REVENUE, is_contra=is_contra)
+
+    def trial_balance(self):
+        balance = Decimal("0.00")
+        balance += Amount.objects.filter(is_debit=True).filter(
+            Q(account__type__lt=0x10, account__is_contra=False) | Q(account__type__gt=0x0f, account__is_contra=True),
+        ).aggregate(balance=Sum("amount"))["balance"] or Decimal("0.00")
+        balance -= Amount.objects.filter(is_debit=False).filter(
+            Q(account__type__gt=0x0f, account__is_contra=False) | Q(account__type__lt=0x10, account__is_contra=True),
+        ).aggregate(balance=Sum("amount"))["balance"] or Decimal("0.00")
+        return balance
 
 class Account(Model):
     TYPE_ASSET      = 0x00
@@ -82,6 +94,15 @@ class Account(Model):
             is_credit = not is_credit
         return is_credit
 
+    def balance(self):
+        is_debit = True
+        if self.is_credit_account():
+            is_debit = False
+        balance = Decimal("0.00")
+        balance += self.amounts.filter(is_debit=is_debit).aggregate(balance=Sum("amount"))["balance"] or Decimal("0.00")
+        balance -= self.amounts.exclude(is_debit=is_debit).aggregate(balance=Sum("amount"))["balance"] or Decimal("0.00")
+        return balance
+
 
 class EntryManager(Manager):
     def post(self, description, debits=[], credits=[], document=None):
@@ -110,7 +131,7 @@ class EntryManager(Manager):
                     unique_accounts.append(account)
                     if not isinstance(entry["amount"], Decimal) or entry["amount"] <= 0:
                         raise TypeError("Incorrect amount type")
-                    _entries.append((account, entry["amount"]))
+                    _entries.append((account, entry["amount"].quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)))
                 if not len(_entries):
                     raise TypeError("Incorrect entries")
         except (TypeError, AttributeError, KeyError, Account.DoesNotExist):
@@ -120,16 +141,16 @@ class EntryManager(Manager):
             raise RuntimeError("The sum of debit amounts does not match the sum of credit amounts")
 
         balance = Decimal("0.00")
-        for index, entries in enumerate((_debits, _credits)):
-            for entry in entries:
-                if not index:
-                    amount = entry[1]
-                else:
-                    amount = -entry[1]
-                if entry[0].is_debit_account():
-                    balance += amount
-                else:
-                    balance -= amount
+        for debit in _debits:
+            if debit[0].is_debit_account():
+                balance += debit[1]
+            else:
+                balance -= debit[1]
+        for credit in _credits:
+            if credit[0].is_credit_account():
+                balance -= credit[1]
+            else:
+                balance += credit[1]
         if not balance.is_zero():
             raise RuntimeError("Debit and credit amounts do not balance")
 
