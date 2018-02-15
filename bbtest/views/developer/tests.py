@@ -4,7 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.messages import success
 from django.db.models import Prefetch
 from json import loads
-from bbtest.auth.mixins import DeveloperLoginRequiredMixin
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
 from bbtest.views.generic import View, TemplateView, FormView
 from bbtest.models import TestQuestion, TestDomain, Test, TestParagraph
 from bbtest.models.upload import expiring_url
@@ -15,7 +15,7 @@ from bbtest.jobs.upload import image_paragraph_destroyer
 from .mixins import DeveloperAcknowledgementRequiredMixin
 
 
-class TestsView(DeveloperLoginRequiredMixin, DeveloperAcknowledgementRequiredMixin, FormView):
+class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, FormView):
     template_name = "developer/tests.html"
     form_class = TestForm
     unaccepted_acknowledgement_redirect_urlpattern = "bbtest:developer_acknowledgement"
@@ -83,7 +83,7 @@ class TestsView(DeveloperLoginRequiredMixin, DeveloperAcknowledgementRequiredMix
         return reverse("bbtest:developer_test", kwargs={ "code": self._test.code })
 
 
-class TestView(DeveloperLoginRequiredMixin, TemplateView):
+class TestView(DeveloperPermissionRequiredMixin, TemplateView):
     template_name = "developer/test.html"
 
     def get_context_data(self, **kwargs):
@@ -102,7 +102,7 @@ class TestView(DeveloperLoginRequiredMixin, TemplateView):
         return super().get_context_data(**kwargs)
 
 
-class TestPreviewView(DeveloperLoginRequiredMixin, FormView):
+class TestPreviewView(DeveloperPermissionRequiredMixin, FormView):
     template_name = "developer/test_preview.html"
     form_class = TestSendForm
     success_url = reverse_lazy("bbtest:developer_dashboard")
@@ -138,7 +138,7 @@ class TestPreviewView(DeveloperLoginRequiredMixin, FormView):
         return super().form_valid(form)
 
 
-class TestPreviewDataView(DeveloperLoginRequiredMixin, View):
+class TestPreviewDataView(DeveloperPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
         test = get_object_or_404(request.user.tests(manager="active_tests").select_related("section"), code=code)
         data = {
@@ -183,7 +183,7 @@ class TestPreviewDataView(DeveloperLoginRequiredMixin, View):
         return TightJsonResponse(data)
 
 
-class TestDeleteView(DeveloperLoginRequiredMixin, View):
+class TestDeleteView(DeveloperPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
         test = get_object_or_404(
             request.user.tests(manager="draft_tests").prefetch_related("questions__paragraphs"),
@@ -204,7 +204,7 @@ class TestDeleteView(DeveloperLoginRequiredMixin, View):
         return redirect("bbtest:developer_dashboard")
 
 
-class QuestionView(DeveloperLoginRequiredMixin, View):
+class QuestionView(DeveloperPermissionRequiredMixin, View):
     def get(self, request, code, question_id, *args, **kwargs):
         question = self.__question(request, code, question_id)
 
@@ -256,7 +256,7 @@ class QuestionView(DeveloperLoginRequiredMixin, View):
         return get_object_or_404(test.questions, pk=question_id)
 
 
-class ParagraphsView(DeveloperLoginRequiredMixin, View):
+class ParagraphsView(DeveloperPermissionRequiredMixin, View):
     def post(self, request, code, question_id, *args, **kwargs):
         test = get_object_or_404(request.user.tests(manager="draft_tests"), code=code)
         question = get_object_or_404(test.questions, pk=question_id)
@@ -275,7 +275,7 @@ class ParagraphsView(DeveloperLoginRequiredMixin, View):
         })
 
 
-class AttributesView(DeveloperLoginRequiredMixin, View):
+class AttributesView(DeveloperPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
         test = get_object_or_404(request.user.tests(manager="draft_tests").select_related("section"), code=code)
         attributes_data = {
