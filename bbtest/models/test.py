@@ -88,52 +88,61 @@ class TestTopicSection(Model):
 
 class DraftTestManager(Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(is_active=True, is_approved=False, is_pending=False)
+        return super().get_queryset().filter(status=Test.STATUS_DRAFT)
 
 class PendingTestManager(Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(is_active=True, is_approved=False, is_pending=True)
+        return super().get_queryset().filter(status=Test.STATUS_PENDING)
 
-class UnapprovedTestManager(Manager):
+class WorkedTestManager(Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(is_active=True, is_approved=False)
+        return super().get_queryset().filter(status__lt=Test.STATUS_APPROVED)
 
 class ApprovedTestManager(Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(is_active=True, is_approved=True)
+        return super().get_queryset().filter(status=Test.STATUS_APPROVED)
 
 class ActiveTestManager(Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(is_active=True)
+        return super().get_queryset().filter(status__lt=Test.STATUS_ARCHIVED)
 
 class ArchivedTestManager(Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(is_active=False)
+        return super().get_queryset().filter(status=Test.STATUS_ARCHIVED)
 
 class Test(Model):
-    LANGUAGE_XX = "xx"
-    LANGUAGE_KK = "kk"
-    LANGUAGE_RU = "ru"
+    LANGUAGE_XX  = "xx"
+    LANGUAGE_KK  = "kk"
+    LANGUAGE_RU  = "ru"
     LANGUAGES = (
         ( LANGUAGE_XX, pgettext_lazy("Test language", "N/A")     ),
         ( LANGUAGE_KK, pgettext_lazy("Test language", "Kazakh")  ),
         ( LANGUAGE_RU, pgettext_lazy("Test language", "Russian") ),
     )
 
+    STATUS_DRAFT     = 0x00
+    STATUS_PENDING   = 0x01
+    STATUS_APPROVED  = 0x02
+    STATUS_ARCHIVED  = 0x03
+    STATUSES = (
+        ( STATUS_DRAFT,    pgettext_lazy("Test status", "Draft")    ),
+        ( STATUS_PENDING,  pgettext_lazy("Test status", "Pending")  ),
+        ( STATUS_APPROVED, pgettext_lazy("Test status", "Approved") ),
+        ( STATUS_ARCHIVED, pgettext_lazy("Test status", "Archived") ),
+    )
+
     section    = ForeignKey  ( TestSection,      on_delete=CASCADE, related_name="tests", )
     developer  = ForeignKey  ( get_user_model(), on_delete=CASCADE, related_name="tests", )
 
-    code         = CharField      ( pgettext_lazy("Model field", "code of the test"),     max_length=6,                                        unique=True,   )
-    language     = CharField      ( pgettext_lazy("Model field", "language of the test"), max_length=2,      choices=LANGUAGES,                db_index=True, )
-    is_active    = BooleanField   ( pgettext_lazy("Model field", "is active?"),                                                 default=True,  db_index=True, )
-    is_approved  = BooleanField   ( pgettext_lazy("Model field", "is approved?"),                                               default=False, db_index=True, )
-    is_pending   = BooleanField   ( pgettext_lazy("Model field", "is pending approval?"),                                       default=False, db_index=True, )
-    created_at   = DateTimeField  ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                  )
+    code        = CharField                  ( pgettext_lazy("Model field", "code of the test"),     max_length=6,                                               unique=True,   )
+    language    = CharField                  ( pgettext_lazy("Model field", "language of the test"), max_length=2,      choices=LANGUAGES,                       db_index=True, )
+    status      = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "status"),                                  choices=STATUSES,  default=STATUS_DRAFT, db_index=True, )
+    created_at  = DateTimeField              ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                         )
 
     objects = Manager()
     draft_tests = DraftTestManager()
     pending_tests = PendingTestManager()
-    unapproved_tests = UnapprovedTestManager()
+    worked_tests = WorkedTestManager()
     approved_tests = ApprovedTestManager()
     active_tests = ActiveTestManager()
     archived_tests = ArchivedTestManager()
@@ -143,6 +152,18 @@ class Test(Model):
 
     def __str__(self):
         return self.code
+
+    def is_draft(self):
+        return self.status == self.STATUS_DRAFT
+
+    def is_pending(self):
+        return self.status == self.STATUS_PENDING
+
+    def is_approved(self):
+        return self.status == self.STATUS_APPROVED
+
+    def is_archived(self):
+        return self.status == self.STATUS_ARCHIVED
 
 
 class TestQuestion(Model):

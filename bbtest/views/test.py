@@ -17,7 +17,7 @@ from bbtest.jobs.upload import image_paragraph_destroyer
 
 def get_test_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
     if request.user.has_perm("bbtest.super"):
-        tests = Test.unapproved_tests
+        tests = Test.worked_tests
     else:
         tests = request.user.tests(manager="draft_tests")
     if include_section:
@@ -29,8 +29,10 @@ def get_test_for_edit_or_404(request, code, include_section=False, include_parag
         code=code,
     )
     if request.user.has_perm("bbtest.super"):
-        if not test.is_pending and test.developer_id != request.user.id:
+        if test.developer_id != request.user.id and not test.is_pending():
             raise Http404("Superusers can only edit tests of other developers that are pending")
+        if test.developer_id == request.user.id and not test.is_draft():
+            raise Http404("Superusers can only edit their own tests that are in draft status")
     return test
 
 def get_test_for_preview_or_404(request, code):
@@ -193,6 +195,8 @@ class TestPreviewView(DeveloperPermissionRequiredMixin, FormView):
 
     def post(self, request, *args, **kwargs):
         self._test = get_test_for_preview_or_404(request, self.kwargs["code"])
+        if request.user.has_perm("bbtest.super"):
+            raise Http404("Superusers cannot send tests for approval")
         return super().post(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
