@@ -94,6 +94,10 @@ class PendingTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_active=True, is_approved=False, is_pending=True)
 
+class UnapprovedTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True, is_approved=False)
+
 class ApprovedTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(is_active=True, is_approved=True)
@@ -129,6 +133,7 @@ class Test(Model):
     objects = Manager()
     draft_tests = DraftTestManager()
     pending_tests = PendingTestManager()
+    unapproved_tests = UnapprovedTestManager()
     approved_tests = ApprovedTestManager()
     active_tests = ActiveTestManager()
     archived_tests = ArchivedTestManager()

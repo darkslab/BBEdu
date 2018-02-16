@@ -1,21 +1,23 @@
 from django.conf.urls import url
 from .auth.views import LoginView, LogoutView, RegisterView, PasswordResetView, PasswordResetConfirmView
-from .views import (
-    HomeView, DashboardView, SettingsView,
-    UploadStartView, UploadCompleteView, UploadAdoptView,
+from .views.base import HomeView, DashboardView, SettingsView
+from .views.upload import UploadStartView, UploadCompleteView, UploadAdoptView
+from .views.test import (
+    TestView as BuildTestView,
+    TestQuestionView as BuildTestQuestionView,
+    TestParagraphsView as BuildTestParagraphsView,
+    TestAttributesView as BuildTestAttributesView,
+    DeleteTestView as BuildDeleteTestView,
+    TestPreviewView as BuildTestPreviewView,
+    TestPreviewDataView as BuildTestPreviewDataView,
 )
-from .views.student import DashboardView as StudentDashboardView
+from .views.student import (
+    DashboardView as StudentDashboardView,
+)
 from .views.developer import (
     DashboardView as DeveloperDashboardView,
-    AcknowledgementView,
-    TestsView,
-    TestView,
-    TestPreviewView,
-    TestPreviewDataView,
-    TestDeleteView,
-    QuestionView,
-    ParagraphsView,
-    AttributesView,
+    AcknowledgementView as DeveloperAcknowledgementView,
+    TestsView as DeveloperTestsView,
 )
 from .views.super import (
     DashboardView as SuperDashboardView,
@@ -37,20 +39,22 @@ urlpatterns = [
     url(r"^uploads/(?P<uuid>[0-9A-Fa-f]{32})/complete/$", UploadCompleteView.as_view(), name="upload_complete"),
     url(r"^uploads/(?P<uuid>[0-9A-Fa-f]{32})/adopt/$",    UploadAdoptView.as_view(),    name="upload_adopt"   ),
 
+    # TEST BUILDING URLS
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/$",                                                BuildTestView.as_view(),               name="build_test"             ),
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/)?$",            BuildTestQuestionView.as_view(),       name="build_test_question"    ),
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", BuildTestParagraphsView.as_view(),     name="build_test_paragraphs"  ),
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/attributes/$",                                     BuildTestAttributesView.as_view(),     name="build_test_attributes"  ),
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/delete/$",                                         BuildDeleteTestView.as_view(),         name="build_delete_test"      ),
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
+
     # STUDENT URLS
     url(r"^student/$", StudentDashboardView.as_view(), name="student_dashboard"),
 
     # DEVELOPER URLS
-    url(r"^developer/$",                                                                                 DeveloperDashboardView.as_view(), name="developer_dashboard"        ),
-    url(r"^developer/acknowledgement/$",                                                                 AcknowledgementView.as_view(),    name="developer_acknowledgement"  ),
-    url(r"^developer/tests/$",                                                                           TestsView.as_view(),              name="developer_tests"            ),
-    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/$",                                                TestView.as_view(),               name="developer_test"             ),
-    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/)?$",            QuestionView.as_view(),           name="developer_question"         ),
-    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", ParagraphsView.as_view(),         name="developer_paragraphs"       ),
-    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/attributes/$",                                     AttributesView.as_view(),         name="developer_attributes"       ),
-    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/delete/$",                                         TestDeleteView.as_view(),         name="developer_delete_test"      ),
-    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        TestPreviewView.as_view(),        name="developer_preview_test"     ),
-    url(r"^developer/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   TestPreviewDataView.as_view(),    name="developer_preview_data_test"),
+    url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
+    url(r"^developer/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="developer_acknowledgement"),
+    url(r"^developer/tests/$",           DeveloperTestsView.as_view(),           name="developer_tests"          ),
 
     # SUPER URLS
     url(r"^super/$",                                                                                 SuperDashboardView.as_view(),       name="super_dashboard"        ),

@@ -12,12 +12,12 @@
                     class: "DeveloperTest",
                     props: {
                         spinnerLogo: "{% static 'img/logo.png' %}",
-                        questionUrl: "{% url 'bbtest:developer_question' code %}",
+                        questionUrl: "{% url 'bbtest:build_test_question' code %}",
                         questionIds: {{ question_ids|safe }},
-                        paragraphsUrl: "{% url 'bbtest:developer_paragraphs' code %}",
-                        attributesUrl: "{% url 'bbtest:developer_attributes' code %}",
-                        dashboardUrl: "{% url 'bbtest:developer_dashboard' %}",
-                        previewUrl: "{% url 'bbtest:developer_preview_test' code %}",
+                        paragraphsUrl: "{% url 'bbtest:build_test_paragraphs' code %}",
+                        attributesUrl: "{% url 'bbtest:build_test_attributes' code %}",
+                        dashboardUrl: "{% url 'bbtest:dashboard' %}",
+                        previewUrl: "{% url 'bbtest:build_test_preview' code %}",
                         uploadStartUrl: "{% url 'bbtest:upload_start' %}",
                         texts: {
                             error:                                               "{% trans 'There was an error, please reload the page.'            context 'Developer tools' %}",
@@ -59,17 +59,6 @@
                     }
                 }
             };
-            {% comment %}
-                {% if test.section.id == 9540 %}
-                    moduleData.data.props.ability = "DeveloperNISMathematicsAbility";
-                {% elif test.section.id == 9541 or test.section.id == 9542 or test.section.id == 9543 %}
-                    moduleData.data.props.ability = "DeveloperNISLanguageAbility";
-                {% elif test.section.id == 9544 %}
-                    moduleData.data.props.ability = "DeveloperNISQuantitativeAbility";
-                {% else %}
-                    moduleData.data.props.ability = "SuperAbility";
-                {% endif %}
-            {% endcomment %}
             moduleData.data.props.ability = "SuperAbility";
             moduleDataStack.push(moduleData);
         })();
