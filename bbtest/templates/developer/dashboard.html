@@ -61,7 +61,7 @@
                                     <td class="pr-15 pl-15">{% trans test.section.name %}</td>
                                     <td class="pr-15 pl-15 text-center">#{{ test.code|upper }}</td>
                                     <td class="pr-15 pl-15 text-center">
-                                        <span class="label {% if test.is_archived %}label-danger{% elif test.is_approved %}label-success{% elif test.is_pending %}label-info{% elif test.is_draft %}label-default{% endif %}">{{ test.status }}</span>
+                                        <span class="label {% if test.is_archived %}label-danger{% elif test.is_approved %}label-success{% elif test.is_pending %}label-info{% elif test.is_draft %}label-default{% endif %}">{{ test.get_status_display }}</span>
                                     </td>
                                     {% if test.is_archived %}
                                         <td class="pr-15 pl-15 text-center"></td>
