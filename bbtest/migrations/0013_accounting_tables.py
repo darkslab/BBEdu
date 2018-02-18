@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('contenttypes', '0002_remove_content_type_name'),
-        ('bbtest', '0010_asset_upload'),
+        ('bbtest', '0012_reset_sessions'),
     ]
 
     operations = [
