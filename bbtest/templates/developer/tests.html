@@ -1,9 +1,10 @@
-{% extends './developer_base_2.html' %}
+{% extends '../personalized_base_1.html' %}
 {% load i18n widget_tweaks %}
 
 {% block title %}{% trans 'Create Test' context 'Page title' %}{% endblock %}
 
-{% block nav_create_test_class %}active{% endblock %}
+{% block nav_super_create_test_class %}active{% endblock %}
+{% block nav_developer_create_test_class %}active{% endblock %}
 
 {% block content %}
     <script>

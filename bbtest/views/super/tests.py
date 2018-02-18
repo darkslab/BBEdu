@@ -1,10 +1,10 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from bbtest.views.generic import TemplateView
-from bbtest.auth.mixins import SuperLoginRequiredMixin
+from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.models import Test
 
 
-class TestsView(SuperLoginRequiredMixin, TemplateView):
+class TestsView(SuperPermissionRequiredMixin, TemplateView):
     template_name = "super/tests.html"
 
     def get_context_data(self, **kwargs):

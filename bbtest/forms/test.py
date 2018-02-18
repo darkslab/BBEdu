@@ -545,7 +545,7 @@ class TestSendForm(ModelForm):
 
     def save(self, commit=True):
         test = super().save(commit=False)
-        test.is_pending = True
+        test.status = Test.STATUS_PENDING
         if commit:
             test.save()
         return test

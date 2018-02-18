@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-02-06 13:55+0600\n"
+"POT-Creation-Date: 2018-02-18 14:48+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -735,6 +735,22 @@ msgctxt "Test language"
 msgid "Russian"
 msgstr ""
 
+msgctxt "Test status"
+msgid "Draft"
+msgstr ""
+
+msgctxt "Test status"
+msgid "Pending"
+msgstr ""
+
+msgctxt "Test status"
+msgid "Approved"
+msgstr ""
+
+msgctxt "Test status"
+msgid "Archived"
+msgstr ""
+
 msgctxt "Model field"
 msgid "code of the test"
 msgstr ""
@@ -743,19 +759,8 @@ msgctxt "Model field"
 msgid "language of the test"
 msgstr ""
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "active?"
 msgctxt "Model field"
-msgid "is active?"
-msgstr "активті?"
-
-msgctxt "Model field"
-msgid "is approved?"
-msgstr ""
-
-msgctxt "Model field"
-msgid "is pending approval?"
+msgid "status"
 msgstr ""
 
 msgctxt "Question difficulty"
@@ -855,9 +860,152 @@ msgctxt "Page title"
 msgid "Page not found"
 msgstr "Парақша табылмады"
 
-msgctxt "Badge label under avatar"
-msgid "Administrator"
-msgstr "Администратор"
+#, python-format
+msgctxt "Splash page title"
+msgid "bbTest.kz %(dash_code)s Powerful and simple online testing platform"
+msgstr ""
+
+#, python-format
+msgctxt "Splash page description"
+msgid ""
+"bbTest.kz %(dash_code)s Powerful and simple online testing platform. Coming "
+"soon..."
+msgstr ""
+
+#, python-format
+msgctxt "Splash page content"
+msgid ""
+"%(quote_code)sPowerful and simple online testing platform.%(quote_code)s"
+msgstr ""
+
+#, python-format
+msgctxt "Splash page content"
+msgid ""
+"%(quote_code)sThorough testing, productive results, personal approach."
+"%(quote_code)s"
+msgstr ""
+
+msgctxt "Splash page content"
+msgid "coming soon..."
+msgstr ""
+
+msgctxt "Splash page content"
+msgid "Leave your email and you will be the first to know when we are live!"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Email"
+msgctxt "Splash page content"
+msgid "Your Email"
+msgstr "Электрондық пошта"
+
+#, fuzzy
+#| msgctxt "Form button"
+#| msgid "Send"
+msgctxt "Splash page button"
+msgid "Send"
+msgstr "Жіберу"
+
+msgctxt "Page title"
+msgid "Login"
+msgstr "Авторизация"
+
+msgctxt "Form button"
+msgid "Login"
+msgstr "Кіру"
+
+msgctxt "Form link"
+msgid "Forgot your password?"
+msgstr "Құпиясөз есіңізде жоқ па?"
+
+msgctxt "/login/"
+msgid "Don't have an account?"
+msgstr "Аккаунт жоқ па?"
+
+msgctxt "/login/"
+msgid "Register"
+msgstr "Тіркелу"
+
+msgctxt "Page title"
+msgid "Reset Password"
+msgstr "Құпиясөзді өзгерту"
+
+msgctxt "/password_reset/"
+msgid "Please provide your email to get a reset link"
+msgstr ""
+"Құпиясөзді өзгерту бойынша сілтемені алу үшін электрондық поштаңызды "
+"енгізіңіз"
+
+msgctxt "Form button"
+msgid "Send"
+msgstr "Жіберу"
+
+msgctxt "Form link"
+msgid "Go back to Login"
+msgstr "Артқа қайту"
+
+msgctxt "Page title"
+msgid "Set Password"
+msgstr "Құпиясөзді өзгерту"
+
+msgctxt "Form button"
+msgid "Reset"
+msgstr "Өзгерту"
+
+msgctxt "/reset/"
+msgid "Password reset link has been expired."
+msgstr "Құпиясөзді өзгерту бойынша сілтемесі ескіріп қалды."
+
+msgctxt "Button"
+msgid "Reset Password"
+msgstr "Құпиясөзді өзгерту"
+
+msgctxt "Page title"
+msgid "Register"
+msgstr "Тіркелу"
+
+msgctxt "Form label"
+msgid "I want to register as"
+msgstr "Келесі ретінде тіркелу"
+
+msgctxt "Form label"
+msgid "Student"
+msgstr "Тестілеуге қатысушы"
+
+msgctxt "Form label"
+msgid "Test developer"
+msgstr "Тестілеуді құрастырушы"
+
+msgctxt "Form button"
+msgid "Register"
+msgstr "Тіркелу"
+
+msgctxt "/register/"
+msgid "Already have an account?"
+msgstr "Тіркеліп қойдыңыз ба?"
+
+msgctxt "/register/"
+msgid "Login"
+msgstr "Кіру"
+
+msgctxt "Page title"
+msgid "Settings"
+msgstr "Құрылғылар"
+
+#, python-format
+msgctxt "/settings/"
+msgid ""
+"If you want to change your avatar, you can do it by going to %(link_tag)s"
+msgstr "Аватарды мына сілтеме бойынша өзгертуіңізге болады %(link_tag)s"
+
+msgctxt "Form button"
+msgid "Change Password"
+msgstr "Құпиясөзді өзгерту"
+
+msgctxt "Form button"
+msgid "Save"
+msgstr "Сақтау"
 
 msgctxt "Page title"
 msgid "Choose your Developer Plan"
@@ -968,23 +1116,7 @@ msgid "Actions"
 msgstr ""
 
 msgctxt "/developer/"
-msgid "Archived"
-msgstr ""
-
-msgctxt "/developer/"
-msgid "Pending"
-msgstr ""
-
-msgctxt "/developer/"
 msgid "Preview"
-msgstr ""
-
-msgctxt "/developer/"
-msgid "Approved"
-msgstr ""
-
-msgctxt "/developer/"
-msgid "Draft"
 msgstr ""
 
 msgctxt "/developer/"
@@ -1007,6 +1139,61 @@ msgctxt "/developer/"
 msgid "Next"
 msgstr ""
 
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "created at"
+msgctxt "Page title"
+msgid "Create Test"
+msgstr "жасалған уақыты"
+
+msgctxt "/developer/tests/"
+msgid "Entrance Tests"
+msgstr ""
+
+msgctxt "/developer/tests/"
+msgid "Test Specification"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "created at"
+msgctxt "/developer/tests/"
+msgid "Create Test"
+msgstr "жасалған уақыты"
+
+msgctxt "Logo img html tag alt parameter"
+msgid "bbTest.kz Logo"
+msgstr "bbTest.kz логотипі"
+
+msgctxt "Email body element"
+msgid "link"
+msgstr "сілтеме"
+
+#, python-format
+msgctxt "Email body"
+msgid ""
+"Hello %(name)s,%(line_break)s%(line_break)s We have received a request to "
+"reset your password. If you did not request this, then please ignore this "
+"email.%(line_break)s%(line_break)s To reset your password please follow this "
+"%(link_tag)s.%(line_break)s%(line_break)s Or copy and paste the link below:"
+"%(line_break)s %(link_tag_url)s"
+msgstr ""
+"Сәлеметсізбе %(name)s!%(line_break)s%(line_break)s Біз Сіздің жіберген "
+"құпиясөзді өзгерту бойынша сұрауыңызды алдық. Сіз бұл сұрауды жібермеген "
+"болсаңыз, бұл хатты елемеуіңізді сұраймыз.%(line_break)s%(line_break)s "
+"Құпиясөзді өзгерту үшін келесі сілтемеге өтіңіз %(link_tag)s.%(line_break)s"
+"%(line_break)s немесе төмендегі сілтемені көшіріп салыңыз:%(line_break)s "
+"%(link_tag_url)s"
+
+#, python-format
+msgctxt "Bottom copyright"
+msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
+msgstr "Қазақстанда %(heart_icon)s-пен жасалған. %(copyright_code)s bbTest.kz"
+
+msgctxt "Badge label under avatar"
+msgid "Administrator"
+msgstr "Администратор"
+
 msgctxt "Badge label under avatar"
 msgid "Developer"
 msgstr "Құрастырушы"
@@ -1015,12 +1202,147 @@ msgctxt "Navigation link"
 msgid "Dashboard"
 msgstr "Жеке кабинет"
 
+msgctxt "Navigation link"
+msgid "All Tests"
+msgstr ""
+
 #, fuzzy
 #| msgctxt "Model field"
 #| msgid "created at"
 msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "жасалған уақыты"
+
+msgctxt "Navigation link"
+msgid "Start testing"
+msgstr "Тестілеуді бастау"
+
+msgctxt "Navigation link"
+msgid "Results"
+msgstr "Тестілеудің нәтижелері"
+
+msgctxt "Navigation link"
+msgid "Refill Balance"
+msgstr "Шотты толтыру"
+
+msgctxt "Navigation link"
+msgid "Settings"
+msgstr "Құрылғылар"
+
+msgctxt "Navigation link"
+msgid "Logout"
+msgstr "Шығу"
+
+msgctxt "Navigation link"
+msgid "Login"
+msgstr "Кіру"
+
+msgctxt "Navigation link"
+msgid "Register"
+msgstr "Тіркелу"
+
+msgctxt "/super/"
+msgid "User Statistics"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Student"
+msgctxt "/super/"
+msgid "Students"
+msgstr "Тестілеуге қатысушы"
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Developer"
+msgctxt "/super/"
+msgid "Developers"
+msgstr "Құрастырушы"
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Administrator"
+msgctxt "/super/"
+msgid "Admins"
+msgstr "Администратор"
+
+msgctxt "/super/"
+msgid "Superusers"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Test developer"
+msgctxt "/super/"
+msgid "Tests by Developers"
+msgstr "Тестілеуді құрастырушы"
+
+msgctxt "/super/"
+msgid "Subscriptions"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Total"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Last subscription"
+msgstr ""
+
+msgctxt "Page title"
+msgid "All tests"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "All tests"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Developer"
+msgctxt "/super/tests/"
+msgid "Developer"
+msgstr "Құрастырушы"
+
+msgctxt "/super/tests/"
+msgid "Domain"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Section"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Variant"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Status"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Actions"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Preview"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Edit"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "There are no tests yet"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Previous"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Next"
+msgstr ""
 
 #, python-format
 msgctxt "Page title"
@@ -1204,7 +1526,15 @@ msgid "The allotted time has run out."
 msgstr ""
 
 msgctxt "Developer tools"
-msgid "Send for Approval"
+msgid "This action is irreversable!"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Approve"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Refuse"
 msgstr ""
 
 msgctxt "Developer tools"
@@ -1219,353 +1549,8 @@ msgctxt "Developer tools"
 msgid "Exit"
 msgstr ""
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
-msgctxt "Page title"
-msgid "Create Test"
-msgstr "жасалған уақыты"
-
-msgctxt "/developer/tests/"
-msgid "Entrance Tests"
-msgstr ""
-
-msgctxt "/developer/tests/"
-msgid "Test Specification"
-msgstr ""
-
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
-msgctxt "/developer/tests/"
-msgid "Create Test"
-msgstr "жасалған уақыты"
-
-msgctxt "Logo img html tag alt parameter"
-msgid "bbTest.kz Logo"
-msgstr "bbTest.kz логотипі"
-
-msgctxt "Email body element"
-msgid "link"
-msgstr "сілтеме"
-
-#, python-format
-msgctxt "Email body"
-msgid ""
-"Hello %(name)s,%(line_break)s%(line_break)s We have received a request to "
-"reset your password. If you did not request this, then please ignore this "
-"email.%(line_break)s%(line_break)s To reset your password please follow this "
-"%(link_tag)s.%(line_break)s%(line_break)s Or copy and paste the link below:"
-"%(line_break)s %(link_tag_url)s"
-msgstr ""
-"Сәлеметсізбе %(name)s!%(line_break)s%(line_break)s Біз Сіздің жіберген "
-"құпиясөзді өзгерту бойынша сұрауыңызды алдық. Сіз бұл сұрауды жібермеген "
-"болсаңыз, бұл хатты елемеуіңізді сұраймыз.%(line_break)s%(line_break)s "
-"Құпиясөзді өзгерту үшін келесі сілтемеге өтіңіз %(link_tag)s.%(line_break)s"
-"%(line_break)s немесе төмендегі сілтемені көшіріп салыңыз:%(line_break)s "
-"%(link_tag_url)s"
-
-#, python-format
-msgctxt "Bottom copyright"
-msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
-msgstr "Қазақстанда %(heart_icon)s-пен жасалған. %(copyright_code)s bbTest.kz"
-
-#, python-format
-msgctxt "Splash page title"
-msgid "bbTest.kz %(dash_code)s Powerful and simple online testing platform"
-msgstr ""
-
-#, python-format
-msgctxt "Splash page description"
-msgid ""
-"bbTest.kz %(dash_code)s Powerful and simple online testing platform. Coming "
-"soon..."
-msgstr ""
-
-#, python-format
-msgctxt "Splash page content"
-msgid ""
-"%(quote_code)sPowerful and simple online testing platform.%(quote_code)s"
-msgstr ""
-
-#, python-format
-msgctxt "Splash page content"
-msgid ""
-"%(quote_code)sThorough testing, productive results, personal approach."
-"%(quote_code)s"
-msgstr ""
-
-msgctxt "Splash page content"
-msgid "coming soon..."
-msgstr ""
-
-msgctxt "Splash page content"
-msgid "Leave your email and you will be the first to know when we are live!"
-msgstr ""
-
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Email"
-msgctxt "Splash page content"
-msgid "Your Email"
-msgstr "Электрондық пошта"
-
-#, fuzzy
-#| msgctxt "Form button"
-#| msgid "Send"
-msgctxt "Splash page button"
-msgid "Send"
-msgstr "Жіберу"
-
-msgctxt "Page title"
-msgid "Login"
-msgstr "Авторизация"
-
-msgctxt "Form button"
-msgid "Login"
-msgstr "Кіру"
-
-msgctxt "Form link"
-msgid "Forgot your password?"
-msgstr "Құпиясөз есіңізде жоқ па?"
-
-msgctxt "/login/"
-msgid "Don't have an account?"
-msgstr "Аккаунт жоқ па?"
-
-msgctxt "/login/"
-msgid "Register"
-msgstr "Тіркелу"
-
-msgctxt "Page title"
-msgid "Reset Password"
-msgstr "Құпиясөзді өзгерту"
-
-msgctxt "/password_reset/"
-msgid "Please provide your email to get a reset link"
-msgstr ""
-"Құпиясөзді өзгерту бойынша сілтемені алу үшін электрондық поштаңызды "
-"енгізіңіз"
-
-msgctxt "Form button"
-msgid "Send"
-msgstr "Жіберу"
-
-msgctxt "Form link"
-msgid "Go back to Login"
-msgstr "Артқа қайту"
-
-msgctxt "Page title"
-msgid "Set Password"
-msgstr "Құпиясөзді өзгерту"
-
-msgctxt "Form button"
-msgid "Reset"
-msgstr "Өзгерту"
-
-msgctxt "/reset/"
-msgid "Password reset link has been expired."
-msgstr "Құпиясөзді өзгерту бойынша сілтемесі ескіріп қалды."
-
-msgctxt "Button"
-msgid "Reset Password"
-msgstr "Құпиясөзді өзгерту"
-
-msgctxt "Navigation link"
-msgid "Settings"
-msgstr "Құрылғылар"
-
-msgctxt "Navigation link"
-msgid "Logout"
-msgstr "Шығу"
-
-msgctxt "Navigation link"
-msgid "Login"
-msgstr "Кіру"
-
-msgctxt "Navigation link"
-msgid "Register"
-msgstr "Тіркелу"
-
-msgctxt "Page title"
-msgid "Register"
-msgstr "Тіркелу"
-
-msgctxt "Form label"
-msgid "I want to register as"
-msgstr "Келесі ретінде тіркелу"
-
-msgctxt "Form label"
-msgid "Student"
-msgstr "Тестілеуге қатысушы"
-
-msgctxt "Form label"
-msgid "Test developer"
-msgstr "Тестілеуді құрастырушы"
-
-msgctxt "Form button"
-msgid "Register"
-msgstr "Тіркелу"
-
-msgctxt "/register/"
-msgid "Already have an account?"
-msgstr "Тіркеліп қойдыңыз ба?"
-
-msgctxt "/register/"
-msgid "Login"
-msgstr "Кіру"
-
-msgctxt "Page title"
-msgid "Settings"
-msgstr "Құрылғылар"
-
-#, python-format
-msgctxt "/settings/"
-msgid ""
-"If you want to change your avatar, you can do it by going to %(link_tag)s"
-msgstr "Аватарды мына сілтеме бойынша өзгертуіңізге болады %(link_tag)s"
-
-msgctxt "Form button"
-msgid "Change Password"
-msgstr "Құпиясөзді өзгерту"
-
-msgctxt "Form button"
-msgid "Save"
-msgstr "Сақтау"
-
-msgctxt "Navigation link"
-msgid "Start testing"
-msgstr "Тестілеуді бастау"
-
-msgctxt "Navigation link"
-msgid "Results"
-msgstr "Тестілеудің нәтижелері"
-
-msgctxt "Navigation link"
-msgid "Refill Balance"
-msgstr "Шотты толтыру"
-
-msgctxt "/super/"
-msgid "User Statistics"
-msgstr ""
-
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Student"
-msgctxt "/super/"
-msgid "Students"
-msgstr "Тестілеуге қатысушы"
-
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Developer"
-msgctxt "/super/"
-msgid "Developers"
-msgstr "Құрастырушы"
-
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Administrator"
-msgctxt "/super/"
-msgid "Admins"
-msgstr "Администратор"
-
-msgctxt "/super/"
-msgid "Superusers"
-msgstr ""
-
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Test developer"
-msgctxt "/super/"
-msgid "Tests by Developers"
-msgstr "Тестілеуді құрастырушы"
-
-msgctxt "/super/"
-msgid "Subscriptions"
-msgstr ""
-
-msgctxt "/super/"
-msgid "Total"
-msgstr ""
-
-msgctxt "/super/"
-msgid "Last subscription"
-msgstr ""
-
-msgctxt "Navigation link"
-msgid "All Tests"
-msgstr ""
-
-msgctxt "Page title"
-msgid "All tests"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "All tests"
-msgstr ""
-
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Developer"
-msgctxt "/super/tests/"
-msgid "Developer"
-msgstr "Құрастырушы"
-
-msgctxt "/super/tests/"
-msgid "Domain"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Section"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Variant"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Status"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Actions"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Archived"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Pending"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Edit"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Preview"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Approved"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Draft"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "There are no tests yet"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Previous"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "Next"
+msgctxt "Developer tools"
+msgid "Send for Approval"
 msgstr ""
 
 msgctxt "/developer/tests/"
@@ -1594,6 +1579,14 @@ msgstr ""
 
 msgctxt "Success alert message"
 msgid "You have created a new Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have approved a Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have refused a Test."
 msgstr ""
 
 msgctxt "Success alert message"

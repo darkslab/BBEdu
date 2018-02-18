@@ -9,7 +9,7 @@
             module: "PersonalizedTemplateModule"
         });
     </script>
-    <div class="bb-container {% block _d1_group_class %}{% endblock %}" data-bb-container>
+    <div class="bb-container {% if perms.bbtest.super %}bb-container-super{% elif perms.admin %}bb-container-admin{% elif perms.bbtest.developer %}bb-container-developer{% elif perms.bbtest.student %}bb-container-student{% endif %}" data-bb-container>
         <div class="bb-menu bb-min text-bright text-shadowed">
             <div class="container-fluid">
                 <div class="row bb-menu-section bb-menu-section-first pt-15 pb-15">
@@ -22,14 +22,45 @@
                         <img class="img-responsive img-circle bb-menu-gravatar" src="{{ user.gravatar_url|safe }}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}">
                     </div>
                     <h5 class="col-xs-12 text-center text-bright mt-5 mb-0">{{ user.get_full_name }}</h5>
-                    {% block _d1_badge %}{% endblock %}
+                    {% if perms.bbtest.super %}
+                        <h5 class="col-xs-12 text-center text-bright mt-5 mb-5">
+                            <span class="label label-primary">Superuser</span>
+                        </h5>
+                    {% elif perms.admin %}
+                        <h5 class="col-xs-12 text-center text-bright mt-5 mb-5">
+                            <span class="label label-danger">{% trans 'Administrator' context 'Badge label under avatar' %}</span>
+                        </h5>
+                    {% elif perms.bbtest.developer %}
+                        <h5 class="col-xs-12 text-center text-bright mt-5 mb-5">
+                            <span class="label label-danger">{% trans 'Developer' context 'Badge label under avatar' %}</span>
+                        </h5>
+                    {% elif perms.bbtest.student %}
+                        <div class="col-xs-12 text-center mt-5 mb-5">
+                            <a href="javascript:void(0);" class="btn btn-success btn-xs">Счёт: 3500 &#8376;</a>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="row bb-menu-section pt-15 pb-15">
-                    {% block _d1_navigation %}{% endblock %}
+                    <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
+                        {% if perms.bbtest.super %}
+                            <li class="{% block nav_super_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:super_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_super_tests_class %}{% endblock %}"><a href="{% url 'bbtest:super_tests' %}"><i class="fa fa-fw fa-list"></i> {% trans 'All Tests' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_super_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
+                        {% elif perms.admin %}
+                        {% elif perms.bbtest.developer %}
+                            <li class="{% block nav_developer_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:developer_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_developer_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
+                        {% elif perms.bbtest.student %}
+                            <li class="{% block nav_student_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:student_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_student_start_testing_class %}{% endblock %}"><a href="javascript:void(0);"><i class="fa fa-fw fa-pencil-square-o"></i> {% trans 'Start testing' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_student_results_class %}{% endblock %}"><a href="javascript:void(0);"><i class="fa fa-fw fa-line-chart"></i> {% trans 'Results' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_student_refill_balance_class %}{% endblock %}"><a href="javascript:void(0);"><i class="fa fa-fw fa-credit-card"></i> {% trans 'Refill Balance' context 'Navigation link' %}</a></li>
+                        {% endif %}
+                    </ul>
                 </div>
                 <div class="row bb-menu-section pt-15 pb-15 visible-xs-block">
                     <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
-                        <li class="{% block nav_settings_class %}{% endblock %}"><a href="{% url 'bbtest:settings' %}"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
+                        <li class="{% block nav_base_settings_class %}{% endblock %}"><a href="{% url 'bbtest:settings' %}"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
                         <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
                     </ul>
                 </div>
@@ -120,13 +151,21 @@
 
 {% comment %}
 
-    nav_settings_class
     header
       title
     content
 
-    _d1_group_class
-    _d1_badge
-    _d1_navigation
+    nav_base_settings_class
+
+    nav_super_dashboard_class
+    nav_super_tests_class
+
+    nav_developer_dashboard_class
+    nav_developer_create_test_class
+
+    nav_student_dashboard_class
+    nav_student_start_testing_class
+    nav_student_results_class
+    nav_student_refill_balance_class
 
 {% endcomment %}
