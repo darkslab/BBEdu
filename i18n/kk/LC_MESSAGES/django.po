@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-02-17 09:35+0600\n"
+"POT-Creation-Date: 2018-02-18 14:48+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1526,6 +1526,10 @@ msgid "The allotted time has run out."
 msgstr ""
 
 msgctxt "Developer tools"
+msgid "This action is irreversable!"
+msgstr ""
+
+msgctxt "Developer tools"
 msgid "Approve"
 msgstr ""
 
@@ -1575,6 +1579,14 @@ msgstr ""
 
 msgctxt "Success alert message"
 msgid "You have created a new Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have approved a Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have refused a Test."
 msgstr ""
 
 msgctxt "Success alert message"
