@@ -24,6 +24,7 @@ from .views.developer import (
 from .views.super import (
     DashboardView as SuperDashboardView,
     TestsView as SuperTestsView,
+    DownloadSubscriptionListView as SuperDownloadSubscriptionListView,
 )
 
 
@@ -61,16 +62,9 @@ urlpatterns = [
     url(r"^developer/tests/$",           DeveloperTestsView.as_view(),           name="developer_tests"          ),
 
     # SUPER URLS
-    url(r"^super/$",                                                                                 SuperDashboardView.as_view(),       name="super_dashboard"        ),
-    url(r"^super/tests/$",                                                                           SuperTestsView.as_view(),           name="super_tests"            ),
-    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/$",                                                SuperTestView.as_view(),            name="super_test"             ),
-    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/)?$",            SuperQuestionView.as_view(),        name="super_question"         ),
-    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", SuperParagraphsView.as_view(),      name="super_paragraphs"       ),
-    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/attributes/$",                                     SuperAttributesView.as_view(),      name="super_attributes"       ),
-    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        SuperTestPreviewView.as_view(),     name="super_preview_test"     ),
-    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   SuperTestPreviewDataView.as_view(), name="super_preview_data_test"),
-    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/approve/$",                                        ApproveTestView.as_view(),          name="super_approve_test"     ),
-    # url(r"^super/tests/(?P<code>[0-9A-Fa-f]{4,6})/refuse/$",                                         RefuseTestView.as_view(),           name="super_refuse_test"      ),
+    url(r"^super/$",                            SuperDashboardView.as_view(),                name="super_dashboard"                 ),
+    url(r"^super/tests/$",                      SuperTestsView.as_view(),                    name="super_tests"                     ),
+    url(r"^super/download-subscription-list/$", SuperDownloadSubscriptionListView.as_view(), name="super_download_subscription_list"),
 
     # SYSTEM URLS
     url(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),
