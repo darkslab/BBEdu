@@ -43,6 +43,9 @@
                     <p class="mb-0 text-center">
                         <em>{{ subscriptions_last.email }}</em>
                     </p>
+                    <p class="mt-10 mb-0 text-center">
+                        <a target="_blank" class="btn btn-primary btn-xs" href="{% url 'bbtest:super_download_subscription_list' %}">{% trans 'Download list' context '/super/' %}</a>
+                    </p>
                 </div>
             </div>
         </div>
