@@ -1,5 +1,5 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n %}
+{% load i18n permission %}
 
 {% block title %}{% trans 'All tests' context 'Page title' %}{% endblock %}
 
@@ -44,7 +44,7 @@
                     <h4 class="panel-title">{% trans 'All tests' context '/super/tests/' %}</h4>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th class="pr-15 pl-15">{% trans 'Developer' context '/super/tests/' %}</th>
@@ -57,7 +57,7 @@
                         </thead>
                         <tbody>
                             {% for test in tests %}
-                                <tr>
+                                <tr {% if test.developer == user %}class="success"{% endif %}>
                                     <td class="pr-15 pl-15">{{ test.developer.get_full_name }}</td>
                                     <td class="pr-15 pl-15">{% trans test.section.domain.name %}</td>
                                     <td class="pr-15 pl-15">{% trans test.section.name %}</td>
@@ -76,11 +76,11 @@
                                         </td>
                                     {% elif test.is_draft %}
                                         <td class="pr-15 pl-15 text-center">
-                                            {% if test.developer_id == user.id %}
+                                            {% if test.developer|has_perm:'bbtest.super' %}
                                                 <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs">{% trans 'Edit' context '/developer/' %}</a>
                                             {% endif %}
                                             <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/developer/' %}</a>
-                                            {% if test.developer_id == user.id %}
+                                            {% if test.developer == user %}
                                                 <button class="btn btn-danger btn-xs" data-delete-test-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
                                             {% endif %}
                                         </td>

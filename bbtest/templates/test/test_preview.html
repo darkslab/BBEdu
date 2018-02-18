@@ -1,5 +1,5 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n static %}
+{% load i18n static permission %}
 
 {% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% endblock %}
 
@@ -52,6 +52,57 @@
             </div>
         </div>
     </form>
+    <form method="post" action="{% url 'bbtest:build_approve_test' code %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-approve-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Developer tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12 mb-15 text-danger text-center">
+                                <strong>{% trans 'This action is irreversable!' context 'Developer tools' %}</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Developer tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Developer tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="{% url 'bbtest:build_refuse_test' code %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-refuse-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Developer tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-danger btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Developer tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Developer tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
     <form method="post" action="{% url 'bbtest:build_delete_test' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-delete-modal data-backdrop="static" data-keyboard="false">
@@ -78,16 +129,16 @@
     <div class="row">
         <div class="col-xs-12 mb-23">
             {% if perms.bbtest.super %}
-                {% if test.is_pending or test.developer_id == user.id and test.is_draft %}
-                    <a href="javascript:void(0);" class="btn btn-success mr-5 mb-5">{% trans 'Approve' context 'Developer tools' %}</a>
+                {% if test.is_pending or test.is_draft and test.developer|has_perm:'bbtest.super' %}
+                    <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-approve-modal]">{% trans 'Approve' context 'Developer tools' %}</button>
                 {% endif %}
                 {% if test.is_pending %}
-                    <a href="javascript:void(0);" class="btn btn-danger mr-5 mb-5">{% trans 'Refuse' context 'Developer tools' %}</a>
+                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-refuse-modal]">{% trans 'Refuse' context 'Developer tools' %}</button>
                 {% endif %}
-                {% if test.is_pending or test.developer_id == user.id and test.is_draft %}
+                {% if test.is_pending or test.is_draft and test.developer|has_perm:'bbtest.super' %}
                     <a href="{% url 'bbtest:build_test' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
                 {% endif %}
-                {% if test.developer_id == user.id and test.is_draft %}
+                {% if test.is_draft and test.developer == user %}
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
                 {% endif %}
                 <a href="{% url 'bbtest:super_dashboard' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>

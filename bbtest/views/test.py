@@ -5,7 +5,7 @@ from django.contrib.messages import success
 from django.db.models import Prefetch
 from django.http import Http404
 from json import loads
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin
 from .generic import View, TemplateView, FormView
 from bbtest.utils.json import tight_dumps
 from bbtest.models.upload import expiring_url
@@ -17,7 +17,7 @@ from bbtest.jobs.upload import image_paragraph_destroyer
 
 def get_test_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
     if request.user.has_perm("bbtest.super"):
-        tests = Test.worked_tests
+        tests = Test.worked_tests.select_related("developer")
     else:
         tests = request.user.tests(manager="draft_tests")
     if include_section:
@@ -29,10 +29,10 @@ def get_test_for_edit_or_404(request, code, include_section=False, include_parag
         code=code,
     )
     if request.user.has_perm("bbtest.super"):
-        if test.developer_id != request.user.id and not test.is_pending():
-            raise Http404("Superusers can only edit tests of other developers that are pending")
-        if test.developer_id == request.user.id and not test.is_draft():
-            raise Http404("Superusers can only edit their own tests that are in draft status")
+        if not test.developer.has_perm("bbtest.super") and not test.is_pending():
+            raise Http404("Superusers can only edit tests of other developers that are in pending status")
+        if test.developer.has_perm("bbtest.super") and not test.is_draft():
+            raise Http404("Superusers can only edit tests of other superusers (and their own) that are in draft status")
     return test
 
 def get_test_for_preview_or_404(request, code):
@@ -162,11 +162,37 @@ class TestAttributesView(DeveloperPermissionRequiredMixin, View):
         return TightJsonResponse(attributes_data)
 
 
+class ApproveTestView(SuperPermissionRequiredMixin, View):
+    def post(self, request, code, *args, **kwargs):
+        test = get_object_or_404(Test.worked_tests.select_related("developer"), code=code)
+        if not test.developer.has_perm("bbtest.super") and test.is_draft():
+            raise Http404("Superusers cannot approve draft tests of other developers")
+
+        test.status = Test.STATUS_APPROVED
+        test.save()
+
+        success(request, pgettext("Success alert message", "You have approved a Test."))
+        return redirect("bbtest:dashboard")
+
+
+class RefuseTestView(SuperPermissionRequiredMixin, View):
+    def post(self, request, code, *args, **kwargs):
+        test = get_object_or_404(Test.pending_tests.select_related("developer"), code=code)
+        if test.developer.has_perm("bbtest.super"):
+            raise Http404("Superusers can only refuse tests of other developers")
+
+        test.status = Test.STATUS_DRAFT
+        test.save()
+
+        success(request, pgettext("Success alert message", "You have refused a Test."))
+        return redirect("bbtest:dashboard")
+
+
 class DeleteTestView(DeveloperPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
         test = get_test_for_edit_or_404(request, code, include_paragraphs=True)
         if request.user.has_perm("bbtest.super"):
-            if test.developer_id != request.user.id:
+            if test.developer != request.user:
                 raise Http404("Superusers can only delete their own tests")
 
         paragraph_ids = []
