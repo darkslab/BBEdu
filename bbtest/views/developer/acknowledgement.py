@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.utils.translation import get_language
-from bbtest.auth.mixins import DeveloperLoginRequiredMixin
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
 from bbtest.views.generic import FormView
 from bbtest.forms.acknowledgement import DeveloperAcknowledgementForm
 from bbtest.models import DeveloperAcknowledgement
@@ -73,7 +73,7 @@ AGREEMENT_TEXTS = {
     },
 }
 
-class AcknowledgementView(DeveloperLoginRequiredMixin, DeveloperUnacceptedAcknowledgementRequiredMixin, FormView):
+class AcknowledgementView(DeveloperPermissionRequiredMixin, DeveloperUnacceptedAcknowledgementRequiredMixin, FormView):
     template_name = "developer/acknowledgement.html"
     form_class = DeveloperAcknowledgementForm
     success_url = reverse_lazy("bbtest:developer_tests")

@@ -1,13 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.db.models import Count
-from bbtest.auth.mixins import SuperLoginRequiredMixin
+from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView
 from bbtest.models import Subscription
 
 
 User = get_user_model()
 
-class DashboardView(SuperLoginRequiredMixin, TemplateView):
+class DashboardView(SuperPermissionRequiredMixin, TemplateView):
     template_name = "super/dashboard.html"
 
     def get_context_data(self, **kwargs):

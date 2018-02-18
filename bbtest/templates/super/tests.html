@@ -1,11 +1,42 @@
-{% extends './super_base_2.html' %}
-{% load i18n %}
+{% extends '../personalized_base_1.html' %}
+{% load i18n permission %}
 
 {% block title %}{% trans 'All tests' context 'Page title' %}{% endblock %}
 
-{% block nav_all_tests_class %}active{% endblock %}
+{% block nav_super_tests_class %}active{% endblock %}
 
 {% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "DeveloperDashboardPageModule"
+        });
+    </script>
+    <form method="post" action="" data-bb-form data-delete-test-form>
+        {% csrf_token %}
+        <div class="modal fade" data-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context '/developer/' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-danger btn-block btn-lg" data-bb-submit>{% trans 'Yes' context '/developer/' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context '/developer/' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
@@ -13,7 +44,7 @@
                     <h4 class="panel-title">{% trans 'All tests' context '/super/tests/' %}</h4>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th class="pr-15 pl-15">{% trans 'Developer' context '/super/tests/' %}</th>
@@ -26,37 +57,32 @@
                         </thead>
                         <tbody>
                             {% for test in tests %}
-                                <tr>
+                                <tr {% if test.developer == user %}class="success"{% endif %}>
                                     <td class="pr-15 pl-15">{{ test.developer.get_full_name }}</td>
                                     <td class="pr-15 pl-15">{% trans test.section.domain.name %}</td>
                                     <td class="pr-15 pl-15">{% trans test.section.name %}</td>
                                     <td class="pr-15 pl-15 text-center">#{{ test.code|upper }}</td>
-                                    {% if not test.is_active %}
+                                    <td class="pr-15 pl-15 text-center">
+                                        <span class="label {% if test.is_archived %}label-danger{% elif test.is_approved %}label-success{% elif test.is_pending %}label-info{% elif test.is_draft %}label-default{% endif %}">{{ test.get_status_display }}</span>
+                                    </td>
+                                    {% if test.is_archived or test.is_approved %}
                                         <td class="pr-15 pl-15 text-center">
-                                            <span class="label label-danger">{% trans 'Archived' context '/super/tests/' %}</span>
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/super/tests/' %}</a>
                                         </td>
-                                        <td class="pr-15 pl-15 text-center"></td>
                                     {% elif test.is_pending %}
                                         <td class="pr-15 pl-15 text-center">
-                                            <span class="label label-info">{% trans 'Pending' context '/super/tests/' %}</span>
+                                            <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs">{% trans 'Edit' context '/super/tests/' %}</a>
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/super/tests/' %}</a>
                                         </td>
+                                    {% elif test.is_draft %}
                                         <td class="pr-15 pl-15 text-center">
-                                            <a href="javascript:void(0);" class="btn btn-default btn-xs disabled">{% trans 'Edit' context '/super/tests/' %}</a>
-                                            <a href="javascript:void(0);" class="btn btn-primary btn-xs disabled">{% trans 'Preview' context '/super/tests/' %}</a>
-                                        </td>
-                                    {% elif test.is_approved %}
-                                        <td class="pr-15 pl-15 text-center">
-                                            <span class="label label-success">{% trans 'Approved' context '/super/tests/' %}</span>
-                                        </td>
-                                        <td class="pr-15 pl-15 text-center">
-                                            <a href="javascript:void(0);" class="btn btn-primary btn-xs disabled">{% trans 'Preview' context '/super/tests/' %}</a>
-                                        </td>
-                                    {% else %}
-                                        <td class="pr-15 pl-15 text-center">
-                                            <span class="label label-default">{% trans 'Draft' context '/super/tests/' %}</span>
-                                        </td>
-                                        <td class="pr-15 pl-15 text-center">
-                                            <a href="javascript:void(0);" class="btn btn-primary btn-xs disabled">{% trans 'Preview' context '/super/tests/' %}</a>
+                                            {% if test.developer|has_perm:'bbtest.super' %}
+                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs">{% trans 'Edit' context '/developer/' %}</a>
+                                            {% endif %}
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/developer/' %}</a>
+                                            {% if test.developer == user %}
+                                                <button class="btn btn-danger btn-xs" data-delete-test-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
+                                            {% endif %}
                                         </td>
                                     {% endif %}
                                 </tr>
