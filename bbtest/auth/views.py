@@ -16,7 +16,7 @@ from .mixins import LogoutRequiredMixin
 
 
 class LoginView(_LoginView):
-    template_name="login.html"
+    template_name="base/login.html"
     redirect_field_name=settings.BB_REDIRECT_FIELDNAME
     authentication_form=AuthenticationForm
     redirect_authenticated_user=True
@@ -33,7 +33,7 @@ class LogoutView(_LogoutView):
 class RegisterView(LogoutRequiredMixin, FormView):
     form_class = UserCreationForm
     success_url = reverse_lazy("bbtest:dashboard")
-    template_name = "register.html"
+    template_name = "base/register.html"
 
     def dispatch(self, request, group, *args, **kwargs):
         self._group = group or "student"
@@ -52,14 +52,14 @@ class RegisterView(LogoutRequiredMixin, FormView):
 class PasswordResetView(LogoutRequiredMixin, _PasswordResetView):
     form_class = PasswordResetForm
     success_url = reverse_lazy("bbtest:login")
-    template_name = "password_reset.html"
+    template_name = "base/password_reset.html"
 
 
 class PasswordResetConfirmView(LogoutRequiredMixin, _PasswordResetConfirmView):
     form_class = SetPasswordForm
     post_reset_login = True
     success_url = reverse_lazy("bbtest:dashboard")
-    template_name = "password_reset_confirm.html"
+    template_name = "base/password_reset_confirm.html"
 
     def form_valid(self, form):
         success(self.request, pgettext("Success alert message", "Password was reset successfully."))

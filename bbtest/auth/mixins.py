@@ -13,7 +13,7 @@ class LoginRequiredMixin(_LoginRequiredMixin):
     redirect_field_name = settings.BB_REDIRECT_FIELDNAME
 
 
-class _GroupLoginRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
+class _GroupPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     raise_exception = True
 
     def dispatch(self, request, *args, **kwargs):
@@ -24,22 +24,22 @@ class _GroupLoginRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class SuperLoginRequiredMixin(_GroupLoginRequiredMixin):
+class SuperPermissionRequiredMixin(_GroupPermissionRequiredMixin):
     permission_denied_message = "Super access required"
     permission_required = "bbtest.super"
 
 
-class AdminLoginRequiredMixin(_GroupLoginRequiredMixin):
+class AdminPermissionRequiredMixin(_GroupPermissionRequiredMixin):
     permission_denied_message = "Admin access required"
     permission_required = "bbtest.admin"
 
 
-class DeveloperLoginRequiredMixin(_GroupLoginRequiredMixin):
+class DeveloperPermissionRequiredMixin(_GroupPermissionRequiredMixin):
     permission_denied_message = "Developer access required"
     permission_required = "bbtest.developer"
 
 
-class StudentLoginRequiredMixin(_GroupLoginRequiredMixin):
+class StudentPermissionRequiredMixin(_GroupPermissionRequiredMixin):
     permission_denied_message = "Student access required"
     permission_required = "bbtest.student"
 

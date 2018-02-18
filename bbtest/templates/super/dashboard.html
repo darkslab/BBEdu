@@ -1,9 +1,9 @@
-{% extends './super_base_2.html' %}
+{% extends '../personalized_base_1.html' %}
 {% load i18n %}
 
 {% block title %}{% trans 'Dashboard' context 'Page title' %}{% endblock %}
 
-{% block nav_dashboard_class %}active{% endblock %}
+{% block nav_super_dashboard_class %}active{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -42,6 +42,9 @@
                     <p class="mb-0">{% trans 'Last subscription' context '/super/' %}: {{ subscriptions_last.created_at|timesince }}</p>
                     <p class="mb-0 text-center">
                         <em>{{ subscriptions_last.email }}</em>
+                    </p>
+                    <p class="mt-10 mb-0 text-center">
+                        <a target="_blank" class="btn btn-primary btn-xs" href="{% url 'bbtest:super_download_subscription_list' %}">{% trans 'Download list' context '/super/' %}</a>
                     </p>
                 </div>
             </div>

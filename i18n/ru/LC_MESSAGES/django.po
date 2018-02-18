@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-02-06 13:55+0600\n"
-"PO-Revision-Date: 2018-02-06 00:10-0800\n"
+"POT-Creation-Date: 2018-02-19 05:22+0600\n"
+"PO-Revision-Date: 2018-02-18 15:24-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -594,6 +594,22 @@ msgctxt "Test language"
 msgid "Russian"
 msgstr "Русский"
 
+msgctxt "Test status"
+msgid "Draft"
+msgstr "Черновая версия"
+
+msgctxt "Test status"
+msgid "Pending"
+msgstr "В процессе"
+
+msgctxt "Test status"
+msgid "Approved"
+msgstr "Одобрен"
+
+msgctxt "Test status"
+msgid "Archived"
+msgstr "В архиве"
+
 msgctxt "Model field"
 msgid "code of the test"
 msgstr "код теста"
@@ -603,16 +619,8 @@ msgid "language of the test"
 msgstr "язык теста"
 
 msgctxt "Model field"
-msgid "is active?"
-msgstr "активный?"
-
-msgctxt "Model field"
-msgid "is approved?"
-msgstr "одобрен?"
-
-msgctxt "Model field"
-msgid "is pending approval?"
-msgstr "на согласовании?"
+msgid "status"
+msgstr "статус"
 
 msgctxt "Question difficulty"
 msgid "High"
@@ -702,9 +710,155 @@ msgctxt "Page title"
 msgid "Page not found"
 msgstr "Страница не найдена"
 
-msgctxt "Badge label under avatar"
-msgid "Administrator"
-msgstr "Администратор"
+#, python-format
+msgctxt "Splash page title"
+msgid "bbTest.kz %(dash_code)s Powerful and simple online testing platform"
+msgstr ""
+"bbTest.kz %(dash_code)s Самая простая и удобная платформа онлайн тестирования"
+
+#, python-format
+msgctxt "Splash page description"
+msgid ""
+"bbTest.kz %(dash_code)s Powerful and simple online testing platform. Coming "
+"soon..."
+msgstr ""
+"bbTest.kz %(dash_code)s Самая простая и удобная платформа онлайн "
+"тестирования. Уже скоро…"
+
+#, python-format
+msgctxt "Splash page content"
+msgid ""
+"%(quote_code)sPowerful and simple online testing platform.%(quote_code)s"
+msgstr ""
+"%(quote_code)sСамая простая и удобная платформа онлайн тестирования."
+"%(quote_code)s"
+
+#, python-format
+msgctxt "Splash page content"
+msgid ""
+"%(quote_code)sThorough testing, productive results, personal approach."
+"%(quote_code)s"
+msgstr ""
+"%(quote_code)sКачественные тесты, расширенные результаты, индивидуальный "
+"подход к каждому.%(quote_code)s"
+
+msgctxt "Splash page content"
+msgid "coming soon..."
+msgstr "уже скоро…"
+
+msgctxt "Splash page content"
+msgid "Leave your email and you will be the first to know when we are live!"
+msgstr ""
+"Оставьте нам свою электронную почту и Вы первым узнаете когда сайт будет "
+"запущен!"
+
+msgctxt "Splash page content"
+msgid "Your Email"
+msgstr "Электронная почта"
+
+msgctxt "Splash page button"
+msgid "Send"
+msgstr "Отправить"
+
+msgctxt "Page title"
+msgid "Login"
+msgstr "Авторизация"
+
+msgctxt "Form button"
+msgid "Login"
+msgstr "Войти"
+
+msgctxt "Form link"
+msgid "Forgot your password?"
+msgstr "Забыли пароль?"
+
+msgctxt "/login/"
+msgid "Don't have an account?"
+msgstr "Нет учетной записи?"
+
+msgctxt "/login/"
+msgid "Register"
+msgstr "Регистрация"
+
+msgctxt "Page title"
+msgid "Reset Password"
+msgstr "Сброс пароля"
+
+msgctxt "/password_reset/"
+msgid "Please provide your email to get a reset link"
+msgstr ""
+"Для получения ссылки на сброс пароля, пожалуйста введите адрес электронной "
+"почты"
+
+msgctxt "Form button"
+msgid "Send"
+msgstr "Отправить"
+
+msgctxt "Form link"
+msgid "Go back to Login"
+msgstr "Вернуться назад к Авторизации"
+
+msgctxt "Page title"
+msgid "Set Password"
+msgstr "Изменение пароля"
+
+msgctxt "Form button"
+msgid "Reset"
+msgstr "Изменить"
+
+msgctxt "/reset/"
+msgid "Password reset link has been expired."
+msgstr "Ссылка на сброс пароля устарела."
+
+msgctxt "Button"
+msgid "Reset Password"
+msgstr "Изменить пароль"
+
+msgctxt "Page title"
+msgid "Register"
+msgstr "Регистрация"
+
+msgctxt "Form label"
+msgid "I want to register as"
+msgstr "Зарегестрироваться в качестве"
+
+msgctxt "Form label"
+msgid "Student"
+msgstr "Участник тестирования"
+
+msgctxt "Form label"
+msgid "Test developer"
+msgstr "Разработчик тестирования"
+
+msgctxt "Form button"
+msgid "Register"
+msgstr "Регистрация"
+
+msgctxt "/register/"
+msgid "Already have an account?"
+msgstr "Уже зарегестрированы?"
+
+msgctxt "/register/"
+msgid "Login"
+msgstr "Войти"
+
+msgctxt "Page title"
+msgid "Settings"
+msgstr "Настройки"
+
+#, python-format
+msgctxt "/settings/"
+msgid ""
+"If you want to change your avatar, you can do it by going to %(link_tag)s"
+msgstr "Для того чтобы изменить Ваш аватар, пройдите по ссылке: %(link_tag)s"
+
+msgctxt "Form button"
+msgid "Change Password"
+msgstr "Изменить пароль"
+
+msgctxt "Form button"
+msgid "Save"
+msgstr "Сохранить"
 
 msgctxt "Page title"
 msgid "Choose your Developer Plan"
@@ -825,24 +979,8 @@ msgid "Actions"
 msgstr "Действия"
 
 msgctxt "/developer/"
-msgid "Archived"
-msgstr "В архиве"
-
-msgctxt "/developer/"
-msgid "Pending"
-msgstr "В процессе"
-
-msgctxt "/developer/"
 msgid "Preview"
 msgstr "Просмотреть"
-
-msgctxt "/developer/"
-msgid "Approved"
-msgstr "Одобрен"
-
-msgctxt "/developer/"
-msgid "Draft"
-msgstr "Черновая версия"
 
 msgctxt "/developer/"
 msgid "Edit"
@@ -864,6 +1002,54 @@ msgctxt "/developer/"
 msgid "Next"
 msgstr "Следующий"
 
+msgctxt "Page title"
+msgid "Create Test"
+msgstr "Загрузить тест"
+
+msgctxt "/developer/tests/"
+msgid "Entrance Tests"
+msgstr "Вступительные тесты"
+
+msgctxt "/developer/tests/"
+msgid "Test Specification"
+msgstr "Тестовая спецификация"
+
+msgctxt "/developer/tests/"
+msgid "Create Test"
+msgstr "Создать тест"
+
+msgctxt "Logo img html tag alt parameter"
+msgid "bbTest.kz Logo"
+msgstr "логотип bbTest.kz"
+
+msgctxt "Email body element"
+msgid "link"
+msgstr "ссылка"
+
+#, python-format
+msgctxt "Email body"
+msgid ""
+"Hello %(name)s,%(line_break)s%(line_break)s We have received a request to "
+"reset your password. If you did not request this, then please ignore this "
+"email.%(line_break)s%(line_break)s To reset your password please follow this "
+"%(link_tag)s.%(line_break)s%(line_break)s Or copy and paste the link below:"
+"%(line_break)s %(link_tag_url)s"
+msgstr ""
+"Здравствуйте %(name)s,%(line_break)s%(line_break)s Мы получили от Вас запрос "
+"на сброс пароля. Если Вы не отправляли данный запрос, проигнорируйте это "
+"сообщение.%(line_break)s%(line_break)s Для сброса пароля перейдите по ссылке "
+"%(link_tag)s.%(line_break)s%(line_break)s Или скопируйте и вставьте ссылку "
+"ниже:%(line_break)s %(link_tag_url)s"
+
+#, python-format
+msgctxt "Bottom copyright"
+msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
+msgstr "Сделано с %(heart_icon)s в Казахстане. %(copyright_code)s bbTest.kz"
+
+msgctxt "Badge label under avatar"
+msgid "Administrator"
+msgstr "Администратор"
+
 msgctxt "Badge label under avatar"
 msgid "Developer"
 msgstr "Разработчик"
@@ -873,8 +1059,132 @@ msgid "Dashboard"
 msgstr "Личный кабинет"
 
 msgctxt "Navigation link"
+msgid "All Tests"
+msgstr "Все Тесты"
+
+msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Загрузить тест"
+
+msgctxt "Navigation link"
+msgid "Start testing"
+msgstr "Начать тестирование"
+
+msgctxt "Navigation link"
+msgid "Results"
+msgstr "Результаты тестирования"
+
+msgctxt "Navigation link"
+msgid "Refill Balance"
+msgstr "Пополнить счёт"
+
+msgctxt "Navigation link"
+msgid "Settings"
+msgstr "Настройки"
+
+msgctxt "Navigation link"
+msgid "Logout"
+msgstr "Выйти"
+
+msgctxt "Navigation link"
+msgid "Login"
+msgstr "Войти"
+
+msgctxt "Navigation link"
+msgid "Register"
+msgstr "Регистрация"
+
+msgctxt "/super/"
+msgid "User Statistics"
+msgstr "Статистика Пользователей"
+
+msgctxt "/super/"
+msgid "Students"
+msgstr "Студенты"
+
+msgctxt "/super/"
+msgid "Developers"
+msgstr "Разработчики"
+
+msgctxt "/super/"
+msgid "Admins"
+msgstr "Администраторы"
+
+msgctxt "/super/"
+msgid "Superusers"
+msgstr "Суперюзеры"
+
+msgctxt "/super/"
+msgid "Tests by Developers"
+msgstr "Тесты разработчиков"
+
+msgctxt "/super/"
+msgid "Subscriptions"
+msgstr "Подписка"
+
+msgctxt "/super/"
+msgid "Total"
+msgstr "Всего"
+
+msgctxt "/super/"
+msgid "Last subscription"
+msgstr "Последняя подписка"
+
+msgctxt "/super/"
+msgid "Download list"
+msgstr "Скачать список"
+
+msgctxt "Page title"
+msgid "All tests"
+msgstr "Все Тесты"
+
+msgctxt "/super/tests/"
+msgid "All tests"
+msgstr "Все Тесты"
+
+msgctxt "/super/tests/"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "/super/tests/"
+msgid "Domain"
+msgstr "Тестирование"
+
+msgctxt "/super/tests/"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "/super/tests/"
+msgid "Variant"
+msgstr "Код теста"
+
+msgctxt "/super/tests/"
+msgid "Status"
+msgstr "Статус"
+
+msgctxt "/super/tests/"
+msgid "Actions"
+msgstr "Действия"
+
+msgctxt "/super/tests/"
+msgid "Preview"
+msgstr "Просмотреть"
+
+msgctxt "/super/tests/"
+msgid "Edit"
+msgstr "Редактировать"
+
+msgctxt "/super/tests/"
+msgid "There are no tests yet"
+msgstr "Нет загруженных тестов"
+
+msgctxt "/super/tests/"
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgctxt "/super/tests/"
+msgid "Next"
+msgstr "Следующий"
 
 #, python-format
 msgctxt "Page title"
@@ -1050,8 +1360,16 @@ msgid "The allotted time has run out."
 msgstr "Отведенное время закончилось."
 
 msgctxt "Developer tools"
-msgid "Send for Approval"
-msgstr "Отправить на oдобрение"
+msgid "This action is irreversable!"
+msgstr "Это действие необратимо!"
+
+msgctxt "Developer tools"
+msgid "Approve"
+msgstr "Одобрить"
+
+msgctxt "Developer tools"
+msgid "Refuse"
+msgstr "Отправить назад"
 
 msgctxt "Developer tools"
 msgid "Edit"
@@ -1065,335 +1383,9 @@ msgctxt "Developer tools"
 msgid "Exit"
 msgstr "Выйти"
 
-msgctxt "Page title"
-msgid "Create Test"
-msgstr "Загрузить тест"
-
-msgctxt "/developer/tests/"
-msgid "Entrance Tests"
-msgstr "Вступительные тесты"
-
-msgctxt "/developer/tests/"
-msgid "Test Specification"
-msgstr "Тестовая спецификация"
-
-msgctxt "/developer/tests/"
-msgid "Create Test"
-msgstr "Создать тест"
-
-msgctxt "Logo img html tag alt parameter"
-msgid "bbTest.kz Logo"
-msgstr "логотип bbTest.kz"
-
-msgctxt "Email body element"
-msgid "link"
-msgstr "ссылка"
-
-#, python-format
-msgctxt "Email body"
-msgid ""
-"Hello %(name)s,%(line_break)s%(line_break)s We have received a request to "
-"reset your password. If you did not request this, then please ignore this "
-"email.%(line_break)s%(line_break)s To reset your password please follow this "
-"%(link_tag)s.%(line_break)s%(line_break)s Or copy and paste the link below:"
-"%(line_break)s %(link_tag_url)s"
-msgstr ""
-"Здравствуйте %(name)s,%(line_break)s%(line_break)s Мы получили от Вас запрос "
-"на сброс пароля. Если Вы не отправляли данный запрос, проигнорируйте это "
-"сообщение.%(line_break)s%(line_break)s Для сброса пароля перейдите по ссылке "
-"%(link_tag)s.%(line_break)s%(line_break)s Или скопируйте и вставьте ссылку "
-"ниже:%(line_break)s %(link_tag_url)s"
-
-#, python-format
-msgctxt "Bottom copyright"
-msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
-msgstr "Сделано с %(heart_icon)s в Казахстане. %(copyright_code)s bbTest.kz"
-
-#, python-format
-msgctxt "Splash page title"
-msgid "bbTest.kz %(dash_code)s Powerful and simple online testing platform"
-msgstr ""
-"bbTest.kz %(dash_code)s Самая простая и удобная платформа онлайн тестирования"
-
-#, python-format
-msgctxt "Splash page description"
-msgid ""
-"bbTest.kz %(dash_code)s Powerful and simple online testing platform. Coming "
-"soon..."
-msgstr ""
-"bbTest.kz %(dash_code)s Самая простая и удобная платформа онлайн "
-"тестирования. Уже скоро…"
-
-#, python-format
-msgctxt "Splash page content"
-msgid ""
-"%(quote_code)sPowerful and simple online testing platform.%(quote_code)s"
-msgstr ""
-"%(quote_code)sСамая простая и удобная платформа онлайн тестирования."
-"%(quote_code)s"
-
-#, python-format
-msgctxt "Splash page content"
-msgid ""
-"%(quote_code)sThorough testing, productive results, personal approach."
-"%(quote_code)s"
-msgstr ""
-"%(quote_code)sКачественные тесты, расширенные результаты, индивидуальный "
-"подход к каждому.%(quote_code)s"
-
-msgctxt "Splash page content"
-msgid "coming soon..."
-msgstr "уже скоро…"
-
-msgctxt "Splash page content"
-msgid "Leave your email and you will be the first to know when we are live!"
-msgstr ""
-"Оставьте нам свою электронную почту и Вы первым узнаете когда сайт будет "
-"запущен!"
-
-msgctxt "Splash page content"
-msgid "Your Email"
-msgstr "Электронная почта"
-
-msgctxt "Splash page button"
-msgid "Send"
-msgstr "Отправить"
-
-msgctxt "Page title"
-msgid "Login"
-msgstr "Авторизация"
-
-msgctxt "Form button"
-msgid "Login"
-msgstr "Войти"
-
-msgctxt "Form link"
-msgid "Forgot your password?"
-msgstr "Забыли пароль?"
-
-msgctxt "/login/"
-msgid "Don't have an account?"
-msgstr "Нет учетной записи?"
-
-msgctxt "/login/"
-msgid "Register"
-msgstr "Регистрация"
-
-msgctxt "Page title"
-msgid "Reset Password"
-msgstr "Сброс пароля"
-
-msgctxt "/password_reset/"
-msgid "Please provide your email to get a reset link"
-msgstr ""
-"Для получения ссылки на сброс пароля, пожалуйста введите адрес электронной "
-"почты"
-
-msgctxt "Form button"
-msgid "Send"
-msgstr "Отправить"
-
-msgctxt "Form link"
-msgid "Go back to Login"
-msgstr "Вернуться назад к Авторизации"
-
-msgctxt "Page title"
-msgid "Set Password"
-msgstr "Изменение пароля"
-
-msgctxt "Form button"
-msgid "Reset"
-msgstr "Изменить"
-
-msgctxt "/reset/"
-msgid "Password reset link has been expired."
-msgstr "Ссылка на сброс пароля устарела."
-
-msgctxt "Button"
-msgid "Reset Password"
-msgstr "Изменить пароль"
-
-msgctxt "Navigation link"
-msgid "Settings"
-msgstr "Настройки"
-
-msgctxt "Navigation link"
-msgid "Logout"
-msgstr "Выйти"
-
-msgctxt "Navigation link"
-msgid "Login"
-msgstr "Войти"
-
-msgctxt "Navigation link"
-msgid "Register"
-msgstr "Регистрация"
-
-msgctxt "Page title"
-msgid "Register"
-msgstr "Регистрация"
-
-msgctxt "Form label"
-msgid "I want to register as"
-msgstr "Зарегестрироваться в качестве"
-
-msgctxt "Form label"
-msgid "Student"
-msgstr "Участник тестирования"
-
-msgctxt "Form label"
-msgid "Test developer"
-msgstr "Разработчик тестирования"
-
-msgctxt "Form button"
-msgid "Register"
-msgstr "Регистрация"
-
-msgctxt "/register/"
-msgid "Already have an account?"
-msgstr "Уже зарегестрированы?"
-
-msgctxt "/register/"
-msgid "Login"
-msgstr "Войти"
-
-msgctxt "Page title"
-msgid "Settings"
-msgstr "Настройки"
-
-#, python-format
-msgctxt "/settings/"
-msgid ""
-"If you want to change your avatar, you can do it by going to %(link_tag)s"
-msgstr "Для того чтобы изменить Ваш аватар, пройдите по ссылке: %(link_tag)s"
-
-msgctxt "Form button"
-msgid "Change Password"
-msgstr "Изменить пароль"
-
-msgctxt "Form button"
-msgid "Save"
-msgstr "Сохранить"
-
-msgctxt "Navigation link"
-msgid "Start testing"
-msgstr "Начать тестирование"
-
-msgctxt "Navigation link"
-msgid "Results"
-msgstr "Результаты тестирования"
-
-msgctxt "Navigation link"
-msgid "Refill Balance"
-msgstr "Пополнить счёт"
-
-msgctxt "/super/"
-msgid "User Statistics"
-msgstr "Статистика Пользователей"
-
-msgctxt "/super/"
-msgid "Students"
-msgstr "Студенты"
-
-msgctxt "/super/"
-msgid "Developers"
-msgstr "Разработчики"
-
-msgctxt "/super/"
-msgid "Admins"
-msgstr "Администраторы"
-
-msgctxt "/super/"
-msgid "Superusers"
-msgstr "Суперюзеры"
-
-msgctxt "/super/"
-msgid "Tests by Developers"
-msgstr "Тесты разработчиков"
-
-msgctxt "/super/"
-msgid "Subscriptions"
-msgstr "Подписка"
-
-msgctxt "/super/"
-msgid "Total"
-msgstr "Всего"
-
-msgctxt "/super/"
-msgid "Last subscription"
-msgstr "Последняя подписка"
-
-msgctxt "Navigation link"
-msgid "All Tests"
-msgstr "Все Тесты"
-
-msgctxt "Page title"
-msgid "All tests"
-msgstr "Все Тесты"
-
-msgctxt "/super/tests/"
-msgid "All tests"
-msgstr "Все Тесты"
-
-msgctxt "/super/tests/"
-msgid "Developer"
-msgstr "Разработчик"
-
-msgctxt "/super/tests/"
-msgid "Domain"
-msgstr "Тестирование"
-
-msgctxt "/super/tests/"
-msgid "Section"
-msgstr "Предмет"
-
-msgctxt "/super/tests/"
-msgid "Variant"
-msgstr "Код теста"
-
-msgctxt "/super/tests/"
-msgid "Status"
-msgstr "Статус"
-
-msgctxt "/super/tests/"
-msgid "Actions"
-msgstr "Действия"
-
-msgctxt "/super/tests/"
-msgid "Archived"
-msgstr "В архиве"
-
-msgctxt "/super/tests/"
-msgid "Pending"
-msgstr "В процессе"
-
-msgctxt "/super/tests/"
-msgid "Edit"
-msgstr "Редактировать"
-
-msgctxt "/super/tests/"
-msgid "Preview"
-msgstr "Просмотреть"
-
-msgctxt "/super/tests/"
-msgid "Approved"
-msgstr "Одобрен"
-
-msgctxt "/super/tests/"
-msgid "Draft"
-msgstr "Черновая версия"
-
-msgctxt "/super/tests/"
-msgid "There are no tests yet"
-msgstr "Нет загруженных тестов"
-
-msgctxt "/super/tests/"
-msgid "Previous"
-msgstr "Предыдущий"
-
-msgctxt "/super/tests/"
-msgid "Next"
-msgstr "Следующий"
+msgctxt "Developer tools"
+msgid "Send for Approval"
+msgstr "Отправить на oдобрение"
 
 msgctxt "/developer/tests/"
 msgid "Choose test language"
@@ -1422,6 +1414,14 @@ msgstr "Русский язык как второй"
 msgctxt "Success alert message"
 msgid "You have created a new Test."
 msgstr "Вы создали новый тест."
+
+msgctxt "Success alert message"
+msgid "You have approved a Test."
+msgstr "Вы одобрили тест."
+
+msgctxt "Success alert message"
+msgid "You have refused a Test."
+msgstr "Вы отправили тест назад на доработку."
 
 msgctxt "Success alert message"
 msgid "You have deleted a Test."

@@ -1,13 +1,16 @@
 from django.contrib.auth import get_user_model
 from django.db.models import Count
-from bbtest.auth.mixins import SuperLoginRequiredMixin
-from bbtest.views.generic import TemplateView
+from django.http import HttpResponse
+from django.utils.timezone import localtime
+import csv
+from bbtest.auth.mixins import SuperPermissionRequiredMixin
+from bbtest.views.generic import TemplateView, View
 from bbtest.models import Subscription
 
 
 User = get_user_model()
 
-class DashboardView(SuperLoginRequiredMixin, TemplateView):
+class DashboardView(SuperPermissionRequiredMixin, TemplateView):
     template_name = "super/dashboard.html"
 
     def get_context_data(self, **kwargs):
@@ -26,3 +29,19 @@ class DashboardView(SuperLoginRequiredMixin, TemplateView):
         kwargs["subscriptions_last"] = Subscription.objects.order_by("-created_at").first()
 
         return super().get_context_data(**kwargs)
+
+
+class DownloadSubscriptionListView(SuperPermissionRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = "attachment; filename=\"subscription-list.csv\""
+
+        subscription_list = csv.writer(response)
+        subscription_list.writerow(["Email", "Time"])
+        for entry in Subscription.objects.order_by("created_at").all():
+            subscription_list.writerow([
+                entry.email,
+                localtime(entry.created_at).strftime("%Y-%m-%d %H:%M:%S"),
+            ])
+
+        return response
