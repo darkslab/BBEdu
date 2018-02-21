@@ -73,11 +73,3 @@ urlpatterns = [
     url(r"^password-reset/$",                                                                   PasswordResetView.as_view(),        name="password_reset"        ),
     url(r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]
-
-
-# from django.views.generic import TemplateView
-# urlpatterns += [
-#     url(r"^page/$", TemplateView.as_view(template_name="page.html"), {
-#         "var": 1,
-#     }),
-# ]

@@ -1,4 +1,3 @@
-from django.views.generic import FormView
 from django.contrib.auth.views import (
     LoginView as _LoginView,
     LogoutView as _LogoutView,
@@ -13,6 +12,7 @@ from django.utils.translation import pgettext
 from django.contrib.auth import login
 from .forms import AuthenticationForm, UserCreationForm, PasswordResetForm, SetPasswordForm
 from .mixins import LogoutRequiredMixin
+from bbtest.views.generic import FormView
 
 
 class LoginView(_LoginView):
