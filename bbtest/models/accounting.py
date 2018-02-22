@@ -105,64 +105,39 @@ class Account(Model):
 
 
 class EntryManager(Manager):
-    def post(self, description, debits=[], credits=[], document=None):
+    def post(self, description, funds, document=None):
         if not isinstance(description, str) or not len(description):
             raise RuntimeError("Please provide correct description")
+        try:
+            unique_accounts = []
+            balance = Decimal("0.00")
+            for index, fund in enumerate(funds):
+                if not isinstance(fund, Fund):
+                    raise TypeError("Incorrect fund type")
+                if fund.account() in unique_accounts:
+                    raise TypeError("Reusing the same account")
+                unique_accounts.append(fund.account())
+                balance += fund.audit_balance()
+            if not len(unique_accounts):
+                raise TypeError("No funds")
+            if not balance.is_zero():
+                raise RuntimeError("Debit and credit funds do not balance")
+        except TypeError:
+            raise RuntimeError("Please provide correct debit and credit funds")
         if document is not None and not isinstance(document, Model):
             raise RuntimeError("Please provide correct document")
 
-        _debits = []
-        _credits = []
-        unique_accounts = []
-        try:
-            for index, entries in enumerate((debits, credits)):
-                if not index:
-                    _entries = _debits
-                else:
-                    _entries = _credits
-                for entry in entries:
-                    account = entry.get("account", None)
-                    if account is None:
-                        account = Account.objects.get(name=entry["account_name"])
-                    if not isinstance(account, Account):
-                        raise TypeError("Incorrect account type")
-                    if account in unique_accounts:
-                        raise TypeError("Reusing the same account")
-                    unique_accounts.append(account)
-                    if not isinstance(entry["amount"], Decimal) or entry["amount"] <= 0:
-                        raise TypeError("Incorrect amount type")
-                    _entries.append((account, entry["amount"].quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)))
-                if not len(_entries):
-                    raise TypeError("Incorrect entries")
-        except (TypeError, AttributeError, KeyError, Account.DoesNotExist):
-            raise RuntimeError("Please provide correct debits and credits")
-
-        if sum([debit[1] for debit in _debits]) != sum([credit[1] for credit in _credits]):
-            raise RuntimeError("The sum of debit amounts does not match the sum of credit amounts")
-
-        balance = Decimal("0.00")
-        for debit in _debits:
-            if debit[0].is_debit_account():
-                balance += debit[1]
-            else:
-                balance -= debit[1]
-        for credit in _credits:
-            if credit[0].is_credit_account():
-                balance -= credit[1]
-            else:
-                balance += credit[1]
-        if not balance.is_zero():
-            raise RuntimeError("Debit and credit amounts do not balance")
-
         with atomic(savepoint=False):
             entry = Entry.objects.create(description=description, document=document)
-            for index, entries in enumerate((_debits, _credits)):
-                for _entry in entries:
-                    if not index:
-                        is_debit = True
-                    else:
-                        is_debit = False
-                    entry.amounts.create(account=_entry[0], is_debit=is_debit, amount=_entry[1])
+            for fund in funds:
+                is_debit = True
+                if isinstance(fund, Credit):
+                    is_debit = False
+                entry.amounts.create(
+                    account=fund.account(),
+                    is_debit=is_debit,
+                    amount=fund.amount(),
+                )
 
 class Entry(Model):
     accounts  = ManyToManyField  ( Account, through="Amount", related_name="entries", )
@@ -185,6 +160,38 @@ class Entry(Model):
         if self.pk:
             return "Entry #%s" % self.pk
         return "New Entry"
+
+class Fund:
+    def __init__(self, account_name=None, amount=None, account=None):
+        self.__account = account
+        if self.__account is None and account_name is not None:
+            try:
+                self.__account = Account.objects.get(name=account_name)
+            except Account.DoesNotExist:
+                pass
+        if not isinstance(self.__account, Account):
+            raise RuntimeError("Account is required")
+
+        if not isinstance(amount, Decimal) or amount <= 0:
+            raise RuntimeError("Incorrect amount value")
+        self.__amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
+
+    def account(self):
+        return self.__account
+
+    def amount(self):
+        return self.__amount
+
+    def audit_balance(self):
+        raise NotImplementedError("%s has to implement 'audit_balance' method" % type(self).__name__)
+
+class Debit(Fund):
+    def audit_balance(self):
+        return self.amount()
+
+class Credit(Fund):
+    def audit_balance(self):
+        return -self.amount()
 
 
 class Amount(Model):
