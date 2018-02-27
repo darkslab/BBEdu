@@ -1,0 +1,77 @@
+{% extends './base_0.html' %}
+{% load static i18n %}
+
+{% block _d0_body_class %}bb-body-public{% endblock %}
+
+{% block _d0_content %}
+    <div class="container-fluid">
+        <div class="row bb-bar bb-bar-public">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1 pr-0 pl-0">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bb-navbar-collapse">
+                                    <span class="icon-bar bb-bar-button-first"></span>
+                                    <span class="icon-bar bb-bar-button-second"></span>
+                                    <span class="icon-bar bb-bar-button-third"></span>
+                                </button>
+                                <a class="navbar-brand ml-0 pt-10 pb-10" href="{% url 'bbtest:home' %}">
+                                    <img class="bb-bar-logo" src="{% static 'img/logo.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" title="bbTest.kz">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        {% if messages %}
+            <div class="row">
+                <div class="container">
+                    {% for message in messages %}
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                                {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                                <div class="alert alert-dismissible alert-info">
+                                {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                                <div class="alert alert-dismissible alert-success">
+                                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                                <div class="alert alert-dismissible alert-warning">
+                                {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                <div class="alert alert-dismissible alert-danger">
+                                {% else %}
+                                <div class="alert alert-dismissible">
+                                {% endif %}
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <span>{{ message }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="container mb-23">
+                {% block header %}
+                    <div class="row">
+                        <div class="{% block header_class %}col-lg-10 col-lg-offset-1{% endblock %}">
+                            <h3 class="mb-23 mt-0">{% block title %}{% endblock %}</h3>
+                        </div>
+                    </div>
+                {% endblock %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    <div class="bb-copyright text-center"></div>
+{% endblock %}
+
+{% comment %}
+
+    header
+      title
+    header_class
+    content
+
+{% endcomment %}
