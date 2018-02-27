@@ -64,6 +64,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.get_full_name()
+
     def get_absolute_url(self):
         if self.has_perm("bbtest.super"):
             return reverse("bbtest:super_dashboard")
@@ -102,3 +103,10 @@ class User(AbstractBaseUser, PermissionsMixin):
                 "d": "mm",
             }),
         )
+
+    def cart(self):
+        from bbtest.models import Cart
+        try:
+            return self.carts.get(is_current=True)
+        except Cart.DoesNotExist:
+            return Cart(buyer=self, is_current=True)

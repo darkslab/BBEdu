@@ -1,6 +1,6 @@
 from django.db.models import (
     Model, ForeignKey, CASCADE,
-    PositiveIntegerField, DecimalField, DateTimeField, BooleanField, IntegerField, CharField,
+    PositiveIntegerField, DecimalField, DateTimeField, NullBooleanField, IntegerField, CharField,
 )
 from django.contrib.auth import get_user_model
 from django.utils.translation import pgettext_lazy
@@ -19,17 +19,18 @@ class Cart(Model):
     content_type  = ForeignKey            ( ContentType, on_delete=CASCADE, null=True, blank=True, )
     object_id     = IntegerField          ( pgettext_lazy("Model field", "object ID"),                                     null=True, blank=True, db_index=True,                )
     transaction   = GenericForeignKey     ()
-    is_complete   = BooleanField          ( pgettext_lazy("Model field", "is complete?"),                                                         db_index=True, default=False, )
+    is_current    = NullBooleanField      ( pgettext_lazy("Model field", "is current?"),                                                          db_index=True,                )
     completed_at  = DateTimeField         ( pgettext_lazy("Model field", "completed at"),                                  null=True, blank=True, db_index=True,                )
 
     class Meta:
         db_table = "shopping_carts"
         default_permissions = ()
+        unique_together = ("buyer", "is_current")
 
     def __str__(self):
-        description = "not completed"
-        if self.is_complete:
-            description = "completed"
+        description = "completed"
+        if self.is_current:
+            description = "not completed"
         if self.pk:
             return "Cart #%s (%s)" % (self.pk, description)
         return "New Cart (%s)" % description
