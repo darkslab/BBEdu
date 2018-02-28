@@ -1,5 +1,7 @@
 from django.db.transaction import atomic
+from django.db import IntegrityError
 from . import items
+from .items.base import Item
 from .exceptions import ShoppingError, ItemError
 
 
@@ -47,12 +49,14 @@ class CartHandle:
         if not self.__is_modified:
             return
 
-        with atomic(savepoint=False):
-            pass
+        try:
+            with atomic(savepoint=False):
+                # DARK_TODO  implement this!
+                pass
 
-        self.__is_modified = False
-        # DARK_TODO  implement this!
-        pass
+            self.__is_modified = False
+        except IntegrityError:
+            raise ShoppingError("Could not save the cart")
 
     def __iter__(self):
         return ItemsIterator(self.__items())
@@ -61,11 +65,15 @@ class CartHandle:
         return [ product["item"] for product in self.__products if product["item"] is not None ]
 
     def __normalize_products(self, items):
+        if not isinstance(items, list):
+            raise ShoppingError("Cannot process Items")
         if len(items) != len(set(items)):
             raise ShoppingError("Item duplication is not supported")
 
         product_items = self.__items()
         for item in items:
+            if not isinstance(item, Item):
+                raise ShoppingError("Items have to be an Item subclass")
             if item not in product_items:
                 self.__products.append({
                     "item": item,
