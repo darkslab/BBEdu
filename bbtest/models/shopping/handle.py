@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from decimal import Decimal
 from . import items
 from .items.base import Item
-from .exceptions import ShoppingError, ItemError
+from .exceptions import CartHandleError, ItemError
 from .base import Cart, LineItem
 
 
@@ -15,17 +15,17 @@ class CartHandle:
         self.__is_modified = False
 
         if not self.__cart.is_current:
-            raise ShoppingError("Only current carts are allowed")
+            raise CartHandleError("Only current carts are allowed")
         for line_item in self.__cart.line_items.all():
             if not hasattr(items, line_item.item_class):
-                raise ShoppingError("Incorrect item class: %s" % line_item.item_class)
+                raise CartHandleError("Incorrect item class: %s" % line_item.item_class)
             try:
                 getattr(items, line_item.item_class).instantiate_from_meta_data(line_item.meta_data)
             except ItemError as error:
                 self.__errors.append(str(error))
 
             if len([ product for product in self.__products if product["item"] is not None and product["line_item"] is None ]) > 1:
-                raise ShoppingError("Incorrect item instantiation from meta data")
+                raise CartHandleError("Incorrect item instantiation from meta data")
             for product in self.__products:
                 if product["item"] is not None and product["line_item"] is None:
                     product["line_item"] = line_item
@@ -61,7 +61,7 @@ class CartHandle:
         try:
             with atomic(savepoint=False):
                 if not self.__cart.is_current:
-                    raise ShoppingError("Cannot save a non-current cart")
+                    raise CartHandleError("Cannot save a non-current cart")
                 self.__cart.discount = Decimal("0.00")
                 items = self.__items()
                 for item in items:
@@ -99,7 +99,7 @@ class CartHandle:
 
             self.__is_modified = False
         except IntegrityError:
-            raise ShoppingError("Could not save the cart")
+            raise CartHandleError("Could not save the cart")
 
         self.__products = [ product for product in self.__products if product["item"] is not None ]
 
@@ -111,14 +111,14 @@ class CartHandle:
 
     def __normalize_products(self, items):
         if not isinstance(items, list):
-            raise ShoppingError("Cannot process Items")
+            raise CartHandleError("Cannot process Items")
         if len(items) != len(set(items)):
-            raise ShoppingError("Item duplication is not supported")
+            raise CartHandleError("Item duplication is not supported")
 
         product_items = self.__items()
         for item in items:
             if not isinstance(item, Item):
-                raise ShoppingError("Items have to be an Item subclass")
+                raise CartHandleError("Items have to be an Item subclass")
             if item not in product_items:
                 self.__products.append({
                     "item": item,
