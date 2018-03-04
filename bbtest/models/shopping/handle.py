@@ -110,8 +110,6 @@ class CartHandle:
         return [ product["item"] for product in self.__products if product["item"] is not None ]
 
     def __normalize_products(self, items):
-        if not isinstance(items, list):
-            raise CartHandleError("Cannot process Items")
         if len(items) != len(set(items)):
             raise CartHandleError("Item duplication is not supported")
 
