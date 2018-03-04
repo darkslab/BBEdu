@@ -33,6 +33,9 @@ class Item:
         return self.__handle
 
     def cart_discount(self, items):
+        """
+        Has to return positive Decimal number
+        """
         return Decimal("0.00")
 
     def meta_data(self):
@@ -42,10 +45,19 @@ class Item:
         raise NotImplementedError("%s has to implement 'description' method" % type(self).__name__)
 
     def price(self):
+        """
+        Has to return positive Decimal number
+        """
         raise NotImplementedError("%s has to implement 'price' method" % type(self).__name__)
 
     def discount(self):
+        """
+        Has to return positive Decimal number that is less than or equal to `self.price()`
+        """
         return Decimal("0.00")
+
+    def total(self):
+        return self.price() - self.discount()
 
     def __eq__(self, other):
         raise NotImplementedError("%s has to implement '__eq__' method" % type(self).__name__)

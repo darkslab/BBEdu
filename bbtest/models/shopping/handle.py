@@ -49,6 +49,17 @@ class CartHandle:
         self.__normalize_products(item.separate_from_items(items))
         self.__is_modified = True
 
+    def discount(self):
+        total = Decimal("0.00")
+        discount = Decimal("0.00")
+
+        items = self.__items()
+        for item in items:
+            total += item.total()
+            discount += item.cart_discount(items)
+
+        return min(discount, total)
+
     def charge(self):
         # DARK_TODO  implement this!
         pass
@@ -62,10 +73,7 @@ class CartHandle:
             with atomic(savepoint=False):
                 if not self.__cart.is_current:
                     raise CartHandleError("Cannot save a non-current cart")
-                self.__cart.discount = Decimal("0.00")
-                items = self.__items()
-                for item in items:
-                    self.__cart.discount += item.cart_discount(items)
+                self.__cart.discount = self.discount()
                 if self.__cart.pk is None:
                     self.__cart.save()
                     lock_safe = True
