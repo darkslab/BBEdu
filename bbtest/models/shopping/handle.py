@@ -20,7 +20,7 @@ class CartHandle:
             if not hasattr(items, line_item.item_class):
                 raise CartHandleError("Incorrect item class: %s" % line_item.item_class)
             try:
-                getattr(items, line_item.item_class).instantiate_from_meta_data(line_item.meta_data)
+                getattr(items, line_item.item_class).instantiate_from_meta_data(self, line_item.meta_data)
             except ItemError as error:
                 self.__errors.append(str(error))
 
