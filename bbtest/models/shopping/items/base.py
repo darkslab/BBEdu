@@ -46,3 +46,9 @@ class Item:
 
     def discount(self):
         return Decimal("0.00")
+
+    def __eq__(self, other):
+        raise NotImplementedError("%s has to implement '__eq__' method" % type(self).__name__)
+
+    def __hash__(self):
+        raise NotImplementedError("%s has to implement '__hash__' method" % type(self).__name__)
