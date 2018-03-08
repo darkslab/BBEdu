@@ -1,5 +1,6 @@
 from django.db.transaction import atomic
 from django.db import IntegrityError
+from ool import ConcurrentUpdate
 from decimal import Decimal
 from . import items
 from .items.base import Item
@@ -102,11 +103,9 @@ class CartHandle:
 
                 if not lock_safe:
                     self.__cart.save()
-                    if not Cart.objects.filter(pk=self.__cart.pk, lock_version=self.__cart.lock_version).update(lock_version=(self.__cart.lock_version + 1)):
-                        raise IntegrityError("Cart is stale")
 
             self.__is_modified = False
-        except IntegrityError:
+        except (IntegrityError, ConcurrentUpdate):
             raise CartHandleError("Could not save the cart")
 
         self.__products = [ product for product in self.__products if product["item"] is not None ]
