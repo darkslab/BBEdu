@@ -522,6 +522,38 @@ class TestForm(ModelForm):
                         order=0,
                     )
 
+        # UNT core sections
+        elif test.section.id in (9545, 9546, 9547):
+            for i in range(test.section.question_count):
+                choice_id = randint(0x0000, 0xffff)
+                meta_data = {
+                    "choices": [
+                        { "id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
+                        { "id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
+                        { "id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
+                        { "id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
+                        { "id": choice_id + 4, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
+                    ],
+                    "correct_id": None,
+                }
+
+                question = test.questions.create(
+                    answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
+                    meta_data=meta_data,
+                    weight=test.section.question_weight,
+                    order=i,
+                )
+
+                paragraph = TestParagraph.objects.create(
+                    paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                    meta_data={ "text": "" },
+                )
+                TestParagraphQuestion.objects.create(
+                    question=question,
+                    paragraph=paragraph,
+                    order=0,
+                )
+
         return test
 
     def save(self, developer, commit=True):
