@@ -491,8 +491,23 @@ msgstr "Английский язык"
 msgid "Quantitative"
 msgstr "Количественные характеристики"
 
+msgid "Literacy"
+msgstr "Грамотность чтения"
+
+msgid "Numeracy"
+msgstr "Математическая грамотность"
+
+msgid "History of Kazakhstan"
+msgstr "История Казахстана"
+
 msgid "UNT"
 msgstr "ЕНТ"
+
+msgid "Core subjects"
+msgstr "Обязательные предметы"
+
+msgid "Spec subjects"
+msgstr "Профильные предметы"
 
 msgctxt "Developer acknowledgement plan"
 msgid "Immediate"

@@ -7,15 +7,91 @@ from django.utils.translation import ugettext_noop
 
 
 def add_unt_test_domain(apps, schema_editor):
-    apps.get_model("bbtest", "TestDomain").objects.create(
+    domain = apps.get_model('bbtest', 'TestDomain').objects.create(
         id=7912,
         name=ugettext_noop("UNT"),
         order=1,
     )
 
+    sections = {
+        "Numeracy": [
+            2400,  # duration
+            20,  # question count
+            10,  # question weight
+            ["Application",
+             "Analysis",
+             "Synthesis",
+             "Mixed problems"],  # taxonomies
+            ["Quantitative",
+             "Indeterminancy",
+             "Changes and dependencies",
+             "Space and shape"]  # topics
+        ],
+
+        "Literacy": [
+            2400,
+            20,
+            10,
+            [],
+            ["Human and environment",
+             "Education and science",
+             "Cities and countries",
+             "Social relationships",
+             "Nature"]
+        ],
+
+        "History of Kazakhstan": [
+            2400,
+            20,
+            10,
+            [],
+            ["Stone and bronze epoch",
+             "Kazakhstan in iron epoch",
+             "The states of the early and developed Middle Ages (VI-beg. XIII cc)",
+             "Culture (VI-XVII centuries)",
+             "Kazakhstan in the XIII-XVII centuries",
+             "Socio-economic position of Kazakhstan in the XIII-XVII centuries",
+             "Socio-economic development of Kazakhstan in the XVIII-XIX centuries",
+             "Socio-political development of Kazakhstan in the XVIII-XIX centuries",
+             "Kazakhstan in the first half of XX century",
+             "Culture of Kazakhstan XVIII-XX centuries",
+             "Kazakhstan in the 50-80-ies. XX century",
+             "Independent Kazakhstan",
+             "History in documents"]
+        ]
+    }
+
+    for section_order, (section_name, section_details) in enumerate(sections.items()):
+        section_duration = section_details[0]
+        section_question_count = section_details[1]
+        section_question_weight = section_details[2]
+        taxonomy_names = section_details[3]
+        topic_names = section_details[4]
+        section = apps.get_model('bbtest', 'TestSection').objects.create(
+            name=ugettext_noop(section_name),
+            duration=section_duration,
+            question_count=section_question_count,
+            question_weight=section_question_weight,
+            order=section_order,
+            domain=domain,
+        )
+
+        for index, taxonomy_name in enumerate(taxonomy_names):
+            (taxonomy, created) = apps.get_model('bbtest', 'TestTaxonomy').objects.get_or_create(name=ugettext_noop(
+                taxonomy_name))
+            apps.get_model('bbtest', 'TestTaxonomySection').objects.create(section=section,
+                                                                           taxonomy=taxonomy,
+                                                                           order=index)
+
+        for index, topic_name in enumerate(topic_names):
+            (topic, created) = apps.get_model('bbtest', 'TestTopic').objects.get_or_create(name=ugettext_noop(
+                topic_name))
+            apps.get_model('bbtest', 'TestTopicSection').objects.create(section=section,
+                                                                        topic=topic,
+                                                                        order=index)
+
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('bbtest', '0003_test_tables'),
     ]

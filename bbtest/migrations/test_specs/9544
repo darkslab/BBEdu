@@ -1,0 +1,130 @@
+<h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">1.</span>Разработать тестовые вопросы на определение способностей количественного мышления для учащихся 6 классов общеобразовательных школ – претендентов в Интеллектуальные школы, на русском и казахском языках в формате сравнения двух значений (переменных, выражений и т.д.) следующим образом:</p>
+<div class="row mt-10 mb-15">
+    <div class="col-xs-6 pr-5 pl-5 text-center"><strong><em>Колонка A</em></strong></div>
+    <div class="col-xs-6 pr-5 pl-5 text-center"><strong><em>Колонка B</em></strong></div>
+    <div class="col-xs-12 pr-5 pl-5 text-center">Условие (дополнительно)</div>
+    <div class="col-xs-6 pr-5 pl-5 text-center">Значение</div>
+    <div class="col-xs-6 pr-5 pl-5 text-center">Значение</div>
+</div>
+<p class="text-justify text-normal mb-10">Одно из значений может быть больше чем другое, оба значения равны, либо невозможно решить сравнение из-за нехватки информации.</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском и казахском языках.</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Все тестовые вопросы должны быть ориентированы на выявление способностей количественного мышления у тестируемого. Тестовые вопросы должны быть основаны на типовые учебные программы по предмету «Математика» для 5-6 классов уровня основного среднего образования и «Алгебра» для 7-9 классов уровня основного среднего образования, разработанных в соответствии с государственным общеобязательным стандартом образования Республики Казахстан.</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В заданиях должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.4.</span>Тестовые вопросы должны быть представлены в форме значения, в виде переменных, чисел, цифр, уравнений, выражений, обозначений, а также слов, использованных в вопросе.</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span>Требования по оформлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.1.</span>Все формулы должны быть созданы специализированными редакторами (Microsoft Equation и т.п.);</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2.</span>Все графики и рисунки должны быть созданы специализированными редакторами (GeoGebra и т.п.) и иметь формат не менее 600 х 400 точек на дюйм;</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.3.</span>Загружаемые рисунки должны иметь формат не менее 600 х 400 точек на дюйм;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.4.</span>Для обозначения фигур и их элементов использовать буквы латинского алфавита, записанные курсивом.</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.</span>Требования по внесению тестовых вопросов на Веб-сайт:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.1.</span>Указывается ФИО Разработчика;</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.2.</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового задания;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.3.</span>Указывается общий раздел контекста (отношения и пропорции, рациональные числа, модуль числа, линейные уравнения и неравенства и т.д.);</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.</span>Требования по формированию вариантов теста:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.1.</span>Один вариант должен содержать 60 тестовых вопросов, из них:</p>
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed mt-5 mb-10">
+        <tbody>
+            <tr>
+                <th width="66%" class="text-center">Разделы</th>
+                <th width="34%" class="text-center">Количество тестовых вопросов</th>
+            </tr>
+            <tr>
+                <td>1. Алгебраические операции и мышление</td>
+                <td class="text-center">5</td>
+            </tr>
+            <tr>
+                <td>2. Числа и арифмитические операции в десятичной системе счисления</td>
+                <td class="text-center">5</td>
+            </tr>
+            <tr>
+                <td>3. Числа и арифмитические операции с дробями</td>
+                <td class="text-center">5</td>
+            </tr>
+            <tr>
+                <td>4. Единицы измерения и данные</td>
+                <td class="text-center">5</td>
+            </tr>
+            <tr>
+                <td>5. Геометрический материал</td>
+                <td class="text-center">4</td>
+            </tr>
+            <tr>
+                <td>6. Отношение и пропорции</td>
+                <td class="text-center">5</td>
+            </tr>
+            <tr>
+                <td>7. Система счисления</td>
+                <td class="text-center">5</td>
+            </tr>
+            <tr>
+                <td>8. Выражения и уравнения</td>
+                <td class="text-center">5</td>
+            </tr>
+            <tr>
+                <td>9. Функции</td>
+                <td class="text-center">5</td>
+            </tr>
+            <tr>
+                <td>10. Моделирование</td>
+                <td class="text-center">4</td>
+            </tr>
+            <tr>
+                <td>11. Множества</td>
+                <td class="text-center">4</td>
+            </tr>
+            <tr>
+                <td>12. Правило последовательности</td>
+                <td class="text-center">4</td>
+            </tr>
+            <tr>
+                <td>13. Математическая статистика</td>
+                <td class="text-center">2</td>
+            </tr>
+            <tr>
+                <td>14. Комбинаторика</td>
+                <td class="text-center">2</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="text-right"><strong>Итого:</strong></td>
+                <td class="text-center"><strong>60</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.3.</span>Один вариант должен содержать 60 тестовых вопросов с разделением на предполагаемый уровень сложности:</p>
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed mt-5 mb-10">
+        <tbody>
+            <tr>
+                <th width="50%" class="text-center">Предполагаемый уровень сложности</th>
+                <th width="25%" class="text-center">%</th>
+                <th width="25%" class="text-center">Количество тестовых вопросов</th>
+            </tr>
+            <tr>
+                <td>Легкий</td>
+                <td class="text-center">25</td>
+                <td class="text-center">15</td>
+            </tr>
+            <tr>
+                <td>Средний</td>
+                <td class="text-center">50</td>
+                <td class="text-center">30</td>
+            </tr>
+            <tr>
+                <td>Сложный</td>
+                <td class="text-center">25</td>
+                <td class="text-center">15</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">9.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/2%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_KZ.rar">«Количественные характеристики на казахском языке»</a>.</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">9.1.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/2%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_RU.rar">«Количественные характеристики на русском языке»</a>.</p>
