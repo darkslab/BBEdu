@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
-"Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-02-19 05:22+0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-16 18:50+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -628,6 +628,84 @@ msgstr ""
 msgid "UNT"
 msgstr ""
 
+msgid "Numeracy"
+msgstr ""
+
+msgid "Analysis"
+msgstr ""
+
+msgid "Synthesis"
+msgstr ""
+
+msgid "Mixed problems"
+msgstr ""
+
+msgid "Indeterminancy"
+msgstr ""
+
+msgid "Changes and dependencies"
+msgstr ""
+
+msgid "Space and shape"
+msgstr ""
+
+msgid "Literacy"
+msgstr ""
+
+msgid "Human and environment"
+msgstr ""
+
+msgid "Education and science"
+msgstr ""
+
+msgid "Cities and countries"
+msgstr ""
+
+msgid "Social relationships"
+msgstr ""
+
+msgid "History of Kazakhstan"
+msgstr ""
+
+msgid "Stone and bronze epoch"
+msgstr ""
+
+msgid "Kazakhstan in iron epoch"
+msgstr ""
+
+msgid "The states of the early and developed Middle Ages (VI-beg. XIII cc)"
+msgstr ""
+
+msgid "Culture (VI-XVII centuries)"
+msgstr ""
+
+msgid "Kazakhstan in the XIII-XVII centuries"
+msgstr ""
+
+msgid "Socio-economic position of Kazakhstan in the XIII-XVII centuries"
+msgstr ""
+
+msgid "Socio-economic development of Kazakhstan in the XVIII-XIX centuries"
+msgstr ""
+
+msgid "Socio-political development of Kazakhstan in the XVIII-XIX centuries"
+msgstr ""
+
+msgid "Kazakhstan in the first half of XX century"
+msgstr ""
+
+msgid "Culture of Kazakhstan XVIII-XX centuries"
+msgstr ""
+
+msgid "Kazakhstan in the 50-80-ies. XX century"
+msgstr ""
+
+msgid "Independent Kazakhstan"
+msgstr ""
+
+msgid "History in documents"
+msgstr ""
+
 msgctxt "Developer acknowledgement plan"
 msgid "Immediate"
 msgstr ""
@@ -1160,6 +1238,14 @@ msgstr ""
 msgctxt "/developer/tests/"
 msgid "Create Test"
 msgstr "жасалған уақыты"
+
+#, fuzzy
+msgid "Core subjects"
+msgstr "пән"
+
+#, fuzzy
+msgid "Spec subjects"
+msgstr "пән"
 
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"

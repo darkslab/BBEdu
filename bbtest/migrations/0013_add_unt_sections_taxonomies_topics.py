@@ -9,50 +9,50 @@ from django.utils.translation import ugettext_noop
 def add_unt_sections_taxonomies_topics(apps, schema_editor):
     domain = apps.get_model('bbtest', 'TestDomain').objects.get(id=7912)
     sections = {
-        "Numeracy": [
-            2400,  # duration
-            20,  # question count
-            10,  # question weight
-            ["Application",
-             "Analysis",
-             "Synthesis",
-             "Mixed problems"],  # taxonomies
-            ["Quantitative",
-             "Indeterminancy",
-             "Changes and dependencies",
-             "Space and shape"]  # topics
+        ugettext_noop("Numeracy"): [
+            2400,
+            20,
+            10,
+            [ugettext_noop("Application"),
+             ugettext_noop("Analysis"),
+             ugettext_noop("Synthesis"),
+             ugettext_noop("Mixed problems")],
+            [ugettext_noop("Quantitative"),
+             ugettext_noop("Indeterminancy"),
+             ugettext_noop("Changes and dependencies"),
+             ugettext_noop("Space and shape")]
         ],
 
-        "Literacy": [
+        ugettext_noop("Literacy"): [
             2400,
             20,
             10,
             [],
-            ["Human and environment",
-             "Education and science",
-             "Cities and countries",
-             "Social relationships",
-             "Nature"]
+            [ugettext_noop("Human and environment"),
+             ugettext_noop("Education and science"),
+             ugettext_noop("Cities and countries"),
+             ugettext_noop("Social relationships"),
+             ugettext_noop("Nature")]
         ],
 
-        "History of Kazakhstan": [
+        ugettext_noop("History of Kazakhstan"): [
             2400,
             20,
             10,
             [],
-            ["Stone and bronze epoch",
-             "Kazakhstan in iron epoch",
-             "The states of the early and developed Middle Ages (VI-beg. XIII cc)",
-             "Culture (VI-XVII centuries)",
-             "Kazakhstan in the XIII-XVII centuries",
-             "Socio-economic position of Kazakhstan in the XIII-XVII centuries",
-             "Socio-economic development of Kazakhstan in the XVIII-XIX centuries",
-             "Socio-political development of Kazakhstan in the XVIII-XIX centuries",
-             "Kazakhstan in the first half of XX century",
-             "Culture of Kazakhstan XVIII-XX centuries",
-             "Kazakhstan in the 50-80-ies. XX century",
-             "Independent Kazakhstan",
-             "History in documents"]
+            [ugettext_noop("Stone and bronze epoch"),
+             ugettext_noop("Kazakhstan in iron epoch"),
+             ugettext_noop("The states of the early and developed Middle Ages (VI-beg. XIII cc)"),
+             ugettext_noop("Culture (VI-XVII centuries)"),
+             ugettext_noop("Kazakhstan in the XIII-XVII centuries"),
+             ugettext_noop("Socio-economic position of Kazakhstan in the XIII-XVII centuries"),
+             ugettext_noop("Socio-economic development of Kazakhstan in the XVIII-XIX centuries"),
+             ugettext_noop("Socio-political development of Kazakhstan in the XVIII-XIX centuries"),
+             ugettext_noop("Kazakhstan in the first half of XX century"),
+             ugettext_noop("Culture of Kazakhstan XVIII-XX centuries"),
+             ugettext_noop("Kazakhstan in the 50-80-ies. XX century"),
+             ugettext_noop("Independent Kazakhstan"),
+             ugettext_noop("History in documents")]
         ]
     }
 
@@ -63,7 +63,7 @@ def add_unt_sections_taxonomies_topics(apps, schema_editor):
         taxonomy_names = section_details[3]
         topic_names = section_details[4]
         section = apps.get_model('bbtest', 'TestSection').objects.create(
-            name=ugettext_noop(section_name),
+            name=section_name,
             duration=section_duration,
             question_count=section_question_count,
             question_weight=section_question_weight,
@@ -72,15 +72,13 @@ def add_unt_sections_taxonomies_topics(apps, schema_editor):
         )
 
         for index, taxonomy_name in enumerate(taxonomy_names):
-            (taxonomy, created) = apps.get_model('bbtest', 'TestTaxonomy').objects.get_or_create(name=ugettext_noop(
-                taxonomy_name))
+            (taxonomy, created) = apps.get_model('bbtest', 'TestTaxonomy').objects.get_or_create(name=taxonomy_name)
             apps.get_model('bbtest', 'TestTaxonomySection').objects.create(section=section,
                                                                            taxonomy=taxonomy,
                                                                            order=index)
 
         for index, topic_name in enumerate(topic_names):
-            (topic, created) = apps.get_model('bbtest', 'TestTopic').objects.get_or_create(name=ugettext_noop(
-                topic_name))
+            (topic, created) = apps.get_model('bbtest', 'TestTopic').objects.get_or_create(name=topic_name)
             apps.get_model('bbtest', 'TestTopicSection').objects.create(section=section,
                                                                         topic=topic,
                                                                         order=index)
