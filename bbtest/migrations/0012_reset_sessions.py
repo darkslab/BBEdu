@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('bbtest', '0011_update_test_status'),
+        ("sessions", "0001_initial"),
     ]
 
     operations = [
