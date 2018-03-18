@@ -34,6 +34,7 @@ var MultichoiceOneAnswer = function (_React$Component) {
                     data: this.props.data.choices[i].meta_data,
                     label: this._alphabet[i],
                     chosen: chosen,
+                    isMulti: false,
                     onChoose: this._handleChoose.bind(this, this.props.data.choices[i].id) }));
             }
 

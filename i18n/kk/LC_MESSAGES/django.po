@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-16 18:50+0600\n"
+"POT-Creation-Date: 2018-03-18 16:35+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1480,6 +1480,10 @@ msgid "Multi-choice with 1 answer"
 msgstr ""
 
 msgctxt "Developer tools"
+msgid "Multi-choice with multiple answers"
+msgstr ""
+
+msgctxt "Developer tools"
 msgid "Add Answer Choice"
 msgstr ""
 
@@ -1601,6 +1605,10 @@ msgstr ""
 
 msgctxt "Test content"
 msgid "Please choose an answer choice"
+msgstr ""
+
+msgctxt "Test content"
+msgid "Please choose answer choices that apply"
 msgstr ""
 
 msgctxt "Test content"
