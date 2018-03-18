@@ -20,7 +20,8 @@ def add_unt_sections_taxonomies_topics(apps, schema_editor):
             [ugettext_noop("Quantitative"),
              ugettext_noop("Indeterminancy"),
              ugettext_noop("Changes and dependencies"),
-             ugettext_noop("Space and shape")]
+             ugettext_noop("Space and shape")],
+            1
         ],
 
         ugettext_noop("Literacy"): [
@@ -32,7 +33,8 @@ def add_unt_sections_taxonomies_topics(apps, schema_editor):
              ugettext_noop("Education and science"),
              ugettext_noop("Cities and countries"),
              ugettext_noop("Social relationships"),
-             ugettext_noop("Nature")]
+             ugettext_noop("Nature")],
+            2
         ],
 
         ugettext_noop("History of Kazakhstan"): [
@@ -52,11 +54,11 @@ def add_unt_sections_taxonomies_topics(apps, schema_editor):
              ugettext_noop("Culture of Kazakhstan XVIII-XX centuries"),
              ugettext_noop("Kazakhstan in the 50-80-ies. XX century"),
              ugettext_noop("Independent Kazakhstan"),
-             ugettext_noop("History in documents")]
+             ugettext_noop("History in documents")],
+            3
         ]
     }
-
-    for section_order, (section_name, section_details) in enumerate(sorted(sections.items())):
+    for section_order, (section_name, section_details) in enumerate(sorted(sections.items(), key=lambda x: x[1][5])):
         section_duration = section_details[0]
         section_question_count = section_details[1]
         section_question_weight = section_details[2]
