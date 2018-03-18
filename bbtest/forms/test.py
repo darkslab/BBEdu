@@ -46,6 +46,8 @@ class TestQuestionForm(ModelForm):
 
         if answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
             clean_meta_data = self.__clean_multichoice_one_answer_meta_data(meta_data)
+        elif answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
+            clean_meta_data = self.__clean_multichoice_multi_answer_meta_data(meta_data)
 
         return clean_meta_data
 
@@ -98,6 +100,65 @@ class TestQuestionForm(ModelForm):
                 choice_ids.add(choice["id"])
             if len(choice_ids) != len(clean_meta_data["choices"]):
                 raise ValueError("Incorrect meta_data")
+
+        except (KeyError, ValueError, TypeError):
+            raise ValidationError(
+                self.error_messages["incorrect"],
+                code="incorrect",
+            )
+        return clean_meta_data
+
+    def __clean_multichoice_multi_answer_meta_data(self, meta_data):
+        clean_meta_data = {
+            "choices": [],
+            "correct_ids": []
+        }
+        if meta_data is None:
+            return clean_meta_data
+
+        try:
+            if not isinstance(meta_data, dict):
+                raise ValueError("Incorrect meta_data")
+            if not isinstance(meta_data["choices"], list):
+                raise ValueError("Incorrect meta_data")
+
+            for choice in meta_data["choices"]:
+                clean_choice = {}
+                if not isinstance(choice, dict):
+                    raise ValueError("Incorrect meta_data")
+
+                clean_choice["id"] = int(choice["id"])
+                if clean_choice["id"] < 0 or clean_choice["id"] > 0xffff + 8:
+                    raise ValueError("Incorrect meta_data")
+
+                clean_choice["choice_class"] = choice["choice_class"]
+                if clean_choice["choice_class"] not in (
+                    "MultichoiceTextChoice",
+                ):
+                    raise ValueError("Incorrect meta_data")
+
+                if clean_choice["choice_class"] == "MultichoiceTextChoice":
+                    clean_choice["meta_data"] = self.__clean_multichoice_text_choice_meta_data(choice["meta_data"])
+
+                clean_meta_data["choices"].append(clean_choice)
+
+            choice_ids = set([])
+            for choice in clean_meta_data["choices"]:
+                choice_ids.add(choice["id"])
+            if len(choice_ids) != len(clean_meta_data["choices"]):
+                raise ValueError("Incorrect meta_data")
+
+            if not isinstance(meta_data["correct_ids"], list):
+                raise ValueError("Incorrect meta_data")
+            correct_ids = set([])
+            for correct_id in meta_data["correct_ids"]:
+                correct_id = int(correct_id)
+                if correct_id not in choice_ids:
+                    raise ValueError("Incorrect meta_data")
+                correct_ids.add(correct_id)
+            if len(correct_ids) != len(meta_data["correct_ids"]):
+                raise ValueError("Incorrect meta_data")
+            clean_meta_data["correct_ids"] = list(correct_ids)
 
         except (KeyError, ValueError, TypeError):
             raise ValidationError(

@@ -170,6 +170,9 @@ var DeveloperQuestion = function (_React$Component) {
                     classData: [{
                         class: "MultichoiceOneAnswer",
                         caption: this.props.texts.multichoiceOneAnswerTitle
+                    }, {
+                        class: "MultichoiceMultiAnswer",
+                        caption: this.props.texts.multichoiceMultiAnswerTitle
                     }] });
             }
 
