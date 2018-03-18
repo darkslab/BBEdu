@@ -28,6 +28,11 @@ class MultichoiceTextChoice extends React.Component {
     }
     render() {
         let choiceClassName = "bb-test-answer-choice";
+        if (this.props.isMulti) {
+            choiceClassName += " bb-test-answer-choice-squared";
+        } else {
+            choiceClassName += " bb-test-answer-choice-rounded";
+        }
         if (this.props.chosen) {
             choiceClassName += " bb-test-answer-choice-selected";
         }

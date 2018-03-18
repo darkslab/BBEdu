@@ -282,6 +282,10 @@ class TestPreviewDataView(DeveloperPermissionRequiredMixin, View):
                     _answer["answer"] = {
                         "correct_id": question.meta_data["correct_id"],
                     }
+            elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
+                _answer["answer"] = {
+                    "correct_ids": question.meta_data["correct_ids"],
+                }
             data["answer_submission"]["answers"].append(_answer)
 
         return TightJsonResponse(data)
