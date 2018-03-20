@@ -86,6 +86,10 @@
 .list-group-item-text {
     color: #888;
 }
+.btn {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
 
 
 /**
@@ -824,11 +828,18 @@ html {
     margin-top: -18px;
     background-color: #bbbbbb;
     color: #ffffff;
-    border-radius: 50%;
     text-align: center;
     line-height: 36px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.bb-test-answer-choice-squared {
+    border-radius: 0%;
+}
+
+.bb-test-answer-choice-rounded {
+    border-radius: 50%;
 }
 
 .bb-test-answer-choice-selected {
