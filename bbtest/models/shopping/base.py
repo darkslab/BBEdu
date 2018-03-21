@@ -1,11 +1,9 @@
 from django.db.models import (
     Model, ForeignKey, CASCADE,
-    DecimalField, DateTimeField, NullBooleanField, IntegerField, CharField,
+    DecimalField, DateTimeField, NullBooleanField, CharField,
 )
 from django.contrib.auth import get_user_model
 from django.utils.translation import pgettext_lazy
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey
 from ool import VersionField, VersionedMixin
 from ..fields import JSONField
 
@@ -13,15 +11,12 @@ from ..fields import JSONField
 class Cart(VersionedMixin, Model):
     buyer  = ForeignKey  ( get_user_model(), on_delete=CASCADE, related_name="carts", )
 
-    lock_version  = VersionField       ( pgettext_lazy("Model field", "lock version"),                                                                        default=0, )
-    discount      = DecimalField       ( pgettext_lazy("Model field", "discount"),     max_digits=16, decimal_places=2,                                                  )
-    created_at    = DateTimeField      ( pgettext_lazy("Model field", "created at"),   auto_now_add=True,                                      db_index=True,            )
-    updated_at    = DateTimeField      ( pgettext_lazy("Model field", "updated at"),   auto_now=True,                                          db_index=True,            )
-    content_type  = ForeignKey         ( ContentType, on_delete=CASCADE, null=True, blank=True, )
-    object_id     = IntegerField       ( pgettext_lazy("Model field", "object ID"),                                     null=True, blank=True, db_index=True,            )
-    transaction   = GenericForeignKey  ()
-    is_current    = NullBooleanField   ( pgettext_lazy("Model field", "is current?"),                                                          db_index=True,            )
-    completed_at  = DateTimeField      ( pgettext_lazy("Model field", "completed at"),                                  null=True, blank=True, db_index=True,            )
+    lock_version  = VersionField      ( pgettext_lazy("Model field", "lock version"),                                                                        default=0, )
+    discount      = DecimalField      ( pgettext_lazy("Model field", "discount"),     max_digits=16, decimal_places=2,                                                  )
+    created_at    = DateTimeField     ( pgettext_lazy("Model field", "created at"),   auto_now_add=True,                                      db_index=True,            )
+    updated_at    = DateTimeField     ( pgettext_lazy("Model field", "updated at"),   auto_now=True,                                          db_index=True,            )
+    is_current    = NullBooleanField  ( pgettext_lazy("Model field", "is current?"),                                                          db_index=True,            )
+    completed_at  = DateTimeField     ( pgettext_lazy("Model field", "completed at"),                                  null=True, blank=True, db_index=True,            )
 
     class Meta:
         db_table = "shopping_carts"
@@ -45,7 +40,6 @@ class LineItem(Model):
     description  = CharField      ( pgettext_lazy("Model field", "description"), max_length=1000,                                )
     price        = DecimalField   ( pgettext_lazy("Model field", "price"),       max_digits=16, decimal_places=2,                )
     discount     = DecimalField   ( pgettext_lazy("Model field", "discount"),    max_digits=16, decimal_places=2,                )
-    refunded     = DecimalField   ( pgettext_lazy("Model field", "refunded"),    max_digits=16, decimal_places=2,                )
     created_at   = DateTimeField  ( pgettext_lazy("Model field", "created at"),  auto_now_add=True,               db_index=True, )
     updated_at   = DateTimeField  ( pgettext_lazy("Model field", "updated at"),  auto_now=True,                   db_index=True, )
 
