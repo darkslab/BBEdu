@@ -83,8 +83,10 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                     continue
                 data["language"]["choices"].append(language)
                 data["specification"][language[0]] = section.specification[language[0]][get_language()]
-
-            kwargs["unt_core_data"].append(data)
+            if section.id in [7945, 7946, 7947]:
+                kwargs["unt_core_data"].append(data)
+            elif section.id in [7948, 7949, 7950, 7951, 7952, 7953, 7954, 7955, 7956, 7957, 7958, 7959]:
+                kwargs["unt_spec_data"].append(data)
 
         return super().get_context_data(**kwargs)
 
