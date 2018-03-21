@@ -21,7 +21,7 @@ def add_unt_sections_taxonomies_topics(apps, schema_editor):
              ugettext_noop("Indeterminancy"),
              ugettext_noop("Changes and dependencies"),
              ugettext_noop("Space and shape")],
-            1
+            2
         ],
 
         ugettext_noop("Literacy"): [
@@ -34,7 +34,7 @@ def add_unt_sections_taxonomies_topics(apps, schema_editor):
              ugettext_noop("Cities and countries"),
              ugettext_noop("Social relationships"),
              ugettext_noop("Nature")],
-            2
+            1
         ],
 
         ugettext_noop("History of Kazakhstan"): [
@@ -55,7 +55,7 @@ def add_unt_sections_taxonomies_topics(apps, schema_editor):
              ugettext_noop("Kazakhstan in the 50-80-ies. XX century"),
              ugettext_noop("Independent Kazakhstan"),
              ugettext_noop("History in documents")],
-            3
+            0
         ]
     }
     for section_order, (section_name, section_details) in enumerate(sorted(sections.items(), key=lambda x: x[1][5])):
