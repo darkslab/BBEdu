@@ -30,15 +30,24 @@ class AccountManager(Manager):
     def create_revenue_account(self, name, is_contra=False):
         return self.create(name=name, type=Account.TYPE_REVENUE, is_contra=is_contra)
 
-    def trial_balance(self):
-        balance = Decimal("0.00")
-        balance += Amount.objects.filter(is_debit=True).filter(
+    def has_errors(self):
+        debit_balance = Decimal("0.00")
+        debit_balance += Amount.objects.filter(is_debit=True).filter(
             Q(account__type__lt=0x10, account__is_contra=False) | Q(account__type__gt=0x0f, account__is_contra=True),
         ).aggregate(balance=Sum("amount"))["balance"] or Decimal("0.00")
-        balance -= Amount.objects.filter(is_debit=False).filter(
+        debit_balance -= Amount.objects.filter(is_debit=False).filter(
+            Q(account__type__lt=0x10, account__is_contra=False) | Q(account__type__gt=0x0f, account__is_contra=True),
+        ).aggregate(balance=Sum("amount"))["balance"] or Decimal("0.00")
+
+        credit_balance = Decimal("0.00")
+        credit_balance += Amount.objects.filter(is_debit=False).filter(
             Q(account__type__gt=0x0f, account__is_contra=False) | Q(account__type__lt=0x10, account__is_contra=True),
         ).aggregate(balance=Sum("amount"))["balance"] or Decimal("0.00")
-        return balance
+        credit_balance -= Amount.objects.filter(is_debit=True).filter(
+            Q(account__type__gt=0x0f, account__is_contra=False) | Q(account__type__lt=0x10, account__is_contra=True),
+        ).aggregate(balance=Sum("amount"))["balance"] or Decimal("0.00")
+
+        return not (debit_balance - credit_balance).is_zero()
 
 class Account(Model):
     TYPE_ASSET      = 0x00
