@@ -75,7 +75,7 @@ class CartHandle:
         try:
             with atomic(savepoint=False):
                 self.save()
-                self.__cart.is_current = False
+                self.__cart.is_current = None
                 self.__cart.completed_at = now()
                 self.__cart.save()
         except ConcurrentUpdate:
