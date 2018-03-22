@@ -19,14 +19,15 @@ var MultichoiceMultiAnswer = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (MultichoiceMultiAnswer.__proto__ || Object.getPrototypeOf(MultichoiceMultiAnswer)).call(this, props));
 
         _this._alphabet = "ABCDEFGH";
-        _this._correctIds = [].concat(_toConsumableArray(_this.props.answer.correct_ids));
+        _this._correctIds = [];
+        _this._assignCorrectIds(_this.props.answer);
         return _this;
     }
 
     _createClass(MultichoiceMultiAnswer, [{
         key: "componentWillReceiveProps",
         value: function componentWillReceiveProps(nextProps) {
-            this._correctIds = [].concat(_toConsumableArray(nextProps.answer.correct_ids));
+            this._assignCorrectIds(nextProps.answer);
         }
     }, {
         key: "render",
@@ -35,7 +36,7 @@ var MultichoiceMultiAnswer = function (_React$Component) {
             for (var i = 0; i < this.props.data.choices.length; i++) {
                 var ChoiceClass = eval(this.props.data.choices[i].choice_class);
                 var chosen = false;
-                if (this.props.answer.correct_ids.indexOf(this.props.data.choices[i].id) > -1) {
+                if (this.props.answer && this.props.answer.correct_ids.indexOf(this.props.data.choices[i].id) > -1) {
                     chosen = true;
                 }
                 choices.push(React.createElement(ChoiceClass, { key: this.props.data.choices[i].id,
@@ -87,12 +88,26 @@ var MultichoiceMultiAnswer = function (_React$Component) {
                 this._correctIds.push(choiceId);
             }
             var data = {
-                answer: {
-                    correct_ids: [].concat(_toConsumableArray(this._correctIds))
-                },
+                answer: null,
                 observation: {}
             };
+            if (this._correctIds.length) {
+                data.answer = {
+                    correct_ids: [].concat(_toConsumableArray(this._correctIds))
+                };
+            }
             this.props.onUpdate(data);
+        }
+    }, {
+        key: "_assignCorrectIds",
+        value: function _assignCorrectIds(answer) {
+            this._correctIds = [];
+            if (!answer) {
+                return;
+            }
+            for (var i = 0; i < answer.correct_ids.length; i++) {
+                this._correctIds.push(answer.correct_ids[i]);
+            }
         }
     }]);
 
