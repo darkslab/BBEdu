@@ -21,18 +21,18 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Содержание тестовых вопросов должно соответствовать содержанию вопросов, используемых в международных сравнительных исследованиях в области образования (PISA, TIMSS и т.п.).</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.4</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.5</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.1</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.2</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.3</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.4</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.5</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.6</span>Тестовые вопросы должны быть представлены в форме краткого, грамотно сформулированного логического высказывания, исключающего неоднозначность заключения тестируемого.</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span>Требования по оформлению и внесению тестовых вопросов: </p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.1</span>Все математические формулы должны быть внесены на языке программирования Latex;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2</span>Все графики и рисунки должны быть созданы специализированными редакторами (GeoGebra и т.п.) и иметь формат не менее 600 х 400 точек на дюйм;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.3</span>Загружаемые рисунки должны иметь формат не менее 600 х 400 точек на дюйм;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.4</span>Для обозначения фигур и их элементов необходимо использовать буквы латинского алфавита, записанные курсивом;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.5</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.</span>Требования по оформлению и внесению тестовых вопросов: </p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.1</span>Все математические формулы должны быть внесены на языке программирования Latex;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.2</span>Все графики и рисунки должны быть созданы специализированными редакторами (GeoGebra и т.п.) и иметь формат не менее 600 х 400 точек на дюйм;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.3</span>Загружаемые рисунки должны иметь формат не менее 600 х 400 точек на дюйм;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.4</span>Для обозначения фигур и их элементов необходимо использовать буквы латинского алфавита, записанные курсивом;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.5</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.6</span>Указывается общий раздел контекста каждого тестового вопроса:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
@@ -159,18 +159,18 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Содержание тестовых вопросов должно соответствовать содержанию вопросов, используемых в международных сравнительных исследованиях в области образования (PISA, TIMSS и т.п.).</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.4</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.5</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.1</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.2</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.3</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.4</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.5</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.6</span>Тестовые вопросы должны быть представлены в форме краткого, грамотно сформулированного логического высказывания, исключающего неоднозначность заключения тестируемого.</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span>Требования по оформлению и внесению тестовых вопросов: </p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.1</span>Все математические формулы должны быть внесены на языке программирования Latex;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2</span>Все графики и рисунки должны быть созданы специализированными редакторами (GeoGebra и т.п.) и иметь формат не менее 600 х 400 точек на дюйм;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.3</span>Загружаемые рисунки должны иметь формат не менее 600 х 400 точек на дюйм;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.4</span>Для обозначения фигур и их элементов необходимо использовать буквы латинского алфавита, записанные курсивом;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.5</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.</span>Требования по оформлению и внесению тестовых вопросов: </p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.1</span>Все математические формулы должны быть внесены на языке программирования Latex;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.2</span>Все графики и рисунки должны быть созданы специализированными редакторами (GeoGebra и т.п.) и иметь формат не менее 600 х 400 точек на дюйм;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.3</span>Загружаемые рисунки должны иметь формат не менее 600 х 400 точек на дюйм;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.4</span>Для обозначения фигур и их элементов необходимо использовать буквы латинского алфавита, записанные курсивом;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.5</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.6</span>Указывается общий раздел контекста каждого тестового вопроса:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
@@ -300,13 +300,13 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Содержание тестовых вопросов должно соответствовать содержанию вопросов, используемых в международных сравнительных исследованиях в области образования (PISA, TIMSS и т.п.).</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению текстов:</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>Тексты должны быть аутентичными или основываться на аутентичном материале;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>Тематика текстов должна соответствовать опыту, интересам и уровню развития поступающих в высшие учебные заведения Республики Казахстан;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Тексты могут содержать иллюстраций, примеры и прочие формы дублирования (с указанием источника);</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.4.</span>При адаптации дублированных текстов также указывается источник со ссылкой "отредактировано/изменено";</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.5.</span>Тексты должны в основном содержать широко употребляемые слова;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.6.</span>У текстов должна быть четкая структура, информация скрытой, предложения сложными;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.7.</span>Содержание текста должно быть актуальным (как минимум на несколько лет), информативным и занимательным на разные темы (избегайте деликатных тем).</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.1.</span>Тексты должны быть аутентичными или основываться на аутентичном материале;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.2.</span>Тематика текстов должна соответствовать опыту, интересам и уровню развития поступающих в высшие учебные заведения Республики Казахстан;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.3.</span>Тексты могут содержать иллюстраций, примеры и прочие формы дублирования (с указанием источника);</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.4.</span>При адаптации дублированных текстов также указывается источник со ссылкой "отредактировано/изменено";</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.5.</span>Тексты должны в основном содержать широко употребляемые слова;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.6.</span>У текстов должна быть четкая структура, информация скрытой, предложения сложными;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.7.</span>Содержание текста должно быть актуальным (как минимум на несколько лет), информативным и занимательным на разные темы (избегайте деликатных тем).</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.8.</span>Количество слов в текстах и вопросов к одному тексту в одном варианте теста должно составлять:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
@@ -409,24 +409,24 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span>Требования к составлению тестовых вопросов:</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.4.</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.5.</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.4.</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.5.</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.6.</span>Тестовые вопросы должны быть представлены в форме краткого, грамотно сформулированного логического высказывания, исключающего неоднозначность заключения тестируемого.</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.</span>Требования по оформлению тестовых вопросов: </p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.1.</span>Текст вопроса выделяется жирным шрифтом;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.2.</span>Слова отрицания в вопросе выделяются жирным шрифтом и подчеркиваются (пример: жоқ, емес);</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.3.</span>Слова из текста в вопросе выделены кавычками;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.4.</span>Текст варианта ответов в виде предложения начинаются с заглавной буквы. В конце ставится точка;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.5.</span>Текст варианта ответов в виде слов или словосочетаний начинается с маленькой буквы без точки в конце;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.6.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.7.</span>Многоточие, обозначающие пропущенные слова или словосочетание, в тексте выделяется жирным шрифтом;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.8.</span>Свободные места, обозначающие пропущенные слова или словосочетание, в тексте подчеркиваются.</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.9.</span>Загружаемые рисунки должны иметь формат не менее 600 х 400 точек на дюйм;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.10.</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.</span>Требования по оформлению тестовых вопросов: </p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.1.</span>Текст вопроса выделяется жирным шрифтом;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Слова отрицания в вопросе выделяются жирным шрифтом и подчеркиваются (пример: жоқ, емес);</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.3.</span>Слова из текста в вопросе выделены кавычками;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.4.</span>Текст варианта ответов в виде предложения начинаются с заглавной буквы. В конце ставится точка;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.5.</span>Текст варианта ответов в виде слов или словосочетаний начинается с маленькой буквы без точки в конце;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.6.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.7.</span>Многоточие, обозначающие пропущенные слова или словосочетание, в тексте выделяется жирным шрифтом;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.8.</span>Свободные места, обозначающие пропущенные слова или словосочетание, в тексте подчеркиваются.</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.9.</span>Загружаемые рисунки должны иметь формат не менее 600 х 400 точек на дюйм;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.10.</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.11.</span>Указывается общая тема для каждого тестового вопроса:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
@@ -489,13 +489,13 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Содержание тестовых вопросов должно соответствовать содержанию вопросов, используемых в международных сравнительных исследованиях в области образования (PISA, TIMSS и т.п.).</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению текстов:</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>Тексты должны быть аутентичными или основываться на аутентичном материале;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>Тематика текстов должна соответствовать опыту, интересам и уровню развития поступающих в высшие учебные заведения Республики Казахстан;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Тексты могут содержать иллюстраций, примеры и прочие формы дублирования (с указанием источника);</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.4.</span>При адаптации дублированных текстов также указывается источник со ссылкой "отредактировано/изменено";</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.5.</span>Тексты должны в основном содержать широко употребляемые слова;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.6.</span>У текстов должна быть четкая структура, информация скрытой, предложения сложными;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.7.</span>Содержание текста должно быть актуальным (как минимум на несколько лет), информативным и занимательным на разные темы (избегайте деликатных тем).</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.1.</span>Тексты должны быть аутентичными или основываться на аутентичном материале;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.2.</span>Тематика текстов должна соответствовать опыту, интересам и уровню развития поступающих в высшие учебные заведения Республики Казахстан;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.3.</span>Тексты могут содержать иллюстраций, примеры и прочие формы дублирования (с указанием источника);</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.4.</span>При адаптации дублированных текстов также указывается источник со ссылкой "отредактировано/изменено";</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.5.</span>Тексты должны в основном содержать широко употребляемые слова;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.6.</span>У текстов должна быть четкая структура, информация скрытой, предложения сложными;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.7.</span>Содержание текста должно быть актуальным (как минимум на несколько лет), информативным и занимательным на разные темы (избегайте деликатных тем).</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.8.</span>Количество слов в текстах и вопросов к одному тексту в одном варианте теста должно составлять:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
@@ -598,24 +598,24 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span>Требования к составлению тестовых вопросов:</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.4.</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
-<p class="text-justify text-normal mb-"><span class="text-left mr-5">6.5.</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.4.</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.5.</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.6.</span>Тестовые вопросы должны быть представлены в форме краткого, грамотно сформулированного логического высказывания, исключающего неоднозначность заключения тестируемого.</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.</span>Требования по оформлению тестовых вопросов: </p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.1.</span>Текст вопроса выделяется жирным шрифтом;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.2.</span>Слова отрицания в вопросе выделяются жирным шрифтом и подчеркиваются (пример: жоқ, емес);</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.3.</span>Слова из текста в вопросе выделены кавычками;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.4.</span>Текст варианта ответов в виде предложения начинаются с заглавной буквы. В конце ставится точка;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.5.</span>Текст варианта ответов в виде слов или словосочетаний начинается с маленькой буквы без точки в конце;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.6.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.7.</span>Многоточие, обозначающие пропущенные слова или словосочетание, в тексте выделяется жирным шрифтом;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.8.</span>Свободные места, обозначающие пропущенные слова или словосочетание, в тексте подчеркиваются.</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.9.</span>Загружаемые рисунки должны иметь формат не менее 600 х 400 точек на дюйм;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.10.</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.</span>Требования по оформлению тестовых вопросов: </p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.1.</span>Текст вопроса выделяется жирным шрифтом;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Слова отрицания в вопросе выделяются жирным шрифтом и подчеркиваются (пример: жоқ, емес);</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.3.</span>Слова из текста в вопросе выделены кавычками;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.4.</span>Текст варианта ответов в виде предложения начинаются с заглавной буквы. В конце ставится точка;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.5.</span>Текст варианта ответов в виде слов или словосочетаний начинается с маленькой буквы без точки в конце;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.6.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.7.</span>Многоточие, обозначающие пропущенные слова или словосочетание, в тексте выделяется жирным шрифтом;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.8.</span>Свободные места, обозначающие пропущенные слова или словосочетание, в тексте подчеркиваются.</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.9.</span>Загружаемые рисунки должны иметь формат не менее 600 х 400 точек на дюйм;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.10.</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.11.</span>Указывается общая тема для каждого тестового вопроса:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
@@ -680,15 +680,15 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Содержание тестовых вопросов должно соответствовать учебному материалу по предмету «История Казахстана» в соответствии с учебной программой для общеобразовательной школы.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.4.</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.5.</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.6.</span>Тестовые вопросы должны быть представлены в форме краткого, грамотно сформулированного логического высказывания, исключающего неоднозначность заключения тестируемого.</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.7.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.8.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.9.</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.4.</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.5.</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.6.</span>Тестовые вопросы должны быть представлены в форме краткого, грамотно сформулированного логического высказывания, исключающего неоднозначность заключения тестируемого.</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.7.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.8.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.9.</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.10.</span>Указывается общая тема для каждого тестового вопроса:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
@@ -751,9 +751,8 @@ def update_test_specifications(apps, schema_editor):
             </tr>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span>Требования по формированию вариантов теста:</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.1.</span>Один вариант должен содержать 20 
-тестовых вопросов с разделением на предполагаемый уровень сложности:</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.</span>Требования по формированию вариантов теста:</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.1.</span>Один вариант должен содержать 20 тестовых вопросов с разделением на предполагаемый уровень сложности:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
         <tbody>
@@ -789,15 +788,15 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Содержание тестовых вопросов должно соответствовать учебному материалу по предмету «История Казахстана» в соответствии с учебной программой для общеобразовательной школы.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.4.</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.5.</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.6.</span>Тестовые вопросы должны быть представлены в форме краткого, грамотно сформулированного логического высказывания, исключающего неоднозначность заключения тестируемого.</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.7.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.8.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.9.</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.4.</span>Недопустимы варианты ответов: «все вышеперечисленное верно», «все указанные ответы неверны», и т.п.;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.5.</span>Тестовые вопросы не должны содержать лишней информации, взаимоисключающих вариантов ответов, двойного отрицания;</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.6.</span>Тестовые вопросы должны быть представлены в форме краткого, грамотно сформулированного логического высказывания, исключающего неоднозначность заключения тестируемого.</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.7.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.8.</span>Повторяющееся слово в начале каждого варианта ответов выносится до вариантов ответов (после вопроса);</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.9.</span>Указывается предполагаемая сложность (легкий/средний/сложный) каждого тестового вопроса;</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.10.</span>Указывается общая тема для каждого тестового вопроса:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
@@ -860,7 +859,7 @@ def update_test_specifications(apps, schema_editor):
             </tr>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span>Требования по формированию вариантов теста:</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.</span>Требования по формированию вариантов теста:</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.1.</span>Один вариант должен содержать 20 тестовых вопросов с разделением на предполагаемый уровень сложности:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
