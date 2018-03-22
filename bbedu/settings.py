@@ -21,7 +21,7 @@ BASE_DIR_PATH = Path(BASE_DIR).resolve()
 
 SECRETS = {}
 VERSION = "dev"
-if match(r"^v\d\.\d\.\d", BASE_DIR_PATH.name):
+if match(r"^v\d+?\.\d+?\.\d", BASE_DIR_PATH.name):
     VERSION = BASE_DIR_PATH.name
 try:
     with (BASE_DIR_PATH / "secrets.json").open() as settings_file:
