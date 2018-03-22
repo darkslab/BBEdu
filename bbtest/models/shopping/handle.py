@@ -1,11 +1,12 @@
 from django.db.transaction import atomic
 from django.db import IntegrityError
+from django.utils.timezone import now
 from ool import ConcurrentUpdate
 from decimal import Decimal
 from . import items
 from .items.base import Item
 from .exceptions import CartHandleError, ItemError
-from .base import Cart, LineItem
+from .base import LineItem
 
 
 class CartHandle:
@@ -50,20 +51,36 @@ class CartHandle:
         self.__normalize_products(item.separate_from_items(items))
         self.__is_modified = True
 
+    def subtotal(self):
+        total = Decimal("0.00")
+        for item in self.__items():
+            total += item.total()
+        return total
+
     def discount(self):
         total = Decimal("0.00")
-        discount = Decimal("0.00")
-
         items = self.__items()
         for item in items:
-            total += item.total()
-            discount += item.cart_discount(items)
+            total += item.cart_discount(items)
+        return min(total, self.subtotal())
 
-        return min(discount, total)
+    def total(self):
+        return self.subtotal() - self.discount()
 
-    def charge(self):
-        # DARK_TODO  implement this!
-        pass
+    def complete(self):
+        if not len(self.__items()):
+            raise CartHandleError("Cart is empty")
+        if not self.__cart.is_current:
+            raise CartHandleError("Cannot complete a non-current cart")
+        try:
+            with atomic(savepoint=False):
+                self.save()
+                self.__cart.is_current = False
+                self.__cart.completed_at = now()
+                self.__cart.save()
+        except ConcurrentUpdate:
+            raise CartHandleError("Could not complete the cart")
+        return self.__cart
 
     def save(self):
         if not self.__is_modified:
@@ -93,12 +110,11 @@ class CartHandle:
 
                 for products in (existing_products, new_products):
                     for product in products:
-                        product["line_item"].item_class = product["item"].__class__.__name__
+                        product["line_item"].item_class = type(product["item"]).__name__
                         product["line_item"].meta_data = product["item"].meta_data()
                         product["line_item"].description = product["item"].description()
                         product["line_item"].price = product["item"].price()
                         product["line_item"].discount = product["item"].discount()
-                        product["line_item"].refunded = Decimal("0.00")
                         product["line_item"].save()
 
                 if not lock_safe:
