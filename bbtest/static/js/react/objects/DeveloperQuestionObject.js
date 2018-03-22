@@ -223,6 +223,13 @@ DeveloperQuestionObject.prototype.setAnswer = function(type) {
                 correct_id: null
             };
             break;
+        case "MultichoiceMultiAnswer":
+            this._data.answer_class = type;
+            this._data.meta_data = {
+                choices: [],
+                correct_ids: []
+            };
+            break;
     }
     this._isQuestionSaved = false;
 }

@@ -53,6 +53,11 @@ var MultichoiceTextChoice = function (_React$Component) {
         key: "render",
         value: function render() {
             var choiceClassName = "bb-test-answer-choice";
+            if (this.props.isMulti) {
+                choiceClassName += " bb-test-answer-choice-squared";
+            } else {
+                choiceClassName += " bb-test-answer-choice-rounded";
+            }
             if (this.props.chosen) {
                 choiceClassName += " bb-test-answer-choice-selected";
             }

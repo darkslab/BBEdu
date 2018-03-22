@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
-"Report-Msgid-Bugs-To: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
-"POT-Creation-Date: 2018-02-19 05:22+0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-18 16:35+0600\n"
 "PO-Revision-Date: 2018-02-18 15:24-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -493,6 +493,87 @@ msgstr "Количественные характеристики"
 
 msgid "UNT"
 msgstr "ЕНТ"
+
+msgid "Numeracy"
+msgstr "Математическая грамотность"
+
+msgid "Analysis"
+msgstr "Анализ"
+
+msgid "Synthesis"
+msgstr "Синтез"
+
+msgid "Mixed problems"
+msgstr "Смешанные задачи"
+
+msgid "Indeterminancy"
+msgstr "Неопределенность"
+
+msgid "Changes and dependencies"
+msgstr "Изменения и зависимости"
+
+msgid "Space and shape"
+msgstr "Пространство и форма"
+
+msgid "Literacy"
+msgstr "Грамотность чтения"
+
+msgid "Human and environment"
+msgstr "Человек и окружение"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "duration in seconds"
+msgid "Education and science"
+msgstr "Образование и наука"
+
+msgid "Cities and countries"
+msgstr "Города и страны"
+
+msgid "Social relationships"
+msgstr "Взаимоотношения"
+
+msgid "History of Kazakhstan"
+msgstr "История Казахстана"
+
+msgid "Stone and bronze epoch"
+msgstr "Эпоха камня и бронзы"
+
+msgid "Kazakhstan in iron epoch"
+msgstr "Казахстан в эпоху железа"
+
+msgid "The states of the early and developed Middle Ages (VI-beg. XIII cc)"
+msgstr "Государства раннего и развитого средневековья (VI-нач.XIII вв.)"
+
+msgid "Culture (VI-XVII centuries)"
+msgstr "Культура (VI-XVII вв.)"
+
+msgid "Kazakhstan in the XIII-XVII centuries"
+msgstr "Казахстан в XIII-XVII вв."
+
+msgid "Socio-economic position of Kazakhstan in the XIII-XVII centuries"
+msgstr "Социально-экономическое положение Казахстана в XIII-XVII вв."
+
+msgid "Socio-economic development of Kazakhstan in the XVIII-XIX centuries"
+msgstr "Социально-экономическое развитие Казахстана в XVIII-XIX вв."
+
+msgid "Socio-political development of Kazakhstan in the XVIII-XIX centuries"
+msgstr "Общественно-политическое развитие Казахстана в XVIII-XIX вв."
+
+msgid "Kazakhstan in the first half of XX century"
+msgstr "Казахстан в первой половине XX в."
+
+msgid "Culture of Kazakhstan XVIII-XX centuries"
+msgstr "Культура Казахстана XVIII-XX вв."
+
+msgid "Kazakhstan in the 50-80-ies. XX century"
+msgstr "Казахстан в 50-80-е гг. XX века"
+
+msgid "Independent Kazakhstan"
+msgstr "Независимый Казахстан"
+
+msgid "History in documents"
+msgstr "История в документах"
 
 msgctxt "Developer acknowledgement plan"
 msgid "Immediate"
@@ -1018,6 +1099,12 @@ msgctxt "/developer/tests/"
 msgid "Create Test"
 msgstr "Создать тест"
 
+msgid "Core subjects"
+msgstr "Обязательные предметы"
+
+msgid "Spec subjects"
+msgstr "Профильные предметы"
+
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"
 msgstr "логотип bbTest.kz"
@@ -1231,6 +1318,13 @@ msgctxt "Developer tools"
 msgid "Multi-choice with 1 answer"
 msgstr "Варианты ответов"
 
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "Multi-choice with 1 answer"
+msgctxt "Developer tools"
+msgid "Multi-choice with multiple answers"
+msgstr "Варианты ответов"
+
 msgctxt "Developer tools"
 msgid "Add Answer Choice"
 msgstr "Добавить ответ"
@@ -1346,6 +1440,13 @@ msgstr "Вопрос"
 msgctxt "Test content"
 msgid "Please choose an answer choice"
 msgstr "Пожалуйста, выберите один ответ"
+
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "Please choose Answer Choice type"
+msgctxt "Test content"
+msgid "Please choose answer choices that apply"
+msgstr "Пожалуйста, выберите тип ответа"
 
 msgctxt "Test content"
 msgid "Previous"

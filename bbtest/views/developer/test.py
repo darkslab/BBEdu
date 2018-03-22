@@ -64,7 +64,27 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
 
             kwargs["nis_data"].append(data)
 
-        kwargs["unt"] = get_object_or_404(TestDomain.objects, pk=7912)
+        kwargs["unt"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7912)
+        kwargs["unt_core_data"] = []
+        kwargs["unt_spec_data"] = []
+
+        for section in kwargs["unt"].sections.all():
+            data = {
+                "section": section,
+                "language": None,
+                "specification": {},
+            }
+            data["language"] = {
+                "title": pgettext("/developer/tests/", "Choose test language"),
+                "choices": [],
+            }
+            for language in Test.LANGUAGES:
+                if language[0] == Test.LANGUAGE_XX:
+                    continue
+                data["language"]["choices"].append(language)
+                data["specification"][language[0]] = section.specification[language[0]][get_language()]
+
+            kwargs["unt_core_data"].append(data)
 
         return super().get_context_data(**kwargs)
 
@@ -74,4 +94,4 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("bbtest:build_test", kwargs={ "code": self._test.code })
+        return reverse("bbtest:build_test", kwargs={"code": self._test.code})

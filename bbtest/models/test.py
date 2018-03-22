@@ -197,7 +197,8 @@ class TestQuestion(Model):
     ANSWER_CLASS_MULTICHOICE_MULTI  = "MultichoiceMultiAnswer"
     ANSWER_CLASS_FREEFORM           = "FreeformAnswer"
     ANSWER_CLASSES = (
-        ( ANSWER_CLASS_MULTICHOICE_ONE, ANSWER_CLASS_MULTICHOICE_ONE ),
+        ( ANSWER_CLASS_MULTICHOICE_ONE,   ANSWER_CLASS_MULTICHOICE_ONE ),
+        ( ANSWER_CLASS_MULTICHOICE_MULTI, ANSWER_CLASS_MULTICHOICE_MULTI ),
     )
 
     test      = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )

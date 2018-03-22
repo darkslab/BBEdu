@@ -141,6 +141,10 @@ class DeveloperQuestion extends React.Component {
                                             {
                                                 class: "MultichoiceOneAnswer",
                                                 caption: this.props.texts.multichoiceOneAnswerTitle
+                                            },
+                                            {
+                                                class: "MultichoiceMultiAnswer",
+                                                caption: this.props.texts.multichoiceMultiAnswerTitle
                                             }
                                         ]} />
             );
