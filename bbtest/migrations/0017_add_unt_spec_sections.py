@@ -11,7 +11,7 @@ def add_unt_spec_sections(apps, schema_editor):
     sections = {
         ugettext_noop("Mathematics"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"),
              ugettext_noop("Application"), ],
@@ -26,7 +26,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("Physics"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"),
              ugettext_noop("Application"),
@@ -42,7 +42,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("Chemistry"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"),
              ugettext_noop("Application"),
@@ -59,7 +59,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("Biology"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"),
              ugettext_noop("Application"),
@@ -74,7 +74,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("Geography"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"),
              ugettext_noop("Application"), ],
@@ -87,7 +87,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("History"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"), ],
             [ugettext_noop("Age of stone and bronze"),
@@ -118,7 +118,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("English"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"), ],
             [ugettext_noop("Vocabulary and translation"),
@@ -131,7 +131,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("French"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"), ],
             [ugettext_noop("Morphology"),
@@ -144,7 +144,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("German"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"), ],
             [ugettext_noop("Morphology"),
@@ -156,7 +156,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("Kazakh and literature"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"), ],
             [ugettext_noop("Vocabulary"),
@@ -177,7 +177,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("Russian and literature"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"), ],
             [ugettext_noop("Phonetics and spelling"),
@@ -195,7 +195,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
         ugettext_noop("Human. Society. Law"): [
             3600,
-            20,
+            30,
             10,
             [ugettext_noop("Knowledge"), ],
             [ugettext_noop("Human in the world"),

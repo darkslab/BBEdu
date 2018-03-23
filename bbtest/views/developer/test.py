@@ -75,18 +75,53 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                 "language": None,
                 "specification": {},
             }
-            data["language"] = {
-                "title": pgettext("/developer/tests/", "Choose test language"),
-                "choices": [],
-            }
-            for language in Test.LANGUAGES:
-                if language[0] == Test.LANGUAGE_XX:
-                    continue
-                data["language"]["choices"].append(language)
-                data["specification"][language[0]] = section.specification[language[0]][get_language()]
+
             if section.id in [9545, 9546, 9547]:
+                data["language"] = {
+                    "title": pgettext("/developer/tests/", "Choose test language"),
+                    "choices": [],
+                }
+                for language in Test.LANGUAGES:
+                    if language[0] == Test.LANGUAGE_XX:
+                        continue
+                    data["language"]["choices"].append(language)
+                    data["specification"][language[0]] = section.specification[language[0]][get_language()]
                 kwargs["unt_core_data"].append(data)
+
             elif section.id in [9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559]:
+                if section.id == 9557:
+                    data["language"] = {
+                        "title": pgettext("/developer/tests/", "Choose type"),
+                        "choices": [
+                            (Test.LANGUAGE_KK, pgettext("Test language", "Kazakh 1")),
+                            (Test.LANGUAGE_RU, pgettext("Test language", "Kazakh 2")),
+                        ],
+                    }
+                    data["specification"][Test.LANGUAGE_KK] = section.specification[Test.LANGUAGE_KK][get_language()]
+                    data["specification"][Test.LANGUAGE_RU] = section.specification[Test.LANGUAGE_RU][get_language()]
+                elif section.id == 9558:
+                    data["language"] = {
+                        "title": pgettext("/developer/tests/", "Choose type"),
+                        "choices": [
+                            (Test.LANGUAGE_RU, pgettext("Test language", "Russian 1")),
+                            (Test.LANGUAGE_KK, pgettext("Test language", "Russian 2")),
+                        ],
+                    }
+                    data["specification"][Test.LANGUAGE_RU] = section.specification[Test.LANGUAGE_RU][get_language()]
+                    data["specification"][Test.LANGUAGE_KK] = section.specification[Test.LANGUAGE_KK][get_language()]
+                elif section.id == 9554 or section.id == 9555 or section.id == 9556:
+                    data["specification"][Test.LANGUAGE_XX] = section.specification[Test.LANGUAGE_XX][get_language()]
+                else:
+                    data["language"] = {
+                        "title": pgettext("/developer/tests/", "Choose test language"),
+                        "choices": [],
+                    }
+                    for language in Test.LANGUAGES:
+                        if language[0] == Test.LANGUAGE_XX:
+                            continue
+                        data["language"]["choices"].append(language)
+                        data["specification"][language[0]] = section.specification[language[0]][get_language()]
+
                 kwargs["unt_spec_data"].append(data)
 
         return super().get_context_data(**kwargs)

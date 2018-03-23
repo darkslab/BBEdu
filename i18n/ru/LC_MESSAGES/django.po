@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-18 16:35+0600\n"
+"POT-Creation-Date: 2018-03-23 17:36+0600\n"
 "PO-Revision-Date: 2018-02-18 15:24-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -521,9 +521,6 @@ msgstr "Грамотность чтения"
 msgid "Human and environment"
 msgstr "Человек и окружение"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "duration in seconds"
 msgid "Education and science"
 msgstr "Образование и наука"
 
@@ -574,6 +571,263 @@ msgstr "Независимый Казахстан"
 
 msgid "History in documents"
 msgstr "История в документах"
+
+msgid "Arithmetic calculations. Transformations of expressions"
+msgstr "Арифметические вычисления. Преобразования выражений"
+
+msgid "Equations. Systems of equations. Formulation of equations"
+msgstr "Уравнения. Системы уравнений. Составление уравнений."
+
+
+msgid "Inequalities. Systems of inequalities"
+msgstr "Неравенства. Системы неравенств."
+
+msgid "Functions. Derivatives. Integral"
+msgstr "Функции. Производные. Интеграл."
+
+msgid "Planimetry"
+msgstr "Планиметрия."
+
+
+msgid "Stereometry"
+msgstr "Стереометрия."
+
+
+msgid "Sequences. Progression"
+msgstr "Последовательности. Прогрессии."
+
+msgid "Physics"
+msgstr "Физика"
+
+msgid "Mechanics"
+msgstr "Механика"
+
+msgid "Molecular physics. Fundamentals of thermodynamics"
+msgstr "Молекулярная физика. Основы термодинамики"
+
+msgid "Electrodynamics"
+msgstr "Электродинамика"
+
+msgid "Optics"
+msgstr "Оптика"
+
+msgid "Quantum and Atomic Physics"
+msgstr "Квантовая и атомная физика"
+
+
+msgid "Qualitative objectives"
+msgstr "Качественный"
+
+msgid "Chemistry"
+msgstr "Химия"
+
+msgid "General chemistry"
+msgstr "Общая химия"
+
+msgid "Inorganic chemistry"
+msgstr "Неорганическая химия"
+
+msgid "Organic chemistry"
+msgstr "Органическая химия"
+
+msgid "Calculation problems: General chemistry"
+msgstr "Расчетные задачи: Общая химия"
+
+msgid "Calculation problems: Inorganic chemistry"
+msgstr "Расчетные задачи: Неорганическая химия"
+
+msgid "Calculation problems: Organic chemistry"
+msgstr "Расчетные задачи: Органическая химия"
+
+
+msgid "Biology"
+msgstr "Биология"
+
+msgid "Plants"
+msgstr "Растения"
+
+msgid "Human Anatomy and Physiology"
+msgstr "Анатомия и физиология человека"
+
+msgid "Cytology, genetics, ecology"
+msgstr "Цитология, генетика, экология"
+
+msgid "Geography"
+msgstr "География"
+
+msgid "Physical Geography of the World"
+msgstr "Физическая география мира"
+
+
+msgid "Geography of Kazakhstan"
+msgstr "История Казахстана"
+
+msgid "Economic and social geography of the world"
+msgstr "Экономическая и социальная география мира"
+
+msgid "Geography course tasks"
+msgstr "Задачи по курсу география"
+
+
+msgid "Age of stone and bronze"
+msgstr "Эпоха камня и бронзы"
+
+
+msgid "Kazakhstan in the Iron Age"
+msgstr "Казахстан в эпоху железа"
+
+msgid "The states of the Ancient East. Ancient civilization"
+msgstr "Государства Древнего Востока. Античная цивилизация."
+
+msgid "The Middle Ages (early V-X centuries, the flowering of the XI-XV centuries, later the XV-XVII centuries)"
+msgstr "Средневековье (раннее V-X вв., расцвет XI-XV вв., позднее XV-XVII вв.)"
+
+msgid "Culture of the ancient world (before the V century), medieval culture of peace (V - XVII centuries)"
+msgstr "Культура древнего мира (до V века), средневековая культура мира (V - XVII вв.)"
+
+msgid "Europe and North America, Countries of Asia and Africa (XVII - early XX centuries)"
+msgstr "Европа и Северная Америка, Страны Азии и Африки (XVII - начало XX вв.)"
+
+msgid "Culture of Europe, North America, Asia and Africa (XVIII century - the beginning of the XXI century)"
+msgstr "Культура Европы, Северной Америки, стран Азии и Африки (XVIII в. - начало XXI в.)"
+
+msgid "International relations (XVII - beginning of the XXI centuries)"
+msgstr "Международные отношения (XVII - начало XXI вв.)"
+
+msgid "World Wars and Their Consequences"
+msgstr "Мировые войны и их последствия"
+
+msgid "The countries of Europe and America, Asia and Africa (1918-2014)"
+msgstr "Страны Европы и Америки, Азии и Африки (1918-2014 гг.)"
+
+
+msgid "English"
+msgstr "Английский язык"
+
+msgid "Vocabulary and translation"
+msgstr "Лексика и перевод"
+
+msgid "Spelling"
+msgstr "Орфография"
+
+msgid "Morphology"
+msgstr "Морфология"
+
+msgid "Syntax"
+msgstr "Синтаксис"
+
+msgid "Work with text"
+msgstr "Работа с текстом"
+
+msgid "Country studies"
+msgstr "Страноведение"
+
+msgid "French"
+msgstr "Французский язык"
+
+
+msgid "Phonetics"
+msgstr "Фонетика"
+
+msgid "German"
+msgstr "Немецкий язык"
+
+
+msgid "Kazakh and literature"
+msgstr "Казахский язык и литература"
+
+msgid "Vocabulary"
+msgstr "Лексика"
+
+msgid "Word formation"
+msgstr ""
+
+msgid "Punctuation. Stylistics. Culture of speech"
+msgstr ""
+
+msgid "Ancient World Literature"
+msgstr ""
+
+msgid "Oral literature"
+msgstr ""
+
+msgid "Poetry of epos"
+msgstr ""
+
+msgid "XIX century literature"
+msgstr ""
+
+
+msgid "Literature in the first half of 20th century "
+msgstr "Казахстан в первой половине XX в."
+
+msgid "Literature in the Great Patriotic War and later"
+msgstr ""
+
+msgid "The theory of literature"
+msgstr ""
+
+msgid "Literature in II half of 20th century"
+msgstr ""
+
+
+msgid "Russian and literature"
+msgstr "Русский язык и литература"
+
+msgid "Phonetics and spelling"
+msgstr "Фонетика и орфография"
+
+
+msgid "Lexicology"
+msgstr "Лексикология"
+
+msgid "Morphemistry and word formation"
+msgstr "Морфеика и словообразование"
+
+msgid "Syntax and punctuation"
+msgstr "Синтаксис и пунктуация"
+
+msgid "Theory of Literature"
+msgstr "Теория литературы"
+
+msgid "Biography"
+msgstr "Биография"
+
+msgid "Literary criticism"
+msgstr "Литературная критика"
+
+msgid "The role of episodes"
+msgstr "Роль эпизодов"
+
+msgid "Cross-cutting themes"
+msgstr "Сквозные темы"
+
+msgid "Content of works"
+msgstr "Содержание произведений"
+
+msgid "Human. Society. Law"
+msgstr "Человек. Общество. Право"
+
+msgid "Human in the world"
+msgstr "Человек в мире"
+
+msgid "Social sphere of society"
+msgstr "Социальная сфера общества"
+
+msgid "The economic sphere of society"
+msgstr "Экономическая сфера общества"
+
+msgid "Spiritual sphere of society"
+msgstr "Духовная сфера общества"
+
+msgid "Political Science and Politics"
+msgstr "Политология и политика"
+
+msgid "Constitutional law"
+msgstr "Конституционное право"
+
+msgid "Introduction to Jurisprudence"
+msgstr "Введение в юриспруденцию"
 
 msgctxt "Developer acknowledgement plan"
 msgid "Immediate"
@@ -1318,9 +1572,7 @@ msgctxt "Developer tools"
 msgid "Multi-choice with 1 answer"
 msgstr "Варианты ответов"
 
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "Multi-choice with 1 answer"
+
 msgctxt "Developer tools"
 msgid "Multi-choice with multiple answers"
 msgstr "Варианты ответов"
@@ -1441,12 +1693,10 @@ msgctxt "Test content"
 msgid "Please choose an answer choice"
 msgstr "Пожалуйста, выберите один ответ"
 
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "Please choose Answer Choice type"
+
 msgctxt "Test content"
 msgid "Please choose answer choices that apply"
-msgstr "Пожалуйста, выберите тип ответа"
+msgstr "Пожалуйста, выберите варианты ответов"
 
 msgctxt "Test content"
 msgid "Previous"
