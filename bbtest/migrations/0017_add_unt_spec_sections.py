@@ -22,7 +22,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Planimetry"),
              ugettext_noop("Stereometry"),
              ugettext_noop("Sequences. Progression"), ],
-            4
+            3
         ],
         ugettext_noop("Physics"): [
             3600,
@@ -38,7 +38,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Optics"),
              ugettext_noop("Quantum and Atomic Physics"),
              ugettext_noop("Qualitative objectives"), ],
-            5
+            4
         ],
         ugettext_noop("Chemistry"): [
             3600,
@@ -55,7 +55,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Calculation problems: Inorganic chemistry"),
              ugettext_noop("Calculation problems: Organic chemistry"),
              ugettext_noop("Qualitative objectives"), ],
-            6
+            5
         ],
         ugettext_noop("Biology"): [
             3600,
@@ -70,7 +70,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Human Anatomy and Physiology"),
              ugettext_noop("Cytology, genetics, ecology"),
              ugettext_noop("Qualitative objectives"), ],
-            7
+            6
         ],
         ugettext_noop("Geography"): [
             3600,
@@ -83,7 +83,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Economic and social geography of the world"),
              ugettext_noop("Geography course tasks"),
              ugettext_noop("Qualitative objectives"), ],
-            8
+            7
         ],
         ugettext_noop("History"): [
             3600,
@@ -114,7 +114,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("International relations (XVII - beginning of the XXI centuries)"),
              ugettext_noop("World Wars and Their Consequences"),
              ugettext_noop("The countries of Europe and America, Asia and Africa (1918-2014)"), ],
-            9
+            8
         ],
         ugettext_noop("English"): [
             3600,
@@ -127,7 +127,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Syntax"),
              ugettext_noop("Work with text"),
              ugettext_noop("Country studies"), ],
-            10
+            8
         ],
         ugettext_noop("French"): [
             3600,
@@ -140,7 +140,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Work with text"),
              ugettext_noop("Country studies"),
              ugettext_noop("Phonetics"), ],
-            11
+            10
         ],
         ugettext_noop("German"): [
             3600,
@@ -152,7 +152,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Vocabulary and translation"),
              ugettext_noop("Work with text"),
              ugettext_noop("Country studies"), ],
-            12
+            11
         ],
         ugettext_noop("Kazakh and literature"): [
             3600,
@@ -173,7 +173,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Literature in the Great Patriotic War and later"),
              ugettext_noop("The theory of literature"),
              ugettext_noop("Literature in II half of 20th century"), ],
-            13
+            12
         ],
         ugettext_noop("Russian and literature"): [
             3600,
@@ -191,7 +191,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("The role of episodes"),
              ugettext_noop("Cross-cutting themes"),
              ugettext_noop("Content of works"), ],
-            14
+            13
         ],
         ugettext_noop("Human. Society. Law"): [
             3600,
@@ -205,16 +205,17 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Political Science and Politics"),
              ugettext_noop("Constitutional law"),
              ugettext_noop("Introduction to Jurisprudence"), ],
-            15
+            14
         ],
     }
 
-    for section_order, (section_name, section_details) in enumerate(sorted(sections.items(), key=lambda x: x[1][5])):
+    for (section_name, section_details) in sections.items():
         section_duration = section_details[0]
         section_question_count = section_details[1]
         section_question_weight = section_details[2]
         taxonomy_names = section_details[3]
         topic_names = section_details[4]
+        section_order = section_details[5]
         section = apps.get_model('bbtest', 'TestSection').objects.create(
             name=section_name,
             duration=section_duration,

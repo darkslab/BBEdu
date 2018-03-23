@@ -64,8 +64,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
 
             kwargs["nis_data"].append(data)
 
-        kwargs["unt"] = get_object_or_404(TestDomain.objects.order_by('-sections__order').prefetch_related(
-            "sections"), pk=7912)
+        kwargs["unt"] = get_object_or_404(TestDomain.objects.filter(pk=7912).order_by('order'))
         kwargs["unt_core_data"] = []
         kwargs["unt_spec_data"] = []
 
