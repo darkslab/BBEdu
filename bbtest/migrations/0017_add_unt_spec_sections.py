@@ -127,7 +127,7 @@ def add_unt_spec_sections(apps, schema_editor):
              ugettext_noop("Syntax"),
              ugettext_noop("Work with text"),
              ugettext_noop("Country studies"), ],
-            8
+            9
         ],
         ugettext_noop("French"): [
             3600,
@@ -209,7 +209,7 @@ def add_unt_spec_sections(apps, schema_editor):
         ],
     }
 
-    for (section_name, section_details) in sections.items():
+    for (section_name, section_details) in sorted(sections.items(), key=lambda x: x[1][5]):
         section_duration = section_details[0]
         section_question_count = section_details[1]
         section_question_weight = section_details[2]
