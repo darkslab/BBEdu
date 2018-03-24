@@ -1,0 +1,69 @@
+
+
+
+
+Pay at Qazkom:
+==============
+
+POST https://testpay.kkb.kz/jsp/process/logon.jsp
+POST https://epay.kkb.kz/jsp/process/logon.jsp
+
+Signed_Order_B64    (encrypted data in base64)
+email               darkhan@baimyrza.com
+BackLink            https://bbtest.kz/cart/success
+FailureBackLink     https://bbtest.kz/cart/failure
+PostLink            https://bbtest.kz/cart/authorize/FirstQazkomPayment
+appendix            (cart data in base64)
+(template)
+Language            rus | eng | kaz
+person_id           8475 (user ID)
+
+
+Encrypted data:
+---------------
+
+<document>
+    <merchant cert_id="MERCHANT_CERTIFICATE_ID" name="MERCHANT_NAME">
+        <order order_id="CART_ID" amount="CART_AMOUNT" currency="398">
+            <department merchant_id="MERCHANT_ID" amount="CART_AMOUNT" instalment="no" />
+        </order>
+    </merchant>
+    <merchant_sign type="RSA">
+        p25i1rUH7StnhOfnkHSOHguuPMePaGXtiPGEOrJE4bof1gFVH19mhDyHjfWa6OeJ80fidyvVf1X4
+        ewyP0yG4GxJSl0VyXz7+PNLsbs1lJe42d1fixvozhJSSYN6fAxMN8hhDht6S81YK3GbDTE7GH498
+        pU9HGuGAoDVjB+NtrHk=
+    </merchant_sign>
+</document>
+
+How to do the equivalent of this command in Python?
+openssl dgst -sha1 -sign PRIVATE_KEY -passin pass:PRIVATE_PASS DOCUMENT
+at least maybe what module should I start looking into?
+
+
+Cart data:
+----------
+
+
+
+
+
+
+<document><merchant cert_id="00c183d70b" name="New Demo Shop"><order order_id="0323120132" amount="50" currency="398"><department merchant_id="92061103" amount="50"/></order></merchant><merchant_sign type="RSA">ZLZO5G+GNjzfGVOQdnDHwsXWWY7zR6GLyyg9Oh90kayR++xEBI+u+x0l0h/vkqRTX/+RPt/enoh0dWp6BDvQtvnNCX105C/J6pusNFRrwUdCuZ94LdBPHwCdIqS7mJBVGYqoXJu3somD9AK+PgufRs/0c3qsOo/rbpkOVeVXOD4=</merchant_sign></document>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
