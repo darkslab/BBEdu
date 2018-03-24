@@ -76,7 +76,7 @@ class TestQuestionForm(ModelForm):
 
                 clean_choice["choice_class"] = choice["choice_class"]
                 if clean_choice["choice_class"] not in (
-                    "MultichoiceTextChoice",
+                        "MultichoiceTextChoice",
                 ):
                     raise ValueError("Incorrect meta_data")
 
@@ -133,7 +133,7 @@ class TestQuestionForm(ModelForm):
 
                 clean_choice["choice_class"] = choice["choice_class"]
                 if clean_choice["choice_class"] not in (
-                    "MultichoiceTextChoice",
+                        "MultichoiceTextChoice",
                 ):
                     raise ValueError("Incorrect meta_data")
 
@@ -500,18 +500,22 @@ class TestForm(ModelForm):
                 choice_id = randint(0x0000, 0xffff)
                 meta_data = {
                     "choices": [
-                        { "id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
-                        { "id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
-                        { "id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
-                        { "id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": { "text": "" } },
+                        {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+                        {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+                        {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+                        {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
                     ],
                     "correct_id": None,
                 }
                 if test.section.id == 9544:
-                    meta_data["choices"][0]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer", "Quantity A is greater."))
-                    meta_data["choices"][1]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer", "Quantity B is greater."))
-                    meta_data["choices"][2]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer", "The two quantities are equal."))
-                    meta_data["choices"][3]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer", "The relationship cannot be determined from the information given."))
+                    meta_data["choices"][0]["meta_data"]["text"] = str(
+                        pgettext("NIS Quantitative section answer", "Quantity A is greater."))
+                    meta_data["choices"][1]["meta_data"]["text"] = str(
+                        pgettext("NIS Quantitative section answer", "Quantity B is greater."))
+                    meta_data["choices"][2]["meta_data"]["text"] = str(
+                        pgettext("NIS Quantitative section answer", "The two quantities are equal."))
+                    meta_data["choices"][3]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer",
+                                                                                "The relationship cannot be determined from the information given."))
 
                 question = test.questions.create(
                     answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
@@ -523,7 +527,7 @@ class TestForm(ModelForm):
                 if test.section.id == 9540:
                     paragraph = TestParagraph.objects.create(
                         paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                        meta_data={ "text": "" },
+                        meta_data={"text": ""},
                     )
                     TestParagraphQuestion.objects.create(
                         question=question,
@@ -536,14 +540,14 @@ class TestForm(ModelForm):
                             question=question,
                             paragraph=TestParagraph.objects.create(
                                 paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                                meta_data={ "text": "" },
+                                meta_data={"text": ""},
                             ),
                             order=0,
                         )
                     elif i in (6, 9, 12, 15):
                         shared_paragraph = TestParagraph.objects.create(
                             paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                            meta_data={ "text": "" },
+                            meta_data={"text": ""},
                         )
                         TestParagraphQuestion.objects.create(
                             question=question,
@@ -554,7 +558,7 @@ class TestForm(ModelForm):
                             question=question,
                             paragraph=TestParagraph.objects.create(
                                 paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                                meta_data={ "text": "" },
+                                meta_data={"text": ""},
                             ),
                             order=1,
                         )
@@ -568,14 +572,14 @@ class TestForm(ModelForm):
                             question=question,
                             paragraph=TestParagraph.objects.create(
                                 paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                                meta_data={ "text": "" },
+                                meta_data={"text": ""},
                             ),
                             order=1,
                         )
                 elif test.section.id == 9544:
                     paragraph = TestParagraph.objects.create(
                         paragraph_class=TestParagraph.PARAGRAPH_CLASS_SPLIT_TEXT,
-                        meta_data={ "right": { "text": "" }, "left": { "text": "" } },
+                        meta_data={"right": {"text": ""}, "left": {"text": ""}},
                     )
                     TestParagraphQuestion.objects.create(
                         question=question,
@@ -584,6 +588,7 @@ class TestForm(ModelForm):
                     )
         # UNT core sections
         elif test.section.id in (9545, 9546, 9547):
+            shared_paragraph = None
             for i in range(test.section.question_count):
                 choice_id = randint(0x0000, 0xffff)
                 meta_data = {
@@ -608,6 +613,84 @@ class TestForm(ModelForm):
                     weight=test.section.question_weight,
                     order=i,
                 )
+
+                if test.section.id == 9546:
+                    if i in (0, 2, 6, 12):
+                        shared_paragraph = TestParagraph.objects.create(
+                            paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                            meta_data={"text": "", "text_num": i},
+                        )
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=shared_paragraph,
+                            order=0,
+                        )
+                    else:
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=shared_paragraph,
+                            order=0,
+                        )
+                else:
+                    paragraph = TestParagraph.objects.create(
+                        paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                        meta_data={"text": ""},
+                    )
+                    TestParagraphQuestion.objects.create(
+                        question=question,
+                        paragraph=paragraph,
+                        order=0,
+                    )
+
+        # UNT spec sections
+        elif test.section.id in (9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559):
+            for i in range(test.section.question_count):
+                choice_id = randint(0x0000, 0xffff)
+
+                if i < 20:
+                    meta_data = {
+                        "choices": [
+                            {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                        ],
+                        "correct_id": None,
+                    }
+                    question = test.questions.create(
+                        answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
+                        meta_data=meta_data,
+                        weight=test.section.question_weight,
+                        order=i,
+                    )
+                else:
+                    meta_data = {
+                        "choices": [
+                            {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                        ],
+                        "correct_ids": [],
+                    }
+                    question = test.questions.create(
+                        answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI,
+                        meta_data=meta_data,
+                        weight=test.section.question_weight,
+                        order=i,
+                    )
 
                 paragraph = TestParagraph.objects.create(
                     paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
