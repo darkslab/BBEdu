@@ -20,7 +20,7 @@ def fix_core_sections_ordering(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('bbtest', '0018_update_test_specifications'),
+        ('bbtest', '0019_update_test_specifications'),
     ]
 
     operations = [

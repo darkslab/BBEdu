@@ -2,17 +2,18 @@ class MultichoiceMultiAnswer extends React.Component {
     constructor(props) {
         super(props);
         this._alphabet = "ABCDEFGH";
-        this._correctIds = [...this.props.answer.correct_ids];
+        this._correctIds = [];
+        this._assignCorrectIds(this.props.answer);
     }
     componentWillReceiveProps(nextProps) {
-        this._correctIds = [...nextProps.answer.correct_ids];
+        this._assignCorrectIds(nextProps.answer);
     }
     render() {
         let choices = [];
         for (let i = 0; i < this.props.data.choices.length; i++) {
             let ChoiceClass = eval(this.props.data.choices[i].choice_class);
             let chosen = false;
-            if (this.props.answer.correct_ids.indexOf(this.props.data.choices[i].id) > -1) {
+            if (this.props.answer && this.props.answer.correct_ids.indexOf(this.props.data.choices[i].id) > -1) {
                 chosen = true;
             }
             choices.push(
@@ -51,11 +52,23 @@ class MultichoiceMultiAnswer extends React.Component {
             this._correctIds.push(choiceId);
         }
         let data = {
-            answer: {
-                correct_ids: [...this._correctIds]
-            },
+            answer: null,
             observation: {}
         };
+        if (this._correctIds.length) {
+            data.answer = {
+                correct_ids: [...this._correctIds]
+            };
+        }
         this.props.onUpdate(data);
+    }
+    _assignCorrectIds(answer) {
+        this._correctIds = [];
+        if (!answer) {
+            return;
+        }
+        for (let i = 0; i < answer.correct_ids.length; i++) {
+            this._correctIds.push(answer.correct_ids[i]);
+        }
     }
 }
