@@ -240,7 +240,7 @@ def add_unt_spec_sections(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('bbtest', '0016_fix_test_specifications'),
+        ('bbtest', '0017_update_test_topic_table'),
     ]
 
     operations = [

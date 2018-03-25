@@ -4337,7 +4337,7 @@ def update_test_specifications(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('bbtest', '0017_add_unt_spec_sections'),
+        ('bbtest', '0018_add_unt_spec_sections'),
     ]
 
     operations = [
