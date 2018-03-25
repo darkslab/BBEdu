@@ -35,34 +35,14 @@ Encrypted data:
     </merchant_sign>
 </document>
 
-How to do the equivalent of this command in Python?
-openssl dgst -sha1 -sign PRIVATE_KEY -passin pass:PRIVATE_PASS DOCUMENT
-at least maybe what module should I start looking into?
-
 
 Cart data:
 ----------
 
-
-
-
-
-
-<document><merchant cert_id="00c183d70b" name="New Demo Shop"><order order_id="0323120132" amount="50" currency="398"><department merchant_id="92061103" amount="50"/></order></merchant><merchant_sign type="RSA">ZLZO5G+GNjzfGVOQdnDHwsXWWY7zR6GLyyg9Oh90kayR++xEBI+u+x0l0h/vkqRTX/+RPt/enoh0dWp6BDvQtvnNCX105C/J6pusNFRrwUdCuZ94LdBPHwCdIqS7mJBVGYqoXJu3somD9AK+PgufRs/0c3qsOo/rbpkOVeVXOD4=</merchant_sign></document>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<document>
+    <item number="1" name="Телефонный аппарат" quantity="2" amount="1000"/>
+    <item number="2" name="Шнур 2м." quantity="2" amount="200"/>
+</document>
 
 
 
