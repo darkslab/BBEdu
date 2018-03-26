@@ -42,31 +42,31 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Раздел</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Арифметические вычисления. Преобразования выражений.</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Уравнения. Системы уравнений. Составление уравнений.</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Неравенства. Системы неравенств.</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Функции. Производные. Интеграл.</td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Планиметрия.</td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Стереометрия.</td>
             </tr>
             <tr>
-                <td>7</td>
+                <td class="text-center">7</td>
                 <td>Последовательности. Прогрессии.</td>
             </tr>
         </tbody>
@@ -81,11 +81,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
@@ -102,15 +102,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -148,32 +148,32 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">#</th>
                 <th class="text-center">Раздел</th>
             </tr>
-            <tr>
-                <td>1</td>
+            <tr class="text-center">
+                <td class="text-center">1</td>
                 <td>Арифметические вычисления. Преобразования выражений.</td>
             </tr>
-            <tr>
-                <td>2</td>
+            <tr class="text-center">
+                <td class="text-center">2</td>
                 <td>Уравнения. Системы уравнений. Составление уравнений.</td>
             </tr>
-            <tr>
-                <td>3</td>
+            <tr class="text-center">
+                <td class="text-center">3</td>
                 <td>Неравенства. Системы неравенств.</td>
             </tr>
-            <tr>
-                <td>4</td>
+            <tr class="text-center">
+                <td class="text-center">4</td>
                 <td>Функции. Производные. Интеграл.</td>
             </tr>
-            <tr>
-                <td>5</td>
+            <tr class="text-center">
+                <td class="text-center">5</td>
                 <td>Планиметрия.</td>
             </tr>
-            <tr>
-                <td>6</td>
+            <tr class="text-center">
+                <td class="text-center">6</td>
                 <td>Стереометрия.</td>
             </tr>
-            <tr>
-                <td>7</td>
+            <tr class="text-center">
+                <td class="text-center">7</td>
                 <td>Последовательности. Прогрессии.</td>
             </tr>
         </tbody>
@@ -187,12 +187,12 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">#</th>
                 <th class="text-center">Цели оценивания</th>
             </tr>
-            <tr>
-                <td>1</td>
+            <tr class="text-center">
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
-            <tr>
-                <td>2</td>
+            <tr class="text-center">
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
@@ -209,15 +209,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -259,27 +259,27 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Раздел</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Механика</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Молекулярная физика. Основы термодинамики</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Электродинамика</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Оптика</td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Квантовая и атомная физика</td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Качественные задачи</td>
             </tr>
         </tbody>
@@ -294,19 +294,19 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Анализ</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Синтез</td>
             </tr>
         </tbody>
@@ -323,15 +323,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -370,27 +370,27 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Раздел</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Механика</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Молекулярная физика. Основы термодинамики</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Электродинамика</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Оптика</td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Квантовая и атомная физика</td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Качественные задачи</td>
             </tr>
         </tbody>
@@ -405,19 +405,19 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Анализ</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Синтез</td>
             </tr>
         </tbody>
@@ -434,15 +434,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -483,31 +483,31 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Раздел</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Общая химия</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Неорганическая химия</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Органическая химия</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Расчетные задачи: Общая химия</td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Расчетные задачи: Неорганическая химия</td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Расчетные задачи: Органическая химия</td>
             </tr>
             <tr>
-                <td>7</td>
+                <td class="text-center">7</td>
                 <td>Качественные задачи</td>
             </tr>
         </tbody>
@@ -522,19 +522,19 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Анализ</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Синтез</td>
             </tr>
         </tbody>
@@ -551,15 +551,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -598,31 +598,31 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Раздел</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Общая химия</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Неорганическая химия</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Органическая химия</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Расчетные задачи: Общая химия</td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Расчетные задачи: Неорганическая химия</td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Расчетные задачи: Органическая химия</td>
             </tr>
             <tr>
-                <td>7</td>
+                <td class="text-center">7</td>
                 <td>Качественные задачи</td>
             </tr>
         </tbody>
@@ -637,19 +637,19 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Анализ</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Синтез</td>
             </tr>
         </tbody>
@@ -666,15 +666,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -715,23 +715,23 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Раздел</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Растения</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Животные</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Анатомия и физиология человека</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Цитология, генетика, экология</td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Качественные задачи</td>
             </tr>
         </tbody>
@@ -746,19 +746,19 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Анализ</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Синтез</td>
             </tr>
         </tbody>
@@ -775,15 +775,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -821,23 +821,23 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Раздел</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Растения</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Животные</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Анатомия и физиология человека</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Цитология, генетика, экология</td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Качественные задачи</td>
             </tr>
         </tbody>
@@ -852,19 +852,19 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Анализ</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Синтез</td>
             </tr>
         </tbody>
@@ -881,15 +881,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -929,23 +929,23 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Раздел</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Физическая география мира</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>География Казахстана</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Экономическая и социальная география мира</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Задачи по курсу география</td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Качественные задачи</td>
             </tr>
         </tbody>
@@ -960,11 +960,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
@@ -981,15 +981,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -1027,23 +1027,23 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Раздел</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Физическая география мира</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>География Казахстана</td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Экономическая и социальная география мира</td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Задачи по курсу география</td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Качественные задачи</td>
             </tr>
         </tbody>
@@ -1058,11 +1058,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
@@ -1079,15 +1079,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -1125,19 +1125,19 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Эпоха камня и бронзы</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Палеолит, мезолит, неолит, энеолит. Эпоха бронзы.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Казахстан в эпоху железа</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Возникновение кочевого скотоводства. Основы жизнеобеспечения кочевого скотоводства. Культурные достижения ранних кочевников на территории Казахстана.</li>
                         <li>Саки: сведения о саках, расселение, сакское общество, борьба саков за независимость.</li>
                         <li>Уйсуны, кангюи: расселение, письменные источники, общественное устройство.</li>
@@ -1149,20 +1149,20 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Государства раннего и развитого средневековья (VI-нач.XIII вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Раннесредневековые государства на территории Казахстана: Тюркский, Западно-Тюрксий, Тюргешский, Карлукский каганаты, Огузы, Кимаки: социально-экономическое развитие и общественно-политическая история.</li>
                         <li>Казахстан в период среднего средневековья: Караханиды, Найманы, Кереи, Жалаиры, Каракитаи, Кипчаки: социально-экономическое развитие и общественно-политическая история.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Культура (VI-XVII вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Великий Шелковый путь на территории Казахстана. Культура VI-IX вв.</li>
                         <li>Городская культура IX-XIII вв. Ремесло, торговля. Религия и культура. Развитие науки и образования.</li>
                         <li>Развитие культуры Казахстана в XIV-XV вв.</li>
@@ -1171,20 +1171,20 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Казахстан в XIII-XVII вв.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Монгольский период в истории Казахстана. Золотая Орда: образование, общественный строй, усиление, распад. Ак Орда, Моголистан, Ногайская Орда, ханство Абулхаира, Северный Казахстан и Западная Сибирь. Государство Тимура.</li>
                         <li>Этнические процессы на территории Казахстана. Образование Казахского ханства. Внутренняя и внешняя политика. Укрепление Казахского ханства в XVI-XVII вв.: Касым хан, Хакназар хан, Тауекель хан, Есим хан, Тауке хан</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Социально-экономическое положение Казахстана в XIII-XVII вв.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Государственно-административное устройство государтсв XIII-XV вв. Система правления в Казахском ханстве. </li>
                         <li>Экономическое положение Казахстана в XIV-XV вв.</li>
                         <li>Экономическое положение Казахстана в XVI-XVII вв.</li>
@@ -1192,19 +1192,19 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>7</td>
+                <td class="text-center">7</td>
                 <td>Социально-экономическое развитие Казахстана в XVIII-XIX вв.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Торгово-экономические связи Казахстана с Китаем. Экономическое развитие Казахстана во второй половине XIX в. Переселение уйгуров и дунган в Семиречье.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>8</td>
+                <td class="text-center">8</td>
                 <td>Общественно-политическое развитие Казахстана в XVIII-XIX вв.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Борьба казахского народа против джунгарского нашествия. Присоединение Младшего жуза к России. Внутренняя и внешняя политика Абылай хана.</li>
                         <li>Участие казахов в Крестьянской войне 1773-1775 гг. Восстание казахов Младшего жуза под руководством С.Датулы 1783-1797 гг. Ликвидация ханской власти. Восстание И.Тайманулы и М.Утемисулы 1836-1838 гг., Кенесары Касымулы 1837-1847 гг.</li>
                         <li>Освободительная борьба казахских шаруа в 50-е годы XIX века. Присоединение Старшего жуза к России. Завершение колониального захвата Казахстана Россией и его последствия. Реформы 1860-1890-х гг. В Казахстане. Освободительная борьба казахского народа в 60-70 годы XIX века.</li>
@@ -1212,20 +1212,20 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>9</td>
+                <td class="text-center">9</td>
                 <td>Казахстан в первой половине XX в.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Социально-экономическое развитие Казахстана в начале XX века. Политика «военного коммунизма». Казахстан в годы НЭП. Индустриализация. Коллективизация сельского хозяйства. Наращивание экономической мощи Казахстана в годы ВОВ.</li>
                         <li>Общественно-политическая жизнь Казахстана в первой половине XX века. Политическое развитие Казахстана в начале XX века. Национально-освободительные движения и их основные направления. Национально-освободительное движение 1916 г. Казахстан в период ФБДР 1917 г. Движение о создании партии Алаш. Октябрьская революция. Национальные автономиив Казахстане. Казахстан в годы Гражданской войны и иностранной военной интервенции. Образование КазАССР. Формирование территории Казахской АССР. Общественно-политическое положение Казахстана в 1920-1940-е гг. Казахстанцы в период ВОВ.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>10</td>
+                <td class="text-center">10</td>
                 <td>Культура Казахстана XVIII-XX вв.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Культура Казахстана в XVIII в.</li>
                         <li>Культура Казахстана в первой половине XIX в.</li>
                         <li>Культура Казахстана во второй половине XIX в.</li>
@@ -1237,119 +1237,119 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>11</td>
+                <td class="text-center">11</td>
                 <td>Казахстан в 50-80-е гг. XX века</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Общественно-политическая жизнь Казахстана в 50-80-е гг. XX века</li>
                         <li>Социально-экономическое развитие в в 50-80-е гг. XX века</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>12</td>
+                <td class="text-center">12</td>
                 <td>Независимый Казахстан</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Провозглашение и становление независимого Казахстана. Общественно-политическое развитие РК. Внешняя политика РК.</li>
                         <li>Экономическое развитие РК.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>13</td>
+                <td class="text-center">13</td>
                 <td>История в документах</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Письменные источники об исторических событиях Казахстана</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>14</td>
+                <td class="text-center">14</td>
                 <td>Государства Древнего Востока. Античная цивилизация</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Древние государства Месопотамия, Египет, государства Юго-Западной, Южной и Восточной Азии (социально-экономическое развитие и общественно-политическая история)</li>
                         <li>Древняя Греция, Македония, Древний Рим в период Республики и период Империи (социально-экономическое развитие и общественно-политическая история)</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>15</td>
+                <td class="text-center">15</td>
                 <td>Средневековье (ранее V – X вв., расцвет XI-XV вв., позднее XV-XVII вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Западная и Центральная Европа, Византийская империя и Ближний Восток, Центральная Азия, монголо-татары, Средняя Азия, славяне, Киевская Русь, страны Востока, Русь в XI-XIII вв., Россия в XV-XVII вв. (социально-экономическое развитие, общественно-политическая история)</li>
                         <li>Христианская церковь в XI-XIII вв.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>16</td>
+                <td class="text-center">16</td>
                 <td>Культура древнего мира (до V века), средневековая культура мира (V-XVII вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Древняя Греция, Древний Рим, Древний Восток</li>
                         <li>Западная и Центральная Европа, Византийская империя и Ближний Восток, Центральная Азия, Средняя Азия, славяне, Киевская Русь, страны Востока, Русское государство в XI-XVII вв. Великие географические открытия. Возрождение</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>17</td>
+                <td class="text-center">17</td>
                 <td>Европа и Северная Америка, Страны Азии и Африки (XVII-начало XX вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Англия, Северная Америка, Франция, Россия, Германия, Италия, Австрия, Индия. Османская империя, Китай, Монголия, Япония, Иран (общественно-политическая история и социально-экономическое развитие XVII-XVIII вв.)</li>
                         <li>США, Англия, Россия, Франция, Германия, Италия, Австро-Венгрия, Китай, Япония, Индия, Османская империя, Иран, Арабские страны (общественно-политическая история и социально-экономическое развитие XIX-нач.XX вв.)</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>18</td>
+                <td class="text-center">18</td>
                 <td>Культура Европы, Северной Америки, стран Азии и Африки (XVIII в. – начало XXI в.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Эпоха Просвещения. Развитие науки и техники в XVII-XVIII вв. Культура XIX – первой половины XX вв.</li>
                         <li>Культура второй половины XX – начала XII вв.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>19</td>
+                <td class="text-center">19</td>
                 <td>Международные отношения (XVII – начало XXI вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Колониальная система и международные отношения в XVII – XVIII вв.</li>
                         <li>Международные отношения в XIX – начале XXI вв.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>20</td>
+                <td class="text-center">20</td>
                 <td>Мировые войны и их последствия</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Первая мировая война (1914-1918 гг.), Версальско-Вашингтонская система</li>
                         <li>Вторая мировая война (1939-1945 гг.). Великобритания, Франция, Германия, Италия, СССР, США, Япония, Китай, Монголия, Индия, Иран, Афганистан, Турция, Арабские страны, Азии и Африки в период второй мировой войны</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>21</td>
+                <td class="text-center">21</td>
                 <td>Страны Европы и Америки, Азии и Африки (1918-2014 гг.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Страны Европы и Америки, Азии и Африки в период между двумя мировыми войнами (1918-1939 гг., Великобритания, Франция, Германия, Италия, Советская Россия, СССР, США, Япония, Китай, Монголия, Индия, Иран, Афганистан, Турция, Арабские страны Азии и Африки)</li>
                         <li>Страны Западной Европы и Америки, страны Южной, Центральной, Восточной Европы, Страны Азии и Африки (1945-2014 гг., Великобритания, Франция, ФРГ, США, Италия, Страны Центральной и Юго-Восточной Европы, СССР, Российская Федерация, Япония, Китай, МНР, Индия, Пакистан, Иран, Афганистан, Турция, Арабские страны)</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>22</td>
+                <td class="text-center">22</td>
                 <td>История в документах</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Письменные источники об исторических событиях:</li>
                         <li>Государства Древнего Востока. Античная цивилизация</li>
                         <li>Средневековье (ранее V – X вв., расцвет XI-XV вв., позднее XV-XVII вв.)</li>
@@ -1377,15 +1377,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -1422,19 +1422,19 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Эпоха камня и бронзы</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Палеолит, мезолит, неолит, энеолит. Эпоха бронзы.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Казахстан в эпоху железа</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Возникновение кочевого скотоводства. Основы жизнеобеспечения кочевого скотоводства. Культурные достижения ранних кочевников на территории Казахстана.</li>
                         <li>Саки: сведения о саках, расселение, сакское общество, борьба саков за независимость.</li>
                         <li>Уйсуны, кангюи: расселение, письменные источники, общественное устройство.</li>
@@ -1446,20 +1446,20 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Государства раннего и развитого средневековья (VI-нач.XIII вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Раннесредневековые государства на территории Казахстана: Тюркский, Западно-Тюрксий, Тюргешский, Карлукский каганаты, Огузы, Кимаки: социально-экономическое развитие и общественно-политическая история.</li>
                         <li>Казахстан в период среднего средневековья: Караханиды, Найманы, Кереи, Жалаиры, Каракитаи, Кипчаки: социально-экономическое развитие и общественно-политическая история.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Культура (VI-XVII вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Великий Шелковый путь на территории Казахстана. Культура VI-IX вв.</li>
                         <li>Городская культура IX-XIII вв. Ремесло, торговля. Религия и культура. Развитие науки и образования.</li>
                         <li>Развитие культуры Казахстана в XIV-XV вв.</li>
@@ -1468,20 +1468,20 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Казахстан в XIII-XVII вв.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Монгольский период в истории Казахстана. Золотая Орда: образование, общественный строй, усиление, распад. Ак Орда, Моголистан, Ногайская Орда, ханство Абулхаира, Северный Казахстан и Западная Сибирь. Государство Тимура.</li>
                         <li>Этнические процессы на территории Казахстана. Образование Казахского ханства. Внутренняя и внешняя политика. Укрепление Казахского ханства в XVI-XVII вв.: Касым хан, Хакназар хан, Тауекель хан, Есим хан, Тауке хан</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Социально-экономическое положение Казахстана в XIII-XVII вв.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Государственно-административное устройство государтсв XIII-XV вв. Система правления в Казахском ханстве. </li>
                         <li>Экономическое положение Казахстана в XIV-XV вв.</li>
                         <li>Экономическое положение Казахстана в XVI-XVII вв.</li>
@@ -1489,19 +1489,19 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>7</td>
+                <td class="text-center">7</td>
                 <td>Социально-экономическое развитие Казахстана в XVIII-XIX вв.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Торгово-экономические связи Казахстана с Китаем. Экономическое развитие Казахстана во второй половине XIX в. Переселение уйгуров и дунган в Семиречье.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>8</td>
+                <td class="text-center">8</td>
                 <td>Общественно-политическое развитие Казахстана в XVIII-XIX вв.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Борьба казахского народа против джунгарского нашествия. Присоединение Младшего жуза к России. Внутренняя и внешняя политика Абылай хана.</li>
                         <li>Участие казахов в Крестьянской войне 1773-1775 гг. Восстание казахов Младшего жуза под руководством С.Датулы 1783-1797 гг. Ликвидация ханской власти. Восстание И.Тайманулы и М.Утемисулы 1836-1838 гг., Кенесары Касымулы 1837-1847 гг.</li>
                         <li>Освободительная борьба казахских шаруа в 50-е годы XIX века. Присоединение Старшего жуза к России. Завершение колониального захвата Казахстана Россией и его последствия. Реформы 1860-1890-х гг. В Казахстане. Освободительная борьба казахского народа в 60-70 годы XIX века.</li>
@@ -1509,20 +1509,20 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>9</td>
+                <td class="text-center">9</td>
                 <td>Казахстан в первой половине XX в.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Социально-экономическое развитие Казахстана в начале XX века. Политика «военного коммунизма». Казахстан в годы НЭП. Индустриализация. Коллективизация сельского хозяйства. Наращивание экономической мощи Казахстана в годы ВОВ.</li>
                         <li>Общественно-политическая жизнь Казахстана в первой половине XX века. Политическое развитие Казахстана в начале XX века. Национально-освободительные движения и их основные направления. Национально-освободительное движение 1916 г. Казахстан в период ФБДР 1917 г. Движение о создании партии Алаш. Октябрьская революция. Национальные автономиив Казахстане. Казахстан в годы Гражданской войны и иностранной военной интервенции. Образование КазАССР. Формирование территории Казахской АССР. Общественно-политическое положение Казахстана в 1920-1940-е гг. Казахстанцы в период ВОВ.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>10</td>
+                <td class="text-center">10</td>
                 <td>Культура Казахстана XVIII-XX вв.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Культура Казахстана в XVIII в.</li>
                         <li>Культура Казахстана в первой половине XIX в.</li>
                         <li>Культура Казахстана во второй половине XIX в.</li>
@@ -1534,119 +1534,119 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>11</td>
+                <td class="text-center">11</td>
                 <td>Казахстан в 50-80-е гг. XX века</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Общественно-политическая жизнь Казахстана в 50-80-е гг. XX века</li>
                         <li>Социально-экономическое развитие в в 50-80-е гг. XX века</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>12</td>
+                <td class="text-center">12</td>
                 <td>Независимый Казахстан</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Провозглашение и становление независимого Казахстана. Общественно-политическое развитие РК. Внешняя политика РК.</li>
                         <li>Экономическое развитие РК.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>13</td>
+                <td class="text-center">13</td>
                 <td>История в документах</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Письменные источники об исторических событиях Казахстана</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>14</td>
+                <td class="text-center">14</td>
                 <td>Государства Древнего Востока. Античная цивилизация</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Древние государства Месопотамия, Египет, государства Юго-Западной, Южной и Восточной Азии (социально-экономическое развитие и общественно-политическая история)</li>
                         <li>Древняя Греция, Македония, Древний Рим в период Республики и период Империи (социально-экономическое развитие и общественно-политическая история)</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>15</td>
+                <td class="text-center">15</td>
                 <td>Средневековье (ранее V – X вв., расцвет XI-XV вв., позднее XV-XVII вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Западная и Центральная Европа, Византийская империя и Ближний Восток, Центральная Азия, монголо-татары, Средняя Азия, славяне, Киевская Русь, страны Востока, Русь в XI-XIII вв., Россия в XV-XVII вв. (социально-экономическое развитие, общественно-политическая история)</li>
                         <li>Христианская церковь в XI-XIII вв.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>16</td>
+                <td class="text-center">16</td>
                 <td>Культура древнего мира (до V века), средневековая культура мира (V-XVII вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Древняя Греция, Древний Рим, Древний Восток</li>
                         <li>Западная и Центральная Европа, Византийская империя и Ближний Восток, Центральная Азия, Средняя Азия, славяне, Киевская Русь, страны Востока, Русское государство в XI-XVII вв. Великие географические открытия. Возрождение</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>17</td>
+                <td class="text-center">17</td>
                 <td>Европа и Северная Америка, Страны Азии и Африки (XVII-начало XX вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Англия, Северная Америка, Франция, Россия, Германия, Италия, Австрия, Индия. Османская империя, Китай, Монголия, Япония, Иран (общественно-политическая история и социально-экономическое развитие XVII-XVIII вв.)</li>
                         <li>США, Англия, Россия, Франция, Германия, Италия, Австро-Венгрия, Китай, Япония, Индия, Османская империя, Иран, Арабские страны (общественно-политическая история и социально-экономическое развитие XIX-нач.XX вв.)</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>18</td>
+                <td class="text-center">18</td>
                 <td>Культура Европы, Северной Америки, стран Азии и Африки (XVIII в. – начало XXI в.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Эпоха Просвещения. Развитие науки и техники в XVII-XVIII вв. Культура XIX – первой половины XX вв.</li>
                         <li>Культура второй половины XX – начала XII вв.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>19</td>
+                <td class="text-center">19</td>
                 <td>Международные отношения (XVII – начало XXI вв.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Колониальная система и международные отношения в XVII – XVIII вв.</li>
                         <li>Международные отношения в XIX – начале XXI вв.</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>20</td>
+                <td class="text-center">20</td>
                 <td>Мировые войны и их последствия</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Первая мировая война (1914-1918 гг.), Версальско-Вашингтонская система</li>
                         <li>Вторая мировая война (1939-1945 гг.). Великобритания, Франция, Германия, Италия, СССР, США, Япония, Китай, Монголия, Индия, Иран, Афганистан, Турция, Арабские страны, Азии и Африки в период второй мировой войны</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>21</td>
+                <td class="text-center">21</td>
                 <td>Страны Европы и Америки, Азии и Африки (1918-2014 гг.)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Страны Европы и Америки, Азии и Африки в период между двумя мировыми войнами (1918-1939 гг., Великобритания, Франция, Германия, Италия, Советская Россия, СССР, США, Япония, Китай, Монголия, Индия, Иран, Афганистан, Турция, Арабские страны Азии и Африки)</li>
                         <li>Страны Западной Европы и Америки, страны Южной, Центральной, Восточной Европы, Страны Азии и Африки (1945-2014 гг., Великобритания, Франция, ФРГ, США, Италия, Страны Центральной и Юго-Восточной Европы, СССР, Российская Федерация, Япония, Китай, МНР, Индия, Пакистан, Иран, Афганистан, Турция, Арабские страны)</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>22</td>
+                <td class="text-center">22</td>
                 <td>История в документах</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Письменные источники об исторических событиях:</li>
                         <li>Государства Древнего Востока. Античная цивилизация</li>
                         <li>Средневековье (ранее V – X вв., расцвет XI-XV вв., позднее XV-XVII вв.)</li>
@@ -1674,15 +1674,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -1738,11 +1738,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td rowspan="3">1</td>
+                <td rowspan="3" class="text-center">1</td>
                 <td rowspan="3">Лексика и орфография</td>
                 <td>Синонимы, антонимы</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Синонимы, антонимы</li>
                     </ul>
                 </td>
@@ -1750,7 +1750,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сочетаемость лексических единиц</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Лексика разговорных тем, орфография, фонетика</li>
                         <li>Перефразирование, перевод</li>
                     </ul>
@@ -1759,18 +1759,18 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Устойчивые выражения</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Фразовые глаголы</li>
                         <li>Идиомы. Пословицы</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="3">2</td>
+                <td rowspan="3" class="text-center">2</td>
                 <td rowspan="3">Морфология</td>
                 <td>Артикли, предлоги</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Артикли, предлоги</li>
                     </ul>
                 </td>
@@ -1778,7 +1778,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Словообразование</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Приставки, суффиксы, окончания, сложные слова</li>
                     </ul>
                 </td>
@@ -1786,7 +1786,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Части речи</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Имя существительное. Категория числа существительного. Притяжательная форма существительного</li>
                         <li>Местоимение: личные, притяжательные, возвратные, указательные, неопределенные и отрицательные, вопросительные и относительные</li>
                         <li>Имя прилагательное и наречие. Степени сравнения</li>
@@ -1797,11 +1797,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Синтаксис</td>
                 <td>Предложения</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Предложения: простые, вопросительные и отрицательные. Порядок слов в предложении</li>
                         <li>Прямая и косвенная речь. Согласование времен</li>
                         <li>Наклонения: повелительное, сослагательное и условное</li>
@@ -1810,21 +1810,21 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Работа с текстом</td>
                 <td>Работа с текстом</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Работа с текстом</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Страноведение</td>
                 <td>Страноведение</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Казахстан</li>
                         <li>Великобритания, англоязычные страны</li>
                     </ul>
@@ -1833,7 +1833,7 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.12.</span></p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.11.</span>Указывается цель оценивания тестовых вопросов по таксономии Блума:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
         <tbody>
@@ -1842,18 +1842,18 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.</span></p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.1.</span></p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.</span>Требования по формированию вариантов теста:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.1.</span>Один вариант должен содержать 30 тестовых вопросов с разделением на предполагаемый уровень сложности:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
         <tbody>
@@ -1863,15 +1863,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -1927,11 +1927,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td rowspan="7">1</td>
+                <td rowspan="7" class="text-center">1</td>
                 <td rowspan="7">Морфология</td>
                 <td>Глагол</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Глагол. Основные формы глагола: сильные, слабые, особая группа. Временные формы действительного залога: Praesens, Praeteritum, Perfekt, Plusquamperfekt, Futurum. Временные формы страдательного залога: Praesens, Praeteritum, Perfekt, Plusquamperfekt, Futurum. Вспомогательные глаголы.</li>
                         <li>Повелительное наклонение. Партицип I, II: в качестве определения, обстоятельства, в качестве согласованного определения.</li>
                         <li>Инфинитивные группы: глагольные сочетания haben/sein + Infinitiv, um…zu + Infinitiv, ohne…zu + Infinitiv, anstatt…zu + Infinitiv. Сослогательное наклонение.</li>
@@ -1943,7 +1943,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Служебные части речи</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Артикль. Употребление определенного/неопределенного артикля, отсутствие артикля. Вопросительные слова. Предлоги. Дательного, винительного падежа, предлоги, управляющие дательным и винительным падежами.</li>
                     </ul>
                 </td>
@@ -1951,7 +1951,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Существительное</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Существительные  мужского, женского, среднего родов. Множественное число имен существительных. Склонение имен существительных: сильное, слабое, женское склонение существительных во множественном числе</li>
                     </ul>
                 </td>
@@ -1959,7 +1959,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Прилагательное и наречие</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Склонение имен прилагательных: сильное, слабое склонение, склонение прилагательных после неопределенного артикля, притяжательных местоимений, отрицательного местоимения kein/e, степени сравнения прилагательных и наречий</li>
                     </ul>
                 </td>
@@ -1967,7 +1967,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Местоимения</td>
                 <td>    
-                    <ul>
+                    <ul class="list-normal">
                         <li>Личные, притяжательные, указательные, отрицательные, относительные местоимения, возвратное местоимение sich, безличное местоимение es и неопределенно-личное местоимение man</li>
                     </ul>
                 </td>
@@ -1975,7 +1975,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Числительные</td>
                 <td>    
-                    <ul>
+                    <ul class="list-normal">
                         <li>Количественные, порядковые, составные числительные</li>
                     </ul>
                 </td>
@@ -1983,7 +1983,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Словообразование</td>
                 <td>    
-                    <ul>
+                    <ul class="list-normal">
                         <li>Приставки, суффиксы, окончания, сложные слова</li>
                     </ul>
                 </td>
@@ -1991,7 +1991,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Части речи</td>
                 <td>    
-                    <ul>
+                    <ul class="list-normal">
                         <li>Имя существительное. Категория числа существительного. Притяжательная форма существительного</li>
                         <li>Местоимение: личные, притяжательные, возвратные, указательные, неопределенные и отрицательные, вопросительные и относительные</li>
                         <li>Имя прилагательное и наречие. Степени сравнения</li>
@@ -2002,43 +2002,43 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Синтаксис</td>
                 <td>Предложения</td>
                 <td>    
-                    <ul>
+                    <ul class="list-normal">
                         <li>Порядок слов в предложении</li>
                         <li>Сложноподчиненные предложения, сложноподчиненные предложения</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Лексика и перевод</td>
                 <td></td>
                 <td>    
-                    <ul>
+                    <ul class="list-normal">
                         <li>Лексика и перевод</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Работа с текстом</td>
                 <td></td>
                 <td>    
-                    <ul>
+                    <ul class="list-normal">
                         <li>Работа с текстом</li>
                         <li>Микродиалог</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Страноведение</td>
                 <td></td>
                 <td>    
-                    <ul>
+                    <ul class="list-normal">
                         <li>Казахстан</li>
                         <li>Германия, немецкоговорящие страны</li>
                     </ul>
@@ -2056,11 +2056,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
@@ -2077,15 +2077,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -2141,11 +2141,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td rowspan="6">1</td>
+                <td rowspan="6" class="text-center">1</td>
                 <td rowspan="6">Морфология</td>
                 <td>Глагол</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Глагол. Present, Imparfait, Passe simple, futur simple, Passe compose. Plus-que-parfait. Future immediat. Passe immediat. Отрицательная форма глагола. Пассивная форма глагола. Инфинитив. Местоименные глаголы</li>
                         <li>Причастие (Participe present, Participe passe). Деепричастие (Gerondif)</li>
                         <li>Порядок слов в повелительном предложении. Условное наклонение Conditionnel. Сослагательное наклонение Subjonctif. Согласование времен в сложноподчиненных предложениях</li>
@@ -2155,7 +2155,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Прилагательные</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Род имен, число имен прилагательных</li>
                         <li>Указательные, притяжательные, вопросительные прилагательные</li>
                         <li>Степени сравнения прилагательных</li>
@@ -2166,7 +2166,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Существительное</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Род имен, число имен существительных</li>
                     </ul>
                 </td>
@@ -2174,7 +2174,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Служебные части речи</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Артикли: определенный, неопределенный, слитный. Частичный артикль. Предлоги. Употребление предлогов. Управление глаголов. Союзы.</li>
                     </ul>
                 </td>
@@ -2182,7 +2182,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Числительные</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Количественные, порядковые числительные</li>
                     </ul>
                 </td>
@@ -2190,7 +2190,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Местоимения</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Местоимение-дополнения. Относительные, притяжательные, указательные местоимения. Неопределенно-личное местоимение «on». Самостоятельные личные, адвербиальные, вопросительные местоимения</li>
                     </ul>
                 </td>
@@ -2198,49 +2198,49 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Наречие</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Образование наречии, степени сравнения наречия</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Лексика, перевод, фонетика</td>
                 <td>Лексика, перевод, фонетика</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Лексика, перевод, фонетика</li>
                         <li>Словообразовательные элементы: суффиксы существительных, прилагательных, наречий</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Синтаксис</td>
                 <td>Предложения</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Порядок слов в повествовательном и вопросительном предложениях. Постановка общего, специального, альтернативного вопроса. Косвенная речь</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>Страноведение</td>
                 <td>Страноведение</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Франция, франкоговорящие страны</li>
                         <li>Казахстан</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Работа с текстом</td>
                 <td>Работа с текстом</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Работа с текстом</li>
                     </ul>
                 </td>
@@ -2258,11 +2258,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
@@ -2279,15 +2279,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -2344,17 +2344,17 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td colspan="3">
-                    <ul>
+                    <ul class="list-normal">
                         <li>Қазақ тілі</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">1</td>
+                <td rowspan="1" class="text-center">1</td>
                 <td rowspan="1">Лексика</td>
                 <td>Сөз және сөздің мағыналары</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сөздің тура және ауыспалы мағынасы, көп мағыналы сөздер</li>
                         <li>Омоним, антоним, синоним</li>
                         <li>Тұрақты тіркес, мақал-мәтел</li>
@@ -2364,7 +2364,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сөздік қор</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Көнерген сөздер, неологизмдер</li>
                         <li>Кірме сөздер, диалект сөздер</li>
                         <li>Кәсіби сөздер мен терминдер</li>
@@ -2372,11 +2372,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="3">2</td>
+                <td rowspan="3" class="text-center">2</td>
                 <td rowspan="3">Фонетика</td>
                 <td>Дауысты дыбыстар</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Дауысты дыбыстардың түрлері</li>
                     </ul>
                 </td>
@@ -2384,7 +2384,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Дауыссыз дыбыстар</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Дауыссыз дыбыстардың түрлері</li>
                     </ul>
                 </td>
@@ -2392,7 +2392,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Буын және тасымал</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Буын түрлері, буынға бөліну ерекшеліктері, тасымал шарты</li>
                     </ul>
                 </td>
@@ -2400,28 +2400,28 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Үндестік заңы. Орфография, орфоэпия</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Буын үндестігі, буын үндестігіне бағынбайтын қосымшалар. Дыбыс үндестігі, ықпал түрлері</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Сөзжасам</td>
                 <td>Сөздік құрам</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Түбір сөз, туынды сөз</li>
                         <li>Күрделі сөз, түрлері</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="8">4</td>
+                <td rowspan="8" class="text-center">4</td>
                 <td rowspan="8">Морфология</td>
                 <td>Зат есім</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Зат есімнің мағыналық, құрамдық түрлері, қызметі</li>
                         <li>Зат есімнің жалғаулары, көмекші есім</li>
                     </ul>
@@ -2430,7 +2430,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сын есім</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сын есімнің жасалуы, түрлері, емлесі, қызметі</li>
                     </ul>
                 </td>
@@ -2438,7 +2438,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сан есім</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сан есімнің түрлері, емлесі, қызметі</li>
                     </ul>
                 </td>
@@ -2446,7 +2446,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Есімдік</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Есімдіктің түрлері, емлесі, қызметі</li>
                     </ul>
                 </td>
@@ -2454,7 +2454,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Етістік</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Етістіктің құрамдық, мағыналық түрлері, қызметі</li>
                         <li>Етістіктің шақтары, райлары</li>
                         <li>Көсемше мен есімше, етіс</li>
@@ -2465,7 +2465,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Үстеу</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Үстеудің түрлері, емлесі, қызметі</li>
                     </ul>
                 </td>
@@ -2473,7 +2473,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Еліктеу сөздер</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Еліктеу сөздердің түрлері, емлесі, қызметі</li>
                     </ul>
                 </td>
@@ -2481,7 +2481,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Одағай</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Одағай түрлері, тыныс белгісі</li>
                     </ul>
                 </td>
@@ -2489,17 +2489,17 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Шылау</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Шылаудың түрлері, емлесі</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="5">5</td>
+                <td rowspan="5" class="text-center">5</td>
                 <td rowspan="5">Синтаксис</td>
                 <td>Сөз тіркесі</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сөздердің байланысу тәсілдері мен түрлері</li>
                         <li>Сөз тіркесі, есімді және етістікті сөз тіркесі</li>
                     </ul>
@@ -2508,7 +2508,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сөйлем мүшелері</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Тұрлаулы мүшелер, қызметі</li>
                         <li>Тұрлаусыз мүшелер, қызметі</li>
                     </ul>
@@ -2517,7 +2517,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Жай сөйлем</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Айтылу мақсатына қарай сөйлем түрлері</li>
                         <li>Құрылысына, құрамына қарай сөйлем түрлері</li>
                     </ul>
@@ -2526,7 +2526,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Құрмалас сөйлем</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Салалас құрмалас сөйлем, жасалуы, түрлері</li>
                         <li>Сабақтас құрмалас сөйлем, жасалуы, түрлері</li>
                     </ul>
@@ -2535,7 +2535,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Оқшау сөздер. Қаратпа сөз. Қыстырма сөз.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Қаратпа, қыстырма сөздер, тыныс белгілері</li>
                     </ul>
                 </td>
@@ -2543,17 +2543,17 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Төл сөз</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Төл сөз, автор сөзі, төлеу сөз, тыныс белгілері</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">6</td>
+                <td rowspan="1" class="text-center">6</td>
                 <td rowspan="1">Пунктуация</td>
                 <td>Тыныс белгілері</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Тыныс белгілердің қойылатын орындары, қабаттаса қойылатын тыныс белгілер</li>
                     </ul>
                 </td>
@@ -2561,24 +2561,24 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Стилистика. Шешендік сөз</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Стиль түрлері. Шешендік сөз</li>
                     </ul>
                 </td>
             </tr>
             <tr>
                 <td colspan="3">
-                    <ul>
+                    <ul class="list-normal">
                         <li>Қазақ әдебиеті</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">1</td>
+                <td rowspan="1" class="text-center">1</td>
                 <td rowspan="1">Ежелгі дүние әдебиеті</td>
                 <td>Көне түркі дәуіріндегі әдебиет</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Алып Ер Тоңа дастаны, Күлтегін жазуы, Қорқыт ата кітабы, Оғыз қаған жыры</li>
                     </ul>
                 </td>
@@ -2586,18 +2586,18 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Ислам дәуіріндегі әдебиет</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Әбунасыр Әл-Фараби, Ахмет Иүгінеки, Ахмет Яссауи</li>
                         <li>Жүсіп Баласағұн, Махмұт Қашғари, Рабғузи, Сайф Сараи</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">2</td>
+                <td rowspan="1" class="text-center">2</td>
                 <td rowspan="1">Ауыз әдебиеті</td>
                 <td>Ауыз әдебиеті</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Тұрмыс-салт жырлары</li>
                         <li>Ертегілер</li>
                         <li>Мақал-мәтел, жұмбақтар</li>
@@ -2612,7 +2612,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Жыраулар поэзиясы</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Асан қайғы. Өмірі, шығармашылығы</li>
                         <li>Қазтуған. Өмірі, шығармашылығы</li>
                         <li>Доспамбет. Өмірі, шығармашылығы</li>
@@ -2625,11 +2625,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="3">3</td>
+                <td rowspan="3" class="text-center">3</td>
                 <td rowspan="3">ХІХ ғасырдағы әдебиет</td>
                 <td>ХІХ ғ. І жартысындағы әдебиет</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Махамбет Өтемісұлы</li>
                         <li>Дулат Бабатайұлы</li>
                         <li>Мұрат Мөңкеұлы</li>
@@ -2640,7 +2640,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>ХІХ ғ. І жартысындағы ағартушылар</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Шоқан Уәлиханов</li>
                         <li>Ыбырай Алтынсарин</li>
                     </ul>
@@ -2649,7 +2649,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Абай Құнанбайұлы</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Өмірі, өлеңдері</li>
                         <li>Поэмалары мен қара сөздері</li>
                     </ul>
@@ -2658,7 +2658,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>ХІХ ғ. ІІ жартысындағы әдебиет. Ақын - сазгер - әншілер</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Біржан сал</li>
                         <li>Ақан сері</li>
                         <li>Ә. Найманбаев</li>
@@ -2668,11 +2668,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>4</td>
+                <td class="text-center">4</td>
                 <td>ХХ ғ. І жартысындағы әдебиет</td>
                 <td>ХХ ғ. басындағы әдебиет</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Шәкәрім Құдайбердіұлы</li>
                         <li>Ахмет Байтұрсынов</li>
                         <li>Жүсіпбек Аймауытов</li>
@@ -2686,11 +2686,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">5</td>
+                <td rowspan="1" class="text-center">5</td>
                 <td rowspan="1">Ұлы Отан соғысы және одан кейінгі жылдардағы  әдебиет</td>
                 <td>Ұлы Отан соғысы және одан кейінгі жылдардағы  әдебиет</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Қасым Аманжолов</li>
                         <li>Жамбыл Жабаев</li>
                         <li>Сәбит Мұқанов</li>
@@ -2702,7 +2702,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Мұхтар Әуезов</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Өмірі, шығармашылығы</li>
                         <li>1920-1930 жж. әңгімелері, аудармалары</li>
                         <li>Драматургиясы</li>
@@ -2711,11 +2711,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Әдебиет теориясы</td>
                 <td>Көркемдегіш, бейнелеуіш құралдар</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Троп және оның түрлері</li>
                         <li>Фигура және оның түрлері</li>
                         <li>Өлең құрылымы, ұйқасы</li>
@@ -2723,11 +2723,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">7</td>
+                <td rowspan="1" class="text-center">7</td>
                 <td rowspan="1">ХХ ғ. ІІ жартысындағы әдебиет</td>
                 <td>ХХ ғ. ІІ жартысындағы поэзия</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>М.Мақатаев, Қ.Мырзалиев</li>
                         <li>Т.Молдағалиев, Ф.Оңғарсынова, Ж.Молдағалиев</li>
                         <li>О.Сүлейменов, М.Шаханов, Ж.Нәжімеденов</li>
@@ -2738,7 +2738,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>ХХ ғ. ІІ жартысындағы проза мен драматургия</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>І.Есенберлин, Х.Есенжанов</li>
                         <li>Ә.Нұрпейісов, Т.Ахтанов, Б.Момышұлы</li>
                         <li>М.Мағауин, Д.Исабеков</li>
@@ -2760,11 +2760,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
@@ -2781,15 +2781,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -2842,17 +2842,17 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td colspan="3">
-                    <ul>
+                    <ul class="list-normal">
                         <li>Қазақ тілі</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">1</td>
+                <td rowspan="1" class="text-center">1</td>
                 <td rowspan="1">Лексика</td>
                 <td>Сөз және сөздің мағыналары</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сөздің тура және ауыспалы мағынасы, көп мағыналы сөздер</li>
                         <li>Омоним, антоним, синоним</li>
                         <li>Тұрақты тіркес, мақал-мәтел</li>
@@ -2862,7 +2862,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сөздік қор</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Көнерген сөздер, неологизмдер</li>
                         <li>Кірме сөздер, диалект сөздер</li>
                         <li>Кәсіби сөздер мен терминдер</li>
@@ -2870,11 +2870,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="3">2</td>
+                <td rowspan="3" class="text-center">2</td>
                 <td rowspan="3">Фонетика</td>
                 <td>Дауысты дыбыстар</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Дауысты дыбыстардың түрлері</li>
                     </ul>
                 </td>
@@ -2882,7 +2882,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Дауыссыз дыбыстар</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Дауыссыз дыбыстардың түрлері</li>
                     </ul>
                 </td>
@@ -2890,7 +2890,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Буын және тасымал</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Буын түрлері, буынға бөліну ерекшеліктері, тасымал шарты</li>
                     </ul>
                 </td>
@@ -2898,28 +2898,28 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Үндестік заңы. Орфография, орфоэпия</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Буын үндестігі, буын үндестігіне бағынбайтын қосымшалар. Дыбыс үндестігі, ықпал түрлері</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Сөзжасам</td>
                 <td>Сөздік құрам</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Түбір сөз, туынды сөз</li>
                         <li>Күрделі сөз, түрлері</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="8">4</td>
+                <td rowspan="8" class="text-center">4</td>
                 <td rowspan="8">Морфология</td>
                 <td>Зат есім</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Зат есімнің мағыналық, құрамдық түрлері, қызметі</li>
                         <li>Зат есімнің жалғаулары, көмекші есім</li>
                     </ul>
@@ -2928,7 +2928,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сын есім</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сын есімнің жасалуы, түрлері, емлесі, қызметі</li>
                     </ul>
                 </td>
@@ -2936,7 +2936,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сан есім</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сан есімнің түрлері, емлесі, қызметі</li>
                     </ul>
                 </td>
@@ -2944,7 +2944,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Есімдік</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Есімдіктің түрлері, емлесі, қызметі</li>
                     </ul>
                 </td>
@@ -2952,7 +2952,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Етістік</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Етістіктің құрамдық, мағыналық түрлері, қызметі</li>
                         <li>Етістіктің шақтары, райлары</li>
                         <li>Көсемше мен есімше, етіс</li>
@@ -2963,7 +2963,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Үстеу</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Үстеудің түрлері, емлесі, қызметі</li>
                     </ul>
                 </td>
@@ -2971,7 +2971,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Еліктеу сөздер</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Еліктеу сөздердің түрлері, емлесі, қызметі</li>
                     </ul>
                 </td>
@@ -2979,7 +2979,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Одағай</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Одағай түрлері, тыныс белгісі</li>
                     </ul>
                 </td>
@@ -2987,17 +2987,17 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Шылау</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Шылаудың түрлері, емлесі</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="5">5</td>
+                <td rowspan="5" class="text-center">5</td>
                 <td rowspan="5">Синтаксис</td>
                 <td>Сөз тіркесі</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сөздердің байланысу тәсілдері мен түрлері</li>
                         <li>Сөз тіркесі, есімді және етістікті сөз тіркесі</li>
                     </ul>
@@ -3006,7 +3006,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сөйлем мүшелері</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Тұрлаулы мүшелер, қызметі</li>
                         <li>Тұрлаусыз мүшелер, қызметі</li>
                     </ul>
@@ -3015,7 +3015,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Жай сөйлем</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Айтылу мақсатына қарай сөйлем түрлері</li>
                         <li>Құрылысына, құрамына қарай сөйлем түрлері</li>
                     </ul>
@@ -3024,7 +3024,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Құрмалас сөйлем</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Салалас құрмалас сөйлем, жасалуы, түрлері</li>
                         <li>Сабақтас құрмалас сөйлем, жасалуы, түрлері</li>
                     </ul>
@@ -3033,7 +3033,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Оқшау сөздер. Қаратпа сөз. Қыстырма сөз.</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Қаратпа, қыстырма сөздер, тыныс белгілері</li>
                     </ul>
                 </td>
@@ -3041,17 +3041,17 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Төл сөз</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Төл сөз, автор сөзі, төлеу сөз, тыныс белгілері</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">6</td>
+                <td rowspan="1" class="text-center">6</td>
                 <td rowspan="1">Пунктуация</td>
                 <td>Тыныс белгілері</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Тыныс белгілердің қойылатын орындары, қабаттаса қойылатын тыныс белгілер</li>
                     </ul>
                 </td>
@@ -3059,24 +3059,24 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Стилистика. Шешендік сөз</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Стиль түрлері. Шешендік сөз</li>
                     </ul>
                 </td>
             </tr>
             <tr>
                 <td colspan="3">
-                    <ul>
+                    <ul class="list-normal">
                         <li>Қазақ әдебиеті</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">1</td>
+                <td rowspan="1" class="text-center">1</td>
                 <td rowspan="1">Ежелгі дүние әдебиеті</td>
                 <td>Көне түркі дәуіріндегі әдебиет</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Алып Ер Тоңа дастаны, Күлтегін жазуы, Қорқыт ата кітабы, Оғыз қаған жыры</li>
                     </ul>
                 </td>
@@ -3084,18 +3084,18 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Ислам дәуіріндегі әдебиет</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Әбунасыр Әл-Фараби, Ахмет Иүгінеки, Ахмет Яссауи</li>
                         <li>Жүсіп Баласағұн, Махмұт Қашғари, Рабғузи, Сайф Сараи</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">2</td>
+                <td rowspan="1" class="text-center">2</td>
                 <td rowspan="1">Ауыз әдебиеті</td>
                 <td>Ауыз әдебиеті</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Тұрмыс-салт жырлары</li>
                         <li>Ертегілер</li>
                         <li>Мақал-мәтел, жұмбақтар</li>
@@ -3110,7 +3110,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Жыраулар поэзиясы</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Асан қайғы. Өмірі, шығармашылығы</li>
                         <li>Қазтуған. Өмірі, шығармашылығы</li>
                         <li>Доспамбет. Өмірі, шығармашылығы</li>
@@ -3127,7 +3127,7 @@ def update_test_specifications(apps, schema_editor):
                 <td rowspan="3">ХІХ ғасырдағы әдебиет</td>
                 <td>ХІХ ғ. І жартысындағы әдебиет</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Махамбет Өтемісұлы</li>
                         <li>Дулат Бабатайұлы</li>
                         <li>Мұрат Мөңкеұлы</li>
@@ -3138,7 +3138,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>ХІХ ғ. І жартысындағы ағартушылар</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Шоқан Уәлиханов</li>
                         <li>Ыбырай Алтынсарин</li>
                     </ul>
@@ -3147,7 +3147,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Абай Құнанбайұлы</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Өмірі, өлеңдері</li>
                         <li>Поэмалары мен қара сөздері</li>
                     </ul>
@@ -3156,7 +3156,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>ХІХ ғ. ІІ жартысындағы әдебиет. Ақын - сазгер - әншілер</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Біржан сал</li>
                         <li>Ақан сері</li>
                         <li>Ә. Найманбаев</li>
@@ -3170,7 +3170,7 @@ def update_test_specifications(apps, schema_editor):
                 <td>ХХ ғ. І жартысындағы әдебиет</td>
                 <td>ХХ ғ. басындағы әдебиет</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Шәкәрім Құдайбердіұлы</li>
                         <li>Ахмет Байтұрсынов</li>
                         <li>Жүсіпбек Аймауытов</li>
@@ -3188,7 +3188,7 @@ def update_test_specifications(apps, schema_editor):
                 <td rowspan="1">Ұлы Отан соғысы және одан кейінгі жылдардағы  әдебиет</td>
                 <td>Ұлы Отан соғысы және одан кейінгі жылдардағы  әдебиет</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Қасым Аманжолов</li>
                         <li>Жамбыл Жабаев</li>
                         <li>Сәбит Мұқанов</li>
@@ -3200,7 +3200,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Мұхтар Әуезов</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Өмірі, шығармашылығы</li>
                         <li>1920-1930 жж. әңгімелері, аудармалары</li>
                         <li>Драматургиясы</li>
@@ -3209,11 +3209,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Әдебиет теориясы</td>
                 <td>Көркемдегіш, бейнелеуіш құралдар</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Троп және оның түрлері</li>
                         <li>Фигура және оның түрлері</li>
                         <li>Өлең құрылымы, ұйқасы</li>
@@ -3221,11 +3221,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">7</td>
+                <td rowspan="1" class="text-center">7</td>
                 <td rowspan="1">ХХ ғ. ІІ жартысындағы әдебиет</td>
                 <td>ХХ ғ. ІІ жартысындағы поэзия</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>М.Мақатаев, Қ.Мырзалиев</li>
                         <li>Т.Молдағалиев, Ф.Оңғарсынова, Ж.Молдағалиев</li>
                         <li>О.Сүлейменов, М.Шаханов, Ж.Нәжімеденов</li>
@@ -3236,7 +3236,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>ХХ ғ. ІІ жартысындағы проза мен драматургия</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>І.Есенберлин, Х.Есенжанов</li>
                         <li>Ә.Нұрпейісов, Т.Ахтанов, Б.Момышұлы</li>
                         <li>М.Мағауин, Д.Исабеков</li>
@@ -3258,11 +3258,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
@@ -3279,15 +3279,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -3344,17 +3344,17 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td colspan="3">
-                    <ul>
+                    <ul class="list-normal">
                         <li>Русский язык</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="2">1</td>
+                <td rowspan="2" class="text-center">1</td>
                 <td rowspan="2">Фонетика и орфография</td>
                 <td>Звуки и буквы. Звуки речи</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Гласные и согласные звуки и буквы</li>
                         <li>Двойная роль букв Е, Ё, Ю, Я</li>
                         <li>Твердые и мягкие, звонкие и глухие согласные</li>
@@ -3364,7 +3364,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Правописание гласных</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Правописание безударных гласных в корне</li>
                         <li>Правописание чередующихся гласных в корне</li>
                         <li>Правописание гласных после шипящих и Ц</li>
@@ -3374,7 +3374,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Правописание согласных</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Правописание звонких и глухих согласных</li>
                         <li>Непроизносимые согласные. Удвоенные согласные</li>
                         <li>Употребление Ь и Ъ</li>
@@ -3382,11 +3382,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">2</td>
+                <td rowspan="1" class="text-center">2</td>
                 <td rowspan="1">Лексикология</td>
                 <td>Лексическое значение слова</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Однозначные и многозначные слова</li>
                         <li>Прямое и переносное значение слова</li>
                         <li>Лексические группы слов (синонимы, антонимы, омонимы, паронимы)</li>
@@ -3397,17 +3397,17 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Фразеология</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Фразеологические обороты</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">3</td>
+                <td rowspan="1" class="text-center">3</td>
                 <td rowspan="1">Морфемика и словообразование</td>
                 <td>Морфемика</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Значимые части слова (морфемы)</li>
                     </ul>
                 </td>
@@ -3415,18 +3415,18 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Словообразование</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Морфологические и неморфологические способы словообразования</li>
                         <li>Правописание приставок (гласные в приставках)</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">4</td>
+                <td rowspan="1" class="text-center">4</td>
                 <td rowspan="1">Морфология</td>
                 <td>Самостоятельные части речи</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Имя существительное</li>
                         <li>Имя прилагательное</li>
                         <li>Имя числительное</li>
@@ -3439,18 +3439,18 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Служебные части речи и междометие</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Служебные части речи</li>
                         <li>Междометие и звукоподражательные слова</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="4">5</td>
+                <td rowspan="4" class="text-center">5</td>
                 <td rowspan="4">Синтаксис и пунктуация</td>
                 <td>Словосочетание</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Виды словосочетаний. Виды подчинительной связи</li>
                     </ul>
                 </td>
@@ -3458,7 +3458,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Простое предложение</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Главные члены предложения. Неполные предложения</li>
                         <li>Второстепенные члены предложения</li>
                         <li>Двусоставные и односоставные предложения</li>
@@ -3468,7 +3468,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Простое осложненное предложение</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Однородные члены предложения</li>
                         <li>Предложения с обособленными и уточняющими членами предложения</li>
                         <li>Предложения со словами, грамматически не связанными с членами предложения</li>
@@ -3478,7 +3478,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сложное предложения</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сложносочиненные предложения</li>
                         <li>Сложноподчиненное предложение</li>
                         <li>Бессоюзное сложное предложение</li>
@@ -3489,7 +3489,7 @@ def update_test_specifications(apps, schema_editor):
              <tr>
                 <td>Способы передачи чужой речи</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Предложения с прямой и косвенной речью</li>
                         <li>Диалог и цитата</li>
                     </ul>
@@ -3497,17 +3497,17 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td colspan="3">
-                    <ul>
+                    <ul class="list-normal">
                         <li>Русская литература</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="3">1</td>
+                <td rowspan="3" class="text-center">1</td>
                 <td rowspan="3">Теория литературы</td>
                 <td>Изобразительно-выразительные средства языка</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Тропы фигуры</li>
                     </ul>
                 </td>
@@ -3515,7 +3515,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Родо-жанровые особенности</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Роды и жанры фольклора</li>
                         <li>Роды и жанры литературы</li>
                     </ul>
@@ -3524,7 +3524,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Структура художественного произведения</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сюжет и элементы сюжетной композиции</li>
                         <li>Размер стиха, способы рифмовки</li>
                     </ul>
@@ -3533,18 +3533,18 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Литературоведческие термины</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Литературные направления</li>
                         <li>Компоненты художественного мира</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Биография</td>
                 <td>Биографические факты</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Факты биографий писателей. История создания произведений</li>
                         <li>Вклад в развитие литературы</li>
                         <li>Историческая обстановка, характер эпохи</li>
@@ -3552,22 +3552,22 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Литературная критика</td>
                 <td>Критика</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Название критических статей. Авторы  критических статей</li>
                         <li>Ключевые идеи критических статей. Цитаты</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">4</td>
+                <td rowspan="1" class="text-center">4</td>
                 <td rowspan="1">Роль эпизодов</td>
                 <td>Роль эпизодов (сцен) в развитии темы</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Место эпизода в произведении. Значение эпизода в развитии темы и идеи</li>
                     </ul>
                 </td>
@@ -3575,7 +3575,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Идеи, характеры в эпическом и драматическом произведении, мотивы и образы в лирическом произведении</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Основные темы и идеи в эпических произведениях</li>
                         <li>Основные темы и мотивы в лирических произведениях</li>
                         <li>Особенности конфликта в драматических произведениях</li>
@@ -3583,11 +3583,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Сквозные темы</td>
                 <td>Сквозные темы в группе произведений</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Тема «маленького человека»</li>
                         <li>Тема «лишних людей»</li>
                         <li>Конфликт «отцов и детей»</li>
@@ -3601,11 +3601,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Содержание произведений</td>
                 <td>Содержание произведений</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Название произведения. Автор произведения</li>
                         <li>Герои произведения. Система образов-персонажей</li>
                         <li>Основные события произведения</li>
@@ -3624,11 +3624,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
@@ -3645,15 +3645,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -3707,17 +3707,17 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td colspan="3">
-                    <ul>
+                    <ul class="list-normal">
                         <li>Русский язык</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="2">1</td>
+                <td rowspan="2" class="text-center">1</td>
                 <td rowspan="2">Фонетика и орфография</td>
                 <td>Звуки и буквы. Звуки речи</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Гласные и согласные звуки и буквы</li>
                         <li>Двойная роль букв Е, Ё, Ю, Я</li>
                         <li>Твердые и мягкие, звонкие и глухие согласные</li>
@@ -3727,7 +3727,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Правописание гласных</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Правописание безударных гласных в корне</li>
                         <li>Правописание чередующихся гласных в корне</li>
                         <li>Правописание гласных после шипящих и Ц</li>
@@ -3737,7 +3737,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Правописание согласных</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Правописание звонких и глухих согласных</li>
                         <li>Непроизносимые согласные. Удвоенные согласные</li>
                         <li>Употребление Ь и Ъ</li>
@@ -3745,11 +3745,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">2</td>
+                <td rowspan="1" class="text-center">2</td>
                 <td rowspan="1">Лексикология</td>
                 <td>Лексическое значение слова</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Однозначные и многозначные слова</li>
                         <li>Прямое и переносное значение слова</li>
                         <li>Лексические группы слов (синонимы, антонимы, омонимы, паронимы)</li>
@@ -3760,17 +3760,17 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Фразеология</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Фразеологические обороты</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">3</td>
+                <td rowspan="1" class="text-center">3</td>
                 <td rowspan="1">Морфемика и словообразование</td>
                 <td>Морфемика</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Значимые части слова (морфемы)</li>
                     </ul>
                 </td>
@@ -3778,18 +3778,18 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Словообразование</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Морфологические и неморфологические способы словообразования</li>
                         <li>Правописание приставок (гласные в приставках)</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">4</td>
+                <td rowspan="1" class="text-center">4</td>
                 <td rowspan="1">Морфология</td>
                 <td>Самостоятельные части речи</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Имя существительное</li>
                         <li>Имя прилагательное</li>
                         <li>Имя числительное</li>
@@ -3802,18 +3802,18 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Служебные части речи и междометие</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Служебные части речи</li>
                         <li>Междометие и звукоподражательные слова</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="4">5</td>
+                <td rowspan="4" class="text-center">5</td>
                 <td rowspan="4">Синтаксис и пунктуация</td>
                 <td>Словосочетание</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Виды словосочетаний. Виды подчинительной связи</li>
                     </ul>
                 </td>
@@ -3821,7 +3821,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Простое предложение</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Главные члены предложения. Неполные предложения</li>
                         <li>Второстепенные члены предложения</li>
                         <li>Двусоставные и односоставные предложения</li>
@@ -3831,7 +3831,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Простое осложненное предложение</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Однородные члены предложения</li>
                         <li>Предложения с обособленными и уточняющими членами предложения</li>
                         <li>Предложения со словами, грамматически не связанными с членами предложения</li>
@@ -3841,7 +3841,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Сложное предложения</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сложносочиненные предложения</li>
                         <li>Сложноподчиненное предложение</li>
                         <li>Бессоюзное сложное предложение</li>
@@ -3852,7 +3852,7 @@ def update_test_specifications(apps, schema_editor):
              <tr>
                 <td>Способы передачи чужой речи</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Предложения с прямой и косвенной речью</li>
                         <li>Диалог и цитата</li>
                     </ul>
@@ -3860,17 +3860,17 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td colspan="3">
-                    <ul>
+                    <ul class="list-normal">
                         <li>Русская литература</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="3">1</td>
+                <td rowspan="3" class="text-center">1</td>
                 <td rowspan="3">Теория литературы</td>
                 <td>Изобразительно-выразительные средства языка</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Тропы фигуры</li>
                     </ul>
                 </td>
@@ -3878,7 +3878,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Родо-жанровые особенности</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Роды и жанры фольклора</li>
                         <li>Роды и жанры литературы</li>
                     </ul>
@@ -3887,7 +3887,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Структура художественного произведения</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Сюжет и элементы сюжетной композиции</li>
                         <li>Размер стиха, способы рифмовки</li>
                     </ul>
@@ -3896,18 +3896,18 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Литературоведческие термины</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Литературные направления</li>
                         <li>Компоненты художественного мира</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Биография</td>
                 <td>Биографические факты</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Факты биографий писателей. История создания произведений</li>
                         <li>Вклад в развитие литературы</li>
                         <li>Историческая обстановка, характер эпохи</li>
@@ -3915,22 +3915,22 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="text-center">3</td>
                 <td>Литературная критика</td>
                 <td>Критика</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Название критических статей. Авторы  критических статей</li>
                         <li>Ключевые идеи критических статей. Цитаты</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">4</td>
+                <td rowspan="1" class="text-center">4</td>
                 <td rowspan="1">Роль эпизодов</td>
                 <td>Роль эпизодов (сцен) в развитии темы</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Место эпизода в произведении. Значение эпизода в развитии темы и идеи</li>
                     </ul>
                 </td>
@@ -3938,7 +3938,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Идеи, характеры в эпическом и драматическом произведении, мотивы и образы в лирическом произведении</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Основные темы и идеи в эпических произведениях</li>
                         <li>Основные темы и мотивы в лирических произведениях</li>
                         <li>Особенности конфликта в драматических произведениях</li>
@@ -3946,11 +3946,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>5</td>
+                <td class="text-center">5</td>
                 <td>Сквозные темы</td>
                 <td>Сквозные темы в группе произведений</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Тема «маленького человека»</li>
                         <li>Тема «лишних людей»</li>
                         <li>Конфликт «отцов и детей»</li>
@@ -3964,11 +3964,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td>6</td>
+                <td class="text-center">6</td>
                 <td>Содержание произведений</td>
                 <td>Содержание произведений</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Название произведения. Автор произведения</li>
                         <li>Герои произведения. Система образов-персонажей</li>
                         <li>Основные события произведения</li>
@@ -3987,11 +3987,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Цели оценивания</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
         </tbody>
@@ -4008,15 +4008,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -4064,22 +4064,22 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Человек</td>
                 <td>Человек в мире</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Проблема человека. Человек и взаимоотношение людей. Свобода, необходимость и ответственность в человеческой деятельности </li>
                         <li>Человек и культура. Человек и его мировоззрение. Познавательное отношение человека к миру</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="2">2</td>
+                <td rowspan="2" class="text-center">2</td>
                 <td rowspan="2">Общество</td>
                 <td>Социальная сфера</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Понятие общества</li>
                         <li>Личность и общество</li>
                         <li>Современное общество</li>
@@ -4093,7 +4093,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Экономическая сфера</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Экономическая жизнь общества</li>
                         <li>Экономическое поведение рыночных субъектов</li>
                         <li>Что такое экономическая теория</li>
@@ -4103,7 +4103,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Духовная сфера</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Духовная жизнь человека</li>
                         <li>Духовная культура</li>
                         <li>Что такое философия</li>
@@ -4113,11 +4113,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="2">3</td>
+                <td rowspan="2" class="text-center">3</td>
                 <td rowspan="2">Политика и право</td>
                 <td>Основы политологии (или Политика)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Политическая жизнь общества</li>
                         <li>Политическая система</li>
                         <li>Что такое политология</li>
@@ -4128,7 +4128,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Конституционное право</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Конституция – основной закон РК</li>
                         <li>Права и обязанности человека и гражданина</li>
                         <li>РК – правовое государство</li>
@@ -4140,7 +4140,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Введение в юриспруденцию</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Понятие права и основных правовых явлений</li>
                         <li>Основные понятия базовых отраслей Казахстанского права</li>
                         <li>Основные отрасли частного права</li>
@@ -4163,15 +4163,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>
@@ -4216,22 +4216,22 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td class="text-center">1</td>
                 <td>Человек</td>
                 <td>Человек в мире</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Проблема человека. Человек и взаимоотношение людей. Свобода, необходимость и ответственность в человеческой деятельности </li>
                         <li>Человек и культура. Человек и его мировоззрение. Познавательное отношение человека к миру</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="2">2</td>
+                <td rowspan="2" class="text-center">2</td>
                 <td rowspan="2">Общество</td>
                 <td>Социальная сфера</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Понятие общества</li>
                         <li>Личность и общество</li>
                         <li>Современное общество</li>
@@ -4245,7 +4245,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Экономическая сфера</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Экономическая жизнь общества</li>
                         <li>Экономическое поведение рыночных субъектов</li>
                         <li>Что такое экономическая теория</li>
@@ -4255,7 +4255,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Духовная сфера</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Духовная жизнь человека</li>
                         <li>Духовная культура</li>
                         <li>Что такое философия</li>
@@ -4265,11 +4265,11 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="2">3</td>
+                <td rowspan="2" class="text-center">3</td>
                 <td rowspan="2">Политика и право</td>
                 <td>Основы политологии (или Политика)</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Политическая жизнь общества</li>
                         <li>Политическая система</li>
                         <li>Что такое политология</li>
@@ -4280,7 +4280,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Конституционное право</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Конституция – основной закон РК</li>
                         <li>Права и обязанности человека и гражданина</li>
                         <li>РК – правовое государство</li>
@@ -4292,7 +4292,7 @@ def update_test_specifications(apps, schema_editor):
             <tr>
                 <td>Введение в юриспруденцию</td>
                 <td>
-                    <ul>
+                    <ul class="list-normal">
                         <li>Понятие права и основных правовых явлений</li>
                         <li>Основные понятия базовых отраслей Казахстанского права</li>
                         <li>Основные отрасли частного права</li>
@@ -4315,15 +4315,15 @@ def update_test_specifications(apps, schema_editor):
             </tr>
             <tr>
                 <td>Высокий</td>
-                <td>7</td>
+                <td class="text-center">7</td>
             </tr>
             <tr>
                 <td>Средний</td>
-                <td>8</td>
+                <td class="text-center">8</td>
             </tr>
             <tr>
                 <td>Легкий</td>
-                <td>15</td>
+                <td class="text-center">15</td>
             </tr>
         </tbody>
     </table>

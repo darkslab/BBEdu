@@ -76,7 +76,7 @@ class TestQuestionForm(ModelForm):
 
                 clean_choice["choice_class"] = choice["choice_class"]
                 if clean_choice["choice_class"] not in (
-                        "MultichoiceTextChoice",
+                    "MultichoiceTextChoice",
                 ):
                     raise ValueError("Incorrect meta_data")
 
@@ -133,7 +133,7 @@ class TestQuestionForm(ModelForm):
 
                 clean_choice["choice_class"] = choice["choice_class"]
                 if clean_choice["choice_class"] not in (
-                        "MultichoiceTextChoice",
+                    "MultichoiceTextChoice",
                 ):
                     raise ValueError("Incorrect meta_data")
 
@@ -646,51 +646,27 @@ class TestForm(ModelForm):
         elif test.section.id in (9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559):
             for i in range(test.section.question_count):
                 choice_id = randint(0x0000, 0xffff)
-
-                if i < 20:
-                    meta_data = {
-                        "choices": [
-                            {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                        ],
-                        "correct_id": None,
-                    }
-                    question = test.questions.create(
-                        answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
-                        meta_data=meta_data,
-                        weight=test.section.question_weight,
-                        order=i,
-                    )
-                else:
-                    meta_data = {
-                        "choices": [
-                            {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                        ],
-                        "correct_ids": [],
-                    }
-                    question = test.questions.create(
-                        answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI,
-                        meta_data=meta_data,
-                        weight=test.section.question_weight,
-                        order=i,
-                    )
+                meta_data = {
+                    "choices": [
+                        {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
+                         "meta_data": {"text": ""}},
+                        {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
+                         "meta_data": {"text": ""}},
+                        {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
+                         "meta_data": {"text": ""}},
+                        {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
+                         "meta_data": {"text": ""}},
+                        {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
+                         "meta_data": {"text": ""}},
+                    ],
+                    "correct_ids": [],
+                }
+                question = test.questions.create(
+                    answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI,
+                    meta_data=meta_data,
+                    weight=test.section.question_weight,
+                    order=i,
+                )
 
                 paragraph = TestParagraph.objects.create(
                     paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
