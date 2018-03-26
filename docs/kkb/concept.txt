@@ -44,6 +44,8 @@ Cart data:
     <item number="2" name="Шнур 2м." quantity="2" amount="200"/>
 </document>
 
+echo -n '<document><item number="1" name="Test 1" quantity="1" amount="100.00"/></document>' | base64
+
 
 
 

@@ -2,9 +2,6 @@
 
 
 
-
-
-
 class Payment:
     def __init__(self):
         pass
@@ -41,9 +38,6 @@ class QazkomPayment(Payment):
 
 class FirstQazkomPayment(QazkomPayment):
     pass
-
-
-
 
 
 
