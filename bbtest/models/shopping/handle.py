@@ -67,6 +67,9 @@ class CartHandle:
     def total(self):
         return self.subtotal() - self.discount()
 
+    def cart_id(self):
+        return self.__cart.pk
+
     def complete(self):
         if not len(self.__items()):
             raise CartHandleError("Cart is empty")
@@ -92,7 +95,7 @@ class CartHandle:
                 if not self.__cart.is_current:
                     raise CartHandleError("Cannot save a non-current cart")
                 self.__cart.discount = self.discount()
-                if self.__cart.pk is None:
+                if self.cart_id() is None:
                     self.__cart.save()
                     lock_safe = True
 
