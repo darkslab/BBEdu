@@ -148,31 +148,31 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">#</th>
                 <th class="text-center">Раздел</th>
             </tr>
-            <tr class="text-center">
+            <tr>
                 <td class="text-center">1</td>
                 <td>Арифметические вычисления. Преобразования выражений.</td>
             </tr>
-            <tr class="text-center">
+            <tr>
                 <td class="text-center">2</td>
                 <td>Уравнения. Системы уравнений. Составление уравнений.</td>
             </tr>
-            <tr class="text-center">
+            <tr>
                 <td class="text-center">3</td>
                 <td>Неравенства. Системы неравенств.</td>
             </tr>
-            <tr class="text-center">
+            <tr>
                 <td class="text-center">4</td>
                 <td>Функции. Производные. Интеграл.</td>
             </tr>
-            <tr class="text-center">
+            <tr>
                 <td class="text-center">5</td>
                 <td>Планиметрия.</td>
             </tr>
-            <tr class="text-center">
+            <tr>
                 <td class="text-center">6</td>
                 <td>Стереометрия.</td>
             </tr>
-            <tr class="text-center">
+            <tr>
                 <td class="text-center">7</td>
                 <td>Последовательности. Прогрессии.</td>
             </tr>
@@ -187,11 +187,11 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">#</th>
                 <th class="text-center">Цели оценивания</th>
             </tr>
-            <tr class="text-center">
+            <tr>
                 <td class="text-center">1</td>
                 <td>Знание</td>
             </tr>
-            <tr class="text-center">
+            <tr>
                 <td class="text-center">2</td>
                 <td>Применение</td>
             </tr>
@@ -237,7 +237,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Все тестовые вопросы должны соответствовать учебной программе для общеобразовательной школы по предмету «Физика», разработанного в соответствии с государственным общеобязательным стандартом образования Республики Казахстан.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -348,7 +348,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Все тестовые вопросы должны соответствовать учебной программе для общеобразовательной школы по предмету «Физика», разработанного в соответствии с государственным общеобязательным стандартом образования Республики Казахстан.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -461,7 +461,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Все тестовые вопросы должны соответствовать учебной программе для общеобразовательной школы по предмету «Химия», разработанного в соответствии с государственным общеобязательным стандартом образования Республики Казахстан.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -576,7 +576,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Все тестовые вопросы должны соответствовать учебной программе для общеобразовательной школы по предмету «Химия», разработанного в соответствии с государственным общеобязательным стандартом образования Республики Казахстан.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -693,7 +693,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Все тестовые вопросы должны соответствовать учебной программе для общеобразовательной школы по предмету «Биология», разработанного в соответствии с государственным общеобязательным стандартом образования Республики Казахстан.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -799,7 +799,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Все тестовые вопросы должны соответствовать учебной программе для общеобразовательной школы по предмету «Биология», разработанного в соответствии с государственным общеобязательным стандартом образования Республики Казахстан.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -907,7 +907,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Все тестовые вопросы должны соответствовать учебной программе для общеобразовательной школы по предмету «География», разработанного в соответствии с государственным общеобязательным стандартом образования Республики Казахстан.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -1005,7 +1005,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Все тестовые вопросы должны соответствовать учебной программе для общеобразовательной школы по предмету «География», разработанного в соответствии с государственным общеобязательным стандартом образования Республики Казахстан.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -1105,7 +1105,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Содержание тестовых вопросов должно соответствовать учебному материалу по предмету «История» в соответствии с учебной программой для общеобразовательной школы.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -1366,8 +1366,8 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span></p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.1.</span></p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span>Требования по формированию вариантов теста:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.1.</span>Один вариант должен содержать 30 тестовых вопросов с разделением на предполагаемый уровень сложности:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
         <tbody>
@@ -1390,7 +1390,7 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2.</span></p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
 """
                 },
 
@@ -1402,7 +1402,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Содержание тестовых вопросов должно соответствовать учебному материалу по предмету «История» в соответствии с учебной программой для общеобразовательной школы.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -1663,8 +1663,8 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span></p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.1.</span></p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.</span>Требования по формированию вариантов теста:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.1.</span>Один вариант должен содержать 30 тестовых вопросов с разделением на предполагаемый уровень сложности:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
         <tbody>
@@ -1687,7 +1687,7 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2.</span></p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
 """,
                 },
             }
@@ -1701,7 +1701,7 @@ def update_test_specifications(apps, schema_editor):
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">2.</span>Предоставить комментарий/рекомендаций пошагового определения правильного ответа к каждому тестовому вопросу для работы над ошибками на русском языке.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">3.</span>Все тестовые вопросы должны соответствовать учебной программе для общеобразовательной школы по предмету «Английский язык», разработанного в соответствии с государственным общеобязательным стандартом образования Республики Казахстан.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">4.</span>Тестовые вопросы НЕ должны принадлежать интеллектуальной собственности государственных казенных предприятий и других структур Министерства образования и науки Республики Казахстан, автономных организаций образования, других юридических и физически лиц. Тестовые вопросы должны быть защищены от несанкционированного просмотра, скачивания, копирования и дальнейшего использования третьими лицами.</p>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.</span>Требования к составлению тестовых вопросов:</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.1.</span>В вопросах должны отсутствовать орфографические ошибки и ошибки на пунктуацию;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.2.</span>В формулировке тестовых вопросов, ответах и неправильных вариантах ответов (дистракторы) должны отсутствовать прямые или косвенные подсказки, сленг, жаргонные фразы;</p>
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">5.3.</span>Дистракторы должны быть составлены с учетом предполагаемых ошибочных рассуждений тестируемого, которые могут привести к данным вариантам ответов;</p>
@@ -1833,7 +1833,8 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.11.</span>Указывается цель оценивания тестовых вопросов по таксономии Блума:</p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.12.</span>Указывается цель оценивания 
+тестовых вопросов по таксономии Блума:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
         <tbody>
@@ -1876,7 +1877,7 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span></p>
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
 """
                 }
             }
@@ -1927,8 +1928,8 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td rowspan="7" class="text-center">1</td>
-                <td rowspan="7">Морфология</td>
+                <td rowspan="8" class="text-center">1</td>
+                <td rowspan="8">Морфология</td>
                 <td>Глагол</td>
                 <td>
                     <ul class="list-normal">
@@ -2066,8 +2067,8 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.</span></p>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.1.</span></p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.</span>Требования по формированию вариантов теста:</p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.1.</span>Один вариант должен содержать 30 тестовых вопросов с разделением на предполагаемый уровень сложности:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
         <tbody>
@@ -2141,8 +2142,8 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td rowspan="6" class="text-center">1</td>
-                <td rowspan="6">Морфология</td>
+                <td rowspan="7" class="text-center">1</td>
+                <td rowspan="7">Морфология</td>
                 <td>Глагол</td>
                 <td>
                     <ul class="list-normal">
@@ -2248,7 +2249,7 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.11.</span>Указывается цель оценивания 
+<p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.12.</span>Указывается цель оценивания 
 тестовых вопросов по таксономии Блума:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
@@ -2343,15 +2344,15 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <ul class="list-normal">
                         <li>Қазақ тілі</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">1</td>
-                <td rowspan="1">Лексика</td>
+                <td rowspan="2" class="text-center">1</td>
+                <td rowspan="2">Лексика</td>
                 <td>Сөз және сөздің мағыналары</td>
                 <td>
                     <ul class="list-normal">
@@ -2372,8 +2373,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="3" class="text-center">2</td>
-                <td rowspan="3">Фонетика</td>
+                <td rowspan="4" class="text-center">2</td>
+                <td rowspan="4">Фонетика</td>
                 <td>Дауысты дыбыстар</td>
                 <td>
                     <ul class="list-normal">
@@ -2417,8 +2418,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="8" class="text-center">4</td>
-                <td rowspan="8">Морфология</td>
+                <td rowspan="9" class="text-center">4</td>
+                <td rowspan="9">Морфология</td>
                 <td>Зат есім</td>
                 <td>
                     <ul class="list-normal">
@@ -2495,8 +2496,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="5" class="text-center">5</td>
-                <td rowspan="5">Синтаксис</td>
+                <td rowspan="6" class="text-center">5</td>
+                <td rowspan="6">Синтаксис</td>
                 <td>Сөз тіркесі</td>
                 <td>
                     <ul class="list-normal">
@@ -2549,8 +2550,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">6</td>
-                <td rowspan="1">Пунктуация</td>
+                <td rowspan="2" class="text-center">6</td>
+                <td rowspan="2">Пунктуация</td>
                 <td>Тыныс белгілері</td>
                 <td>
                     <ul class="list-normal">
@@ -2567,15 +2568,15 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <ul class="list-normal">
                         <li>Қазақ әдебиеті</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">1</td>
-                <td rowspan="1">Ежелгі дүние әдебиеті</td>
+                <td rowspan="2" class="text-center">1</td>
+                <td rowspan="2">Ежелгі дүние әдебиеті</td>
                 <td>Көне түркі дәуіріндегі әдебиет</td>
                 <td>
                     <ul class="list-normal">
@@ -2593,8 +2594,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">2</td>
-                <td rowspan="1">Ауыз әдебиеті</td>
+                <td rowspan="2" class="text-center">2</td>
+                <td rowspan="2">Ауыз әдебиеті</td>
                 <td>Ауыз әдебиеті</td>
                 <td>
                     <ul class="list-normal">
@@ -2625,8 +2626,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="3" class="text-center">3</td>
-                <td rowspan="3">ХІХ ғасырдағы әдебиет</td>
+                <td rowspan="4" class="text-center">3</td>
+                <td rowspan="4">ХІХ ғасырдағы әдебиет</td>
                 <td>ХІХ ғ. І жартысындағы әдебиет</td>
                 <td>
                     <ul class="list-normal">
@@ -2686,8 +2687,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">5</td>
-                <td rowspan="1">Ұлы Отан соғысы және одан кейінгі жылдардағы  әдебиет</td>
+                <td rowspan="2" class="text-center">5</td>
+                <td rowspan="2">Ұлы Отан соғысы және одан кейінгі жылдардағы  әдебиет</td>
                 <td>Ұлы Отан соғысы және одан кейінгі жылдардағы  әдебиет</td>
                 <td>
                     <ul class="list-normal">
@@ -2723,8 +2724,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">7</td>
-                <td rowspan="1">ХХ ғ. ІІ жартысындағы әдебиет</td>
+                <td rowspan="2" class="text-center">7</td>
+                <td rowspan="2">ХХ ғ. ІІ жартысындағы әдебиет</td>
                 <td>ХХ ғ. ІІ жартысындағы поэзия</td>
                 <td>
                     <ul class="list-normal">
@@ -2841,15 +2842,15 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <ul class="list-normal">
                         <li>Қазақ тілі</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">1</td>
-                <td rowspan="1">Лексика</td>
+                <td rowspan="2" class="text-center">1</td>
+                <td rowspan="2">Лексика</td>
                 <td>Сөз және сөздің мағыналары</td>
                 <td>
                     <ul class="list-normal">
@@ -2870,8 +2871,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="3" class="text-center">2</td>
-                <td rowspan="3">Фонетика</td>
+                <td rowspan="4" class="text-center">2</td>
+                <td rowspan="4">Фонетика</td>
                 <td>Дауысты дыбыстар</td>
                 <td>
                     <ul class="list-normal">
@@ -2915,8 +2916,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="8" class="text-center">4</td>
-                <td rowspan="8">Морфология</td>
+                <td rowspan="9" class="text-center">4</td>
+                <td rowspan="9">Морфология</td>
                 <td>Зат есім</td>
                 <td>
                     <ul class="list-normal">
@@ -2993,8 +2994,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="5" class="text-center">5</td>
-                <td rowspan="5">Синтаксис</td>
+                <td rowspan="6" class="text-center">5</td>
+                <td rowspan="6">Синтаксис</td>
                 <td>Сөз тіркесі</td>
                 <td>
                     <ul class="list-normal">
@@ -3047,8 +3048,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">6</td>
-                <td rowspan="1">Пунктуация</td>
+                <td rowspan="2" class="text-center">6</td>
+                <td rowspan="2">Пунктуация</td>
                 <td>Тыныс белгілері</td>
                 <td>
                     <ul class="list-normal">
@@ -3065,15 +3066,15 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <ul class="list-normal">
                         <li>Қазақ әдебиеті</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">1</td>
-                <td rowspan="1">Ежелгі дүние әдебиеті</td>
+                <td rowspan="2" class="text-center">1</td>
+                <td rowspan="2">Ежелгі дүние әдебиеті</td>
                 <td>Көне түркі дәуіріндегі әдебиет</td>
                 <td>
                     <ul class="list-normal">
@@ -3091,8 +3092,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">2</td>
-                <td rowspan="1">Ауыз әдебиеті</td>
+                <td rowspan="2" class="text-center">2</td>
+                <td rowspan="2">Ауыз әдебиеті</td>
                 <td>Ауыз әдебиеті</td>
                 <td>
                     <ul class="list-normal">
@@ -3123,8 +3124,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="3">3</td>
-                <td rowspan="3">ХІХ ғасырдағы әдебиет</td>
+                <td rowspan="4">3</td>
+                <td rowspan="4">ХІХ ғасырдағы әдебиет</td>
                 <td>ХІХ ғ. І жартысындағы әдебиет</td>
                 <td>
                     <ul class="list-normal">
@@ -3184,8 +3185,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1">5</td>
-                <td rowspan="1">Ұлы Отан соғысы және одан кейінгі жылдардағы  әдебиет</td>
+                <td rowspan="2">5</td>
+                <td rowspan="2">Ұлы Отан соғысы және одан кейінгі жылдардағы  әдебиет</td>
                 <td>Ұлы Отан соғысы және одан кейінгі жылдардағы  әдебиет</td>
                 <td>
                     <ul class="list-normal">
@@ -3221,8 +3222,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">7</td>
-                <td rowspan="1">ХХ ғ. ІІ жартысындағы әдебиет</td>
+                <td rowspan="2" class="text-center">7</td>
+                <td rowspan="2">ХХ ғ. ІІ жартысындағы әдебиет</td>
                 <td>ХХ ғ. ІІ жартысындағы поэзия</td>
                 <td>
                     <ul class="list-normal">
@@ -3343,15 +3344,15 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <ul class="list-normal">
                         <li>Русский язык</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="2" class="text-center">1</td>
-                <td rowspan="2">Фонетика и орфография</td>
+                <td rowspan="3" class="text-center">1</td>
+                <td rowspan="3">Фонетика и орфография</td>
                 <td>Звуки и буквы. Звуки речи</td>
                 <td>
                     <ul class="list-normal">
@@ -3382,8 +3383,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">2</td>
-                <td rowspan="1">Лексикология</td>
+                <td rowspan="2" class="text-center">2</td>
+                <td rowspan="2">Лексикология</td>
                 <td>Лексическое значение слова</td>
                 <td>
                     <ul class="list-normal">
@@ -3403,8 +3404,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">3</td>
-                <td rowspan="1">Морфемика и словообразование</td>
+                <td rowspan="2" class="text-center">3</td>
+                <td rowspan="2">Морфемика и словообразование</td>
                 <td>Морфемика</td>
                 <td>
                     <ul class="list-normal">
@@ -3422,8 +3423,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">4</td>
-                <td rowspan="1">Морфология</td>
+                <td rowspan="2" class="text-center">4</td>
+                <td rowspan="2">Морфология</td>
                 <td>Самостоятельные части речи</td>
                 <td>
                     <ul class="list-normal">
@@ -3446,8 +3447,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="4" class="text-center">5</td>
-                <td rowspan="4">Синтаксис и пунктуация</td>
+                <td rowspan="5" class="text-center">5</td>
+                <td rowspan="5">Синтаксис и пунктуация</td>
                 <td>Словосочетание</td>
                 <td>
                     <ul class="list-normal">
@@ -3496,15 +3497,15 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <ul class="list-normal">
                         <li>Русская литература</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="3" class="text-center">1</td>
-                <td rowspan="3">Теория литературы</td>
+                <td rowspan="4" class="text-center">1</td>
+                <td rowspan="4">Теория литературы</td>
                 <td>Изобразительно-выразительные средства языка</td>
                 <td>
                     <ul class="list-normal">
@@ -3563,8 +3564,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">4</td>
-                <td rowspan="1">Роль эпизодов</td>
+                <td rowspan="2" class="text-center">4</td>
+                <td rowspan="2">Роль эпизодов</td>
                 <td>Роль эпизодов (сцен) в развитии темы</td>
                 <td>
                     <ul class="list-normal">
@@ -3615,7 +3616,7 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.12</span></p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.12</span>Указывается цель оценивания тестовых вопросов по таксономии Блума:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
         <tbody>
@@ -3706,15 +3707,15 @@ def update_test_specifications(apps, schema_editor):
                 <th class="text-center">Подтема</th>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <ul class="list-normal">
                         <li>Русский язык</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="2" class="text-center">1</td>
-                <td rowspan="2">Фонетика и орфография</td>
+                <td rowspan="3" class="text-center">1</td>
+                <td rowspan="3">Фонетика и орфография</td>
                 <td>Звуки и буквы. Звуки речи</td>
                 <td>
                     <ul class="list-normal">
@@ -3745,8 +3746,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">2</td>
-                <td rowspan="1">Лексикология</td>
+                <td rowspan="2" class="text-center">2</td>
+                <td rowspan="2">Лексикология</td>
                 <td>Лексическое значение слова</td>
                 <td>
                     <ul class="list-normal">
@@ -3766,8 +3767,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">3</td>
-                <td rowspan="1">Морфемика и словообразование</td>
+                <td rowspan="2" class="text-center">3</td>
+                <td rowspan="2">Морфемика и словообразование</td>
                 <td>Морфемика</td>
                 <td>
                     <ul class="list-normal">
@@ -3785,8 +3786,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">4</td>
-                <td rowspan="1">Морфология</td>
+                <td rowspan="2" class="text-center">4</td>
+                <td rowspan="2">Морфология</td>
                 <td>Самостоятельные части речи</td>
                 <td>
                     <ul class="list-normal">
@@ -3809,8 +3810,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="4" class="text-center">5</td>
-                <td rowspan="4">Синтаксис и пунктуация</td>
+                <td rowspan="5" class="text-center">5</td>
+                <td rowspan="5">Синтаксис и пунктуация</td>
                 <td>Словосочетание</td>
                 <td>
                     <ul class="list-normal">
@@ -3859,15 +3860,15 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <ul class="list-normal">
                         <li>Русская литература</li>
                     </ul>
                 </td>
             </tr>
             <tr>
-                <td rowspan="3" class="text-center">1</td>
-                <td rowspan="3">Теория литературы</td>
+                <td rowspan="4" class="text-center">1</td>
+                <td rowspan="4">Теория литературы</td>
                 <td>Изобразительно-выразительные средства языка</td>
                 <td>
                     <ul class="list-normal">
@@ -3926,8 +3927,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="1" class="text-center">4</td>
-                <td rowspan="1">Роль эпизодов</td>
+                <td rowspan="2" class="text-center">4</td>
+                <td rowspan="2">Роль эпизодов</td>
                 <td>Роль эпизодов (сцен) в развитии темы</td>
                 <td>
                     <ul class="list-normal">
@@ -3978,7 +3979,7 @@ def update_test_specifications(apps, schema_editor):
         </tbody>
     </table>
 </div>
-<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.12</span></p>
+<p class="text-justify text-normal mb-0"><span class="text-left mr-5">7.12</span>Указывается цель оценивания тестовых вопросов по таксономии Блума:</p>
 <div class="table-responsive">
     <table class="table table-bordered table-condensed mt-5 mb-10">
         <tbody>
@@ -4075,8 +4076,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="2" class="text-center">2</td>
-                <td rowspan="2">Общество</td>
+                <td rowspan="3" class="text-center">2</td>
+                <td rowspan="3">Общество</td>
                 <td>Социальная сфера</td>
                 <td>
                     <ul class="list-normal">
@@ -4113,8 +4114,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="2" class="text-center">3</td>
-                <td rowspan="2">Политика и право</td>
+                <td rowspan="3" class="text-center">3</td>
+                <td rowspan="3">Политика и право</td>
                 <td>Основы политологии (или Политика)</td>
                 <td>
                     <ul class="list-normal">
@@ -4227,8 +4228,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="2" class="text-center">2</td>
-                <td rowspan="2">Общество</td>
+                <td rowspan="3" class="text-center">2</td>
+                <td rowspan="3">Общество</td>
                 <td>Социальная сфера</td>
                 <td>
                     <ul class="list-normal">
@@ -4265,8 +4266,8 @@ def update_test_specifications(apps, schema_editor):
                 </td>
             </tr>
             <tr>
-                <td rowspan="2" class="text-center">3</td>
-                <td rowspan="2">Политика и право</td>
+                <td rowspan="3" class="text-center">3</td>
+                <td rowspan="3">Политика и право</td>
                 <td>Основы политологии (или Политика)</td>
                 <td>
                     <ul class="list-normal">
