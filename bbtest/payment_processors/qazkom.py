@@ -89,6 +89,20 @@ class QazkomPaymentProcessor(PaymentProcessor):
         return str(b64encode(ET.tostring(document)), encoding="UTF-8")
 
     @classmethod
+    def encoded_appendix(cls, cart_handle):
+        document = Element("document")
+
+        for index, item in enumerate(cart_handle):
+            document.append(Element("item", {
+                "number": str(index + 1),
+                "name": item.description(),
+                "quantity": "1",
+                "amount": str(item.total()),
+            }))
+
+        return str(b64encode(ET.tostring(document)), encoding="UTF-8")
+
+    @classmethod
     def private_key(cls):
         raise NotImplementedError("%s has to implement 'private_key' class method" % cls.__name__)
 
