@@ -1,3 +1,4 @@
+from django.conf import settings
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.serialization import load_pem_private_key
 from cryptography.x509 import load_pem_x509_certificate
@@ -110,3 +111,29 @@ class QazkomPaymentProcessor(PaymentProcessor):
     @classmethod
     def merchant_name(cls):
         raise NotImplementedError("%s has to implement 'merchant_name' class method" % cls.__name__)
+
+
+class FirstQazkomPaymentProcessor(QazkomPaymentProcessor):
+    @classmethod
+    def private_key(cls):
+        return settings.SECRETS["PAYMENT_PROCESSOR_CREDENTIALS"]["FIRST_QAZKOM_PAYMENT_PROCESSOR"]["PRIVATE_KEY"]
+
+    @classmethod
+    def private_password(cls):
+        return settings.SECRETS["PAYMENT_PROCESSOR_CREDENTIALS"]["FIRST_QAZKOM_PAYMENT_PROCESSOR"]["PRIVATE_KEY_PASS"]
+
+    @classmethod
+    def qazkom_certificate(cls):
+        return settings.SECRETS["PAYMENT_PROCESSOR_CREDENTIALS"]["FIRST_QAZKOM_PAYMENT_PROCESSOR"]["PUBLIC_KEY"]
+
+    @classmethod
+    def merchant_id(cls):
+        return settings.SECRETS["PAYMENT_PROCESSOR_CREDENTIALS"]["FIRST_QAZKOM_PAYMENT_PROCESSOR"]["MERCHANT_ID"]
+
+    @classmethod
+    def merchant_cert_id(cls):
+        return settings.SECRETS["PAYMENT_PROCESSOR_CREDENTIALS"]["FIRST_QAZKOM_PAYMENT_PROCESSOR"]["MERCHANT_CERTIFICATE_ID"]
+
+    @classmethod
+    def merchant_name(cls):
+        return settings.SECRETS["PAYMENT_PROCESSOR_CREDENTIALS"]["FIRST_QAZKOM_PAYMENT_PROCESSOR"]["MERCHANT_NAME"]
