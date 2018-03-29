@@ -340,3 +340,5 @@ RQ_EXCEPTION_HANDLERS = [
     "bbtest.rq.handlers.exception",
     "rq.handlers.move_to_failed_queue",
 ]
+
+BB_USER_AGENT = "bbTest.kz"

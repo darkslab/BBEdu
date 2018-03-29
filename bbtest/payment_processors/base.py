@@ -1,12 +1,26 @@
+from decimal import Decimal, ROUND_HALF_UP
+from .exceptions import PaymentProcessorError
+
+
 class PaymentProcessor:
-    def __init__(self, test=False):
-        self.__test = test
+    def __init__(self, amount, test=False):
+        if not isinstance(amount, Decimal) or amount <= 0:
+            raise PaymentProcessorError("Incorrect amount")
+        self.__amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
+        self.__test = bool(test)
+
+    def amount(self):
+        return self.__amount
 
     def set_test(self):
         self.__test = True
 
     def is_test(self):
         return self.__test
+
+    @classmethod
+    def instantiate_from_meta_data(cls, meta_data):
+        raise NotImplementedError("%s has to implement 'instantiate_from_meta_data' class method" % cls.__name__)
 
     def authorize(self):
         raise NotImplementedError("%s has to implement 'authorize' method" % type(self).__name__)
@@ -19,3 +33,6 @@ class PaymentProcessor:
 
     def refund(self):
         raise NotImplementedError("%s has to implement 'refund' method" % type(self).__name__)
+
+    def meta_data(self):
+        raise NotImplementedError("%s has to implement 'meta_data' method" % type(self).__name__)

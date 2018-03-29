@@ -8,24 +8,67 @@ from cryptography.exceptions import InvalidSignature
 from base64 import b64encode, b64decode
 from xml.etree import ElementTree as ET
 from xml.etree.ElementTree import Element
+from xml.etree.ElementTree import ParseError
+from re import search, I, S
+from requests import get
+from requests.exceptions import RequestException
+from decimal import Decimal, DecimalException
 from .base import PaymentProcessor
+from .exceptions import PaymentProcessorError, MerchantError
 
 
 class QazkomPaymentProcessor(PaymentProcessor):
-    def __init__(self):
-        pass
+    def __init__(self, amount, authorization_response=None, captured=False):
+        super().__init__()
+        self.__authorization_response = authorization_response
+        self.__authorization_data = None
+        self.__captured = captured and self.__authorization_response
+        self.__meta_data = {}
+
+        try:
+            if self.__authorization_response:
+                self.__verify_document(self.__authorization_response)
+        except MerchantError:
+            pass
+
+    @classmethod
+    def instantiate_from_meta_data(cls, meta_data):
+        kwargs = {}
+        if "authorization_response" in meta_data:
+            kwargs["authorization_response"] = meta_data["authorization_response"]
+        if "complete_response" in meta_data:
+            kwargs["captured"] = True
+        return cls(**kwargs)
 
     def authorize(self):
-        pass
+        if not (self.__authorization_response and not self.__captured):
+            raise PaymentProcessorError("Cannot authorize funds")
+        self.__verify_document(self.__authorization_response)
+        self.__retrieve_authorization_data()
 
     def capture(self):
-        raise NotImplementedError("%s has to implement 'capture' method" % type(self).__name__)
+        if not self.__authorization_data:
+            raise PaymentProcessorError("Cannot capture funds, please authorize first")
+        # DARK_TODO  implement this!
 
     def void(self):
-        raise NotImplementedError("%s has to implement 'void' method" % type(self).__name__)
+        if not self.__authorization_data:
+            raise PaymentProcessorError("Cannot void funds, please authorize first")
+        # DARK_TODO  implement this!
 
     def refund(self):
-        raise NotImplementedError("%s has to implement 'refund' method" % type(self).__name__)
+        if not (self.__authorization_response and self.__captured):
+            raise PaymentProcessorError("Cannot void funds")
+        # DARK_TODO  implement this!
+
+    def meta_data(self):
+        return self.__meta_data
+
+    @classmethod
+    def post_url(cls, test=False):
+        if test:
+            return "https://testpay.kkb.kz/jsp/process/logon.jsp"
+        return "https://epay.kkb.kz/jsp/process/logon.jsp"
 
     @classmethod
     def signature(cls, message):
@@ -125,6 +168,74 @@ class QazkomPaymentProcessor(PaymentProcessor):
     @classmethod
     def merchant_name(cls):
         raise NotImplementedError("%s has to implement 'merchant_name' class method" % cls.__name__)
+
+    def __verify_document(self, document):
+        try:
+            document_node = ET.fromstring(document)
+            payload_match = search(r"(?P<bank><bank .+?</bank>)", document, I|S)
+            if not payload_match:
+                raise ValueError("Incorrect document")
+            signature_node = document_node.find("bank_sign")
+            if not signature_node:
+                raise ValueError("Incorrect document")
+            if not self.is_verifiable(payload_match.group("bank"), signature_node.text.strip()):
+                raise MerchantError("Incorrect bank signature")
+        except (ParseError, ValueError):
+            raise PaymentProcessorError("Incorrect document")
+
+    def __command_url(self):
+        if self.is_test():
+            return "https://testpay.kkb.kz/jsp/remote/control.jsp"
+        return "https://epay.kkb.kz/jsp/remote/control.jsp"
+
+    def __command_string(self, command, reason=None):
+        document = Element("document")
+
+        merchant_node = Element("merchant", {
+            "id": self.merchant_id(),
+        })
+        merchant_node.append(Element("command", {
+            "type": command,
+        }))
+        merchant_node.append(Element("payment", {
+            "reference": self.__authorization_data["reference"],
+            "approval_code": self.__authorization_data["approval_code"],
+            "orderid": self.__authorization_data["order_id"],
+            "amount": str(self.amount()),
+            "currency_code": "398",
+        }))
+        if reason:
+            reason_node = Element("reason")
+            reason_node.text = reason
+            merchant_node.append(reason_node)
+
+        merchant_sign_node = Element("merchant_sign", {
+            "type": "RSA",
+            "cert_id": self.merchant_cert_id(),
+        })
+        merchant_sign_node.text = self.signature(str(ET.tostring(merchant_node), encoding="UTF-8"))
+
+        document.append(merchant_node)
+        document.append(merchant_sign_node)
+        return str(ET.tostring(document), encoding="UTF-8")
+
+    def __retrieve_authorization_data(self):
+        document = ET.fromstring(self.__authorization_response)
+        try:
+            node = document.find("bank").find("results").find("payment")
+            if node.attrib["merchant_id"] != self.merchant_id():
+                raise MerchantError("Incorrect Merchant ID in authorization response")
+            if Decimal(node.attrib["amount"]) != self.amount():
+                raise MerchantError("Incorrect amount in authorization response")
+            if node.attrib["response_code"] != "00":
+                raise MerchantError("Authorization was not successful")
+            self.__authorization_data = {
+                "reference": node.attrib["reference"],
+                "approval_code": node.attrib["approval_code"],
+                "order_id": document.find("bank").find("customer").find("merchant").find("order").attrib["order_id"],
+            }
+        except (AttributeError, KeyError, DecimalException):
+            raise MerchantError("Incorrect authorization response")
 
 
 class FirstQazkomPaymentProcessor(QazkomPaymentProcessor):
