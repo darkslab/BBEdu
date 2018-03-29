@@ -42,7 +42,7 @@ class QazkomPaymentProcessor(PaymentProcessor):
         kwargs = {}
         if "authorization_response" in meta_data:
             kwargs["authorization_response"] = meta_data["authorization_response"]
-        if "complete_response" in meta_data:
+        if "capture_response" in meta_data:
             kwargs["captured"] = True
         return cls(**kwargs)
 
@@ -70,7 +70,10 @@ class QazkomPaymentProcessor(PaymentProcessor):
                 raise ValueError("Unsuccessful capture response status")
 
             self.__meta_data["authorization_response"] = self.__authorization_response
-            self.__meta_data["complete_response"] = response.text
+            self.__meta_data["capture_response"] = response.text
+
+            self.__captured = True
+            self.__authorization_data = None
 
         except RequestException as error:
             raise PaymentProcessorError("Connection problem while capturing: %s" % str(error))
@@ -80,12 +83,58 @@ class QazkomPaymentProcessor(PaymentProcessor):
     def void(self):
         if not self.__authorization_data:
             raise PaymentProcessorError("Cannot void funds, please authorize first")
-        # DARK_TODO  implement this!
+        try:
+            response = get(
+                self.__command_url(),
+                params=self.__command_string("reverse", "Void authorization"),
+                **self.__request_kwargs,
+            )
+            if response.status_code != 200:
+                raise PaymentProcessorError("Incorrect response HTTP code while voiding")
+            self.__verify_document(response.text)
+
+            document = ET.fromstring(response.text)
+            if document.find("bank").find("response").attrib["code"] != "00":
+                raise ValueError("Unsuccessful void response status")
+
+            self.__meta_data["void_response"] = response.text
+
+            self.__authorization_response = None
+            self.__authorization_data = None
+
+        except RequestException as error:
+            raise PaymentProcessorError("Connection problem while voiding: %s" % str(error))
+        except (AttributeError, KeyError, ValueError):
+            raise MerchantError("Voiding funds was not successful")
 
     def refund(self):
         if not (self.__authorization_response and self.__captured):
             raise PaymentProcessorError("Cannot void funds")
-        # DARK_TODO  implement this!
+        self.__verify_document(self.__authorization_response)
+        self.__retrieve_authorization_data()
+        try:
+            response = get(
+                self.__command_url(),
+                params=self.__command_string("refund", "Refund order"),
+                **self.__request_kwargs,
+            )
+            if response.status_code != 200:
+                raise PaymentProcessorError("Incorrect response HTTP code while refunding")
+            self.__verify_document(response.text)
+
+            document = ET.fromstring(response.text)
+            if document.find("bank").find("response").attrib["code"] != "00":
+                raise ValueError("Unsuccessful refund response status")
+
+            self.__meta_data["refund_response"] = response.text
+
+            self.__authorization_response = None
+            self.__authorization_data = None
+
+        except RequestException as error:
+            raise PaymentProcessorError("Connection problem while refunding: %s" % str(error))
+        except (AttributeError, KeyError, ValueError):
+            raise MerchantError("Refunding funds was not successful")
 
     def meta_data(self):
         return self.__meta_data
