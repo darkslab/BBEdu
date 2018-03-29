@@ -24,6 +24,12 @@ class QazkomPaymentProcessor(PaymentProcessor):
         self.__authorization_data = None
         self.__captured = captured and self.__authorization_response
         self.__meta_data = {}
+        self.__request_kwargs = {
+            "headers": {
+                "User-Agent": settings.BB_USER_AGENT,
+            },
+            "timeout": 8,
+        }
 
         try:
             if self.__authorization_response:
@@ -49,7 +55,27 @@ class QazkomPaymentProcessor(PaymentProcessor):
     def capture(self):
         if not self.__authorization_data:
             raise PaymentProcessorError("Cannot capture funds, please authorize first")
-        # DARK_TODO  implement this!
+        try:
+            response = get(
+                self.__command_url(),
+                params=self.__command_string("complete"),
+                **self.__request_kwargs,
+            )
+            if response.status_code != 200:
+                raise PaymentProcessorError("Incorrect response HTTP code while capturing")
+            self.__verify_document(response.text)
+
+            document = ET.fromstring(response.text)
+            if document.find("bank").find("response").attrib["code"] != "00":
+                raise ValueError("Unsuccessful capture response status")
+
+            self.__meta_data["authorization_response"] = self.__authorization_response
+            self.__meta_data["complete_response"] = response.text
+
+        except RequestException as error:
+            raise PaymentProcessorError("Connection problem while capturing: %s" % str(error))
+        except (AttributeError, KeyError, ValueError):
+            raise MerchantError("Capturing funds was not successful")
 
     def void(self):
         if not self.__authorization_data:
