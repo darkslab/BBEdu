@@ -19,7 +19,7 @@ from .exceptions import PaymentProcessorError, MerchantError
 
 class QazkomPaymentProcessor(PaymentProcessor):
     def __init__(self, amount, authorization_response=None, captured=False):
-        super().__init__()
+        super().__init__(amount)
         self.__authorization_response = authorization_response
         self.__authorization_data = None
         self.__captured = captured and self.__authorization_response
