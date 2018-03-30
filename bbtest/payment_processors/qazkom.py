@@ -47,13 +47,13 @@ class QazkomPaymentProcessor(PaymentProcessor):
         return cls(**kwargs)
 
     def authorize(self):
-        if not (self.__authorization_response and not self.__captured):
+        if not (self.__authorization_response is not None and not self.__captured):
             raise PaymentProcessorError("Cannot authorize funds")
         self.__verify_document(self.__authorization_response)
         self.__retrieve_authorization_data()
 
     def capture(self):
-        if not self.__authorization_data:
+        if self.__authorization_data is None:
             raise PaymentProcessorError("Cannot capture funds, please authorize first")
         try:
             response = get(
@@ -81,7 +81,7 @@ class QazkomPaymentProcessor(PaymentProcessor):
             raise MerchantError("Capturing funds was not successful")
 
     def void(self):
-        if not self.__authorization_data:
+        if self.__authorization_data is None:
             raise PaymentProcessorError("Cannot void funds, please authorize first")
         try:
             response = get(
@@ -108,7 +108,7 @@ class QazkomPaymentProcessor(PaymentProcessor):
             raise MerchantError("Voiding funds was not successful")
 
     def refund(self):
-        if not (self.__authorization_response and self.__captured):
+        if not (self.__authorization_response is not None and self.__captured):
             raise PaymentProcessorError("Cannot void funds")
         self.__verify_document(self.__authorization_response)
         self.__retrieve_authorization_data()
@@ -248,14 +248,11 @@ class QazkomPaymentProcessor(PaymentProcessor):
         try:
             document_node = ET.fromstring(document)
             payload_match = search(r"(?P<bank><bank .+?</bank>)", document, I|S)
-            if not payload_match:
+            if payload_match is None:
                 raise ValueError("Incorrect document")
-            signature_node = document_node.find("bank_sign")
-            if not signature_node:
-                raise ValueError("Incorrect document")
-            if not self.is_verifiable(payload_match.group("bank"), signature_node.text.strip()):
+            if not self.is_verifiable(payload_match.group("bank"), document_node.find("bank_sign").text.strip()):
                 raise MerchantError("Incorrect bank signature")
-        except (ParseError, ValueError):
+        except (ParseError, ValueError, AttributeError):
             raise PaymentProcessorError("Incorrect document")
 
     def __command_url(self):
