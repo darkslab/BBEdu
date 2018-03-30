@@ -67,7 +67,10 @@ class CartHandle:
     def total(self):
         return self.subtotal() - self.discount()
 
-    def cart_id(self):
+    def cart_id(self, force=False):
+        if self.__cart.pk is None and force:
+            self.__is_modified = True
+            self.save()
         return self.__cart.pk
 
     def complete(self):

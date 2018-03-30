@@ -186,7 +186,7 @@ class QazkomPaymentProcessor(PaymentProcessor):
             "name": cls.merchant_name(),
         })
         order_node = Element("order", {
-            "order_id": str(cart_handle.cart_id() or "").zfill(6),
+            "order_id": str(cart_handle.cart_id(force=True)).zfill(6),
             "amount": str(cart_handle.total()),
             "currency": "398",
         })
