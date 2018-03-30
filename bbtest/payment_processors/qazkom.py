@@ -109,7 +109,7 @@ class QazkomPaymentProcessor(PaymentProcessor):
 
     def refund(self):
         if not (self.__authorization_response is not None and self.__captured):
-            raise PaymentProcessorError("Cannot void funds")
+            raise PaymentProcessorError("Cannot refund funds, please capture first")
         self.__verify_document(self.__authorization_response)
         self.__retrieve_authorization_data()
         try:
