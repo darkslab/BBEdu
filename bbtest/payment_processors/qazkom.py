@@ -59,7 +59,7 @@ class QazkomPaymentProcessor(PaymentProcessor):
             response = get(
                 self.__command_url(),
                 params=self.__command_string("complete"),
-                **self.__request_kwargs,
+                **self.__request_kwargs
             )
             if response.status_code != 200:
                 raise PaymentProcessorError("Incorrect response HTTP code while capturing")
@@ -87,7 +87,7 @@ class QazkomPaymentProcessor(PaymentProcessor):
             response = get(
                 self.__command_url(),
                 params=self.__command_string("reverse", "Void authorization"),
-                **self.__request_kwargs,
+                **self.__request_kwargs
             )
             if response.status_code != 200:
                 raise PaymentProcessorError("Incorrect response HTTP code while voiding")
@@ -116,7 +116,7 @@ class QazkomPaymentProcessor(PaymentProcessor):
             response = get(
                 self.__command_url(),
                 params=self.__command_string("refund", "Refund order"),
-                **self.__request_kwargs,
+                **self.__request_kwargs
             )
             if response.status_code != 200:
                 raise PaymentProcessorError("Incorrect response HTTP code while refunding")
