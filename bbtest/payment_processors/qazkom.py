@@ -38,13 +38,13 @@ class QazkomPaymentProcessor(PaymentProcessor):
             pass
 
     @classmethod
-    def instantiate_from_meta_data(cls, meta_data):
+    def instantiate_from_meta_data(cls, amount, meta_data):
         kwargs = {}
         if "authorization_response" in meta_data:
             kwargs["authorization_response"] = meta_data["authorization_response"]
         if "capture_response" in meta_data:
             kwargs["captured"] = True
-        return cls(**kwargs)
+        return cls(amount, **kwargs)
 
     def authorize(self):
         if not (self.__authorization_response is not None and not self.__captured):
