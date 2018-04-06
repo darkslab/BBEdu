@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('contenttypes', '0002_remove_content_type_name'),
-        ('bbtest', '0015_auto_20180318_0907'),
+        ('bbtest', '0020_fix_core_sections_ordering'),
     ]
 
     operations = [

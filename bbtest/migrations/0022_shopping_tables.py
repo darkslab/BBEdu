@@ -25,7 +25,7 @@ def set_auto_increment_values(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bbtest', '0016_accounting_tables'),
+        ('bbtest', '0021_accounting_tables'),
     ]
 
     operations = [
