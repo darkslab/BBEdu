@@ -65,7 +65,7 @@ class TestTaxonomySection(Model):
 class TestTopic(Model):
     sections  = ManyToManyField  ( TestSection, through="TestTopicSection", related_name="topics", )
 
-    name  = CharField  ( pgettext_lazy("Model field", "name"),  max_length=100, unique=True, )
+    name  = CharField  ( pgettext_lazy("Model field", "name"),  max_length=200, unique=True, )
 
     class Meta:
         default_permissions = ()
