@@ -588,6 +588,7 @@ class TestForm(ModelForm):
                     )
         # UNT core sections
         elif test.section.id in (9545, 9546, 9547):
+            shared_paragraph = None
             for i in range(test.section.question_count):
                 choice_id = randint(0x0000, 0xffff)
                 meta_data = {
@@ -613,15 +614,50 @@ class TestForm(ModelForm):
                     order=i,
                 )
 
-                paragraph = TestParagraph.objects.create(
-                    paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                    meta_data={"text": ""},
-                )
-                TestParagraphQuestion.objects.create(
-                    question=question,
-                    paragraph=paragraph,
-                    order=0,
-                )
+                if test.section.id == 9546:
+                    if i in (0, 2, 6, 12):
+                        shared_paragraph = TestParagraph.objects.create(
+                            paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                            meta_data={"text": ""},
+                        )
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=shared_paragraph,
+                            order=0,
+                        )
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=TestParagraph.objects.create(
+                                paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                                meta_data={"text": ""},
+                            ),
+                            order=1,
+                        )
+                    else:
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=shared_paragraph,
+                            order=0,
+                        )
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=TestParagraph.objects.create(
+                                paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                                meta_data={"text": ""},
+                            ),
+                            order=1,
+                        )
+                else:
+                    paragraph = TestParagraph.objects.create(
+                        paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                        meta_data={"text": ""},
+                    )
+                    TestParagraphQuestion.objects.create(
+                        question=question,
+                        paragraph=paragraph,
+                        order=0,
+                    )
+
         # UNT spec sections
         elif test.section.id in (9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559):
             for i in range(test.section.question_count):
