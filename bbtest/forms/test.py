@@ -618,18 +618,34 @@ class TestForm(ModelForm):
                     if i in (0, 2, 6, 12):
                         shared_paragraph = TestParagraph.objects.create(
                             paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                            meta_data={"text": "", "text_num": i},
+                            meta_data={"text": ""},
                         )
                         TestParagraphQuestion.objects.create(
                             question=question,
                             paragraph=shared_paragraph,
                             order=0,
+                        )
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=TestParagraph.objects.create(
+                                paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                                meta_data={"text": ""},
+                            ),
+                            order=1,
                         )
                     else:
                         TestParagraphQuestion.objects.create(
                             question=question,
                             paragraph=shared_paragraph,
                             order=0,
+                        )
+                        TestParagraphQuestion.objects.create(
+                            question=question,
+                            paragraph=TestParagraph.objects.create(
+                                paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                                meta_data={"text": ""},
+                            ),
+                            order=1,
                         )
                 else:
                     paragraph = TestParagraph.objects.create(
