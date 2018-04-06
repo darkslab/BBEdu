@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-18 16:35+0600\n"
+"POT-Creation-Date: 2018-03-26 11:23+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -704,6 +704,257 @@ msgid "Independent Kazakhstan"
 msgstr ""
 
 msgid "History in documents"
+msgstr ""
+
+msgid "Arithmetic calculations. Transformations of expressions"
+msgstr ""
+
+msgid "Equations. Systems of equations. Formulation of equations"
+msgstr ""
+
+msgid "Inequalities. Systems of inequalities"
+msgstr ""
+
+msgid "Functions. Derivatives. Integral"
+msgstr ""
+
+msgid "Planimetry"
+msgstr ""
+
+msgid "Stereometry"
+msgstr ""
+
+msgid "Sequences. Progression"
+msgstr ""
+
+msgid "Physics"
+msgstr ""
+
+msgid "Mechanics"
+msgstr ""
+
+msgid "Molecular physics. Fundamentals of thermodynamics"
+msgstr ""
+
+msgid "Electrodynamics"
+msgstr ""
+
+msgid "Optics"
+msgstr ""
+
+msgid "Quantum and Atomic Physics"
+msgstr ""
+
+msgid "Qualitative objectives"
+msgstr ""
+
+msgid "Chemistry"
+msgstr ""
+
+msgid "General chemistry"
+msgstr ""
+
+msgid "Inorganic chemistry"
+msgstr ""
+
+msgid "Organic chemistry"
+msgstr ""
+
+msgid "Calculation problems: General chemistry"
+msgstr ""
+
+msgid "Calculation problems: Inorganic chemistry"
+msgstr ""
+
+msgid "Calculation problems: Organic chemistry"
+msgstr ""
+
+msgid "Biology"
+msgstr ""
+
+msgid "Plants"
+msgstr ""
+
+msgid "Human Anatomy and Physiology"
+msgstr ""
+
+msgid "Cytology, genetics, ecology"
+msgstr ""
+
+msgid "Geography"
+msgstr ""
+
+msgid "Physical Geography of the World"
+msgstr ""
+
+msgid "Geography of Kazakhstan"
+msgstr ""
+
+msgid "Economic and social geography of the world"
+msgstr ""
+
+msgid "Geography course tasks"
+msgstr ""
+
+msgid "Age of stone and bronze"
+msgstr ""
+
+msgid "Kazakhstan in the Iron Age"
+msgstr ""
+
+msgid "The states of the Ancient East. Ancient civilization"
+msgstr ""
+
+msgid ""
+"The Middle Ages (early V-X centuries, the flowering of the XI-XV centuries, "
+"later the XV-XVII centuries)"
+msgstr ""
+
+msgid ""
+"Culture of the ancient world (before the V century), medieval culture of "
+"peace (V - XVII centuries)"
+msgstr ""
+
+msgid ""
+"Europe and North America, Countries of Asia and Africa (XVII - early XX "
+"centuries)"
+msgstr ""
+
+msgid ""
+"Culture of Europe, North America, Asia and Africa (XVIII century - the "
+"beginning of the XXI century)"
+msgstr ""
+
+msgid "International relations (XVII - beginning of the XXI centuries)"
+msgstr ""
+
+msgid "World Wars and Their Consequences"
+msgstr ""
+
+msgid "The countries of Europe and America, Asia and Africa (1918-2014)"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Vocabulary and translation"
+msgstr ""
+
+msgid "Spelling"
+msgstr ""
+
+msgid "Morphology"
+msgstr ""
+
+msgid "Syntax"
+msgstr ""
+
+msgid "Work with text"
+msgstr ""
+
+msgid "Country studies"
+msgstr ""
+
+msgid "French"
+msgstr ""
+
+msgid "Phonetics"
+msgstr ""
+
+msgid "German"
+msgstr ""
+
+msgid "Kazakh and literature"
+msgstr ""
+
+msgid "Vocabulary"
+msgstr "Лексика"
+
+msgid "Word formation"
+msgstr "Сөзжасам"
+
+msgid "Punctuation. Stylistics. Culture of speech"
+msgstr "Пунктуация. Стилистика. Сөз мәдениеті"
+
+msgid "Ancient World Literature"
+msgstr "Ежелгі дүние әдебиеті"
+
+msgid "Oral literature"
+msgstr "Ауыз әдебиеті"
+
+msgid "Poetry of epos"
+msgstr "Жыраулар поэзиясы"
+
+msgid "XIX century literature"
+msgstr "ХІХ ғ. әдебиет"
+
+msgid "Literature in the first half of 20th century "
+msgstr "ХХ ғ. І жартысындағы әдебиет"
+
+msgid "Literature in the Great Patriotic War and later"
+msgstr "Ұлы Отан соғысындағы және одан кейінгі әдебиет"
+
+msgid "The theory of literature"
+msgstr "Әдебиет теориясы"
+
+msgid "Literature in II half of 20th century"
+msgstr "ХХ ғ. ІІ жартысындағы әдебиет"
+
+msgid "Russian and literature"
+msgstr ""
+
+msgid "Phonetics and spelling"
+msgstr ""
+
+msgid "Lexicology"
+msgstr ""
+
+msgid "Morphemistry and word formation"
+msgstr ""
+
+msgid "Syntax and punctuation"
+msgstr ""
+
+msgid "Theory of Literature"
+msgstr ""
+
+msgid "Biography"
+msgstr ""
+
+msgid "Literary criticism"
+msgstr ""
+
+msgid "The role of episodes"
+msgstr ""
+
+msgid "Cross-cutting themes"
+msgstr ""
+
+msgid "Content of works"
+msgstr ""
+
+msgid "Human. Society. Law"
+msgstr ""
+
+msgid "Human in the world"
+msgstr ""
+
+msgid "Social sphere of society"
+msgstr ""
+
+msgid "The economic sphere of society"
+msgstr ""
+
+msgid "Spiritual sphere of society"
+msgstr ""
+
+msgid "Political Science and Politics"
+msgstr ""
+
+msgid "Constitutional law"
+msgstr ""
+
+msgid "Introduction to Jurisprudence"
 msgstr ""
 
 msgctxt "Developer acknowledgement plan"
