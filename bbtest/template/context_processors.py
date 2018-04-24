@@ -2,7 +2,9 @@ from django.conf import settings
 
 
 def global_variables(request):
-    return {
-        "VERSION": settings.VERSION,
-        "ANALYTICS": not settings.DEBUG,
-    }
+    context = {}
+    context["VERSION"] = None
+    if settings.VERSION != "dev" or settings.DEBUG:
+        context["VERSION"] = settings.VERSION
+    context["ANALYTICS"] = not settings.DEBUG
+    return context

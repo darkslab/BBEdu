@@ -85,7 +85,7 @@
             </div>
         </div>
     </div>
-    <div class="bb-copyright text-center">{% blocktrans with heart_icon='<i class="fa fa-heart-o"></i>' copyright_code='&copy;' context 'Bottom copyright' %}Made with {{ heart_icon }} in Kazakhstan. {{ copyright_code }} bbTest.kz{% endblocktrans %}&nbsp;&nbsp;({{ VERSION }})</div>
+    <div class="bb-copyright text-center">{% blocktrans with heart_icon='<i class="fa fa-heart-o"></i>' copyright_code='&copy;' context 'Bottom copyright' %}Made with {{ heart_icon }} in Kazakhstan. {{ copyright_code }} bbTest.kz{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
 {% endblock %}
 
 {% comment %}
