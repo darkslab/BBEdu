@@ -118,6 +118,7 @@ class Account(Model):
 class BalanceAccount(Account):
     class Meta:
         proxy = True
+        default_permissions = ()
 
     def is_balance_account(self):
         return True
