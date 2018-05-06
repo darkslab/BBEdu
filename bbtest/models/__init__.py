@@ -4,5 +4,5 @@ from .test import TestDomain, TestSection, TestTaxonomy, TestTaxonomySection, Te
 from .acknowledgement import DeveloperAcknowledgement
 from .subscription import Subscription
 from .upload import Upload, Asset
-from .accounting import Account, Entry, Amount
+from .accounting import Account, BalanceAccount, Entry, Amount
 from .shopping.base import Cart, LineItem

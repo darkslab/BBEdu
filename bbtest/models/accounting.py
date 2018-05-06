@@ -112,6 +112,16 @@ class Account(Model):
         balance -= self.amounts.exclude(is_debit=is_debit).aggregate(balance=Sum("amount"))["balance"] or Decimal("0.00")
         return balance
 
+    def is_balance_account(self):
+        return False
+
+class BalanceAccount(Account):
+    class Meta:
+        proxy = True
+
+    def is_balance_account(self):
+        return True
+
 
 class EntryManager(Manager):
     def post(self, description, funds, document=None):
@@ -194,13 +204,30 @@ class Fund:
     def audit_balance(self):
         raise NotImplementedError("%s has to implement 'audit_balance' method" % type(self).__name__)
 
+    def should_lock_account(self):
+        raise NotImplementedError("%s has to implement 'should_lock_account' method" % type(self).__name__)
+
 class Debit(Fund):
     def audit_balance(self):
         return self.amount()
 
+    def should_lock_account(self):
+        if not self.account().is_balance_account():
+            return False
+        if self.account().is_credit_account():
+            return True
+        return False
+
 class Credit(Fund):
     def audit_balance(self):
         return -self.amount()
+
+    def should_lock_account(self):
+        if not self.account().is_balance_account():
+            return False
+        if self.account().is_debit_account():
+            return True
+        return False
 
 
 class Amount(Model):
