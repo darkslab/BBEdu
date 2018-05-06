@@ -127,6 +127,7 @@ class EntryManager(Manager):
     def post(self, description, funds, document=None):
         if not isinstance(description, str) or not len(description):
             raise RuntimeError("Please provide correct description")
+        funds = squash_funds(funds)
         try:
             unique_accounts = []
             balance = Decimal("0.00")
@@ -228,6 +229,23 @@ class Credit(Fund):
         if self.account().is_debit_account():
             return True
         return False
+
+def squash_funds(funds):
+    squashed_funds = []
+    fund_balances = {}
+    for fund in funds:
+        if fund.account() not in fund_balances:
+            fund_balances[fund.account()] = Decimal("0.00")
+        fund_balances[fund.account()] += fund.audit_balance()
+    for account, balance in fund_balances.items():
+        fund_class = None
+        if balance > 0:
+            fund_class = Debit
+        elif balance < 0:
+            fund_class = Credit
+        if fund_class is not None:
+            squashed_funds.append(fund_class(account=account, amount=abs(balance)))
+    return squashed_funds
 
 
 class Amount(Model):
