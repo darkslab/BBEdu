@@ -1,9 +1,11 @@
 from django.db.models import (
     Model, ForeignKey, CASCADE,
-    DecimalField, DateTimeField, NullBooleanField, CharField,
+    DecimalField, DateTimeField, NullBooleanField, CharField, IntegerField, BooleanField,
 )
 from django.contrib.auth import get_user_model
 from django.utils.translation import pgettext_lazy
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
 from ool import VersionField, VersionedMixin
 from ..fields import JSONField
 
@@ -54,3 +56,29 @@ class LineItem(Model):
         if self.pk:
             return "LineItem #%s (%s)" % (self.pk, description)
         return "New LineItem (%s)" % description
+
+
+class Transaction(Model):
+    parent  = ForeignKey  ( "self", on_delete=CASCADE, related_name="children", null=True, blank=True, )
+
+    content_type             = ForeignKey         ( ContentType, on_delete=CASCADE,                                                                          )
+    object_id                = IntegerField       ( pgettext_lazy("Model field", "object ID"),                                                db_index=True, )
+    document                 = GenericForeignKey  ()
+    payment_processor_class  = CharField          ( pgettext_lazy("Model field", "payment processor class"), max_length=100,                  db_index=True, )
+    meta_data                = JSONField          ( pgettext_lazy("Model field", "meta data"),                                                               )
+    amount                   = DecimalField       ( pgettext_lazy("Model field", "amount"),                  max_digits=16, decimal_places=2,                )
+    is_complete              = BooleanField       ( pgettext_lazy("Model field", "is complete?"),                                             db_index=True, )
+    created_at               = DateTimeField      ( pgettext_lazy("Model field", "created at"),              auto_now_add=True,               db_index=True, )
+    updated_at               = DateTimeField      ( pgettext_lazy("Model field", "updated at"),              auto_now=True,                   db_index=True, )
+
+    class Meta:
+        db_table = "shopping_transactions"
+        default_permissions = ()
+
+    def __str__(self):
+        description = "not completed"
+        if self.is_complete:
+            description = "completed"
+        if self.pk:
+            return "Transaction #%s (%s)" % (self.pk, description)
+        return "New Transaction (%s)" % description
