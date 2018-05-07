@@ -6,3 +6,4 @@ from .nis import (
     EnglishLanguageNISItem,
     QuantitativeNISItem,
 )
+from .credit import CreditItem

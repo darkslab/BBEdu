@@ -6,6 +6,7 @@ from django.utils.translation import pgettext_lazy
 from django.urls import reverse
 from hashlib import md5
 from urllib.parse import urlencode
+from bbtest.models.accounting import BalanceAccount
 
 
 class UserManager(BaseUserManager):
@@ -110,3 +111,11 @@ class User(AbstractBaseUser, PermissionsMixin):
             return self.carts.get(is_current=True)
         except Cart.DoesNotExist:
             return Cart(buyer=self, is_current=True)
+
+    def balance_account_name(self):
+        if not self.pk:
+            return None
+        return "BalanceAccount-%s" % self.pk
+
+    def balance_account(self):
+        return BalanceAccount.objects.get(name=self.balance_account_name())
