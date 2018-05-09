@@ -12,9 +12,10 @@ from xml.etree.ElementTree import ParseError
 from re import search, I, S
 from requests import get
 from requests.exceptions import RequestException
-from decimal import Decimal, DecimalException
+from decimal import Decimal, DecimalException, ROUND_HALF_UP
 from .base import PaymentProcessor
 from .exceptions import PaymentProcessorError, MerchantError
+from bbtest.models.accounting import Debit
 
 
 class QazkomPaymentProcessor(PaymentProcessor):
@@ -36,6 +37,9 @@ class QazkomPaymentProcessor(PaymentProcessor):
                 self.__verify_document(self.__authorization_response)
         except MerchantError:
             pass
+
+    def min_amount(self):
+        return Decimal("20.00")
 
     @classmethod
     def instantiate_from_meta_data(cls, amount, meta_data):
@@ -138,6 +142,23 @@ class QazkomPaymentProcessor(PaymentProcessor):
 
     def meta_data(self):
         return self.__meta_data
+
+    def funds(self):
+        if self.__authorization_data is None:
+            raise PaymentProcessorError("Cannot access funds")
+        amex = True
+        if search(r"^3[47]", self.__authorization_data["card"]) is None:
+            amex = False
+        fees = self.amount()
+        if amex:
+            fees = (fees * Decimal("0.035")).quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
+        else:
+            fees = (fees * Decimal("0.026")).quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
+        fees = max(fees, self.min_amount())
+        return [
+            Debit("Cash", self.amount() - fees),
+            Debit("MerchantFees-Qazkom", fees)
+        ]
 
     @classmethod
     def post_url(cls, test=False):
@@ -305,6 +326,7 @@ class QazkomPaymentProcessor(PaymentProcessor):
                 "reference": node.attrib["reference"],
                 "approval_code": node.attrib["approval_code"],
                 "order_id": document.find("bank").find("customer").find("merchant").find("order").attrib["order_id"],
+                "card": node.attrib["card"],
             }
         except (AttributeError, KeyError, DecimalException):
             raise MerchantError("Incorrect authorization response")

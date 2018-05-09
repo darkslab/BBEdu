@@ -4,13 +4,16 @@ from .exceptions import PaymentProcessorError
 
 class PaymentProcessor:
     def __init__(self, amount, test=False):
-        if not isinstance(amount, Decimal) or amount <= 0:
+        if not isinstance(amount, Decimal) or amount <= self.min_amount():
             raise PaymentProcessorError("Incorrect amount")
         self.__amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
         self.__test = bool(test)
 
     def amount(self):
         return self.__amount
+
+    def min_amount(self):
+        return Decimal("0.00")
 
     def set_test(self):
         self.__test = True
@@ -36,3 +39,6 @@ class PaymentProcessor:
 
     def meta_data(self):
         raise NotImplementedError("%s has to implement 'meta_data' method" % type(self).__name__)
+
+    def funds(self):
+        raise NotImplementedError("%s has to implement 'funds' method" % type(self).__name__)
