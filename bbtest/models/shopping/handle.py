@@ -7,6 +7,7 @@ from . import items
 from .items.base import Item
 from .exceptions import CartHandleError, ItemError
 from .base import LineItem
+from bbtest.models.accounting import squash_funds
 
 
 class CartHandle:
@@ -131,6 +132,12 @@ class CartHandle:
             raise CartHandleError("Could not save the cart")
 
         self.__products = [ product for product in self.__products if product["item"] is not None ]
+
+    def funds(self):
+        item_funds = []
+        for item in self.__items():
+            item_funds.extend(item.funds())
+        return squash_funds(item_funds)
 
     def __iter__(self):
         return ItemsIterator(self.__items())
