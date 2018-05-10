@@ -22,7 +22,7 @@ class PaymentProcessor:
         return self.__test
 
     @classmethod
-    def instantiate_from_meta_data(cls, meta_data):
+    def instantiate_from_meta_data(cls, amount, meta_data):
         raise NotImplementedError("%s has to implement 'instantiate_from_meta_data' class method" % cls.__name__)
 
     def authorize(self):
