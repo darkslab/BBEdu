@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-26 11:23+0600\n"
+"POT-Creation-Date: 2018-05-10 23:17+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -296,6 +296,69 @@ msgstr "Электрондық поштаңыздың ұзындығын тек�
 msgctxt "Validation error"
 msgid "This email is already taken."
 msgstr "Бұл электрондық пошта тіркелген."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter last name."
+msgctxt "Validation error"
+msgid "Please enter name."
+msgstr "Тегіңізді енгізіңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect name."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Last name is too long."
+msgctxt "Validation error"
+msgid "Name is too long."
+msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter email."
+msgctxt "Validation error"
+msgid "Please enter phone."
+msgstr "Электрондық поштаңызды енгізіңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect phone."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Last name is too long."
+msgctxt "Validation error"
+msgid "Phone is too long."
+msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter email."
+msgctxt "Validation error"
+msgid "Please enter message."
+msgstr "Электрондық поштаңызды енгізіңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Validation error"
+msgid "Incorrect message."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Last name is too long."
+msgctxt "Validation error"
+msgid "Message is too long."
+msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
 
 msgctxt "Validation error"
 msgid "Invalid JSON format."
@@ -996,6 +1059,25 @@ msgctxt "Model field"
 msgid "user agent"
 msgstr "аты-жөні"
 
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "username"
+msgctxt "Model field"
+msgid "name"
+msgstr "аты-жөні"
+
+msgctxt "Model field"
+msgid "phone"
+msgstr ""
+
+msgctxt "Model field"
+msgid "message"
+msgstr ""
+
+msgctxt "Model field"
+msgid "created at"
+msgstr "жасалған уақыты"
+
 msgctxt "Model field"
 msgid "from email"
 msgstr "электрондық поштадан"
@@ -1014,23 +1096,12 @@ msgid "mime data"
 msgstr "MIME мәліметі"
 
 msgctxt "Model field"
-msgid "created at"
-msgstr "жасалған уақыты"
-
-msgctxt "Model field"
 msgid "sent at"
 msgstr "жіберілген уақыты"
 
 msgctxt "Field class description"
 msgid "JSON"
 msgstr ""
-
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "username"
-msgctxt "Model field"
-msgid "name"
-msgstr "аты-жөні"
 
 msgctxt "Model field"
 msgid "order"
@@ -1188,6 +1259,142 @@ msgstr "Кешіріңіз, Сіздің бұл жерде болуыңыз мү
 msgctxt "Page title"
 msgid "Page not found"
 msgstr "Парақша табылмады"
+
+#, python-format
+msgid ""
+"bbTest.kz %(dash_code)s Powerful\n"
+"        and simple online testing platform"
+msgstr ""
+
+msgid "Tests"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Results"
+msgid "Results"
+msgstr "Тестілеудің нәтижелері"
+
+msgid ""
+"How it\n"
+"                        works"
+msgstr ""
+
+msgid ""
+"Our\n"
+"                        team"
+msgstr ""
+
+msgid ""
+"\n"
+"                        Contact"
+msgstr ""
+
+msgid "Sign in"
+msgstr ""
+
+msgid ""
+"The updated versions of tests for UNT-2018 are already\n"
+"                here!"
+msgstr ""
+
+msgid "Take a test"
+msgstr ""
+
+msgid "Progress monitoring"
+msgstr ""
+
+msgid "Work on mistakes"
+msgstr ""
+
+msgid "How it works"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/login/"
+#| msgid "Register"
+msgid "Registration"
+msgstr "Тіркелу"
+
+msgid "Choose test"
+msgstr ""
+
+msgid "Payment"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Results"
+msgid "Get results"
+msgstr "Тестілеудің нәтижелері"
+
+msgid "Our team"
+msgstr ""
+
+msgid ""
+"The team of bbTest.kz employs professionals in the field of education, "
+"testologists,\n"
+"                        teachers, psychometrics. BbTest.kz is trained in "
+"international organizations in the field of\n"
+"                        education, such as the Institute for Educational "
+"Measurement of Cito and the Center for Talented\n"
+"                        Youth of the Johns Hopkins University CTY."
+msgstr ""
+
+msgid ""
+"Our\n"
+"                    partners"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid ""
+"Join our mailing list to recieve the latest\n"
+"                    news and updates from our team"
+msgstr ""
+
+msgid "Your Name *"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter first name."
+msgid "Please enter your name."
+msgstr "Атыңызды енгізіңіз."
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Email"
+msgid "Your Email *"
+msgstr "Электрондық пошта"
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter email."
+msgid "Please enter your email address."
+msgstr "Электрондық поштаңызды енгізіңіз."
+
+msgid "Your Phone *"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter first name."
+msgid "Please enter your phone number."
+msgstr "Атыңызды енгізіңіз."
+
+msgid "Your Message *"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter last name."
+msgid "Please enter a message."
+msgstr "Тегіңізді енгізіңіз."
+
+msgid "Send Message"
+msgstr ""
 
 #, python-format
 msgctxt "Splash page title"
