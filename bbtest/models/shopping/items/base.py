@@ -64,3 +64,9 @@ class Item:
 
     def __hash__(self):
         raise NotImplementedError("%s has to implement '__hash__' method" % type(self).__name__)
+
+    def funds(self):
+        """
+        Has to return an array of Fund objects
+        """
+        raise NotImplementedError("%s has to implement 'funds' method" % type(self).__name__)

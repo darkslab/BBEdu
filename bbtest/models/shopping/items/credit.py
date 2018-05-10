@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from decimal import Decimal, ROUND_HALF_UP
 from .base import Item
 from ..exceptions import ItemError
+from bbtest.models.accounting import Account, Credit
 
 
 User = get_user_model()
@@ -17,7 +18,10 @@ class CreditItem(Item):
         if not isinstance(user, User):
             raise ItemError(pgettext("Item error", "User is required."))
         self.__user = user
-        self.__account = self.__user.balance_account()
+        self.__accounts = {
+            "balance_account": self.__user.balance_account(),
+            "account": Account.objects.get(pk=self.__user.balance_account().pk),
+        }
 
         self.handle().add_item(self)
 
@@ -27,7 +31,7 @@ class CreditItem(Item):
         self.__amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
 
     def account(self):
-        return self.__account
+        return self.__accounts["balance_account"]
 
     @classmethod
     def instantiate_from_meta_data(cls, handle, meta_data):
@@ -72,3 +76,8 @@ class CreditItem(Item):
 
     def __hash__(self):
         return self.account().pk
+
+    def funds(self):
+        return [
+            Credit(account=self.__accounts["account"], amount=self.amount()),
+        ]
