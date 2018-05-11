@@ -1,0 +1,14 @@
+Asset accounts:
+    Cash
+
+Expense accounts:
+    MerchantFees-Qazkom
+
+Dividend accounts:
+
+Liability accounts:
+
+Equity accounts:
+    BalanceAccount-%{user_id}
+
+Revenue accounts:
