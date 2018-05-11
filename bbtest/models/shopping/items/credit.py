@@ -9,6 +9,8 @@ from bbtest.models.accounting import Account, Credit
 User = get_user_model()
 
 
+MIN_CREDIT_AMOUNT = Decimal("1000.00")
+
 class CreditItem(Item):
     def __init__(self, handle, amount, user):
         super().__init__(handle)
@@ -26,7 +28,7 @@ class CreditItem(Item):
         self.handle().add_item(self)
 
     def set_amount(self, amount):
-        if not isinstance(amount, Decimal) or amount <= 0:
+        if not isinstance(amount, Decimal) or amount < MIN_CREDIT_AMOUNT:
             raise ItemError(pgettext("Item error", "Incorrect amount value."))
         self.__amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
 
