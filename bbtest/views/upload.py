@@ -13,7 +13,7 @@ import bbtest.asset_adopters
 
 class UploadStartView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        form = UploadStartForm("%s://%s" % (request.scheme, request.get_host()), data=request.POST)
+        form = UploadStartForm(data=request.POST)
         if not form.is_valid():
             return TightJsonResponse({
                 "success": False,

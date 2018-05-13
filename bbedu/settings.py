@@ -342,3 +342,10 @@ RQ_EXCEPTION_HANDLERS = [
 ]
 
 BB_USER_AGENT = "bbTest.kz"
+
+BB_MANAGERS = [
+    "darkhan@baimyrza.com",
+    "admin@bbtest.kz",
+]
+
+BB_BASE_URL = SECRETS["BASE_URL"]

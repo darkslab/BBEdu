@@ -2,6 +2,7 @@ from django.forms import ModelForm, Form
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy
 from django.utils.timezone import now
+from django.conf import settings
 from datetime import timedelta
 from uuid import uuid4
 from bbtest.models import Upload
@@ -35,9 +36,8 @@ class UploadStartForm(ModelForm):
             },
         }
 
-    def __init__(self, origin, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._origin = origin
         self._upload_starter = None
         self._upload_starter_kwargs = {}
 
@@ -84,7 +84,7 @@ class UploadStartForm(ModelForm):
                 if not Upload.objects.filter(uuid=upload.uuid).exists():
                     break
         upload.expire_at = now() + timedelta(days=7)
-        upload.upload_url = upload.generate_upload_url(self._origin)
+        upload.upload_url = upload.generate_upload_url(settings.BB_BASE_URL)
 
         if commit:
             upload.save()

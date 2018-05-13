@@ -3,6 +3,7 @@ from .exceptions import ChargeError
 from bbtest.models.accounting import squash_funds
 from bbtest.models import Account
 from bbtest.payment_processors import PaymentProcessorError
+from bbtest.emails.manager import send_mail
 
 
 def charge(payment_processor, cart_handle):
@@ -24,20 +25,28 @@ def charge(payment_processor, cart_handle):
                 Account.objects.select_for_update().get(pk=fund.account().pk)
                 if fund.account().balance() < fund.amount():
                     raise ChargeError("Insufficient funds")
-            cart_handle.checkout()
+            # DARK_TODO  create transaction
+            completed_cart = cart_handle.checkout()
     except Exception:
         try:
             payment_processor.void()
         except PaymentProcessorError as error:
-            # DARK_TODO  email managers that voiding has failed
-            pass
+            send_mail("Payment processor failed void", "\n".join([
+                "Payment processor failed void for %s (%s)" % (type(payment_processor).__name__, payment_processor.amount()),
+                "",
+                "Error: %s" % str(error),
+            ]))
         raise
 
     try:
         payment_processor.capture()
     except PaymentProcessorError as error:
-        # DARK_TODO  email managers that capturing has failed
-        pass
+        send_mail("Payment processor failed capture", "\n".join([
+            "Payment processor failed capture for %s (%s)" % (type(payment_processor).__name__, payment_processor.amount()),
+            completed_cart,
+            "",
+            "Error: %s" % str(error),
+        ]))
 
 
 def refund():
