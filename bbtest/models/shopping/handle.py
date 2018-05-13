@@ -17,7 +17,7 @@ class CartHandle:
         self.__errors = []
         self.__is_modified = False
 
-        if not self.__cart.is_current:
+        if self.is_complete():
             raise CartHandleError("Only current carts are allowed")
         for line_item in self.__cart.line_items.all():
             if not hasattr(items, line_item.item_class):
@@ -40,6 +40,9 @@ class CartHandle:
             self.save()
 
         # DARK_TODO  do something with self.__errors
+
+    def is_complete(self):
+        return not self.__cart.is_current
 
     def add_item(self, item):
         self.__normalize_products(item.merge_into_items(self.__items()))
@@ -74,19 +77,23 @@ class CartHandle:
             self.save()
         return self.__cart.pk
 
-    def complete(self):
+    def checkout(self):
         if not len(self.__items()):
             raise CartHandleError("Cart is empty")
-        if not self.__cart.is_current:
-            raise CartHandleError("Cannot complete a non-current cart")
+        if self.is_complete():
+            raise CartHandleError("Cannot checkout a non-current cart")
         try:
             with atomic(savepoint=False):
                 self.save()
                 self.__cart.is_current = None
                 self.__cart.completed_at = now()
                 self.__cart.save()
+
+                for item in self.__items():
+                    item.checkout()
+
         except ConcurrentUpdate:
-            raise CartHandleError("Could not complete the cart")
+            raise CartHandleError("Could not checkout the cart")
         return self.__cart
 
     def save(self):
@@ -96,7 +103,7 @@ class CartHandle:
         lock_safe = False
         try:
             with atomic(savepoint=False):
-                if not self.__cart.is_current:
+                if self.is_complete():
                     raise CartHandleError("Cannot save a non-current cart")
                 self.__cart.discount = self.discount()
                 if self.cart_id() is None:

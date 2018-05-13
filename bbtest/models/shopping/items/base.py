@@ -70,3 +70,9 @@ class Item:
         Has to return an array of Fund objects
         """
         raise NotImplementedError("%s has to implement 'funds' method" % type(self).__name__)
+
+    def checkout(self):
+        """
+        Can raise ItemError with a translated message.
+        """
+        pass

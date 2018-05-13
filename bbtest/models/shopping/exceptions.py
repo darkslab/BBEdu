@@ -6,3 +6,6 @@ class CartHandleError(ShoppingError):
 
 class ItemError(ShoppingError):
     pass
+
+class ChargeError(ShoppingError):
+    pass

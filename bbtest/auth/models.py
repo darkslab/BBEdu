@@ -118,4 +118,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         return "BalanceAccount-%s" % self.pk
 
     def balance_account(self):
-        return BalanceAccount.objects.get(name=self.balance_account_name())
+        if not hasattr(self, "_%s__balance_account" % type(self).__name__):
+            self.__balance_account = BalanceAccount.objects.get(name=self.balance_account_name())
+        return self.__balance_account
