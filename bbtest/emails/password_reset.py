@@ -2,6 +2,7 @@ from django.template import loader
 from django.core.mail import EmailMessage
 from django.utils.translation import pgettext
 from django.urls import reverse
+from django.conf import settings
 
 
 def send_mail(to_email, context):
@@ -17,7 +18,7 @@ def send_mail(to_email, context):
             "user": context["user"],
             "reset_url": reset_url,
         }),
-        from_email="bbTest.kz <accounts@bbtest.kz>",
+        from_email=settings.DEFAULT_FROM_EMAIL,
         to=[ to_email ],
     )
     email.content_subtype = "html"

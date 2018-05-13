@@ -313,7 +313,7 @@ ADMINS = [
     ("Darkhan Baimyrza", "darkhan@baimyrza.com"),
 ]
 EMAIL_SUBJECT_PREFIX = ""
-DEFAULT_FROM_EMAIL = "bbTest.kz <admin@bbtest.kz>"
+DEFAULT_FROM_EMAIL = "bbTest.kz <no-reply@bbtest.kz>"
 SERVER_EMAIL = "bbTest.kz ERROR <errors@bbtest.kz>"
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
