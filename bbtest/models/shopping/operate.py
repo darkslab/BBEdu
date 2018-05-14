@@ -1,7 +1,7 @@
 from django.db.transaction import atomic
 from .exceptions import ChargeError
 from bbtest.models.accounting import squash_funds
-from bbtest.models import Account
+from bbtest.models import Account, Entry, Transaction
 from bbtest.payment_processors import PaymentProcessorError
 from bbtest.emails.manager import send_mail
 
@@ -13,20 +13,27 @@ def charge(payment_processor, cart_handle):
     payment_processor.authorize()
 
     post_funds = squash_funds(payment_processor.funds() + cart_handle.funds())
-    lock_funds = []
-    for fund in post_funds:
-        if fund.account().is_balance_account():
-            lock_funds.append(fund)
-    lock_funds.sort(key=lambda fund: fund.account().pk)
+    post_funds.sort(key=lambda fund: fund.account().pk)
 
     try:
         with atomic(savepoint=False):
-            for fund in lock_funds:
+            for fund in post_funds:
+                if not fund.should_lock_account():
+                    continue
                 Account.objects.select_for_update().get(pk=fund.account().pk)
                 if fund.account().balance() < fund.amount():
                     raise ChargeError("Insufficient funds")
-            # DARK_TODO  create transaction
+
             completed_cart = cart_handle.checkout()
+            Entry.objects.post("Cart checkout (%s)" % cart_handle.total(), post_funds, document=completed_cart)
+            transaction = Transaction.objects.create(
+                document=completed_cart,
+                payment_processor_class=type(payment_processor).__name__,
+                meta_data=payment_processor.meta_data(),
+                amount=payment_processor.amount(),
+                is_complete=False,
+            )
+
     except Exception:
         try:
             payment_processor.void()
@@ -40,13 +47,17 @@ def charge(payment_processor, cart_handle):
 
     try:
         payment_processor.capture()
+        transaction.is_complete = True
+        transaction.meta_data = payment_processor.meta_data()
+        transaction.save()
     except PaymentProcessorError as error:
         send_mail("Payment processor failed capture", "\n".join([
             "Payment processor failed capture for %s (%s)" % (type(payment_processor).__name__, payment_processor.amount()),
-            completed_cart,
+            str(completed_cart),
             "",
             "Error: %s" % str(error),
         ]))
+        raise
 
 
 def refund():

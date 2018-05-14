@@ -9,7 +9,7 @@ from bbtest.models.accounting import Account, Credit
 User = get_user_model()
 
 
-MIN_CREDIT_AMOUNT = Decimal("1000.00")
+MIN_CREDIT_AMOUNT = Decimal("200.00")
 
 class CreditItem(Item):
     def __init__(self, handle, amount, user):
@@ -81,5 +81,5 @@ class CreditItem(Item):
 
     def funds(self):
         return [
-            Credit(account=self.__accounts["account"], amount=self.amount()),
+            Credit(account=self.__accounts["account"], amount=self.__amount),
         ]
