@@ -5,6 +5,18 @@ from __future__ import unicode_literals
 import bbtest.models.fields.json_field
 from django.db import migrations, models
 import django.db.models.deletion
+from django.db import connection
+
+
+def set_auto_increment_values(apps, schema_editor):
+    for table_name, table_next_id in (
+        ("Transaction", 768),
+    ):
+        with connection.cursor() as cursor:
+            sql = "ALTER TABLE %s AUTO_INCREMENT = %%s" % apps.get_model("bbtest", table_name)._meta.db_table
+            cursor.execute(sql, [
+                table_next_id,
+            ])
 
 
 class Migration(migrations.Migration):
@@ -34,4 +46,5 @@ class Migration(migrations.Migration):
                 'default_permissions': (),
             },
         ),
+        migrations.RunPython(set_auto_increment_values, migrations.RunPython.noop),
     ]
