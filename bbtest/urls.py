@@ -1,6 +1,11 @@
 from django.conf.urls import url
 from .auth.views import LoginView, LogoutView, RegisterView, PasswordResetView, PasswordResetConfirmView
-from .views.base import HomeView, DashboardView, SettingsView
+from .views.base import (
+    HomeView,
+    DashboardView,
+    SettingsView,
+    BuyCreditsView,
+)
 from .views.upload import UploadStartView, UploadCompleteView, UploadAdoptView
 from .views.test import (
     TestView as BuildTestView,
@@ -34,8 +39,9 @@ urlpatterns = [
     url(r"^$", HomeView.as_view(), name="home"),
 
     # USER URLS
-    url(r"^dashboard/$", DashboardView.as_view(), name="dashboard"),
-    url(r"^settings/$",  SettingsView.as_view(),  name="settings" ),
+    url(r"^dashboard/$",   DashboardView.as_view(),  name="dashboard"  ),
+    url(r"^settings/$",    SettingsView.as_view(),   name="settings"   ),
+    url(r"^buy-credits/$", BuyCreditsView.as_view(), name="buy_credits"),
 
     # UPLOAD URLS
     url(r"^uploads/start/$",                              UploadStartView.as_view(),    name="upload_start"   ),

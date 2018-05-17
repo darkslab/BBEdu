@@ -42,3 +42,9 @@ class SettingsView(LoginRequiredMixin, FormView):
     def form_valid(self, form):
         login(self.request, form.save())
         return super().form_valid(form)
+
+
+# DARK_TODO  Has to be FormView
+from bbtest.views.generic import TemplateView
+class BuyCreditsView(LoginRequiredMixin, TemplateView):
+    template_name = "base/buy_credits.html"

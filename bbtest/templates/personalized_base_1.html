@@ -54,7 +54,7 @@
                             <li class="{% block nav_student_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:student_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_student_start_testing_class %}{% endblock %}"><a href="javascript:void(0);"><i class="fa fa-fw fa-pencil-square-o"></i> {% trans 'Start testing' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_student_results_class %}{% endblock %}"><a href="javascript:void(0);"><i class="fa fa-fw fa-line-chart"></i> {% trans 'Results' context 'Navigation link' %}</a></li>
-                            <li class="{% block nav_student_refill_balance_class %}{% endblock %}"><a href="javascript:void(0);"><i class="fa fa-fw fa-dollar"></i> {% trans 'Refill Balance' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_student_buy_credits_class %}{% endblock %}"><a href="{% url 'bbtest:buy_credits' %}"><i class="fa fa-fw fa-dollar"></i> {% trans 'Buy Credits' context 'Navigation link' %}</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -134,7 +134,7 @@
                         {% endif %}
                         {% block header %}
                             <div class="row">
-                                <div class="col-xs-12">
+                                <div class="{% block header_class %}col-xs-12{% endblock %}">
                                     <h3 class="mb-23 mt-0">{% block title %}{% endblock %}</h3>
                                 </div>
                             </div>
@@ -152,6 +152,7 @@
 {% comment %}
 
     header
+      header_class
       title
     content
 
@@ -166,6 +167,6 @@
     nav_student_dashboard_class
     nav_student_start_testing_class
     nav_student_results_class
-    nav_student_refill_balance_class
+    nav_student_buy_credits_class
 
 {% endcomment %}
