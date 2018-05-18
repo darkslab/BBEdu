@@ -9,6 +9,7 @@ from bbtest.models.accounting import Account, Credit
 User = get_user_model()
 
 
+MAX_CREDIT_AMOUNT = Decimal("1000000.00")
 MIN_CREDIT_AMOUNT = Decimal("200.00")
 
 class CreditItem(Item):

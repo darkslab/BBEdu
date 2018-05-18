@@ -156,6 +156,10 @@ html {
     min-height: 660px;
 }
 
+.bb-min-220 {
+    min-height: 220px;
+}
+
 .bb-container.bb-overlayed {
     height: 100vh;
 }

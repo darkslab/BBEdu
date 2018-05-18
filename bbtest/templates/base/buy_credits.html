@@ -20,13 +20,16 @@
                     <form method="post" action="{{ request.path }}" class="mt-15 form-horizontal" data-bb-form>
                         {% csrf_token %}
 
-                        <div class="form-group has-success">
+                        <div class="form-group {% if form.amount.errors %}has-error{% else %}has-success{% endif %}">
                             <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-addon">₸</span>
-                                    <input type="text" class="form-control text-right">
+                                    {{ form.amount|add_class:'form-control text-right' }}
                                     <span class="input-group-addon">.00</span>
                                 </div>
+                                {% for error in form.amount.errors %}
+                                    <p class="help-block text-center {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                {% endfor %}
                             </div>
                         </div>
 

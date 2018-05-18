@@ -1,9 +1,10 @@
-from django.forms import ValidationError, ModelForm, CharField, PasswordInput
+from django.forms import ValidationError, ModelForm, Form, CharField, PasswordInput, IntegerField, TextInput
 from django.utils.translation import pgettext_lazy, pgettext
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import get_user_model
 from uuid import uuid4
 from bbtest.auth.password_validation import password_validators_help_text_html
+from bbtest.models.shopping.items.credit import MAX_CREDIT_AMOUNT, MIN_CREDIT_AMOUNT
 
 
 User = get_user_model()
@@ -75,3 +76,12 @@ class BaseUserForm(ModelForm):
         if commit:
             user.save()
         return user
+
+
+class BuyCreditsForm(Form):
+    amount = IntegerField(label=pgettext_lazy("Form label", "Amount"), error_messages={
+        "required": pgettext_lazy("Validation error", "Please provide an amount."),
+        "invalid": pgettext_lazy("Validation error", "Amount is invalid."),
+        "max_value": pgettext_lazy("Validation error", "Amount cannot be more than %(limit_value)s."),
+        "min_value": pgettext_lazy("Validation error", "Amount has to be at least %(limit_value)s."),
+    }, widget=TextInput, max_value=int(MAX_CREDIT_AMOUNT), min_value=int(MIN_CREDIT_AMOUNT))
