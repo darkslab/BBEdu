@@ -7,4 +7,5 @@ def global_variables(request):
     if settings.VERSION != "dev" or settings.DEBUG:
         context["VERSION"] = settings.VERSION
     context["ANALYTICS"] = not settings.DEBUG
+    context["BASE_URL"] = settings.BB_BASE_URL
     return context

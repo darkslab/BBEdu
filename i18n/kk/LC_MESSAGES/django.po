@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-26 11:23+0600\n"
+"POT-Creation-Date: 2018-05-20 13:49+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -296,6 +296,33 @@ msgstr "Электрондық поштаңыздың ұзындығын тек�
 msgctxt "Validation error"
 msgid "This email is already taken."
 msgstr "Бұл электрондық пошта тіркелген."
+
+msgctxt "Form label"
+msgid "Amount"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter last name."
+msgctxt "Validation error"
+msgid "Please provide an amount."
+msgstr "Тегіңізді енгізіңіз."
+
+msgctxt "Validation error"
+msgid "Amount is invalid."
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "Amount cannot be more than %(limit_value)s."
+msgstr ""
+
+#, fuzzy, python-format
+#| msgctxt "Password validation error"
+#| msgid "The password has to be at least %(min_length)d characters."
+msgctxt "Validation error"
+msgid "Amount has to be at least %(limit_value)s."
+msgstr "Құпиясөз кем дегенде %(min_length)d белгіден тұру керек."
 
 msgctxt "Validation error"
 msgid "Invalid JSON format."
@@ -957,6 +984,69 @@ msgstr ""
 msgid "Introduction to Jurisprudence"
 msgstr ""
 
+msgctxt "Account type"
+msgid "Asset"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Expense"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Dividend"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Liability"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Equity"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Revenue"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "username"
+msgctxt "Model field"
+msgid "name"
+msgstr "аты-жөні"
+
+msgctxt "Model field"
+msgid "type"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/login/"
+#| msgid "Don't have an account?"
+msgctxt "Model field"
+msgid "is contra account?"
+msgstr "Аккаунт жоқ па?"
+
+msgctxt "Model field"
+msgid "created at"
+msgstr "жасалған уақыты"
+
+msgctxt "Model field"
+msgid "description"
+msgstr ""
+
+#, fuzzy
+msgctxt "Model field"
+msgid "object ID"
+msgstr "пән"
+
+msgctxt "Model field"
+msgid "is debit?"
+msgstr ""
+
+msgctxt "Model field"
+msgid "amount"
+msgstr ""
+
 msgctxt "Developer acknowledgement plan"
 msgid "Immediate"
 msgstr ""
@@ -1014,10 +1104,6 @@ msgid "mime data"
 msgstr "MIME мәліметі"
 
 msgctxt "Model field"
-msgid "created at"
-msgstr "жасалған уақыты"
-
-msgctxt "Model field"
 msgid "sent at"
 msgstr "жіберілген уақыты"
 
@@ -1025,12 +1111,69 @@ msgctxt "Field class description"
 msgid "JSON"
 msgstr ""
 
+msgctxt "Model field"
+msgid "lock version"
+msgstr ""
+
+msgctxt "Model field"
+msgid "discount"
+msgstr ""
+
 #, fuzzy
 #| msgctxt "Model field"
-#| msgid "username"
+#| msgid "created at"
 msgctxt "Model field"
-msgid "name"
-msgstr "аты-жөні"
+msgid "updated at"
+msgstr "жасалған уақыты"
+
+msgctxt "Model field"
+msgid "is current?"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "created at"
+msgctxt "Model field"
+msgid "completed at"
+msgstr "жасалған уақыты"
+
+msgctxt "Model field"
+msgid "item class"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "mime data"
+msgctxt "Model field"
+msgid "meta data"
+msgstr "MIME мәліметі"
+
+msgctxt "Model field"
+msgid "price"
+msgstr ""
+
+msgctxt "Model field"
+msgid "payment processor class"
+msgstr ""
+
+msgctxt "Model field"
+msgid "is complete?"
+msgstr ""
+
+msgctxt "Item error"
+msgid "User is required."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Item error"
+msgid "Incorrect amount value."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "Item error"
+msgid "User no longer exists."
+msgstr ""
 
 msgctxt "Model field"
 msgid "order"
@@ -1108,13 +1251,6 @@ msgctxt "Model field"
 msgid "answer class"
 msgstr ""
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "mime data"
-msgctxt "Model field"
-msgid "meta data"
-msgstr "MIME мәліметі"
-
 msgctxt "Model field"
 msgid "difficulty"
 msgstr ""
@@ -1122,13 +1258,6 @@ msgstr ""
 msgctxt "Model field"
 msgid "weight of question"
 msgstr ""
-
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
-msgctxt "Model field"
-msgid "updated at"
-msgstr "жасалған уақыты"
 
 msgctxt "Model field"
 msgid "paragraph class"
@@ -1188,6 +1317,19 @@ msgstr "Кешіріңіз, Сіздің бұл жерде болуыңыз мү
 msgctxt "Page title"
 msgid "Page not found"
 msgstr "Парақша табылмады"
+
+msgctxt "Page title"
+msgid "Buy Credits"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Make a payment"
+msgstr ""
+
+#, python-format
+msgctxt "/buy-credits/"
+msgid "All transactions are handled by %(bank_name)s."
+msgstr ""
 
 #, python-format
 msgctxt "Splash page title"
@@ -1559,8 +1701,8 @@ msgid "Results"
 msgstr "Тестілеудің нәтижелері"
 
 msgctxt "Navigation link"
-msgid "Refill Balance"
-msgstr "Шотты толтыру"
+msgid "Buy Credits"
+msgstr ""
 
 msgctxt "Navigation link"
 msgid "Settings"

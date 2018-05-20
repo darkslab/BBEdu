@@ -1,0 +1,57 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n static %}
+
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3{% endblock %}
+
+{% block title %}{% trans 'Buy Credits' context 'Page title' %}{% endblock %}
+
+{% block nav_student_buy_credits_class %}active{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "BuyCreditsQazkomPageModule"
+        });
+    </script>
+    <form method="post" action="{{ qazkom_form.action }}" data-qazkom-form>
+        <input type="hidden" name="Signed_Order_B64" value="{{ qazkom_form.signed_order_b64 }}">
+        <input type="hidden" name="email" value="{{ user.email }}">
+        <input type="hidden" name="BackLink" value="{{ BASE_URL }}{% url 'bbtest:dashboard' %}">
+        <input type="hidden" name="FailureBackLink" value="{{ BASE_URL }}{% url 'bbtest:buy_credits' %}">
+        <input type="hidden" name="PostLink" value="{{ BASE_URL }}{% url 'bbtest:process_credits_qazkom' %}">
+        <input type="hidden" name="FailurePostLink" value="">
+        <input type="hidden" name="appendix" value="{{ qazkom_form.appendix }}">
+        <input type="hidden" name="Language" value="{{ qazkom_form.language }}">
+        <input type="hidden" name="person_id" value="{{ user.id }}">
+    </form>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="bb-min-220 bb-rel mt--15">
+                        <img src="{% static 'img/logo.png' %}" class="bb-spinner">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="lead text-center">{% blocktrans with bank_name='Казкоммерцбанк' context '/buy-credits/' %}All transactions are handled by {{ bank_name }}.{% endblocktrans %}</p>
+                </div>
+                <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3">
+                    <div class="row">
+                        <div class="col-xs-6 pr-0">
+                            <img src="{% static 'img/epay.png' %}" class="img-responsive center-block mt-15">
+                        </div>
+                        <div class="col-xs-6 pl-0">
+                            <img src="{% static 'img/qazkom.png' %}" class="img-responsive center-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
