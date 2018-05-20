@@ -6,6 +6,7 @@ from django.utils.translation import pgettext_lazy
 from django.urls import reverse
 from hashlib import md5
 from urllib.parse import urlencode
+from bbtest.models.accounting import BalanceAccount
 
 
 class UserManager(BaseUserManager):
@@ -64,6 +65,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.get_full_name()
+
     def get_absolute_url(self):
         if self.has_perm("bbtest.super"):
             return reverse("bbtest:super_dashboard")
@@ -102,3 +104,22 @@ class User(AbstractBaseUser, PermissionsMixin):
                 "d": "mm",
             }),
         )
+
+    def cart(self):
+        from bbtest.models import Cart
+        try:
+            return self.carts.get(is_current=True)
+        except Cart.DoesNotExist:
+            return Cart(buyer=self, is_current=True)
+
+    def balance_account_name(self):
+        if not self.pk:
+            return None
+        return "BalanceAccount-%s" % self.pk
+
+    def balance_account(self):
+        try:
+            self.__balance_account
+        except AttributeError:
+            self.__balance_account = BalanceAccount.objects.get(name=self.balance_account_name())
+        return self.__balance_account

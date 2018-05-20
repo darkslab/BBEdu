@@ -59,7 +59,7 @@
     letter-spacing: normal;
 }
 .text-bright {
-    color: rgba(237, 244, 247, 1);
+    color: rgba(244, 244, 244, 1);
 }
 .text-shadowed {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
@@ -117,7 +117,7 @@ html {
 }
 
 .bb-body {
-    background-color: rgba(237, 244, 247, 1);
+    background-color: rgba(232, 232, 232, 1);
 }
 
 .bb-body-plain {
@@ -154,6 +154,10 @@ html {
 
 .bb-min {
     min-height: 660px;
+}
+
+.bb-min-220 {
+    min-height: 220px;
 }
 
 .bb-container.bb-overlayed {
@@ -207,7 +211,7 @@ html {
     position: relative;
     left: 0px;
     min-height: 100vh;
-    background-color: rgba(237, 244, 247, 1);
+    background-color: rgba(232, 232, 232, 1);
     -webkit-transition: left .3s ease-in-out, padding-right .3s ease-in-out;
          -o-transition: left .3s ease-in-out, padding-right .3s ease-in-out;
             transition: left .3s ease-in-out, padding-right .3s ease-in-out;
@@ -265,7 +269,7 @@ html {
 .bb-menu-section .nav>li>a {
     padding-top: 5px;
     padding-bottom: 5px;
-    color: rgba(237, 244, 247, 1);
+    color: rgba(244, 244, 244, 1);
 }
 
 .bb-menu-section .nav-pills>li>a {
@@ -289,7 +293,7 @@ html {
 }
 
 .bb-menu-gravatar {
-    border: 2px solid rgba(237, 244, 247, 1);
+    border: 2px solid rgba(232, 232, 232, 1);
 }
 
 .bb-bar .navbar {

@@ -313,7 +313,7 @@ ADMINS = [
     ("Darkhan Baimyrza", "darkhan@baimyrza.com"),
 ]
 EMAIL_SUBJECT_PREFIX = ""
-DEFAULT_FROM_EMAIL = "bbTest.kz <admin@bbtest.kz>"
+DEFAULT_FROM_EMAIL = "bbTest.kz <no-reply@bbtest.kz>"
 SERVER_EMAIL = "bbTest.kz ERROR <errors@bbtest.kz>"
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -340,3 +340,12 @@ RQ_EXCEPTION_HANDLERS = [
     "bbtest.rq.handlers.exception",
     "rq.handlers.move_to_failed_queue",
 ]
+
+BB_USER_AGENT = "bbTest.kz"
+
+BB_MANAGERS = [
+    "darkhan@baimyrza.com",
+    "admin@bbtest.kz",
+]
+
+BB_BASE_URL = SECRETS["BASE_URL"]

@@ -1,6 +1,12 @@
 from django.conf.urls import url
 from .auth.views import LoginView, LogoutView, RegisterView, PasswordResetView, PasswordResetConfirmView
-from .views.base import HomeView, DashboardView, SettingsView
+from .views.base import (
+    HomeView,
+    DashboardView,
+    SettingsView,
+    BuyCreditsView,
+    BuyCreditsQazkomView,
+)
 from .views.upload import UploadStartView, UploadCompleteView, UploadAdoptView
 from .views.test import (
     TestView as BuildTestView,
@@ -34,8 +40,10 @@ urlpatterns = [
     url(r"^$", HomeView.as_view(), name="home"),
 
     # USER URLS
-    url(r"^dashboard/$", DashboardView.as_view(), name="dashboard"),
-    url(r"^settings/$",  SettingsView.as_view(),  name="settings" ),
+    url(r"^dashboard/$",          DashboardView.as_view(),        name="dashboard"          ),
+    url(r"^settings/$",           SettingsView.as_view(),         name="settings"           ),
+    url(r"^buy-credits/$",        BuyCreditsView.as_view(),       name="buy_credits"        ),
+    url(r"^buy-credits-qazkom/$", BuyCreditsQazkomView.as_view(), name="buy_credits_qazkom" ),
 
     # UPLOAD URLS
     url(r"^uploads/start/$",                              UploadStartView.as_view(),    name="upload_start"   ),
@@ -73,11 +81,3 @@ urlpatterns = [
     url(r"^password-reset/$",                                                                   PasswordResetView.as_view(),        name="password_reset"        ),
     url(r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]
-
-
-# from django.views.generic import TemplateView
-# urlpatterns += [
-#     url(r"^page/$", TemplateView.as_view(template_name="page.html"), {
-#         "var": 1,
-#     }),
-# ]

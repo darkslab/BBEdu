@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-26 11:23+0600\n"
-"PO-Revision-Date: 2018-02-18 15:24-0800\n"
+"POT-Creation-Date: 2018-05-20 13:49+0600\n"
+"PO-Revision-Date: 2018-05-20 01:16-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.0.7\n"
 
 msgctxt "Form label"
 msgid "Email"
@@ -219,6 +219,28 @@ msgstr "Адрес электронной почты слишком длинны
 msgctxt "Validation error"
 msgid "This email is already taken."
 msgstr "Данный адрес электронной почты уже используется."
+
+msgctxt "Form label"
+msgid "Amount"
+msgstr "Сумма"
+
+msgctxt "Validation error"
+msgid "Please provide an amount."
+msgstr "Пожалуйста, укажите сумму."
+
+msgctxt "Validation error"
+msgid "Amount is invalid."
+msgstr "Сумма недействительна."
+
+#, python-format
+msgctxt "Validation error"
+msgid "Amount cannot be more than %(limit_value)s."
+msgstr "Сумма не может превышать %(limit_value)s."
+
+#, python-format
+msgctxt "Validation error"
+msgid "Amount has to be at least %(limit_value)s."
+msgstr "Сумма должна быть не менее %(limit_value)s."
 
 msgctxt "Validation error"
 msgid "Invalid JSON format."
@@ -827,6 +849,62 @@ msgstr "Конституционное право"
 msgid "Introduction to Jurisprudence"
 msgstr "Введение в юриспруденцию"
 
+msgctxt "Account type"
+msgid "Asset"
+msgstr "Актив"
+
+msgctxt "Account type"
+msgid "Expense"
+msgstr "Расход"
+
+msgctxt "Account type"
+msgid "Dividend"
+msgstr "Дивиденд"
+
+msgctxt "Account type"
+msgid "Liability"
+msgstr "Задолженность"
+
+msgctxt "Account type"
+msgid "Equity"
+msgstr "Капитал"
+
+msgctxt "Account type"
+msgid "Revenue"
+msgstr "Доход"
+
+msgctxt "Model field"
+msgid "name"
+msgstr "имя"
+
+msgctxt "Model field"
+msgid "type"
+msgstr "тип"
+
+msgctxt "Model field"
+msgid "is contra account?"
+msgstr "контра счёт?"
+
+msgctxt "Model field"
+msgid "created at"
+msgstr "создано"
+
+msgctxt "Model field"
+msgid "description"
+msgstr "описание"
+
+msgctxt "Model field"
+msgid "object ID"
+msgstr "идентификатор объекта"
+
+msgctxt "Model field"
+msgid "is debit?"
+msgstr "дебит?"
+
+msgctxt "Model field"
+msgid "amount"
+msgstr "сумма"
+
 msgctxt "Developer acknowledgement plan"
 msgid "Immediate"
 msgstr "Моментальный"
@@ -880,10 +958,6 @@ msgid "mime data"
 msgstr "данные MIME"
 
 msgctxt "Model field"
-msgid "created at"
-msgstr "создано"
-
-msgctxt "Model field"
 msgid "sent at"
 msgstr "отправлено"
 
@@ -892,8 +966,56 @@ msgid "JSON"
 msgstr "JSON"
 
 msgctxt "Model field"
-msgid "name"
-msgstr "имя"
+msgid "lock version"
+msgstr "версия блокировки"
+
+msgctxt "Model field"
+msgid "discount"
+msgstr "скидка"
+
+msgctxt "Model field"
+msgid "updated at"
+msgstr "обновлено"
+
+msgctxt "Model field"
+msgid "is current?"
+msgstr "текущий?"
+
+msgctxt "Model field"
+msgid "completed at"
+msgstr "завершено"
+
+msgctxt "Model field"
+msgid "item class"
+msgstr "класс предмета"
+
+msgctxt "Model field"
+msgid "meta data"
+msgstr "мета данные"
+
+msgctxt "Model field"
+msgid "price"
+msgstr "цена"
+
+msgctxt "Model field"
+msgid "payment processor class"
+msgstr "класс процессора платежей"
+
+msgctxt "Model field"
+msgid "is complete?"
+msgstr "завершено?"
+
+msgctxt "Item error"
+msgid "User is required."
+msgstr "Требуется пользователь."
+
+msgctxt "Item error"
+msgid "Incorrect amount value."
+msgstr "Неверное значение суммы."
+
+msgctxt "Item error"
+msgid "User no longer exists."
+msgstr "Пользователь больше нет."
 
 msgctxt "Model field"
 msgid "order"
@@ -972,20 +1094,12 @@ msgid "answer class"
 msgstr "ответ"
 
 msgctxt "Model field"
-msgid "meta data"
-msgstr "мета данные"
-
-msgctxt "Model field"
 msgid "difficulty"
 msgstr "сложность"
 
 msgctxt "Model field"
 msgid "weight of question"
 msgstr "вес вопроса"
-
-msgctxt "Model field"
-msgid "updated at"
-msgstr "обновлено"
 
 msgctxt "Model field"
 msgid "paragraph class"
@@ -1042,6 +1156,19 @@ msgstr "Извините, но Вас не должно было быть зде
 msgctxt "Page title"
 msgid "Page not found"
 msgstr "Страница не найдена"
+
+msgctxt "Page title"
+msgid "Buy Credits"
+msgstr "Купить Kредиты"
+
+msgctxt "Form button"
+msgid "Make a payment"
+msgstr "Оплатить"
+
+#, python-format
+msgctxt "/buy-credits/"
+msgid "All transactions are handled by %(bank_name)s."
+msgstr "Все транзакции обрабатываются через %(bank_name)s."
 
 #, python-format
 msgctxt "Splash page title"
@@ -1414,8 +1541,8 @@ msgid "Results"
 msgstr "Результаты тестирования"
 
 msgctxt "Navigation link"
-msgid "Refill Balance"
-msgstr "Пополнить счёт"
+msgid "Buy Credits"
+msgstr "Купить Kредиты"
 
 msgctxt "Navigation link"
 msgid "Settings"
