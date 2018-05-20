@@ -6,7 +6,6 @@ from .views.base import (
     SettingsView,
     BuyCreditsView,
     BuyCreditsQazkomView,
-    ProcessCreditsQazkomView,
 )
 from .views.upload import UploadStartView, UploadCompleteView, UploadAdoptView
 from .views.test import (
@@ -41,11 +40,10 @@ urlpatterns = [
     url(r"^$", HomeView.as_view(), name="home"),
 
     # USER URLS
-    url(r"^dashboard/$",              DashboardView.as_view(),            name="dashboard"             ),
-    url(r"^settings/$",               SettingsView.as_view(),             name="settings"              ),
-    url(r"^buy-credits/$",            BuyCreditsView.as_view(),           name="buy_credits"           ),
-    url(r"^buy-credits-qazkom/$",     BuyCreditsQazkomView.as_view(),     name="buy_credits_qazkom"    ),
-    url(r"^process-credits-qazkom/$", ProcessCreditsQazkomView.as_view(), name="process_credits_qazkom"),
+    url(r"^dashboard/$",          DashboardView.as_view(),        name="dashboard"          ),
+    url(r"^settings/$",           SettingsView.as_view(),         name="settings"           ),
+    url(r"^buy-credits/$",        BuyCreditsView.as_view(),       name="buy_credits"        ),
+    url(r"^buy-credits-qazkom/$", BuyCreditsQazkomView.as_view(), name="buy_credits_qazkom" ),
 
     # UPLOAD URLS
     url(r"^uploads/start/$",                              UploadStartView.as_view(),    name="upload_start"   ),

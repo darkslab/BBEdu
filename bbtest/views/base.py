@@ -4,6 +4,8 @@ from django.contrib.auth import login
 from django.conf import settings
 from django.http import HttpResponse
 from django.utils.translation import get_language
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from urllib.parse import urlencode
 from decimal import Decimal
 from bbtest.auth.mixins import LoginRequiredMixin
@@ -11,9 +13,11 @@ from bbtest.views.generic import FormView, RedirectView, TemplateView, View
 from bbtest.forms.user import SettingsForm
 from bbtest.forms.subscription import SubscriptionForm
 from bbtest.forms.base import BuyCreditsForm
-from bbtest.payment_processors import FirstQazkomPaymentProcessor
-from bbtest.models.shopping.handle import CartHandleAccessMixin
+from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError
+from bbtest.models.shopping.handle import CartHandleAccessMixin, CartHandle
 from bbtest.models.shopping.items import CreditItem
+from bbtest.models.shopping.operate import charge
+from bbtest.models import Cart
 
 
 class HomeView(FormView):
@@ -118,7 +122,26 @@ class BuyCreditsQazkomView(CartHandleAccessMixin, LoginRequiredMixin, TemplateVi
         return super().get_context_data(**kwargs)
 
 
+@method_decorator(csrf_exempt, name="dispatch")
 class ProcessCreditsQazkomView(View):
     def post(self, request, *args, **kwargs):
-        # DARK_TODO  process an actual buying part
+        try:
+            handle = CartHandle(Cart.objects.get(pk=FirstQazkomPaymentProcessor.order_id(self.request.POST["response"])))
+
+            incorrect_cart = True
+            for item in handle:
+                if not isinstance(item, CreditItem):
+                    incorrect_cart = True
+                    break
+                incorrect_cart = False
+            if incorrect_cart:
+                raise PaymentProcessorError("Working on incorrect cart")
+
+            charge(
+                FirstQazkomPaymentProcessor(handle.total(), self.request.POST["response"]),
+                handle,
+            )
+        except Cart.DoesNotExist as error:
+            raise PaymentProcessorError(str(error))
+
         return HttpResponse("0", content_type="text/plain")

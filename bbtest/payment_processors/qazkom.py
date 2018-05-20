@@ -53,7 +53,6 @@ class QazkomPaymentProcessor(PaymentProcessor):
     def authorize(self):
         if not (self.__authorization_response is not None and not self.__captured):
             raise PaymentProcessorError("Cannot authorize funds")
-        self.__verify_document(self.__authorization_response)
         self.__retrieve_authorization_data()
 
     def capture(self):
@@ -114,7 +113,6 @@ class QazkomPaymentProcessor(PaymentProcessor):
     def refund(self):
         if not (self.__authorization_response is not None and self.__captured):
             raise PaymentProcessorError("Cannot refund funds, please capture first")
-        self.__verify_document(self.__authorization_response)
         self.__retrieve_authorization_data()
         try:
             response = get(
@@ -242,6 +240,15 @@ class QazkomPaymentProcessor(PaymentProcessor):
         return str(b64encode(ET.tostring(document)), encoding="UTF-8")
 
     @classmethod
+    def order_id(cls, document):
+        try:
+            if not isinstance(document, Element):
+                document = ET.fromstring(document)
+            return document.find("bank").find("customer").find("merchant").find("order").attrib["order_id"]
+        except (ParseError, AttributeError, KeyError):
+            raise PaymentProcessorError("Incorrect document")
+
+    @classmethod
     def private_key(cls):
         raise NotImplementedError("%s has to implement 'private_key' class method" % cls.__name__)
 
@@ -313,6 +320,8 @@ class QazkomPaymentProcessor(PaymentProcessor):
         return str(ET.tostring(document), encoding="UTF-8")
 
     def __retrieve_authorization_data(self):
+        self.__verify_document(self.__authorization_response)
+
         document = ET.fromstring(self.__authorization_response)
         try:
             node = document.find("bank").find("results").find("payment")
@@ -325,7 +334,7 @@ class QazkomPaymentProcessor(PaymentProcessor):
             self.__authorization_data = {
                 "reference": node.attrib["reference"],
                 "approval_code": node.attrib["approval_code"],
-                "order_id": document.find("bank").find("customer").find("merchant").find("order").attrib["order_id"],
+                "order_id": self.order_id(document),
                 "card": node.attrib["card"],
             }
         except (AttributeError, KeyError, DecimalException):
