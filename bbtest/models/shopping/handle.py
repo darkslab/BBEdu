@@ -36,7 +36,7 @@ class CartHandle:
 
         self.__is_modified = False
         if len(self.__errors):
-            self.__is_modified = True
+            self.mark_modified()
             self.save()
 
         # DARK_TODO  do something with self.__errors
@@ -46,14 +46,14 @@ class CartHandle:
 
     def add_item(self, item):
         self.__normalize_products(item.merge_into_items(self.__items()))
-        self.__is_modified = True
+        self.mark_modified()
 
     def remove_item(self, item):
         items = self.__items()
         if item not in items:
             return
         self.__normalize_products(item.separate_from_items(items))
-        self.__is_modified = True
+        self.mark_modified()
 
     def subtotal(self):
         total = Decimal("0.00")
@@ -73,7 +73,7 @@ class CartHandle:
 
     def cart_id(self, force=False):
         if self.__cart.pk is None and force:
-            self.__is_modified = True
+            self.mark_modified()
             self.save()
         return self.__cart.pk
 
@@ -146,6 +146,9 @@ class CartHandle:
             item_funds.extend(item.funds())
         return squash_funds(item_funds)
 
+    def mark_modified(self):
+        self.__is_modified = True
+
     def __iter__(self):
         return ItemsIterator(self.__items())
 
@@ -191,3 +194,12 @@ class ItemsIterator:
             return item
         except IndexError:
             raise StopIteration
+
+
+class CartHandleAccessMixin:
+    def cart_handle(self):
+        try:
+            self.__cart_handle
+        except AttributeError:
+            self.__cart_handle = CartHandle(self.request.user.cart())
+        return self.__cart_handle

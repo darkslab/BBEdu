@@ -4,9 +4,15 @@ from .exceptions import PaymentProcessorError
 
 class PaymentProcessor:
     def __init__(self, amount, test=False):
-        if not isinstance(amount, Decimal) or amount <= self.min_amount():
+        try:
+            if not isinstance(amount, Decimal):
+                raise ValueError("Invalid amount")
+            amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
+            if amount <= self.min_amount():
+                raise ValueError("Invalid amount")
+            self.__amount = amount
+        except ValueError:
             raise PaymentProcessorError("Incorrect amount")
-        self.__amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
         self.__test = bool(test)
 
     def amount(self):

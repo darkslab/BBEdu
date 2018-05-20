@@ -17,7 +17,6 @@ class CreditItem(Item):
         super().__init__(handle)
 
         self.__amount = Decimal("0.00")
-        self.set_amount(amount)
         if not isinstance(user, User):
             raise ItemError(pgettext("Item error", "User is required."))
         self.__user = user
@@ -25,13 +24,21 @@ class CreditItem(Item):
             "balance_account": self.__user.balance_account(),
             "account": Account.objects.get(pk=self.__user.balance_account().pk),
         }
+        self.set_amount(amount)
 
         self.handle().add_item(self)
 
     def set_amount(self, amount):
-        if not isinstance(amount, Decimal) or amount < MIN_CREDIT_AMOUNT:
+        try:
+            if not isinstance(amount, Decimal):
+                raise ValueError("Invalid amount")
+            amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
+            if amount < MIN_CREDIT_AMOUNT:
+                raise ValueError("Invalid amount")
+            self.__amount = amount
+            self.handle().mark_modified()
+        except ValueError:
             raise ItemError(pgettext("Item error", "Incorrect amount value."))
-        self.__amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
 
     def account(self):
         return self.__accounts["balance_account"]

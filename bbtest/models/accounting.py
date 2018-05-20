@@ -193,9 +193,15 @@ class Fund:
         if not isinstance(self.__account, Account):
             raise RuntimeError("Account is required")
 
-        if not isinstance(amount, Decimal) or amount <= 0:
+        try:
+            if not isinstance(amount, Decimal):
+                raise ValueError("Invalid amount")
+            amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
+            if amount <= 0:
+                raise ValueError("Invalid amount")
+            self.__amount = amount
+        except ValueError:
             raise RuntimeError("Incorrect amount value")
-        self.__amount = amount.quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
 
     def account(self):
         return self.__account
