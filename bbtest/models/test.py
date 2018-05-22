@@ -8,6 +8,9 @@ from django.contrib.auth import get_user_model
 from .fields import JSONField
 
 
+User = get_user_model()
+
+
 class TestDomain(Model):
     name   = CharField                  ( pgettext_lazy("Model field", "name"),  max_length=100,                )
     order  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                 db_index=True, )
@@ -131,8 +134,8 @@ class Test(Model):
         ( STATUS_ARCHIVED, pgettext_lazy("Test status", "Archived") ),
     )
 
-    section    = ForeignKey  ( TestSection,      on_delete=CASCADE, related_name="tests", )
-    developer  = ForeignKey  ( get_user_model(), on_delete=CASCADE, related_name="tests", )
+    section    = ForeignKey  ( TestSection, on_delete=CASCADE, related_name="tests", )
+    developer  = ForeignKey  ( User,        on_delete=CASCADE, related_name="tests", )
 
     code        = CharField                  ( pgettext_lazy("Model field", "code of the test"),     max_length=6,                                               unique=True,   )
     language    = CharField                  ( pgettext_lazy("Model field", "language of the test"), max_length=2,      choices=LANGUAGES,                       db_index=True, )
@@ -201,9 +204,10 @@ class TestQuestion(Model):
         ( ANSWER_CLASS_MULTICHOICE_MULTI, ANSWER_CLASS_MULTICHOICE_MULTI ),
     )
 
-    test      = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )
-    taxonomy  = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
-    topic     = ForeignKey  ( TestTopic,    on_delete=CASCADE, related_name="questions", null=True, blank=True, )
+    test       = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )
+    taxonomy   = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
+    topic      = ForeignKey  ( TestTopic,    on_delete=CASCADE, related_name="questions", null=True, blank=True, )
+    developer  = ForeignKey  ( User,         on_delete=CASCADE, related_name="questions",                        )
 
     answer_class  = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
     meta_data     = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
