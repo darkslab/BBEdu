@@ -522,6 +522,7 @@ class TestForm(ModelForm):
                     meta_data=meta_data,
                     weight=test.section.question_weight,
                     order=i,
+                    developer=test.developer,
                 )
 
                 if test.section.id == 9540:
@@ -612,6 +613,7 @@ class TestForm(ModelForm):
                     meta_data=meta_data,
                     weight=test.section.question_weight,
                     order=i,
+                    developer=test.developer,
                 )
 
                 if test.section.id == 9546:
@@ -682,6 +684,7 @@ class TestForm(ModelForm):
                     meta_data=meta_data,
                     weight=test.section.question_weight,
                     order=i,
+                    developer=test.developer,
                 )
 
                 paragraph = TestParagraph.objects.create(
