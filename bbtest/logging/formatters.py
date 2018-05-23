@@ -5,7 +5,8 @@ class MysqlFormatter(logging.Formatter):
     def format(self, record):
         if record.msg == "(%.3f) %s; args=%s":
             record.args = (record.args[0] * 1000, record.args[1])
-            if record.args[1][:7] == "SELECT " or record.args[1][:5] == "SHOW ":
+            sql_query = record.args[1].strip()
+            if sql_query[:7] == "SELECT " or sql_query[:5] == "SHOW ":
                 record.msg = "(\033[0;31m%.4fms\033[0m) \033[0;34m%s\033[0m"
             else:
                 record.msg = "(\033[1;31m%.4fms\033[0m) \033[1;34m%s\033[0m"
