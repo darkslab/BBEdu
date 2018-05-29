@@ -1,4 +1,5 @@
 from django.utils.translation import pgettext
+from decimal import Decimal
 from ..test import TestItem
 from ...exceptions import ItemError
 from bbtest.models import Account
@@ -25,3 +26,38 @@ class UNTItem(TestItem):
             new_items.append(self)
         new_items.sort(key=lambda new_item: new_item.test().section.order)
         return new_items
+
+
+class CompulsoryUNTItem(UNTItem):
+    def question_discount(self):
+        compulsory_items_count = 0
+        profile_items_count = 0
+        for item in self.handle():
+            if isinstance(item, CompulsoryUNTItem):
+                compulsory_items_count += 1
+            elif isinstance(item, ProfileUNTItem):
+                profile_items_count += 1
+        if compulsory_items_count < 3:
+            return Decimal("0.00")
+        if profile_items_count >= 2:
+            return Decimal("2.00")
+        return Decimal("1.00")
+
+
+class ProfileUNTItem(UNTItem):
+    def question_discount(self):
+        compulsory_items_count = 0
+        profile_items_count = 0
+        self_index = None
+        for i, item in enumerate(self.handle()):
+            if isinstance(item, CompulsoryUNTItem):
+                compulsory_items_count += 1
+            elif isinstance(item, ProfileUNTItem):
+                profile_items_count += 1
+                if item == self:
+                    self_index = i
+        if self_index not in range((profile_items_count // 2) * 2):
+            return Decimal("0.00")
+        if compulsory_items_count >= 3 and self_index in range(2):
+            return Decimal("2.00")
+        return Decimal("1.00")

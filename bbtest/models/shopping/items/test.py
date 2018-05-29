@@ -24,7 +24,7 @@ class TestItem(Item):
 
         self.__plan_c_developers = {}
         for question in self.test().questions.prefetch_related("developer__acknowledgement").all():
-            if question.developer.acknowledgement.plan != DeveloperAcknowledgement.PLAN_C:
+            if not hasattr(question.developer, "acknowledgement") or question.developer.acknowledgement.plan != DeveloperAcknowledgement.PLAN_C:
                 continue
             if question.developer not in self.__plan_c_developers:
                 self.__plan_c_developers[question.developer] = {

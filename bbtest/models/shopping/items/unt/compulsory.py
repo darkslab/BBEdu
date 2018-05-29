@@ -1,11 +1,7 @@
 from django.utils.translation import pgettext
 from decimal import Decimal
-from .base import UNTItem
+from .base import CompulsoryUNTItem
 from ...exceptions import ItemError
-
-
-class CompulsoryUNTItem(UNTItem):
-    pass
 
 
 class MathematicalLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
@@ -18,12 +14,10 @@ class MathematicalLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
         return "Mathematical Literacy Compulsory UNT Test"
 
     def price(self):
-        # DARK_TODO  implement this!
-        return Decimal("0.00")
+        return Decimal("6.00") * self.test().section.question_count
 
     def discount(self):
-        # DARK_TODO  implement this!
-        return Decimal("0.00")
+        return self.question_discount() * self.test().section.question_count
 
 
 class ReadingLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
@@ -36,12 +30,10 @@ class ReadingLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
         return "Reading Literacy Compulsory UNT Test"
 
     def price(self):
-        # DARK_TODO  implement this!
-        return Decimal("0.00")
+        return Decimal("6.00") * self.test().section.question_count
 
     def discount(self):
-        # DARK_TODO  implement this!
-        return Decimal("0.00")
+        return self.question_discount() * self.test().section.question_count
 
 
 class HistoryOfKazakhstanCompulsoryUNTItem(CompulsoryUNTItem):
@@ -54,9 +46,7 @@ class HistoryOfKazakhstanCompulsoryUNTItem(CompulsoryUNTItem):
         return "History of Kazakhstan Compulsory UNT Test"
 
     def price(self):
-        # DARK_TODO  implement this!
-        return Decimal("0.00")
+        return Decimal("6.00") * self.test().section.question_count
 
     def discount(self):
-        # DARK_TODO  implement this!
-        return Decimal("0.00")
+        return self.question_discount() * self.test().section.question_count
