@@ -55,7 +55,9 @@ class ProfileUNTItem(UNTItem):
             elif isinstance(item, ProfileUNTItem):
                 profile_items_count += 1
                 if item == self:
-                    self_index = i
+                    self_index = i - compulsory_items_count
+        if self_index is None:
+            raise RuntimeError("Something is not right")
         if self_index not in range((profile_items_count // 2) * 2):
             return Decimal("0.00")
         if compulsory_items_count >= 3 and self_index in range(2):
