@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-20 13:49+0600\n"
+"POT-Creation-Date: 2018-05-30 11:30+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1173,6 +1173,100 @@ msgstr "Электрондық поштаңыз дұрыс емес."
 
 msgctxt "Item error"
 msgid "User no longer exists."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Student is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Test has to be approved."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Item error"
+msgid "Correct test language is required."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Item error"
+msgid "Incorrect Test language."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "Item error"
+msgid "Test no longer exists."
+msgstr ""
+
+msgctxt "Item error"
+msgid "UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Mathematical Literacy Compulsory UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Reading Literacy Compulsory UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "History of Kazakhstan Compulsory UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Mathematics Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Physics Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Chemistry Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Biology Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Geography Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "History Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "English Language Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "French Language Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "German Language Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Kazakh Language and Literature Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Russian Language and Literature Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Human. Society. Right Profile UNT Test is required."
 msgstr ""
 
 msgctxt "Model field"
