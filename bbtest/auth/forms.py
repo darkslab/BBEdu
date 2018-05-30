@@ -11,6 +11,7 @@ from django.contrib.messages import success
 from bbtest.forms.base import BaseUserForm
 from bbtest.emails.password_reset import send_mail
 from bbtest.auth.password_validation import password_validators_help_text_html
+from bbtest.models import Account
 
 
 class AuthenticationForm(_AuthenticationForm):
@@ -34,6 +35,9 @@ class UserCreationForm(BaseUserForm):
         if group in ("developer", "student"):
             permissions.append(Permission.objects.get(codename=group, content_type=content_type))
         user.user_permissions.set(permissions)
+
+        if group == "developer":
+            Account.objects.create_liability_account("Developer-%s" % user.pk)
 
         return user
 

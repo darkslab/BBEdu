@@ -7,8 +7,11 @@ Expense accounts:
 Dividend accounts:
 
 Liability accounts:
+    Developer-%{user_id}
 
 Equity accounts:
     BalanceAccount-%{user_id}
 
 Revenue accounts:
+    Tests-NIS
+    Tests-UNT
