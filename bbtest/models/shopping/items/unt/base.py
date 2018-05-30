@@ -6,7 +6,8 @@ from bbtest.models import Account
 
 
 class UNTItem(TestItem):
-    def assert_test_and_student(self, test, student):
+    def assert_init_args(self, test, student, language):
+        super().assert_init_args(test, student, language)
         if test.section.domain.name != "UNT":
             raise ItemError(pgettext("Item error", "UNT Test is required."))
 

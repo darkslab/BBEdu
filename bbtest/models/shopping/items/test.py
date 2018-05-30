@@ -11,16 +11,13 @@ User = get_user_model()
 
 
 class TestItem(Item):
-    def __init__(self, handle, test, student):
+    def __init__(self, handle, test, student, language):
         super().__init__(handle)
 
-        if not isinstance(test, Test):
-            raise ItemError(pgettext("Item error", "Test is required."))
-        if not isinstance(student, User) or not student.has_perm("bbtest.student"):
-            raise ItemError(pgettext("Item error", "Student is required."))
-        self.assert_test_and_student(test, student)
+        self.assert_init_args(test, student, language)
         self.__test = test
         self.__student = student
+        self.__language = language
 
         self.__plan_c_developers = {}
         for question in self.test().questions.prefetch_related("developer__acknowledgement").all():
@@ -38,14 +35,26 @@ class TestItem(Item):
 
         self.handle().add_item(self)
 
-    def assert_test_and_student(self, test, student):
-        raise NotImplementedError("%s has to implement 'assert_test_and_student' method" % type(self).__name__)
+    def assert_init_args(self, test, student, language):
+        if not isinstance(test, Test):
+            raise ItemError(pgettext("Item error", "Test is required."))
+        if not isinstance(student, User) or not student.has_perm("bbtest.student"):
+            raise ItemError(pgettext("Item error", "Student is required."))
+        if not test.is_approved():
+            raise ItemError(pgettext("Item error", "Test has to be approved."))
+        if language not in (set([ test_language[0] for test_language in Test.LANGUAGES ]) - set([ Test.LANGUAGE_XX ])):
+            raise ItemError(pgettext("Item error", "Correct test language is required."))
+        if test.language != Test.LANGUAGE_XX and test.language != language:
+            raise ItemError(pgettext("Item error", "Incorrect Test language."))
 
     def test(self):
         return self.__test
 
     def student(self):
         return self.__student
+
+    def language(self):
+        return self.__language
 
     def revenue_account(self):
         raise NotImplementedError("%s has to implement 'revenue_account' method" % type(self).__name__)

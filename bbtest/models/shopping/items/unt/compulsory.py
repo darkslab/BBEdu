@@ -5,8 +5,8 @@ from ...exceptions import ItemError
 
 
 class MathematicalLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
-    def assert_test_and_student(self, test, student):
-        super().assert_test_and_student(test, student)
+    def assert_init_args(self, test, student, language):
+        super().assert_init_args(test, student, language)
         if test.section_id != 9547:
             raise ItemError(pgettext("Item error", "Mathematical Literacy Compulsory UNT Test is required."))
 
@@ -21,8 +21,8 @@ class MathematicalLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
 
 
 class ReadingLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
-    def assert_test_and_student(self, test, student):
-        super().assert_test_and_student(test, student)
+    def assert_init_args(self, test, student, language):
+        super().assert_init_args(test, student, language)
         if test.section_id != 9546:
             raise ItemError(pgettext("Item error", "Reading Literacy Compulsory UNT Test is required."))
 
@@ -37,8 +37,8 @@ class ReadingLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
 
 
 class HistoryOfKazakhstanCompulsoryUNTItem(CompulsoryUNTItem):
-    def assert_test_and_student(self, test, student):
-        super().assert_test_and_student(test, student)
+    def assert_init_args(self, test, student, language):
+        super().assert_init_args(test, student, language)
         if test.section_id != 9545:
             raise ItemError(pgettext("Item error", "History of Kazakhstan Compulsory UNT Test is required."))
 
