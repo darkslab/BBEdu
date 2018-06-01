@@ -1,9 +1,9 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
-from bbtest.views.generic import TemplateView
+from bbtest.views.generic import TemplateView, UserContextMixin
 
 
-class DashboardView(DeveloperPermissionRequiredMixin, TemplateView):
+class DashboardView(DeveloperPermissionRequiredMixin, UserContextMixin, TemplateView):
     template_name = "developer/dashboard.html"
 
     def get_context_data(self, **kwargs):

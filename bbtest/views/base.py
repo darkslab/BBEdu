@@ -9,7 +9,7 @@ from django.utils.decorators import method_decorator
 from urllib.parse import urlencode
 from decimal import Decimal
 from bbtest.auth.mixins import LoginRequiredMixin
-from bbtest.views.generic import FormView, RedirectView, TemplateView, View
+from bbtest.views.generic import FormView, RedirectView, TemplateView, View, UserContextMixin
 from bbtest.forms.user import SettingsForm
 from bbtest.forms.subscription import SubscriptionForm
 from bbtest.forms.base import BuyCreditsForm
@@ -39,7 +39,7 @@ class DashboardView(LoginRequiredMixin, RedirectView):
         return resolve_url(self.request.user)
 
 
-class SettingsView(LoginRequiredMixin, FormView):
+class SettingsView(LoginRequiredMixin, UserContextMixin, FormView):
     template_name = "base/settings.html"
     form_class = SettingsForm
 
@@ -56,7 +56,7 @@ class SettingsView(LoginRequiredMixin, FormView):
         return super().form_valid(form)
 
 
-class BuyCreditsView(CartHandleAccessMixin, LoginRequiredMixin, FormView):
+class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, FormView):
     template_name = "base/buy_credits.html"
     form_class = BuyCreditsForm
     success_url = reverse_lazy("bbtest:buy_credits_qazkom")
@@ -93,7 +93,7 @@ class BuyCreditsView(CartHandleAccessMixin, LoginRequiredMixin, FormView):
         return super().form_valid(form)
 
 
-class BuyCreditsQazkomView(CartHandleAccessMixin, LoginRequiredMixin, TemplateView):
+class BuyCreditsQazkomView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, TemplateView):
     template_name = "base/buy_credits_qazkom.html"
 
     def get(self, request, *args, **kwargs):

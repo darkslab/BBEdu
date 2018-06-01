@@ -4,13 +4,13 @@ from django.http import HttpResponse
 from django.utils.timezone import localtime
 import csv
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
-from bbtest.views.generic import TemplateView, View
+from bbtest.views.generic import TemplateView, View, UserContextMixin
 from bbtest.models import Subscription
 
 
 User = get_user_model()
 
-class DashboardView(SuperPermissionRequiredMixin, TemplateView):
+class DashboardView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView):
     template_name = "super/dashboard.html"
 
     def get_context_data(self, **kwargs):

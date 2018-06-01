@@ -6,7 +6,7 @@ from django.db.models import Prefetch
 from django.http import Http404
 from json import loads
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin
-from .generic import View, TemplateView, FormView
+from .generic import View, TemplateView, FormView, UserContextMixin
 from bbtest.utils.json import tight_dumps
 from bbtest.models.upload import expiring_url
 from bbtest.models import TestQuestion, Test, TestParagraph
@@ -47,7 +47,7 @@ def get_test_for_preview_or_404(request, code):
     )
 
 
-class TestView(DeveloperPermissionRequiredMixin, TemplateView):
+class TestView(DeveloperPermissionRequiredMixin, UserContextMixin, TemplateView):
     template_name = "test/test.html"
 
     def get_context_data(self, **kwargs):
@@ -210,7 +210,7 @@ class DeleteTestView(DeveloperPermissionRequiredMixin, View):
         return redirect("bbtest:dashboard")
 
 
-class TestPreviewView(DeveloperPermissionRequiredMixin, FormView):
+class TestPreviewView(DeveloperPermissionRequiredMixin, UserContextMixin, FormView):
     template_name = "test/test_preview.html"
     form_class = TestSendForm
     success_url = reverse_lazy("bbtest:dashboard")
