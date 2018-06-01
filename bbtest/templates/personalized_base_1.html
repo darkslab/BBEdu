@@ -36,7 +36,7 @@
                         </h5>
                     {% elif perms.bbtest.student %}
                         <div class="col-xs-12 text-center mt-5 mb-5">
-                            <span class="text-uppercase" style="font-size: 12px;">Счёт: 3500 &#8376;</a>
+                            <span style="font-size: 12px;">{% blocktrans with balance=balance_account_total|floatformat:0 context 'Total credits' %}Balance: {{ balance }} cred.{% endblocktrans %}</a>
                         </div>
                     {% endif %}
                 </div>
