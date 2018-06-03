@@ -140,6 +140,7 @@ class Test(Model):
     code        = CharField                  ( pgettext_lazy("Model field", "code of the test"),     max_length=6,                                               unique=True,   )
     language    = CharField                  ( pgettext_lazy("Model field", "language of the test"), max_length=2,      choices=LANGUAGES,                       db_index=True, )
     status      = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "status"),                                  choices=STATUSES,  default=STATUS_DRAFT, db_index=True, )
+    is_free     = BooleanField               ( pgettext_lazy("Model field", "is free?"),                                                   default=False,        db_index=True, )
     created_at  = DateTimeField              ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                         )
 
     objects = Manager()
