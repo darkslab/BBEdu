@@ -8,6 +8,7 @@ from bbtest.models import Test
 
 def unapprove_tests(apps, schema_editor):
     Test.approved_tests.all().update(status=Test.STATUS_PENDING)
+    Test.pending_tests.filter(developer__is_superuser=True).update(status=Test.STATUS_DRAFT)
 
 
 class Migration(migrations.Migration):
