@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-01 11:15+0600\n"
+"POT-Creation-Date: 2018-06-04 06:25+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1329,6 +1329,10 @@ msgctxt "Model field"
 msgid "status"
 msgstr ""
 
+msgctxt "Model field"
+msgid "is free?"
+msgstr ""
+
 msgctxt "Question difficulty"
 msgid "High"
 msgstr ""
@@ -1899,11 +1903,23 @@ msgid "Variant"
 msgstr ""
 
 msgctxt "/super/tests/"
+msgid "Free?"
+msgstr ""
+
+msgctxt "/super/tests/"
 msgid "Status"
 msgstr ""
 
 msgctxt "/super/tests/"
 msgid "Actions"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Yes"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "No"
 msgstr ""
 
 msgctxt "/super/tests/"
@@ -2087,6 +2103,10 @@ msgctxt "Developer tools"
 msgid "Close"
 msgstr ""
 
+msgctxt "Page title"
+msgid "Free"
+msgstr ""
+
 msgctxt "Test content"
 msgid "There was an error, please reload the page."
 msgstr ""
@@ -2135,6 +2155,20 @@ msgctxt "Developer tools"
 msgid "Delete"
 msgstr ""
 
+#, fuzzy
+#| msgctxt "Form button"
+#| msgid "Change Password"
+msgctxt "Developer tools"
+msgid "Change to Paid"
+msgstr "Құпиясөзді өзгерту"
+
+#, fuzzy
+#| msgctxt "Form button"
+#| msgid "Change Password"
+msgctxt "Developer tools"
+msgid "Change to Free"
+msgstr "Құпиясөзді өзгерту"
+
 msgctxt "Developer tools"
 msgid "Exit"
 msgstr ""
@@ -2181,4 +2215,12 @@ msgstr ""
 
 msgctxt "Success alert message"
 msgid "You have deleted a Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "Test is now free."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "Test is now paid."
 msgstr ""
