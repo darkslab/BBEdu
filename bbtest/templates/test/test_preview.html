@@ -1,7 +1,7 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n static permission %}
 
-{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}{% endblock %}
 
 {% block content %}
     <script>
@@ -127,6 +127,31 @@
             </div>
         </div>
     </form>
+    {% url 'bbtest:build_toggle_free_test' code 'true' as make_test_free_url %}
+    {% url 'bbtest:build_toggle_free_test' code 'false' as make_test_paid_url %}
+    <form method="post" action="{% if test.is_free %}{{ make_test_paid_url }}{% else %}{{ make_test_free_url }}{% endif %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-toggle-free-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Developer tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn {% if test.is_free %}btn-success{% else %}btn-danger{% endif %} btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Developer tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Developer tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
     <div class="row">
         <div class="col-xs-12 mb-23">
             {% if perms.bbtest.super %}
@@ -141,6 +166,13 @@
                 {% endif %}
                 {% if test.is_draft and test.developer == user %}
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
+                {% endif %}
+                {% if test.is_pending or test.is_draft and test.developer|has_perm:'bbtest.super' %}
+                    {% if test.is_free %}
+                        <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-toggle-free-modal]">{% trans 'Change to Paid' context 'Developer tools' %}</button>
+                    {% else %}
+                        <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-toggle-free-modal]">{% trans 'Change to Free' context 'Developer tools' %}</button>
+                    {% endif %}
                 {% endif %}
                 <a href="{% url 'bbtest:super_dashboard' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% else %}

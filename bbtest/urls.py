@@ -16,6 +16,7 @@ from .views.test import (
     ApproveTestView as BuildApproveTestView,
     RefuseTestView as BuildRefuseTestView,
     DeleteTestView as BuildDeleteTestView,
+    ToggleFreeTestView as BuildToggleFreeTestView,
     TestPreviewView as BuildTestPreviewView,
     TestPreviewDataView as BuildTestPreviewDataView,
 )
@@ -58,6 +59,7 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/approve/$",                                        BuildApproveTestView.as_view(),        name="build_approve_test"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/refuse/$",                                         BuildRefuseTestView.as_view(),         name="build_refuse_test"      ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/delete/$",                                         BuildDeleteTestView.as_view(),         name="build_delete_test"      ),
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/toggle-free/(?P<free>true|false)$",                BuildToggleFreeTestView.as_view(),     name="build_toggle_free_test" ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
 
