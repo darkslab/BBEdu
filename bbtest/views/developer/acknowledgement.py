@@ -77,7 +77,6 @@ class AcknowledgementView(DeveloperPermissionRequiredMixin, DeveloperUnacceptedA
     template_name = "developer/acknowledgement.html"
     form_class = DeveloperAcknowledgementForm
     success_url = reverse_lazy("bbtest:developer_tests")
-    accepted_acknowledgement_redirect_urlpattern = "bbtest:developer_tests"
 
     def get_context_data(self, **kwargs):
         kwargs["plan_a"] = {

@@ -12,7 +12,6 @@ from bbtest.models import TestDomain, Test
 class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, FormView):
     template_name = "developer/tests.html"
     form_class = TestForm
-    unaccepted_acknowledgement_redirect_urlpattern = "bbtest:developer_acknowledgement"
 
     def get_context_data(self, **kwargs):
         kwargs["empty_language_code"] = Test.LANGUAGE_XX

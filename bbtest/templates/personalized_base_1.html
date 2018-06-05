@@ -52,7 +52,7 @@
                             <li class="{% block nav_developer_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
                         {% elif perms.bbtest.student %}
                             <li class="{% block nav_student_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:student_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
-                            <li class="{% block nav_student_start_testing_class %}{% endblock %}"><a href="javascript:void(0);"><i class="fa fa-fw fa-pencil-square-o"></i> {% trans 'Start testing' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_student_buy_tests_class %}{% endblock %}"><a href="{% url 'bbtest:student_buy_test_domains' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Start testing' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_student_results_class %}{% endblock %}"><a href="javascript:void(0);"><i class="fa fa-fw fa-line-chart"></i> {% trans 'Results' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_student_buy_credits_class %}{% endblock %}"><a href="{% url 'bbtest:buy_credits' %}"><i class="fa fa-fw fa-shopping-cart"></i> {% trans 'Buy Credits' context 'Navigation link' %}</a></li>
                         {% endif %}
@@ -165,7 +165,7 @@
     nav_developer_create_test_class
 
     nav_student_dashboard_class
-    nav_student_start_testing_class
+    nav_student_buy_tests_class
     nav_student_results_class
     nav_student_buy_credits_class
 
