@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, UserContextMixin
 from .mixins import NonRunningTestsRequiredMixin
-from bbtest.models import TestDomain
+from bbtest.models import TestDomain, Test
 
 
 class BuyTestDomainsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, UserContextMixin, TemplateView):
@@ -27,5 +27,7 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin,
                 section.price = 180
             else:
                 section.price = 0
+
+        kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
 
         return super().get_context_data(**kwargs)

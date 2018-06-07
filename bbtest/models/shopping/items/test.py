@@ -42,7 +42,7 @@ class TestItem(Item):
             raise ItemError(pgettext("Item error", "Student is required."))
         if not test.is_approved():
             raise ItemError(pgettext("Item error", "Test has to be approved."))
-        if language not in (set([ test_language[0] for test_language in Test.LANGUAGES ]) - set([ Test.LANGUAGE_XX ])):
+        if language not in [ test_lang[0] for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]:
             raise ItemError(pgettext("Item error", "Correct test language is required."))
         if test.language != Test.LANGUAGE_XX and test.language != language:
             raise ItemError(pgettext("Item error", "Incorrect Test language."))
