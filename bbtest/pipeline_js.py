@@ -20,13 +20,16 @@ BASE1_SOURCE_FILENAMES = (
 
     "js/modules/PersonalizedTemplateModule.js",
 
-    "js/modules/StudentDashboardPageModule.js",
     "js/modules/SettingsPageModule.js",
     "js/modules/RegisterPageModule.js",
+    "js/modules/BuyCreditsQazkomPageModule.js",
+
     "js/modules/DeveloperTestsPageModule.js",
     "js/modules/DeveloperAcknowledgementPageModule.js",
     "js/modules/DeveloperDashboardPageModule.js",
-    "js/modules/BuyCreditsQazkomPageModule.js",
+
+    "js/modules/StudentDashboardPageModule.js",
+    "js/modules/StudentBuyTestsPageModule.js",
 )
 BASE2_PRODUCTION_SOURCE_FILENAMES = (
     "js/react/react.production.min.js",

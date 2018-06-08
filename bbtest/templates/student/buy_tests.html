@@ -1,34 +1,51 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{% trans test_domain.name as domain_name %}{% blocktrans context 'Page title' %}Select tests for {{ domain_name }}{% endblocktrans %}{% endblock %}
 
 {% block nav_student_buy_tests_class %}active{% endblock %}
 
 {% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "StudentBuyTestsPageModule",
+            data: {
+                test_domain_id: {{ test_domain.pk }}
+            }
+        });
+    </script>
     <div class="row">
         <div class="col-sm-8">
-            <h4 class="mt-0 mb-10 text-center">{% trans 'Test language' context '/student/buy-tests/xxxx/' %}</h4>
-            <div class="list-group">
-                {% for test_lang in test_langs %}
-                    <a href="javascript:void(0);" class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-9">
-                                <h4 class="list-group-item-heading mb-0">{{ test_lang.1 }}</h4>
+            {% if test_langs %}
+                <h4 class="mt-0 mb-10 text-center">{% trans 'Test language' context '/student/buy-tests/xxxx/' %}</h4>
+                <div class="list-group bb-rel">
+                    <div class="bb-spinner-overlay" data-spinner-language>
+                        <img class="bb-spinner mt--15" src="{% static 'img/logo.png' %}">
+                    </div>
+                    {% for test_lang in test_langs %}
+                        <a href="javascript:void(0);" class="list-group-item" data-test-lang="{{ test_lang.0 }}">
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-9">
+                                    <h4 class="list-group-item-heading mb-0">{{ test_lang.1 }}</h4>
+                                </div>
+                                <div class="col-xs-4 col-sm-3">
+                                    <h4 class="list-group-item-heading bb-list-group-heading-active text-right mb-0">
+                                        <i class="fa fa-check-circle"></i>
+                                    </h4>
+                                </div>
                             </div>
-                            <div class="col-xs-4 col-sm-3">
-                                <h4 class="list-group-item-heading bb-list-group-heading-active text-right mb-0">
-                                    <i class="fa fa-check-circle"></i>
-                                </h4>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
             <h4 class="mt-0 mb-10 text-center">{% trans 'Subjects' context '/student/buy-tests/xxxx/' %}</h4>
-            <div class="list-group">
+            <div class="list-group bb-rel">
+                <div class="bb-spinner-overlay" data-spinner-section>
+                    <img class="bb-spinner mt--15" src="{% static 'img/logo.png' %}">
+                </div>
                 {% for section in test_domain.sections.all %}
-                    <a href="javascript:void(0);" class="list-group-item">
+                    <a href="javascript:void(0);" class="list-group-item" data-test-section="{{ section.pk }}">
                         <div class="row">
                             <div class="col-xs-8 col-sm-9">
                                 <h4 class="list-group-item-heading">{% trans section.name %}</h4>
@@ -48,23 +65,28 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
+            <div class="panel panel-default hidden" data-total>
+                <div class="panel-body bb-rel">
+                    <div class="bb-spinner-overlay hidden" data-spinner-total>
+                        <img class="bb-spinner mt--15" src="{% static 'img/logo.png' %}">
+                    </div>
                     <h5>{% trans 'Total:' context '/student/buy-tests/xxxx/' %}</h5>
-                    <div class="row">
-                        <div class="col-xs-8">
-                            <h6 class="mt-10 mb-0">Математическая грамотность</h6>
-                        </div>
-                        <div class="col-xs-4 text-right">
-                            <h6 class="mt-10 mb-0">
-                                <span class="pull-left ml--15">&times;</span>
-                                <span>{% blocktrans with credits=120 context '/student/buy-tests/xxxx/' %}{{ credits }} cred.{% endblocktrans %}</span>
-                            </h6>
+                    <div data-total-table>
+                        <div class="row" data-total-row>
+                            <div class="col-xs-8">
+                                <h6 class="mt-10 mb-0" data-total-item-name></h6>
+                            </div>
+                            <div class="col-xs-4 text-right">
+                                <h6 class="mt-10 mb-0">
+                                    <span class="pull-left ml--15">&times;</span>
+                                    <span data-total-item-price></span>
+                                </h6>
+                            </div>
                         </div>
                     </div>
                     <hr class="mt-15 mb-15" style="border-color: #ccc;">
-                    <h4 class="text-right mt-0 mb-23">{% blocktrans with credits=120 context '/student/buy-tests/xxxx/' %}{{ credits }} cred.{% endblocktrans %}</h4>
-                    <button type="button" class="btn btn-success btn-lg btn-block" disabled>Начать</button>
+                    <h4 class="text-right mt-0 mb-23" data-total-total></h4>
+                    <button type="button" class="btn btn-success btn-lg btn-block" disabled>Pay</button>
                 </div>
             </div>
         </div>

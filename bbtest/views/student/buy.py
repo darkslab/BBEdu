@@ -7,17 +7,28 @@ from bbtest.models import TestDomain, Test
 
 class BuyTestDomainsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, UserContextMixin, TemplateView):
     template_name = "student/buy_test_domains.html"
+    allowed_test_domain_ids = [ 7911, 7912 ]
 
     def get_context_data(self, **kwargs):
-        kwargs["test_domains"] = TestDomain.objects.all()
+        kwargs["test_domains"] = TestDomain.objects.filter(pk__in=self.allowed_test_domain_ids).all()
+        for domain in kwargs["test_domains"]:
+            if domain.pk in (7911,):
+                domain.is_available = False
+            else:
+                domain.is_available = True
+
         return super().get_context_data(**kwargs)
 
 
 class BuyTestsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, UserContextMixin, TemplateView):
     template_name = "student/buy_tests.html"
+    allowed_test_domain_ids = [ 7912 ]
 
     def get_context_data(self, **kwargs):
-        kwargs["test_domain"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=self.kwargs["test_domain_id"])
+        kwargs["test_domain"] = get_object_or_404(
+            TestDomain.objects.filter(pk__in=self.allowed_test_domain_ids).prefetch_related("sections"),
+            pk=self.kwargs["test_domain_id"],
+        )
         for section in kwargs["test_domain"].sections.all():
             section.minutes = section.duration // 60
 
