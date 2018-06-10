@@ -1,0 +1,15 @@
+
+
+
+
+null
+blank
+choices
+db_index
+default
+editable
+unique
+
+
+
+
