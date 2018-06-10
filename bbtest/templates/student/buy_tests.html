@@ -8,22 +8,18 @@
 {% block content %}
     <script>
         moduleDataStack.push({
-            module: "StudentBuyTestsPageModule",
-            data: {
-                test_domain_id: {{ test_domain.pk }}
-            }
+            module: "StudentBuyTestsPageModule"
         });
     </script>
+    <img class="bb-spinner bb-spinner-fixed mt--15" src="{% static 'img/logo.png' %}" data-spinner>
     <div class="row">
         <div class="col-sm-8">
             {% if test_langs %}
                 <h4 class="mt-0 mb-10 text-center">{% trans 'Test language' context '/student/buy-tests/xxxx/' %}</h4>
                 <div class="list-group bb-rel">
-                    <div class="bb-spinner-overlay" data-spinner-language>
-                        <img class="bb-spinner mt--15" src="{% static 'img/logo.png' %}">
-                    </div>
+                    <div class="bb-spinner-overlay" data-overlay-language></div>
                     {% for test_lang in test_langs %}
-                        <a href="javascript:void(0);" class="list-group-item" data-test-lang="{{ test_lang.0 }}">
+                        <a href="javascript:void(0);" class="list-group-item" data-test-language="{{ test_lang.0 }}">
                             <div class="row">
                                 <div class="col-xs-8 col-sm-9">
                                     <h4 class="list-group-item-heading mb-0">{{ test_lang.1 }}</h4>
@@ -41,9 +37,7 @@
 
             <h4 class="mt-0 mb-10 text-center">{% trans 'Subjects' context '/student/buy-tests/xxxx/' %}</h4>
             <div class="list-group bb-rel">
-                <div class="bb-spinner-overlay" data-spinner-section>
-                    <img class="bb-spinner mt--15" src="{% static 'img/logo.png' %}">
-                </div>
+                <div class="bb-spinner-overlay" data-overlay-sections></div>
                 {% for section in test_domain.sections.all %}
                     <a href="javascript:void(0);" class="list-group-item" data-test-section="{{ section.pk }}">
                         <div class="row">
@@ -65,27 +59,25 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="panel panel-default hidden" data-total>
+            <div class="panel panel-default hidden" data-totals>
                 <div class="panel-body bb-rel">
-                    <div class="bb-spinner-overlay hidden" data-spinner-total>
-                        <img class="bb-spinner mt--15" src="{% static 'img/logo.png' %}">
-                    </div>
+                    <div class="bb-spinner-overlay" data-overlay-totals></div>
                     <h5>{% trans 'Total:' context '/student/buy-tests/xxxx/' %}</h5>
-                    <div data-total-table>
-                        <div class="row" data-total-row>
+                    <div data-totals-table>
+                        <div class="row" data-totals-row>
                             <div class="col-xs-8">
-                                <h6 class="mt-10 mb-0" data-total-item-name></h6>
+                                <h6 class="mt-10 mb-0" data-totals-item-name></h6>
                             </div>
                             <div class="col-xs-4 text-right">
                                 <h6 class="mt-10 mb-0">
                                     <span class="pull-left ml--15">&times;</span>
-                                    <span data-total-item-price></span>
+                                    <span data-totals-item-price></span>
                                 </h6>
                             </div>
                         </div>
                     </div>
                     <hr class="mt-15 mb-15" style="border-color: #ccc;">
-                    <h4 class="text-right mt-0 mb-23" data-total-total></h4>
+                    <h4 class="text-right mt-0 mb-23" data-totals-total></h4>
                     <button type="button" class="btn btn-success btn-lg btn-block" disabled>Pay</button>
                 </div>
             </div>

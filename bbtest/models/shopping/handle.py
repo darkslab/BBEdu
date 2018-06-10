@@ -178,6 +178,9 @@ class CartHandle:
         valid_products.sort(key=lambda product: items.index(product["item"]))
         self.__products = valid_products + expired_products
 
+    def __len__(self):
+        return len(self.__items())
+
 
 class ItemsIterator:
     def __init__(self, items):

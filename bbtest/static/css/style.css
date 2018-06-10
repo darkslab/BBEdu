@@ -707,6 +707,11 @@ html {
             animation: bb-spinner-animation 2s ease infinite;
 }
 
+.bb-spinner-fixed {
+    position: fixed;
+    z-index: 2000;
+}
+
 .bb-spinner-overlay {
     position: absolute;
     top: 0px;

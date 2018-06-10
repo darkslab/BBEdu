@@ -1,16 +1,28 @@
 from django.shortcuts import get_object_or_404
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
-from bbtest.views.generic import TemplateView, UserContextMixin
+from bbtest.views.generic import TemplateView, UserContextMixin, View
 from .mixins import NonRunningTestsRequiredMixin
 from bbtest.models import TestDomain, Test
+from bbtest.http import TightJsonResponse
+from bbtest.models.shopping.handle import CartHandleAccessMixin
+
+
+TEST_DOMAIN_IDS_DISPLAY = [ 7911, 7912 ]
+TEST_DOMAIN_IDS_ALLOWED = [ 7912 ]
+
+
+def get_test_domain_or_404(test_domain_id):
+    return get_object_or_404(
+        TestDomain.objects.filter(pk__in=TEST_DOMAIN_IDS_ALLOWED).prefetch_related("sections"),
+        pk=test_domain_id,
+    )
 
 
 class BuyTestDomainsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, UserContextMixin, TemplateView):
     template_name = "student/buy_test_domains.html"
-    allowed_test_domain_ids = [ 7911, 7912 ]
 
     def get_context_data(self, **kwargs):
-        kwargs["test_domains"] = TestDomain.objects.filter(pk__in=self.allowed_test_domain_ids).all()
+        kwargs["test_domains"] = TestDomain.objects.filter(pk__in=TEST_DOMAIN_IDS_DISPLAY).all()
         for domain in kwargs["test_domains"]:
             if domain.pk in (7911,):
                 domain.is_available = False
@@ -22,13 +34,9 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonRunningTestsRequired
 
 class BuyTestsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, UserContextMixin, TemplateView):
     template_name = "student/buy_tests.html"
-    allowed_test_domain_ids = [ 7912 ]
 
     def get_context_data(self, **kwargs):
-        kwargs["test_domain"] = get_object_or_404(
-            TestDomain.objects.filter(pk__in=self.allowed_test_domain_ids).prefetch_related("sections"),
-            pk=self.kwargs["test_domain_id"],
-        )
+        kwargs["test_domain"] = get_test_domain_or_404(self.kwargs["test_domain_id"])
         for section in kwargs["test_domain"].sections.all():
             section.minutes = section.duration // 60
 
@@ -42,3 +50,13 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin,
         kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
 
         return super().get_context_data(**kwargs)
+
+
+class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, CartHandleAccessMixin, View):
+    def get(self, request, test_domain_id, *args, **kwargs):
+        # DARK_TODO  implement this!
+        pass
+
+    def post(self, request, test_domain_id, *args, **kwargs):
+        # DARK_TODO  implement this!
+        pass
