@@ -1,7 +1,7 @@
 from django.db.models import (
     Manager,
     Model, ForeignKey, CASCADE, ManyToManyField,
-    CharField, PositiveSmallIntegerField, BooleanField, DateTimeField,
+    CharField, PositiveSmallIntegerField, BooleanField, DateTimeField, PositiveIntegerField,
 )
 from django.utils.translation import pgettext_lazy
 from django.contrib.auth import get_user_model
@@ -137,11 +137,13 @@ class Test(Model):
     section    = ForeignKey  ( TestSection, on_delete=CASCADE, related_name="tests", )
     developer  = ForeignKey  ( User,        on_delete=CASCADE, related_name="tests", )
 
-    code        = CharField                  ( pgettext_lazy("Model field", "code of the test"),     max_length=6,                                               unique=True,   )
-    language    = CharField                  ( pgettext_lazy("Model field", "language of the test"), max_length=2,      choices=LANGUAGES,                       db_index=True, )
-    status      = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "status"),                                  choices=STATUSES,  default=STATUS_DRAFT, db_index=True, )
-    is_free     = BooleanField               ( pgettext_lazy("Model field", "is free?"),                                                   default=False,        db_index=True, )
-    created_at  = DateTimeField              ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                         )
+    code             = CharField                  ( pgettext_lazy("Model field", "code of the test"),     max_length=6,                                               unique=True,   )
+    language         = CharField                  ( pgettext_lazy("Model field", "language of the test"), max_length=2,      choices=LANGUAGES,                       db_index=True, )
+    status           = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "status"),                                  choices=STATUSES,  default=STATUS_DRAFT, db_index=True, )
+    is_free          = BooleanField               ( pgettext_lazy("Model field", "is free?"),                                                   default=False,        db_index=True, )
+    sales_count      = PositiveIntegerField       ( pgettext_lazy("Model field", "sales count"),                                                default=0,                           )
+    completed_count  = PositiveIntegerField       ( pgettext_lazy("Model field", "completed count"),                                            default=0,                           )
+    created_at       = DateTimeField              ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                         )
 
     objects = Manager()
     draft_tests = DraftTestManager()
