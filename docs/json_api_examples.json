@@ -1,0 +1,264 @@
+// attributes response
+{
+    "difficulties": [
+        {
+            "value": 13,
+            "caption": "High"
+        },
+        ...
+    ],
+    "taxonomies": [
+        {
+            "value": 3529,
+            "caption": "Knowledge"
+        },
+        ...
+    ],
+    "topics": [
+        {
+            "value": 5156,
+            "caption": "Ratios and Proportions"
+        },
+        ...
+    ]
+}
+
+// question response
+{
+    "id": 6773,
+    "data": {
+        "answer_class": "MultichoiceOneAnswer",
+        "taxonomy": null,
+        "topic": null,
+        "difficulty": 8,
+        "meta_data": {
+            "correct_id": null,
+            "choices": [
+                {
+                    "choice_class": "MultichoiceTextChoice",
+                    "id": 128,
+                    "meta_data": {
+                        "text": "Some text here"
+                    }
+                }
+            ]
+        }
+    },
+    "paragraphs": [
+        {
+            "id": 2221,
+            "question_ids": [],
+            "data": {
+                "meta_data": {
+                    "left": {
+                        "text": "Some text here"
+                    },
+                    "right": {
+                        "text": "Some text here"
+                    }
+                },
+                "paragraph_class": "SplitTextParagraph"
+            }
+        },
+        {
+            "id": 2220,
+            "question_ids": [
+                6774
+            ],
+            "data": {
+                "meta_data": {
+                    "text": "Some text here"
+                },
+                "paragraph_class": "TextParagraph"
+            }
+        }
+    ]
+}
+
+
+
+
+// question submission
+{
+    "difficulty": 8,
+    "taxonomy": null,
+    "topic": 3543,
+    "answer_class": "MultichoiceOneAnswer",
+    "meta_data": "{\"choices\":[{\"id\":128,\"choice_class\":\"MultichoiceTextChoice\",\"meta_data\":{\"text\":\"Some text here\"}}],\"correct_id\":null}"
+}
+// question submission: meta_data (MultichoiceOneAnswer)
+{
+    "choices": [
+        {
+            "id": 128,
+            "choice_class": "MultichoiceTextChoice",
+            "meta_data": {
+                "text": "Some text here"
+            }
+        }
+    ],
+    "correct_id": null
+}
+// question submission: meta_data (MultichoiceMultiAnswer)
+{
+    "choices": [
+        {
+            "id": 128,
+            "choice_class": "MultichoiceTextChoice",
+            "meta_data": {
+                "text": "Some text here"
+            }
+        },
+        {
+            "id": 129,
+            "choice_class": "MultichoiceTextChoice",
+            "meta_data": {
+                "text": "Some text here"
+            }
+        }
+    ],
+    "correct_ids": [
+        128,
+        129
+    ]
+}
+
+
+
+
+// paragraphs submission
+{
+    "data": "[{\"id\":\"2220\",\"is_new\":false,\"data\":{\"paragraph_class\":\"TextParagraph\",\"meta_data\":{\"text\":\"Some text here\"}}},{\"id\":\"p_0\",\"is_new\":true,\"data\":{\"paragraph_class\":\"SplitTextParagraph\",\"meta_data\":{\"right\":{\"text\":\"Some text here\"},\"left\":{\"text\":\"Some text here\"}}}}]"
+}
+// paragraphs submission data
+[
+    {
+        "id": "2220",
+        "is_new": false,
+        "data": {
+            "paragraph_class": "TextParagraph",
+            "meta_data": {
+                "text": "Some text here"
+            }
+        }
+    },
+    {
+        "id": "p_0",
+        "is_new": true,
+        "data": {
+            "paragraph_class": "SplitTextParagraph",
+            "meta_data": {
+                "right": {
+                    "text": "Some text here"
+                },
+                "left": {
+                    "text": "Some text here"
+                }
+            }
+        }
+    }
+]
+
+
+
+
+
+
+// test response
+{
+    "seconds_left": 3600,
+    "questions": [
+        {
+            "answer_class": "MultichoiceOneAnswer",
+            "meta_data": {
+                "correct_id": null,
+                "choices": [
+                    {
+                        "id": 128,
+                        "choice_class": "MultichoiceTextChoice",
+                        "meta_data": {
+                            "text": "Some text here"
+                        }
+                    },
+                    ...
+                ]
+            }
+            "paragraphs": [
+                {
+                    "paragraph_class": "TextParagraph",
+                    "meta_data": {
+                        "text": "Some text here"
+                    }
+                },
+                ...
+            ]
+        }
+    ],
+    "answer_submission": {
+        "answers": [
+            {
+                "answer": {
+                    "correct_id": 9285
+                },
+                "observation": {
+                    ...
+                }
+            },
+            {
+                "answer": null,
+                "observation": {
+                    ...
+                }
+            }
+            ...
+        ],
+        "observation": {
+            ...
+        }
+    }
+}
+
+
+
+
+// answer submission
+{
+    "answers": [
+        {
+            "answer": {
+                "correct_id": 9285
+            },
+            "observation": {
+                ...
+            }
+        },
+        {
+            "answer": null,
+            "observation": {
+                ...
+            }
+        },
+        {
+            "answer": {
+                "correct_ids": [
+                    123,
+                    ...
+                ]
+            },
+            "observation": {
+                ...
+            }
+        },
+        ...
+    ],
+    "observation": {
+        ...
+    }
+}
+
+
+
+
+
+
+
