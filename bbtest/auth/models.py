@@ -4,6 +4,7 @@ from django.db.models import CharField, EmailField, DateTimeField, BooleanField
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy
 from django.urls import reverse
+from django.apps import apps
 from hashlib import md5
 from urllib.parse import urlencode
 from bbtest.models.accounting import BalanceAccount
@@ -106,7 +107,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         )
 
     def cart(self):
-        from bbtest.models import Cart
+        Cart = apps.get_model("bbtest", "Cart")
         try:
             return self.carts.get(is_current=True)
         except Cart.DoesNotExist:
