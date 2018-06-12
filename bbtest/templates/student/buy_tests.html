@@ -62,22 +62,37 @@
             <div class="panel panel-default hidden" data-totals>
                 <div class="panel-body bb-rel">
                     <div class="bb-spinner-overlay" data-overlay-totals></div>
-                    <h5>{% trans 'Total:' context '/student/buy-tests/xxxx/' %}</h5>
-                    <div data-totals-table>
-                        <div class="row" data-totals-row>
-                            <div class="col-xs-8">
-                                <h6 class="mt-10 mb-0" data-totals-item-name></h6>
-                            </div>
-                            <div class="col-xs-4 text-right">
-                                <h6 class="mt-10 mb-0">
-                                    <span class="pull-left ml--15">&times;</span>
-                                    <span data-totals-item-price></span>
-                                </h6>
+                    <h5 class="mt-10 mb-10">{% trans 'Total:' context '/student/buy-tests/xxxx/' %}</h5>
+                    <div data-totals-line-items>
+                        <div>
+                            <div class="row" data-totals-row>
+                                <div class="col-xs-8">
+                                    <h6 class="mt-5 mb-5" data-totals-description></h6>
+                                </div>
+                                <div class="col-xs-4 text-right">
+                                    <h6 class="mt-5 mb-5">
+                                        <span class="pull-left ml--15">&times;</span>
+                                        <span data-totals-amount></span>
+                                    </h6>
+                                </div>
                             </div>
                         </div>
+                        <hr class="mt-10 mb-10" style="border-color: #ccc;">
                     </div>
-                    <hr class="mt-15 mb-15" style="border-color: #ccc;">
-                    <h4 class="text-right mt-0 mb-23" data-totals-total></h4>
+                    <div data-totals-subtotals>
+                        <div>
+                            <div class="row" data-totals-row>
+                                <div class="col-xs-8">
+                                    <h6 class="mt-5 mb-5 text-right" data-totals-description></h6>
+                                </div>
+                                <div class="col-xs-4 text-right">
+                                    <h6 class="mt-5 mb-5" data-totals-amount></h6>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mt-10 mb-10" style="border-color: #ccc;">
+                    </div>
+                    <h4 class="text-right mt-15 mb-15" data-totals-total></h4>
                     <button type="button" class="btn btn-success btn-lg btn-block" disabled>Pay</button>
                 </div>
             </div>

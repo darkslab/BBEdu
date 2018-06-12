@@ -258,7 +258,71 @@
 
 
 
+/**
+ * GET /student/buy-tests/xxxx/cart/
+ * 
+ * response object
+ */
 
+{
+    "totals": {
+        "line_items": [
+            {
+                "description": "Item 1",
+                "amount": "120 cred."
+            },
+            {
+                "description": "Item 2",
+                "amount": "240 cred."
+            }
+            // ...
+        ],
+        "subtotals": [
+            {
+                "description": "Discount",
+                "amount": "-60 cred."
+            }
+            // ...
+        ],
+        "total": "300 cred."
+    },
+    "sections": {
+        "9545": true,
+        "9546": true,
+        "9547": false,
+        "9548": true
+        // ...
+    },
+    "data": {
+        "language": "kk",
+        "sections": [
+            9545,
+            9548
+            // ...
+        ]
+    },
+    "affordable": false
+}
+
+
+
+/**
+ * POST /student/buy-tests/xxxx/cart/
+ * 
+ * request object
+ * response object
+ */
+
+{
+    "language": "ru",
+    "sections": [
+        9547,
+        9548
+        // ...
+    ]
+}
+
+// response object is the same as in the example above
 
 
 
