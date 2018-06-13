@@ -6,7 +6,6 @@ from django.db.models import (
 from django.utils.translation import pgettext_lazy
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-from django.apps import apps
 from .fields import JSONField
 
 
@@ -110,7 +109,6 @@ class ApprovedTestManager(Manager):
     def next_tests(self, student, domain, language):
         # DARK_COMM  Maybe we can invent a system to simplify this
 
-        taken_test_ids = [ value[0] for value in apps.get_model("bbtest", "Quiz").objects.filter(quiz_set__student=student).order_by("pk").values_list("test") ]
         query_sets = []
 
         for section in domain.sections.all():
@@ -118,7 +116,7 @@ class ApprovedTestManager(Manager):
                 Q(language=Test.LANGUAGE_XX) | Q(language=language),
                 section=section,
             ).exclude(
-                pk__in=taken_test_ids,
+                pk__in=student.obtained_test_ids(),
             ).order_by("is_free", "sales_count")[:1])
         if not len(query_sets):
             raise RuntimeError("Cannot query for next tests")

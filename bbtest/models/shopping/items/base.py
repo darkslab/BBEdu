@@ -42,6 +42,9 @@ class Item:
         raise NotImplementedError("%s has to implement 'meta_data' method" % type(self).__name__)
 
     def description(self):
+        """
+        Has to return a simple (non-interpolated) string that uses ugettext_noop
+        """
         raise NotImplementedError("%s has to implement 'description' method" % type(self).__name__)
 
     def price(self):

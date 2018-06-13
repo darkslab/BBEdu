@@ -41,6 +41,9 @@ class CartHandle:
 
         # DARK_TODO  do something with self.__errors
 
+    def buyer(self):
+        return self.__cart.buyer
+
     def is_complete(self):
         return not self.__cart.is_current
 
@@ -148,6 +151,10 @@ class CartHandle:
 
     def mark_modified(self):
         self.__is_modified = True
+
+    def empty(self):
+        for item in self.__items():
+            self.remove_item(item)
 
     def __iter__(self):
         return ItemsIterator(self.__items())

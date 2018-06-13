@@ -40,10 +40,12 @@ class TestItem(Item):
             raise ItemError(pgettext("Item error", "Test is required."))
         if not isinstance(student, User) or not student.has_perm("bbtest.student"):
             raise ItemError(pgettext("Item error", "Student is required."))
-        if not test.is_approved():
-            raise ItemError(pgettext("Item error", "Test has to be approved."))
         if language not in [ test_lang[0] for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]:
             raise ItemError(pgettext("Item error", "Correct test language is required."))
+        if test.pk in student.obtained_test_ids():
+            raise ItemError(pgettext("Item error", "Test has already been taken."))
+        if not test.is_approved():
+            raise ItemError(pgettext("Item error", "Test has to be approved."))
         if test.language != Test.LANGUAGE_XX and test.language != language:
             raise ItemError(pgettext("Item error", "Incorrect Test language."))
 
@@ -82,8 +84,11 @@ class TestItem(Item):
             "student_id": self.student().pk,
         }
 
+    def description(self):
+        return self.test().section.name
+
     def __eq__(self, other):
-        return isinstance(other, type(self)) and self.test() == other.test() and self.student() == other.student()
+        return type(self) == type(other) and self.test() == other.test() and self.student() == other.student() and self.language() == other.language()
 
     def __hash__(self):
         return hash((self.test().pk, self.student().pk))

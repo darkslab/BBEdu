@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.apps import apps
 from hashlib import md5
 from urllib.parse import urlencode
-from bbtest.models.accounting import BalanceAccount
 
 
 class UserManager(BaseUserManager):
@@ -122,5 +121,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         try:
             self.__balance_account
         except AttributeError:
-            self.__balance_account = BalanceAccount.objects.get(name=self.balance_account_name())
+            self.__balance_account = apps.get_model("bbtest", "BalanceAccount").objects.get(name=self.balance_account_name())
         return self.__balance_account
+
+    def obtained_test_ids(self):
+        try:
+            self.__obtained_test_ids
+        except AttributeError:
+            self.__obtained_test_ids = [ data[0] for data in apps.get_model("bbtest", "Quiz").objects.filter(quiz_set__student=self).order_by("quiz_set", "order").values_list("test") ]
+        return self.__obtained_test_ids

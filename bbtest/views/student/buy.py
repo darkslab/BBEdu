@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.utils.translation import ugettext as _, pgettext
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, UserContextMixin, View
 from .mixins import NonRunningTestsRequiredMixin
@@ -54,9 +55,66 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin,
 
 class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, CartHandleAccessMixin, View):
     def get(self, request, test_domain_id, *args, **kwargs):
+        test_domain = get_test_domain_or_404(test_domain_id)
+
+        # DARK_TODO  implement this!
+        if len(self.cart_handle()):
+            self.cart_handle().empty()
+            self.cart_handle().save()
+
+        data = self.__response(test_domain)
+        data.update({
+            "success": True,
+        })
+        return TightJsonResponse(data)
+
+    def post(self, request, test_domain_id, *args, **kwargs):
+        test_domain = get_test_domain_or_404(test_domain_id)
         # DARK_TODO  implement this!
         pass
 
-    def post(self, request, test_domain_id, *args, **kwargs):
-        # DARK_TODO  implement this!
-        pass
+    def __response(self, domain):
+        # DARK_COMM  It's assumed that cart only contains tests that belong to the domain (parameter) at this point
+
+        response = {
+            "totals": {
+                "line_items": [],
+                "subtotals": [],
+            },
+            "sections": {},
+            "data": {
+                "sections": [],
+            },
+        }
+
+        for section in domain.sections.all():
+            response["sections"][str(section.pk)] = False
+        for item in self.cart_handle():
+            if response["data"].get("language") is None:
+                response["data"]["language"] = item.language()
+            response["data"]["sections"].append(item.test().section.pk)
+            response["totals"]["line_items"].append({
+                "description": _(item.description()),
+                "amount": pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": item.price() },
+            })
+        if response["data"].get("language") is None:
+            response["data"]["language"] = Test.LANGUAGE_KK
+        discount = self.cart_handle().subtotal() - self.cart_handle().total()
+        if discount > 0:
+            response["totals"]["subtotals"].append({
+                "description": pgettext("/student/buy-tests/xxxx/cart/", "Discount"),
+                "amount": pgettext("/student/buy-tests/xxxx/cart/", "-%(amount).0f cred.") % { "amount": discount },
+            })
+        response["totals"]["total"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": self.cart_handle().total() }
+
+        available_tests = Test.approved_tests.next_tests(self.cart_handle().buyer(), domain, response["data"]["language"])
+        for section_id in [ str(test.section_id) for test in available_tests ]:
+            if section_id not in response["sections"]:
+                continue
+            response["sections"][section_id] = True
+
+        response["affordable"] = False
+        if self.cart_handle().buyer().balance_account().balance() >= self.cart_handle().total():
+            response["affordable"] = True
+
+        return response
