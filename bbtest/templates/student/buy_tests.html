@@ -8,7 +8,10 @@
 {% block content %}
     <script>
         moduleDataStack.push({
-            module: "StudentBuyTestsPageModule"
+            module: "StudentBuyTestsPageModule",
+            data: {
+                url: "{% url 'bbtest:student_buy_tests_cart' test_domain.pk %}"
+            }
         });
     </script>
     <img class="bb-spinner bb-spinner-fixed mt--15" src="{% static 'img/logo.png' %}" data-spinner>
@@ -63,8 +66,8 @@
                 <div class="panel-body bb-rel">
                     <div class="bb-spinner-overlay" data-overlay-totals></div>
                     <h5 class="mt-10 mb-10">{% trans 'Total:' context '/student/buy-tests/xxxx/' %}</h5>
-                    <div data-totals-line-items>
-                        <div>
+                    <div>
+                        <div data-totals-line-items>
                             <div class="row" data-totals-row>
                                 <div class="col-xs-8">
                                     <h6 class="mt-5 mb-5" data-totals-description></h6>
@@ -79,8 +82,8 @@
                         </div>
                         <hr class="mt-10 mb-10" style="border-color: #ccc;">
                     </div>
-                    <div data-totals-subtotals>
-                        <div>
+                    <div>
+                        <div data-totals-subtotals>
                             <div class="row" data-totals-row>
                                 <div class="col-xs-8">
                                     <h6 class="mt-5 mb-5 text-right" data-totals-description></h6>
