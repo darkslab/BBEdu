@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _, pgettext
+from json import loads
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, UserContextMixin, View
 from .mixins import NonRunningTestsRequiredMixin
 from bbtest.models import TestDomain, Test
 from bbtest.http import TightJsonResponse
 from bbtest.models.shopping.handle import CartHandleAccessMixin
+from bbtest.forms.buy import BuyTestsCartForm
 
 
 TEST_DOMAIN_IDS_DISPLAY = [ 7911, 7912 ]
@@ -70,8 +72,20 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
 
     def post(self, request, test_domain_id, *args, **kwargs):
         test_domain = get_test_domain_or_404(test_domain_id)
+        form = BuyTestsCartForm(self.cart_handle().buyer(), test_domain, data=request.POST)
+        if not form.is_valid():
+            return TightJsonResponse({
+                "success": False,
+                "errors": loads(form.errors.as_json()),
+            }, status=400)
+
         # DARK_TODO  implement this!
-        pass
+
+        data = self.__response(test_domain)
+        data.update({
+            "success": True,
+        })
+        return TightJsonResponse(data)
 
     def __response(self, domain):
         # DARK_COMM  It's assumed that cart only contains tests that belong to the domain (parameter) at this point
@@ -107,7 +121,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
             })
         response["totals"]["total"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": self.cart_handle().total() }
 
-        available_tests = Test.approved_tests.next_tests(self.cart_handle().buyer(), domain, response["data"]["language"])
+        available_tests = self.cart_handle().buyer().next_tests(domain, response["data"]["language"])
         for section_id in [ str(test.section_id) for test in available_tests ]:
             if section_id not in response["sections"]:
                 continue

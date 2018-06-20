@@ -5,7 +5,6 @@ from django.db.models import (
 )
 from django.utils.translation import pgettext_lazy
 from django.contrib.auth import get_user_model
-from django.db.models import Q
 from .fields import JSONField
 
 
@@ -105,23 +104,6 @@ class WorkedTestManager(Manager):
 class ApprovedTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status=Test.STATUS_APPROVED)
-
-    def next_tests(self, student, domain, language):
-        # DARK_COMM  Maybe we can invent a system to simplify this
-
-        query_sets = []
-
-        for section in domain.sections.all():
-            query_sets.append(self.get_queryset().filter(
-                Q(language=Test.LANGUAGE_XX) | Q(language=language),
-                section=section,
-            ).exclude(
-                pk__in=student.obtained_test_ids(),
-            ).order_by("is_free", "sales_count")[:1])
-        if not len(query_sets):
-            raise RuntimeError("Cannot query for next tests")
-
-        return query_sets[0].union(*query_sets[1:], all=True)
 
 class ActiveTestManager(Manager):
     def get_queryset(self):

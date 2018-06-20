@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy
 from django.urls import reverse
 from django.apps import apps
+from django.db.models import Q
 from hashlib import md5
 from urllib.parse import urlencode
 
@@ -130,3 +131,23 @@ class User(AbstractBaseUser, PermissionsMixin):
         except AttributeError:
             self.__obtained_test_ids = [ data[0] for data in apps.get_model("bbtest", "Quiz").objects.filter(quiz_set__student=self).order_by("quiz_set", "order").values_list("test") ]
         return self.__obtained_test_ids
+
+    def next_tests(self, domain, language):
+        try:
+            self.__next_tests
+        except AttributeError:
+            # DARK_COMM  Maybe we can invent a system to simplify this
+            Test = apps.get_model("bbtest", "Test")
+            query_sets = []
+            for section in domain.sections.all():
+                query_sets.append(Test.approved_tests.filter(
+                    Q(language=Test.LANGUAGE_XX) | Q(language=language),
+                    section=section,
+                ).exclude(
+                    pk__in=self.obtained_test_ids(),
+                ).order_by("is_free", "sales_count")[:1])
+            if not len(query_sets):
+                raise RuntimeError("Cannot query for next tests")
+            self.__next_tests = query_sets[0].union(*query_sets[1:], all=True)
+
+        return self.__next_tests
