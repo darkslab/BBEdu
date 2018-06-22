@@ -68,6 +68,7 @@ class TestItem(Item):
                 handle,
                 Test.objects.select_related("section__domain").get(pk=meta_data["test_id"]),
                 User.objects.get(pk=meta_data["student_id"]),
+                meta_data["language"],
             )
         except Test.DoesNotExist:
             raise ItemError(pgettext("Item error", "Test no longer exists."))
@@ -82,6 +83,7 @@ class TestItem(Item):
         return {
             "test_id": self.test().pk,
             "student_id": self.student().pk,
+            "language": self.language(),
         }
 
     def description(self):

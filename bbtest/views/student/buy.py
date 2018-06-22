@@ -8,6 +8,7 @@ from bbtest.models import TestDomain, Test
 from bbtest.http import TightJsonResponse
 from bbtest.models.shopping.handle import CartHandleAccessMixin
 from bbtest.forms.buy import BuyTestsCartForm
+from bbtest.models.shopping.items import TEST_SECTION_MAP
 
 
 TEST_DOMAIN_IDS_DISPLAY = [ 7911, 7912 ]
@@ -79,7 +80,18 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
                 "errors": loads(form.errors.as_json()),
             }, status=400)
 
-        # DARK_TODO  implement this!
+        available_tests = self.cart_handle().buyer().next_tests(test_domain, form.cleaned_data["data"]["language"])
+        for section_id in form.cleaned_data["data"]["sections"]:
+            try:
+                TEST_SECTION_MAP[str(section_id)](
+                    self.cart_handle(),
+                    next(test for test in available_tests if test.section_id == section_id),
+                    self.cart_handle().buyer(),
+                    form.cleaned_data["data"]["language"],
+                )
+            except StopIteration:
+                pass
+        self.cart_handle().save()
 
         data = self.__response(test_domain)
         data.update({
