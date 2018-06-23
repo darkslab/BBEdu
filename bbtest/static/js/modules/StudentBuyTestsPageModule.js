@@ -143,7 +143,7 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
             var $row = this._$totals_subtotals_row.clone();
             $row.find("[data-totals-description]").text(data.totals.subtotals[i].description);
             $row.find("[data-totals-amount]").text(data.totals.subtotals[i].amount);
-            this._$totals_line_items.append($row);
+            this._$totals_subtotals.append($row);
         }
     } else {
         this._$totals_subtotals.parent().addClass("hidden");

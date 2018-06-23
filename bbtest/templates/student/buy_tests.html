@@ -19,84 +19,90 @@
         <div class="col-sm-8">
             {% if test_langs %}
                 <h4 class="mt-0 mb-10 text-center">{% trans 'Test language' context '/student/buy-tests/xxxx/' %}</h4>
-                <div class="list-group bb-rel">
+                <div class="bb-rel">
                     <div class="bb-spinner-overlay" data-overlay-language></div>
-                    {% for test_lang in test_langs %}
-                        <a href="javascript:void(0);" class="list-group-item" data-test-language="{{ test_lang.0 }}" data-selected="false">
+                    <div class="list-group">
+                        {% for test_lang in test_langs %}
+                            <a href="javascript:void(0);" class="list-group-item" data-test-language="{{ test_lang.0 }}" data-selected="false">
+                                <div class="row">
+                                    <div class="col-xs-8 col-sm-9">
+                                        <h4 class="list-group-item-heading mb-0">{{ test_lang.1 }}</h4>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3">
+                                        <h4 class="list-group-item-heading bb-list-group-heading-active text-right mb-0">
+                                            <i class="fa fa-check-circle"></i>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <h4 class="mt-0 mb-10 text-center">{% trans 'Subjects' context '/student/buy-tests/xxxx/' %}</h4>
+            <div class="bb-rel">
+                <div class="bb-spinner-overlay" data-overlay-sections></div>
+                <div class="list-group">
+                    {% for section in test_domain.sections.all %}
+                        <a href="javascript:void(0);" class="list-group-item" data-test-section="{{ section.pk }}" data-selected="false" data-available="false">
                             <div class="row">
                                 <div class="col-xs-8 col-sm-9">
-                                    <h4 class="list-group-item-heading mb-0">{{ test_lang.1 }}</h4>
+                                    <h4 class="list-group-item-heading">{% trans section.name %}</h4>
+                                    <!-- <p class="list-group-item-text">Description</p> -->
+                                    <p class="list-group-item-text mt-15">{% blocktrans with count=section.question_count %}Questions count: {{ count }}{% endblocktrans %}</p>
+                                    <p class="list-group-item-text">{% blocktrans with minutes=section.minutes %}Duration: {{ minutes }} min.{% endblocktrans %}</p>
                                 </div>
                                 <div class="col-xs-4 col-sm-3">
-                                    <h4 class="list-group-item-heading bb-list-group-heading-active text-right mb-0">
+                                    <h4 class="list-group-item-heading text-right">{% blocktrans with price=section.price context '/student/buy-tests/xxxx/' %}{{ price }} cred.{% endblocktrans %}</h4>
+                                    <h1 class="list-group-item-heading bb-list-group-heading-active text-right">
                                         <i class="fa fa-check-circle"></i>
-                                    </h4>
+                                    </h1>
                                 </div>
                             </div>
                         </a>
                     {% endfor %}
                 </div>
-            {% endif %}
-
-            <h4 class="mt-0 mb-10 text-center">{% trans 'Subjects' context '/student/buy-tests/xxxx/' %}</h4>
-            <div class="list-group bb-rel">
-                <div class="bb-spinner-overlay" data-overlay-sections></div>
-                {% for section in test_domain.sections.all %}
-                    <a href="javascript:void(0);" class="list-group-item" data-test-section="{{ section.pk }}" data-selected="false" data-available="false">
-                        <div class="row">
-                            <div class="col-xs-8 col-sm-9">
-                                <h4 class="list-group-item-heading">{% trans section.name %}</h4>
-                                <!-- <p class="list-group-item-text">Description</p> -->
-                                <p class="list-group-item-text mt-15">{% blocktrans with count=section.question_count %}Questions count: {{ count }}{% endblocktrans %}</p>
-                                <p class="list-group-item-text">{% blocktrans with minutes=section.minutes %}Duration: {{ minutes }} min.{% endblocktrans %}</p>
-                            </div>
-                            <div class="col-xs-4 col-sm-3">
-                                <h4 class="list-group-item-heading text-right">{% blocktrans with price=section.price context '/student/buy-tests/xxxx/' %}{{ price }} cred.{% endblocktrans %}</h4>
-                                <h1 class="list-group-item-heading bb-list-group-heading-active text-right">
-                                    <i class="fa fa-check-circle"></i>
-                                </h1>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
             </div>
         </div>
         <div class="col-sm-4">
             <div class="panel panel-default hidden" data-totals>
-                <div class="panel-body bb-rel">
+                <div class="bb-rel">
                     <div class="bb-spinner-overlay" data-overlay-totals></div>
-                    <h5 class="mt-10 mb-10">{% trans 'Total:' context '/student/buy-tests/xxxx/' %}</h5>
-                    <div>
-                        <div data-totals-line-items>
-                            <div class="row" data-totals-row>
-                                <div class="col-xs-8">
-                                    <h6 class="mt-5 mb-5" data-totals-description></h6>
-                                </div>
-                                <div class="col-xs-4 text-right">
-                                    <h6 class="mt-5 mb-5">
-                                        <span class="pull-left ml--15">&times;</span>
-                                        <span data-totals-amount></span>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mt-10 mb-10" style="border-color: #ccc;">
-                    </div>
-                    <div>
-                        <div data-totals-subtotals>
-                            <div class="row" data-totals-row>
-                                <div class="col-xs-8">
-                                    <h6 class="mt-5 mb-5 text-right" data-totals-description></h6>
-                                </div>
-                                <div class="col-xs-4 text-right">
-                                    <h6 class="mt-5 mb-5" data-totals-amount></h6>
+                    <div class="panel-body">
+                        <h5 class="mt-10 mb-10">{% trans 'Total:' context '/student/buy-tests/xxxx/' %}</h5>
+                        <div>
+                            <div data-totals-line-items>
+                                <div class="row" data-totals-row>
+                                    <div class="col-xs-8">
+                                        <h6 class="mt-5 mb-5" data-totals-description></h6>
+                                    </div>
+                                    <div class="col-xs-4 text-right">
+                                        <h6 class="mt-5 mb-5">
+                                            <span class="pull-left ml--15">&times;</span>
+                                            <span data-totals-amount></span>
+                                        </h6>
+                                    </div>
                                 </div>
                             </div>
+                            <hr class="mt-10 mb-10" style="border-color: #ccc;">
                         </div>
-                        <hr class="mt-10 mb-10" style="border-color: #ccc;">
+                        <div>
+                            <div data-totals-subtotals>
+                                <div class="row" data-totals-row>
+                                    <div class="col-xs-8">
+                                        <h6 class="mt-5 mb-5 text-right" data-totals-description></h6>
+                                    </div>
+                                    <div class="col-xs-4 text-right">
+                                        <h6 class="mt-5 mb-5" data-totals-amount></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mt-10 mb-10" style="border-color: #ccc;">
+                        </div>
+                        <h4 class="text-right mt-15 mb-15" data-totals-total></h4>
+                        <button type="button" class="btn btn-success btn-lg btn-block" disabled>Pay</button>
                     </div>
-                    <h4 class="text-right mt-15 mb-15" data-totals-total></h4>
-                    <button type="button" class="btn btn-success btn-lg btn-block" disabled>Pay</button>
                 </div>
             </div>
         </div>

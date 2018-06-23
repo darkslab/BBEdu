@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _, pgettext
 from json import loads
+from decimal import Decimal
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, UserContextMixin, View
 from .mixins import NonRunningTestsRequiredMixin
@@ -130,6 +131,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
 
         for section in domain.sections.all():
             response["sections"][str(section.pk)] = False
+        discount = Decimal("0.00")
         for item in self.cart_handle():
             if response["data"].get("language") is None:
                 response["data"]["language"] = item.language()
@@ -138,9 +140,9 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
                 "description": _(item.description()),
                 "amount": pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": item.price() },
             })
+            discount += item.discount()
         if response["data"].get("language") is None:
             response["data"]["language"] = default_language
-        discount = self.cart_handle().subtotal() - self.cart_handle().total()
         if discount > 0:
             response["totals"]["subtotals"].append({
                 "description": pgettext("/student/buy-tests/xxxx/cart/", "Discount"),
