@@ -64,6 +64,9 @@ StudentBuyTestsPageModule.prototype._selectSection = function(event) {
         return;
     }
     var $section = $(event.currentTarget);
+    if (!$section.data("available")) {
+        return;
+    }
     if ($section.data("selected")) {
         $section.data("selected", false);
     } else {
@@ -99,13 +102,16 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
         var $test_section = $(this);
 
         if (!data.sections[$test_section.data("test-section").toString()]) {
-            $test_section.removeClass("active");
             $test_section.addClass("disabled");
+            $test_section.data("available", false);
+
+            $test_section.removeClass("active");
             $test_section.data("selected", false);
             return;
         }
 
         $test_section.removeClass("disabled");
+        $test_section.data("available", true);
         if (data.data.sections.indexOf($test_section.data("test-section")) > -1) {
             $test_section.addClass("active");
             $test_section.data("selected", true);

@@ -42,7 +42,7 @@
             <div class="list-group bb-rel">
                 <div class="bb-spinner-overlay" data-overlay-sections></div>
                 {% for section in test_domain.sections.all %}
-                    <a href="javascript:void(0);" class="list-group-item" data-test-section="{{ section.pk }}" data-selected="false">
+                    <a href="javascript:void(0);" class="list-group-item" data-test-section="{{ section.pk }}" data-selected="false" data-available="false">
                         <div class="row">
                             <div class="col-xs-8 col-sm-9">
                                 <h4 class="list-group-item-heading">{% trans section.name %}</h4>
