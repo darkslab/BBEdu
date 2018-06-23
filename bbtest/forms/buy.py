@@ -30,6 +30,7 @@ class BuyTestsCartForm(Form):
                 raise ValueError("Incorrect data")
             clean_data["language"] = data["language"]
 
+            clean_data["sections"] = []
             if not isinstance(data["sections"], list):
                 raise ValueError("Incorrect data")
             available_tests = self.__student.next_tests(self.__test_domain, clean_data["language"])
@@ -37,7 +38,9 @@ class BuyTestsCartForm(Form):
             for section in data["sections"]:
                 if section not in available_test_section_ids:
                     raise ValueError("Incorrect data")
-            clean_data["sections"] = data["sections"]
+                if section in clean_data["sections"]:
+                    continue
+                clean_data["sections"].append(section)
 
         except (KeyError, ValueError):
             raise ValidationError(

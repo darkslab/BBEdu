@@ -19,7 +19,11 @@ function StudentBuyTestsPageModule(data) {
     this._$totals_subtotals_row.remove();
     this._$totals_total = this._$totals.find("[data-totals-total]");
 
-    // DARK_TODO  implement this!
+    this._boundSelectLanguage = this._selectLanguage.bind(this);
+    this._boundSelectSection = this._selectSection.bind(this);
+
+    this._$test_language.on("click", this._boundSelectLanguage);
+    this._$test_section.on("click", this._boundSelectSection);
     this._$xhr = $.get({
         url: this._url,
         success: this._ajaxSuccess.bind(this),
@@ -29,12 +33,54 @@ function StudentBuyTestsPageModule(data) {
     Module.call(this);
 }
 StudentBuyTestsPageModule.prototype.unMount = function() {
+    this._$test_language.off("click", this._boundSelectLanguage);
+    this._$test_section.off("click", this._boundSelectSection);
+    if (this._$xhr !== undefined) {
+        this._$xhr.abort();
+        this._$xhr = undefined;
+    }
+}
+StudentBuyTestsPageModule.prototype._selectLanguage = function(event) {
+    if (this._$xhr !== undefined) {
+        return;
+    }
+    var $language = $(event.currentTarget);
+    if ($language.data("selected")) {
+        return;
+    }
+    this._$test_language.each(function() {
+        var $test_language = $(this);
+        if ($test_language.data("test-language") === $language.data("test-language")) {
+            $test_language.data("selected", true);
+        } else {
+            $test_language.data("selected", false);
+        }
+    });
+
+    this._post(false);
+}
+StudentBuyTestsPageModule.prototype._selectSection = function(event) {
+    if (this._$xhr !== undefined) {
+        return;
+    }
+    var $section = $(event.currentTarget);
+    if ($section.data("selected")) {
+        $section.data("selected", false);
+    } else {
+        $section.data("selected", true);
+    }
+
+    this._post(true);
 }
 StudentBuyTestsPageModule.prototype._ajaxSuccess = function(data, status, $xhr) {
+    this._$xhr = undefined;
     this._apply(data);
     this._curtainsUp();
 }
 StudentBuyTestsPageModule.prototype._ajaxError = function($xhr, status, error) {
+    this._$xhr = undefined;
+    this._curtainsUp();
+    // DARK_TODO  alert that something is wrong?
 }
 StudentBuyTestsPageModule.prototype._apply = function(data) {
     this._$test_language.each(function() {
@@ -42,8 +88,10 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
 
         if ($test_language.data("test-language") === data.data.language) {
             $test_language.addClass("active");
+            $test_language.data("selected", true);
         } else {
             $test_language.removeClass("active");
+            $test_language.data("selected", false);
         }
     });
 
@@ -53,14 +101,17 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
         if (!data.sections[$test_section.data("test-section").toString()]) {
             $test_section.removeClass("active");
             $test_section.addClass("disabled");
+            $test_section.data("selected", false);
             return;
         }
 
         $test_section.removeClass("disabled");
         if (data.data.sections.indexOf($test_section.data("test-section")) > -1) {
             $test_section.addClass("active");
+            $test_section.data("selected", true);
         } else {
             $test_section.removeClass("active");
+            $test_section.data("selected", false);
         }
     });
 
@@ -107,4 +158,35 @@ StudentBuyTestsPageModule.prototype._curtainsUp = function() {
     this._$overlay_language.addClass("hidden");
     this._$overlay_sections.addClass("hidden");
     this._$overlay_totals.addClass("hidden");
+}
+StudentBuyTestsPageModule.prototype._post = function(include_sections) {
+    this._curtainsDown();
+    var data = {
+        language: undefined,
+        sections: []
+    };
+    this._$test_language.each(function() {
+        var $test_language = $(this);
+        if ($test_language.data("selected")) {
+            data.language = $test_language.data("test-language");
+            return false;
+        }
+    });
+    if (include_sections) {
+        this._$test_section.each(function() {
+            var $test_section = $(this);
+            if ($test_section.data("selected")) {
+                data.sections.push($test_section.data("test-section"));
+            }
+        });
+    }
+    this._$xhr = $.post({
+        url: this._url,
+        headers: {"X-CSRFToken": Cookies.get("csrftoken")},
+        data: {
+            data: JSON.stringify(data)
+        },
+        success: this._ajaxSuccess.bind(this),
+        error: this._ajaxError.bind(this)
+    });
 }

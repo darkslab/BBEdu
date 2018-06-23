@@ -9,6 +9,7 @@ from bbtest.http import TightJsonResponse
 from bbtest.models.shopping.handle import CartHandleAccessMixin
 from bbtest.forms.buy import BuyTestsCartForm
 from bbtest.models.shopping.items import TEST_SECTION_MAP
+from bbtest.models.shopping.items.test import TestItem
 
 
 TEST_DOMAIN_IDS_DISPLAY = [ 7911, 7912 ]
@@ -80,26 +81,40 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
                 "errors": loads(form.errors.as_json()),
             }, status=400)
 
-        available_tests = self.cart_handle().buyer().next_tests(test_domain, form.cleaned_data["data"]["language"])
-        for section_id in form.cleaned_data["data"]["sections"]:
+        for item in self.cart_handle():
+            if not isinstance(item, TestItem) or not len(form.cleaned_data["data"]["sections"]):
+                self.cart_handle().remove_item(item)
+                continue
             try:
-                TEST_SECTION_MAP[str(section_id)](
-                    self.cart_handle(),
-                    next(test for test in available_tests if test.section_id == section_id),
-                    self.cart_handle().buyer(),
-                    form.cleaned_data["data"]["language"],
-                )
-            except StopIteration:
+                section_id_index = form.cleaned_data["data"]["sections"].index(item.test().section_id)
+                form.cleaned_data["data"]["sections"].pop(section_id_index)
+                continue
+            except ValueError:
                 pass
+            self.cart_handle().remove_item(item)
+
+        if len(form.cleaned_data["data"]["sections"]):
+            available_tests = self.cart_handle().buyer().next_tests(test_domain, form.cleaned_data["data"]["language"])
+            for section_id in form.cleaned_data["data"]["sections"]:
+                try:
+                    TEST_SECTION_MAP[str(section_id)](
+                        self.cart_handle(),
+                        next(test for test in available_tests if test.section_id == section_id),
+                        self.cart_handle().buyer(),
+                        form.cleaned_data["data"]["language"],
+                    )
+                except StopIteration:
+                    pass
+
         self.cart_handle().save()
 
-        data = self.__response(test_domain)
+        data = self.__response(test_domain, form.cleaned_data["data"]["language"])
         data.update({
             "success": True,
         })
         return TightJsonResponse(data)
 
-    def __response(self, domain):
+    def __response(self, domain, default_language=Test.LANGUAGE_KK):
         # DARK_COMM  It's assumed that cart only contains tests that belong to the domain (parameter) at this point
 
         response = {
@@ -124,7 +139,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
                 "amount": pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": item.price() },
             })
         if response["data"].get("language") is None:
-            response["data"]["language"] = Test.LANGUAGE_KK
+            response["data"]["language"] = default_language
         discount = self.cart_handle().subtotal() - self.cart_handle().total()
         if discount > 0:
             response["totals"]["subtotals"].append({
