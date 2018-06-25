@@ -9,8 +9,10 @@ from bbtest.models import TestDomain, Test
 from bbtest.http import TightJsonResponse
 from bbtest.models.shopping.handle import CartHandleAccessMixin
 from bbtest.forms.buy import BuyTestsCartForm
-from bbtest.models.shopping.items import TEST_SECTION_MAP
+from bbtest.models.shopping.items.map import TEST_SECTION_MAP
 from bbtest.models.shopping.items.test import TestItem
+from bbtest.models.shopping.exceptions import ItemError
+from bbtest.models.shopping import items
 
 
 TEST_DOMAIN_IDS_DISPLAY = [ 7911, 7912 ]
@@ -62,10 +64,31 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
     def get(self, request, test_domain_id, *args, **kwargs):
         test_domain = get_test_domain_or_404(test_domain_id)
 
-        # DARK_TODO  implement this!
-        if len(self.cart_handle()):
-            self.cart_handle().empty()
-            self.cart_handle().save()
+        if request.session.get("cart_type") not in [ "test-domain-%s" % test_domain.pk, "empty" ]:
+            is_emptied = False
+            is_restored = False
+
+            if len(self.cart_handle()):
+                self.cart_handle().empty()
+                is_emptied = True
+
+            old_items = request.session.pop("cart_old_items", [])
+            if len(old_items):
+                for old_item in old_items:
+                    if old_item["item_class"] not in items.__all__:
+                        continue
+                    try:
+                        getattr(items, old_item["item_class"]).instantiate_from_meta_data(self.cart_handle(), old_item["meta_data"])
+                        is_restored = True
+                    except ItemError:
+                        pass
+
+            if is_emptied or is_restored:
+                self.cart_handle().save()
+            if is_restored:
+                request.session["cart_type"] = "test-domain-%s" % test_domain.pk
+            else:
+                request.session["cart_type"] = "empty"
 
         data = self.__response(test_domain)
         data.update({
@@ -108,6 +131,11 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
                     pass
 
         self.cart_handle().save()
+
+        if len(self.cart_handle()):
+            request.session["cart_type"] = "test-domain-%s" % test_domain.pk
+        else:
+            request.session["cart_type"] = "empty"
 
         data = self.__response(test_domain, form.cleaned_data["data"]["language"])
         data.update({

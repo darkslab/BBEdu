@@ -81,8 +81,6 @@ StudentBuyTestsPageModule.prototype._ajaxSuccess = function(data, status, $xhr) 
     this._curtainsUp();
 }
 StudentBuyTestsPageModule.prototype._ajaxError = function($xhr, status, error) {
-    this._$xhr = undefined;
-    this._curtainsUp();
     // DARK_TODO  alert that something is wrong?
 }
 StudentBuyTestsPageModule.prototype._apply = function(data) {

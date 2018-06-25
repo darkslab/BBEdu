@@ -20,7 +20,7 @@ class CartHandle:
         if self.is_complete():
             raise CartHandleError("Only current carts are allowed")
         for line_item in self.__cart.line_items.all():
-            if not hasattr(items, line_item.item_class):
+            if line_item.item_class not in items.__all__:
                 raise CartHandleError("Incorrect item class: %s" % line_item.item_class)
             try:
                 getattr(items, line_item.item_class).instantiate_from_meta_data(self, line_item.meta_data)
