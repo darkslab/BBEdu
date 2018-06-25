@@ -18,6 +18,8 @@ function StudentBuyTestsPageModule(data) {
     this._$totals_subtotals_row = this._$totals_subtotals.find("[data-totals-row]");
     this._$totals_subtotals_row.remove();
     this._$totals_total = this._$totals.find("[data-totals-total]");
+    this._$totals_buy_tests = this._$totals.find("[data-totals-buy-tests]");
+    this._$totals_buy_credits = this._$totals.find("[data-totals-buy-credits]");
 
     this._boundSelectLanguage = this._selectLanguage.bind(this);
     this._boundSelectSection = this._selectSection.bind(this);
@@ -148,6 +150,19 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
     }
 
     this._$totals_total.text(data.totals.total);
+
+    if (data.totals.line_items.length) {
+        if (data.affordable) {
+            this._$totals_buy_tests.removeClass("hidden");
+            this._$totals_buy_credits.addClass("hidden");
+        } else {
+            this._$totals_buy_tests.addClass("hidden");
+            this._$totals_buy_credits.removeClass("hidden");
+        }
+    } else {
+        this._$totals_buy_tests.addClass("hidden");
+        this._$totals_buy_credits.addClass("hidden");
+    }
 
     this._$totals.removeClass("hidden");
 }
