@@ -962,3 +962,15 @@ html {
     border-color: #4caf50;
     z-index: 3;
 }
+
+.bb-totals-container {
+    position: static;
+    top: 0px;
+    -webkit-transition: top .3s ease-out;
+         -o-transition: top .3s ease-out;
+            transition: top .3s ease-out;
+}
+
+.bb-totals-hanging {
+    position: absolute;
+}

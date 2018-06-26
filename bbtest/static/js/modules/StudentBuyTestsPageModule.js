@@ -21,11 +21,22 @@ function StudentBuyTestsPageModule(data) {
     this._$totals_buy_tests = this._$totals.find("[data-totals-buy-tests]");
     this._$totals_buy_credits = this._$totals.find("[data-totals-buy-credits]");
 
+    this._totalsTop;
+    this._totalsTopPadding = 15;
+    this._windowActionTimer = null;
+
     this._boundSelectLanguage = this._selectLanguage.bind(this);
     this._boundSelectSection = this._selectSection.bind(this);
+    this._boundWindowScroll = this._windowScroll.bind(this);
+    this._boundWindowScrollDone = this._windowScrollDone.bind(this);
+    this._boundWindowResize = this._windowResize.bind(this);
+    this._boundWindowResizeDone = this._windowResizeDone.bind(this);
 
     this._$test_language.on("click", this._boundSelectLanguage);
     this._$test_section.on("click", this._boundSelectSection);
+    $(window).on("scroll", this._boundWindowScroll);
+    $(window).on("resize", this._boundWindowResize);
+
     this._$xhr = $.get({
         url: this._url,
         success: this._ajaxSuccess.bind(this),
@@ -37,6 +48,11 @@ function StudentBuyTestsPageModule(data) {
 StudentBuyTestsPageModule.prototype.unMount = function() {
     this._$test_language.off("click", this._boundSelectLanguage);
     this._$test_section.off("click", this._boundSelectSection);
+    $(window).off("scroll", this._boundWindowScroll);
+    $(window).off("resize", this._boundWindowResize);
+
+    clearTimeout(this._windowActionTimer);
+
     if (this._$xhr !== undefined) {
         this._$xhr.abort();
         this._$xhr = undefined;
@@ -165,6 +181,11 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
     }
 
     this._$totals.removeClass("hidden");
+
+    if (this._totalsTop === undefined) {
+        this._totalsTop = this._$totals.offset().top;
+    }
+    this._hangTotals();
 }
 StudentBuyTestsPageModule.prototype._curtainsDown = function() {
     this._$spinner.removeClass("hidden");
@@ -208,4 +229,50 @@ StudentBuyTestsPageModule.prototype._post = function(include_sections) {
         success: this._ajaxSuccess.bind(this),
         error: this._ajaxError.bind(this)
     });
+}
+StudentBuyTestsPageModule.prototype._hangTotals = function() {
+    if (this._totalsTop === undefined) {
+        return;
+    }
+    if ($(window).width() < 768 || $(window).height() < this._$totals.height() + this._totalsTopPadding * 2) {
+        this._hangTotalsOff();
+    } else {
+        this._hangTotalsOn();
+    }
+}
+StudentBuyTestsPageModule.prototype._hangTotalsOn = function() {
+    this._$totals.css({
+        width: this._$totals.width() + "px"
+    });
+    this._$totals.addClass("bb-totals-hanging");
+    var top = 0;
+    if ($(window).scrollTop() > this._totalsTop - this._totalsTopPadding) {
+        top = $(window).scrollTop() - this._totalsTop + this._totalsTopPadding;
+    }
+    this._$totals.css({
+        top: top + "px"
+    });
+}
+StudentBuyTestsPageModule.prototype._hangTotalsOff = function() {
+    this._$totals.removeClass("bb-totals-hanging");
+    this._$totals.css({
+        width: "",
+        top: ""
+    });
+}
+StudentBuyTestsPageModule.prototype._windowScroll = function() {
+    clearTimeout(this._windowActionTimer);
+    this._windowActionTimer = setTimeout(this._boundWindowScrollDone, 100);
+}
+StudentBuyTestsPageModule.prototype._windowScrollDone = function() {
+    this._hangTotals();
+}
+StudentBuyTestsPageModule.prototype._windowResize = function() {
+    this._hangTotalsOff();
+    clearTimeout(this._windowActionTimer);
+    this._windowActionTimer = setTimeout(this._boundWindowResizeDone, 100);
+}
+StudentBuyTestsPageModule.prototype._windowResizeDone = function() {
+    this._totalsTop = this._$totals.offset().top;
+    this._hangTotals();
 }
