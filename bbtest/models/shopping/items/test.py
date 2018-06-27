@@ -1,5 +1,6 @@
 from django.utils.translation import pgettext
 from django.contrib.auth import get_user_model
+from django.db import IntegrityError
 from decimal import Decimal, ROUND_HALF_UP
 from .base import Item
 from ..exceptions import ItemError
@@ -110,3 +111,23 @@ class TestItem(Item):
         _funds.append(Credit(account=self.__revenue_account, amount=(self.total() - liabilities_amount)))
 
         return _funds
+
+    def checkout(self):
+        try:
+            for item in self.handle():
+                if not isinstance(item, TestItem):
+                    continue
+                if self != item:
+                    return
+                break
+
+            quiz_set = self.student().quiz_sets.create(test_domain=self.test().section().domain())
+            quiz_order = 0
+            for item in self.handle():
+                if not isinstance(item, TestItem):
+                    continue
+                quiz_set.quizzes.create(test=item.test(), order=quiz_order)
+                quiz_order += 1
+
+        except IntegrityError:
+            raise ItemError(pgettext("Item error", "Could not checkout. Please try again."))
