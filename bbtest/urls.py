@@ -25,6 +25,7 @@ from .views.student import (
     BuyTestDomainsView as StudentBuyTestDomainsView,
     BuyTestsView as StudentBuyTestsView,
     BuyTestsCartView as StudentBuyTestsCartView,
+    BuyTestsCheckoutView as StudentBuyTestsCheckoutView,
 )
 from .views.developer import (
     DashboardView as DeveloperDashboardView,
@@ -67,10 +68,11 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
 
     # STUDENT URLS
-    url(r"^student/$",                                        StudentDashboardView.as_view(),      name="student_dashboard"       ),
-    url(r"^student/buy-tests/$",                              StudentBuyTestDomainsView.as_view(), name="student_buy_test_domains"),
-    url(r"^student/buy-tests/(?P<test_domain_id>\d+)/$",      StudentBuyTestsView.as_view(),       name="student_buy_tests"       ),
-    url(r"^student/buy-tests/(?P<test_domain_id>\d+)/cart/$", StudentBuyTestsCartView.as_view(),   name="student_buy_tests_cart"  ),
+    url(r"^student/$",                                        StudentDashboardView.as_view(),        name="student_dashboard"         ),
+    url(r"^student/buy-tests/$",                              StudentBuyTestDomainsView.as_view(),   name="student_buy_test_domains"  ),
+    url(r"^student/buy-tests/(?P<test_domain_id>\d+)/$",      StudentBuyTestsView.as_view(),         name="student_buy_tests"         ),
+    url(r"^student/buy-tests/(?P<test_domain_id>\d+)/cart/$", StudentBuyTestsCartView.as_view(),     name="student_buy_tests_cart"    ),
+    url(r"^student/buy-tests/checkout/$",                     StudentBuyTestsCheckoutView.as_view(), name="student_buy_tests_checkout"),
 
     # DEVELOPER URLS
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),

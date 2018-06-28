@@ -1,2 +1,2 @@
 from .base import DashboardView
-from .buy import BuyTestDomainsView, BuyTestsView, BuyTestsCartView
+from .buy import BuyTestDomainsView, BuyTestsView, BuyTestsCartView, BuyTestsCheckoutView

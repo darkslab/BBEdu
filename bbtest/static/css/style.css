@@ -189,7 +189,7 @@ html {
     bottom: 0px;
     left: 0px;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    z-index: 500;
 }
 
 .bb-overlay.bb-overlayed {
@@ -709,7 +709,7 @@ html {
 
 .bb-spinner-fixed {
     position: fixed;
-    z-index: 2000;
+    z-index: 700;
 }
 
 .bb-spinner-overlay {
@@ -719,7 +719,7 @@ html {
     bottom: 0px;
     left: 0px;
     background-color: rgba(255, 255, 255, 0.5);
-    z-index: 1001;
+    z-index: 600;
     overflow: hidden;
 }
 

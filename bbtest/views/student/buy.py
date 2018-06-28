@@ -13,6 +13,8 @@ from bbtest.models.shopping.items.map import TEST_SECTION_MAP
 from bbtest.models.shopping.items.test import TestItem
 from bbtest.models.shopping.exceptions import ItemError
 from bbtest.models.shopping import items
+from bbtest.models.shopping.operate import charge
+from bbtest.payment_processors import CreditPaymentProcessor
 
 
 TEST_DOMAIN_IDS_DISPLAY = [ 7911, 7912 ]
@@ -189,3 +191,22 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
             response["affordable"] = True
 
         return response
+
+
+class BuyTestsCheckoutView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, CartHandleAccessMixin, View):
+    def post(self, request, *args, **kwargs):
+        try:
+            charge(
+                CreditPaymentProcessor(self.cart_handle().total()),
+                self.cart_handle(),
+            )
+            # DARK_TODO  implement this!
+            return TightJsonResponse({
+                "success": True,
+                "url": "https://google.com/",
+            })
+        except ItemError as error:
+            return TightJsonResponse({
+                "success": False,
+                "message": str(error),
+            })

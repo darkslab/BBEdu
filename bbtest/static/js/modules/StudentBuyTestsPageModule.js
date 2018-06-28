@@ -1,12 +1,16 @@
 StudentBuyTestsPageModule.prototype = Object.create(Module.prototype);
 function StudentBuyTestsPageModule(data) {
-    this._url = data.url;
+    this._cartUrl = data.cartUrl;
+    this._checkoutUrl = data.checkoutUrl;
     this._$xhr;
 
     this._$spinner = $("[data-spinner]");
     this._$overlay_language = $("[data-overlay-language]");
     this._$overlay_sections = $("[data-overlay-sections]");
     this._$overlay_totals = $("[data-overlay-totals]");
+    this._$failureModal = $("[data-failure-modal]");
+    this._$errorModal = $("[data-error-modal]");
+    this._$errorModalBody = this._$errorModal.find("[data-error-modal-body]");
 
     this._$test_language = $("[data-test-language]");
     this._$test_section = $("[data-test-section]");
@@ -25,6 +29,7 @@ function StudentBuyTestsPageModule(data) {
     this._totalsTopPadding = 15;
     this._windowActionTimer = null;
 
+    this._boundCheckout = this._checkout.bind(this);
     this._boundSelectLanguage = this._selectLanguage.bind(this);
     this._boundSelectSection = this._selectSection.bind(this);
     this._boundWindowScroll = this._windowScroll.bind(this);
@@ -32,20 +37,22 @@ function StudentBuyTestsPageModule(data) {
     this._boundWindowResize = this._windowResize.bind(this);
     this._boundWindowResizeDone = this._windowResizeDone.bind(this);
 
+    this._$totals_buy_tests.on("click", this._boundCheckout);
     this._$test_language.on("click", this._boundSelectLanguage);
     this._$test_section.on("click", this._boundSelectSection);
     $(window).on("scroll", this._boundWindowScroll);
     $(window).on("resize", this._boundWindowResize);
 
     this._$xhr = $.get({
-        url: this._url,
-        success: this._ajaxSuccess.bind(this),
+        url: this._cartUrl,
+        success: this._ajaxSuccess.bind(this, "cart"),
         error: this._ajaxError.bind(this)
     });
 
     Module.call(this);
 }
 StudentBuyTestsPageModule.prototype.unMount = function() {
+    this._$totals_buy_tests.off("click", this._boundCheckout);
     this._$test_language.off("click", this._boundSelectLanguage);
     this._$test_section.off("click", this._boundSelectSection);
     $(window).off("scroll", this._boundWindowScroll);
@@ -57,6 +64,19 @@ StudentBuyTestsPageModule.prototype.unMount = function() {
         this._$xhr.abort();
         this._$xhr = undefined;
     }
+}
+StudentBuyTestsPageModule.prototype._checkout = function(event) {
+    if (this._$xhr !== undefined) {
+        return;
+    }
+
+    this._curtainsDown();
+    this._$xhr = $.post({
+        url: this._checkoutUrl,
+        headers: {"X-CSRFToken": Cookies.get("csrftoken")},
+        success: this._ajaxSuccess.bind(this, "checkout"),
+        error: this._ajaxError.bind(this)
+    });
 }
 StudentBuyTestsPageModule.prototype._selectLanguage = function(event) {
     if (this._$xhr !== undefined) {
@@ -93,13 +113,27 @@ StudentBuyTestsPageModule.prototype._selectSection = function(event) {
 
     this._post(true);
 }
-StudentBuyTestsPageModule.prototype._ajaxSuccess = function(data, status, $xhr) {
-    this._$xhr = undefined;
-    this._apply(data);
-    this._curtainsUp();
+StudentBuyTestsPageModule.prototype._ajaxSuccess = function(type, data, status, $xhr) {
+    switch (type) {
+        case "cart":
+            this._$xhr = undefined;
+            this._apply(data);
+            this._curtainsUp();
+            break;
+        case "checkout":
+            if (data.success) {
+                Turbolinks.visit(data.url);
+            } else {
+                this._$xhr = undefined;
+                this._curtainsUp();
+                this._$errorModalBody.text(data.message);
+                this._$errorModal.modal("show");
+            }
+            break;
+    }
 }
 StudentBuyTestsPageModule.prototype._ajaxError = function($xhr, status, error) {
-    // DARK_TODO  alert that something is wrong?
+    this._$failureModal.modal("show");
 }
 StudentBuyTestsPageModule.prototype._apply = function(data) {
     this._$test_language.each(function() {
@@ -221,12 +255,12 @@ StudentBuyTestsPageModule.prototype._post = function(include_sections) {
         });
     }
     this._$xhr = $.post({
-        url: this._url,
+        url: this._cartUrl,
         headers: {"X-CSRFToken": Cookies.get("csrftoken")},
         data: {
             data: JSON.stringify(data)
         },
-        success: this._ajaxSuccess.bind(this),
+        success: this._ajaxSuccess.bind(this, "cart"),
         error: this._ajaxError.bind(this)
     });
 }

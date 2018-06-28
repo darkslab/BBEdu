@@ -121,7 +121,7 @@ class TestItem(Item):
                     return
                 break
 
-            quiz_set = self.student().quiz_sets.create(test_domain=self.test().section().domain())
+            quiz_set = self.student().quiz_sets.create(test_domain=self.test().section.domain)
             quiz_order = 0
             for item in self.handle():
                 if not isinstance(item, TestItem):
