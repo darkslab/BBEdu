@@ -286,6 +286,18 @@ html {
     background-color: #2196f3;
 }
 
+.bb-menu-section .nav-pills > li.bb-highlighted > a,
+.bb-menu-section .nav-pills > li.bb-highlighted > a:hover,
+.bb-menu-section .nav-pills > li.bb-highlighted > a:focus {
+    background-color: #4caf50;
+}
+
+.bb-menu-section .nav-pills > li.bb-highlighted.active > a,
+.bb-menu-section .nav-pills > li.bb-highlighted.active > a:hover,
+.bb-menu-section .nav-pills > li.bb-highlighted.active > a:focus {
+    background-color: #2196f3;
+}
+
 .bb-menu-logo {
     height: 42px;
     margin-right: auto;

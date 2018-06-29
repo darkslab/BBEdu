@@ -4,7 +4,7 @@ from json import loads
 from decimal import Decimal
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, UserContextMixin, View
-from .mixins import NonRunningTestsRequiredMixin
+from .mixins import NonCurrentQuizSetRequiredMixin
 from bbtest.models import TestDomain, Test
 from bbtest.http import TightJsonResponse
 from bbtest.models.shopping.handle import CartHandleAccessMixin
@@ -28,7 +28,7 @@ def get_test_domain_or_404(test_domain_id):
     )
 
 
-class BuyTestDomainsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, UserContextMixin, TemplateView):
+class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
     template_name = "student/buy_test_domains.html"
 
     def get_context_data(self, **kwargs):
@@ -42,7 +42,7 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonRunningTestsRequired
         return super().get_context_data(**kwargs)
 
 
-class BuyTestsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, UserContextMixin, TemplateView):
+class BuyTestsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
     template_name = "student/buy_tests.html"
 
     def get_context_data(self, **kwargs):
@@ -62,7 +62,7 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin,
         return super().get_context_data(**kwargs)
 
 
-class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, CartHandleAccessMixin, View):
+class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixin, CartHandleAccessMixin, View):
     def get(self, request, test_domain_id, *args, **kwargs):
         test_domain = get_test_domain_or_404(test_domain_id)
 
@@ -193,7 +193,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMi
         return response
 
 
-class BuyTestsCheckoutView(StudentPermissionRequiredMixin, NonRunningTestsRequiredMixin, CartHandleAccessMixin, View):
+class BuyTestsCheckoutView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixin, CartHandleAccessMixin, View):
     def post(self, request, *args, **kwargs):
         try:
             charge(

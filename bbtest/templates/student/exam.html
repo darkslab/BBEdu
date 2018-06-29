@@ -1,0 +1,9 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n %}
+
+{% block title %}{% trans test_domain.name as domain_name %}{% blocktrans context 'Page title' %}{{ domain_name }} testing{% endblocktrans %}{% endblock %}
+
+{% block nav_student_exam_class %}active{% endblock %}
+
+{% block content %}
+{% endblock %}
