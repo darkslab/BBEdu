@@ -1,9 +1,12 @@
 from django.shortcuts import redirect
+from django.core.exceptions import PermissionDenied
 
 
 class CurrentQuizSetRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
         if self.quiz_set() is None:
+            if request.is_ajax():
+                raise PermissionDenied("Permission denied for AJAX call")
             return redirect("bbtest:student_buy_test_domains")
         return super().dispatch(request, *args, **kwargs)
 
@@ -18,5 +21,7 @@ class CurrentQuizSetRequiredMixin:
 class NonCurrentQuizSetRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
         if request.user.quiz_sets.filter(is_current=True).exists():
+            if request.is_ajax():
+                raise PermissionDenied("Permission denied for AJAX call")
             return redirect("bbtest:student_exam")
         return super().dispatch(request, *args, **kwargs)
