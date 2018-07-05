@@ -206,6 +206,7 @@ class BuyTestsCheckoutView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequ
                 "url": "https://google.com/",
             })
         except ItemError as error:
+            # DARK_TODO  change "message" to "errors" array?
             return TightJsonResponse({
                 "success": False,
                 "message": str(error),

@@ -162,99 +162,8 @@
 
 
 
+// ================================
 
-
-// test response
-{
-    "seconds_left": 3600,
-    "questions": [
-        {
-            "answer_class": "MultichoiceOneAnswer",
-            "meta_data": {
-                "correct_id": null,
-                "choices": [
-                    {
-                        "id": 128,
-                        "choice_class": "MultichoiceTextChoice",
-                        "meta_data": {
-                            "text": "Some text here"
-                        }
-                    },
-                    ...
-                ]
-            }
-            "paragraphs": [
-                {
-                    "paragraph_class": "TextParagraph",
-                    "meta_data": {
-                        "text": "Some text here"
-                    }
-                },
-                ...
-            ]
-        }
-    ],
-    "answer_submission": {
-        "answers": [
-            {
-                "answer": {
-                    "correct_id": 9285
-                },
-                "observation": {
-                    ...
-                }
-            },
-            {
-                "answer": null,
-                "observation": {
-                    ...
-                }
-            }
-            ...
-        ],
-        "observation": {
-            ...
-        }
-    }
-}
-
-
-
-
-// answer submission
-{
-    "answers": [
-        {
-            "answer": {
-                "correct_id": 9285
-            },
-            "observation": {
-                ...
-            }
-        },
-        {
-            "answer": null,
-            "observation": {
-                ...
-            }
-        },
-        {
-            "answer": {
-                "correct_ids": [
-                    123,
-                    ...
-                ]
-            },
-            "observation": {
-                ...
-            }
-        },
-        ...
-    ],
-    "observation": {
-        ...
-    }
-}
 
 
 
@@ -306,11 +215,11 @@
 
 
 
+
 /**
  * POST /student/buy-tests/xxxx/cart/
  * 
  * request object
- * response object
  */
 
 {
@@ -322,7 +231,170 @@
     ]
 }
 
-// response object is the same as in the example above
+/**
+ * POST /student/buy-tests/xxxx/cart/
+ * 
+ * response object is the same as in the example above (GET /student/buy-tests/xxxx/cart/)
+ */
 
 
 
+
+/**
+ * GET /exam/continue/
+ * GET /build/tests/xxxx/preview-data/
+ * 
+ * response object
+ */
+
+{
+    "status": "queued",
+    "section": "Математика",
+    "instructions": "Ut at egestas nunc. Ut suscipit luctus mattis. Maecenas quis magna ut arcu ullamcorper ornare. Praesent sollicitudin sodales elit ut pulvinar. Sed vehicula felis a nulla hendrerit hendrerit. Pellentesque egestas sit amet nisl a condimentum. Donec cursus varius sem. Nulla tincidunt lorem eget magna dictum finibus. Integer nec diam gravida tellus convallis posuere ac nec dui. Cras pellentesque purus lectus, id ullamcorper neque varius vitae. Proin tincidunt leo nec ipsum tincidunt efficitur. Praesent facilisis lacinia ipsum quis rutrum."
+}
+// or
+{
+    "status": "started",
+    "seconds": 3600,
+    "questions": [
+        {
+            "paragraphs": [
+                {
+                    "paragraph_class": "TextParagraph",
+                    "meta_data": {
+                        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac ullamcorper nisi, vel tempus massa. Nulla ac mauris feugiat, tincidunt turpis ut, suscipit leo. Nulla sodales turpis massa, vitae porttitor orci vulputate ac. Aenean malesuada iaculis commodo. Maecenas tristique ornare volutpat. Sed imperdiet cursus tempus. Aenean fringilla tellus eu diam varius condimentum. Aliquam in imperdiet eros. Etiam imperdiet risus leo, in auctor arcu auctor facilisis. Suspendisse non vulputate nisl."
+                    }
+                }
+                // ...
+            ],
+            "answer_class": "MultichoiceOneAnswer",
+            "meta_data": {
+                "correct_id": null,
+                "choices": [
+                    {
+                        "id": 128,
+                        "choice_class": "MultichoiceTextChoice",
+                        "meta_data": {
+                            "text": "All answers are correct."
+                        }
+                    }
+                    // ...
+                ]
+            }
+        }
+    ],
+    "report": {
+        "answers": [
+            {
+                "answer": {
+                    "correct_id": 9285
+                },
+                "observation": {
+                    // ...
+                }
+            },
+            {
+                "answer": null,
+                "observation": {
+                    // ...
+                }
+            }
+        ],
+        "observation": {
+            // ...
+        }
+    }
+}
+// or
+{
+    "status": "expired"
+}
+// or
+{
+    "status": "concluded"
+}
+
+
+
+
+/**
+ * POST /exam/start/
+ * 
+ * request object is empty
+ */
+
+/**
+ * POST /exam/start/
+ * 
+ * response object is "started" version of the response above (GET /exam/continue/) or failure
+ * response
+ */
+
+
+
+
+/**
+ * POST /exam/skip/
+ * 
+ * request object is empty
+ */
+
+/**
+ * POST /exam/skip/
+ * 
+ * response object is either "queued" or "concluded" version of the response above
+ * (GET /exam/continue/) or failure response
+ */
+
+
+
+
+/**
+ * POST /exam/end/
+ * 
+ * request object is empty
+ */
+
+/**
+ * POST /exam/end/
+ * 
+ * response object is either "queued" or "concluded" version of the response above
+ * (GET /exam/continue/) or failure response
+ */
+
+
+
+
+/**
+ * POST /exam/report/
+ * 
+ * request object
+ */
+
+{
+    "answers": [
+        {
+            "answer": {
+                "correct_id": 9285
+            },
+            "observation": {
+                // ...
+            }
+        },
+        {
+            "answer": null,
+            "observation": {
+                // ...
+            }
+        }
+    ],
+    "observation": {
+        // ...
+    }
+}
+
+/**
+ * POST /exam/report/
+ * 
+ * response object is empty or failure response
+ */

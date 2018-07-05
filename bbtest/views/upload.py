@@ -43,6 +43,7 @@ class UploadCompleteView(LoginRequiredMixin, View):
     def post(self, request, uuid, *args, **kwargs):
         upload = get_object_or_404(Upload.uploading_objects, uuid=uuid)
         if not upload.is_uploaded():
+            # DARK_TODO  update the response to comply with the standard
             return TightJsonResponse({"success": False})
         if not Upload.uploading_objects.filter(uuid=upload.uuid).update(expire_at=None):
             raise Http404("Upload has already been completed")
@@ -70,6 +71,7 @@ class UploadAdoptView(LoginRequiredMixin, View):
     def post(self, request, uuid, *args, **kwargs):
         form = UploadAdoptForm(data=request.POST)
         if not form.is_valid():
+            # DARK_TODO  update the response to comply with the standard
             return TightJsonResponse({
                 "success": False,
                 "broken": False,
@@ -78,6 +80,7 @@ class UploadAdoptView(LoginRequiredMixin, View):
 
         asset = get_object_or_404(Asset.unadopted_objects, uuid=uuid)
         if not asset.is_ready_for_adoption():
+            # DARK_TODO  update the response to comply with the standard
             return TightJsonResponse({
                 "success": False,
                 "broken": False,
@@ -87,6 +90,7 @@ class UploadAdoptView(LoginRequiredMixin, View):
 
         if asset.is_broken:
             asset.delete()
+            # DARK_TODO  update the response to comply with the standard
             return TightJsonResponse({
                 "success": False,
                 "broken": True,
