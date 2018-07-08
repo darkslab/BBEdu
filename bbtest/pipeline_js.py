@@ -67,7 +67,9 @@ BASE3_SOURCE_FILENAMES = (
     "js/react/components/DeveloperMultichoiceTextChoice.js",
 
     "js/react/components/Test.js",
+    "js/react/components/NewTest.js",
     "js/react/components/Question.js",
+    "js/react/components/RefreshModal.js",
 
     "js/react/components/DeveloperTest.js",
     "js/react/components/DeveloperQuestion.js",

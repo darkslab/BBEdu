@@ -1,9 +1,47 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n %}
+{% load i18n static %}
 
-{% block title %}{% trans test_domain.name as domain_name %}{% blocktrans context 'Page title' %}{{ domain_name }} testing{% endblocktrans %}{% endblock %}
+{% block title %}{% trans test_domain.name as domain_name %}{% blocktrans context 'Page title' %}{{ domain_name }} Testing{% endblocktrans %}{% endblock %}
 
 {% block nav_student_exam_class %}active{% endblock %}
 
 {% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "ReactModule",
+            data: {
+                class: "NewTest",
+                props: {
+                    // DARK_TODO  implement this!
+                    spinnerLogo: "{% static 'img/logo.png' %}",
+                    continueUrl: "{% url 'bbtest:student_exam' %}",
+                    startUrl: "{% url 'bbtest:student_exam' %}",
+                    skipUrl: "{% url 'bbtest:student_exam' %}",
+                    endUrl: "{% url 'bbtest:student_exam' %}",
+                    reportUrl: "{% url 'bbtest:student_exam' %}",
+                    refreshUrl: "{% url 'bbtest:student_exam' %}",
+                    cancelRefreshUrl: "{% url 'bbtest:student_dashboard' %}",
+                    objectClass: "StudentTestObject",
+                    texts: {
+                        error:                        "{% trans 'There was an error, please reload the page.'  context 'Exam' %}",
+                        startButton:                  "{% trans 'Start'                                        context 'Exam' %}",
+                        refreshButton:                "{% trans 'Reload the page'                              context 'Exam' %}",
+                        cancelRefreshButton:          "{% trans 'Cancel'                                       context 'Exam' %}",
+                        question:                     "{% trans 'Question'                                     context 'Exam' %}",
+                        multichoiceOneAnswerTitle:    "{% trans 'Please choose an answer choice'               context 'Exam' %}",
+                        multichoiceMultiAnswerTitle:  "{% trans 'Please choose answer choices that apply'      context 'Exam' %}",
+                        previousPager:                "{% trans 'Previous'                                     context 'Exam' %}",
+                        nextPager:                    "{% trans 'Next'                                         context 'Exam' %}"
+                    }
+                }
+            }
+        });
+    </script>
+    <div id="root">
+        <div class="row">
+            <div class="col-xs-12 bb-test-container">
+                <img class="bb-spinner" src="{% static 'img/logo.png' %}">
+            </div>
+        </div>
+    </div>
 {% endblock %}

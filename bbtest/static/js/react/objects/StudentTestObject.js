@@ -1,17 +1,15 @@
-function StudentTestObject(component, questions, answerSubmission) {
-    this._component = component;
-    this._questions = questions;
-    this._answerSubmission = answerSubmission;
+function StudentTestObject(component, questions, report) {
+    // DARK_TODO  implement this!
+}
+StudentTestObject.prototype.stop = function() {
+    // DARK_TODO  implement this!
 }
 StudentTestObject.prototype.question = function(index) {
-    return this._questions[index];
+    // DARK_TODO  implement this!
 }
-StudentTestObject.prototype.push = function(callback) {
-    // DARK_TODO  implement this
+StudentTestObject.prototype.answer = function(index) {
+    // DARK_TODO  implement this!
 }
-StudentTestObject.prototype.answerData = function(index) {
-    return this._answerSubmission.answers[index].answer;
-}
-StudentTestObject.prototype.answerUpdate = function(index, data) {
-    // DARK_TODO  implement this
+StudentTestObject.prototype.updateAnswer = function(index, data) {
+    // DARK_TODO  implement this!
 }
