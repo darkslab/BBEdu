@@ -19,7 +19,8 @@ var NewTest = function (_React$Component) {
         _this.state = {
             isErrored: false,
             status: undefined,
-            toggleFlag: true
+            toggleFlag: true,
+            confirmationFor: undefined
         };
         _this._xhrStartTime;
         _this._$xhr;
@@ -61,13 +62,42 @@ var NewTest = function (_React$Component) {
                             ),
                             React.createElement(
                                 "div",
-                                { className: "text-center" },
+                                { className: "text-center mb-23" },
                                 React.createElement(
-                                    "button",
-                                    { type: "button",
-                                        className: "btn btn-primary btn-lg mb-23",
-                                        onClick: this._continue.bind(this) },
-                                    this.props.texts.startButton
+                                    "div",
+                                    { className: "visible-xs-block" },
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-primary btn-block",
+                                            onClick: this._start.bind(this) },
+                                        this.props.texts.startButton
+                                    ),
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-danger btn-block",
+                                            onClick: this._renderModal.bind(this, "skip") },
+                                        this.props.texts.skipButton
+                                    )
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "hidden-xs" },
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-primary btn-lg",
+                                            onClick: this._start.bind(this) },
+                                        this.props.texts.startButton
+                                    ),
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-danger btn-lg ml-5",
+                                            onClick: this._renderModal.bind(this, "skip") },
+                                        this.props.texts.skipButton
+                                    )
                                 )
                             )
                         )
@@ -173,10 +203,107 @@ var NewTest = function (_React$Component) {
                     );
                     break;
                 case "expired":
-                    // DARK_TODO  implement this!
+                    content = React.createElement(
+                        "div",
+                        { className: "panel panel-default" },
+                        React.createElement(
+                            "div",
+                            { className: "panel-body" },
+                            React.createElement(
+                                "h3",
+                                { className: "text-center mb-15 text-danger" },
+                                this.props.texts.expiredTitle
+                            ),
+                            React.createElement(
+                                "p",
+                                { className: "lead text-center" },
+                                this.props.texts.expiredExplanation
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "text-center mb-23" },
+                                React.createElement(
+                                    "div",
+                                    { className: "visible-xs-block" },
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-primary btn-block",
+                                            onClick: this._continue.bind(this) },
+                                        this.props.texts.continueButton
+                                    )
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "hidden-xs" },
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-primary btn-lg",
+                                            onClick: this._continue.bind(this) },
+                                        this.props.texts.continueButton
+                                    )
+                                )
+                            )
+                        )
+                    );
                     break;
                 case "concluded":
-                // DARK_TODO  implement this!
+                    content = React.createElement(
+                        "div",
+                        { className: "panel panel-default" },
+                        React.createElement(
+                            "div",
+                            { className: "panel-body" },
+                            React.createElement(
+                                "h3",
+                                { className: "text-center mb-15 text-success" },
+                                this.props.texts.concludedTitle
+                            ),
+                            React.createElement(
+                                "p",
+                                { className: "lead text-center" },
+                                this.props.texts.concludedExplanation
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "text-center mb-23" },
+                                React.createElement(
+                                    "div",
+                                    { className: "visible-xs-block" },
+                                    React.createElement(
+                                        "a",
+                                        { href: this.props.resultsUrl,
+                                            className: "btn btn-success btn-block" },
+                                        this.props.texts.resultsButton
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: this.props.buyUrl,
+                                            className: "btn btn-primary btn-block" },
+                                        this.props.texts.buyButton
+                                    )
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "hidden-xs" },
+                                    React.createElement(
+                                        "a",
+                                        { href: this.props.resultsUrl,
+                                            className: "btn btn-success btn-lg" },
+                                        this.props.texts.resultsButton
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: this.props.buyUrl,
+                                            className: "btn btn-primary btn-lg ml-5" },
+                                        this.props.texts.buyButton
+                                    )
+                                )
+                            )
+                        )
+                    );
+                    break;
                 default:
                     content = React.createElement("img", { className: "bb-spinner", src: this.props.spinnerLogo });
                     break;
@@ -189,6 +316,12 @@ var NewTest = function (_React$Component) {
                     cancelUrl: this.props.cancelRefreshUrl,
                     refreshCaption: this.props.texts.refreshButton,
                     cancelCaption: this.props.texts.cancelRefreshButton });
+            } else if (this.state.confirmationFor !== undefined) {
+                modal = React.createElement(ConfirmModal, { title: this.props.texts.confirmModalTitle,
+                    yesCaption: this.props.texts.confirmModalYesCaption,
+                    noCaption: this.props.texts.confirmModalNoCaption,
+                    isInverse: true,
+                    complete: this._completeModal.bind(this) });
             }
 
             return React.createElement(
@@ -251,9 +384,6 @@ var NewTest = function (_React$Component) {
                 return;
             }
             var msecs = new Date().getTime() - this._xhrStartTime;
-            this.setState({
-                status: data.status
-            });
             switch (data.status) {
                 case "queued":
                     this._statusData = {
@@ -262,6 +392,7 @@ var NewTest = function (_React$Component) {
                     };
                     break;
                 case "started":
+                    // DARK_TODO  if there is only 1 second or less is left, then wait that much time and _continue again
                     this._statusData = {
                         seconds: Math.max(data.seconds - Math.round(msecs / 1000), 0),
                         testObject: new (eval(this.props.objectClass))(this, data.questions, data.report),
@@ -275,6 +406,9 @@ var NewTest = function (_React$Component) {
                 case "concluded":
                     break;
             }
+            this.setState({
+                status: data.status
+            });
         }
     }, {
         key: "_ajaxError",
@@ -297,7 +431,7 @@ var NewTest = function (_React$Component) {
                 });
                 return;
             }
-            this._end();
+            this._continue();
         }
     }, {
         key: "_request",
@@ -462,6 +596,30 @@ var NewTest = function (_React$Component) {
                 ));
             }
             return paginationElements;
+        }
+    }, {
+        key: "_completeModal",
+        value: function _completeModal(data) {
+            if (data) {
+                switch (this.state.confirmationFor) {
+                    case "skip":
+                        this._skip();
+                        break;
+                }
+            }
+            this.setState({
+                confirmationFor: undefined
+            });
+        }
+    }, {
+        key: "_renderModal",
+        value: function _renderModal(type) {
+            if (this.state.confirmationFor !== undefined) {
+                return;
+            }
+            this.setState({
+                confirmationFor: type
+            });
         }
     }]);
 

@@ -4,7 +4,8 @@ class NewTest extends React.Component {
         this.state = {
             isErrored: false,
             status: undefined,
-            toggleFlag: true
+            toggleFlag: true,
+            confirmationFor: undefined
         };
         this._xhrStartTime;
         this._$xhr;
@@ -25,10 +26,23 @@ class NewTest extends React.Component {
                         <div className="panel-body">
                             <h3 className="text-center mb-15">{this._statusData.section}</h3>
                             <p className="lead">{this._statusData.instructions}</p>
-                            <div className="text-center">
-                                <button type="button"
-                                        className="btn btn-primary btn-lg mb-23"
-                                        onClick={this._continue.bind(this)}>{this.props.texts.startButton}</button>
+                            <div className="text-center mb-23">
+                                <div className="visible-xs-block">
+                                    <button type="button"
+                                            className="btn btn-primary btn-block"
+                                            onClick={this._start.bind(this)}>{this.props.texts.startButton}</button>
+                                    <button type="button"
+                                            className="btn btn-danger btn-block"
+                                            onClick={this._renderModal.bind(this, "skip")}>{this.props.texts.skipButton}</button>
+                                </div>
+                                <div className="hidden-xs">
+                                    <button type="button"
+                                            className="btn btn-primary btn-lg"
+                                            onClick={this._start.bind(this)}>{this.props.texts.startButton}</button>
+                                    <button type="button"
+                                            className="btn btn-danger btn-lg ml-5"
+                                            onClick={this._renderModal.bind(this, "skip")}>{this.props.texts.skipButton}</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,10 +108,51 @@ class NewTest extends React.Component {
                 );
                 break;
             case "expired":
-                // DARK_TODO  implement this!
+                content = (
+                    <div className="panel panel-default">
+                        <div className="panel-body">
+                            <h3 className="text-center mb-15 text-danger">{this.props.texts.expiredTitle}</h3>
+                            <p className="lead text-center">{this.props.texts.expiredExplanation}</p>
+                            <div className="text-center mb-23">
+                                <div className="visible-xs-block">
+                                    <button type="button"
+                                            className="btn btn-primary btn-block"
+                                            onClick={this._continue.bind(this)}>{this.props.texts.continueButton}</button>
+                                </div>
+                                <div className="hidden-xs">
+                                    <button type="button"
+                                            className="btn btn-primary btn-lg"
+                                            onClick={this._continue.bind(this)}>{this.props.texts.continueButton}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
                 break;
             case "concluded":
-                // DARK_TODO  implement this!
+                content = (
+                    <div className="panel panel-default">
+                        <div className="panel-body">
+                            <h3 className="text-center mb-15 text-success">{this.props.texts.concludedTitle}</h3>
+                            <p className="lead text-center">{this.props.texts.concludedExplanation}</p>
+                            <div className="text-center mb-23">
+                                <div className="visible-xs-block">
+                                    <a href={this.props.resultsUrl}
+                                       className="btn btn-success btn-block">{this.props.texts.resultsButton}</a>
+                                    <a href={this.props.buyUrl}
+                                       className="btn btn-primary btn-block">{this.props.texts.buyButton}</a>
+                                </div>
+                                <div className="hidden-xs">
+                                    <a href={this.props.resultsUrl}
+                                       className="btn btn-success btn-lg">{this.props.texts.resultsButton}</a>
+                                    <a href={this.props.buyUrl}
+                                       className="btn btn-primary btn-lg ml-5">{this.props.texts.buyButton}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+                break;
             default:
                 content = (
                     <img className="bb-spinner" src={this.props.spinnerLogo} />
@@ -113,6 +168,14 @@ class NewTest extends React.Component {
                               cancelUrl={this.props.cancelRefreshUrl}
                               refreshCaption={this.props.texts.refreshButton}
                               cancelCaption={this.props.texts.cancelRefreshButton} />
+            );
+        } else if (this.state.confirmationFor !== undefined) {
+            modal = (
+                <ConfirmModal title={this.props.texts.confirmModalTitle}
+                              yesCaption={this.props.texts.confirmModalYesCaption}
+                              noCaption={this.props.texts.confirmModalNoCaption}
+                              isInverse={true}
+                              complete={this._completeModal.bind(this)} />
             );
         }
 
@@ -165,9 +228,6 @@ class NewTest extends React.Component {
             return;
         }
         let msecs = (new Date()).getTime() - this._xhrStartTime;
-        this.setState({
-            status: data.status
-        });
         switch (data.status) {
             case "queued":
                 this._statusData = {
@@ -176,6 +236,7 @@ class NewTest extends React.Component {
                 };
                 break;
             case "started":
+                // DARK_TODO  if there is only 1 second or less is left, then wait that much time and _continue again
                 this._statusData = {
                     seconds: Math.max(data.seconds - Math.round(msecs / 1000), 0),
                     testObject: new (eval(this.props.objectClass))(this, data.questions, data.report),
@@ -189,6 +250,9 @@ class NewTest extends React.Component {
             case "concluded":
                 break;
         }
+        this.setState({
+            status: data.status
+        });
     }
     _ajaxError($xhr, status, error) {
         if (status === "abort") {
@@ -205,7 +269,7 @@ class NewTest extends React.Component {
             }));
             return;
         }
-        this._end();
+        this._continue();
     }
     _request(idempotent, url, $xhrMethod) {
         if (idempotent && this.state.status === undefined) {
@@ -328,5 +392,25 @@ class NewTest extends React.Component {
             );
         }
         return paginationElements;
+    }
+    _completeModal(data) {
+        if (data) {
+            switch (this.state.confirmationFor) {
+                case "skip":
+                    this._skip();
+                    break;
+            }
+        }
+        this.setState({
+            confirmationFor: undefined
+        });
+    }
+    _renderModal(type) {
+        if (this.state.confirmationFor !== undefined) {
+            return;
+        }
+        this.setState({
+            confirmationFor: type
+        });
     }
 }

@@ -27,6 +27,7 @@ from .views.student import (
     BuyTestsCartView as StudentBuyTestsCartView,
     BuyTestsCheckoutView as StudentBuyTestsCheckoutView,
     ExamView as StudentExamView,
+    ExamContinueView as StudentExamContinueView,
 )
 from .views.developer import (
     DashboardView as DeveloperDashboardView,
@@ -75,6 +76,7 @@ urlpatterns = [
     url(r"^student/buy-tests/(?P<test_domain_id>\d+)/cart/$", StudentBuyTestsCartView.as_view(),     name="student_buy_tests_cart"    ),
     url(r"^student/buy-tests/checkout/$",                     StudentBuyTestsCheckoutView.as_view(), name="student_buy_tests_checkout"),
     url(r"^student/exam/$",                                   StudentExamView.as_view(),             name="student_exam"              ),
+    url(r"^student/continue/$",                               StudentExamContinueView.as_view(),     name="student_exam_continue"     ),
 
     # DEVELOPER URLS
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),

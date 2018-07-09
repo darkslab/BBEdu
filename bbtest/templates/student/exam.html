@@ -14,24 +14,39 @@
                 props: {
                     // DARK_TODO  implement this!
                     spinnerLogo: "{% static 'img/logo.png' %}",
-                    continueUrl: "{% url 'bbtest:student_exam' %}",
-                    startUrl: "{% url 'bbtest:student_exam' %}",
-                    skipUrl: "{% url 'bbtest:student_exam' %}",
-                    endUrl: "{% url 'bbtest:student_exam' %}",
-                    reportUrl: "{% url 'bbtest:student_exam' %}",
+                    continueUrl: "{% url 'bbtest:student_exam_continue' %}",
+                    startUrl: "{% url 'bbtest:student_exam_continue' %}",
+                    skipUrl: "{% url 'bbtest:student_exam_continue' %}",
+                    endUrl: "{% url 'bbtest:student_exam_continue' %}",
+                    reportUrl: "{% url 'bbtest:student_exam_continue' %}",
+                    resultsUrl: "{% url 'bbtest:student_dashboard' %}",
+                    buyUrl: "{% url 'bbtest:student_buy_test_domains' %}",
                     refreshUrl: "{% url 'bbtest:student_exam' %}",
                     cancelRefreshUrl: "{% url 'bbtest:student_dashboard' %}",
                     objectClass: "StudentTestObject",
                     texts: {
                         error:                        "{% trans 'There was an error, please reload the page.'  context 'Exam' %}",
-                        startButton:                  "{% trans 'Start'                                        context 'Exam' %}",
+                        startButton:                  "{% trans 'Start the test'                               context 'Exam' %}",
+                        skipButton:                   "{% trans 'Skip the test'                                context 'Exam' %}",
+                        endButton:                    "{% trans 'End the test'                                 context 'Exam' %}",
+                        continueButton:               "{% trans 'Continue'                                     context 'Exam' %}",
+                        resultsButton:                "{% trans 'Go to Results'                                context 'Exam' %}",
+                        buyButton:                    "{% trans 'Buy new tests'                                context 'Exam' %}",
                         refreshButton:                "{% trans 'Reload the page'                              context 'Exam' %}",
                         cancelRefreshButton:          "{% trans 'Cancel'                                       context 'Exam' %}",
                         question:                     "{% trans 'Question'                                     context 'Exam' %}",
                         multichoiceOneAnswerTitle:    "{% trans 'Please choose an answer choice'               context 'Exam' %}",
                         multichoiceMultiAnswerTitle:  "{% trans 'Please choose answer choices that apply'      context 'Exam' %}",
                         previousPager:                "{% trans 'Previous'                                     context 'Exam' %}",
-                        nextPager:                    "{% trans 'Next'                                         context 'Exam' %}"
+                        nextPager:                    "{% trans 'Next'                                         context 'Exam' %}",
+                        confirmModalTitle:            "{% trans 'Are you sure?'                                context 'Exam' %}",
+                        confirmModalYesCaption:       "{% trans 'Yes'                                          context 'Exam' %}",
+                        confirmModalNoCaption:        "{% trans 'No'                                           context 'Exam' %}",
+                        expiredTitle:                 "{% trans 'Time is up'                                   context 'Exam' %}",
+                        concludedTitle:               "{% trans 'Finished'                                     context 'Exam' %}",
+
+                        expiredExplanation: "{% trans 'You ran out of allocated time for the test. Please continue to the next test.' context 'Exam' %}",
+                        concludedExplanation: "{% trans 'All tests are finished. Please continue to view the results.' context 'Exam' %}"
                     }
                 }
             }

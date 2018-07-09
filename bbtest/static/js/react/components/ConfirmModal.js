@@ -8,13 +8,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DeveloperDeleteConfirmModal = function (_React$Component) {
-    _inherits(DeveloperDeleteConfirmModal, _React$Component);
+var ConfirmModal = function (_React$Component) {
+    _inherits(ConfirmModal, _React$Component);
 
-    function DeveloperDeleteConfirmModal(props) {
-        _classCallCheck(this, DeveloperDeleteConfirmModal);
+    function ConfirmModal(props) {
+        _classCallCheck(this, ConfirmModal);
 
-        var _this = _possibleConstructorReturn(this, (DeveloperDeleteConfirmModal.__proto__ || Object.getPrototypeOf(DeveloperDeleteConfirmModal)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ConfirmModal.__proto__ || Object.getPrototypeOf(ConfirmModal)).call(this, props));
 
         _this._$modal;
         _this._result;
@@ -23,7 +23,7 @@ var DeveloperDeleteConfirmModal = function (_React$Component) {
         return _this;
     }
 
-    _createClass(DeveloperDeleteConfirmModal, [{
+    _createClass(ConfirmModal, [{
         key: "componentDidMount",
         value: function componentDidMount() {
             this._$modal = $("[data-modal]");
@@ -40,7 +40,7 @@ var DeveloperDeleteConfirmModal = function (_React$Component) {
     }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
-            if (this._$modal) {
+            if (this._$modal !== undefined) {
                 this._$modal.off("hidden.bs.modal", this._boundModalHidden);
                 this._$modal = undefined;
             }
@@ -120,5 +120,5 @@ var DeveloperDeleteConfirmModal = function (_React$Component) {
         }
     }]);
 
-    return DeveloperDeleteConfirmModal;
+    return ConfirmModal;
 }(React.Component);

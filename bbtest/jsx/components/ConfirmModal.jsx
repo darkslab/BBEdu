@@ -1,4 +1,4 @@
-class DeveloperDeleteConfirmModal extends React.Component {
+class ConfirmModal extends React.Component {
     constructor(props) {
         super(props);
         this._$modal;
@@ -19,7 +19,7 @@ class DeveloperDeleteConfirmModal extends React.Component {
         }
     }
     componentWillUnmount() {
-        if (this._$modal) {
+        if (this._$modal !== undefined) {
             this._$modal.off("hidden.bs.modal", this._boundModalHidden);
             this._$modal = undefined;
         }
