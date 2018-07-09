@@ -13,13 +13,30 @@ class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, User
 
 
 class ExamContinueView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
-    # DARK_TODO  implement this!
-
     def get(self, request, *args, **kwargs):
-        return TightJsonResponse({
-            "success": True,
-            "status": "concluded",
-        })
+        # DARK_TODO  implement this!
+        pass
 
+
+class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        return self.get(request, *args, **kwargs)
+        # DARK_TODO  implement this!
+        pass
+
+
+class ExamSkipView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        # DARK_TODO  implement this!
+        pass
+
+
+class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        # DARK_TODO  implement this!
+        pass
+
+
+class ExamReportView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        # DARK_TODO  implement this!
+        pass
