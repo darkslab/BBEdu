@@ -4,17 +4,19 @@ from django.db.models import (
 )
 from django.contrib.auth import get_user_model
 from django.utils.translation import pgettext_lazy
+from ool import VersionField, VersionedMixin
 from .test import TestDomain, Test
 from .fields import JSONField
 
 
-class QuizSet(Model):
+class QuizSet(VersionedMixin, Model):
     test_domain  = ForeignKey  ( TestDomain,       on_delete=CASCADE, related_name="quiz_sets", )
     student      = ForeignKey  ( get_user_model(), on_delete=CASCADE, related_name="quiz_sets", )
 
-    is_current  = NullBooleanField  ( pgettext_lazy("Model field", "is current?"),                    default=True, db_index=True, )
-    created_at  = DateTimeField     ( pgettext_lazy("Model field", "created at"),  auto_now_add=True,                              )
-    updated_at  = DateTimeField     ( pgettext_lazy("Model field", "updated at"),  auto_now=True,                                  )
+    lock_version  = VersionField      ( pgettext_lazy("Model field", "lock version"),                                                 default=0, )
+    is_current    = NullBooleanField  ( pgettext_lazy("Model field", "is current?"),                     default=True, db_index=True,            )
+    created_at    = DateTimeField     ( pgettext_lazy("Model field", "created at"),   auto_now_add=True,                                         )
+    updated_at    = DateTimeField     ( pgettext_lazy("Model field", "updated at"),   auto_now=True,                                             )
 
     class Meta:
         db_table = "quiz_sets"
