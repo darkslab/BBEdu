@@ -6,7 +6,8 @@ from django.db.models import Prefetch
 from django.http import Http404
 from json import loads
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin
-from .generic import View, TemplateView, FormView, UserContextMixin
+from .generic import View, TemplateView, FormView
+from .common import UserContextMixin
 from bbtest.utils.json import tight_dumps
 from bbtest.models.upload import expiring_url
 from bbtest.models import TestQuestion, Test, TestParagraph

@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from bbtest.views.generic import TemplateView, UserContextMixin
+from bbtest.views.generic import TemplateView
+from bbtest.views.common import UserContextMixin
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.models import Test
 

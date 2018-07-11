@@ -9,7 +9,8 @@ from django.utils.decorators import method_decorator
 from urllib.parse import urlencode
 from decimal import Decimal
 from bbtest.auth.mixins import LoginRequiredMixin
-from bbtest.views.generic import FormView, RedirectView, TemplateView, View, UserContextMixin
+from bbtest.views.generic import FormView, RedirectView, TemplateView, View
+from bbtest.views.common import UserContextMixin
 from bbtest.forms.user import SettingsForm
 from bbtest.forms.subscription import SubscriptionForm
 from bbtest.forms.base import BuyCreditsForm

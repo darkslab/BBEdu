@@ -1,9 +1,11 @@
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _, pgettext
+from django.urls import reverse
 from json import loads
 from decimal import Decimal
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
-from bbtest.views.generic import TemplateView, UserContextMixin, View
+from bbtest.views.generic import TemplateView, View
+from bbtest.views.common import UserContextMixin
 from .mixins import NonCurrentQuizSetRequiredMixin
 from bbtest.models import TestDomain, Test
 from bbtest.http import TightJsonResponse
@@ -200,10 +202,9 @@ class BuyTestsCheckoutView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequ
                 CreditPaymentProcessor(self.cart_handle().total()),
                 self.cart_handle(),
             )
-            # DARK_TODO  implement this!
             return TightJsonResponse({
                 "success": True,
-                "url": "https://google.com/",
+                "url": reverse("bbtest:student_exam"),
             })
         except ItemError as error:
             # DARK_TODO  change "message" to "errors" array?

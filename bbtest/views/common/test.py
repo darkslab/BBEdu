@@ -1,0 +1,51 @@
+from django.db.models import Prefetch
+from bbtest.models import TestQuestion, TestParagraph
+from bbtest.models.upload import expiring_url
+
+
+def inject_questions_and_report_into_started_response(response, test):
+    response["questions"] = []
+    response["report"] = {
+        "answers": [],
+        "observation": {},
+    }
+
+    for question in test.questions.prefetch_related(
+        Prefetch("paragraphs", queryset=TestParagraph.objects.order_by("through").all()),
+    ).all():
+        _answer = {
+            "answer": None,
+            "observation": {},
+        }
+
+        answer_meta_data = question.meta_data
+        if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+            if answer_meta_data["correct_id"] is not None:
+                _answer["answer"] = {
+                    "correct_id": answer_meta_data["correct_id"],
+                }
+                answer_meta_data["correct_id"] = None
+        elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
+            _answer["answer"] = {
+                "correct_ids": answer_meta_data["correct_ids"],
+            }
+            answer_meta_data["correct_ids"] = []
+
+        _question = {
+            "paragraphs": [],
+            "answer_class": question.answer_class,
+            "meta_data": answer_meta_data,
+        }
+
+        for paragraph in question.paragraphs.all():
+            if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+                paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"], expire_in=test.section.duration)
+
+            _paragraph = {
+                "paragraph_class": paragraph.paragraph_class,
+                "meta_data": paragraph.meta_data,
+            }
+            _question["paragraphs"].append(_paragraph)
+
+        response["questions"].append(_question)
+        response["report"]["answers"].append(_answer)
