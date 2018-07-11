@@ -395,7 +395,7 @@ var NewTest = function (_React$Component) {
                     // DARK_TODO  if there is only 1 second or less is left, then wait that much time and _continue again
                     this._statusData = {
                         seconds: Math.max(data.seconds - Math.round(msecs / 1000), 0),
-                        testObject: new (eval(this.props.objectClass))(this, data.questions, data.report),
+                        testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report),
                         questionIndex: 0,
                         questionsCount: data.questions.length,
                         timer: setTimeout(this._tick.bind(this), 1000)
