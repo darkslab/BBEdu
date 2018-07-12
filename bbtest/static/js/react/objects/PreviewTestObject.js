@@ -1,22 +1,22 @@
-function PreviewTestObject(component, questions, answerSubmission) {
+function PreviewTestObject(component, reportUrl, questions, report) {
     this._component = component;
     this._questions = questions;
-    this._answerSubmission = answerSubmission;
+    this._report = report;
+
+    this._updateTimer;
+}
+PreviewTestObject.prototype.stop = function() {
+    clearTimeout(this._updateTimer);
 }
 PreviewTestObject.prototype.question = function(index) {
     return this._questions[index];
 }
-PreviewTestObject.prototype.push = function(callback) {
-    setTimeout(function() {
-        callback(true);
-    });
+PreviewTestObject.prototype.answer = function(index) {
+    return this._report.answers[index].answer;
 }
-PreviewTestObject.prototype.answerData = function(index) {
-    return this._answerSubmission.answers[index].answer;
-}
-PreviewTestObject.prototype.answerUpdate = function(index, data) {
-    this._answerSubmission.answers[index] = data;
-    setTimeout(function() {
+PreviewTestObject.prototype.updateAnswer = function(index, data) {
+    this._report.answers[index] = data;
+    this._updateTimer = setTimeout(function() {
         this._component.setState(function(prevState) {
             return {
                 toggleFlag: !prevState.toggleFlag
