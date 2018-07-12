@@ -104,6 +104,13 @@ class NewTest extends React.Component {
                                 </ul>
                             </div>
                         </div>
+                        <div className="row">
+                            <div className="col-xs-12 text-center">
+                                <button type="button"
+                                        className="btn btn-danger btn-sm"
+                                        onClick={this._renderModal.bind(this, "end")}>{this.props.texts.endButton}</button>
+                            </div>
+                        </div>
                     </React.Fragment>
                 );
                 break;
@@ -117,12 +124,12 @@ class NewTest extends React.Component {
                                 <div className="visible-xs-block">
                                     <button type="button"
                                             className="btn btn-primary btn-block"
-                                            onClick={this._continue.bind(this)}>{this.props.texts.continueButton}</button>
+                                            onClick={this._end.bind(this)}>{this.props.texts.continueButton}</button>
                                 </div>
                                 <div className="hidden-xs">
                                     <button type="button"
                                             className="btn btn-primary btn-lg"
-                                            onClick={this._continue.bind(this)}>{this.props.texts.continueButton}</button>
+                                            onClick={this._end.bind(this)}>{this.props.texts.continueButton}</button>
                                 </div>
                             </div>
                         </div>
@@ -398,6 +405,9 @@ class NewTest extends React.Component {
             switch (this.state.confirmationFor) {
                 case "skip":
                     this._skip();
+                    break;
+                case "end":
+                    this._end();
                     break;
             }
         }

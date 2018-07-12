@@ -199,6 +199,21 @@ var NewTest = function (_React$Component) {
                                     bottomPaginationRight
                                 )
                             )
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "col-xs-12 text-center" },
+                                React.createElement(
+                                    "button",
+                                    { type: "button",
+                                        className: "btn btn-danger btn-sm",
+                                        onClick: this._renderModal.bind(this, "end") },
+                                    this.props.texts.endButton
+                                )
+                            )
                         )
                     );
                     break;
@@ -229,7 +244,7 @@ var NewTest = function (_React$Component) {
                                         "button",
                                         { type: "button",
                                             className: "btn btn-primary btn-block",
-                                            onClick: this._continue.bind(this) },
+                                            onClick: this._end.bind(this) },
                                         this.props.texts.continueButton
                                     )
                                 ),
@@ -240,7 +255,7 @@ var NewTest = function (_React$Component) {
                                         "button",
                                         { type: "button",
                                             className: "btn btn-primary btn-lg",
-                                            onClick: this._continue.bind(this) },
+                                            onClick: this._end.bind(this) },
                                         this.props.texts.continueButton
                                     )
                                 )
@@ -604,6 +619,9 @@ var NewTest = function (_React$Component) {
                 switch (this.state.confirmationFor) {
                     case "skip":
                         this._skip();
+                        break;
+                    case "end":
+                        this._end();
                         break;
                 }
             }

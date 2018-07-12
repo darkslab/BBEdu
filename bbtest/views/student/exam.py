@@ -1,5 +1,8 @@
 from django.utils.translation import ugettext as _
 from django.utils.timezone import now
+from django.db.transaction import atomic
+from ool import ConcurrentUpdate
+from datetime import timedelta
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, inject_questions_and_report_into_started_response
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
@@ -15,82 +18,157 @@ class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, User
         return super().get_context_data(**kwargs)
 
 
-def exam_response(quiz_set):
-    response = {}
-    current_quiz = None
-    for quiz in quiz_set.quizzes.all():
-        if quiz.is_finished:
-            continue
-        current_quiz = quiz
-        break
+class ExamMixin:
+    def queued_response(self):
+        return {
+            "success": True,
+            "status": "queued",
+            "section": _(self.current_quiz().test.section.name),
+            # DARK_TODO  implement this!
+            "instructions": "Ut at egestas nunc. Ut suscipit luctus mattis. Maecenas quis magna ut arcu ullamcorper ornare. Praesent sollicitudin sodales elit ut pulvinar. Sed vehicula felis a nulla hendrerit hendrerit. Pellentesque egestas sit amet nisl a condimentum. Donec cursus varius sem. Nulla tincidunt lorem eget magna dictum finibus. Integer nec diam gravida tellus convallis posuere ac nec dui. Cras pellentesque purus lectus, id ullamcorper neque varius vitae. Proin tincidunt leo nec ipsum tincidunt efficitur. Praesent facilisis lacinia ipsum quis rutrum.",
+        }
 
-    now_at = now()
-    if current_quiz is None:
-        response["status"] = "concluded"
-    elif current_quiz.started_at is None:
-        response["status"] = "queued"
-        response["section"] = _(current_quiz.test.section.name)
-        # DARK_TODO  implement this!
-        response["instructions"] = "Ut at egestas nunc. Ut suscipit luctus mattis. Maecenas quis magna ut arcu ullamcorper ornare. Praesent sollicitudin sodales elit ut pulvinar. Sed vehicula felis a nulla hendrerit hendrerit. Pellentesque egestas sit amet nisl a condimentum. Donec cursus varius sem. Nulla tincidunt lorem eget magna dictum finibus. Integer nec diam gravida tellus convallis posuere ac nec dui. Cras pellentesque purus lectus, id ullamcorper neque varius vitae. Proin tincidunt leo nec ipsum tincidunt efficitur. Praesent facilisis lacinia ipsum quis rutrum."
-    elif now_at > current_quiz.due_at:
-        response["status"] = "expired"
-    else:
-        response["status"] = "started"
-        response["seconds"] = (current_quiz.due_at - now_at).seconds
-        inject_questions_and_report_into_started_response(response, current_quiz.test)
-        if current_quiz.report is None:
+    def started_response(self, now_at):
+        response = {
+            "success": True,
+            "status": "started",
+            "seconds": (self.current_quiz().due_at - now_at).seconds,
+        }
+        inject_questions_and_report_into_started_response(response, self.current_quiz().test)
+        if self.current_quiz().report is None:
             for data in response["report"]["answers"]:
                 data["answer"] = None
         else:
-            response["report"] = current_quiz.report
+            response["report"] = self.current_quiz().report
+        return response
 
-    return response
+    def expired_response(self):
+        return {
+            "success": True,
+            "status": "expired",
+        }
+
+    def concluded_response(self):
+        return {
+            "success": True,
+            "status": "concluded",
+        }
+
+    def current_status(self, now_at):
+        if self.current_quiz() is None:
+            return "concluded"
+        elif self.current_quiz().started_at is None:
+            return "queued"
+        elif now_at > self.current_quiz().due_at:
+            return "expired"
+        else:
+            return "started"
 
 
-class ExamContinueView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
+class ExamContinueView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
     def get(self, request, *args, **kwargs):
-        response = exam_response(self.quiz_set())
-        response.update({
-            "success": True,
+        now_at = now()
+        if self.current_status(now_at) == "queued":
+            return TightJsonResponse(self.queued_response())
+        elif self.current_status(now_at) == "started":
+            return TightJsonResponse(self.started_response(now_at))
+        elif self.current_status(now_at) == "expired":
+            return TightJsonResponse(self.expired_response())
+        elif self.current_status(now_at) == "concluded":
+            try:
+                self.quiz_set().is_current = None
+                self.quiz_set().save()
+                return TightJsonResponse(self.concluded_response())
+            except ConcurrentUpdate:
+                pass
+        return TightJsonResponse({
+            "success": False,
         })
-        return TightJsonResponse(response)
 
 
-class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
+class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
     def post(self, request, *args, **kwargs):
-        # DARK_TODO  implement this!
-        response = exam_response(self.quiz_set())
-        response.update({
-            "success": True,
-        })
-        return TightJsonResponse(response)
+        now_at = now()
+        if self.current_status(now_at) != "queued":
+            return TightJsonResponse({
+                "success": False,
+            })
+
+        try:
+            with atomic(savepoint=False):
+                self.quiz_set().save()
+                self.current_quiz().started_at = now_at
+                self.current_quiz().due_at = now_at + timedelta(seconds=self.current_quiz().test.section.duration)
+                self.current_quiz().save()
+        except ConcurrentUpdate:
+            return TightJsonResponse({
+                "success": False,
+            })
+
+        return TightJsonResponse(self.started_response(now_at))
 
 
-class ExamSkipView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
+class ExamSkipView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
     def post(self, request, *args, **kwargs):
-        # DARK_TODO  implement this!
-        response = exam_response(self.quiz_set())
-        response.update({
-            "success": True,
+        now_at = now()
+        if self.current_status(now_at) != "queued":
+            return TightJsonResponse({
+                "success": False,
+            })
+
+        try:
+            with atomic(savepoint=False):
+                self.quiz_set().save()
+                self.current_quiz().is_finished = True
+                self.current_quiz().save()
+
+            self.reset_current_quiz()
+            if self.current_status(now_at) == "queued":
+                return TightJsonResponse(self.queued_response())
+            elif self.current_status(now_at) == "concluded":
+                self.quiz_set().is_current = None
+                self.quiz_set().save()
+                return TightJsonResponse(self.concluded_response())
+        except ConcurrentUpdate:
+            pass
+        return TightJsonResponse({
+            "success": False,
         })
-        return TightJsonResponse(response)
 
 
-class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
+class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
     def post(self, request, *args, **kwargs):
-        # DARK_TODO  implement this!
-        response = exam_response(self.quiz_set())
-        response.update({
-            "success": True,
+        now_at = now()
+        if self.current_status(now_at) not in ("started", "expired"):
+            return TightJsonResponse({
+                "success": False,
+            })
+
+        try:
+            with atomic(savepoint=False):
+                self.quiz_set().save()
+                self.current_quiz().is_finished = True
+                if self.current_status(now_at) == "started":
+                    self.current_quiz().ended_at = now_at
+                self.current_quiz().save()
+
+            self.reset_current_quiz()
+            if self.current_status(now_at) == "queued":
+                return TightJsonResponse(self.queued_response())
+            elif self.current_status(now_at) == "concluded":
+                self.quiz_set().is_current = None
+                self.quiz_set().save()
+                return TightJsonResponse(self.concluded_response())
+        except ConcurrentUpdate:
+            pass
+        return TightJsonResponse({
+            "success": False,
         })
-        return TightJsonResponse(response)
 
 
 class ExamReportView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         # DARK_TODO  implement this!
-        response = exam_response(self.quiz_set())
-        response.update({
+        return TightJsonResponse({
             "success": True,
         })
-        return TightJsonResponse(response)
