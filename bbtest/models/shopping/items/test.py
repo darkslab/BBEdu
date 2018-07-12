@@ -1,6 +1,7 @@
 from django.utils.translation import pgettext
 from django.contrib.auth import get_user_model
 from django.db import IntegrityError
+from django.db.models import F
 from decimal import Decimal, ROUND_HALF_UP
 from .base import Item
 from ..exceptions import ItemError
@@ -128,6 +129,8 @@ class TestItem(Item):
                     continue
                 quiz_set.quizzes.create(test=item.test(), order=quiz_order)
                 quiz_order += 1
+
+                Test.objects.filter(pk=item.test().pk).update(sales_count=(F("sales_count") + 1))
 
         except IntegrityError:
             raise ItemError(pgettext("Item error", "Could not checkout. Please try again."))

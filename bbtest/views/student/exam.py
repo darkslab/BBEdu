@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext as _
 from django.utils.timezone import now
 from django.db.transaction import atomic
+from django.db.models import F
 from ool import ConcurrentUpdate
 from datetime import timedelta
 from bbtest.views.generic import TemplateView, View
@@ -8,6 +9,7 @@ from bbtest.views.common import UserContextMixin, inject_questions_and_report_in
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from .mixins import CurrentQuizSetRequiredMixin
 from bbtest.http import TightJsonResponse
+from bbtest.models import Test
 
 
 class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
@@ -151,6 +153,8 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
                 if self.current_status(now_at) == "started":
                     self.current_quiz().ended_at = now_at
                 self.current_quiz().save()
+
+                Test.objects.filter(pk=self.current_quiz().test.pk).update(completed_count=(F("completed_count") + 1))
 
             self.reset_current_quiz()
             if self.current_status(now_at) == "queued":
