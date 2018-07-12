@@ -5,9 +5,14 @@ function StudentTestObject(component, reportUrl, questions, report) {
     this._report = report;
 
     this._updateTimer;
+    this._$xhr;
+    this._queuedReport = false;
 }
 StudentTestObject.prototype.stop = function() {
     clearTimeout(this._updateTimer);
+    if (this._$xhr !== undefined) {
+        this._$xhr.abort();
+    }
 }
 StudentTestObject.prototype.question = function(index) {
     return this._questions[index];
@@ -24,4 +29,37 @@ StudentTestObject.prototype.updateAnswer = function(index, data) {
             };
         });
     }.bind(this));
+    this._push();
+}
+StudentTestObject.prototype._push = function() {
+    if (this._$xhr !== undefined) {
+        this._queuedReport = true;
+        return;
+    }
+    this._$xhr = $.post({
+        url: this._reportUrl,
+        headers: {"X-CSRFToken": Cookies.get("csrftoken")},
+        data: {
+            report: JSON.stringify(this._report)
+        },
+        success: this._ajaxSuccess.bind(this),
+        error: this._ajaxError.bind(this)
+    });
+}
+StudentTestObject.prototype._ajaxSuccess = function(data, status, $xhr) {
+    if (!data.success) {
+        this._component.reportFailed();
+        return;
+    }
+    this._$xhr = undefined;
+    if (this._queuedReport) {
+        this._queuedReport = false;
+        this._push();
+    }
+}
+StudentTestObject.prototype._ajaxError = function($xhr, status, error) {
+    if (status === "abort") {
+        return;
+    }
+    this._component.reportFailed();
 }
