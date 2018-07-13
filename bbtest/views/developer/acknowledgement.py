@@ -1,7 +1,8 @@
 from django.urls import reverse_lazy
 from django.utils.translation import get_language
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
-from bbtest.views.generic import FormView, UserContextMixin
+from bbtest.views.generic import FormView
+from bbtest.views.common import UserContextMixin
 from bbtest.forms.acknowledgement import DeveloperAcknowledgementForm
 from bbtest.models import DeveloperAcknowledgement
 from .mixins import DeveloperUnacceptedAcknowledgementRequiredMixin
@@ -77,7 +78,6 @@ class AcknowledgementView(DeveloperPermissionRequiredMixin, DeveloperUnacceptedA
     template_name = "developer/acknowledgement.html"
     form_class = DeveloperAcknowledgementForm
     success_url = reverse_lazy("bbtest:developer_tests")
-    accepted_acknowledgement_redirect_urlpattern = "bbtest:developer_tests"
 
     def get_context_data(self, **kwargs):
         kwargs["plan_a"] = {

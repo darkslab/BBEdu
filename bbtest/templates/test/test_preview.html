@@ -14,17 +14,39 @@
                 class: "Test",
                 props: {
                     spinnerLogo: "{% static 'img/logo.png' %}",
-                    testUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    continueUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    startUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    skipUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    endUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    reportUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    resultsUrl: "{% url 'bbtest:build_test_preview' code %}",
+                    buyUrl: "{% url 'bbtest:build_test_preview' code %}",
+                    refreshUrl: "{% url 'bbtest:build_test_preview' code %}",
+                    cancelRefreshUrl: "{% url 'bbtest:dashboard' %}",
                     objectClass: "PreviewTestObject",
-                    questionsCount: {{ questions_count }},
                     texts: {
-                        error:                        "{% trans 'There was an error, please reload the page.'  context 'Test content' %}",
-                        question:                     "{% trans 'Question'                                     context 'Test content' %}",
-                        multichoiceOneAnswerTitle:    "{% trans 'Please choose an answer choice'               context 'Test content' %}",
-                        multichoiceMultiAnswerTitle:  "{% trans 'Please choose answer choices that apply'      context 'Test content' %}",
-                        previousPager:                "{% trans 'Previous'                                     context 'Test content' %}",
-                        nextPager:                    "{% trans 'Next'                                         context 'Test content' %}",
-                        timeIsUpText:                 "{% trans 'The allotted time has run out.'               context 'Test content' %}"
+                        error:                        "{% trans 'There was an error, please reload the page.'  context 'Exam' %}",
+                        startButton:                  "{% trans 'Start the test'                               context 'Exam' %}",
+                        skipButton:                   "{% trans 'Skip the test'                                context 'Exam' %}",
+                        endButton:                    "{% trans 'End the test'                                 context 'Exam' %}",
+                        continueButton:               "{% trans 'Continue'                                     context 'Exam' %}",
+                        resultsButton:                "{% trans 'Go to Results'                                context 'Exam' %}",
+                        buyButton:                    "{% trans 'Buy new tests'                                context 'Exam' %}",
+                        refreshButton:                "{% trans 'Reload the page'                              context 'Exam' %}",
+                        cancelRefreshButton:          "{% trans 'Cancel'                                       context 'Exam' %}",
+                        question:                     "{% trans 'Question'                                     context 'Exam' %}",
+                        multichoiceOneAnswerTitle:    "{% trans 'Please choose an answer choice'               context 'Exam' %}",
+                        multichoiceMultiAnswerTitle:  "{% trans 'Please choose answer choices that apply'      context 'Exam' %}",
+                        previousPager:                "{% trans 'Previous'                                     context 'Exam' %}",
+                        nextPager:                    "{% trans 'Next'                                         context 'Exam' %}",
+                        confirmModalTitle:            "{% trans 'Are you sure?'                                context 'Exam' %}",
+                        confirmModalYesCaption:       "{% trans 'Yes'                                          context 'Exam' %}",
+                        confirmModalNoCaption:        "{% trans 'No'                                           context 'Exam' %}",
+                        expiredTitle:                 "{% trans 'Time is up'                                   context 'Exam' %}",
+                        concludedTitle:               "{% trans 'Finished'                                     context 'Exam' %}",
+
+                        expiredExplanation: "{% trans 'You ran out of allocated time for the test. Please continue to the next test.' context 'Exam' %}",
+                        concludedExplanation: "{% trans 'All tests are finished. Please continue to view the results.' context 'Exam' %}"
                     }
                 }
             }
@@ -185,7 +207,7 @@
             {% endif %}
         </div>
     </div>
-    <div id="root">
+    <div id="root" class="mb-10">
         <div class="row">
             <div class="col-xs-12 bb-test-container">
                 <img class="bb-spinner" src="{% static 'img/logo.png' %}">

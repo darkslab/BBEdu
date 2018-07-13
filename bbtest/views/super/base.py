@@ -4,7 +4,8 @@ from django.http import HttpResponse
 from django.utils.timezone import localtime
 import csv
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
-from bbtest.views.generic import TemplateView, View, UserContextMixin
+from bbtest.views.generic import TemplateView, View
+from bbtest.views.common import UserContextMixin
 from bbtest.models import Subscription
 
 

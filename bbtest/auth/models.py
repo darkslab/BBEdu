@@ -4,9 +4,10 @@ from django.db.models import CharField, EmailField, DateTimeField, BooleanField
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy
 from django.urls import reverse
+from django.apps import apps
+from django.db.models import Q
 from hashlib import md5
 from urllib.parse import urlencode
-from bbtest.models.accounting import BalanceAccount
 
 
 class UserManager(BaseUserManager):
@@ -106,7 +107,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         )
 
     def cart(self):
-        from bbtest.models import Cart
+        Cart = apps.get_model("bbtest", "Cart")
         try:
             return self.carts.get(is_current=True)
         except Cart.DoesNotExist:
@@ -121,5 +122,32 @@ class User(AbstractBaseUser, PermissionsMixin):
         try:
             self.__balance_account
         except AttributeError:
-            self.__balance_account = BalanceAccount.objects.get(name=self.balance_account_name())
+            self.__balance_account = apps.get_model("bbtest", "BalanceAccount").objects.get(name=self.balance_account_name())
         return self.__balance_account
+
+    def obtained_test_ids(self):
+        try:
+            self.__obtained_test_ids
+        except AttributeError:
+            self.__obtained_test_ids = [ data[0] for data in apps.get_model("bbtest", "Quiz").objects.filter(quiz_set__student=self).order_by("quiz_set", "order").values_list("test") ]
+        return self.__obtained_test_ids
+
+    def next_tests(self, domain, language):
+        try:
+            self.__next_tests
+        except AttributeError:
+            # DARK_COMM  Maybe we can invent a system to simplify this
+            Test = apps.get_model("bbtest", "Test")
+            query_sets = []
+            for section in domain.sections.all():
+                query_sets.append(Test.approved_tests.filter(
+                    Q(language=Test.LANGUAGE_XX) | Q(language=language),
+                    section=section,
+                ).exclude(
+                    pk__in=self.obtained_test_ids(),
+                ).order_by("is_free", "sales_count")[:1])
+            if not len(query_sets):
+                raise RuntimeError("Cannot query for next tests")
+            self.__next_tests = query_sets[0].union(*query_sets[1:], all=True)
+
+        return self.__next_tests

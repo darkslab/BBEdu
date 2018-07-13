@@ -99,11 +99,11 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
             );
         } else if (this.state.confirmModal) {
             modal = (
-                <DeveloperDeleteConfirmModal title={this.props.texts.deleteModalTitle}
-                                             yesCaption={this.props.texts.deleteModalYesCaption}
-                                             noCaption={this.props.texts.deleteModalNoCaption}
-                                             isInverse={true}
-                                             complete={this._completeModal.bind(this, "confirm")} />
+                <ConfirmModal title={this.props.texts.deleteModalTitle}
+                              yesCaption={this.props.texts.deleteModalYesCaption}
+                              noCaption={this.props.texts.deleteModalNoCaption}
+                              isInverse={true}
+                              complete={this._completeModal.bind(this, "confirm")} />
             );
         }
 

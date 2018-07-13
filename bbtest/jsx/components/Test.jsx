@@ -2,134 +2,273 @@ class Test extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isTestLoading: true,
-            isCompleting: false,
             isErrored: false,
-            isTimedOut: false,
-            questionIndex: 0,
-            secondsLeft: undefined,
-            toggleFlag: true
+            status: undefined,
+            toggleFlag: true,
+            confirmationFor: undefined
         };
-        this._testObject;
+        this._xhrStartTime;
         this._$xhr;
-        this._timer;
+        this._statusData;
+        this._lingerTimer = null;
     }
     componentDidMount() {
-        let questionNumber = 1;
-        if (location.hash) {
-            questionNumber = parseInt(location.hash.substr(1), 10);
-            if (isNaN(questionNumber) || questionNumber < 1 || questionNumber > this.props.questionsCount) {
-                questionNumber = 1;
-            }
-        }
-        this._setQuestionIndex(questionNumber - 1);
-
-        this._$xhr = $.get({
-            url: this.props.testUrl,
-            success: this._ajaxSuccess.bind(this),
-            error: this._ajaxError.bind(this)
-        });
+        this._continue(true);
     }
     componentWillUnmount() {
-        this._cleanUp();
+        this._stop();
     }
     render() {
         let content = null;
-        if (this.state.isErrored) {
-            content = (
-                <h4 className="text-center text-danger mt-100 mb-0">{this.props.texts.error}</h4>
-            );
-        } else if (this.state.isTestLoading || this.state.isCompleting) {
-            content = (
-                <img className="bb-spinner" src={this.props.spinnerLogo} />
-            );
-        } else if (this.state.isTimedOut) {
-            content = (
-                <h4 className="text-center mt-100 mb-0">{this.props.texts.timeIsUpText}</h4>
-            );
-        } else {
-            content = (
-                <Question count={this.state.questionIndex + 1}
-                          object={this._testObject.question(this.state.questionIndex)}
-                          answerData={this._testObject.answerData(this.state.questionIndex)}
-                          onAnswerUpdate={this._testObject.answerUpdate.bind(this._testObject, this.state.questionIndex)}
-                          secondsLeft={this.state.secondsLeft}
-                          texts={this.props.texts} />
-            );
+        switch (this.state.status) {
+            case "queued":
+                content = (
+                    <div className="panel panel-default">
+                        <div className="panel-body">
+                            <h3 className="text-center mb-15">{this._statusData.section}</h3>
+                            <p className="lead">{this._statusData.instructions}</p>
+                            <div className="text-center mb-23">
+                                <div className="visible-xs-block">
+                                    <button type="button"
+                                            className="btn btn-primary btn-block"
+                                            onClick={this._start.bind(this)}>{this.props.texts.startButton}</button>
+                                    <button type="button"
+                                            className="btn btn-danger btn-block"
+                                            onClick={this._renderModal.bind(this, "skip")}>{this.props.texts.skipButton}</button>
+                                </div>
+                                <div className="hidden-xs">
+                                    <button type="button"
+                                            className="btn btn-primary btn-lg"
+                                            onClick={this._start.bind(this)}>{this.props.texts.startButton}</button>
+                                    <button type="button"
+                                            className="btn btn-danger btn-lg ml-5"
+                                            onClick={this._renderModal.bind(this, "skip")}>{this.props.texts.skipButton}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+                break;
+            case "started":
+                let bottomPaginationLeft = null;
+                let bottomPaginationRight = null;
+                if (this._statusData.questionIndex > 0) {
+                    bottomPaginationLeft = (
+                        <li className="previous">
+                            <a href="javascript:void(0);"
+                               onClick={this._setQuestionIndex.bind(this, this._statusData.questionIndex - 1)}>&larr; {this.props.texts.previousPager}</a>
+                        </li>
+                    );
+                } else {
+                    bottomPaginationLeft = (
+                        <li className="previous disabled">
+                            <a href="javascript:void(0);">&larr; {this.props.texts.previousPager}</a>
+                        </li>
+                    );
+                }
+                if (this._statusData.questionIndex < this._statusData.questionsCount - 1) {
+                    bottomPaginationRight = (
+                        <li className="next">
+                            <a href="javascript:void(0);"
+                               onClick={this._setQuestionIndex.bind(this, this._statusData.questionIndex + 1)}>{this.props.texts.nextPager} &rarr;</a>
+                        </li>
+                    );
+                } else {
+                    bottomPaginationRight = (
+                        <li className="next disabled">
+                            <a href="javascript:void(0);">{this.props.texts.nextPager} &rarr;</a>
+                        </li>
+                    );
+                }
+
+                content = (
+                    <React.Fragment>
+                        <div className="row">
+                            <div className="col-xs-12 text-center hidden-xs">
+                                <ul className="pagination mt-0 mb-0">{this._paginationElements(13)}</ul>
+                            </div>
+                            <div className="col-xs-12 text-center visible-xs-block">
+                                <ul className="pagination pagination-sm mt-0 mb-0">{this._paginationElements(6)}</ul>
+                            </div>
+                        </div>
+                        <Question count={this._statusData.questionIndex + 1}
+                                  object={this._statusData.testObject.question(this._statusData.questionIndex)}
+                                  answerData={this._statusData.testObject.answer(this._statusData.questionIndex)}
+                                  onAnswerUpdate={this._statusData.testObject.updateAnswer.bind(this._statusData.testObject, this._statusData.questionIndex)}
+                                  secondsLeft={this._statusData.seconds}
+                                  texts={this.props.texts} />
+                        <div className="row">
+                            <div className="col-xs-12">
+                                <ul className="pager mt-0 mb-0">
+                                    {bottomPaginationLeft}
+                                    {bottomPaginationRight}
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xs-12 text-center">
+                                <button type="button"
+                                        className="btn btn-danger btn-sm"
+                                        onClick={this._renderModal.bind(this, "end")}>{this.props.texts.endButton}</button>
+                            </div>
+                        </div>
+                    </React.Fragment>
+                );
+                break;
+            case "expired":
+                content = (
+                    <div className="panel panel-default">
+                        <div className="panel-body">
+                            <h3 className="text-center mb-15 text-danger">{this.props.texts.expiredTitle}</h3>
+                            <p className="lead text-center">{this.props.texts.expiredExplanation}</p>
+                            <div className="text-center mb-23">
+                                <div className="visible-xs-block">
+                                    <button type="button"
+                                            className="btn btn-primary btn-block"
+                                            onClick={this._end.bind(this)}>{this.props.texts.continueButton}</button>
+                                </div>
+                                <div className="hidden-xs">
+                                    <button type="button"
+                                            className="btn btn-primary btn-lg"
+                                            onClick={this._end.bind(this)}>{this.props.texts.continueButton}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+                break;
+            case "concluded":
+                content = (
+                    <div className="panel panel-default">
+                        <div className="panel-body">
+                            <h3 className="text-center mb-15 text-success">{this.props.texts.concludedTitle}</h3>
+                            <p className="lead text-center">{this.props.texts.concludedExplanation}</p>
+                            <div className="text-center mb-23">
+                                <div className="visible-xs-block">
+                                    <a href={this.props.resultsUrl}
+                                       className="btn btn-success btn-block">{this.props.texts.resultsButton}</a>
+                                    <a href={this.props.buyUrl}
+                                       className="btn btn-primary btn-block">{this.props.texts.buyButton}</a>
+                                </div>
+                                <div className="hidden-xs">
+                                    <a href={this.props.resultsUrl}
+                                       className="btn btn-success btn-lg">{this.props.texts.resultsButton}</a>
+                                    <a href={this.props.buyUrl}
+                                       className="btn btn-primary btn-lg ml-5">{this.props.texts.buyButton}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+                break;
+            default:
+                content = (
+                    <img className="bb-spinner" src={this.props.spinnerLogo} />
+                );
+                break;
         }
 
-        let pagination = null;
-        let bottomPagination = null;
-        if (this.props.questionsCount > 1 && !this.state.isErrored && !this.state.isTestLoading && !this.state.isCompleting && !this.state.isTimedOut) {
-            pagination = (
-                <React.Fragment>
-                    <div className="col-xs-12 text-center hidden-xs">
-                        <ul className="pagination mt-0 mb-0">{this._paginationElements(13)}</ul>
-                    </div>
-                    <div className="col-xs-12 text-center visible-xs-block">
-                        <ul className="pagination pagination-sm mt-0 mb-0">{this._paginationElements(6)}</ul>
-                    </div>
-                </React.Fragment>
+        let modal = null;
+        if (this.state.isErrored) {
+            modal = (
+                <RefreshModal message={this.props.texts.error}
+                              refreshUrl={this.props.refreshUrl}
+                              cancelUrl={this.props.cancelRefreshUrl}
+                              refreshCaption={this.props.texts.refreshButton}
+                              cancelCaption={this.props.texts.cancelRefreshButton} />
             );
-
-            let bottomPaginationLeft = null;
-            let bottomPaginationRight = null;
-            if (this.state.questionIndex > 0) {
-                bottomPaginationLeft = (
-                    <li className="previous">
-                        <a href="javascript:void(0);"
-                           onClick={this._setQuestionIndex.bind(this, this.state.questionIndex - 1)}>&larr; {this.props.texts.previousPager}</a>
-                    </li>
-                );
-            } else {
-                bottomPaginationLeft = (
-                    <li className="previous disabled">
-                        <a href="javascript:void(0);">&larr; {this.props.texts.previousPager}</a>
-                    </li>
-                );
-            }
-            if (this.state.questionIndex < this.props.questionsCount - 1) {
-                bottomPaginationRight = (
-                    <li className="next">
-                        <a href="javascript:void(0);"
-                           onClick={this._setQuestionIndex.bind(this, this.state.questionIndex + 1)}>{this.props.texts.nextPager} &rarr;</a>
-                    </li>
-                );
-            } else {
-                bottomPaginationRight = (
-                    <li className="next disabled">
-                        <a href="javascript:void(0);">{this.props.texts.nextPager} &rarr;</a>
-                    </li>
-                );
-            }
-            bottomPagination = (
-                <ul className="pager mt-0 mb-0">
-                    {bottomPaginationLeft}
-                    {bottomPaginationRight}
-                </ul>
+        } else if (this.state.confirmationFor !== undefined) {
+            modal = (
+                <ConfirmModal title={this.props.texts.confirmModalTitle}
+                              yesCaption={this.props.texts.confirmModalYesCaption}
+                              noCaption={this.props.texts.confirmModalNoCaption}
+                              isInverse={true}
+                              complete={this._completeModal.bind(this)} />
             );
         }
 
         return (
-            <div className="row">
-                {pagination}
-                <div className="col-xs-12 bb-test-container">
-                    {content}
+            <React.Fragment>
+                {modal}
+                <div className="row">
+                    <div className="col-xs-12 bb-test-container">
+                        {content}
+                    </div>
                 </div>
-                <div className="col-xs-12">
-                    {bottomPagination}
-                </div>
-            </div>
+            </React.Fragment>
         );
     }
+    reportFailed() {
+        if (this.state.status !== "started") {
+            return;
+        }
+        if (this._statusData.seconds > 1) {
+            this._errorOut();
+        }
+    }
 
-    _ajaxSuccess(data, status, $xhr) {
-        this._testObject = new (eval(this.props.objectClass))(this, data.questions, data.answer_submission);
+    _errorOut() {
+        this._stop();
         this.setState({
-            isTestLoading: false,
-            secondsLeft: data.seconds_left
+            isErrored: true
         });
-        this._timer = setTimeout(this._tick.bind(this), 1000);
+    }
+    _stop() {
+        if (this._$xhr !== undefined) {
+            this._$xhr.abort();
+        }
+        switch (this.state.status) {
+            case "queued":
+                break;
+            case "started":
+                this._statusData.testObject.stop();
+                clearTimeout(this._statusData.timer);
+                break;
+            case "expired":
+                break;
+            case "concluded":
+                break;
+        }
+        clearTimeout(this._lingerTimer);
+    }
+    _ajaxSuccess(data, status, $xhr) {
+        if (!data.success) {
+            this._errorOut();
+            return;
+        }
+        let msecs = (new Date()).getTime() - this._xhrStartTime;
+        switch (data.status) {
+            case "queued":
+                this._statusData = {
+                    section: data.section,
+                    instructions: data.instructions
+                };
+                break;
+            case "started":
+                let seconds = Math.max(data.seconds - Math.round(msecs / 1000), 0);
+                if (seconds <= 1) {
+                    data.status = undefined;
+                    this._lingerTimer = setTimeout(function() {
+                        this._continue(true);
+                    }.bind(this), 2000);
+                } else {
+                    this._statusData = {
+                        seconds: seconds,
+                        testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report),
+                        questionIndex: 0,
+                        questionsCount: data.questions.length,
+                        timer: setTimeout(this._tick.bind(this), 1000)
+                    };
+                }
+                break;
+            case "expired":
+                break;
+            case "concluded":
+                break;
+        }
+        this.setState({
+            status: data.status
+        });
     }
     _ajaxError($xhr, status, error) {
         if (status === "abort") {
@@ -137,55 +276,66 @@ class Test extends React.Component {
         }
         this._errorOut();
     }
-    _errorOut() {
-        this.setState({
-            isErrored: true
-        });
-        this._cleanUp();
-    }
-    _cleanUp() {
-        this._$xhr.abort();
-        clearTimeout(this._timer);
-    }
     _tick() {
-        let secondsLeft = this.state.secondsLeft - 1;
-        if (secondsLeft >= 0) {
-            this._timer = setTimeout(this._tick.bind(this), 1000);
-            this.setState({
-                secondsLeft: secondsLeft
-            });
+        this._statusData.seconds -= 1;
+        if (this._statusData.seconds >= 0) {
+            this._statusData.timer = setTimeout(this._tick.bind(this), 1000);
+            this.setState(prevState => ({
+                toggleFlag: !prevState.toggleFlag
+            }));
             return;
         }
-        this._testObject.push(this._completed.bind(this));
+        this._continue();
+    }
+    _request(idempotent, url, $xhrMethod) {
+        if (idempotent && this.state.status === undefined) {
+            return;
+        }
+        this._stop();
+        this._xhrStartTime = (new Date()).getTime();
+        let xhrData = {
+            url: url,
+            success: this._ajaxSuccess.bind(this),
+            error: this._ajaxError.bind(this)
+        };
+        if ($xhrMethod === $.post) {
+            xhrData.headers = {"X-CSRFToken": Cookies.get("csrftoken")};
+        }
+        this._$xhr = $xhrMethod(xhrData);
         this.setState({
-            isCompleting: true,
-            isTimedOut: true
+            status: undefined
         });
     }
-    _completed(success) {
-        if (!success) {
-            this._errorOut();
-            return;
-        }
-        this.setState({
-            isCompleting: false
-        });
+    _continue(force = false) {
+        this._request(!force, this.props.continueUrl, $.get);
+    }
+    _start() {
+        this._request(true, this.props.startUrl, $.post);
+    }
+    _skip() {
+        this._request(true, this.props.skipUrl, $.post);
+    }
+    _end() {
+        this._request(true, this.props.endUrl, $.post);
     }
     _setQuestionIndex(index) {
-        this.setState({
-            questionIndex: index
-        });
-        history.replaceState(history.state, "", location.pathname + "#" + (index + 1).toString());
+        if (this.state.status !== "started") {
+            return;
+        }
+        this._statusData.questionIndex = index;
+        this.setState(prevState => ({
+            toggleFlag: !prevState.toggleFlag
+        }));
     }
     _paginationElements(width) {
         if (width < 1) {
             width = 1;
-        } else if (width > this.props.questionsCount) {
-            width = this.props.questionsCount;
+        } else if (width > this._statusData.questionsCount) {
+            width = this._statusData.questionsCount;
         }
         let padding = parseInt((width - 1) / 2, 10);
         let rightPadding = (width - 1) % 2;
-        let indexes = [ this.state.questionIndex ];
+        let indexes = [ this._statusData.questionIndex ];
         for (let i = 0; i < padding; i++) {
             indexes.unshift(indexes[0] - 1);
             indexes.push(indexes[indexes.length - 1] + 1);
@@ -201,9 +351,9 @@ class Test extends React.Component {
                 indexes.shift();
                 indexes.push(indexes[indexes.length - 1] + 1);
             }
-        } else if (indexes[indexes.length - 1] >= this.props.questionsCount) {
+        } else if (indexes[indexes.length - 1] >= this._statusData.questionsCount) {
             while (true) {
-                if (indexes[indexes.length - 1] < this.props.questionsCount) {
+                if (indexes[indexes.length - 1] < this._statusData.questionsCount) {
                     break;
                 }
                 indexes.pop();
@@ -212,11 +362,11 @@ class Test extends React.Component {
         }
 
         let paginationElements = [];
-        if (this.state.questionIndex > 0) {
+        if (this._statusData.questionIndex > 0) {
             paginationElements.push(
                 <li key="left">
                     <a href="javascript:void(0);"
-                       onClick={this._setQuestionIndex.bind(this, this.state.questionIndex - 1)}>&laquo;</a>
+                       onClick={this._setQuestionIndex.bind(this, this._statusData.questionIndex - 1)}>&laquo;</a>
                 </li>
             );
         } else {
@@ -227,7 +377,7 @@ class Test extends React.Component {
             );
         }
         for (let i = 0; i < indexes.length; i++) {
-            if (indexes[i] === this.state.questionIndex) {
+            if (indexes[i] === this._statusData.questionIndex) {
                 paginationElements.push(
                     <li key={indexes[i].toString()} className="active">
                         <a href="javascript:void(0);">{indexes[i] + 1}</a>
@@ -238,16 +388,16 @@ class Test extends React.Component {
                     <li key={indexes[i].toString()}>
                         <a href="javascript:void(0);"
                            onClick={this._setQuestionIndex.bind(this, indexes[i])}
-                           className={this._testObject.answerData(indexes[i]) ? "bb-pagination-success" : ""}>{indexes[i] + 1}</a>
+                           className={this._statusData.testObject.answer(indexes[i]) ? "bb-pagination-success" : ""}>{indexes[i] + 1}</a>
                     </li>
                 );
             }
         }
-        if (this.state.questionIndex < this.props.questionsCount - 1) {
+        if (this._statusData.questionIndex < this._statusData.questionsCount - 1) {
             paginationElements.push(
                 <li key="right">
                     <a href="javascript:void(0);"
-                       onClick={this._setQuestionIndex.bind(this, this.state.questionIndex + 1)}>&raquo;</a>
+                       onClick={this._setQuestionIndex.bind(this, this._statusData.questionIndex + 1)}>&raquo;</a>
                 </li>
             );
         } else {
@@ -258,5 +408,28 @@ class Test extends React.Component {
             );
         }
         return paginationElements;
+    }
+    _completeModal(data) {
+        if (data) {
+            switch (this.state.confirmationFor) {
+                case "skip":
+                    this._skip();
+                    break;
+                case "end":
+                    this._end();
+                    break;
+            }
+        }
+        this.setState({
+            confirmationFor: undefined
+        });
+    }
+    _renderModal(type) {
+        if (this.state.confirmationFor !== undefined) {
+            return;
+        }
+        this.setState({
+            confirmationFor: type
+        });
     }
 }

@@ -56,7 +56,7 @@ var DeveloperTextParagraph = function (_React$Component) {
 
             var modal = null;
             if (this.state.confirmModal) {
-                modal = React.createElement(DeveloperDeleteConfirmModal, { title: this.props.texts.deleteModalTitle,
+                modal = React.createElement(ConfirmModal, { title: this.props.texts.deleteModalTitle,
                     yesCaption: this.props.texts.deleteModalYesCaption,
                     noCaption: this.props.texts.deleteModalNoCaption,
                     isInverse: true,

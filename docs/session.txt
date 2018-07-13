@@ -1,0 +1,16 @@
+Conventional session keys and their values:
+
+cart_type:
+    (all values are mutually exclusive)
+    empty
+    credits
+    test-domain-%{test_domain_id}
+
+cart_old_items:
+    [
+        {
+            "item_class": "MathematicsProfileUNTItem",
+            "meta_data": { ... }
+        },
+        ...
+    ]

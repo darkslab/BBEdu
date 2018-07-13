@@ -1,4 +1,3 @@
-# DARK_COMM  Only keep concrete Item classes in this scope!
 from .nis import (
     MathematicsNISItem,
     KazakhLanguageNISItem,
@@ -26,3 +25,31 @@ from .unt.profile import (
     RussianLanguageAndLiteratureProfileUNTItem,
     HumanSocietyRightProfileUNTItem,
 )
+
+# DARK_COMM  Only keep concrete Item classes in __all__!
+__all__ = [
+    "MathematicsNISItem",
+    "KazakhLanguageNISItem",
+    "RussianLanguageNISItem",
+    "EnglishLanguageNISItem",
+    "QuantitativeNISItem",
+
+    "CreditItem",
+
+    "MathematicalLiteracyCompulsoryUNTItem",
+    "ReadingLiteracyCompulsoryUNTItem",
+    "HistoryOfKazakhstanCompulsoryUNTItem",
+
+    "MathematicsProfileUNTItem",
+    "PhysicsProfileUNTItem",
+    "ChemistryProfileUNTItem",
+    "BiologyProfileUNTItem",
+    "GeographyProfileUNTItem",
+    "HistoryProfileUNTItem",
+    "EnglishLanguageProfileUNTItem",
+    "FrenchLanguageProfileUNTItem",
+    "GermanLanguageProfileUNTItem",
+    "KazakhLanguageAndLiteratureProfileUNTItem",
+    "RussianLanguageAndLiteratureProfileUNTItem",
+    "HumanSocietyRightProfileUNTItem",
+]

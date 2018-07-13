@@ -16,10 +16,10 @@ from bbtest.views.generic import FormView
 
 
 class LoginView(_LoginView):
-    template_name="base/login.html"
-    redirect_field_name=settings.BB_REDIRECT_FIELDNAME
-    authentication_form=AuthenticationForm
-    redirect_authenticated_user=True
+    template_name = "base/login.html"
+    redirect_field_name = settings.BB_REDIRECT_FIELDNAME
+    authentication_form = AuthenticationForm
+    redirect_authenticated_user = True
 
     def get_success_url(self):
         url = self.get_redirect_url()

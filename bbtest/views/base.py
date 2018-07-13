@@ -9,7 +9,8 @@ from django.utils.decorators import method_decorator
 from urllib.parse import urlencode
 from decimal import Decimal
 from bbtest.auth.mixins import LoginRequiredMixin
-from bbtest.views.generic import FormView, RedirectView, TemplateView, View, UserContextMixin
+from bbtest.views.generic import FormView, RedirectView, TemplateView, View
+from bbtest.views.common import UserContextMixin
 from bbtest.forms.user import SettingsForm
 from bbtest.forms.subscription import SubscriptionForm
 from bbtest.forms.base import BuyCreditsForm
@@ -74,21 +75,26 @@ class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin
 
     def form_valid(self, form):
         credit_item = None
-        items = []
+        old_items = []
         for item in self.cart_handle():
             if isinstance(item, CreditItem):
                 credit_item = item
             else:
-                items.append(item)
-        # DARK_TODO  possibly temporarily save the current cart somewhere
-        for item in items:
-            self.cart_handle().remove_item(item)
+                old_items.append({
+                    "item_class": type(item).__name__,
+                    "meta_data": item.meta_data(),
+                })
+        self.cart_handle().empty()
 
         amount = Decimal(form.cleaned_data["amount"])
         if credit_item is None:
             credit_item = CreditItem(self.cart_handle(), amount, self.request.user)
         credit_item.set_amount(amount)
         self.cart_handle().save()
+
+        self.request.session["cart_type"] = "credits"
+        if len(old_items):
+            self.request.session["cart_old_items"] = old_items
 
         return super().form_valid(form)
 
