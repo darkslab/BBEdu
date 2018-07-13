@@ -8,6 +8,8 @@ function StudentTestObject(component, reportUrl, questions, report) {
     this._$xhr;
     this._queuedReport = false;
 }
+// DARK_TODO  support a functionality where stop would notify that important request (report) is
+//            still in progress, so we can maybe stop users from navigating away?
 StudentTestObject.prototype.stop = function() {
     clearTimeout(this._updateTimer);
     if (this._$xhr !== undefined) {

@@ -25,6 +25,7 @@ var Test = function (_React$Component) {
         _this._xhrStartTime;
         _this._$xhr;
         _this._statusData;
+        _this._lingerTimer = null;
         return _this;
     }
 
@@ -390,6 +391,7 @@ var Test = function (_React$Component) {
                 case "concluded":
                     break;
             }
+            clearTimeout(this._lingerTimer);
         }
     }, {
         key: "_ajaxSuccess",
@@ -407,14 +409,21 @@ var Test = function (_React$Component) {
                     };
                     break;
                 case "started":
-                    // DARK_TODO  if there is only 1 second or less is left, then wait that much time and _continue again
-                    this._statusData = {
-                        seconds: Math.max(data.seconds - Math.round(msecs / 1000), 0),
-                        testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report),
-                        questionIndex: 0,
-                        questionsCount: data.questions.length,
-                        timer: setTimeout(this._tick.bind(this), 1000)
-                    };
+                    var seconds = Math.max(data.seconds - Math.round(msecs / 1000), 0);
+                    if (seconds <= 1) {
+                        data.status = undefined;
+                        this._lingerTimer = setTimeout(function () {
+                            this._continue(true);
+                        }.bind(this), 2000);
+                    } else {
+                        this._statusData = {
+                            seconds: seconds,
+                            testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report),
+                            questionIndex: 0,
+                            questionsCount: data.questions.length,
+                            timer: setTimeout(this._tick.bind(this), 1000)
+                        };
+                    }
                     break;
                 case "expired":
                     break;
