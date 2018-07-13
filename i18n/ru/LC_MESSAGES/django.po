@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 06:25+0600\n"
+"POT-Creation-Date: 2018-07-13 12:44+0600\n"
 "PO-Revision-Date: 2018-06-03 17:30-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -243,12 +243,34 @@ msgid "Amount has to be at least %(limit_value)s."
 msgstr "Сумма должна быть не менее %(limit_value)s."
 
 msgctxt "Validation error"
-msgid "Invalid JSON format."
-msgstr "Неправильный формат JSON."
-
-msgctxt "Validation error"
 msgid "Incorrect data."
 msgstr "Данные указаны неверно."
+
+msgctxt "Form label"
+msgid "Data"
+msgstr "Данные"
+
+msgctxt "Validation error"
+msgid "Please provide data."
+msgstr "Пожалуйста, предоставьте данные."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Incorrect data."
+msgctxt "Validation error"
+msgid "Incorrect report."
+msgstr "Данные указаны неверно."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Please provide data."
+msgctxt "Validation error"
+msgid "Please provide report."
+msgstr "Пожалуйста, предоставьте данные."
+
+msgctxt "Validation error"
+msgid "Invalid JSON format."
+msgstr "Неправильный формат JSON."
 
 msgctxt "Validation error"
 msgid "Please select difficulty."
@@ -281,10 +303,6 @@ msgstr "Текст указан неверно."
 msgctxt "Validation error"
 msgid "Please provide meta data."
 msgstr "Пожалуйста, предоставьте мета данные."
-
-msgctxt "Form label"
-msgid "Data"
-msgstr "Данные"
 
 msgctxt "Validation error"
 msgid "Please select test section."
@@ -349,10 +367,6 @@ msgstr "Неверное значение размера файла."
 msgctxt "Validation error"
 msgid "File content type value is too long."
 msgstr "Значение типа файла слишком длинное."
-
-msgctxt "Validation error"
-msgid "Please provide data."
-msgstr "Пожалуйста, предоставьте данные."
 
 msgctxt "Form label"
 msgid "Old password"
@@ -970,16 +984,51 @@ msgid "lock version"
 msgstr "версия блокировки"
 
 msgctxt "Model field"
-msgid "discount"
-msgstr "скидка"
+msgid "is current?"
+msgstr "текущий?"
 
 msgctxt "Model field"
 msgid "updated at"
 msgstr "обновлено"
 
+#, fuzzy
+#| msgid "Sports"
 msgctxt "Model field"
-msgid "is current?"
-msgstr "текущий?"
+msgid "report"
+msgstr "Спорт"
+
+msgctxt "Model field"
+msgid "order"
+msgstr "порядок"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "is free?"
+msgctxt "Model field"
+msgid "is finished?"
+msgstr "бесплатный?"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "updated at"
+msgctxt "Model field"
+msgid "quiz started at"
+msgstr "обновлено"
+
+msgctxt "Model field"
+msgid "quiz due at"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "joined at"
+msgctxt "Model field"
+msgid "quiz ended at"
+msgstr "зарегистрирован"
+
+msgctxt "Model field"
+msgid "discount"
+msgstr "скидка"
 
 msgctxt "Model field"
 msgid "completed at"
@@ -1018,6 +1067,12 @@ msgid "User no longer exists."
 msgstr "Пользователь больше нет."
 
 #, fuzzy
+#| msgctxt "Page title"
+#| msgid "Buy Credits"
+msgid "Credits"
+msgstr "Купить Kредиты"
+
+#, fuzzy
 #| msgctxt "Item error"
 #| msgid "User is required."
 msgctxt "Item error"
@@ -1031,16 +1086,23 @@ msgctxt "Item error"
 msgid "Student is required."
 msgstr "Требуется пользователь."
 
-msgctxt "Item error"
-msgid "Test has to be approved."
-msgstr ""
-
 #, fuzzy
 #| msgctxt "Validation error"
 #| msgid "Incorrect test language value."
 msgctxt "Item error"
 msgid "Correct test language is required."
 msgstr "Язык тестирования указан неверно."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "This email is already taken."
+msgctxt "Item error"
+msgid "Test has already been taken."
+msgstr "Данный адрес электронной почты уже используется."
+
+msgctxt "Item error"
+msgid "Test has to be approved."
+msgstr ""
 
 #, fuzzy
 #| msgctxt "Validation error"
@@ -1055,6 +1117,13 @@ msgstr "Язык тестирования указан неверно."
 msgctxt "Item error"
 msgid "Test no longer exists."
 msgstr "Пользователь больше нет."
+
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "Could not process the file. Please try another one."
+msgctxt "Item error"
+msgid "Could not checkout. Please try again."
+msgstr "Неверный файл. Попробуйте загрузить другой."
 
 #, fuzzy
 #| msgctxt "Item error"
@@ -1124,10 +1193,6 @@ msgid "Human. Society. Right Profile UNT Test is required."
 msgstr ""
 
 msgctxt "Model field"
-msgid "order"
-msgstr "порядок"
-
-msgctxt "Model field"
 msgid "duration in seconds"
 msgstr "секунд"
 
@@ -1186,6 +1251,20 @@ msgstr "статус"
 msgctxt "Model field"
 msgid "is free?"
 msgstr "бесплатный?"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "question count"
+msgctxt "Model field"
+msgid "sales count"
+msgstr "номер вопроса"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "completed at"
+msgctxt "Model field"
+msgid "completed count"
+msgstr "завершено"
 
 msgctxt "Question difficulty"
 msgid "High"
@@ -1647,6 +1726,13 @@ msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Загрузить тест"
 
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Settings"
+msgctxt "Navigation link"
+msgid "Testing"
+msgstr "Настройки"
+
 msgctxt "Navigation link"
 msgid "Start testing"
 msgstr "Начать тестирование"
@@ -1674,6 +1760,223 @@ msgstr "Войти"
 msgctxt "Navigation link"
 msgid "Register"
 msgstr "Регистрация"
+
+#, fuzzy
+#| msgctxt "/developer/tests/"
+#| msgid "Choose test language"
+msgctxt "Page title"
+msgid "Choose the test domain"
+msgstr "Выберите язык теста"
+
+#, python-format
+msgctxt "Page title"
+msgid "Select tests for %(domain_name)s"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Page title"
+#| msgid "Something went wrong"
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Something went wrong. Please refresh the page."
+msgstr "Что-то пошло не так"
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Refresh the page"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Could not checkout"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "Close"
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Close"
+msgstr "Закрыть"
+
+#, fuzzy
+#| msgctxt "/developer/tests/"
+#| msgid "Choose test language"
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Test language"
+msgstr "Выберите язык теста"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "subject"
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Subjects"
+msgstr "предмет"
+
+#, fuzzy, python-format
+#| msgctxt "Model field"
+#| msgid "question count"
+msgid "Questions count: %(count)s"
+msgstr "номер вопроса"
+
+#, python-format
+msgid "Duration: %(minutes)s min."
+msgstr ""
+
+#, python-format
+msgctxt "/student/buy-tests/xxxx/"
+msgid "%(price)s cred."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/super/"
+#| msgid "Total"
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Total:"
+msgstr "Всего"
+
+#, fuzzy
+#| msgctxt "Page title"
+#| msgid "Buy Credits"
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Buy tests"
+msgstr "Купить Kредиты"
+
+#, fuzzy
+#| msgctxt "Page title"
+#| msgid "Buy Credits"
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Buy credits"
+msgstr "Купить Kредиты"
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Choose different test domain"
+msgstr ""
+
+#, python-format
+msgctxt "Page title"
+msgid "%(domain_name)s Testing"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "There was an error, please reload the page."
+msgctxt "Exam"
+msgid "There was an error, please reload the page."
+msgstr "Произошла ошибка, пожалуйста, обновите страницу."
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Start testing"
+msgctxt "Exam"
+msgid "Start the test"
+msgstr "Начать тестирование"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "code of the test"
+msgctxt "Exam"
+msgid "Skip the test"
+msgstr "код теста"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "code of the test"
+msgctxt "Exam"
+msgid "End the test"
+msgstr "код теста"
+
+msgctxt "Exam"
+msgid "Continue"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Results"
+msgctxt "Exam"
+msgid "Go to Results"
+msgstr "Результаты тестирования"
+
+msgctxt "Exam"
+msgid "Buy new tests"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Reload the page"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Cancel"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "Question"
+msgctxt "Exam"
+msgid "Question"
+msgstr "Вопрос"
+
+#, fuzzy
+#| msgctxt "Test content"
+#| msgid "Please choose an answer choice"
+msgctxt "Exam"
+msgid "Please choose an answer choice"
+msgstr "Пожалуйста, выберите один ответ"
+
+#, fuzzy
+#| msgctxt "Test content"
+#| msgid "Please choose answer choices that apply"
+msgctxt "Exam"
+msgid "Please choose answer choices that apply"
+msgstr "Пожалуйста, выберите варианты ответов"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Previous"
+msgctxt "Exam"
+msgid "Previous"
+msgstr "Предыдущий"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Next"
+msgctxt "Exam"
+msgid "Next"
+msgstr "Следующий"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Are you sure?"
+msgctxt "Exam"
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Yes"
+msgctxt "Exam"
+msgid "Yes"
+msgstr "Да"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "No"
+msgctxt "Exam"
+msgid "No"
+msgstr "Нет"
+
+msgctxt "Exam"
+msgid "Time is up"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Finished"
+msgstr ""
+
+msgctxt "Exam"
+msgid ""
+"You ran out of allocated time for the test. Please continue to the next test."
+msgstr ""
+
+msgctxt "Exam"
+msgid "All tests are finished. Please continue to view the results."
+msgstr ""
 
 msgctxt "/super/"
 msgid "User Statistics"
@@ -1936,34 +2239,6 @@ msgctxt "Page title"
 msgid "Free"
 msgstr "Бесплатный"
 
-msgctxt "Test content"
-msgid "There was an error, please reload the page."
-msgstr "Произошла ошибка, пожалуйста, обновите страницу."
-
-msgctxt "Test content"
-msgid "Question"
-msgstr "Вопрос"
-
-msgctxt "Test content"
-msgid "Please choose an answer choice"
-msgstr "Пожалуйста, выберите один ответ"
-
-msgctxt "Test content"
-msgid "Please choose answer choices that apply"
-msgstr "Пожалуйста, выберите варианты ответов"
-
-msgctxt "Test content"
-msgid "Previous"
-msgstr "Предыдущий"
-
-msgctxt "Test content"
-msgid "Next"
-msgstr "Следующий"
-
-msgctxt "Test content"
-msgid "The allotted time has run out."
-msgstr "Отведенное время закончилось."
-
 msgctxt "Developer tools"
 msgid "This action is irreversable!"
 msgstr "Это действие необратимо!"
@@ -2027,6 +2302,23 @@ msgstr "Русский язык как второй"
 msgctxt "Success alert message"
 msgid "You have created a new Test."
 msgstr "Вы создали новый тест."
+
+#, python-format
+msgctxt "/student/buy-tests/xxxx/cart/"
+msgid "%(amount).0f cred."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "discount"
+msgctxt "/student/buy-tests/xxxx/cart/"
+msgid "Discount"
+msgstr "скидка"
+
+#, python-format
+msgctxt "/student/buy-tests/xxxx/cart/"
+msgid "-%(amount).0f cred."
+msgstr ""
 
 msgctxt "Success alert message"
 msgid "You have approved a Test."
