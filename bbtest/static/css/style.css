@@ -189,7 +189,7 @@ html {
     bottom: 0px;
     left: 0px;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    z-index: 500;
 }
 
 .bb-overlay.bb-overlayed {
@@ -283,6 +283,18 @@ html {
 
 .bb-menu-section .nav>li.active>a:hover,
 .bb-menu-section .nav>li.active>a:focus {
+    background-color: #2196f3;
+}
+
+.bb-menu-section .nav-pills > li.bb-highlighted > a,
+.bb-menu-section .nav-pills > li.bb-highlighted > a:hover,
+.bb-menu-section .nav-pills > li.bb-highlighted > a:focus {
+    background-color: #4caf50;
+}
+
+.bb-menu-section .nav-pills > li.bb-highlighted.active > a,
+.bb-menu-section .nav-pills > li.bb-highlighted.active > a:hover,
+.bb-menu-section .nav-pills > li.bb-highlighted.active > a:focus {
     background-color: #2196f3;
 }
 
@@ -707,6 +719,22 @@ html {
             animation: bb-spinner-animation 2s ease infinite;
 }
 
+.bb-spinner-fixed {
+    position: fixed;
+    z-index: 700;
+}
+
+.bb-spinner-overlay {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 600;
+    overflow: hidden;
+}
+
 .bb-test-container {
     min-height: 420px;
 }
@@ -945,4 +973,16 @@ html {
     background-color: #4caf50;
     border-color: #4caf50;
     z-index: 3;
+}
+
+.bb-totals-container {
+    position: static;
+    top: 0px;
+    -webkit-transition: top .3s ease-out;
+         -o-transition: top .3s ease-out;
+            transition: top .3s ease-out;
+}
+
+.bb-totals-hanging {
+    position: absolute;
 }

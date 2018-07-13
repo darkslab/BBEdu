@@ -36,11 +36,11 @@ class DeveloperSplitTextParagraph extends React.Component {
         let modal = null;
         if (this.state.confirmModal) {
             modal = (
-                <DeveloperDeleteConfirmModal title={this.props.texts.deleteModalTitle}
-                                             yesCaption={this.props.texts.deleteModalYesCaption}
-                                             noCaption={this.props.texts.deleteModalNoCaption}
-                                             isInverse={true}
-                                             complete={this._completeModal.bind(this)} />
+                <ConfirmModal title={this.props.texts.deleteModalTitle}
+                              yesCaption={this.props.texts.deleteModalYesCaption}
+                              noCaption={this.props.texts.deleteModalNoCaption}
+                              isInverse={true}
+                              complete={this._completeModal.bind(this)} />
             );
         }
 

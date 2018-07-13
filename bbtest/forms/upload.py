@@ -58,6 +58,8 @@ class UploadStartForm(ModelForm):
                 raise ValueError("Incorrect upload_starter")
             if not isinstance(upload_starter["name"], str):
                 raise ValueError("Incorrect upload_starter")
+            if upload_starter["name"] not in bbtest.upload_starters.__all__:
+                raise ValueError("Incorrect upload_starter")
             self._upload_starter = getattr(bbtest.upload_starters, upload_starter["name"])
 
             if "kwargs" in upload_starter:

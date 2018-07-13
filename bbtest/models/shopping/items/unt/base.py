@@ -17,7 +17,7 @@ class UNTItem(TestItem):
     def merge_into_items(self, items):
         new_items = []
         for item in items:
-            if not isinstance(item, UNTItem) or item.student() != self.student():
+            if not isinstance(item, UNTItem) or item.student() != self.student() or item.language() != self.language() or item.test().section.pk == self.test().section.pk:
                 continue
             new_item = item
             if item == self:

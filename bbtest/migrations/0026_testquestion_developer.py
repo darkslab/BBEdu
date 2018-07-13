@@ -9,7 +9,7 @@ from bbtest.models import Test
 
 
 def copy_developers(apps, schema_editor):
-    for test in Test.objects.prefetch_related("questions").all():
+    for test in Test.objects.prefetch_related("questions").only("pk").all():
         test.questions.all().update(developer_id=test.developer_id)
 
 

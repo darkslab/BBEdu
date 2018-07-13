@@ -20,7 +20,7 @@ class CartHandle:
         if self.is_complete():
             raise CartHandleError("Only current carts are allowed")
         for line_item in self.__cart.line_items.all():
-            if not hasattr(items, line_item.item_class):
+            if line_item.item_class not in items.__all__:
                 raise CartHandleError("Incorrect item class: %s" % line_item.item_class)
             try:
                 getattr(items, line_item.item_class).instantiate_from_meta_data(self, line_item.meta_data)
@@ -40,6 +40,9 @@ class CartHandle:
             self.save()
 
         # DARK_TODO  do something with self.__errors
+
+    def buyer(self):
+        return self.__cart.buyer
 
     def is_complete(self):
         return not self.__cart.is_current
@@ -149,6 +152,10 @@ class CartHandle:
     def mark_modified(self):
         self.__is_modified = True
 
+    def empty(self):
+        for item in self.__items():
+            self.remove_item(item)
+
     def __iter__(self):
         return ItemsIterator(self.__items())
 
@@ -177,6 +184,9 @@ class CartHandle:
 
         valid_products.sort(key=lambda product: items.index(product["item"]))
         self.__products = valid_products + expired_products
+
+    def __len__(self):
+        return len(self.__items())
 
 
 class ItemsIterator:

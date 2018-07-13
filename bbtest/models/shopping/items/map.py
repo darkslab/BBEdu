@@ -1,0 +1,21 @@
+from . import *
+
+
+TEST_SECTION_MAP = {
+    "9547": MathematicalLiteracyCompulsoryUNTItem,
+    "9546": ReadingLiteracyCompulsoryUNTItem,
+    "9545": HistoryOfKazakhstanCompulsoryUNTItem,
+
+    "9548": MathematicsProfileUNTItem,
+    "9549": PhysicsProfileUNTItem,
+    "9550": ChemistryProfileUNTItem,
+    "9551": BiologyProfileUNTItem,
+    "9552": GeographyProfileUNTItem,
+    "9553": HistoryProfileUNTItem,
+    "9554": EnglishLanguageProfileUNTItem,
+    "9555": FrenchLanguageProfileUNTItem,
+    "9556": GermanLanguageProfileUNTItem,
+    "9557": KazakhLanguageAndLiteratureProfileUNTItem,
+    "9558": RussianLanguageAndLiteratureProfileUNTItem,
+    "9559": HumanSocietyRightProfileUNTItem,
+}

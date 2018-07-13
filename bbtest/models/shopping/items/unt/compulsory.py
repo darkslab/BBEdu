@@ -10,9 +10,6 @@ class MathematicalLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
         if test.section_id != 9547:
             raise ItemError(pgettext("Item error", "Mathematical Literacy Compulsory UNT Test is required."))
 
-    def description(self):
-        return "Mathematical Literacy Compulsory UNT Test"
-
     def price(self):
         return Decimal("6.00") * self.test().section.question_count
 
@@ -26,9 +23,6 @@ class ReadingLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
         if test.section_id != 9546:
             raise ItemError(pgettext("Item error", "Reading Literacy Compulsory UNT Test is required."))
 
-    def description(self):
-        return "Reading Literacy Compulsory UNT Test"
-
     def price(self):
         return Decimal("6.00") * self.test().section.question_count
 
@@ -41,9 +35,6 @@ class HistoryOfKazakhstanCompulsoryUNTItem(CompulsoryUNTItem):
         super().assert_init_args(test, student, language)
         if test.section_id != 9545:
             raise ItemError(pgettext("Item error", "History of Kazakhstan Compulsory UNT Test is required."))
-
-    def description(self):
-        return "History of Kazakhstan Compulsory UNT Test"
 
     def price(self):
         return Decimal("6.00") * self.test().section.question_count

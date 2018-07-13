@@ -4,7 +4,8 @@ from django.urls import reverse
 from django.utils.translation import pgettext, get_language
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
 from .mixins import DeveloperAcknowledgementRequiredMixin
-from bbtest.views.generic import FormView, UserContextMixin
+from bbtest.views.generic import FormView
+from bbtest.views.common import UserContextMixin
 from bbtest.forms.test import TestForm
 from bbtest.models import TestDomain, Test
 
@@ -12,7 +13,6 @@ from bbtest.models import TestDomain, Test
 class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, FormView):
     template_name = "developer/tests.html"
     form_class = TestForm
-    unaccepted_acknowledgement_redirect_urlpattern = "bbtest:developer_acknowledgement"
 
     def get_context_data(self, **kwargs):
         kwargs["empty_language_code"] = Test.LANGUAGE_XX

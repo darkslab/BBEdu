@@ -17,179 +17,422 @@ var Test = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Test.__proto__ || Object.getPrototypeOf(Test)).call(this, props));
 
         _this.state = {
-            isTestLoading: true,
-            isCompleting: false,
             isErrored: false,
-            isTimedOut: false,
-            questionIndex: 0,
-            secondsLeft: undefined,
-            toggleFlag: true
+            status: undefined,
+            toggleFlag: true,
+            confirmationFor: undefined
         };
-        _this._testObject;
+        _this._xhrStartTime;
         _this._$xhr;
-        _this._timer;
+        _this._statusData;
+        _this._lingerTimer = null;
         return _this;
     }
 
     _createClass(Test, [{
         key: "componentDidMount",
         value: function componentDidMount() {
-            var questionNumber = 1;
-            if (location.hash) {
-                questionNumber = parseInt(location.hash.substr(1), 10);
-                if (isNaN(questionNumber) || questionNumber < 1 || questionNumber > this.props.questionsCount) {
-                    questionNumber = 1;
-                }
-            }
-            this._setQuestionIndex(questionNumber - 1);
-
-            this._$xhr = $.get({
-                url: this.props.testUrl,
-                success: this._ajaxSuccess.bind(this),
-                error: this._ajaxError.bind(this)
-            });
+            this._continue(true);
         }
     }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
-            this._cleanUp();
+            this._stop();
         }
     }, {
         key: "render",
         value: function render() {
             var content = null;
-            if (this.state.isErrored) {
-                content = React.createElement(
-                    "h4",
-                    { className: "text-center text-danger mt-100 mb-0" },
-                    this.props.texts.error
-                );
-            } else if (this.state.isTestLoading || this.state.isCompleting) {
-                content = React.createElement("img", { className: "bb-spinner", src: this.props.spinnerLogo });
-            } else if (this.state.isTimedOut) {
-                content = React.createElement(
-                    "h4",
-                    { className: "text-center mt-100 mb-0" },
-                    this.props.texts.timeIsUpText
-                );
-            } else {
-                content = React.createElement(Question, { count: this.state.questionIndex + 1,
-                    object: this._testObject.question(this.state.questionIndex),
-                    answerData: this._testObject.answerData(this.state.questionIndex),
-                    onAnswerUpdate: this._testObject.answerUpdate.bind(this._testObject, this.state.questionIndex),
-                    secondsLeft: this.state.secondsLeft,
-                    texts: this.props.texts });
+            switch (this.state.status) {
+                case "queued":
+                    content = React.createElement(
+                        "div",
+                        { className: "panel panel-default" },
+                        React.createElement(
+                            "div",
+                            { className: "panel-body" },
+                            React.createElement(
+                                "h3",
+                                { className: "text-center mb-15" },
+                                this._statusData.section
+                            ),
+                            React.createElement(
+                                "p",
+                                { className: "lead" },
+                                this._statusData.instructions
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "text-center mb-23" },
+                                React.createElement(
+                                    "div",
+                                    { className: "visible-xs-block" },
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-primary btn-block",
+                                            onClick: this._start.bind(this) },
+                                        this.props.texts.startButton
+                                    ),
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-danger btn-block",
+                                            onClick: this._renderModal.bind(this, "skip") },
+                                        this.props.texts.skipButton
+                                    )
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "hidden-xs" },
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-primary btn-lg",
+                                            onClick: this._start.bind(this) },
+                                        this.props.texts.startButton
+                                    ),
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-danger btn-lg ml-5",
+                                            onClick: this._renderModal.bind(this, "skip") },
+                                        this.props.texts.skipButton
+                                    )
+                                )
+                            )
+                        )
+                    );
+                    break;
+                case "started":
+                    var bottomPaginationLeft = null;
+                    var bottomPaginationRight = null;
+                    if (this._statusData.questionIndex > 0) {
+                        bottomPaginationLeft = React.createElement(
+                            "li",
+                            { className: "previous" },
+                            React.createElement(
+                                "a",
+                                { href: "javascript:void(0);",
+                                    onClick: this._setQuestionIndex.bind(this, this._statusData.questionIndex - 1) },
+                                "\u2190 ",
+                                this.props.texts.previousPager
+                            )
+                        );
+                    } else {
+                        bottomPaginationLeft = React.createElement(
+                            "li",
+                            { className: "previous disabled" },
+                            React.createElement(
+                                "a",
+                                { href: "javascript:void(0);" },
+                                "\u2190 ",
+                                this.props.texts.previousPager
+                            )
+                        );
+                    }
+                    if (this._statusData.questionIndex < this._statusData.questionsCount - 1) {
+                        bottomPaginationRight = React.createElement(
+                            "li",
+                            { className: "next" },
+                            React.createElement(
+                                "a",
+                                { href: "javascript:void(0);",
+                                    onClick: this._setQuestionIndex.bind(this, this._statusData.questionIndex + 1) },
+                                this.props.texts.nextPager,
+                                " \u2192"
+                            )
+                        );
+                    } else {
+                        bottomPaginationRight = React.createElement(
+                            "li",
+                            { className: "next disabled" },
+                            React.createElement(
+                                "a",
+                                { href: "javascript:void(0);" },
+                                this.props.texts.nextPager,
+                                " \u2192"
+                            )
+                        );
+                    }
+
+                    content = React.createElement(
+                        React.Fragment,
+                        null,
+                        React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "col-xs-12 text-center hidden-xs" },
+                                React.createElement(
+                                    "ul",
+                                    { className: "pagination mt-0 mb-0" },
+                                    this._paginationElements(13)
+                                )
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "col-xs-12 text-center visible-xs-block" },
+                                React.createElement(
+                                    "ul",
+                                    { className: "pagination pagination-sm mt-0 mb-0" },
+                                    this._paginationElements(6)
+                                )
+                            )
+                        ),
+                        React.createElement(Question, { count: this._statusData.questionIndex + 1,
+                            object: this._statusData.testObject.question(this._statusData.questionIndex),
+                            answerData: this._statusData.testObject.answer(this._statusData.questionIndex),
+                            onAnswerUpdate: this._statusData.testObject.updateAnswer.bind(this._statusData.testObject, this._statusData.questionIndex),
+                            secondsLeft: this._statusData.seconds,
+                            texts: this.props.texts }),
+                        React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "col-xs-12" },
+                                React.createElement(
+                                    "ul",
+                                    { className: "pager mt-0 mb-0" },
+                                    bottomPaginationLeft,
+                                    bottomPaginationRight
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "col-xs-12 text-center" },
+                                React.createElement(
+                                    "button",
+                                    { type: "button",
+                                        className: "btn btn-danger btn-sm",
+                                        onClick: this._renderModal.bind(this, "end") },
+                                    this.props.texts.endButton
+                                )
+                            )
+                        )
+                    );
+                    break;
+                case "expired":
+                    content = React.createElement(
+                        "div",
+                        { className: "panel panel-default" },
+                        React.createElement(
+                            "div",
+                            { className: "panel-body" },
+                            React.createElement(
+                                "h3",
+                                { className: "text-center mb-15 text-danger" },
+                                this.props.texts.expiredTitle
+                            ),
+                            React.createElement(
+                                "p",
+                                { className: "lead text-center" },
+                                this.props.texts.expiredExplanation
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "text-center mb-23" },
+                                React.createElement(
+                                    "div",
+                                    { className: "visible-xs-block" },
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-primary btn-block",
+                                            onClick: this._end.bind(this) },
+                                        this.props.texts.continueButton
+                                    )
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "hidden-xs" },
+                                    React.createElement(
+                                        "button",
+                                        { type: "button",
+                                            className: "btn btn-primary btn-lg",
+                                            onClick: this._end.bind(this) },
+                                        this.props.texts.continueButton
+                                    )
+                                )
+                            )
+                        )
+                    );
+                    break;
+                case "concluded":
+                    content = React.createElement(
+                        "div",
+                        { className: "panel panel-default" },
+                        React.createElement(
+                            "div",
+                            { className: "panel-body" },
+                            React.createElement(
+                                "h3",
+                                { className: "text-center mb-15 text-success" },
+                                this.props.texts.concludedTitle
+                            ),
+                            React.createElement(
+                                "p",
+                                { className: "lead text-center" },
+                                this.props.texts.concludedExplanation
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "text-center mb-23" },
+                                React.createElement(
+                                    "div",
+                                    { className: "visible-xs-block" },
+                                    React.createElement(
+                                        "a",
+                                        { href: this.props.resultsUrl,
+                                            className: "btn btn-success btn-block" },
+                                        this.props.texts.resultsButton
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: this.props.buyUrl,
+                                            className: "btn btn-primary btn-block" },
+                                        this.props.texts.buyButton
+                                    )
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "hidden-xs" },
+                                    React.createElement(
+                                        "a",
+                                        { href: this.props.resultsUrl,
+                                            className: "btn btn-success btn-lg" },
+                                        this.props.texts.resultsButton
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: this.props.buyUrl,
+                                            className: "btn btn-primary btn-lg ml-5" },
+                                        this.props.texts.buyButton
+                                    )
+                                )
+                            )
+                        )
+                    );
+                    break;
+                default:
+                    content = React.createElement("img", { className: "bb-spinner", src: this.props.spinnerLogo });
+                    break;
             }
 
-            var pagination = null;
-            var bottomPagination = null;
-            if (this.props.questionsCount > 1 && !this.state.isErrored && !this.state.isTestLoading && !this.state.isCompleting && !this.state.isTimedOut) {
-                pagination = React.createElement(
-                    React.Fragment,
-                    null,
-                    React.createElement(
-                        "div",
-                        { className: "col-xs-12 text-center hidden-xs" },
-                        React.createElement(
-                            "ul",
-                            { className: "pagination mt-0 mb-0" },
-                            this._paginationElements(13)
-                        )
-                    ),
-                    React.createElement(
-                        "div",
-                        { className: "col-xs-12 text-center visible-xs-block" },
-                        React.createElement(
-                            "ul",
-                            { className: "pagination pagination-sm mt-0 mb-0" },
-                            this._paginationElements(6)
-                        )
-                    )
-                );
-
-                var bottomPaginationLeft = null;
-                var bottomPaginationRight = null;
-                if (this.state.questionIndex > 0) {
-                    bottomPaginationLeft = React.createElement(
-                        "li",
-                        { className: "previous" },
-                        React.createElement(
-                            "a",
-                            { href: "javascript:void(0);",
-                                onClick: this._setQuestionIndex.bind(this, this.state.questionIndex - 1) },
-                            "\u2190 ",
-                            this.props.texts.previousPager
-                        )
-                    );
-                } else {
-                    bottomPaginationLeft = React.createElement(
-                        "li",
-                        { className: "previous disabled" },
-                        React.createElement(
-                            "a",
-                            { href: "javascript:void(0);" },
-                            "\u2190 ",
-                            this.props.texts.previousPager
-                        )
-                    );
-                }
-                if (this.state.questionIndex < this.props.questionsCount - 1) {
-                    bottomPaginationRight = React.createElement(
-                        "li",
-                        { className: "next" },
-                        React.createElement(
-                            "a",
-                            { href: "javascript:void(0);",
-                                onClick: this._setQuestionIndex.bind(this, this.state.questionIndex + 1) },
-                            this.props.texts.nextPager,
-                            " \u2192"
-                        )
-                    );
-                } else {
-                    bottomPaginationRight = React.createElement(
-                        "li",
-                        { className: "next disabled" },
-                        React.createElement(
-                            "a",
-                            { href: "javascript:void(0);" },
-                            this.props.texts.nextPager,
-                            " \u2192"
-                        )
-                    );
-                }
-                bottomPagination = React.createElement(
-                    "ul",
-                    { className: "pager mt-0 mb-0" },
-                    bottomPaginationLeft,
-                    bottomPaginationRight
-                );
+            var modal = null;
+            if (this.state.isErrored) {
+                modal = React.createElement(RefreshModal, { message: this.props.texts.error,
+                    refreshUrl: this.props.refreshUrl,
+                    cancelUrl: this.props.cancelRefreshUrl,
+                    refreshCaption: this.props.texts.refreshButton,
+                    cancelCaption: this.props.texts.cancelRefreshButton });
+            } else if (this.state.confirmationFor !== undefined) {
+                modal = React.createElement(ConfirmModal, { title: this.props.texts.confirmModalTitle,
+                    yesCaption: this.props.texts.confirmModalYesCaption,
+                    noCaption: this.props.texts.confirmModalNoCaption,
+                    isInverse: true,
+                    complete: this._completeModal.bind(this) });
             }
 
             return React.createElement(
-                "div",
-                { className: "row" },
-                pagination,
+                React.Fragment,
+                null,
+                modal,
                 React.createElement(
                     "div",
-                    { className: "col-xs-12 bb-test-container" },
-                    content
-                ),
-                React.createElement(
-                    "div",
-                    { className: "col-xs-12" },
-                    bottomPagination
+                    { className: "row" },
+                    React.createElement(
+                        "div",
+                        { className: "col-xs-12 bb-test-container" },
+                        content
+                    )
                 )
             );
         }
     }, {
+        key: "reportFailed",
+        value: function reportFailed() {
+            if (this.state.status !== "started") {
+                return;
+            }
+            if (this._statusData.seconds > 1) {
+                this._errorOut();
+            }
+        }
+    }, {
+        key: "_errorOut",
+        value: function _errorOut() {
+            this._stop();
+            this.setState({
+                isErrored: true
+            });
+        }
+    }, {
+        key: "_stop",
+        value: function _stop() {
+            if (this._$xhr !== undefined) {
+                this._$xhr.abort();
+            }
+            switch (this.state.status) {
+                case "queued":
+                    break;
+                case "started":
+                    this._statusData.testObject.stop();
+                    clearTimeout(this._statusData.timer);
+                    break;
+                case "expired":
+                    break;
+                case "concluded":
+                    break;
+            }
+            clearTimeout(this._lingerTimer);
+        }
+    }, {
         key: "_ajaxSuccess",
         value: function _ajaxSuccess(data, status, $xhr) {
-            this._testObject = new (eval(this.props.objectClass))(this, data.questions, data.answer_submission);
+            if (!data.success) {
+                this._errorOut();
+                return;
+            }
+            var msecs = new Date().getTime() - this._xhrStartTime;
+            switch (data.status) {
+                case "queued":
+                    this._statusData = {
+                        section: data.section,
+                        instructions: data.instructions
+                    };
+                    break;
+                case "started":
+                    var seconds = Math.max(data.seconds - Math.round(msecs / 1000), 0);
+                    if (seconds <= 1) {
+                        data.status = undefined;
+                        this._lingerTimer = setTimeout(function () {
+                            this._continue(true);
+                        }.bind(this), 2000);
+                    } else {
+                        this._statusData = {
+                            seconds: seconds,
+                            testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report),
+                            questionIndex: 0,
+                            questionsCount: data.questions.length,
+                            timer: setTimeout(this._tick.bind(this), 1000)
+                        };
+                    }
+                    break;
+                case "expired":
+                    break;
+                case "concluded":
+                    break;
+            }
             this.setState({
-                isTestLoading: false,
-                secondsLeft: data.seconds_left
+                status: data.status
             });
-            this._timer = setTimeout(this._tick.bind(this), 1000);
         }
     }, {
         key: "_ajaxError",
@@ -200,66 +443,87 @@ var Test = function (_React$Component) {
             this._errorOut();
         }
     }, {
-        key: "_errorOut",
-        value: function _errorOut() {
-            this.setState({
-                isErrored: true
-            });
-            this._cleanUp();
-        }
-    }, {
-        key: "_cleanUp",
-        value: function _cleanUp() {
-            this._$xhr.abort();
-            clearTimeout(this._timer);
-        }
-    }, {
         key: "_tick",
         value: function _tick() {
-            var secondsLeft = this.state.secondsLeft - 1;
-            if (secondsLeft >= 0) {
-                this._timer = setTimeout(this._tick.bind(this), 1000);
-                this.setState({
-                    secondsLeft: secondsLeft
+            this._statusData.seconds -= 1;
+            if (this._statusData.seconds >= 0) {
+                this._statusData.timer = setTimeout(this._tick.bind(this), 1000);
+                this.setState(function (prevState) {
+                    return {
+                        toggleFlag: !prevState.toggleFlag
+                    };
                 });
                 return;
             }
-            this._testObject.push(this._completed.bind(this));
+            this._continue();
+        }
+    }, {
+        key: "_request",
+        value: function _request(idempotent, url, $xhrMethod) {
+            if (idempotent && this.state.status === undefined) {
+                return;
+            }
+            this._stop();
+            this._xhrStartTime = new Date().getTime();
+            var xhrData = {
+                url: url,
+                success: this._ajaxSuccess.bind(this),
+                error: this._ajaxError.bind(this)
+            };
+            if ($xhrMethod === $.post) {
+                xhrData.headers = { "X-CSRFToken": Cookies.get("csrftoken") };
+            }
+            this._$xhr = $xhrMethod(xhrData);
             this.setState({
-                isCompleting: true,
-                isTimedOut: true
+                status: undefined
             });
         }
     }, {
-        key: "_completed",
-        value: function _completed(success) {
-            if (!success) {
-                this._errorOut();
-                return;
-            }
-            this.setState({
-                isCompleting: false
-            });
+        key: "_continue",
+        value: function _continue() {
+            var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+            this._request(!force, this.props.continueUrl, $.get);
+        }
+    }, {
+        key: "_start",
+        value: function _start() {
+            this._request(true, this.props.startUrl, $.post);
+        }
+    }, {
+        key: "_skip",
+        value: function _skip() {
+            this._request(true, this.props.skipUrl, $.post);
+        }
+    }, {
+        key: "_end",
+        value: function _end() {
+            this._request(true, this.props.endUrl, $.post);
         }
     }, {
         key: "_setQuestionIndex",
         value: function _setQuestionIndex(index) {
-            this.setState({
-                questionIndex: index
+            if (this.state.status !== "started") {
+                return;
+            }
+            this._statusData.questionIndex = index;
+            this.setState(function (prevState) {
+                return {
+                    toggleFlag: !prevState.toggleFlag
+                };
             });
-            history.replaceState(history.state, "", location.pathname + "#" + (index + 1).toString());
         }
     }, {
         key: "_paginationElements",
         value: function _paginationElements(width) {
             if (width < 1) {
                 width = 1;
-            } else if (width > this.props.questionsCount) {
-                width = this.props.questionsCount;
+            } else if (width > this._statusData.questionsCount) {
+                width = this._statusData.questionsCount;
             }
             var padding = parseInt((width - 1) / 2, 10);
             var rightPadding = (width - 1) % 2;
-            var indexes = [this.state.questionIndex];
+            var indexes = [this._statusData.questionIndex];
             for (var i = 0; i < padding; i++) {
                 indexes.unshift(indexes[0] - 1);
                 indexes.push(indexes[indexes.length - 1] + 1);
@@ -275,9 +539,9 @@ var Test = function (_React$Component) {
                     indexes.shift();
                     indexes.push(indexes[indexes.length - 1] + 1);
                 }
-            } else if (indexes[indexes.length - 1] >= this.props.questionsCount) {
+            } else if (indexes[indexes.length - 1] >= this._statusData.questionsCount) {
                 while (true) {
-                    if (indexes[indexes.length - 1] < this.props.questionsCount) {
+                    if (indexes[indexes.length - 1] < this._statusData.questionsCount) {
                         break;
                     }
                     indexes.pop();
@@ -286,14 +550,14 @@ var Test = function (_React$Component) {
             }
 
             var paginationElements = [];
-            if (this.state.questionIndex > 0) {
+            if (this._statusData.questionIndex > 0) {
                 paginationElements.push(React.createElement(
                     "li",
                     { key: "left" },
                     React.createElement(
                         "a",
                         { href: "javascript:void(0);",
-                            onClick: this._setQuestionIndex.bind(this, this.state.questionIndex - 1) },
+                            onClick: this._setQuestionIndex.bind(this, this._statusData.questionIndex - 1) },
                         "\xAB"
                     )
                 ));
@@ -309,7 +573,7 @@ var Test = function (_React$Component) {
                 ));
             }
             for (var _i2 = 0; _i2 < indexes.length; _i2++) {
-                if (indexes[_i2] === this.state.questionIndex) {
+                if (indexes[_i2] === this._statusData.questionIndex) {
                     paginationElements.push(React.createElement(
                         "li",
                         { key: indexes[_i2].toString(), className: "active" },
@@ -327,20 +591,20 @@ var Test = function (_React$Component) {
                             "a",
                             { href: "javascript:void(0);",
                                 onClick: this._setQuestionIndex.bind(this, indexes[_i2]),
-                                className: this._testObject.answerData(indexes[_i2]) ? "bb-pagination-success" : "" },
+                                className: this._statusData.testObject.answer(indexes[_i2]) ? "bb-pagination-success" : "" },
                             indexes[_i2] + 1
                         )
                     ));
                 }
             }
-            if (this.state.questionIndex < this.props.questionsCount - 1) {
+            if (this._statusData.questionIndex < this._statusData.questionsCount - 1) {
                 paginationElements.push(React.createElement(
                     "li",
                     { key: "right" },
                     React.createElement(
                         "a",
                         { href: "javascript:void(0);",
-                            onClick: this._setQuestionIndex.bind(this, this.state.questionIndex + 1) },
+                            onClick: this._setQuestionIndex.bind(this, this._statusData.questionIndex + 1) },
                         "\xBB"
                     )
                 ));
@@ -356,6 +620,33 @@ var Test = function (_React$Component) {
                 ));
             }
             return paginationElements;
+        }
+    }, {
+        key: "_completeModal",
+        value: function _completeModal(data) {
+            if (data) {
+                switch (this.state.confirmationFor) {
+                    case "skip":
+                        this._skip();
+                        break;
+                    case "end":
+                        this._end();
+                        break;
+                }
+            }
+            this.setState({
+                confirmationFor: undefined
+            });
+        }
+    }, {
+        key: "_renderModal",
+        value: function _renderModal(type) {
+            if (this.state.confirmationFor !== undefined) {
+                return;
+            }
+            this.setState({
+                confirmationFor: type
+            });
         }
     }]);
 

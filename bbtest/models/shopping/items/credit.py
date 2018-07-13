@@ -1,5 +1,6 @@
 from django.utils.translation import pgettext
 from django.contrib.auth import get_user_model
+from django.utils.translation import ugettext_noop
 from decimal import Decimal, ROUND_HALF_UP
 from .base import Item
 from ..exceptions import ItemError
@@ -76,7 +77,7 @@ class CreditItem(Item):
         }
 
     def description(self):
-        return "Credits: %s" % self.__amount
+        return ugettext_noop("Credits")
 
     def price(self):
         return self.__amount

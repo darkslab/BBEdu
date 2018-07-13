@@ -6,7 +6,8 @@ from django.db.models import Prefetch
 from django.http import Http404
 from json import loads
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin
-from .generic import View, TemplateView, FormView, UserContextMixin
+from .generic import View, TemplateView, FormView
+from .common import UserContextMixin, inject_questions_and_report_into_started_response
 from bbtest.utils.json import tight_dumps
 from bbtest.models.upload import expiring_url
 from bbtest.models import TestQuestion, Test, TestParagraph
@@ -95,6 +96,7 @@ class TestQuestionView(DeveloperPermissionRequiredMixin, View):
                     paragraph_data["question_ids"].append(through.question_id)
             question_data["paragraphs"].append(paragraph_data)
 
+        # DARK_TODO  add "success" to response
         return TightJsonResponse(question_data)
 
     def post(self, request, code, question_id, *args, **kwargs):
@@ -159,6 +161,7 @@ class TestAttributesView(DeveloperPermissionRequiredMixin, View):
                 "caption": str(_(str(topic))),
             })
 
+        # DARK_TODO  add "success" to response
         return TightJsonResponse(attributes_data)
 
 
@@ -251,7 +254,6 @@ class TestPreviewView(DeveloperPermissionRequiredMixin, UserContextMixin, FormVi
 
     def get_context_data(self, **kwargs):
         kwargs["test"] = self._test
-        kwargs["questions_count"] = self._test.questions.count()
         kwargs["code"] = self.kwargs["code"]
         kwargs["section_name"] = _(self._test.section.name)
         return super().get_context_data(**kwargs)
@@ -269,47 +271,13 @@ class TestPreviewView(DeveloperPermissionRequiredMixin, UserContextMixin, FormVi
 class TestPreviewDataView(DeveloperPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
         test = get_test_for_preview_or_404(request, code)
-        data = {
-            "seconds_left": test.section.duration,
-            "questions": [],
-            "answer_submission": {
-                "answers": [],
-                "observation": {},
-            },
+        response = {
+            "success": True,
+            "status": "started",
+            "seconds": test.section.duration,
         }
+        inject_questions_and_report_into_started_response(response, test)
+        return TightJsonResponse(response)
 
-        for question in test.questions.prefetch_related(
-            Prefetch("paragraphs", queryset=TestParagraph.objects.order_by("through").all()),
-        ).all():
-            _question = {
-                "answer_class": question.answer_class,
-                "meta_data": question.meta_data,
-                "paragraphs": [],
-            }
-            for paragraph in question.paragraphs.all():
-                if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
-                    paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"], expire_in=test.section.duration)
-
-                _paragraph = {
-                    "paragraph_class": paragraph.paragraph_class,
-                    "meta_data": paragraph.meta_data,
-                }
-                _question["paragraphs"].append(_paragraph)
-            data["questions"].append(_question)
-
-            _answer = {
-                "answer": None,
-                "observation": {},
-            }
-            if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
-                if question.meta_data["correct_id"]:
-                    _answer["answer"] = {
-                        "correct_id": question.meta_data["correct_id"],
-                    }
-            elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
-                _answer["answer"] = {
-                    "correct_ids": question.meta_data["correct_ids"],
-                }
-            data["answer_submission"]["answers"].append(_answer)
-
-        return TightJsonResponse(data)
+    def post(self, request, code, *args, **kwargs):
+        return self.get(request, code, *args, **kwargs)

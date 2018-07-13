@@ -1,5 +1,7 @@
 from django.utils.translation import pgettext
 from django.contrib.auth import get_user_model
+from django.db import IntegrityError
+from django.db.models import F
 from decimal import Decimal, ROUND_HALF_UP
 from .base import Item
 from ..exceptions import ItemError
@@ -40,10 +42,12 @@ class TestItem(Item):
             raise ItemError(pgettext("Item error", "Test is required."))
         if not isinstance(student, User) or not student.has_perm("bbtest.student"):
             raise ItemError(pgettext("Item error", "Student is required."))
+        if language not in [ test_lang[0] for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]:
+            raise ItemError(pgettext("Item error", "Correct test language is required."))
+        if test.pk in student.obtained_test_ids():
+            raise ItemError(pgettext("Item error", "Test has already been taken."))
         if not test.is_approved():
             raise ItemError(pgettext("Item error", "Test has to be approved."))
-        if language not in (set([ test_language[0] for test_language in Test.LANGUAGES ]) - set([ Test.LANGUAGE_XX ])):
-            raise ItemError(pgettext("Item error", "Correct test language is required."))
         if test.language != Test.LANGUAGE_XX and test.language != language:
             raise ItemError(pgettext("Item error", "Incorrect Test language."))
 
@@ -66,6 +70,7 @@ class TestItem(Item):
                 handle,
                 Test.objects.select_related("section__domain").get(pk=meta_data["test_id"]),
                 User.objects.get(pk=meta_data["student_id"]),
+                meta_data["language"],
             )
         except Test.DoesNotExist:
             raise ItemError(pgettext("Item error", "Test no longer exists."))
@@ -80,10 +85,14 @@ class TestItem(Item):
         return {
             "test_id": self.test().pk,
             "student_id": self.student().pk,
+            "language": self.language(),
         }
 
+    def description(self):
+        return self.test().section.name
+
     def __eq__(self, other):
-        return isinstance(other, type(self)) and self.test() == other.test() and self.student() == other.student()
+        return type(self) == type(other) and self.test() == other.test() and self.student() == other.student() and self.language() == other.language()
 
     def __hash__(self):
         return hash((self.test().pk, self.student().pk))
@@ -103,3 +112,25 @@ class TestItem(Item):
         _funds.append(Credit(account=self.__revenue_account, amount=(self.total() - liabilities_amount)))
 
         return _funds
+
+    def checkout(self):
+        try:
+            for item in self.handle():
+                if not isinstance(item, TestItem):
+                    continue
+                if self != item:
+                    return
+                break
+
+            quiz_set = self.student().quiz_sets.create(test_domain=self.test().section.domain)
+            quiz_order = 0
+            for item in self.handle():
+                if not isinstance(item, TestItem):
+                    continue
+                quiz_set.quizzes.create(test=item.test(), order=quiz_order)
+                quiz_order += 1
+
+                Test.objects.filter(pk=item.test().pk).update(sales_count=(F("sales_count") + 1))
+
+        except IntegrityError:
+            raise ItemError(pgettext("Item error", "Could not checkout. Please try again."))
