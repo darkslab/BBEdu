@@ -2,6 +2,7 @@ from django.utils.translation import ugettext as _
 from django.utils.timezone import now
 from django.db.transaction import atomic
 from django.db.models import F
+from json import loads
 from ool import ConcurrentUpdate
 from datetime import timedelta
 from bbtest.views.generic import TemplateView, View
@@ -10,6 +11,7 @@ from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from .mixins import CurrentQuizSetRequiredMixin
 from bbtest.http import TightJsonResponse
 from bbtest.models import Test
+from bbtest.forms.exam import ExamReportForm
 
 
 class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
@@ -170,9 +172,31 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
         })
 
 
-class ExamReportView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, View):
+class ExamReportView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
     def post(self, request, *args, **kwargs):
-        # DARK_TODO  implement this!
-        return TightJsonResponse({
-            "success": True,
+        now_at = now()
+        if self.current_status(now_at) != "started":
+            return TightJsonResponse({
+                "success": False,
+            })
+
+        response = {}
+        try:
+            with atomic(savepoint=False):
+                self.quiz_set().save()
+                form = ExamReportForm(self.current_quiz().test, data=request.POST, instance=self.current_quiz())
+                if not form.is_valid():
+                    response.update({
+                        "errors": loads(form.errors.as_json()),
+                    })
+                    raise ValueError("Incorrect report")
+                form.save()
+            return TightJsonResponse({
+                "success": True,
+            })
+        except (ConcurrentUpdate, ValueError):
+            pass
+        response.update({
+            "success": False,
         })
+        return TightJsonResponse(response)
