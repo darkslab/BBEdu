@@ -58,6 +58,8 @@ class ExamReportForm(ModelForm):
                         answer = {
                             "correct_ids": list(set([ int(correct_id) for correct_id in report["answers"][i]["answer"]["correct_ids"] ])),
                         }
+                        if not len(answer["correct_ids"]):
+                            raise ValueError("Incorrect report")
                         if len(set(answer["correct_ids"]) - set([ choice["id"] for choice in question.meta_data["choices"] ])):
                             raise ValueError("Incorrect report")
 

@@ -26,10 +26,11 @@ def inject_questions_and_report_into_started_response(response, test):
                 }
                 answer_meta_data["correct_id"] = None
         elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
-            _answer["answer"] = {
-                "correct_ids": answer_meta_data["correct_ids"],
-            }
-            answer_meta_data["correct_ids"] = []
+            if len(answer_meta_data["correct_ids"]):
+                _answer["answer"] = {
+                    "correct_ids": answer_meta_data["correct_ids"],
+                }
+                answer_meta_data["correct_ids"] = []
 
         _question = {
             "paragraphs": [],
