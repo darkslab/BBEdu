@@ -2,6 +2,12 @@ from . import *
 
 
 TEST_SECTION_MAP = {
+    "9540": MathematicsNISItem,
+    "9541": KazakhLanguageNISItem,
+    "9542": RussianLanguageNISItem,
+    "9543": EnglishLanguageNISItem,
+    "9544": QuantitativeNISItem,
+
     "9547": MathematicalLiteracyCompulsoryUNTItem,
     "9546": ReadingLiteracyCompulsoryUNTItem,
     "9545": HistoryOfKazakhstanCompulsoryUNTItem,

@@ -19,8 +19,8 @@ from bbtest.models.shopping.operate import charge
 from bbtest.payment_processors import CreditPaymentProcessor
 
 
-TEST_DOMAIN_IDS_DISPLAY = [ 7911, 7912 ]
-TEST_DOMAIN_IDS_ALLOWED = [ 7912 ]
+TEST_DOMAIN_IDS_DISPLAY = set([ 7911, 7912 ])
+TEST_DOMAIN_IDS_ALLOWED = set([ 7911, 7912 ])
 
 
 def get_test_domain_or_404(test_domain_id):
@@ -36,7 +36,7 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequir
     def get_context_data(self, **kwargs):
         kwargs["test_domains"] = TestDomain.objects.filter(pk__in=TEST_DOMAIN_IDS_DISPLAY).all()
         for domain in kwargs["test_domains"]:
-            if domain.pk in (7911,):
+            if domain.pk in (TEST_DOMAIN_IDS_DISPLAY - TEST_DOMAIN_IDS_ALLOWED):
                 domain.is_available = False
             else:
                 domain.is_available = True
