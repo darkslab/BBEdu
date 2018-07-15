@@ -22,11 +22,21 @@ class Test extends React.Component {
         let content = null;
         switch (this.state.status) {
             case "queued":
+                let instructions = [];
+                for (let i = 0; i < this._statusData.instructions.length; i++) {
+                    let className = "lead";
+                    if (i < this._statusData.instructions.length - 1) {
+                        className += " mb-10";
+                    }
+                    instructions.push(
+                        <p key={i} className={className}>{this._statusData.instructions[i]}</p>
+                    );
+                }
                 content = (
                     <div className="panel panel-default">
                         <div className="panel-body">
                             <h3 className="text-center mb-15">{this._statusData.section}</h3>
-                            <p className="lead">{this._statusData.instructions}</p>
+                            {instructions}
                             <div className="text-center mb-23">
                                 <div className="visible-xs-block">
                                     <button type="button"

@@ -250,7 +250,11 @@
 {
     "status": "queued",
     "section": "Математика",
-    "instructions": "Ut at egestas nunc. Ut suscipit luctus mattis. Maecenas quis magna ut arcu ullamcorper ornare. Praesent sollicitudin sodales elit ut pulvinar. Sed vehicula felis a nulla hendrerit hendrerit. Pellentesque egestas sit amet nisl a condimentum. Donec cursus varius sem. Nulla tincidunt lorem eget magna dictum finibus. Integer nec diam gravida tellus convallis posuere ac nec dui. Cras pellentesque purus lectus, id ullamcorper neque varius vitae. Proin tincidunt leo nec ipsum tincidunt efficitur. Praesent facilisis lacinia ipsum quis rutrum."
+    "instructions": [
+        "Lorem ipsum.",
+        "Lorem ipsum."
+        // ...
+    ]
 }
 // or
 {
@@ -262,7 +266,7 @@
                 {
                     "paragraph_class": "TextParagraph",
                     "meta_data": {
-                        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac ullamcorper nisi, vel tempus massa. Nulla ac mauris feugiat, tincidunt turpis ut, suscipit leo. Nulla sodales turpis massa, vitae porttitor orci vulputate ac. Aenean malesuada iaculis commodo. Maecenas tristique ornare volutpat. Sed imperdiet cursus tempus. Aenean fringilla tellus eu diam varius condimentum. Aliquam in imperdiet eros. Etiam imperdiet risus leo, in auctor arcu auctor facilisis. Suspendisse non vulputate nisl."
+                        "text": "Lorem ipsum."
                     }
                 }
                 // ...
