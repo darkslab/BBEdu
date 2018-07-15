@@ -1,4 +1,4 @@
-from .nis import (
+from .nis.concrete import (
     MathematicsNISItem,
     KazakhLanguageNISItem,
     RussianLanguageNISItem,
