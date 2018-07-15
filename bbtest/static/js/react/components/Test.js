@@ -45,6 +45,18 @@ var Test = function (_React$Component) {
             var content = null;
             switch (this.state.status) {
                 case "queued":
+                    var instructions = [];
+                    for (var i = 0; i < this._statusData.instructions.length; i++) {
+                        var className = "lead";
+                        if (i < this._statusData.instructions.length - 1) {
+                            className += " mb-10";
+                        }
+                        instructions.push(React.createElement(
+                            "p",
+                            { key: i, className: className },
+                            this._statusData.instructions[i]
+                        ));
+                    }
                     content = React.createElement(
                         "div",
                         { className: "panel panel-default" },
@@ -56,11 +68,7 @@ var Test = function (_React$Component) {
                                 { className: "text-center mb-15" },
                                 this._statusData.section
                             ),
-                            React.createElement(
-                                "p",
-                                { className: "lead" },
-                                this._statusData.instructions
-                            ),
+                            instructions,
                             React.createElement(
                                 "div",
                                 { className: "text-center mb-23" },

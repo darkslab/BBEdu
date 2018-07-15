@@ -2,6 +2,7 @@ from django.utils.translation import ugettext as _
 from django.utils.timezone import now
 from django.db.transaction import atomic
 from django.db.models import F
+from django.utils.lorem_ipsum import paragraphs
 from json import loads
 from ool import ConcurrentUpdate
 from datetime import timedelta
@@ -29,7 +30,7 @@ class ExamMixin:
             "status": "queued",
             "section": _(self.current_quiz().test.section.name),
             # DARK_TODO  implement this!
-            "instructions": "Ut at egestas nunc. Ut suscipit luctus mattis. Maecenas quis magna ut arcu ullamcorper ornare. Praesent sollicitudin sodales elit ut pulvinar. Sed vehicula felis a nulla hendrerit hendrerit. Pellentesque egestas sit amet nisl a condimentum. Donec cursus varius sem. Nulla tincidunt lorem eget magna dictum finibus. Integer nec diam gravida tellus convallis posuere ac nec dui. Cras pellentesque purus lectus, id ullamcorper neque varius vitae. Proin tincidunt leo nec ipsum tincidunt efficitur. Praesent facilisis lacinia ipsum quis rutrum.",
+            "instructions": paragraphs(2, False),
         }
 
     def started_response(self, now_at):
