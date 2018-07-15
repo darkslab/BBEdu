@@ -32,6 +32,7 @@ from .views.student import (
     ExamSkipView as StudentExamSkipView,
     ExamEndView as StudentExamEndView,
     ExamReportView as StudentExamReportView,
+    ResultsView as StudentResultsView,
 )
 from .views.developer import (
     DashboardView as DeveloperDashboardView,
@@ -85,6 +86,7 @@ urlpatterns = [
     url(r"^student/exam/skip/$",                              StudentExamSkipView.as_view(),         name="student_exam_skip"         ),
     url(r"^student/exam/end/$",                               StudentExamEndView.as_view(),          name="student_exam_end"          ),
     url(r"^student/exam/report/$",                            StudentExamReportView.as_view(),       name="student_exam_report"       ),
+    url(r"^student/results/$",                                StudentResultsView.as_view(),          name="student_results"           ),
 
     # DEVELOPER URLS
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
