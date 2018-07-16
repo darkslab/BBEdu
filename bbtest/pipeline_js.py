@@ -19,6 +19,9 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/ReactModule.js",
 
     "js/modules/PersonalizedTemplateModule.js",
+    "js/modules/ResultRowModule.js",
+    "js/modules/SimpleResultDetailModule.js",
+    "js/modules/BranchedResultDetailModule.js",
 
     "js/modules/SettingsPageModule.js",
     "js/modules/RegisterPageModule.js",
