@@ -8,17 +8,47 @@
 {% block content %}
     <div class="row">
         <div class="col-xs-12">
+            {% for quiz_set in quiz_sets %}
+                {% include './bundle.html' with quiz_set=quiz_set index=forloop.counter0 only %}
+            {% empty %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3 class="text-center mb-15 text-danger">{% trans 'There are no results' context 'Results page' %}</h3>
+                        <p class="lead text-center">{% trans 'You have not taken any tests yet. Once you take a test, you will be able to review the results here.' context 'Results page' %}</p>
+                        <div class="text-center mb-23">
+                            <div class="visible-xs-block">
+                                <a href="{% url 'bbtest:student_buy_test_domains' %}" class="btn btn-primary btn-block">{% trans 'Buy new tests' context 'Results page' %}</a>
+                            </div>
+                            <div class="hidden-xs">
+                                <a href="{% url 'bbtest:student_buy_test_domains' %}" class="btn btn-primary btn-lg">{% trans 'Buy new tests' context 'Results page' %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-        <div class="col-xs-12 text-center">
-            <ul class="pagination mt-0">
-                <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
-                <li class="active"><a href="javascript:void(0);">1</a></li>
-                <li><a href="javascript:void(0);">2</a></li>
-                <li><a href="javascript:void(0);">3</a></li>
-                <li><a href="javascript:void(0);">4</a></li>
-                <li><a href="javascript:void(0);">5</a></li>
-                <li><a href="javascript:void(0);">&raquo;</a></li>
-            </ul>
-        </div>
+        {% if quiz_sets.has_other_pages %}
+            <div class="col-xs-12 text-center">
+                <ul class="pagination mt-0">
+                    {% if quiz_sets.has_previous %}
+                        <li><a href="{{ request.path }}?page={{ quiz_sets.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
+                    {% endif %}
+                    {% for page_index in quiz_sets.paginator.page_indexes %}
+                        {% if page_index == quiz_sets.number %}
+                            <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
+                        {% else %}
+                            <li><a href="{{ request.path }}?page={{ page_index }}">{{ page_index }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if quiz_sets.has_next %}
+                        <li><a href="{{ request.path }}?page={{ quiz_sets.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
