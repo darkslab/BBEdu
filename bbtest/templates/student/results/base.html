@@ -6,6 +6,11 @@
 {% block nav_student_results_class %}active{% endblock %}
 
 {% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "PopoverModule"
+        });
+    </script>
     <div class="row">
         <div class="col-xs-12">
             {% for quiz_set in quiz_sets %}

@@ -21,7 +21,7 @@
     });
 </script>
 <div class="panel">
-    <div class="bb-accordion-panel-heading {% if is_first %}bb-accordion-panel-heading-first{% endif %}">
+    <div class="bb-accordion-panel-heading {% if not is_first %}bb-accordion-panel-heading-bordered{% endif %}">
         <div class="row">
             <div class="col-xs-12 col-sm-4 bb-result-cell">
                 <span>{% trans quiz.test.section.name %}</span>

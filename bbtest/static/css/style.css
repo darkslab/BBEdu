@@ -538,10 +538,21 @@ html {
 }
 
 .bb-accordion-panel-heading {
-    padding: 10px 15px;
+    padding: 0px 15px 10px 15px;
+}
+@media (min-width: 768px) {
+    .bb-accordion-panel-heading {
+        padding-top: 10px;
+    }
 }
 
-.bb-accordion-panel-heading:not(.bb-accordion-panel-heading-first) {
+.bb-accordion-panel-heading.bb-accordion-panel-heading-title {
+    border-bottom: 1px solid #dddddd;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.bb-accordion-panel-heading.bb-accordion-panel-heading-bordered {
     border-top: 1px solid #dddddd;
 }
 
