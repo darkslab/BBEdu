@@ -2,6 +2,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
+from bbtest.utils.json import tight_dumps
 
 
 class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
@@ -22,5 +23,18 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
 
         for index, quiz_set in enumerate(kwargs["quiz_sets"]):
             quiz_set.index = paginator.count - (kwargs["quiz_sets"].start_index() + index - 1)
+
+            # DARK_TODO  implement this!
+            for quiz in quiz_set.quizzes.all():
+                quiz.stats = {
+                    "row": {
+                        "max": 400,
+                        "color": "#3366cc",
+                        "score": 350,
+                        "avg": 300,
+                        "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+                    },
+                    "detail": {},
+                }
 
         return super().get_context_data(**kwargs)
