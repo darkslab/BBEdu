@@ -617,8 +617,12 @@ html {
     }
 }
 
-.bb-chart-history {
+.bb-chart-lg {
     height: 260px;
+}
+
+.bb-chart-md {
+    height: 200px;
 }
 
 .bb-social-icon {

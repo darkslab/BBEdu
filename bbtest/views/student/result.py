@@ -1,4 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.utils.lorem_ipsum import paragraphs, words
+from random import randint
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
@@ -34,7 +36,43 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "avg": 300,
                         "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
                     },
-                    "detail": {},
                 }
+                if randint(0, 1):
+                    # BranchedResultDetailModule
+                    quiz.stats["detail"] = {
+                        "type": "branched",
+                        "branches": [
+                            {
+                                "max": 90,
+                                "score": 36,
+                                "colors": [ "#3366cc", "#CCD9F1" ],
+                                "title": words(randint(1, 3), False),
+                                "texts": paragraphs(randint(1, 3), False),
+                            },
+                            {
+                                "max": 90,
+                                "score": 36,
+                                "colors": [ "#3366cc", "#CCD9F1" ],
+                                "title": words(randint(1, 3), False),
+                                "texts": paragraphs(randint(1, 3), False),
+                            },
+                            {
+                                "max": 90,
+                                "score": 36,
+                                "colors": [ "#3366cc", "#CCD9F1" ],
+                                "title": words(randint(1, 3), False),
+                                "texts": paragraphs(randint(1, 3), False),
+                            },
+                        ],
+                    }
+                else:
+                    # SimpleResultDetailModule
+                    quiz.stats["detail"] = {
+                        "type": "simple",
+                        "max": 400,
+                        "color": "#3366cc",
+                        "score": 350,
+                        "texts": paragraphs(randint(1, 2), False),
+                    }
 
         return super().get_context_data(**kwargs)
