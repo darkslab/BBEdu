@@ -15,7 +15,7 @@
             },
             progress: {
                 selector: "[data-result-chart-{{ parent_index }}-{{ index }}-progress]",
-                value: {{ quiz.stats.row.progress }},
+                value: {{ quiz.stats.row.progress|safe }},
             }
         }
     });
@@ -31,8 +31,25 @@
             }
         });
     {% elif quiz.stats.detail.type == 'branched' %}
-        {% for branch in quiz.stats.detail.branches %}
-        {% endfor %}
+        moduleDataStack.push({
+            module: "BranchedResultDetailModule",
+            data: {
+                collapse_selector: "[data-result-collapse-{{ parent_index }}-{{ index }}]",
+                branches: [
+                    {% for branch in quiz.stats.detail.branches %}
+                        {
+                            max: {{ branch.max }},
+                            score: {{ branch.score }},
+                            colors: {{ branch.colors|safe }}
+                        }
+                        {% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                ],
+                selector: "[data-result-chart-{{ parent_index }}-{{ index }}-detail]",
+                tab_handle_data_attr_name: "result-tab-handle-{{ parent_index }}-{{ index }}",
+                tab_selector: "[data-result-tab-{{ parent_index }}-{{ index }}]"
+            }
+        });
     {% endif %}
 </script>
 <div class="panel">
@@ -68,12 +85,12 @@
                     {% elif quiz.stats.detail.type == 'branched' %}
                         <ul class="nav nav-tabs">
                             {% for branch in quiz.stats.detail.branches %}
-                                <li><a href="#bb-results-{{ parent_index }}-{{ index }}-section-{{ forloop.counter0 }}" data-toggle="tab">{{ branch.title }}</a></li>
+                                <li><a href="#bb-results-{{ parent_index }}-{{ index }}-section-{{ forloop.counter0 }}" data-toggle="tab" data-result-tab-handle-{{ parent_index }}-{{ index }}="{{ forloop.counter0 }}">{{ branch.title }}</a></li>
                             {% endfor %}
                         </ul>
                         <div class="tab-content">
                             {% for branch in quiz.stats.detail.branches %}
-                                <div class="tab-pane fade" id="bb-results-{{ parent_index }}-{{ index }}-section-{{ forloop.counter0 }}">
+                                <div class="tab-pane fade" id="bb-results-{{ parent_index }}-{{ index }}-section-{{ forloop.counter0 }}" data-result-tab-{{ parent_index }}-{{ index }}="{{ forloop.counter0 }}">
                                     {% for text in branch.texts %}
                                         <p class="mb-10 {% if not forloop.counter0 %}mt-10{% endif %}">{{ text }}</p>
                                     {% endfor %}
