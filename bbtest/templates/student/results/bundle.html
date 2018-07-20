@@ -21,17 +21,13 @@
                 <div class="panel hidden-xs">
                     <div class="bb-accordion-panel-heading bb-accordion-panel-heading-title">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <strong>{% trans 'Section' context 'Results page' %}</strong>
                             </div>
-                            <div class="col-sm-2 text-center pr-5">
+                            <div class="col-sm-2 col-sm-offset-1 pr-5 pl-5 text-center">
                                 <strong>{% trans 'Your score' context 'Results page' %}</strong>
                             </div>
-                            <div class="col-sm-3 text-center pr-0 pl-0">
-                                {% trans 'Your last 10 scores on this section. The line indicates the average score of students on bbTest.kz website for this section.' context 'Results page' as progress_msg %}
-                                <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' progress_msg=progress_msg context 'Results page' %}Your progress {{ question_icon_start }}{{ progress_msg }}{{ question_icon_end }}{% endblocktrans %}</strong>
-                            </div>
-                            <div class="col-sm-2 text-center pl-5">
+                            <div class="col-sm-2 pr-5 pl-5 text-center">
                                 {% trans 'Average score of students on bbTest.kz website for the section.' context 'Results page' as avg_msg %}
                                 <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' progress_msg=progress_msg context 'Results page' %}Average score {{ question_icon_start }}{{ avg_msg }}{{ question_icon_end }}{% endblocktrans %}</strong>
                             </div>

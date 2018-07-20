@@ -3,18 +3,14 @@ function ResultRowModule(data) {
     this._charts = [];
     this._charts.push(new RadialChart($(data.score.selector), data.score.value, data.max, {
         "line-width": 4,
-        "arc-color": data.color,
-        "font-size": 14
-    }));
-    this._charts.push(new ColumnChart($(data.progress.selector), data.progress.value, data.max, {
-        "line-color": data.color,
-        "avg_value": data.avg.value,
-        "line-width": 8,
+        "arc-color": data.colors[0],
+        "circle-color": data.colors[1],
         "font-size": 14
     }));
     this._charts.push(new RadialChart($(data.avg.selector), data.avg.value, data.max, {
         "line-width": 4,
         "arc-color": "#aaaaaa",
+        "circle-color": "#cae6fc",
         "font-size": 14
     }));
 

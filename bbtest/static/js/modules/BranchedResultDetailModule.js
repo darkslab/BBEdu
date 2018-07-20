@@ -1,6 +1,8 @@
 BranchedResultDetailModule.prototype = Object.create(Module.prototype);
 function BranchedResultDetailModule(data) {
     this._$collapse = $(data.collapse_selector);
+    this._$dropdown = $(data.dropdown_selector);
+    this._$dropdownCaption = this._$dropdown.find(data.dropdown_caption_selector);
     this._tabHandlesDataAttrName = data.tab_handle_data_attr_name;
     this._$tabHandles = $("[data-" + this._tabHandlesDataAttrName + "]");
     this._$tabs = $(data.tab_selector);
@@ -10,19 +12,22 @@ function BranchedResultDetailModule(data) {
     this._boundTabbed = this._tabbed.bind(this);
     this._boundActivated = this._activated.bind(this);
 
-    this._index;
-    var chartData = [];
+    var max = 0;
+    var detailChartData = [];
     var i;
     for (i = 0; i < data.branches.length; i++) {
-        chartData.push({
+        detailChartData.push({
             "max-value": data.branches[i].max,
             "value": data.branches[i].score,
             "foreground-color": data.branches[i].colors[0],
             "background-color": data.branches[i].colors[1],
             "active-callback-start": this._boundActivated
         });
+        max += data.branches[i].max;
     }
-    this._chart = new ProgressPieChart($(data.selector), chartData, {
+
+    this._index;
+    this._detailChart = new ProgressPieChart($(data.detail_selector), detailChartData, {
         "duration": 2000,
         "chain-duration": 0,
         "activate-duration": 150,
@@ -32,6 +37,13 @@ function BranchedResultDetailModule(data) {
         "font-weight": "bold",
         "font-color": "#fff"
     });
+    this._progressChart = new ColumnChart($(data.progress_selector), data.progress, max, {
+        "avg_value": data.avg,
+        "line-width": 16,
+        "line-color": data.colors[0],
+        "line-background-color": data.colors[1],
+        "font-size": 14
+    });
 
     this._$collapse.on("shown.bs.collapse", this._boundUncollapsed);
     this._$collapse.on("hidden.bs.collapse", this._boundCollapsed);
@@ -40,15 +52,19 @@ function BranchedResultDetailModule(data) {
     Module.call(this);
 }
 BranchedResultDetailModule.prototype._uncollapsed = function() {
-    this._chart.create();
-    this._chart.activate(0);
+    this._detailChart.create();
+    this._progressChart.create();
+
+    this._detailChart.activate(0);
+    this._$dropdown.addClass("in");
 }
 BranchedResultDetailModule.prototype._collapsed = function() {
-    this._chart.destroy();
+    this._detailChart.destroy();
+    this._progressChart.destroy();
     this._index = undefined;
-    this._$tabHandles.each(function() {
-        $(this).attr("aria-expanded", false).parent().removeClass("active");
-    });
+
+    this._$dropdown.removeClass("in");
+    this._$dropdownCaption.text("");
     this._$tabs.each(function() {
         $(this).removeClass("active").removeClass("in");
     });
@@ -59,24 +75,34 @@ BranchedResultDetailModule.prototype._tabbed = function(event) {
         return;
     }
     this._index = $tabHandle.data(this._tabHandlesDataAttrName);
-    this._chart.activate(this._index);
+    this._detailChart.activate(this._index);
+    this._updateDropdown(this._index);
 }
 BranchedResultDetailModule.prototype._activated = function(index) {
     if (this._index === index) {
         return;
     }
     this._index = index;
-    this._$tabHandles.each(function(_index, tabHandle) {
-        var $tabHandle = $(tabHandle);
-        if ($tabHandle.data(this._tabHandlesDataAttrName) === this._index) {
-            $tabHandle.tab("show");
-            return false;
+    this._updateDropdown(this._index);
+}
+BranchedResultDetailModule.prototype._updateDropdown = function(index) {
+    var dropdownText = this._$tabHandles.filter("[data-" + this._tabHandlesDataAttrName + "=\"" + index + "\"]").text();
+    this._$dropdownCaption.text(dropdownText);
+    this._$tabs.each(function(_index) {
+        if (_index === index) {
+            $(this).addClass("active").addClass("in");
+        } else {
+            $(this).removeClass("active").removeClass("in");
         }
-    }.bind(this));
+    });
 }
 BranchedResultDetailModule.prototype.unMount = function() {
     this._$collapse.off("shown.bs.collapse", this._boundUncollapsed);
     this._$collapse.off("hidden.bs.collapse", this._boundCollapsed);
     this._$tabHandles.off("click", this._boundTabbed);
+
+    this._collapsed();
+    this._detailChart = undefined;
+    this._progressChart = undefined;
 }
 BranchedResultDetailModule.prototype.isMultiMount = true;

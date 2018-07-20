@@ -31,10 +31,9 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                 quiz.stats = {
                     "row": {
                         "max": 400,
-                        "color": "#3366cc",
+                        "colors": tight_dumps([ "#3366cc", "#CCD9F1" ]),
                         "score": 350,
                         "avg": 300,
-                        "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
                     },
                 }
                 if randint(0, 1):
@@ -46,32 +45,51 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                                 "max": 90,
                                 "score": 36,
                                 "colors": tight_dumps([ "#3366cc", "#CCD9F1" ]),
-                                "title": words(randint(1, 3), False),
+                                "title": words(randint(2, 4), False),
                                 "texts": paragraphs(randint(1, 3), False),
                             },
                             {
                                 "max": 45,
                                 "score": 9,
                                 "colors": tight_dumps([ "#dc3912", "#F6CDC4" ]),
-                                "title": words(randint(1, 3), False),
+                                "title": words(randint(2, 4), False),
                                 "texts": paragraphs(randint(1, 3), False),
                             },
                             {
                                 "max": 60,
                                 "score": 60,
                                 "colors": tight_dumps([ "#ff9900", "#FFE5C0" ]),
-                                "title": words(randint(1, 3), False),
+                                "title": words(randint(2, 4), False),
+                                "texts": paragraphs(randint(1, 3), False),
+                            },
+                            {
+                                "max": 30,
+                                "score": 18,
+                                "colors": tight_dumps([ "#109618", "#C3E5C6" ]),
+                                "title": words(randint(2, 4), False),
+                                "texts": paragraphs(randint(1, 3), False),
+                            },
+                            {
+                                "max": 135,
+                                "score": 108,
+                                "colors": tight_dumps([ "#990099", "#E5C0E4" ]),
+                                "title": words(randint(2, 4), False),
                                 "texts": paragraphs(randint(1, 3), False),
                             },
                         ],
+                        "colors": tight_dumps([ "#3366cc", "#CCD9F1" ]),
+                        "avg": 300,
+                        "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
                     }
                 else:
                     # SimpleResultDetailModule
                     quiz.stats["detail"] = {
                         "type": "simple",
                         "max": 400,
-                        "color": "#3366cc",
+                        "colors": tight_dumps([ "#3366cc", "#CCD9F1" ]),
                         "score": 350,
+                        "avg": 300,
+                        "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
                         "texts": paragraphs(randint(1, 2), False),
                     }
 

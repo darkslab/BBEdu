@@ -625,6 +625,10 @@ html {
     height: 200px;
 }
 
+.bb-chart-sm {
+    height: 160px;
+}
+
 .bb-social-icon {
     line-height: 40px;
     height: 40px;

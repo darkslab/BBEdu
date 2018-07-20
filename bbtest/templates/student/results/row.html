@@ -4,7 +4,7 @@
         module: "ResultRowModule",
         data: {
             max: {{ quiz.stats.row.max }},
-            color: "{{ quiz.stats.row.color }}",
+            colors: {{ quiz.stats.row.colors|safe }},
             score: {
                 selector: "[data-result-chart-{{ parent_index }}-{{ index }}-score]",
                 value: {{ quiz.stats.row.score }}
@@ -12,10 +12,6 @@
             avg: {
                 selector: "[data-result-chart-{{ parent_index }}-{{ index }}-avg]",
                 value: {{ quiz.stats.row.avg }},
-            },
-            progress: {
-                selector: "[data-result-chart-{{ parent_index }}-{{ index }}-progress]",
-                value: {{ quiz.stats.row.progress|safe }},
             }
         }
     });
@@ -25,9 +21,12 @@
             data: {
                 collapse_selector: "[data-result-collapse-{{ parent_index }}-{{ index }}]",
                 max: {{ quiz.stats.detail.max }},
-                color: "{{ quiz.stats.detail.color }}",
+                colors: {{ quiz.stats.detail.colors|safe }},
                 score: {{ quiz.stats.detail.score }},
-                selector: "[data-result-chart-{{ parent_index }}-{{ index }}-detail]"
+                avg: {{ quiz.stats.detail.avg }},
+                progress: {{ quiz.stats.detail.progress|safe }},
+                detail_selector: "[data-result-chart-{{ parent_index }}-{{ index }}-detail]",
+                progress_selector: "[data-result-chart-{{ parent_index }}-{{ index }}-progress]"
             }
         });
     {% elif quiz.stats.detail.type == 'branched' %}
@@ -45,9 +44,15 @@
                         {% if not forloop.last %},{% endif %}
                     {% endfor %}
                 ],
-                selector: "[data-result-chart-{{ parent_index }}-{{ index }}-detail]",
+                colors: {{ quiz.stats.detail.colors|safe }},
+                avg: {{ quiz.stats.detail.avg }},
+                progress: {{ quiz.stats.detail.progress|safe }},
+                detail_selector: "[data-result-chart-{{ parent_index }}-{{ index }}-detail]",
+                dropdown_selector: "[data-result-tab-dropdown-{{ parent_index }}-{{ index }}]",
+                dropdown_caption_selector: "[data-result-tab-dropdown-caption]",
                 tab_handle_data_attr_name: "result-tab-handle-{{ parent_index }}-{{ index }}",
-                tab_selector: "[data-result-tab-{{ parent_index }}-{{ index }}]"
+                tab_selector: "[data-result-tab-{{ parent_index }}-{{ index }}]",
+                progress_selector: "[data-result-chart-{{ parent_index }}-{{ index }}-progress]"
             }
         });
     {% endif %}
@@ -55,15 +60,14 @@
 <div class="panel">
     <div class="bb-accordion-panel-heading {% if not is_first %}bb-accordion-panel-heading-bordered{% endif %}">
         <div class="row">
-            <div class="col-xs-12 col-sm-4 bb-result-cell">
+            <div class="col-xs-12 col-sm-6 bb-result-cell">
                 <span>{% trans quiz.test.section.name %}</span>
                 <a href="#bb-results-{{ parent_index }}-{{ index }}" class="bb-accordion-toggle collapsed pull-right visible-xs-block" data-toggle="collapse" data-parent="#bb-results-{{ parent_index }}">
                     <i class="fa fa-fw fa-chevron-up"></i>
                 </a>
             </div>
-            <div class="col-xs-3 col-sm-2 bb-chart bb-result-cell pr-5" data-result-chart-{{ parent_index }}-{{ index }}-score></div>
-            <div class="col-xs-6 col-sm-3 bb-chart bb-result-cell pr-0 pl-0" data-result-chart-{{ parent_index }}-{{ index }}-progress></div>
-            <div class="col-xs-3 col-sm-2 bb-chart bb-result-cell pl-5" data-result-chart-{{ parent_index }}-{{ index }}-avg></div>
+            <div class="col-xs-3 col-xs-offset-3 col-sm-2 col-sm-offset-1 bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-score></div>
+            <div class="col-xs-3 col-sm-2 bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-avg></div>
             <div class="col-sm-1 bb-result-cell hidden-xs">
                 <a href="#bb-results-{{ parent_index }}-{{ index }}" class="bb-accordion-toggle collapsed pull-right" data-toggle="collapse" data-parent="#bb-results-{{ parent_index }}">
                     <i class="fa fa-fw fa-chevron-up"></i>
@@ -75,22 +79,28 @@
         <div class="bb-accordion-panel-body">
             <div class="row">
                 <div class="col-xs-12 col-sm-5">
-                    <div class="bb-chart {% if quiz.stats.detail.type == 'simple' %}bb-chart-md{% elif quiz.stats.detail.type == 'branched' %}bb-chart-lg{% endif %}" data-result-chart-{{ parent_index }}-{{ index }}-detail></div>
+                    <div class="bb-chart {% if quiz.stats.detail.type == 'simple' %}bb-chart-md mt-10 mb-10{% elif quiz.stats.detail.type == 'branched' %}bb-chart-lg{% endif %}" data-result-chart-{{ parent_index }}-{{ index }}-detail></div>
                 </div>
                 <div class="col-xs-12 col-sm-7">
                     {% if quiz.stats.detail.type == 'simple' %}
                         {% for text in quiz.stats.detail.texts %}
-                            <p class="mb-10">{{ text }}</p>
+                            <p class="mb-10 {% if forloop.first %}mt-10{% endif %}">{{ text }}</p>
                         {% endfor %}
                     {% elif quiz.stats.detail.type == 'branched' %}
-                        <ul class="nav nav-tabs">
-                            {% for branch in quiz.stats.detail.branches %}
-                                <li><a href="#bb-results-{{ parent_index }}-{{ index }}-section-{{ forloop.counter0 }}" data-toggle="tab" data-result-tab-handle-{{ parent_index }}-{{ index }}="{{ forloop.counter0 }}">{{ branch.title }}</a></li>
-                            {% endfor %}
-                        </ul>
+                        <div class="btn-group mt-10 fade" data-result-tab-dropdown-{{ parent_index }}-{{ index }}>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span data-result-tab-dropdown-caption></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                {% for branch in quiz.stats.detail.branches %}
+                                    <li><a href="javascript:void(0);" data-result-tab-handle-{{ parent_index }}-{{ index }}="{{ forloop.counter0 }}">{{ branch.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                         <div class="tab-content">
                             {% for branch in quiz.stats.detail.branches %}
-                                <div class="tab-pane fade" id="bb-results-{{ parent_index }}-{{ index }}-section-{{ forloop.counter0 }}" data-result-tab-{{ parent_index }}-{{ index }}="{{ forloop.counter0 }}">
+                                <div class="tab-pane fade" data-result-tab-{{ parent_index }}-{{ index }}="{{ forloop.counter0 }}">
                                     {% for text in branch.texts %}
                                         <p class="mb-10 {% if not forloop.counter0 %}mt-10{% endif %}">{{ text }}</p>
                                     {% endfor %}
@@ -98,6 +108,18 @@
                             {% endfor %}
                         </div>
                     {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                    <hr style="border-color: #ccc; width: 75%;">
+                    <p class="mb-10 text-center">{% lorem 24 w random %}</p>
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1 bb-chart bb-chart-sm" data-result-chart-{{ parent_index }}-{{ index }}-progress></div>
+                    </div>
+                    <p class="mb-0 text-center">
+                        <em>{% lorem 6 w random %}</em>
+                    </p>
                 </div>
             </div>
         </div>
