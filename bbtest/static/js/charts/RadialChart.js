@@ -10,7 +10,7 @@ function RadialChart($container, value, max_value, options) {
     this._options["font-weight"] = this._optionValue(options, "font-weight", "normal");
     this._options["font-color"] = this._optionValue(options, "font-color", "#444444");
     this._options["percentage-first"] = this._optionValue(options, "percentage-first", false);
-    this._options["round-linecap"] = true;
+    this._options["round-linecap"] = false;
 
     this._value = value;
     this._max_value = max_value;
