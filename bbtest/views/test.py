@@ -109,7 +109,11 @@ class TestQuestionView(DeveloperPermissionRequiredMixin, View):
                 "errors": loads(form.errors.as_json()),
             }, status=400)
 
-        form.save()
+        test_question = form.save()
+        new_weight = TestQuestion.calculate_weight(test_question, test_question.test.section)
+        if new_weight is not None:
+            test_question.weight = new_weight
+            test_question.save()
         return TightJsonResponse({"success": True})
 
     def __question(self, request, code, question_id):

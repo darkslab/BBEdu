@@ -26,12 +26,11 @@ class TestDomain(Model):
 class TestSection(Model):
     domain  = ForeignKey  ( TestDomain, on_delete=CASCADE, related_name="sections", )
 
-    name             = CharField                  ( pgettext_lazy("Model field", "name"),                       max_length=100,                )
-    duration         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "duration in seconds"),                                       )
-    question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                            )
-    question_weight  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question weight by default"),                                )
-    order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                      db_index=True, )
-    specification    = JSONField                  ( pgettext_lazy("Model field", "specification"),                                             )
+    name             = CharField                  ( pgettext_lazy("Model field", "name"),                max_length=100,                )
+    duration         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "duration in seconds"),                                )
+    question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                     )
+    order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                               db_index=True, )
+    specification    = JSONField                  ( pgettext_lazy("Model field", "specification"),                                      )
 
     class Meta:
         default_permissions = ()
@@ -228,6 +227,19 @@ class TestQuestion(Model):
         if self.id:
             return "TestQuestion #%d" % self.id
         return "New TestQuestion"
+
+    @classmethod
+    def calculate_weight(cls, test_question, test_section):
+        if test_section.pk in (9540, 9541, 9542, 9543, 9544):
+            return 10
+        elif test_section.pk in (9545, 9546, 9547):
+            return 1
+        elif test_section.pk in (9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559):
+            if test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_ONE:
+                return 1
+            elif test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_MULTI:
+                return 2
+        return None
 
 
 class TestParagraph(Model):

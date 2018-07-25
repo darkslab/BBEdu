@@ -520,10 +520,12 @@ class TestForm(ModelForm):
                 question = test.questions.create(
                     answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
                     meta_data=meta_data,
-                    weight=test.section.question_weight,
+                    weight=0,
                     order=i,
                     developer=test.developer,
                 )
+                question.weight = TestQuestion.calculate_weight(question, test.section)
+                question.save()
 
                 if test.section.id == 9540:
                     paragraph = TestParagraph.objects.create(
@@ -611,10 +613,12 @@ class TestForm(ModelForm):
                 question = test.questions.create(
                     answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
                     meta_data=meta_data,
-                    weight=test.section.question_weight,
+                    weight=0,
                     order=i,
                     developer=test.developer,
                 )
+                question.weight = TestQuestion.calculate_weight(question, test.section)
+                question.save()
 
                 if test.section.id == 9546:
                     if i in (0, 2, 6, 12):
@@ -664,28 +668,50 @@ class TestForm(ModelForm):
         elif test.section.id in (9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559):
             for i in range(test.section.question_count):
                 choice_id = randint(0x0000, 0xffff)
-                meta_data = {
-                    "choices": [
-                        {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
-                         "meta_data": {"text": ""}},
-                        {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
-                         "meta_data": {"text": ""}},
-                        {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
-                         "meta_data": {"text": ""}},
-                        {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
-                         "meta_data": {"text": ""}},
-                        {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
-                         "meta_data": {"text": ""}},
-                    ],
-                    "correct_ids": [],
-                }
+                if i in range(20):
+                    answer_class = TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE
+                    meta_data = {
+                        "choices": [
+                            {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                        ],
+                        "correct_id": None,
+                    }
+                else:
+                    answer_class = TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI
+                    meta_data = {
+                        "choices": [
+                            {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                            {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
+                             "meta_data": {"text": ""}},
+                        ],
+                        "correct_ids": [],
+                    }
+
                 question = test.questions.create(
-                    answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI,
+                    answer_class=answer_class,
                     meta_data=meta_data,
-                    weight=test.section.question_weight,
+                    weight=0,
                     order=i,
                     developer=test.developer,
                 )
+                question.weight = TestQuestion.calculate_weight(question, test.section)
+                question.save()
 
                 paragraph = TestParagraph.objects.create(
                     paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
