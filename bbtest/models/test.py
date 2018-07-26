@@ -6,6 +6,7 @@ from django.db.models import (
 from django.utils.translation import pgettext_lazy
 from django.contrib.auth import get_user_model
 from .fields import JSONField
+from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
 
 
 User = get_user_model()
@@ -38,6 +39,12 @@ class TestSection(Model):
 
     def __str__(self):
         return self.name
+
+    def fg_color(self):
+        return GOOGLE_COLORS[(self.pk - 9540) % len(GOOGLE_COLORS)]
+
+    def bg_color(self):
+        return GOOGLE_COLORS_BLEACHED[(self.pk - 9540) % len(GOOGLE_COLORS_BLEACHED)]
 
 
 class TestTaxonomy(Model):
@@ -169,6 +176,12 @@ class Test(Model):
 
     def is_archived(self):
         return self.status == self.STATUS_ARCHIVED
+
+    def max_score(self):
+        score = 0
+        for question in self.questions.all():
+            score += question.weight
+        return score
 
 
 class TestQuestion(Model):

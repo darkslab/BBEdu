@@ -26,17 +26,18 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
         for index, quiz_set in enumerate(kwargs["quiz_sets"]):
             quiz_set.index = paginator.count - (kwargs["quiz_sets"].start_index() + index - 1)
 
-            # DARK_TODO  implement this!
             for quiz in quiz_set.quizzes.all():
                 quiz.stats = {
                     "row": {
-                        "max": 400,
-                        "colors": tight_dumps([ "#3366cc", "#CCD9F1" ]),
-                        "score": 350,
-                        "avg": 300,
+                        "max": quiz.test.max_score(),
+                        "colors": tight_dumps([ quiz.test.section.fg_color(), quiz.test.section.bg_color() ]),
+                        "score": quiz.score(),
                     },
                 }
-                if randint(0, 1):
+                # DARK_TODO  implement this!
+                quiz.stats["row"]["avg"] = quiz.stats["row"]["max"] // 2
+
+                if False:
                     # BranchedResultDetailModule
                     quiz.stats["detail"] = {
                         "type": "branched",
@@ -77,18 +78,18 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                                 "texts": paragraphs(randint(1, 3), False),
                             },
                         ],
-                        "colors": tight_dumps([ "#3366cc", "#CCD9F1" ]),
-                        "avg": 300,
+                        "colors": quiz.stats["row"]["colors"],
+                        "avg": quiz.stats["row"]["avg"],
                         "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
                     }
                 else:
                     # SimpleResultDetailModule
                     quiz.stats["detail"] = {
                         "type": "simple",
-                        "max": 400,
-                        "colors": tight_dumps([ "#3366cc", "#CCD9F1" ]),
-                        "score": 350,
-                        "avg": 300,
+                        "max": quiz.stats["row"]["max"],
+                        "colors": quiz.stats["row"]["colors"],
+                        "score": quiz.stats["row"]["score"],
+                        "avg": quiz.stats["row"]["avg"],
                         "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
                         "texts": paragraphs(randint(1, 2), False),
                     }
