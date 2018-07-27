@@ -55,6 +55,9 @@ class TestSection(Model):
     def bg_color(self):
         return GOOGLE_COLORS_BLEACHED[(self.pk - 9540) % len(GOOGLE_COLORS_BLEACHED)]
 
+    def can_measure_topics(self):
+        return self.pk in (9540, 9544, 9547, 9545) or self.pk in range(9548, 9560)
+
 
 class TestTaxonomy(Model):
     sections  = ManyToManyField  ( TestSection, through="TestTaxonomySection", related_name="taxonomies", )
@@ -186,11 +189,32 @@ class Test(Model):
     def is_archived(self):
         return self.status == self.STATUS_ARCHIVED
 
-    def max_score(self):
+    def max_score(self, question_ids=None):
         score = 0
         for question in self.questions.all():
+            if question_ids is not None and question.pk not in question_ids:
+                continue
             score += question.weight
         return score
+
+    def topic_branches(self):
+        branches = []
+        topics = {}
+        if not self.section.can_measure_topics():
+            return branches
+        for question in self.questions.all():
+            if question.topic_id is None:
+                continue
+            index = topics.get(question.topic_id)
+            if index is None:
+                branches.append({
+                    "topic_id": question.topic_id,
+                    "question_ids": [],
+                })
+                index = len(branches) - 1
+                topics[question.topic_id] = index
+            branches[index]["question_ids"].append(question.pk)
+        return branches
 
 
 class TestQuestion(Model):

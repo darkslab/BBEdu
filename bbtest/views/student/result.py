@@ -5,6 +5,7 @@ from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.utils.json import tight_dumps
+from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
 
 
 class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
@@ -37,51 +38,28 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                 # DARK_TODO  implement this!
                 quiz.stats["row"]["avg"] = quiz.stats["row"]["max"] // 2
 
-                if False:
+                if quiz.test.section.can_measure_topics():
                     # BranchedResultDetailModule
                     quiz.stats["detail"] = {
                         "type": "branched",
-                        "branches": [
-                            {
-                                "max": 90,
-                                "score": 36,
-                                "colors": tight_dumps([ "#3366cc", "#CCD9F1" ]),
-                                "title": words(randint(2, 4), False),
-                                "texts": paragraphs(randint(1, 3), False),
-                            },
-                            {
-                                "max": 45,
-                                "score": 9,
-                                "colors": tight_dumps([ "#dc3912", "#F6CDC4" ]),
-                                "title": words(randint(2, 4), False),
-                                "texts": paragraphs(randint(1, 3), False),
-                            },
-                            {
-                                "max": 60,
-                                "score": 60,
-                                "colors": tight_dumps([ "#ff9900", "#FFE5C0" ]),
-                                "title": words(randint(2, 4), False),
-                                "texts": paragraphs(randint(1, 3), False),
-                            },
-                            {
-                                "max": 30,
-                                "score": 18,
-                                "colors": tight_dumps([ "#109618", "#C3E5C6" ]),
-                                "title": words(randint(2, 4), False),
-                                "texts": paragraphs(randint(1, 3), False),
-                            },
-                            {
-                                "max": 135,
-                                "score": 108,
-                                "colors": tight_dumps([ "#990099", "#E5C0E4" ]),
-                                "title": words(randint(2, 4), False),
-                                "texts": paragraphs(randint(1, 3), False),
-                            },
-                        ],
+                        "branches": [],
                         "colors": quiz.stats["row"]["colors"],
                         "avg": quiz.stats["row"]["avg"],
                         "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
                     }
+                    topic_branches = quiz.test.topic_branches()
+                    for i, topic_branch in enumerate(topic_branches):
+                        quiz.stats["detail"]["branches"].append({
+                            "max": quiz.test.max_score(topic_branch["question_ids"]),
+                            "score": quiz.score(topic_branch["question_ids"]),
+                            "colors": tight_dumps([
+                                GOOGLE_COLORS[i % len(GOOGLE_COLORS)],
+                                GOOGLE_COLORS_BLEACHED[i % len(GOOGLE_COLORS_BLEACHED)],
+                            ]),
+                            "title": words(randint(2, 4), False),
+                            "texts": paragraphs(randint(1, 3), False),
+                        })
+
                 else:
                     # SimpleResultDetailModule
                     quiz.stats["detail"] = {
