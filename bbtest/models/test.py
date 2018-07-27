@@ -40,6 +40,15 @@ class TestSection(Model):
     def __str__(self):
         return self.name
 
+    def is_nis(self):
+        return self.pk in range(9540, 9545)
+
+    def is_unt_compulsory(self):
+        return self.pk in range(9545, 9548)
+
+    def is_unt_profile(self):
+        return self.pk in range(9548, 9560)
+
     def fg_color(self):
         return GOOGLE_COLORS[(self.pk - 9540) % len(GOOGLE_COLORS)]
 
@@ -243,11 +252,11 @@ class TestQuestion(Model):
 
     @classmethod
     def calculate_weight(cls, test_question, test_section):
-        if test_section.pk in (9540, 9541, 9542, 9543, 9544):
+        if test_section.is_nis():
             return 10
-        elif test_section.pk in (9545, 9546, 9547):
+        elif test_section.is_unt_compulsory():
             return 1
-        elif test_section.pk in (9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559):
+        elif test_section.is_unt_profile():
             if test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_ONE:
                 return 1
             elif test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_MULTI:

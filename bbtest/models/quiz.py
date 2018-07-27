@@ -49,11 +49,11 @@ class Quiz(Model):
             return score
 
         calculate_method = None
-        if self.test.section.pk in (9540, 9541, 9542, 9543, 9544):
+        if self.test.section.is_nis():
             calculate_method = self.__calculate_nis
-        elif self.test.section.pk in (9545, 9546, 9547):
+        elif self.test.section.is_unt_compulsory():
             calculate_method = self.__calculate_unt_compulsory
-        elif self.test.section.pk in (9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559):
+        elif self.test.section.is_unt_profile():
             calculate_method = self.__calculate_unt_profile
         if calculate_method is None:
             return score

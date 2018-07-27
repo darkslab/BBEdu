@@ -494,7 +494,7 @@ class TestForm(ModelForm):
         test = self.save(developer)
 
         # NIS sections
-        if test.section.id in (9540, 9541, 9542, 9543, 9544):
+        if test.section.is_nis():
             shared_paragraph = None
             for i in range(test.section.question_count):
                 choice_id = randint(0x0000, 0xffff)
@@ -590,7 +590,7 @@ class TestForm(ModelForm):
                         order=0,
                     )
         # UNT core sections
-        elif test.section.id in (9545, 9546, 9547):
+        elif test.section.is_unt_compulsory():
             shared_paragraph = None
             for i in range(test.section.question_count):
                 choice_id = randint(0x0000, 0xffff)
@@ -665,7 +665,7 @@ class TestForm(ModelForm):
                     )
 
         # UNT spec sections
-        elif test.section.id in (9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559):
+        elif test.section.is_unt_profile():
             for i in range(test.section.question_count):
                 choice_id = randint(0x0000, 0xffff)
                 if i in range(20):

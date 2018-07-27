@@ -52,9 +52,10 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixi
         for section in kwargs["test_domain"].sections.all():
             section.minutes = section.duration // 60
 
-            if section.pk in (9545, 9546, 9547):
+            # DARK_TODO  fix the hardcoded pricing
+            if section.is_unt_compulsory():
                 section.price = 120
-            elif section.pk in (9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559):
+            elif section.is_unt_profile():
                 section.price = 180
             else:
                 section.price = 0
