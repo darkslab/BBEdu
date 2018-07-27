@@ -43,7 +43,7 @@ class Quiz(Model):
         default_permissions = ()
         ordering = ("order",)
 
-    def score(self):
+    def score(self, question_ids=None):
         score = 0
         if self.report is None:
             return score
@@ -59,6 +59,8 @@ class Quiz(Model):
             return score
 
         for i, question in enumerate(self.test.questions.all()):
+            if question_ids is not None and question.pk not in question_ids:
+                continue
             score += calculate_method(self.report["answers"][i], question)
         return score
 
