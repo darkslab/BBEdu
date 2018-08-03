@@ -790,7 +790,9 @@ class TestCheckForm(ModelForm):
         return self.cleaned_data
 
     def __clean_nis_mathematics(self, questions_queryset):
-        for question in questions_queryset.all():
+        questions_queryset = questions_queryset.all()
+
+        for question in questions_queryset:
             if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
                 self.add_error(None, ValidationError(
                     self.error_messages["nis_answer_class"],
@@ -815,7 +817,7 @@ class TestCheckForm(ModelForm):
             TestQuestion.DIFFICULTY_NORMAL:  { "required": 20, "count": 0 },
             TestQuestion.DIFFICULTY_LOW:     { "required": 10, "count": 0 },
         }
-        for question in questions_queryset.all():
+        for question in questions_queryset:
             if question.taxonomy is not None:
                 taxonomy_counts[question.taxonomy]["count"] += 1
             if question.topic is not None:
@@ -828,7 +830,7 @@ class TestCheckForm(ModelForm):
                     code="incomplete",
                     params={ "taxonomy": _(taxonomy.name), "count": stats["required"] },
                 ))
-        for topic, stats in taxonomy_counts.items():
+        for topic, stats in topic_counts.items():
             if stats["required"] != stats["count"]:
                 self.add_error(None, ValidationError(
                     self.error_messages["topic"],
@@ -844,8 +846,9 @@ class TestCheckForm(ModelForm):
                 ))
 
     def __clean_nis_language(self, questions_queryset):
-        questions_queryset = questions_queryset.prefetch_related("paragraphs")
-        for question in questions_queryset.all():
+        questions_queryset = questions_queryset.prefetch_related("paragraphs").all()
+
+        for question in questions_queryset:
             if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
                 self.add_error(None, ValidationError(
                     self.error_messages["nis_answer_class"],
@@ -867,7 +870,7 @@ class TestCheckForm(ModelForm):
             TestQuestion.DIFFICULTY_NORMAL:  { "required": 10, "count": 0 },
             TestQuestion.DIFFICULTY_LOW:     { "required": 5, "count": 0 },
         }
-        for question in questions_queryset.all():
+        for question in questions_queryset:
             if question.taxonomy is not None:
                 taxonomy_counts[question.taxonomy]["count"] += 1
             difficulty_counts[question.difficulty]["count"] += 1
@@ -887,7 +890,9 @@ class TestCheckForm(ModelForm):
                 ))
 
     def __clean_nis_quantitative(self, questions_queryset):
-        for question in questions_queryset.all():
+        questions_queryset = questions_queryset.all()
+
+        for question in questions_queryset:
             if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
                 self.add_error(None, ValidationError(
                     self.error_messages["nis_answer_class"],
@@ -908,7 +913,7 @@ class TestCheckForm(ModelForm):
             TestQuestion.DIFFICULTY_NORMAL:  { "required": 30, "count": 0 },
             TestQuestion.DIFFICULTY_LOW:     { "required": 15, "count": 0 },
         }
-        for question in questions_queryset.all():
+        for question in questions_queryset:
             if question.topic is not None:
                 topic_counts[question.topic]["count"] += 1
             difficulty_counts[question.difficulty]["count"] += 1
@@ -928,7 +933,9 @@ class TestCheckForm(ModelForm):
                 ))
 
     def __clean_unt_compulsory(self, questions_queryset):
-        for question in questions_queryset.all():
+        questions_queryset = questions_queryset.all()
+
+        for question in questions_queryset:
             if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
                 self.add_error(None, ValidationError(
                     self.error_messages["unt_compulsory_answer_class"],
@@ -941,7 +948,7 @@ class TestCheckForm(ModelForm):
             TestQuestion.DIFFICULTY_NORMAL:  { "required": 5, "count": 0 },
             TestQuestion.DIFFICULTY_LOW:     { "required": 10, "count": 0 },
         }
-        for question in questions_queryset.all():
+        for question in questions_queryset:
             difficulty_counts[question.difficulty]["count"] += 1
         for difficulty, stats in difficulty_counts.items():
             if stats["required"] != stats["count"]:
@@ -952,9 +959,11 @@ class TestCheckForm(ModelForm):
                 ))
 
     def __clean_unt_profile(self, questions_queryset):
+        questions_queryset = questions_queryset.all()
+
         multichoice_one = 20
         multichoice_multi = 10
-        for question in questions_queryset.all():
+        for question in questions_queryset:
             is_found = False
             if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
                 is_found = True
@@ -974,7 +983,7 @@ class TestCheckForm(ModelForm):
             TestQuestion.DIFFICULTY_NORMAL:  { "required": 8, "count": 0 },
             TestQuestion.DIFFICULTY_LOW:     { "required": 15, "count": 0 },
         }
-        for question in questions_queryset.all():
+        for question in questions_queryset:
             difficulty_counts[question.difficulty]["count"] += 1
         for difficulty, stats in difficulty_counts.items():
             if stats["required"] != stats["count"]:
