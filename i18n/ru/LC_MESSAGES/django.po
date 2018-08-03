@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-03 16:30+0600\n"
-"PO-Revision-Date: 2018-08-03 16:24+0600\n"
+"PO-Revision-Date: 2018-08-03 18:39+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Poedit 2.0.9\n"
+"X-Generator: Poedit 2.1.1\n"
 
 msgctxt "Form label"
 msgid "Email"
@@ -254,14 +254,10 @@ msgctxt "Validation error"
 msgid "Please provide data."
 msgstr "Заполните данные."
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "Incorrect data."
 msgctxt "Validation error"
 msgid "Incorrect report."
 msgstr "Данные указаны неверно."
 
-#, fuzzy
 msgctxt "Validation error"
 msgid "Please provide report."
 msgstr "Заполните данные."
@@ -337,43 +333,46 @@ msgstr "Не достаточно информации."
 msgctxt "Validation error"
 msgid "Answer types should only be Multichoice with one answer."
 msgstr ""
+"Тип ответа должен быть множественным с выбором одного правильного ответа."
 
 msgctxt "Validation error"
 msgid ""
 "There should be 20 answers of type Multichoice with one answer and 10 "
 "answers of type Multichoice with one or more answers."
 msgstr ""
+"Должно быть 20 ответов множественного типа с выбором одного правильного "
+"ответа и 10 ответов множественного типа с выбором нескольких правильных "
+"ответов."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s questions in taxonomy: %(taxonomy)s."
-msgstr ""
+msgstr "Должно быть %(count)s вопросов: %(taxonomy)s типа."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s questions in topic: %(topic)s."
-msgstr ""
+msgstr "Должно быть %(count)s вопросов по теме: %(topic)s."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s high difficulty questions."
-msgstr ""
+msgstr "Должно быть %(count)s вопросов высокого уровня сложности."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s normal difficulty questions."
-msgstr ""
+msgstr "Должно быть %(count)s вопросов среднего уровня сложности."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s low difficulty questions."
-msgstr ""
+msgstr "Должно быть %(count)s вопросов низкого уровня сложности."
 
 msgctxt "Validation error"
 msgid "Incorrect upload starter data."
 msgstr "Загружаемые данные указаны неверно."
 
-#, fuzzy
 msgctxt "Form label"
 msgid "Upload starter"
 msgstr "Стартер загрузки"
@@ -1092,44 +1091,26 @@ msgstr "Пользователя больше нет."
 msgid "Credits"
 msgstr "Купить единицы"
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "UNT Test is required."
 msgctxt "Item error"
 msgid "NIS Test is required."
 msgstr "Требуется тест ЕНТ."
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "Mathematics Profile UNT Test is required."
 msgctxt "Item error"
 msgid "Mathematics NIS Test is required."
 msgstr "Требуется тест ЕНТ: Математика."
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "French Language Profile UNT Test is required."
 msgctxt "Item error"
 msgid "Kazakh Language NIS Test is required."
 msgstr "Требуется тест ЕНТ: Французский язык."
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "German Language Profile UNT Test is required."
 msgctxt "Item error"
 msgid "Russian Language NIS Test is required."
 msgstr "Требуется тест ЕНТ: Немецкий язык."
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "English Language Profile UNT Test is required."
 msgctxt "Item error"
 msgid "English Language NIS Test is required."
 msgstr "Требуется тест ЕНТ: Английский язык."
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "Mathematics Profile UNT Test is required."
 msgctxt "Item error"
 msgid "Quantitative NIS Test is required."
 msgstr "Требуется тест ЕНТ: Математика."
@@ -1938,79 +1919,61 @@ msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
 msgstr "Тест завершен. Перейдите к результатам."
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Results"
 msgctxt "Page title"
 msgid "Test Results"
 msgstr "Результаты тестирования"
 
-#, fuzzy
-#| msgctxt "/super/tests/"
-#| msgid "There are no tests yet"
 msgctxt "Results page"
 msgid "There are no results"
-msgstr "Нет загруженных тестов"
+msgstr "Нет результатов"
 
 msgctxt "Results page"
 msgid ""
 "You have not taken any tests yet. Once you take a test, you will be able to "
 "review the results here."
 msgstr ""
+"Вы не сдавали тесты. После сдачи теста здесь Вы сможете работать над "
+"ошибками."
 
-#, fuzzy
-#| msgctxt "Exam"
-#| msgid "Buy new tests"
 msgctxt "Results page"
 msgid "Buy new tests"
 msgstr "Купить новые тесты"
 
-#, fuzzy, python-format
-#| msgctxt "Page title"
-#| msgid "Select tests for %(domain_name)s"
+#, python-format
 msgctxt "Results page"
 msgid "Test #%(count)s (%(domain_name)s)"
-msgstr "Выберите предметы теста %(domain_name)s"
+msgstr "Тест #%(count)s (%(domain_name)s)"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "is finished?"
 msgctxt "Results page"
 msgid "Not finished"
-msgstr "законченный?"
+msgstr "Не закончен"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Section"
 msgctxt "Results page"
 msgid "Section"
 msgstr "Предмет"
 
 msgctxt "Results page"
 msgid "Your score"
-msgstr ""
+msgstr "Ваш балл"
 
 msgctxt "Results page"
 msgid "Average score of students on bbTest.kz website for the section."
-msgstr ""
+msgstr "Средний балл тестируемых по данному предмету на bbTest.kz."
 
 #, python-format
 msgctxt "Results page"
 msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-msgstr ""
+msgstr "Средний балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
 
 msgctxt "Results page"
 msgid ""
 "This feature is not yet available. But we are working on it. Please check "
 "back later for updates."
-msgstr ""
+msgstr "Данная функция временно не доступна. Проверьте позже."
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "Incorrect answer class."
 msgctxt "Results page"
 msgid "Review correct answers"
-msgstr "Ответ указан неверно."
+msgstr "Просмотреть правильные ответы"
 
 msgctxt "/super/"
 msgid "User Statistics"
