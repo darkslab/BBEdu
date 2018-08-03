@@ -750,3 +750,236 @@ class TestSendForm(ModelForm):
         if commit:
             test.save()
         return test
+
+
+class TestCheckForm(ModelForm):
+    error_messages = {
+        "nis_answer_class":             pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
+        "unt_compulsory_answer_class":  pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
+        "unt_profile_answer_class":     pgettext_lazy("Validation error", "There should be 20 answers of type Multichoice with one answer and 10 answers of type Multichoice with one or more answers."),
+        "taxonomy":                     pgettext_lazy("Validation error", "There has to be %(count)s questions in taxonomy: %(taxonomy)s."),
+        "topic":                        pgettext_lazy("Validation error", "There has to be %(count)s questions in topic: %(topic)s."),
+        "difficulty": {
+            TestQuestion.DIFFICULTY_HIGH:    pgettext_lazy("Validation error", "There has to be %(count)s high difficulty questions."),
+            TestQuestion.DIFFICULTY_NORMAL:  pgettext_lazy("Validation error", "There has to be %(count)s normal difficulty questions."),
+            TestQuestion.DIFFICULTY_LOW:     pgettext_lazy("Validation error", "There has to be %(count)s low difficulty questions."),
+        },
+    }
+
+    class Meta:
+        model = Test
+        fields = ()
+
+    def save(self, commit=True):
+        return self.instance
+
+    def clean(self):
+        questions_queryset = self.instance.questions.select_related("taxonomy", "topic")
+        if self.instance.section.is_nis():
+            if self.instance.section.pk == 9540:
+                self.__clean_nis_mathematics(questions_queryset)
+            elif self.instance.section.pk in (9541, 9542, 9543):
+                self.__clean_nis_language(questions_queryset)
+            elif self.instance.section.pk == 9544:
+                self.__clean_nis_quantitative(questions_queryset)
+        elif self.instance.section.is_unt_compulsory() or self.instance.section.is_unt_profile():
+            if self.instance.section.is_unt_compulsory():
+                self.__clean_unt_compulsory(questions_queryset)
+            elif self.instance.section.is_unt_profile():
+                self.__clean_unt_profile(questions_queryset)
+        return self.cleaned_data
+
+    def __clean_nis_mathematics(self, questions_queryset):
+        for question in questions_queryset.all():
+            if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                self.add_error(None, ValidationError(
+                    self.error_messages["nis_answer_class"],
+                    code="incomplete",
+                ))
+                break
+
+        taxonomy_counts = {}
+        for taxonomy in self.instance.section.taxonomies.order_by("through"):
+            if taxonomy.pk == 3529:
+                taxonomy_counts[taxonomy] = { "required": 24, "count": 0 }
+            elif taxonomy.pk == 3530:
+                taxonomy_counts[taxonomy] = { "required": 16, "count": 0 }
+        topic_counts = {}
+        for topic in self.instance.section.topics.order_by("through"):
+            if topic.pk in (5156, 5158, 5160, 5161):
+                topic_counts[topic] = { "required": 6, "count": 0 }
+            elif topic.pk in (5157, 5159, 5162, 5163):
+                topic_counts[topic] = { "required": 4, "count": 0 }
+        difficulty_counts = {
+            TestQuestion.DIFFICULTY_HIGH:    { "required": 10, "count": 0 },
+            TestQuestion.DIFFICULTY_NORMAL:  { "required": 20, "count": 0 },
+            TestQuestion.DIFFICULTY_LOW:     { "required": 10, "count": 0 },
+        }
+        for question in questions_queryset.all():
+            if question.taxonomy is not None:
+                taxonomy_counts[question.taxonomy]["count"] += 1
+            if question.topic is not None:
+                topic_counts[question.topic]["count"] += 1
+            difficulty_counts[question.difficulty]["count"] += 1
+        for taxonomy, stats in taxonomy_counts.items():
+            if stats["required"] != stats["count"]:
+                self.add_error(None, ValidationError(
+                    self.error_messages["taxonomy"],
+                    code="incomplete",
+                    params={ "taxonomy": pgettext(taxonomy.name), "count": stats["required"] },
+                ))
+        for topic, stats in taxonomy_counts.items():
+            if stats["required"] != stats["count"]:
+                self.add_error(None, ValidationError(
+                    self.error_messages["topic"],
+                    code="incomplete",
+                    params={ "topic": pgettext(topic.name), "count": stats["required"] },
+                ))
+        for difficulty, stats in difficulty_counts.items():
+            if stats["required"] != stats["count"]:
+                self.add_error(None, ValidationError(
+                    self.error_messages["difficulty"][difficulty],
+                    code="incomplete",
+                    params={ "count": stats["required"] },
+                ))
+
+    def __clean_nis_language(self, questions_queryset):
+        questions_queryset = questions_queryset.prefetch_related("paragraphs")
+        for question in questions_queryset.all():
+            if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                self.add_error(None, ValidationError(
+                    self.error_messages["nis_answer_class"],
+                    code="incomplete",
+                ))
+                break
+
+        # DARK_TODO  we also have to somehow check for shared texts
+        taxonomy_counts = {}
+        for taxonomy in self.instance.section.taxonomies.order_by("through"):
+            if taxonomy.pk == 3531:
+                taxonomy_counts[taxonomy] = { "required": 13, "count": 0 }
+            elif taxonomy.pk == 3532:
+                taxonomy_counts[taxonomy] = { "required": 5, "count": 0 }
+            elif taxonomy.pk == 3533:
+                taxonomy_counts[taxonomy] = { "required": 2, "count": 0 }
+        difficulty_counts = {
+            TestQuestion.DIFFICULTY_HIGH:    { "required": 5, "count": 0 },
+            TestQuestion.DIFFICULTY_NORMAL:  { "required": 10, "count": 0 },
+            TestQuestion.DIFFICULTY_LOW:     { "required": 5, "count": 0 },
+        }
+        for question in questions_queryset.all():
+            if question.taxonomy is not None:
+                taxonomy_counts[question.taxonomy]["count"] += 1
+            difficulty_counts[question.difficulty]["count"] += 1
+        for taxonomy, stats in taxonomy_counts.items():
+            if stats["required"] != stats["count"]:
+                self.add_error(None, ValidationError(
+                    self.error_messages["taxonomy"],
+                    code="incomplete",
+                    params={ "taxonomy": pgettext(taxonomy.name), "count": stats["required"] },
+                ))
+        for difficulty, stats in difficulty_counts.items():
+            if stats["required"] != stats["count"]:
+                self.add_error(None, ValidationError(
+                    self.error_messages["difficulty"][difficulty],
+                    code="incomplete",
+                    params={ "count": stats["required"] },
+                ))
+
+    def __clean_nis_quantitative(self, questions_queryset):
+        for question in questions_queryset.all():
+            if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                self.add_error(None, ValidationError(
+                    self.error_messages["nis_answer_class"],
+                    code="incomplete",
+                ))
+                break
+
+        topic_counts = {}
+        for topic in self.instance.section.topics.order_by("through"):
+            if topic.pk in (5164, 5165, 5166, 5167):
+                topic_counts[topic] = { "required": 5, "count": 0 }
+            elif topic.pk in (5163, 5171, 5172, 5173):
+                topic_counts[topic] = { "required": 4, "count": 0 }
+            elif topic.pk in (5174, 5175):
+                topic_counts[topic] = { "required": 2, "count": 0 }
+        difficulty_counts = {
+            TestQuestion.DIFFICULTY_HIGH:    { "required": 15, "count": 0 },
+            TestQuestion.DIFFICULTY_NORMAL:  { "required": 30, "count": 0 },
+            TestQuestion.DIFFICULTY_LOW:     { "required": 15, "count": 0 },
+        }
+        for question in questions_queryset.all():
+            if question.topic is not None:
+                topic_counts[question.topic]["count"] += 1
+            difficulty_counts[question.difficulty]["count"] += 1
+        for topic, stats in taxonomy_counts.items():
+            if stats["required"] != stats["count"]:
+                self.add_error(None, ValidationError(
+                    self.error_messages["topic"],
+                    code="incomplete",
+                    params={ "topic": pgettext(topic.name), "count": stats["required"] },
+                ))
+        for difficulty, stats in difficulty_counts.items():
+            if stats["required"] != stats["count"]:
+                self.add_error(None, ValidationError(
+                    self.error_messages["difficulty"][difficulty],
+                    code="incomplete",
+                    params={ "count": stats["required"] },
+                ))
+
+    def __clean_unt_compulsory(self, questions_queryset):
+        for question in questions_queryset.all():
+            if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                self.add_error(None, ValidationError(
+                    self.error_messages["unt_compulsory_answer_class"],
+                    code="incomplete",
+                ))
+                break
+
+        difficulty_counts = {
+            TestQuestion.DIFFICULTY_HIGH:    { "required": 5, "count": 0 },
+            TestQuestion.DIFFICULTY_NORMAL:  { "required": 5, "count": 0 },
+            TestQuestion.DIFFICULTY_LOW:     { "required": 10, "count": 0 },
+        }
+        for question in questions_queryset.all():
+            difficulty_counts[question.difficulty]["count"] += 1
+        for difficulty, stats in difficulty_counts.items():
+            if stats["required"] != stats["count"]:
+                self.add_error(None, ValidationError(
+                    self.error_messages["difficulty"][difficulty],
+                    code="incomplete",
+                    params={ "count": stats["required"] },
+                ))
+
+    def __clean_unt_profile(self, questions_queryset):
+        multichoice_one = 20
+        multichoice_multi = 10
+        for question in questions_queryset.all():
+            is_found = False
+            if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                is_found = True
+                multichoice_one -= 1
+            elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
+                is_found = True
+                multichoice_multi -= 1
+            if not is_found or multichoice_one < 0 or multichoice_multi < 0:
+                self.add_error(None, ValidationError(
+                    self.error_messages["unt_profile_answer_class"],
+                    code="incomplete",
+                ))
+                break
+
+        difficulty_counts = {
+            TestQuestion.DIFFICULTY_HIGH:    { "required": 7, "count": 0 },
+            TestQuestion.DIFFICULTY_NORMAL:  { "required": 8, "count": 0 },
+            TestQuestion.DIFFICULTY_LOW:     { "required": 15, "count": 0 },
+        }
+        for question in questions_queryset.all():
+            difficulty_counts[question.difficulty]["count"] += 1
+        for difficulty, stats in difficulty_counts.items():
+            if stats["required"] != stats["count"]:
+                self.add_error(None, ValidationError(
+                    self.error_messages["difficulty"][difficulty],
+                    code="incomplete",
+                    params={ "count": stats["required"] },
+                ))
