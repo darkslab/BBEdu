@@ -22,7 +22,7 @@
                     resultsUrl: "{% url 'bbtest:build_test_preview' code %}",
                     buyUrl: "{% url 'bbtest:build_test_preview' code %}",
                     refreshUrl: "{% url 'bbtest:build_test_preview' code %}",
-                    cancelRefreshUrl: "{% url 'bbtest:dashboard' %}",
+                    cancelRefreshUrl: "{% url 'bbtest:build_tests' %}",
                     objectClass: "PreviewTestObject",
                     texts: {
                         error:                        "{% trans 'There was an error, please reload the page.'  context 'Exam' %}",
@@ -91,7 +91,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6 pr-5">
-                                <button type="submit" class="btn btn-success btn-block btn-lg" data-bb-submit disabled>{% trans 'Yes' context 'Developer tools' %}</button>
+                                <button type="submit" class="btn btn-success btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Developer tools' %}</button>
                             </div>
                             <div class="col-xs-6 pl-5">
                                 <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Developer tools' %}</button>
@@ -196,14 +196,14 @@
                         <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-toggle-free-modal]">{% trans 'Change to Free' context 'Developer tools' %}</button>
                     {% endif %}
                 {% endif %}
-                <a href="{% url 'bbtest:super_dashboard' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
+                <a href="{% url 'bbtest:build_tests' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% else %}
                 {% if test.is_draft %}
                     <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
                     <a href="{% url 'bbtest:build_test' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
                 {% endif %}
-                <a href="{% url 'bbtest:developer_dashboard' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
+                <a href="{% url 'bbtest:build_tests' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% endif %}
         </div>
     </div>

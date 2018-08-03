@@ -9,6 +9,7 @@ from .views.base import (
 )
 from .views.upload import UploadStartView, UploadCompleteView, UploadAdoptView
 from .views.test import (
+    TestsView as BuildTestsView,
     TestView as BuildTestView,
     TestQuestionView as BuildTestQuestionView,
     TestParagraphsView as BuildTestParagraphsView,
@@ -63,6 +64,7 @@ urlpatterns = [
     url(r"^uploads/(?P<uuid>[0-9A-Fa-f]{32})/adopt/$",    UploadAdoptView.as_view(),    name="upload_adopt"   ),
 
     # TEST BUILDING URLS
+    url(r"^build/tests/$",                                                                           BuildTestsView.as_view(),              name="build_tests"            ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/$",                                                BuildTestView.as_view(),               name="build_test"             ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/)?$",            BuildTestQuestionView.as_view(),       name="build_test_question"    ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", BuildTestParagraphsView.as_view(),     name="build_test_paragraphs"  ),
