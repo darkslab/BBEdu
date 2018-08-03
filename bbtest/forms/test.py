@@ -1,7 +1,7 @@
 from django.forms import ModelForm, Form
 from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
-from django.utils.translation import pgettext_lazy, pgettext
+from django.utils.translation import pgettext_lazy, pgettext, ugettext as _
 from random import randint
 from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset
 from bbtest.forms.fields import JSONField
@@ -826,14 +826,14 @@ class TestCheckForm(ModelForm):
                 self.add_error(None, ValidationError(
                     self.error_messages["taxonomy"],
                     code="incomplete",
-                    params={ "taxonomy": pgettext(taxonomy.name), "count": stats["required"] },
+                    params={ "taxonomy": _(taxonomy.name), "count": stats["required"] },
                 ))
         for topic, stats in taxonomy_counts.items():
             if stats["required"] != stats["count"]:
                 self.add_error(None, ValidationError(
                     self.error_messages["topic"],
                     code="incomplete",
-                    params={ "topic": pgettext(topic.name), "count": stats["required"] },
+                    params={ "topic": _(topic.name), "count": stats["required"] },
                 ))
         for difficulty, stats in difficulty_counts.items():
             if stats["required"] != stats["count"]:
@@ -876,7 +876,7 @@ class TestCheckForm(ModelForm):
                 self.add_error(None, ValidationError(
                     self.error_messages["taxonomy"],
                     code="incomplete",
-                    params={ "taxonomy": pgettext(taxonomy.name), "count": stats["required"] },
+                    params={ "taxonomy": _(taxonomy.name), "count": stats["required"] },
                 ))
         for difficulty, stats in difficulty_counts.items():
             if stats["required"] != stats["count"]:
@@ -917,7 +917,7 @@ class TestCheckForm(ModelForm):
                 self.add_error(None, ValidationError(
                     self.error_messages["topic"],
                     code="incomplete",
-                    params={ "topic": pgettext(topic.name), "count": stats["required"] },
+                    params={ "topic": _(topic.name), "count": stats["required"] },
                 ))
         for difficulty, stats in difficulty_counts.items():
             if stats["required"] != stats["count"]:
