@@ -1,11 +1,13 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.utils.lorem_ipsum import paragraphs, words
+from django.utils.lorem_ipsum import paragraphs
+from django.utils.translation import ugettext as _
 from random import randint
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.utils.json import tight_dumps
 from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
+from bbtest.models import TestTopic
 
 
 class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
@@ -24,6 +26,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
             kwargs["quiz_sets"] = paginator.page(paginator.num_pages)
         paginator.page_indexes = self.page_indexes(kwargs["quiz_sets"], 5)
 
+        topic_ids = set()
         for index, quiz_set in enumerate(kwargs["quiz_sets"]):
             quiz_set.index = paginator.count - (kwargs["quiz_sets"].start_index() + index - 1)
 
@@ -48,6 +51,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
                     }
                     topic_branches = quiz.test.topic_branches()
+                    topic_ids |= set([ topic_branch["topic_id"] for topic_branch in topic_branches ])
                     for i, topic_branch in enumerate(topic_branches):
                         quiz.stats["detail"]["branches"].append({
                             "max": quiz.test.max_score(topic_branch["question_ids"]),
@@ -56,7 +60,8 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                                 GOOGLE_COLORS[i % len(GOOGLE_COLORS)],
                                 GOOGLE_COLORS_BLEACHED[i % len(GOOGLE_COLORS_BLEACHED)],
                             ]),
-                            "title": words(randint(2, 4), False),
+                            "title": None,
+                            "__topic_id": topic_branch["topic_id"],
                             "texts": paragraphs(randint(1, 3), False),
                         })
 
@@ -71,5 +76,16 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
                         "texts": paragraphs(randint(1, 2), False),
                     }
+
+        if len(topic_ids):
+            topic_branch_names = {}
+            for topic_branch in TestTopic.objects.filter(pk__in=topic_ids).all():
+                topic_branch_names[topic_branch.pk] = _(topic_branch.name)
+            for quiz_set in kwargs["quiz_sets"]:
+                for quiz in quiz_set.quizzes.all():
+                    if quiz.stats["detail"]["type"] != "branched":
+                        continue
+                    for branch in quiz.stats["detail"]["branches"]:
+                        branch["title"] = topic_branch_names[branch["__topic_id"]]
 
         return super().get_context_data(**kwargs)
