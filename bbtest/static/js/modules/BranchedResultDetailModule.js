@@ -95,6 +95,14 @@ BranchedResultDetailModule.prototype._updateDropdown = function(index) {
             $(this).removeClass("active").removeClass("in");
         }
     });
+    this._$tabHandles.each(function(_index, elem) {
+        var $tabHandle = $(elem);
+        if ($tabHandle.data(this._tabHandlesDataAttrName) === index) {
+            $tabHandle.parent().addClass("active");
+        } else {
+            $tabHandle.parent().removeClass("active");
+        }
+    }.bind(this));
 }
 BranchedResultDetailModule.prototype.unMount = function() {
     this._$collapse.off("shown.bs.collapse", this._boundUncollapsed);
