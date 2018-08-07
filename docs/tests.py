@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.utils.lorem_ipsum import paragraph, words
-from random import randint, choice
+from random import randint
 from bbtest.models import TestQuestion
 from bbtest.forms.test import TestForm
 
@@ -44,7 +44,7 @@ for i, _question in enumerate(_test.questions.all()):
     elif i in range(36, 40):
         _question.topic_id = 5163
     # answer
-    _question.meta_data["correct_id"] = choice([ _choice["id"] for _choice in _question.meta_data["choices"] ])
+    _question.meta_data["correct_id"] = _question.meta_data["choices"][0]["id"]
     for _choice in _question.meta_data["choices"]:
         _choice["meta_data"]["text"] = words(randint(3, 6), False)
     _question.save()
