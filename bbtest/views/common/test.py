@@ -1,5 +1,6 @@
 from django.db.models import Prefetch
-from bbtest.models import TestQuestion, TestParagraph
+from django.core.cache import cache
+from bbtest.models import TestQuestion, TestParagraph, Quiz
 from bbtest.models.upload import expiring_url
 
 
@@ -50,3 +51,23 @@ def inject_questions_and_report_into_started_response(response, test):
 
         response["questions"].append(_question)
         response["report"]["answers"].append(_answer)
+
+
+def results_progress(test_section, user):
+    key = "test-progress-%s-%s" % (user.pk, test_section.pk)
+    progress = cache.get(key)
+    if progress is not None:
+        return progress
+    limit = 10
+    progress = []
+    for quiz in Quiz.objects.filter(
+        quiz_set__student=user,
+        test__section=test_section,
+        is_finished=True,
+    ).exclude(report=None).select_related("test__section").prefetch_related("test__questions").order_by("-pk")[:limit].all():
+        progress.append(quiz.score())
+    progress.reverse()
+    for i in range(limit - len(progress)):
+        progress.append(0)
+    cache.set(key, progress, None)
+    return progress

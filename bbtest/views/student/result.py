@@ -1,9 +1,10 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.lorem_ipsum import paragraphs
 from django.utils.translation import ugettext as _
+from django.core.cache import cache
 from random import randint
 from bbtest.views.generic import TemplateView
-from bbtest.views.common import UserContextMixin, PaginationMixin
+from bbtest.views.common import UserContextMixin, PaginationMixin, results_progress
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.utils.json import tight_dumps
 from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
@@ -48,7 +49,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "branches": [],
                         "colors": quiz.stats["row"]["colors"],
                         "avg": quiz.stats["row"]["avg"],
-                        "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+                        "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
                     }
                     topic_branches = quiz.test.topic_branches()
                     topic_ids |= set([ topic_branch["topic_id"] for topic_branch in topic_branches ])
@@ -73,7 +74,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "colors": quiz.stats["row"]["colors"],
                         "score": quiz.stats["row"]["score"],
                         "avg": quiz.stats["row"]["avg"],
-                        "progress": tight_dumps([ 350, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]),
+                        "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
                         "texts": paragraphs(randint(1, 2), False),
                     }
 

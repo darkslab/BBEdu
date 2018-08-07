@@ -3,6 +3,7 @@ from django.utils.timezone import now
 from django.db.transaction import atomic
 from django.db.models import F
 from django.utils.lorem_ipsum import paragraphs
+from django.core.cache import cache
 from json import loads
 from ool import ConcurrentUpdate
 from datetime import timedelta
@@ -127,6 +128,8 @@ class ExamSkipView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, 
                 self.current_quiz().is_finished = True
                 self.current_quiz().save()
 
+            cache.delete("test-progress-%s-%s" % (self.quiz_set().student_id, self.current_quiz().test.section_id))
+
             self.reset_current_quiz()
             if self.current_status(now_at) == "queued":
                 return TightJsonResponse(self.queued_response())
@@ -158,6 +161,8 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
                 self.current_quiz().save()
 
                 Test.objects.filter(pk=self.current_quiz().test.pk).update(completed_count=(F("completed_count") + 1))
+
+            cache.delete("test-progress-%s-%s" % (self.quiz_set().student_id, self.current_quiz().test.section_id))
 
             self.reset_current_quiz()
             if self.current_status(now_at) == "queued":
