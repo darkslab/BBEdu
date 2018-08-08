@@ -9,6 +9,7 @@ from .views.base import (
 )
 from .views.upload import UploadStartView, UploadCompleteView, UploadAdoptView
 from .views.test import (
+    TestsView as BuildTestsView,
     TestView as BuildTestView,
     TestQuestionView as BuildTestQuestionView,
     TestParagraphsView as BuildTestParagraphsView,
@@ -17,6 +18,7 @@ from .views.test import (
     RefuseTestView as BuildRefuseTestView,
     DeleteTestView as BuildDeleteTestView,
     ToggleFreeTestView as BuildToggleFreeTestView,
+    CheckTestView as BuildCheckTestView,
     TestPreviewView as BuildTestPreviewView,
     TestPreviewDataView as BuildTestPreviewDataView,
 )
@@ -32,6 +34,7 @@ from .views.student import (
     ExamSkipView as StudentExamSkipView,
     ExamEndView as StudentExamEndView,
     ExamReportView as StudentExamReportView,
+    ResultsView as StudentResultsView,
 )
 from .views.developer import (
     DashboardView as DeveloperDashboardView,
@@ -62,6 +65,7 @@ urlpatterns = [
     url(r"^uploads/(?P<uuid>[0-9A-Fa-f]{32})/adopt/$",    UploadAdoptView.as_view(),    name="upload_adopt"   ),
 
     # TEST BUILDING URLS
+    url(r"^build/tests/$",                                                                           BuildTestsView.as_view(),              name="build_tests"            ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/$",                                                BuildTestView.as_view(),               name="build_test"             ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/)?$",            BuildTestQuestionView.as_view(),       name="build_test_question"    ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", BuildTestParagraphsView.as_view(),     name="build_test_paragraphs"  ),
@@ -70,6 +74,7 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/refuse/$",                                         BuildRefuseTestView.as_view(),         name="build_refuse_test"      ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/delete/$",                                         BuildDeleteTestView.as_view(),         name="build_delete_test"      ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/toggle-free/(?P<free>true|false)$",                BuildToggleFreeTestView.as_view(),     name="build_toggle_free_test" ),
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/check/$",                                          BuildCheckTestView.as_view(),          name="build_check_test"       ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
 
@@ -85,6 +90,7 @@ urlpatterns = [
     url(r"^student/exam/skip/$",                              StudentExamSkipView.as_view(),         name="student_exam_skip"         ),
     url(r"^student/exam/end/$",                               StudentExamEndView.as_view(),          name="student_exam_end"          ),
     url(r"^student/exam/report/$",                            StudentExamReportView.as_view(),       name="student_exam_report"       ),
+    url(r"^student/results/$",                                StudentResultsView.as_view(),          name="student_results"           ),
 
     # DEVELOPER URLS
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),

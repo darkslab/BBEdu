@@ -75,7 +75,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                 "specification": {},
             }
 
-            if section.id in [9545, 9546, 9547]:
+            if section.is_unt_compulsory():
                 data["language"] = {
                     "title": pgettext("/developer/tests/", "Choose test language"),
                     "choices": [],
@@ -87,7 +87,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                     data["specification"][language[0]] = section.specification[language[0]][get_language()]
                 kwargs["unt_core_data"].append(data)
 
-            elif section.id in [9548, 9549, 9550, 9551, 9552, 9553, 9554, 9555, 9556, 9557, 9558, 9559]:
+            elif section.is_unt_profile():
                 if section.id == 9557:
                     data["language"] = {
                         "title": pgettext("/developer/tests/", "Choose type"),

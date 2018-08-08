@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 12:44+0600\n"
+"POT-Creation-Date: 2018-08-08 18:35+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -450,6 +450,46 @@ msgstr ""
 msgctxt "NIS Quantitative section answer"
 msgid "The relationship cannot be determined from the information given."
 msgstr ""
+
+msgctxt "Validation error"
+msgid "Answer types should only be Multichoice with one answer."
+msgstr ""
+
+msgctxt "Validation error"
+msgid ""
+"There should be 20 answers of type Multichoice with one answer and 10 "
+"answers of type Multichoice with one or more answers."
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s question in taxonomy: %(taxonomy)s."
+msgid_plural "There has to be %(count)s questions in taxonomy: %(taxonomy)s."
+msgstr[0] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s question in topic: %(topic)s."
+msgid_plural "There has to be %(count)s questions in topic: %(topic)s."
+msgstr[0] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s high difficulty question."
+msgid_plural "There has to be %(count)s high difficulty questions."
+msgstr[0] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s normal difficulty question."
+msgid_plural "There has to be %(count)s normal difficulty questions."
+msgstr[0] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s low difficulty question."
+msgid_plural "There has to be %(count)s low difficulty questions."
+msgstr[0] ""
 
 #, fuzzy
 #| msgctxt "Form field error"
@@ -1222,6 +1262,39 @@ msgstr ""
 msgid "Credits"
 msgstr ""
 
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Item error"
+msgid "NIS Test is required."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "Item error"
+msgid "Mathematics NIS Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Kazakh Language NIS Test is required."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Item error"
+msgid "Russian Language NIS Test is required."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Item error"
+msgid "English Language NIS Test is required."
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "Item error"
+msgid "Quantitative NIS Test is required."
+msgstr ""
+
 msgctxt "Item error"
 msgid "Test is required."
 msgstr ""
@@ -1333,10 +1406,6 @@ msgstr ""
 
 msgctxt "Model field"
 msgid "question count"
-msgstr ""
-
-msgctxt "Model field"
-msgid "question weight by default"
 msgstr ""
 
 msgctxt "Model field"
@@ -2060,6 +2129,66 @@ msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
 msgstr ""
 
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Results"
+msgctxt "Page title"
+msgid "Test Results"
+msgstr "Тестілеудің нәтижелері"
+
+msgctxt "Results page"
+msgid "There are no results"
+msgstr ""
+
+msgctxt "Results page"
+msgid ""
+"You have not taken any tests yet. Once you take a test, you will be able to "
+"review the results here."
+msgstr ""
+
+msgctxt "Results page"
+msgid "Buy new tests"
+msgstr ""
+
+#, python-format
+msgctxt "Results page"
+msgid "Test #%(count)s (%(domain_name)s)"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Not finished"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Section"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Your score"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Average score of students on bbTest.kz website for the section."
+msgstr ""
+
+#, python-format
+msgctxt "Results page"
+msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+msgstr ""
+
+msgctxt "Results page"
+msgid ""
+"This feature is not yet available. But we are working on it. Please check "
+"back later for updates."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "Results page"
+msgid "Review correct answers"
+msgstr "Электрондық поштаңыз дұрыс емес."
+
 msgctxt "/super/"
 msgid "User Statistics"
 msgstr ""
@@ -2349,6 +2478,22 @@ msgid "This action is irreversable!"
 msgstr ""
 
 msgctxt "Developer tools"
+msgid "Please wait for the feedback..."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Feedback"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "The test is correct."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "There was an error. Please try again."
+msgstr ""
+
+msgctxt "Developer tools"
 msgid "Approve"
 msgstr ""
 
@@ -2377,6 +2522,10 @@ msgstr "Құпиясөзді өзгерту"
 msgctxt "Developer tools"
 msgid "Change to Free"
 msgstr "Құпиясөзді өзгерту"
+
+msgctxt "Developer tools"
+msgid "Check"
+msgstr ""
 
 msgctxt "Developer tools"
 msgid "Exit"
@@ -2428,16 +2577,20 @@ msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
 msgstr ""
 
-msgctxt "Success alert message"
-msgid "You have approved a Test."
+msgctxt "Error alert message"
+msgid "Could not approve the Test. Please check the Test for correctness."
 msgstr ""
 
 msgctxt "Success alert message"
-msgid "You have refused a Test."
+msgid "You have approved the Test."
 msgstr ""
 
 msgctxt "Success alert message"
-msgid "You have deleted a Test."
+msgid "You have refused the Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have deleted the Test."
 msgstr ""
 
 msgctxt "Success alert message"

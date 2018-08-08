@@ -1,24 +1,23 @@
 (function() {
     function ModuleStack() {
         this._modules = [];
-        this._moduleClasses = [];
     }
     ModuleStack.prototype.load = function() {
+        var moduleClasses = [];
         var moduleData;
         while ((moduleData = moduleDataStack.shift()) !== undefined) {
-            if (this._moduleClasses.indexOf(moduleData.module) !== -1) {
+            var moduleClass = eval(moduleData.module);
+            if (moduleClasses.indexOf(moduleClass) !== -1 && !moduleClass.prototype.isMultiMount) {
                 continue;
             }
-            var moduleClass = eval(moduleData.module);
             this._modules.push(new moduleClass(moduleData.data));
-            this._moduleClasses.push(moduleData.module);
+            moduleClasses.push(moduleClass);
         }
     }
     ModuleStack.prototype.unLoad = function() {
         var module;
         while ((module = this._modules.shift()) !== undefined) {
             module.unMount();
-            this._moduleClasses.shift();
         }
     }
 

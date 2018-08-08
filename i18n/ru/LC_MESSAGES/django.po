@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 12:44+0600\n"
-"PO-Revision-Date: 2018-06-03 17:30-0700\n"
+"POT-Creation-Date: 2018-08-08 18:35+0600\n"
+"PO-Revision-Date: 2018-08-08 18:37+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.1.1\n"
 
 msgctxt "Form label"
 msgid "Email"
@@ -25,7 +25,7 @@ msgstr "Адрес электронной почты"
 
 msgctxt "Validation error"
 msgid "Please enter email."
-msgstr "Пожалуйста, введите адрес электронной почты."
+msgstr "Введите адрес электронной почты."
 
 msgctxt "Form label"
 msgid "Password"
@@ -33,11 +33,11 @@ msgstr "Пароль"
 
 msgctxt "Validation error"
 msgid "Please enter password."
-msgstr "Пожалуйста, введите пароль."
+msgstr "Введите пароль."
 
 msgctxt "Validation error"
 msgid "Please enter a correct email and password."
-msgstr "Пожалуйста, введите верный адрес электронной почты и пароль."
+msgstr "Введите верный адрес электронной почты и пароль."
 
 msgctxt "Validation error"
 msgid "Incorrect email."
@@ -46,8 +46,8 @@ msgstr "Неверный адрес электронной почты."
 msgctxt "Success alert message"
 msgid "Please follow password reset instructions in the sent email."
 msgstr ""
-"Для восстановления пароля, пожалуйста, следуйте инструкциям которые мы "
-"выслали Вам на электронную почту."
+"Для восстановления пароля следуйте инструкциям, которые мы выслали Вам на "
+"электронную почту."
 
 msgctxt "Validation error"
 msgid "Passwords do not match."
@@ -59,15 +59,15 @@ msgstr "Новый пароль"
 
 msgctxt "Validation error"
 msgid "Please enter new password."
-msgstr "Пожалуйста, введите новый пароль."
+msgstr "Введите новый пароль."
 
 msgctxt "Form label"
 msgid "Confirm new password"
-msgstr "Пожалуйста, подтвердите новый пароль"
+msgstr "Подтвердите новый пароль"
 
 msgctxt "Validation error"
 msgid "Please enter new password confirmation."
-msgstr "Пожалуйста, введите подтверждение нового пароля."
+msgstr "Введите подтверждение нового пароля."
 
 msgctxt "Model field"
 msgid "username"
@@ -170,7 +170,7 @@ msgstr "Сброс пароля"
 
 msgctxt "Validation error"
 msgid "Please select plan."
-msgstr "Пожалуйста, выберите тарифный план."
+msgstr "Выберите тарифный план."
 
 msgctxt "Validation error"
 msgid "Incorrect plan value."
@@ -178,15 +178,15 @@ msgstr "Неверный тарифный план."
 
 msgctxt "Validation error"
 msgid "Please select agreement code."
-msgstr "Пожалуйста, выберите код публичной оферты."
+msgstr "Выберите код Соглашения."
 
 msgctxt "Validation error"
 msgid "Incorrect agreement code value."
-msgstr "Неверный код публичной оферты."
+msgstr "Неверный код Соглашения."
 
 msgctxt "Validation error"
 msgid "Agreement code does not match the plan."
-msgstr "Код публичной оферты не соответствует тарифному плану."
+msgstr "Код Соглашения не соответствует тарифному плану."
 
 msgctxt "Form label"
 msgid "Confirm password"
@@ -194,11 +194,11 @@ msgstr "Подтверждение пароля"
 
 msgctxt "Validation error"
 msgid "Please enter password confirmation."
-msgstr "Пожалуйста, введите подтверждение пароля."
+msgstr "Введите подтверждение пароля."
 
 msgctxt "Validation error"
 msgid "Please enter first name."
-msgstr "Пожалуйста, введите Ваше имя."
+msgstr "Введите Ваше имя."
 
 msgctxt "Validation error"
 msgid "First name is too long."
@@ -206,7 +206,7 @@ msgstr "Слишком длинное имя."
 
 msgctxt "Validation error"
 msgid "Please enter last name."
-msgstr "Пожалуйста, введите Вашу фамилию."
+msgstr "Введите Вашу фамилию."
 
 msgctxt "Validation error"
 msgid "Last name is too long."
@@ -226,7 +226,7 @@ msgstr "Сумма"
 
 msgctxt "Validation error"
 msgid "Please provide an amount."
-msgstr "Пожалуйста, укажите сумму."
+msgstr "Укажите сумму."
 
 msgctxt "Validation error"
 msgid "Amount is invalid."
@@ -252,21 +252,15 @@ msgstr "Данные"
 
 msgctxt "Validation error"
 msgid "Please provide data."
-msgstr "Пожалуйста, предоставьте данные."
+msgstr "Заполните данные."
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "Incorrect data."
 msgctxt "Validation error"
 msgid "Incorrect report."
 msgstr "Данные указаны неверно."
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "Please provide data."
 msgctxt "Validation error"
 msgid "Please provide report."
-msgstr "Пожалуйста, предоставьте данные."
+msgstr "Заполните данные."
 
 msgctxt "Validation error"
 msgid "Invalid JSON format."
@@ -274,7 +268,7 @@ msgstr "Неправильный формат JSON."
 
 msgctxt "Validation error"
 msgid "Please select difficulty."
-msgstr "Пожалуйста, укажите сложность."
+msgstr "Укажите сложность."
 
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
@@ -294,19 +288,19 @@ msgstr "Ответ указан неверно."
 
 msgctxt "Validation error"
 msgid "Please provide paragraph class."
-msgstr "Пожалуйста, введите текст."
+msgstr "Введите текст."
 
 msgctxt "Validation error"
 msgid "Incorrect paragraph class."
-msgstr "Текст указан неверно."
+msgstr "Текст введен неверно."
 
 msgctxt "Validation error"
 msgid "Please provide meta data."
-msgstr "Пожалуйста, предоставьте мета данные."
+msgstr "Предоставьте мета данные."
 
 msgctxt "Validation error"
 msgid "Please select test section."
-msgstr "Пожалуйста, выберите тест."
+msgstr "Выберите тест."
 
 msgctxt "Validation error"
 msgid "Incorrect test section value."
@@ -314,7 +308,7 @@ msgstr "Тест указан неверно."
 
 msgctxt "Validation error"
 msgid "Please select test language."
-msgstr "Пожалуйста, выберите язык тестирования."
+msgstr "Выберите язык тестирования."
 
 msgctxt "Validation error"
 msgid "Incorrect test language value."
@@ -337,6 +331,65 @@ msgid "The relationship cannot be determined from the information given."
 msgstr "Не достаточно информации."
 
 msgctxt "Validation error"
+msgid "Answer types should only be Multichoice with one answer."
+msgstr ""
+"Тип ответа должен быть множественным с выбором одного правильного ответа."
+
+msgctxt "Validation error"
+msgid ""
+"There should be 20 answers of type Multichoice with one answer and 10 "
+"answers of type Multichoice with one or more answers."
+msgstr ""
+"Должно быть 20 ответов множественного типа с выбором одного правильного "
+"ответа и 10 ответов множественного типа с выбором нескольких правильных "
+"ответов."
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s question in taxonomy: %(taxonomy)s."
+msgid_plural "There has to be %(count)s questions in taxonomy: %(taxonomy)s."
+msgstr[0] "Должен быть %(count)s вопрос по типу: %(taxonomy)s."
+msgstr[1] "Должно быть %(count)s вопроса по типу: %(taxonomy)s."
+msgstr[2] "Должно быть %(count)s вопросов по типу: %(taxonomy)s."
+msgstr[3] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s question in topic: %(topic)s."
+msgid_plural "There has to be %(count)s questions in topic: %(topic)s."
+msgstr[0] "Должен быть %(count)s вопрос по теме: %(topic)s."
+msgstr[1] "Должно быть %(count)s вопроса по теме: %(topic)s."
+msgstr[2] "Должно быть %(count)s вопросов по теме: %(topic)s."
+msgstr[3] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s high difficulty question."
+msgid_plural "There has to be %(count)s high difficulty questions."
+msgstr[0] "Должен быть %(count)s вопрос высокого уровня сложности."
+msgstr[1] "Должно быть %(count)s вопроса высокого уровня сложности."
+msgstr[2] "Должно быть %(count)s вопросов высокого уровня сложности."
+msgstr[3] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s normal difficulty question."
+msgid_plural "There has to be %(count)s normal difficulty questions."
+msgstr[0] "Должен быть %(count)s вопрос среднего уровня сложности."
+msgstr[1] "Должно быть %(count)s вопроса среднего уровня сложности."
+msgstr[2] "Должно быть %(count)s вопросов среднего уровня сложности."
+msgstr[3] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s low difficulty question."
+msgid_plural "There has to be %(count)s low difficulty questions."
+msgstr[0] "Должен быть %(count)s вопрос низкого уровня сложности."
+msgstr[1] "Должно быть %(count)s вопроса низкого уровня сложности."
+msgstr[2] "Должно быть %(count)s вопросов низкого уровня сложности."
+msgstr[3] ""
+
+msgctxt "Validation error"
 msgid "Incorrect upload starter data."
 msgstr "Загружаемые данные указаны неверно."
 
@@ -346,11 +399,11 @@ msgstr "Стартер загрузки"
 
 msgctxt "Validation error"
 msgid "Please provide upload starter data."
-msgstr "Пожалуйста, предоставьте загружаемые данные."
+msgstr "Предоставьте загружаемые данные."
 
 msgctxt "Validation error"
 msgid "Please provide file name."
-msgstr "Пожалуйста, укажите название файла."
+msgstr "Укажите название файла."
 
 msgctxt "Validation error"
 msgid "File name is too long."
@@ -358,7 +411,7 @@ msgstr "Название файла слишком длинное."
 
 msgctxt "Validation error"
 msgid "Please provide file size."
-msgstr "Пожалуйста, укажите размер файла."
+msgstr "Укажите размер файла."
 
 msgctxt "Validation error"
 msgid "Incorrect file size value."
@@ -374,7 +427,7 @@ msgstr "Старый пароль"
 
 msgctxt "Validation error"
 msgid "Please enter old password."
-msgstr "Пожалуйста, введите старый пароль."
+msgstr "Введите старый пароль."
 
 msgctxt "Validation error"
 msgid "Incorrect old password."
@@ -582,22 +635,22 @@ msgid "Culture (VI-XVII centuries)"
 msgstr "Культура (VI-XVII вв.)"
 
 msgid "Kazakhstan in the XIII-XVII centuries"
-msgstr "Казахстан в XIII-XVII вв."
+msgstr "Казахстан в XIII-XVII вв"
 
 msgid "Socio-economic position of Kazakhstan in the XIII-XVII centuries"
-msgstr "Социально-экономическое положение Казахстана в XIII-XVII вв."
+msgstr "Социально-экономическое положение Казахстана в XIII-XVII вв"
 
 msgid "Socio-economic development of Kazakhstan in the XVIII-XIX centuries"
-msgstr "Социально-экономическое развитие Казахстана в XVIII-XIX вв."
+msgstr "Социально-экономическое развитие Казахстана в XVIII-XIX вв"
 
 msgid "Socio-political development of Kazakhstan in the XVIII-XIX centuries"
-msgstr "Общественно-политическое развитие Казахстана в XVIII-XIX вв."
+msgstr "Общественно-политическое развитие Казахстана в XVIII-XIX вв"
 
 msgid "Kazakhstan in the first half of XX century"
-msgstr "Казахстан в первой половине XX в."
+msgstr "Казахстан в первой половине XX в"
 
 msgid "Culture of Kazakhstan XVIII-XX centuries"
-msgstr "Культура Казахстана XVIII-XX вв."
+msgstr "Культура Казахстана XVIII-XX вв"
 
 msgid "Kazakhstan in the 50-80-ies. XX century"
 msgstr "Казахстан в 50-80-е гг. XX века"
@@ -612,22 +665,22 @@ msgid "Arithmetic calculations. Transformations of expressions"
 msgstr "Арифметические вычисления. Преобразования выражений"
 
 msgid "Equations. Systems of equations. Formulation of equations"
-msgstr "Уравнения. Системы уравнений. Составление уравнений."
+msgstr "Уравнения. Системы уравнений. Составление уравнений"
 
 msgid "Inequalities. Systems of inequalities"
-msgstr "Неравенства. Системы неравенств."
+msgstr "Неравенства. Системы неравенств"
 
 msgid "Functions. Derivatives. Integral"
-msgstr "Функции. Производные. Интеграл."
+msgstr "Функции. Производные. Интеграл"
 
 msgid "Planimetry"
-msgstr "Планиметрия."
+msgstr "Планиметрия"
 
 msgid "Stereometry"
-msgstr "Стереометрия."
+msgstr "Стереометрия"
 
 msgid "Sequences. Progression"
-msgstr "Последовательности. Прогрессии."
+msgstr "Последовательности. Прогрессии"
 
 msgid "Physics"
 msgstr "Физика"
@@ -705,7 +758,7 @@ msgid "Kazakhstan in the Iron Age"
 msgstr "Казахстан в эпоху железа"
 
 msgid "The states of the Ancient East. Ancient civilization"
-msgstr "Государства Древнего Востока. Античная цивилизация."
+msgstr "Государства Древнего Востока. Античная цивилизация"
 
 msgid ""
 "The Middle Ages (early V-X centuries, the flowering of the XI-XV centuries, "
@@ -777,34 +830,34 @@ msgid "Vocabulary"
 msgstr "Лексика"
 
 msgid "Word formation"
-msgstr ""
+msgstr "Словообразование"
 
 msgid "Punctuation. Stylistics. Culture of speech"
-msgstr ""
+msgstr "Пунктуация. Стилистика. Культура речи"
 
 msgid "Ancient World Literature"
-msgstr ""
+msgstr "Литература древнего мира"
 
 msgid "Oral literature"
-msgstr ""
+msgstr "Устная словесность"
 
 msgid "Poetry of epos"
-msgstr ""
+msgstr "Поэзия эпосов"
 
 msgid "XIX century literature"
-msgstr ""
+msgstr "Литература ХIX века"
 
 msgid "Literature in the first half of 20th century "
-msgstr "Казахстан в первой половине XX в."
+msgstr "Казахстан в первой половине XX в "
 
 msgid "Literature in the Great Patriotic War and later"
-msgstr ""
+msgstr "Литература во время Великой Отечественной войны и позже"
 
 msgid "The theory of literature"
-msgstr ""
+msgstr "Теория литературы"
 
 msgid "Literature in II half of 20th century"
-msgstr ""
+msgstr "Литература во второй половине ХХ века"
 
 msgid "Russian and literature"
 msgstr "Русский язык и литература"
@@ -991,40 +1044,29 @@ msgctxt "Model field"
 msgid "updated at"
 msgstr "обновлено"
 
-#, fuzzy
-#| msgid "Sports"
 msgctxt "Model field"
 msgid "report"
-msgstr "Спорт"
+msgstr "отчет"
 
 msgctxt "Model field"
 msgid "order"
 msgstr "порядок"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "is free?"
 msgctxt "Model field"
 msgid "is finished?"
-msgstr "бесплатный?"
+msgstr "законченный?"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "updated at"
 msgctxt "Model field"
 msgid "quiz started at"
-msgstr "обновлено"
+msgstr "начато в"
 
 msgctxt "Model field"
 msgid "quiz due at"
-msgstr ""
+msgstr "завершится в"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "joined at"
 msgctxt "Model field"
 msgid "quiz ended at"
-msgstr "зарегистрирован"
+msgstr "завершено в"
 
 msgctxt "Model field"
 msgid "discount"
@@ -1036,7 +1078,7 @@ msgstr "завершено"
 
 msgctxt "Model field"
 msgid "item class"
-msgstr "класс предмета"
+msgstr "тип вопроса"
 
 msgctxt "Model field"
 msgid "meta data"
@@ -1044,7 +1086,7 @@ msgstr "мета данные"
 
 msgctxt "Model field"
 msgid "price"
-msgstr "цена"
+msgstr "стоимость"
 
 msgctxt "Model field"
 msgid "payment processor class"
@@ -1064,133 +1106,130 @@ msgstr "Неверное значение суммы."
 
 msgctxt "Item error"
 msgid "User no longer exists."
-msgstr "Пользователь больше нет."
+msgstr "Пользователя больше нет."
 
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Buy Credits"
 msgid "Credits"
-msgstr "Купить Kредиты"
+msgstr "Купить единицы"
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "User is required."
+msgctxt "Item error"
+msgid "NIS Test is required."
+msgstr "Требуется тест ЕНТ."
+
+msgctxt "Item error"
+msgid "Mathematics NIS Test is required."
+msgstr "Требуется тест ЕНТ: Математика."
+
+msgctxt "Item error"
+msgid "Kazakh Language NIS Test is required."
+msgstr "Требуется тест ЕНТ: Французский язык."
+
+msgctxt "Item error"
+msgid "Russian Language NIS Test is required."
+msgstr "Требуется тест ЕНТ: Немецкий язык."
+
+msgctxt "Item error"
+msgid "English Language NIS Test is required."
+msgstr "Требуется тест ЕНТ: Английский язык."
+
+msgctxt "Item error"
+msgid "Quantitative NIS Test is required."
+msgstr "Требуется тест ЕНТ: Математика."
+
 msgctxt "Item error"
 msgid "Test is required."
-msgstr "Требуется пользователь."
+msgstr "Требуется тест."
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "User is required."
 msgctxt "Item error"
 msgid "Student is required."
 msgstr "Требуется пользователь."
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "Incorrect test language value."
 msgctxt "Item error"
 msgid "Correct test language is required."
 msgstr "Язык тестирования указан неверно."
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "This email is already taken."
 msgctxt "Item error"
 msgid "Test has already been taken."
-msgstr "Данный адрес электронной почты уже используется."
+msgstr "Тест уже используется."
 
 msgctxt "Item error"
 msgid "Test has to be approved."
-msgstr ""
+msgstr "Тест должен быть согласован."
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "Incorrect test language value."
 msgctxt "Item error"
 msgid "Incorrect Test language."
 msgstr "Язык тестирования указан неверно."
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "User no longer exists."
 msgctxt "Item error"
 msgid "Test no longer exists."
-msgstr "Пользователь больше нет."
+msgstr "Пользователь больше не существует."
 
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "Could not process the file. Please try another one."
 msgctxt "Item error"
 msgid "Could not checkout. Please try again."
-msgstr "Неверный файл. Попробуйте загрузить другой."
+msgstr "Покупка невозможна. Попробуйте еще раз."
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "User is required."
 msgctxt "Item error"
 msgid "UNT Test is required."
-msgstr "Требуется пользователь."
+msgstr "Требуется тест ЕНТ."
 
 msgctxt "Item error"
 msgid "Mathematical Literacy Compulsory UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Математическая грамотность."
 
 msgctxt "Item error"
 msgid "Reading Literacy Compulsory UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Грамотность чтения."
 
 msgctxt "Item error"
 msgid "History of Kazakhstan Compulsory UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: История Казахстана."
 
 msgctxt "Item error"
 msgid "Mathematics Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Математика."
 
 msgctxt "Item error"
 msgid "Physics Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Физика."
 
 msgctxt "Item error"
 msgid "Chemistry Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Химия."
 
 msgctxt "Item error"
 msgid "Biology Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Биология."
 
 msgctxt "Item error"
 msgid "Geography Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: География."
 
 msgctxt "Item error"
 msgid "History Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: История."
 
 msgctxt "Item error"
 msgid "English Language Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Английский язык."
 
 msgctxt "Item error"
 msgid "French Language Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Французский язык."
 
 msgctxt "Item error"
 msgid "German Language Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Немецкий язык."
 
 msgctxt "Item error"
 msgid "Kazakh Language and Literature Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Казахский язык."
 
 msgctxt "Item error"
 msgid "Russian Language and Literature Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Русский язык."
 
 msgctxt "Item error"
 msgid "Human. Society. Right Profile UNT Test is required."
-msgstr ""
+msgstr "Требуется тест ЕНТ: Человек. Общество. Право."
 
 msgctxt "Model field"
 msgid "duration in seconds"
@@ -1199,10 +1238,6 @@ msgstr "секунд"
 msgctxt "Model field"
 msgid "question count"
 msgstr "номер вопроса"
-
-msgctxt "Model field"
-msgid "question weight by default"
-msgstr "вес вопроса по умолчанию"
 
 msgctxt "Model field"
 msgid "specification"
@@ -1252,19 +1287,13 @@ msgctxt "Model field"
 msgid "is free?"
 msgstr "бесплатный?"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "question count"
 msgctxt "Model field"
 msgid "sales count"
-msgstr "номер вопроса"
+msgstr "количество продаж"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "completed at"
 msgctxt "Model field"
 msgid "completed count"
-msgstr "завершено"
+msgstr "подсчет завершен"
 
 msgctxt "Question difficulty"
 msgid "High"
@@ -1308,7 +1337,7 @@ msgstr "процессор загрузки"
 
 msgctxt "Model field"
 msgid "upload URL"
-msgstr "URL загрузки"
+msgstr "загрузите URL"
 
 msgctxt "Model field"
 msgid "file name"
@@ -1340,7 +1369,7 @@ msgstr "Что-то пошло не так"
 
 msgctxt "Page title"
 msgid "Sorry, but you should not be here"
-msgstr "Извините, но Вас не должно было быть здесь"
+msgstr "Вас не должно было быть здесь"
 
 msgctxt "Page title"
 msgid "Page not found"
@@ -1348,7 +1377,7 @@ msgstr "Страница не найдена"
 
 msgctxt "Page title"
 msgid "Buy Credits"
-msgstr "Купить Kредиты"
+msgstr "Купить единицы"
 
 msgctxt "Form button"
 msgid "Make a payment"
@@ -1726,12 +1755,9 @@ msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Загрузить тест"
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Settings"
 msgctxt "Navigation link"
 msgid "Testing"
-msgstr "Настройки"
+msgstr "Тестирование"
 
 msgctxt "Navigation link"
 msgid "Start testing"
@@ -1761,222 +1787,213 @@ msgctxt "Navigation link"
 msgid "Register"
 msgstr "Регистрация"
 
-#, fuzzy
-#| msgctxt "/developer/tests/"
-#| msgid "Choose test language"
 msgctxt "Page title"
 msgid "Choose the test domain"
-msgstr "Выберите язык теста"
+msgstr "Выберите тест"
 
 #, python-format
 msgctxt "Page title"
 msgid "Select tests for %(domain_name)s"
-msgstr ""
+msgstr "Выберите предметы теста %(domain_name)s"
 
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Something went wrong"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Something went wrong. Please refresh the page."
-msgstr "Что-то пошло не так"
+msgstr "Что-то пошло не так, обновите страницу."
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Refresh the page"
-msgstr ""
+msgstr "Обновите страницу"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Could not checkout"
-msgstr ""
+msgstr "Покупка невозможна"
 
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "Close"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Close"
 msgstr "Закрыть"
 
-#, fuzzy
-#| msgctxt "/developer/tests/"
-#| msgid "Choose test language"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Test language"
-msgstr "Выберите язык теста"
+msgstr "Язык теста"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "subject"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Subjects"
-msgstr "предмет"
+msgstr "Предметы"
 
-#, fuzzy, python-format
-#| msgctxt "Model field"
-#| msgid "question count"
+#, python-format
 msgid "Questions count: %(count)s"
-msgstr "номер вопроса"
+msgstr "Количество вопросов: %(count)s"
 
 #, python-format
 msgid "Duration: %(minutes)s min."
-msgstr ""
+msgstr "Продолжительность: %(minutes)s минут."
 
 #, python-format
 msgctxt "/student/buy-tests/xxxx/"
 msgid "%(price)s cred."
-msgstr ""
+msgstr "%(price)s ед."
 
-#, fuzzy
-#| msgctxt "/super/"
-#| msgid "Total"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Total:"
-msgstr "Всего"
+msgstr "Итого:"
 
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Buy Credits"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy tests"
-msgstr "Купить Kредиты"
+msgstr "Купить тесты"
 
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Buy Credits"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy credits"
-msgstr "Купить Kредиты"
+msgstr "Купить единицы"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
-msgstr ""
+msgstr "Выберите другой предмет теста"
 
 #, python-format
 msgctxt "Page title"
 msgid "%(domain_name)s Testing"
-msgstr ""
+msgstr "%(domain_name)s Тестирование"
 
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "There was an error, please reload the page."
 msgctxt "Exam"
 msgid "There was an error, please reload the page."
-msgstr "Произошла ошибка, пожалуйста, обновите страницу."
+msgstr "Произошла ошибка, обновите страницу."
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Start testing"
 msgctxt "Exam"
 msgid "Start the test"
-msgstr "Начать тестирование"
+msgstr "Начать тест"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "code of the test"
 msgctxt "Exam"
 msgid "Skip the test"
-msgstr "код теста"
+msgstr "Пропустить тест"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "code of the test"
 msgctxt "Exam"
 msgid "End the test"
-msgstr "код теста"
+msgstr "Завершить тест"
 
 msgctxt "Exam"
 msgid "Continue"
-msgstr ""
+msgstr "Продолжить"
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Results"
 msgctxt "Exam"
 msgid "Go to Results"
-msgstr "Результаты тестирования"
+msgstr "Перейти к результатам"
 
 msgctxt "Exam"
 msgid "Buy new tests"
-msgstr ""
+msgstr "Купить новые тесты"
 
 msgctxt "Exam"
 msgid "Reload the page"
-msgstr ""
+msgstr "Обновить страницу"
 
 msgctxt "Exam"
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "Question"
 msgctxt "Exam"
 msgid "Question"
 msgstr "Вопрос"
 
-#, fuzzy
-#| msgctxt "Test content"
-#| msgid "Please choose an answer choice"
 msgctxt "Exam"
 msgid "Please choose an answer choice"
-msgstr "Пожалуйста, выберите один ответ"
+msgstr "Выберите один ответ"
 
-#, fuzzy
-#| msgctxt "Test content"
-#| msgid "Please choose answer choices that apply"
 msgctxt "Exam"
 msgid "Please choose answer choices that apply"
-msgstr "Пожалуйста, выберите варианты ответов"
+msgstr "Выберите варианты ответов"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Previous"
 msgctxt "Exam"
 msgid "Previous"
 msgstr "Предыдущий"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Next"
 msgctxt "Exam"
 msgid "Next"
 msgstr "Следующий"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Are you sure?"
 msgctxt "Exam"
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Yes"
 msgctxt "Exam"
 msgid "Yes"
 msgstr "Да"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "No"
 msgctxt "Exam"
 msgid "No"
 msgstr "Нет"
 
 msgctxt "Exam"
 msgid "Time is up"
-msgstr ""
+msgstr "Время вышло"
 
 msgctxt "Exam"
 msgid "Finished"
-msgstr ""
+msgstr "Завершено"
 
 msgctxt "Exam"
 msgid ""
 "You ran out of allocated time for the test. Please continue to the next test."
-msgstr ""
+msgstr "Время вышло. Пройдите к следующему предмету."
 
 msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
+msgstr "Тест завершен. Перейдите к результатам."
+
+msgctxt "Page title"
+msgid "Test Results"
+msgstr "Результаты тестирования"
+
+msgctxt "Results page"
+msgid "There are no results"
+msgstr "Нет результатов"
+
+msgctxt "Results page"
+msgid ""
+"You have not taken any tests yet. Once you take a test, you will be able to "
+"review the results here."
 msgstr ""
+"Вы не сдавали тесты. После сдачи теста здесь Вы сможете работать над "
+"ошибками."
+
+msgctxt "Results page"
+msgid "Buy new tests"
+msgstr "Купить новые тесты"
+
+#, python-format
+msgctxt "Results page"
+msgid "Test #%(count)s (%(domain_name)s)"
+msgstr "Тест #%(count)s (%(domain_name)s)"
+
+msgctxt "Results page"
+msgid "Not finished"
+msgstr "Не закончен"
+
+msgctxt "Results page"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "Results page"
+msgid "Your score"
+msgstr "Ваш балл"
+
+msgctxt "Results page"
+msgid "Average score of students on bbTest.kz website for the section."
+msgstr "Средний балл тестируемых по данному предмету на bbTest.kz."
+
+#, python-format
+msgctxt "Results page"
+msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+msgstr "Средний балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+
+msgctxt "Results page"
+msgid ""
+"This feature is not yet available. But we are working on it. Please check "
+"back later for updates."
+msgstr "Данная функция временно не доступна. Проверьте позже."
+
+msgctxt "Results page"
+msgid "Review correct answers"
+msgstr "Просмотреть правильные ответы"
 
 msgctxt "/super/"
 msgid "User Statistics"
@@ -1984,7 +2001,7 @@ msgstr "Статистика Пользователей"
 
 msgctxt "/super/"
 msgid "Students"
-msgstr "Студенты"
+msgstr "Участники теста"
 
 msgctxt "/super/"
 msgid "Developers"
@@ -2089,7 +2106,7 @@ msgstr "%(section_name)s (Тест #%(code)s)"
 
 msgctxt "Developer tools"
 msgid "There was an error, please reload the page."
-msgstr "Произошла ошибка, пожалуйста, обновите страницу."
+msgstr "Произошла ошибка, обновите страницу."
 
 msgctxt "Developer tools"
 msgid "Question"
@@ -2244,6 +2261,22 @@ msgid "This action is irreversable!"
 msgstr "Это действие необратимо!"
 
 msgctxt "Developer tools"
+msgid "Please wait for the feedback..."
+msgstr "Дождитесь результата..."
+
+msgctxt "Developer tools"
+msgid "Feedback"
+msgstr "Результат"
+
+msgctxt "Developer tools"
+msgid "The test is correct."
+msgstr "Требуется тест."
+
+msgctxt "Developer tools"
+msgid "There was an error. Please try again."
+msgstr "Произошла ошибка, обновите страницу."
+
+msgctxt "Developer tools"
 msgid "Approve"
 msgstr "Одобрить"
 
@@ -2266,6 +2299,10 @@ msgstr "Изменить на платный"
 msgctxt "Developer tools"
 msgid "Change to Free"
 msgstr "Изменить на бесплатный"
+
+msgctxt "Developer tools"
+msgid "Check"
+msgstr "Проверить"
 
 msgctxt "Developer tools"
 msgid "Exit"
@@ -2306,36 +2343,37 @@ msgstr "Вы создали новый тест."
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
-msgstr ""
+msgstr "%(amount).0f ед."
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "discount"
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Discount"
-msgstr "скидка"
+msgstr "Скидка"
 
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
-msgstr ""
+msgstr "-%(amount).0f ед."
+
+msgctxt "Error alert message"
+msgid "Could not approve the Test. Please check the Test for correctness."
+msgstr "Не удалось одобрить тест. Проверьте правильность теста."
 
 msgctxt "Success alert message"
-msgid "You have approved a Test."
+msgid "You have approved the Test."
 msgstr "Вы одобрили тест."
 
 msgctxt "Success alert message"
-msgid "You have refused a Test."
+msgid "You have refused the Test."
 msgstr "Вы отправили тест назад на доработку."
 
 msgctxt "Success alert message"
-msgid "You have deleted a Test."
+msgid "You have deleted the Test."
 msgstr "Вы удалили тест."
 
 msgctxt "Success alert message"
 msgid "Test is now free."
-msgstr "Тест теперь бесплатный."
+msgstr "Тест изменен на бесплатный."
 
 msgctxt "Success alert message"
 msgid "Test is now paid."
-msgstr "Тест теперь платный."
+msgstr "Тест изменен на платный."

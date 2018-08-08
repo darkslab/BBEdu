@@ -1,18 +1,18 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _, pgettext, get_language
-from django.urls import reverse_lazy
-from django.contrib.messages import success
+from django.urls import reverse_lazy, reverse
+from django.contrib.messages import success, error
 from django.db.models import Prefetch
 from django.http import Http404
 from json import loads
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin
-from .generic import View, TemplateView, FormView
+from .generic import View, TemplateView, FormView, RedirectView
 from .common import UserContextMixin, inject_questions_and_report_into_started_response
 from bbtest.utils.json import tight_dumps
 from bbtest.models.upload import expiring_url
 from bbtest.models import TestQuestion, Test, TestParagraph
 from bbtest.http import TightJsonResponse
-from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestSendForm
+from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestSendForm, TestCheckForm
 from bbtest.jobs.upload import image_paragraph_destroyer
 
 
@@ -46,6 +46,20 @@ def get_test_for_preview_or_404(request, code):
         tests,
         code=code,
     )
+
+def get_test_for_check_or_404(request, code):
+    if request.user.has_perm("bbtest.super"):
+        tests = Test.worked_tests
+    else:
+        tests = request.user.tests(manager="draft_tests")
+    return get_object_or_404(tests, code=code)
+
+
+class TestsView(DeveloperPermissionRequiredMixin, UserContextMixin, RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        if self.request.user.is_superuser:
+            return reverse("bbtest:super_tests")
+        return reverse("bbtest:developer_dashboard")
 
 
 class TestView(DeveloperPermissionRequiredMixin, UserContextMixin, TemplateView):
@@ -109,7 +123,11 @@ class TestQuestionView(DeveloperPermissionRequiredMixin, View):
                 "errors": loads(form.errors.as_json()),
             }, status=400)
 
-        form.save()
+        test_question = form.save()
+        new_weight = TestQuestion.calculate_weight(test_question, test_question.test.section)
+        if new_weight is not None:
+            test_question.weight = new_weight
+            test_question.save()
         return TightJsonResponse({"success": True})
 
     def __question(self, request, code, question_id):
@@ -171,11 +189,16 @@ class ApproveTestView(SuperPermissionRequiredMixin, View):
         if not test.developer.has_perm("bbtest.super") and test.is_draft():
             raise Http404("Superusers cannot approve draft tests of other developers")
 
+        form = TestCheckForm(instance=test, data={})
+        if not form.is_valid():
+            error(request, pgettext("Error alert message", "Could not approve the Test. Please check the Test for correctness."))
+            return redirect("bbtest:build_test_preview", code=test.code)
+
         test.status = Test.STATUS_APPROVED
         test.save()
 
-        success(request, pgettext("Success alert message", "You have approved a Test."))
-        return redirect("bbtest:dashboard")
+        success(request, pgettext("Success alert message", "You have approved the Test."))
+        return redirect("bbtest:super_tests")
 
 
 class RefuseTestView(SuperPermissionRequiredMixin, View):
@@ -187,8 +210,8 @@ class RefuseTestView(SuperPermissionRequiredMixin, View):
         test.status = Test.STATUS_DRAFT
         test.save()
 
-        success(request, pgettext("Success alert message", "You have refused a Test."))
-        return redirect("bbtest:dashboard")
+        success(request, pgettext("Success alert message", "You have refused the Test."))
+        return redirect("bbtest:super_tests")
 
 
 class DeleteTestView(DeveloperPermissionRequiredMixin, View):
@@ -209,8 +232,8 @@ class DeleteTestView(DeveloperPermissionRequiredMixin, View):
         TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
         test.delete()
 
-        success(request, pgettext("Success alert message", "You have deleted a Test."))
-        return redirect("bbtest:dashboard")
+        success(request, pgettext("Success alert message", "You have deleted the Test."))
+        return redirect("bbtest:build_tests")
 
 
 class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
@@ -237,10 +260,23 @@ class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
         return redirect("bbtest:build_test_preview", code=test.code)
 
 
+class CheckTestView(DeveloperPermissionRequiredMixin, View):
+    def post(self, request, code, *args, **kwargs):
+        test = get_test_for_check_or_404(request, code)
+        response = {
+            "success": True,
+        }
+        form = TestCheckForm(instance=test, data=request.POST)
+        if not form.is_valid():
+            response["success"] = False
+            response["errors"] = loads(form.errors.as_json())
+        return TightJsonResponse(response)
+
+
 class TestPreviewView(DeveloperPermissionRequiredMixin, UserContextMixin, FormView):
     template_name = "test/test_preview.html"
     form_class = TestSendForm
-    success_url = reverse_lazy("bbtest:dashboard")
+    success_url = reverse_lazy("bbtest:build_tests")
 
     def get(self, request, *args, **kwargs):
         self._test = get_test_for_preview_or_404(request, self.kwargs["code"])
