@@ -1,7 +1,7 @@
 from django.forms import ModelForm, Form
 from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
-from django.utils.translation import pgettext_lazy, pgettext, ugettext as _
+from django.utils.translation import pgettext_lazy, pgettext, ugettext as _, npgettext_lazy
 from random import randint
 from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset
 from bbtest.forms.fields import JSONField
@@ -757,12 +757,37 @@ class TestCheckForm(ModelForm):
         "nis_answer_class":             pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
         "unt_compulsory_answer_class":  pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
         "unt_profile_answer_class":     pgettext_lazy("Validation error", "There should be 20 answers of type Multichoice with one answer and 10 answers of type Multichoice with one or more answers."),
-        "taxonomy":                     pgettext_lazy("Validation error", "There has to be %(count)s questions in taxonomy: %(taxonomy)s."),
-        "topic":                        pgettext_lazy("Validation error", "There has to be %(count)s questions in topic: %(topic)s."),
+        "taxonomy":                     npgettext_lazy(
+                                            "Validation error",
+                                            "There has to be %(count)s question in taxonomy: %(taxonomy)s.",
+                                            "There has to be %(count)s questions in taxonomy: %(taxonomy)s.",
+                                            "count",
+                                        ),
+        "topic":                        npgettext_lazy(
+                                            "Validation error",
+                                            "There has to be %(count)s question in topic: %(topic)s.",
+                                            "There has to be %(count)s questions in topic: %(topic)s.",
+                                            "count",
+                                        ),
         "difficulty": {
-            TestQuestion.DIFFICULTY_HIGH:    pgettext_lazy("Validation error", "There has to be %(count)s high difficulty questions."),
-            TestQuestion.DIFFICULTY_NORMAL:  pgettext_lazy("Validation error", "There has to be %(count)s normal difficulty questions."),
-            TestQuestion.DIFFICULTY_LOW:     pgettext_lazy("Validation error", "There has to be %(count)s low difficulty questions."),
+            TestQuestion.DIFFICULTY_HIGH:    npgettext_lazy(
+                                                 "Validation error",
+                                                 "There has to be %(count)s high difficulty question.",
+                                                 "There has to be %(count)s high difficulty questions.",
+                                                 "count",
+                                             ),
+            TestQuestion.DIFFICULTY_NORMAL:  npgettext_lazy(
+                                                 "Validation error",
+                                                 "There has to be %(count)s normal difficulty question.",
+                                                 "There has to be %(count)s normal difficulty questions.",
+                                                 "count",
+                                             ),
+            TestQuestion.DIFFICULTY_LOW:     npgettext_lazy(
+                                                 "Validation error",
+                                                 "There has to be %(count)s low difficulty question.",
+                                                 "There has to be %(count)s low difficulty questions.",
+                                                 "count",
+                                             ),
         },
     }
 

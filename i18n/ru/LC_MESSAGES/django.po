@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-03 16:30+0600\n"
-"PO-Revision-Date: 2018-08-03 18:39+0600\n"
+"POT-Creation-Date: 2018-08-08 18:35+0600\n"
+"PO-Revision-Date: 2018-08-08 18:37+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -346,28 +346,48 @@ msgstr ""
 
 #, python-format
 msgctxt "Validation error"
-msgid "There has to be %(count)s questions in taxonomy: %(taxonomy)s."
-msgstr "Должно быть %(count)s вопросов: %(taxonomy)s типа."
+msgid "There has to be %(count)s question in taxonomy: %(taxonomy)s."
+msgid_plural "There has to be %(count)s questions in taxonomy: %(taxonomy)s."
+msgstr[0] "Должен быть %(count)s вопрос по типу: %(taxonomy)s."
+msgstr[1] "Должно быть %(count)s вопроса по типу: %(taxonomy)s."
+msgstr[2] "Должно быть %(count)s вопросов по типу: %(taxonomy)s."
+msgstr[3] ""
 
 #, python-format
 msgctxt "Validation error"
-msgid "There has to be %(count)s questions in topic: %(topic)s."
-msgstr "Должно быть %(count)s вопросов по теме: %(topic)s."
+msgid "There has to be %(count)s question in topic: %(topic)s."
+msgid_plural "There has to be %(count)s questions in topic: %(topic)s."
+msgstr[0] "Должен быть %(count)s вопрос по теме: %(topic)s."
+msgstr[1] "Должно быть %(count)s вопроса по теме: %(topic)s."
+msgstr[2] "Должно быть %(count)s вопросов по теме: %(topic)s."
+msgstr[3] ""
 
 #, python-format
 msgctxt "Validation error"
-msgid "There has to be %(count)s high difficulty questions."
-msgstr "Должно быть %(count)s вопросов высокого уровня сложности."
+msgid "There has to be %(count)s high difficulty question."
+msgid_plural "There has to be %(count)s high difficulty questions."
+msgstr[0] "Должен быть %(count)s вопрос высокого уровня сложности."
+msgstr[1] "Должно быть %(count)s вопроса высокого уровня сложности."
+msgstr[2] "Должно быть %(count)s вопросов высокого уровня сложности."
+msgstr[3] ""
 
 #, python-format
 msgctxt "Validation error"
-msgid "There has to be %(count)s normal difficulty questions."
-msgstr "Должно быть %(count)s вопросов среднего уровня сложности."
+msgid "There has to be %(count)s normal difficulty question."
+msgid_plural "There has to be %(count)s normal difficulty questions."
+msgstr[0] "Должен быть %(count)s вопрос среднего уровня сложности."
+msgstr[1] "Должно быть %(count)s вопроса среднего уровня сложности."
+msgstr[2] "Должно быть %(count)s вопросов среднего уровня сложности."
+msgstr[3] ""
 
 #, python-format
 msgctxt "Validation error"
-msgid "There has to be %(count)s low difficulty questions."
-msgstr "Должно быть %(count)s вопросов низкого уровня сложности."
+msgid "There has to be %(count)s low difficulty question."
+msgid_plural "There has to be %(count)s low difficulty questions."
+msgstr[0] "Должен быть %(count)s вопрос низкого уровня сложности."
+msgstr[1] "Должно быть %(count)s вопроса низкого уровня сложности."
+msgstr[2] "Должно быть %(count)s вопросов низкого уровня сложности."
+msgstr[3] ""
 
 msgctxt "Validation error"
 msgid "Incorrect upload starter data."
@@ -1811,7 +1831,7 @@ msgstr "Продолжительность: %(minutes)s минут."
 #, python-format
 msgctxt "/student/buy-tests/xxxx/"
 msgid "%(price)s cred."
-msgstr "%(price)s единиц."
+msgstr "%(price)s ед."
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Total:"
@@ -2241,6 +2261,22 @@ msgid "This action is irreversable!"
 msgstr "Это действие необратимо!"
 
 msgctxt "Developer tools"
+msgid "Please wait for the feedback..."
+msgstr "Дождитесь результата..."
+
+msgctxt "Developer tools"
+msgid "Feedback"
+msgstr "Результат"
+
+msgctxt "Developer tools"
+msgid "The test is correct."
+msgstr "Требуется тест."
+
+msgctxt "Developer tools"
+msgid "There was an error. Please try again."
+msgstr "Произошла ошибка, обновите страницу."
+
+msgctxt "Developer tools"
 msgid "Approve"
 msgstr "Одобрить"
 
@@ -2263,6 +2299,10 @@ msgstr "Изменить на платный"
 msgctxt "Developer tools"
 msgid "Change to Free"
 msgstr "Изменить на бесплатный"
+
+msgctxt "Developer tools"
+msgid "Check"
+msgstr "Проверить"
 
 msgctxt "Developer tools"
 msgid "Exit"
@@ -2303,7 +2343,7 @@ msgstr "Вы создали новый тест."
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
-msgstr "%(amount).0f единиц."
+msgstr "%(amount).0f ед."
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Discount"
@@ -2312,18 +2352,22 @@ msgstr "Скидка"
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
-msgstr "-%(amount).0f единиц."
+msgstr "-%(amount).0f ед."
+
+msgctxt "Error alert message"
+msgid "Could not approve the Test. Please check the Test for correctness."
+msgstr "Не удалось одобрить тест. Проверьте правильность теста."
 
 msgctxt "Success alert message"
-msgid "You have approved a Test."
+msgid "You have approved the Test."
 msgstr "Вы одобрили тест."
 
 msgctxt "Success alert message"
-msgid "You have refused a Test."
+msgid "You have refused the Test."
 msgstr "Вы отправили тест назад на доработку."
 
 msgctxt "Success alert message"
-msgid "You have deleted a Test."
+msgid "You have deleted the Test."
 msgstr "Вы удалили тест."
 
 msgctxt "Success alert message"

@@ -47,6 +47,13 @@ def get_test_for_preview_or_404(request, code):
         code=code,
     )
 
+def get_test_for_check_or_404(request, code):
+    if request.user.has_perm("bbtest.super"):
+        tests = Test.worked_tests
+    else:
+        tests = request.user.tests(manager="draft_tests")
+    return get_object_or_404(tests, code=code)
+
 
 class TestsView(DeveloperPermissionRequiredMixin, UserContextMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
@@ -251,6 +258,19 @@ class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
         else:
             success(request, pgettext("Success alert message", "Test is now paid."))
         return redirect("bbtest:build_test_preview", code=test.code)
+
+
+class CheckTestView(DeveloperPermissionRequiredMixin, View):
+    def post(self, request, code, *args, **kwargs):
+        test = get_test_for_check_or_404(request, code)
+        response = {
+            "success": True,
+        }
+        form = TestCheckForm(instance=test, data=request.POST)
+        if not form.is_valid():
+            response["success"] = False
+            response["errors"] = loads(form.errors.as_json())
+        return TightJsonResponse(response)
 
 
 class TestPreviewView(DeveloperPermissionRequiredMixin, UserContextMixin, FormView):

@@ -30,6 +30,7 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/DeveloperTestsPageModule.js",
     "js/modules/DeveloperAcknowledgementPageModule.js",
     "js/modules/DeveloperDashboardPageModule.js",
+    "js/modules/DeveloperTestPreviewPageModule.js",
 
     "js/modules/StudentDashboardPageModule.js",
     "js/modules/StudentBuyTestsPageModule.js",

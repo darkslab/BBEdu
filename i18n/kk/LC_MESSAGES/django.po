@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-03 16:30+0600\n"
+"POT-Creation-Date: 2018-08-08 18:35+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -463,28 +463,33 @@ msgstr ""
 
 #, python-format
 msgctxt "Validation error"
-msgid "There has to be %(count)s questions in taxonomy: %(taxonomy)s."
-msgstr ""
+msgid "There has to be %(count)s question in taxonomy: %(taxonomy)s."
+msgid_plural "There has to be %(count)s questions in taxonomy: %(taxonomy)s."
+msgstr[0] ""
 
 #, python-format
 msgctxt "Validation error"
-msgid "There has to be %(count)s questions in topic: %(topic)s."
-msgstr ""
+msgid "There has to be %(count)s question in topic: %(topic)s."
+msgid_plural "There has to be %(count)s questions in topic: %(topic)s."
+msgstr[0] ""
 
 #, python-format
 msgctxt "Validation error"
-msgid "There has to be %(count)s high difficulty questions."
-msgstr ""
+msgid "There has to be %(count)s high difficulty question."
+msgid_plural "There has to be %(count)s high difficulty questions."
+msgstr[0] ""
 
 #, python-format
 msgctxt "Validation error"
-msgid "There has to be %(count)s normal difficulty questions."
-msgstr ""
+msgid "There has to be %(count)s normal difficulty question."
+msgid_plural "There has to be %(count)s normal difficulty questions."
+msgstr[0] ""
 
 #, python-format
 msgctxt "Validation error"
-msgid "There has to be %(count)s low difficulty questions."
-msgstr ""
+msgid "There has to be %(count)s low difficulty question."
+msgid_plural "There has to be %(count)s low difficulty questions."
+msgstr[0] ""
 
 #, fuzzy
 #| msgctxt "Form field error"
@@ -2473,6 +2478,22 @@ msgid "This action is irreversable!"
 msgstr ""
 
 msgctxt "Developer tools"
+msgid "Please wait for the feedback..."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Feedback"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "The test is correct."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "There was an error. Please try again."
+msgstr ""
+
+msgctxt "Developer tools"
 msgid "Approve"
 msgstr ""
 
@@ -2501,6 +2522,10 @@ msgstr "Құпиясөзді өзгерту"
 msgctxt "Developer tools"
 msgid "Change to Free"
 msgstr "Құпиясөзді өзгерту"
+
+msgctxt "Developer tools"
+msgid "Check"
+msgstr ""
 
 msgctxt "Developer tools"
 msgid "Exit"
@@ -2552,16 +2577,20 @@ msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
 msgstr ""
 
-msgctxt "Success alert message"
-msgid "You have approved a Test."
+msgctxt "Error alert message"
+msgid "Could not approve the Test. Please check the Test for correctness."
 msgstr ""
 
 msgctxt "Success alert message"
-msgid "You have refused a Test."
+msgid "You have approved the Test."
 msgstr ""
 
 msgctxt "Success alert message"
-msgid "You have deleted a Test."
+msgid "You have refused the Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have deleted the Test."
 msgstr ""
 
 msgctxt "Success alert message"

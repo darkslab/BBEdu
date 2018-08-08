@@ -51,6 +51,12 @@
                 }
             }
         });
+        moduleDataStack.push({
+            module: "DeveloperTestPreviewPageModule",
+            data: {
+                url: "{% url 'bbtest:build_check_test' code %}"
+            }
+        });
     </script>
     <form method="post" action="{{ request.path }}" data-bb-form>
         {% csrf_token %}
@@ -149,6 +155,35 @@
             </div>
         </div>
     </form>
+    <div class="modal fade" data-check-modal data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" data-check-modal-header="wait">{% trans 'Please wait for the feedback...' context 'Developer tools' %}</h4>
+                    <h4 class="modal-title hidden" data-check-modal-header="done">{% trans 'Feedback' context 'Developer tools' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="bb-min-220" data-check-modal-body="spinner">
+                                <img class="bb-spinner" src="{% static 'img/logo.png' %}">
+                            </div>
+                            <div class="hidden text-danger" data-check-modal-body="feedback"></div>
+                            <div class="hidden" data-check-modal-body="success">
+                                <h4 class="text-success text-center">{% trans 'The test is correct.' context 'Developer tools' %}</h4>
+                            </div>
+                            <div class="hidden" data-check-modal-body="error">
+                                <h4 class="text-danger text-center">{% trans 'There was an error. Please try again.' context 'Developer tools' %}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' context 'Developer tools' %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
     {% url 'bbtest:build_toggle_free_test' code 'true' as make_test_free_url %}
     {% url 'bbtest:build_toggle_free_test' code 'false' as make_test_paid_url %}
     <form method="post" action="{% if test.is_free %}{{ make_test_paid_url }}{% else %}{{ make_test_free_url }}{% endif %}" data-bb-form>
@@ -196,12 +231,16 @@
                         <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-toggle-free-modal]">{% trans 'Change to Free' context 'Developer tools' %}</button>
                     {% endif %}
                 {% endif %}
+                {% if test.is_pending or test.is_draft %}
+                    <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button>
+                {% endif %}
                 <a href="{% url 'bbtest:build_tests' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% else %}
                 {% if test.is_draft %}
                     <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
                     <a href="{% url 'bbtest:build_test' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
+                    <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button>
                 {% endif %}
                 <a href="{% url 'bbtest:build_tests' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% endif %}
