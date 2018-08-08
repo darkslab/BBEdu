@@ -19,6 +19,9 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/ReactModule.js",
 
     "js/modules/PersonalizedTemplateModule.js",
+    "js/modules/ResultRowModule.js",
+    "js/modules/SimpleResultDetailModule.js",
+    "js/modules/BranchedResultDetailModule.js",
 
     "js/modules/SettingsPageModule.js",
     "js/modules/RegisterPageModule.js",
@@ -27,9 +30,11 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/DeveloperTestsPageModule.js",
     "js/modules/DeveloperAcknowledgementPageModule.js",
     "js/modules/DeveloperDashboardPageModule.js",
+    "js/modules/DeveloperTestPreviewPageModule.js",
 
     "js/modules/StudentDashboardPageModule.js",
     "js/modules/StudentBuyTestsPageModule.js",
+    "js/modules/StudentResultsPageModule.js",
 )
 BASE2_PRODUCTION_SOURCE_FILENAMES = (
     "js/react/react.production.min.js",

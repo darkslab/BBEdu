@@ -6,6 +6,7 @@ from django.db.models import (
 from django.utils.translation import pgettext_lazy
 from django.contrib.auth import get_user_model
 from .fields import JSONField
+from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
 
 
 User = get_user_model()
@@ -26,12 +27,11 @@ class TestDomain(Model):
 class TestSection(Model):
     domain  = ForeignKey  ( TestDomain, on_delete=CASCADE, related_name="sections", )
 
-    name             = CharField                  ( pgettext_lazy("Model field", "name"),                       max_length=100,                )
-    duration         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "duration in seconds"),                                       )
-    question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                            )
-    question_weight  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question weight by default"),                                )
-    order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                      db_index=True, )
-    specification    = JSONField                  ( pgettext_lazy("Model field", "specification"),                                             )
+    name             = CharField                  ( pgettext_lazy("Model field", "name"),                max_length=100,                )
+    duration         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "duration in seconds"),                                )
+    question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                     )
+    order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                               db_index=True, )
+    specification    = JSONField                  ( pgettext_lazy("Model field", "specification"),                                      )
 
     class Meta:
         default_permissions = ()
@@ -39,6 +39,24 @@ class TestSection(Model):
 
     def __str__(self):
         return self.name
+
+    def is_nis(self):
+        return self.pk in range(9540, 9545)
+
+    def is_unt_compulsory(self):
+        return self.pk in range(9545, 9548)
+
+    def is_unt_profile(self):
+        return self.pk in range(9548, 9560)
+
+    def fg_color(self):
+        return GOOGLE_COLORS[(self.pk - 9540) % len(GOOGLE_COLORS)]
+
+    def bg_color(self):
+        return GOOGLE_COLORS_BLEACHED[(self.pk - 9540) % len(GOOGLE_COLORS_BLEACHED)]
+
+    def can_measure_topics(self):
+        return self.pk in (9540, 9544, 9547, 9545) or self.pk in range(9548, 9560)
 
 
 class TestTaxonomy(Model):
@@ -171,6 +189,33 @@ class Test(Model):
     def is_archived(self):
         return self.status == self.STATUS_ARCHIVED
 
+    def max_score(self, question_ids=None):
+        score = 0
+        for question in self.questions.all():
+            if question_ids is not None and question.pk not in question_ids:
+                continue
+            score += question.weight
+        return score
+
+    def topic_branches(self):
+        branches = []
+        topics = {}
+        if not self.section.can_measure_topics():
+            return branches
+        for question in self.questions.all():
+            if question.topic_id is None:
+                continue
+            index = topics.get(question.topic_id)
+            if index is None:
+                branches.append({
+                    "topic_id": question.topic_id,
+                    "question_ids": [],
+                })
+                index = len(branches) - 1
+                topics[question.topic_id] = index
+            branches[index]["question_ids"].append(question.pk)
+        return branches
+
 
 class TestQuestion(Model):
     # DIFFICULTY_RESERVED  = 0x0f
@@ -228,6 +273,19 @@ class TestQuestion(Model):
         if self.id:
             return "TestQuestion #%d" % self.id
         return "New TestQuestion"
+
+    @classmethod
+    def calculate_weight(cls, test_question, test_section):
+        if test_section.is_nis():
+            return 10
+        elif test_section.is_unt_compulsory():
+            return 1
+        elif test_section.is_unt_profile():
+            if test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_ONE:
+                return 1
+            elif test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_MULTI:
+                return 2
+        return None
 
 
 class TestParagraph(Model):

@@ -3,7 +3,7 @@
 
 {% block title %}{% trans 'Login' context 'Page title' %}{% endblock %}
 
-{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4{% endblock %}
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3{% endblock %}
 
 {% block content %}
     <script>
@@ -12,7 +12,7 @@
         });
     </script>
     <div class="row">
-        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form method="post" action="{% url 'bbtest:login' %}" class="mt-15" data-bb-form>

@@ -16,7 +16,7 @@
                         questionIds: {{ question_ids|safe }},
                         paragraphsUrl: "{% url 'bbtest:build_test_paragraphs' code %}",
                         attributesUrl: "{% url 'bbtest:build_test_attributes' code %}",
-                        dashboardUrl: "{% url 'bbtest:dashboard' %}",
+                        dashboardUrl: "{% url 'bbtest:build_tests' %}",
                         previewUrl: "{% url 'bbtest:build_test_preview' code %}",
                         uploadStartUrl: "{% url 'bbtest:upload_start' %}",
                         texts: {

@@ -57,7 +57,7 @@
                             {% else %}
                                 <li class="{% block nav_student_buy_tests_class %}{% endblock %}"><a href="{% url 'bbtest:student_buy_test_domains' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Start testing' context 'Navigation link' %}</a></li>
                             {% endif %}
-                            <li class="{% block nav_student_results_class %}{% endblock %}"><a href="javascript:void(0);"><i class="fa fa-fw fa-line-chart"></i> {% trans 'Results' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_student_results_class %}{% endblock %}"><a href="{% url 'bbtest:student_results' %}"><i class="fa fa-fw fa-line-chart"></i> {% trans 'Results' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_student_buy_credits_class %}{% endblock %}"><a href="{% url 'bbtest:buy_credits' %}"><i class="fa fa-fw fa-shopping-cart"></i> {% trans 'Buy Credits' context 'Navigation link' %}</a></li>
                         {% endif %}
                     </ul>

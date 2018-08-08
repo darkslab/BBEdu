@@ -14,7 +14,7 @@ function ColumnChart($container, values, max_value, options) {
     this._options["font-color"] = this._optionValue(options, "font-color", "#444444");
     this._options["padding-right"] = this._optionValue(options, "padding-right", 15);
     this._options["padding-left"] = this._optionValue(options, "padding-left", 15);
-    this._options["round-linecap"] = true;
+    this._options["round-linecap"] = false;
 
     this._values = values;
     this._max_value = max_value;
