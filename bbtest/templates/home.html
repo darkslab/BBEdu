@@ -1,5 +1,5 @@
 {% extends './base_0.html' %}
-{% load static i18n %}
+{% load static i18n permission %}
 
 {% block title_full %}{% blocktrans with dash_code='&mdash;' context 'Home page title' %}bbTest.kz {{ dash_code }} The most powerful and comfortably simple online testing platform{% endblocktrans %}{% endblock %}
 
@@ -68,10 +68,10 @@
                             <h2 class="text-center text-bright text-shadowed mb-23">{% trans 'Start practicing by choosing your test' context 'Home page' %}</h2>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2 mb-10">
-                                    <a href="javascript:void(0);" class="btn btn-primary btn-lg btn-block">NIS</a>
+                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nis.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-lg btn-block">{% trans nis.name %}</a>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-4 mb-10">
-                                    <a href="javascript:void(0);" class="btn btn-primary btn-lg btn-block">UNT</a>
+                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' unt.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-lg btn-block">{% trans unt.name %}</a>
                                 </div>
                             </div>
                         </div>
