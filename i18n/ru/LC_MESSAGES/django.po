@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 18:35+0600\n"
-"PO-Revision-Date: 2018-08-08 18:37+0600\n"
+"POT-Creation-Date: 2018-08-15 07:12+0600\n"
+"PO-Revision-Date: 2018-08-15 07:19+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -1388,56 +1388,6 @@ msgctxt "/buy-credits/"
 msgid "All transactions are handled by %(bank_name)s."
 msgstr "Все транзакции обрабатываются через %(bank_name)s."
 
-#, python-format
-msgctxt "Splash page title"
-msgid "bbTest.kz %(dash_code)s Powerful and simple online testing platform"
-msgstr ""
-"bbTest.kz %(dash_code)s Самая простая и удобная платформа онлайн тестирования"
-
-#, python-format
-msgctxt "Splash page description"
-msgid ""
-"bbTest.kz %(dash_code)s Powerful and simple online testing platform. Coming "
-"soon..."
-msgstr ""
-"bbTest.kz %(dash_code)s Самая простая и удобная платформа онлайн "
-"тестирования. Уже скоро…"
-
-#, python-format
-msgctxt "Splash page content"
-msgid ""
-"%(quote_code)sPowerful and simple online testing platform.%(quote_code)s"
-msgstr ""
-"%(quote_code)sСамая простая и удобная платформа онлайн тестирования."
-"%(quote_code)s"
-
-#, python-format
-msgctxt "Splash page content"
-msgid ""
-"%(quote_code)sThorough testing, productive results, personal approach."
-"%(quote_code)s"
-msgstr ""
-"%(quote_code)sКачественные тесты, расширенные результаты, индивидуальный "
-"подход к каждому.%(quote_code)s"
-
-msgctxt "Splash page content"
-msgid "coming soon..."
-msgstr "уже скоро…"
-
-msgctxt "Splash page content"
-msgid "Leave your email and you will be the first to know when we are live!"
-msgstr ""
-"Оставьте нам свою электронную почту и Вы первым узнаете когда сайт будет "
-"запущен!"
-
-msgctxt "Splash page content"
-msgid "Your Email"
-msgstr "Электронная почта"
-
-msgctxt "Splash page button"
-msgid "Send"
-msgstr "Отправить"
-
 msgctxt "Page title"
 msgid "Login"
 msgstr "Авторизация"
@@ -1730,6 +1680,68 @@ msgctxt "Bottom copyright"
 msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
 msgstr "Сделано с %(heart_icon)s в Казахстане. %(copyright_code)s bbTest.kz"
 
+#, python-format
+msgctxt "Home page title"
+msgid ""
+"bbTest.kz %(dash_code)s The most powerful and comfortably simple online "
+"testing platform"
+msgstr ""
+"bbTest.kz %(dash_code)s Самая простая и удобная платформа онлайн тестирования"
+
+#, python-format
+msgctxt "Page description"
+msgid ""
+"bbTest.kz %(dash_code)s The most powerful and comfortably simple online "
+"testing platform. Quality tests and comprehensive personalized results."
+msgstr ""
+"bbTest.kz %(dash_code)s Самая простая и удобная платформа онлайн "
+"тестирования. Качественные тесты, расширенные результаты, индивидуальный "
+"подход к каждому."
+
+msgctxt "Navigation link"
+msgid "Dashboard"
+msgstr "Личный кабинет"
+
+msgctxt "Navigation link"
+msgid "Settings"
+msgstr "Настройки"
+
+msgctxt "Navigation link"
+msgid "Logout"
+msgstr "Выйти"
+
+msgctxt "Navigation link"
+msgid "Login"
+msgstr "Войти"
+
+msgctxt "Navigation link"
+msgid "Register"
+msgstr "Регистрация"
+
+msgctxt "Home page"
+msgid "Start practicing by choosing your test"
+msgstr ""
+
+msgctxt "Home page"
+msgid ""
+"The most powerful and comfortably simple online testing platform. Quality "
+"tests and comprehensive personalized results."
+msgstr ""
+"Самая простая и удобная платформа онлайн тестирования. Качественные тесты, "
+"расширенные результаты, индивидуальный подход к каждому."
+
+msgctxt "Home page"
+msgid "Connect with us"
+msgstr ""
+
+msgctxt "Footer navigation link"
+msgid "Terms"
+msgstr ""
+
+msgctxt "Footer navigation link"
+msgid "Contact Us"
+msgstr ""
+
 msgctxt "Badge label under avatar"
 msgid "Administrator"
 msgstr "Администратор"
@@ -1742,10 +1754,6 @@ msgstr "Разработчик"
 msgctxt "Total credits"
 msgid "Balance: %(balance)s cred."
 msgstr "Счёт: %(balance)s ед."
-
-msgctxt "Navigation link"
-msgid "Dashboard"
-msgstr "Личный кабинет"
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -1770,22 +1778,6 @@ msgstr "Результаты тестирования"
 msgctxt "Navigation link"
 msgid "Buy Credits"
 msgstr "Купить Kредиты"
-
-msgctxt "Navigation link"
-msgid "Settings"
-msgstr "Настройки"
-
-msgctxt "Navigation link"
-msgid "Logout"
-msgstr "Выйти"
-
-msgctxt "Navigation link"
-msgid "Login"
-msgstr "Войти"
-
-msgctxt "Navigation link"
-msgid "Register"
-msgstr "Регистрация"
 
 msgctxt "Page title"
 msgid "Choose the test domain"

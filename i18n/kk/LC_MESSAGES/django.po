@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 18:35+0600\n"
+"POT-Creation-Date: 2018-08-15 07:12+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1563,53 +1563,6 @@ msgctxt "/buy-credits/"
 msgid "All transactions are handled by %(bank_name)s."
 msgstr ""
 
-#, python-format
-msgctxt "Splash page title"
-msgid "bbTest.kz %(dash_code)s Powerful and simple online testing platform"
-msgstr ""
-
-#, python-format
-msgctxt "Splash page description"
-msgid ""
-"bbTest.kz %(dash_code)s Powerful and simple online testing platform. Coming "
-"soon..."
-msgstr ""
-
-#, python-format
-msgctxt "Splash page content"
-msgid ""
-"%(quote_code)sPowerful and simple online testing platform.%(quote_code)s"
-msgstr ""
-
-#, python-format
-msgctxt "Splash page content"
-msgid ""
-"%(quote_code)sThorough testing, productive results, personal approach."
-"%(quote_code)s"
-msgstr ""
-
-msgctxt "Splash page content"
-msgid "coming soon..."
-msgstr ""
-
-msgctxt "Splash page content"
-msgid "Leave your email and you will be the first to know when we are live!"
-msgstr ""
-
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Email"
-msgctxt "Splash page content"
-msgid "Your Email"
-msgstr "Электрондық пошта"
-
-#, fuzzy
-#| msgctxt "Form button"
-#| msgid "Send"
-msgctxt "Splash page button"
-msgid "Send"
-msgstr "Жіберу"
-
 msgctxt "Page title"
 msgid "Login"
 msgstr "Авторизация"
@@ -1901,6 +1854,62 @@ msgctxt "Bottom copyright"
 msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
 msgstr "Қазақстанда %(heart_icon)s-пен жасалған. %(copyright_code)s bbTest.kz"
 
+#, python-format
+msgctxt "Home page title"
+msgid ""
+"bbTest.kz %(dash_code)s The most powerful and comfortably simple online "
+"testing platform"
+msgstr ""
+
+#, python-format
+msgctxt "Page description"
+msgid ""
+"bbTest.kz %(dash_code)s The most powerful and comfortably simple online "
+"testing platform. Quality tests and comprehensive personalized results."
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Dashboard"
+msgstr "Жеке кабинет"
+
+msgctxt "Navigation link"
+msgid "Settings"
+msgstr "Құрылғылар"
+
+msgctxt "Navigation link"
+msgid "Logout"
+msgstr "Шығу"
+
+msgctxt "Navigation link"
+msgid "Login"
+msgstr "Кіру"
+
+msgctxt "Navigation link"
+msgid "Register"
+msgstr "Тіркелу"
+
+msgctxt "Home page"
+msgid "Start practicing by choosing your test"
+msgstr ""
+
+msgctxt "Home page"
+msgid ""
+"The most powerful and comfortably simple online testing platform. Quality "
+"tests and comprehensive personalized results."
+msgstr ""
+
+msgctxt "Home page"
+msgid "Connect with us"
+msgstr ""
+
+msgctxt "Footer navigation link"
+msgid "Terms"
+msgstr ""
+
+msgctxt "Footer navigation link"
+msgid "Contact Us"
+msgstr ""
+
 msgctxt "Badge label under avatar"
 msgid "Administrator"
 msgstr "Администратор"
@@ -1913,10 +1922,6 @@ msgstr "Құрастырушы"
 msgctxt "Total credits"
 msgid "Balance: %(balance)s cred."
 msgstr ""
-
-msgctxt "Navigation link"
-msgid "Dashboard"
-msgstr "Жеке кабинет"
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -1947,22 +1952,6 @@ msgstr "Тестілеудің нәтижелері"
 msgctxt "Navigation link"
 msgid "Buy Credits"
 msgstr ""
-
-msgctxt "Navigation link"
-msgid "Settings"
-msgstr "Құрылғылар"
-
-msgctxt "Navigation link"
-msgid "Logout"
-msgstr "Шығу"
-
-msgctxt "Navigation link"
-msgid "Login"
-msgstr "Кіру"
-
-msgctxt "Navigation link"
-msgid "Register"
-msgstr "Тіркелу"
 
 msgctxt "Page title"
 msgid "Choose the test domain"
