@@ -151,3 +151,11 @@ class ProcessCreditsQazkomView(View):
             raise PaymentProcessorError(str(error))
 
         return HttpResponse("0", content_type="text/plain")
+
+
+class TermsView(TemplateView):
+    template_name = "base/terms.html"
+
+
+class ContactUsView(FormView):
+    template_name = "base/contact_us.html"
