@@ -13,6 +13,7 @@ from bbtest.views.generic import FormView, RedirectView, TemplateView, View
 from bbtest.views.common import UserContextMixin
 from bbtest.forms.user import SettingsForm
 from bbtest.forms.base import BuyCreditsForm
+from bbtest.forms.message import MessageForm
 from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError
 from bbtest.models.shopping.handle import CartHandleAccessMixin, CartHandle
 from bbtest.models.shopping.items import CreditItem
@@ -156,3 +157,10 @@ class TermsView(TemplateView):
 
 class ContactUsView(FormView):
     template_name = "base/contact_us.html"
+    form_class = MessageForm
+    success_url = reverse_lazy("bbtest:contact_us")
+
+    def form_valid(self, form):
+        # DARK_TODO  send success message
+        form.save()
+        return super().form_valid(form)
