@@ -28,7 +28,7 @@ class MessageForm(ModelForm):
         self.fields["message"].widget.attrs["placeholder"] = pgettext("/contact_us/", "Hello...")
         self.fields["message"].widget.attrs["rows"] = "6"
 
-    def save(self, request, commit=True):
+    def save(self, commit=True):
         message = super().save(commit=False)
 
         if commit:
