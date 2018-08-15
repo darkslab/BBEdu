@@ -1,6 +1,6 @@
 # Russian language translations for BBEdu project.
 # Copyright (C) 2017 bbTest.kz
-# Darkhan Baimyrza <darkhan@baimyrza.com>
+# Darkhan Baimyrza <darkhan@bbtest.kz>
 #
 msgid ""
 msgstr ""
@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-15 07:12+0600\n"
 "PO-Revision-Date: 2018-08-15 07:19+0600\n"
-"Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
+"Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
