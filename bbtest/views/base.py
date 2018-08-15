@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from django.utils.translation import get_language
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.contrib.messages import success
+from django.utils.translation import pgettext
 from urllib.parse import urlencode
 from decimal import Decimal
 from bbtest.auth.mixins import LoginRequiredMixin
@@ -161,6 +163,6 @@ class ContactUsView(FormView):
     success_url = reverse_lazy("bbtest:contact_us")
 
     def form_valid(self, form):
-        # DARK_TODO  send success message
         form.save()
+        success(self.request, pgettext("Success alert message", "Thank you. We have received your message and we will get back to you as soon as possible."))
         return super().form_valid(form)
