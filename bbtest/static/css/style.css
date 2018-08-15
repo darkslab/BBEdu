@@ -127,7 +127,7 @@ html {
 .bb-body-public {
     position: relative;
     min-height: 100%;
-    padding-bottom: 36px;
+    padding-bottom: 96px;
 }
 
 .bb-body-personalized {
@@ -142,6 +142,23 @@ html {
     line-height: 36px;
     font-size: 90%;
     color: rgba(0, 0, 0, 0.3);
+}
+
+.bb-footer {
+    position: absolute;
+    right: 0px;
+    bottom: 36px;
+    left: 0px;
+    line-height: 16px;
+}
+
+.bb-footer a {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.bb-footer a:hover,
+.bb-footer a:focus {
+    text-decoration: none;
 }
 
 .bb-loading * {
@@ -1004,4 +1021,83 @@ html {
 
 .bb-totals-hanging {
     position: absolute;
+}
+
+.bb-home-section-0 {
+    background-image: url('/static/img/home_0.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.bb-home-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.bb-home-section-narrow {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.bb-home-section-0 > div {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.bb-home-section-0 .navbar {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.bb-home-section-0 .bb-home-section-0-info {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding-bottom: 13px;
+}
+
+.bb-home-section-1 {
+    background-color: rgba(10, 60, 100, 1);
+}
+
+.bb-home-section-1 .bb-home-section-1-logo {
+    max-width: 300px;
+}
+
+.bb-home-section-3 {
+    background-color: rgba(40, 100, 90, 1);
+}
+
+.bb-home-social {
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: block;
+    line-height: 48px;
+}
+
+.bb-home-social:hover,
+.bb-home-social:focus {
+    color: #fff;
+}
+
+.bb-home-social.bb-home-social-facebook:hover,
+.bb-home-social.bb-home-social-facebook:focus {
+    background-color: #3b5998;
+    color: #fff;
+    text-shadow: none;
+}
+.bb-home-social.bb-home-social-instagram:hover,
+.bb-home-social.bb-home-social-instagram:focus {
+    background-color: #e23566;
+    color: #fff;
+    text-shadow: none;
+}
+.bb-home-social.bb-home-social-twitter:hover,
+.bb-home-social.bb-home-social-twitter:focus {
+    background-color: #1da1f2;
+    color: #fff;
+    text-shadow: none;
 }

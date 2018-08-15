@@ -22,7 +22,7 @@ from bbtest.models import Cart
 
 
 class HomeView(FormView):
-    template_name = "base/home.html"
+    template_name = "home.html"
     form_class = SubscriptionForm
 
     def form_valid(self, form):
