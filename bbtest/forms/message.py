@@ -32,7 +32,7 @@ class MessageForm(ModelForm):
         message = super().save(commit=False)
 
         if commit:
-            send_mail()
             message.save()
+            send_mail(message)
 
         return message

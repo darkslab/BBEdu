@@ -1,0 +1,15 @@
+{% extends '../email_base_0.html' %}
+
+{% block content %}
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="left" valign="top">
+                <strong>Name</strong>: {{ name }}<br />
+                <strong>Phone</strong>: {{ phone }}<br />
+                <strong>Email</strong>: {{ email }}<br />
+                <strong>Message</strong>:<br />
+                <pre>{{ message }}</pre>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
