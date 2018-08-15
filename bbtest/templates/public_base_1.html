@@ -1,7 +1,7 @@
 {% extends './base_0.html' %}
 {% load static i18n %}
 
-{% block _d0_body_class %}bb-body-public{% endblock %}
+{% block _d0_body_class %}bb-body-public {% block extended_footer %}bb-body-public-extended{% endblock %}{% endblock %}
 
 {% block _d0_content %}
     <div class="container-fluid">
@@ -73,7 +73,7 @@
             </div>
         {% endif %}
         <div class="row">
-            <div class="container mb-23">
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1">
                         {% block header %}
@@ -100,6 +100,7 @@
 
 {% comment %}
 
+    extended_footer
     header
       header_class
       title

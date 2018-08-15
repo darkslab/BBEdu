@@ -1,6 +1,8 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n static %}
 
+{% block extended_footer %}{% endblock %}
+
 {% block title %}{% trans test_domain.name as domain_name %}{% blocktrans context 'Page title' %}Select tests for {{ domain_name }}{% endblocktrans %}{% endblock %}
 
 {% block nav_student_buy_tests_class %}active{% endblock %}

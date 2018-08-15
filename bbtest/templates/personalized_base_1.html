@@ -113,7 +113,7 @@
                     </nav>
                 </div>
                 <div class="row">
-                    <div class="container bb-content">
+                    <div class="container bb-content {% block extended_footer %}bb-content-extended{% endblock %}">
                         {% if messages %}
                             {% for message in messages %}
                                 <div class="row">
@@ -161,6 +161,7 @@
 
 {% comment %}
 
+    extended_footer
     header
       header_class
       title

@@ -127,6 +127,10 @@ html {
 .bb-body-public {
     position: relative;
     min-height: 100%;
+    padding-bottom: 73px;
+}
+
+.bb-body-public-extended {
     padding-bottom: 96px;
 }
 
@@ -402,9 +406,13 @@ html {
 }
 
 .bb-content {
-    padding-bottom: 96px;
+    padding-bottom: 73px;
     width: auto;
     max-width: 970px;
+}
+
+.bb-content-extended {
+    padding-bottom: 96px;
 }
 
 .bb-copyright-personalized {

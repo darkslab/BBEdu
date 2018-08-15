@@ -1,0 +1,16 @@
+{% extends '../public_base_1.html' %}
+{% load i18n %}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'Terms of Service' context 'Page title' %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">{% lorem 32 p random %}</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
