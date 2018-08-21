@@ -165,6 +165,18 @@ html {
     text-decoration: none;
 }
 
+.bb-footer-personalized {
+    -webkit-transition: left .3s ease-in-out;
+         -o-transition: left .3s ease-in-out;
+            transition: left .3s ease-in-out;
+}
+
+@media (min-width: 1200px) {
+    .bb-footer-personalized {
+        left: -220px;
+    }
+}
+
 .bb-loading * {
     cursor: progress !important;
 }
