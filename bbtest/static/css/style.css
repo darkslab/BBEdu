@@ -54,6 +54,10 @@
 .pr-30   { padding-right:    30px !important; }
 .pb-30   { padding-bottom:   30px !important; }
 .pl-30   { padding-left:     30px !important; }
+.pt-45   { padding-top:      45px !important; }
+.pr-45   { padding-right:    45px !important; }
+.pb-45   { padding-bottom:   45px !important; }
+.pl-45   { padding-left:     45px !important; }
 .text-normal {
     line-height: normal;
     letter-spacing: normal;
