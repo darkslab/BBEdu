@@ -558,14 +558,14 @@ html {
     background-color: #cb2a5a;
 }
 
-.btn-twitter {
-    background-color: #1da1f2;
+.btn-vk {
+    background-color: #4680c2;
 }
 
-.btn-twitter:hover,
-.btn-twitter:focus,
-.btn-twitter:active:hover {
-    background-color: #1d8ed9;
+.btn-vk:hover,
+.btn-vk:focus,
+.btn-vk:active:hover {
+    background-color: #4270ab;
 }
 
 .bb-accordion-panel-group .panel {
@@ -697,9 +697,9 @@ html {
     color: #e23566;
 }
 
-.bb-social-icon.bb-social-icon-twitter:hover,
-.bb-social-icon.bb-social-icon-twitter:focus {
-    color: #1da1f2;
+.bb-social-icon.bb-social-icon-vk:hover,
+.bb-social-icon.bb-social-icon-vk:focus {
+    color: #4680c2;
 }
 
 .list-group-item .bb-list-group-heading-active {
@@ -1115,9 +1115,9 @@ html {
     color: #fff;
     text-shadow: none;
 }
-.bb-home-social.bb-home-social-twitter:hover,
-.bb-home-social.bb-home-social-twitter:focus {
-    background-color: #1da1f2;
+.bb-home-social.bb-home-social-vk:hover,
+.bb-home-social.bb-home-social-vk:focus {
+    background-color: #4680c2;
     color: #fff;
     text-shadow: none;
 }
