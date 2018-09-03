@@ -315,9 +315,9 @@ ADMINS = [
 EMAIL_SUBJECT_PREFIX = ""
 DEFAULT_FROM_EMAIL = "bbTest.kz <no-reply@bbtest.kz>"
 SERVER_EMAIL = "bbTest.kz ERROR <errors@bbtest.kz>"
-if DEBUG:
+if SECRETS["LOCAL_EMAIL_FORCED"]:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-    EMAIL_HOST = "127.0.0.1"
+    EMAIL_HOST = SECRETS["LOCAL_EMAIL_HOST"]
     EMAIL_PORT = 1025
 else:
     EMAIL_BACKEND = "bbtest.mail.backends.async.EmailBackend"
