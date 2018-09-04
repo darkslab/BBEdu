@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-15 07:12+0600\n"
+"POT-Creation-Date: 2018-09-04 10:47+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -358,6 +358,31 @@ msgstr "Тегіңізді енгізіңіз."
 
 msgctxt "Validation error"
 msgid "Invalid JSON format."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Last name is too long."
+msgctxt "Validation error"
+msgid "Name is too long."
+msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Last name is too long."
+msgctxt "Validation error"
+msgid "Phone is too long."
+msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter email."
+msgctxt "Validation error"
+msgid "Please enter the message."
+msgstr "Электрондық поштаңызды енгізіңіз."
+
+msgctxt "/contact_us/"
+msgid "Hello..."
 msgstr ""
 
 msgctxt "Validation error"
@@ -1166,6 +1191,14 @@ msgid "JSON"
 msgstr ""
 
 msgctxt "Model field"
+msgid "phone"
+msgstr ""
+
+msgctxt "Model field"
+msgid "message"
+msgstr ""
+
+msgctxt "Model field"
 msgid "lock version"
 msgstr ""
 
@@ -1564,6 +1597,14 @@ msgid "All transactions are handled by %(bank_name)s."
 msgstr ""
 
 msgctxt "Page title"
+msgid "Contact Us"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Send"
+msgstr "Жіберу"
+
+msgctxt "Page title"
 msgid "Login"
 msgstr "Авторизация"
 
@@ -1592,10 +1633,6 @@ msgid "Please provide your email to get a reset link"
 msgstr ""
 "Құпиясөзді өзгерту бойынша сілтемені алу үшін электрондық поштаңызды "
 "енгізіңіз"
-
-msgctxt "Form button"
-msgid "Send"
-msgstr "Жіберу"
 
 msgctxt "Form link"
 msgid "Go back to Login"
@@ -1662,6 +1699,10 @@ msgstr "Құпиясөзді өзгерту"
 msgctxt "Form button"
 msgid "Save"
 msgstr "Сақтау"
+
+msgctxt "Page title"
+msgid "Terms of Service"
+msgstr ""
 
 msgctxt "Page title"
 msgid "Choose your Developer Plan"
@@ -1889,7 +1930,7 @@ msgid "Register"
 msgstr "Тіркелу"
 
 msgctxt "Home page"
-msgid "Start practicing by choosing your test"
+msgid "Start practicing to the test right now!"
 msgstr ""
 
 msgctxt "Home page"
@@ -2522,6 +2563,12 @@ msgstr ""
 
 msgctxt "Developer tools"
 msgid "Send for Approval"
+msgstr ""
+
+msgctxt "Success alert message"
+msgid ""
+"Thank you. We have received your message and we will get back to you as soon "
+"as possible."
 msgstr ""
 
 msgctxt "/developer/tests/"

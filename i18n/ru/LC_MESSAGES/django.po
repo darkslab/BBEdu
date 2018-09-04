@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-15 07:12+0600\n"
-"PO-Revision-Date: 2018-08-15 07:19+0600\n"
+"POT-Creation-Date: 2018-09-04 10:47+0600\n"
+"PO-Revision-Date: 2018-09-03 22:01-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -265,6 +265,22 @@ msgstr "Заполните данные."
 msgctxt "Validation error"
 msgid "Invalid JSON format."
 msgstr "Неправильный формат JSON."
+
+msgctxt "Validation error"
+msgid "Name is too long."
+msgstr "Слишком длинное имя."
+
+msgctxt "Validation error"
+msgid "Phone is too long."
+msgstr "Слишком длинный номер телефона."
+
+msgctxt "Validation error"
+msgid "Please enter the message."
+msgstr "Введите сообщение."
+
+msgctxt "/contact_us/"
+msgid "Hello..."
+msgstr "Здравствуйте..."
 
 msgctxt "Validation error"
 msgid "Please select difficulty."
@@ -1033,6 +1049,14 @@ msgid "JSON"
 msgstr "JSON"
 
 msgctxt "Model field"
+msgid "phone"
+msgstr "телефон"
+
+msgctxt "Model field"
+msgid "message"
+msgstr "сообщение"
+
+msgctxt "Model field"
 msgid "lock version"
 msgstr "версия блокировки"
 
@@ -1389,6 +1413,14 @@ msgid "All transactions are handled by %(bank_name)s."
 msgstr "Все транзакции обрабатываются через %(bank_name)s."
 
 msgctxt "Page title"
+msgid "Contact Us"
+msgstr "Обратная связь"
+
+msgctxt "Form button"
+msgid "Send"
+msgstr "Отправить"
+
+msgctxt "Page title"
 msgid "Login"
 msgstr "Авторизация"
 
@@ -1417,10 +1449,6 @@ msgid "Please provide your email to get a reset link"
 msgstr ""
 "Для получения ссылки на сброс пароля, пожалуйста введите адрес электронной "
 "почты"
-
-msgctxt "Form button"
-msgid "Send"
-msgstr "Отправить"
 
 msgctxt "Form link"
 msgid "Go back to Login"
@@ -1487,6 +1515,10 @@ msgstr "Изменить пароль"
 msgctxt "Form button"
 msgid "Save"
 msgstr "Сохранить"
+
+msgctxt "Page title"
+msgid "Terms of Service"
+msgstr "Пользовательское соглашение"
 
 msgctxt "Page title"
 msgid "Choose your Developer Plan"
@@ -1719,8 +1751,8 @@ msgid "Register"
 msgstr "Регистрация"
 
 msgctxt "Home page"
-msgid "Start practicing by choosing your test"
-msgstr ""
+msgid "Start practicing to the test right now!"
+msgstr "Начни готовиться к тесту прямо сейчас!"
 
 msgctxt "Home page"
 msgid ""
@@ -1732,15 +1764,15 @@ msgstr ""
 
 msgctxt "Home page"
 msgid "Connect with us"
-msgstr ""
+msgstr "Мы в социальных  сетях"
 
 msgctxt "Footer navigation link"
 msgid "Terms"
-msgstr ""
+msgstr "Пользовательское соглашение"
 
 msgctxt "Footer navigation link"
 msgid "Contact Us"
-msgstr ""
+msgstr "Обратная связь"
 
 msgctxt "Badge label under avatar"
 msgid "Administrator"
@@ -2303,6 +2335,12 @@ msgstr "Выйти"
 msgctxt "Developer tools"
 msgid "Send for Approval"
 msgstr "Отправить на oдобрение"
+
+msgctxt "Success alert message"
+msgid ""
+"Thank you. We have received your message and we will get back to you as soon "
+"as possible."
+msgstr "Спасибо. Мы получили ваше сообщение, и мы свяжемся с вами."
 
 msgctxt "/developer/tests/"
 msgid "Choose test language"
