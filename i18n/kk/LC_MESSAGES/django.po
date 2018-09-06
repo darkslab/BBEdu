@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-04 11:20+0600\n"
+"POT-Creation-Date: 2018-09-07 05:41+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1898,15 +1898,15 @@ msgstr "Қазақстанда %(heart_icon)s-пен жасалған. %(copyrig
 #, python-format
 msgctxt "Home page title"
 msgid ""
-"bbTest.kz %(dash_code)s The most powerful and comfortably simple online "
-"testing platform"
+"bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
+"Effective."
 msgstr ""
 
 #, python-format
 msgctxt "Page description"
 msgid ""
-"bbTest.kz %(dash_code)s The most powerful and comfortably simple online "
-"testing platform. Quality tests and comprehensive personalized results."
+"bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
+"Effective."
 msgstr ""
 
 msgctxt "Navigation link"
@@ -1934,9 +1934,15 @@ msgid "Start practicing to the test right now!"
 msgstr ""
 
 msgctxt "Home page"
-msgid ""
-"The most powerful and comfortably simple online testing platform. Quality "
-"tests and comprehensive personalized results."
+msgid "We are working on other tests..."
+msgstr ""
+
+msgctxt "Home page"
+msgid "Online testing platform."
+msgstr ""
+
+msgctxt "Home page"
+msgid "Thorough. Convenient. Effective."
 msgstr ""
 
 msgctxt "Home page"
