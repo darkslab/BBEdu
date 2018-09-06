@@ -161,7 +161,7 @@ html {
 }
 
 .bb-footer a {
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .bb-footer a:hover,
@@ -1064,7 +1064,7 @@ html {
 }
 
 .bb-home-section-0 > div {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(60, 60, 0, 0.3);
 }
 
 .bb-home-section-0 .navbar {
@@ -1072,9 +1072,17 @@ html {
 }
 
 .bb-home-section-0 .bb-home-section-0-info {
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     padding-bottom: 13px;
+}
+
+@media (min-width: 768px) {
+    .bb-home-section-0 .bb-home-section-0-info {
+        margin-top: 160px;
+        margin-bottom: 160px;
+        padding-bottom: 13px;
+    }
 }
 
 .bb-home-section-1 {

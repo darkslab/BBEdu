@@ -3,6 +3,7 @@ function HomePageModule(data) {
     this._windowActionTimer = null;
     this._chartsAreCreated = false;
     this._progressChartIndex = 0;
+    this._scrollThreshold = 300;
 
     this._boundWindowScroll = this._windowScroll.bind(this);
     this._boundWindowScrollDone = this._windowScrollDone.bind(this);
@@ -21,8 +22,8 @@ function HomePageModule(data) {
         "duration": 2000,
         "chain-duration": 0,
         "activate-duration": 150,
-        "hole-radius": "30%",
-        "active-radius": "15%",
+        "hole-radius": "20%",
+        "active-radius": "10%",
         "font-size": 18,
         "font-weight": "bold",
         "font-color": "#fff"
@@ -79,7 +80,7 @@ function HomePageModule(data) {
 
     $(window).on("scroll", this._boundWindowScroll);
 
-    if ($(window).width() < 768 || $(window).scrollTop() >= 600) {
+    if ($(window).width() < 768 || $(window).scrollTop() >= this._scrollThreshold) {
         this._createCharts();
     }
 
@@ -108,7 +109,7 @@ HomePageModule.prototype._windowScrollDone = function() {
     if ($(window).width() < 768) {
         return;
     }
-    if ($(window).scrollTop() >= 600) {
+    if ($(window).scrollTop() >= this._scrollThreshold) {
         this._createCharts();
     }
 }
