@@ -26,7 +26,8 @@ function HomePageModule(data) {
         "active-radius": "10%",
         "font-size": 18,
         "font-weight": "bold",
-        "font-color": "#fff"
+        "font-color": "#fff",
+        "percentage": true
     });
     this._progressCharts = [];
     this._progressCharts.push(new ColumnChart($(data.progress_chart_selector), [ 30, 25, 35, 40, 20, 25, 30, 35, 45, 50 ], 60, {
