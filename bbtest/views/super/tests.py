@@ -18,5 +18,9 @@ class TestsView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView):
             kwargs["tests"] = paginator.page(1)
         except EmptyPage:
             kwargs["tests"] = paginator.page(paginator.num_pages)
+        for test in kwargs["tests"]:
+            test.display_language = ""
+            if test.language != Test.LANGUAGE_XX:
+                test.display_language = [ test_language[1] for test_language in Test.LANGUAGES if test_language[0] == test.language ].pop()
 
         return super().get_context_data(**kwargs)

@@ -70,6 +70,10 @@ class TestView(DeveloperPermissionRequiredMixin, UserContextMixin, TemplateView)
 
         kwargs["code"] = self.kwargs["code"]
         kwargs["section_name"] = _(test.section.name)
+        kwargs["domain_name"] = _(test.section.domain.name)
+        kwargs["language"] = None
+        if test.language != Test.LANGUAGE_XX:
+            kwargs["language"] = [ test_language[1] for test_language in Test.LANGUAGES if test_language[0] == test.language ].pop()
         kwargs["specification"] = test.section.specification[test.language][get_language()]
         question_ids = []
         for data in test.questions.values("id").order_by("order"):
@@ -292,6 +296,10 @@ class TestPreviewView(DeveloperPermissionRequiredMixin, UserContextMixin, FormVi
         kwargs["test"] = self._test
         kwargs["code"] = self.kwargs["code"]
         kwargs["section_name"] = _(self._test.section.name)
+        kwargs["domain_name"] = _(self._test.section.domain.name)
+        kwargs["language"] = None
+        if self._test.language != Test.LANGUAGE_XX:
+            kwargs["language"] = [ test_language[1] for test_language in Test.LANGUAGES if test_language[0] == self._test.language ].pop()
         return super().get_context_data(**kwargs)
 
     def get_form_kwargs(self):

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-09 02:28+0600\n"
-"PO-Revision-Date: 2018-09-08 13:31-0700\n"
+"POT-Creation-Date: 2018-09-09 03:28+0600\n"
+"PO-Revision-Date: 2018-09-08 14:31-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -1620,6 +1620,10 @@ msgid "Section"
 msgstr "Предмет"
 
 msgctxt "/developer/"
+msgid "Language"
+msgstr "Язык"
+
+msgctxt "/developer/"
 msgid "Variant"
 msgstr "Код теста"
 
@@ -2089,6 +2093,10 @@ msgid "Section"
 msgstr "Предмет"
 
 msgctxt "/super/tests/"
+msgid "Language"
+msgstr "Язык"
+
+msgctxt "/super/tests/"
 msgid "Variant"
 msgstr "Код теста"
 
@@ -2134,8 +2142,8 @@ msgstr "Следующий"
 
 #, python-format
 msgctxt "Page title"
-msgid "%(section_name)s (Test #%(code)s)"
-msgstr "%(section_name)s (Тест #%(code)s)"
+msgid "%(section_name)s (#%(code)s)"
+msgstr "%(section_name)s (#%(code)s)"
 
 msgctxt "Developer tools"
 msgid "There was an error, please reload the page."
