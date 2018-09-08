@@ -10,7 +10,7 @@ function SimpleResultDetailModule(data) {
     }));
     this._charts.push(new ColumnChart($(data.progress_selector), data.progress, data.max, {
         "avg_value": data.avg,
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": data.colors[0],
         "line-background-color": data.colors[1],
         "font-size": 14

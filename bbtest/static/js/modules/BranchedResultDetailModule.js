@@ -39,7 +39,7 @@ function BranchedResultDetailModule(data) {
     });
     this._progressChart = new ColumnChart($(data.progress_selector), data.progress, max, {
         "avg_value": data.avg,
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": data.colors[0],
         "line-background-color": data.colors[1],
         "font-size": 14

@@ -9,7 +9,8 @@
 
     <title>{% block title_full %}{% block title %}{% endblock %} - bbTest.kz{% endblock %}</title>
 
-    <meta name="description" content="{% block description %}bbTest.kz{% endblock %}">
+    <meta name="description" content="{% block description %}{% blocktrans with dash_code='&mdash;' context 'Page description' %}bbTest.kz {{ dash_code }} Online testing platform. Thorough. Convenient. Effective.{% endblocktrans %}{% endblock %}">
+
     <meta name="turbolinks-cache-control" content="no-cache">
 
     {% if ANALYTICS %}

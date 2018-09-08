@@ -31,52 +31,60 @@ function HomePageModule(data) {
     });
     this._progressCharts = [];
     this._progressCharts.push(new ColumnChart($(data.progress_chart_selector), [ 30, 25, 35, 40, 20, 25, 30, 35, 45, 50 ], 60, {
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": "#3366cc",
         "line-background-color": "#cdd8f1",
-        "font-size": 14
+        "font-size": 14,
+        "percentage": true
     }));
     this._progressCharts.push(new ColumnChart($(data.progress_chart_selector), [ 10, 15, 20, 25, 30, 35, 40, 35, 30, 25 ], 40, {
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": "#dc3912",
         "line-background-color": "#f6cdc5",
-        "font-size": 14
+        "font-size": 14,
+        "percentage": true
     }));
     this._progressCharts.push(new ColumnChart($(data.progress_chart_selector), [ 50, 45, 35, 40, 55, 50, 45, 50, 55, 55 ], 60, {
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": "#ff9900",
         "line-background-color": "#ffe6c7",
-        "font-size": 14
+        "font-size": 14,
+        "percentage": true
     }));
     this._progressCharts.push(new ColumnChart($(data.progress_chart_selector), [ 30, 30, 35, 40, 35, 25, 20, 35, 40, 30 ], 40, {
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": "#109618",
         "line-background-color": "#c5e5c9",
-        "font-size": 14
+        "font-size": 14,
+        "percentage": true
     }));
     this._progressCharts.push(new ColumnChart($(data.progress_chart_selector), [ 30, 40, 45, 50, 55, 60, 50, 45, 50, 55 ], 60, {
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": "#990099",
         "line-background-color": "#e5bfe5",
-        "font-size": 14
+        "font-size": 14,
+        "percentage": true
     }));
     this._progressCharts.push(new ColumnChart($(data.progress_chart_selector), [ 30, 60, 55, 40, 20, 25, 30, 50, 45, 40 ], 60, {
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": "#0099c6",
         "line-background-color": "#c5e5f0",
-        "font-size": 14
+        "font-size": 14,
+        "percentage": true
     }));
     this._progressCharts.push(new ColumnChart($(data.progress_chart_selector), [ 30, 25, 30, 15, 20, 30, 25, 30, 35, 30 ], 40, {
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": "#dd4477",
         "line-background-color": "#f6d0dd",
-        "font-size": 14
+        "font-size": 14,
+        "percentage": true
     }));
     this._progressCharts.push(new ColumnChart($(data.progress_chart_selector), [ 13, 16, 19, 22, 25, 28, 31, 34, 37, 40 ], 40, {
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": "#66aa00",
         "line-background-color": "#d9eac8",
-        "font-size": 14
+        "font-size": 14,
+        "percentage": true
     }));
 
     $(window).on("scroll", this._boundWindowScroll);
