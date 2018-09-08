@@ -31,5 +31,6 @@ class OfferView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
 
     def get_context_data(self, **kwargs):
         acknowledgement = get_object_or_404(DeveloperAcknowledgement.objects, developer=self.request.user)
+        kwargs["acknowledgement"] = acknowledgement
         kwargs["agreement_text"] = AGREEMENT_TEXTS[acknowledgement.agreement_code][get_language()]
         return super().get_context_data(**kwargs)

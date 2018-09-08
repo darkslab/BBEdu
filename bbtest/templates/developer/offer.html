@@ -5,12 +5,19 @@
 
 {% block title %}{% trans 'Public Offer' context 'Page title' %}{% endblock %}
 
+{% block nav_developer_offer_class %}active{% endblock %}
+
 {% block content %}
     <div class="row">
         <div class="col-xs-12 col-sm-10 col-sm-offset-1">
             <div class="panel panel-default">
                 <div class="panel-body">{{ agreement_text|safe }}</div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+            <h5 class="text-center mt-0 mb-0">{% blocktrans with date=acknowledgement.acknowledged_at|date:'SHORT_DATE_FORMAT' context '/developer/offer/' %}Accepted on {{ date }}{% endblocktrans %}</h5>
         </div>
     </div>
 {% endblock %}
