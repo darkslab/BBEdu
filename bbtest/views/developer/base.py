@@ -25,7 +25,7 @@ class DashboardView(DeveloperPermissionRequiredMixin, UserContextMixin, Template
         for test in kwargs["tests"]:
             test.display_language = ""
             if test.language != Test.LANGUAGE_XX:
-                test.display_language = [ test_language[1] for test_language in Test.LANGUAGES if test_language[0] == test.language ].pop()
+                test.display_language = next(test_language[1] for test_language in Test.LANGUAGES if test_language[0] == test.language)
 
         return super().get_context_data(**kwargs)
 
