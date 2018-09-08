@@ -109,7 +109,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "bbtest.auth.password_validation.BadPasswordValidator",
+        "NAME": "bbtest.auth.password_validation.MinLengthPasswordValidator",
     },
     {
         "NAME": "bbtest.auth.password_validation.UserAttributeSimilarityValidator",
