@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-07 05:41+0600\n"
+"POT-Creation-Date: 2018-09-08 06:49+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -105,6 +105,10 @@ msgid "last name"
 msgstr "тегі"
 
 msgctxt "Model field"
+msgid "phone"
+msgstr ""
+
+msgctxt "Model field"
 msgid "joined at"
 msgstr "тіркелген уақыты"
 
@@ -181,6 +185,13 @@ msgstr ""
 "Құпиясөз %(secure_length)d белгіден аз болса, құпиясөз құрамында бас және "
 "кіші әріпі мен бір символы бар кем дегенде %(min_length)d белгіден тұратын "
 "болу керек."
+
+#, fuzzy, python-format
+#| msgctxt "Password validation error"
+#| msgid "The password has to be at least %(min_length)d characters."
+msgctxt "Password validation help text"
+msgid "The password has to be at least %(min_length)d characters long."
+msgstr "Құпиясөз кем дегенде %(min_length)d белгіден тұру керек."
 
 #, fuzzy, python-format
 #| msgctxt "Password validation error"
@@ -297,6 +308,13 @@ msgctxt "Validation error"
 msgid "This email is already taken."
 msgstr "Бұл электрондық пошта тіркелген."
 
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Last name is too long."
+msgctxt "Validation error"
+msgid "Phone is too long."
+msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+
 msgctxt "Form label"
 msgid "Amount"
 msgstr ""
@@ -365,13 +383,6 @@ msgstr ""
 #| msgid "Last name is too long."
 msgctxt "Validation error"
 msgid "Name is too long."
-msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
-
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Last name is too long."
-msgctxt "Validation error"
-msgid "Phone is too long."
 msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
 
 #, fuzzy
@@ -1191,10 +1202,6 @@ msgid "JSON"
 msgstr ""
 
 msgctxt "Model field"
-msgid "phone"
-msgstr ""
-
-msgctxt "Model field"
 msgid "message"
 msgstr ""
 
@@ -1654,6 +1661,13 @@ msgctxt "Button"
 msgid "Reset Password"
 msgstr "Құпиясөзді өзгерту"
 
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Test developer"
+msgctxt "Page title"
+msgid "Register as a Developer"
+msgstr "Тестілеуді құрастырушы"
+
 msgctxt "Page title"
 msgid "Register"
 msgstr "Тіркелу"
@@ -1702,6 +1716,13 @@ msgstr "Сақтау"
 
 msgctxt "Page title"
 msgid "Terms of Service"
+msgstr ""
+
+#, python-format
+msgctxt "Page description"
+msgid ""
+"bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
+"Effective."
 msgstr ""
 
 msgctxt "Page title"
@@ -1897,13 +1918,6 @@ msgstr "Қазақстанда %(heart_icon)s-пен жасалған. %(copyrig
 
 #, python-format
 msgctxt "Home page title"
-msgid ""
-"bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
-"Effective."
-msgstr ""
-
-#, python-format
-msgctxt "Page description"
 msgid ""
 "bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
 "Effective."

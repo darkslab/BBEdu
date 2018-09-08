@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-07 05:41+0600\n"
-"PO-Revision-Date: 2018-09-07 17:37-0700\n"
+"POT-Creation-Date: 2018-09-08 06:49+0600\n"
+"PO-Revision-Date: 2018-09-07 18:27-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -86,6 +86,10 @@ msgid "last name"
 msgstr "фамилия"
 
 msgctxt "Model field"
+msgid "phone"
+msgstr "телефон"
+
+msgctxt "Model field"
 msgid "joined at"
 msgstr "зарегистрирован"
 
@@ -142,6 +146,11 @@ msgstr ""
 "Если пароль меньше %(secure_length)d знаков, Вы можете создать пароль "
 "который должен состоять хотя бы из %(min_length)d знаков в которой есть "
 "заглавная буква, маленькая буква, цифра и символ."
+
+#, python-format
+msgctxt "Password validation help text"
+msgid "The password has to be at least %(min_length)d characters long."
+msgstr "В пароле должно быть не меньше %(min_length)d символов."
 
 #, python-format
 msgctxt "Validation error"
@@ -220,6 +229,10 @@ msgctxt "Validation error"
 msgid "This email is already taken."
 msgstr "Данный адрес электронной почты уже используется."
 
+msgctxt "Validation error"
+msgid "Phone is too long."
+msgstr "Слишком длинный номер телефона."
+
 msgctxt "Form label"
 msgid "Amount"
 msgstr "Сумма"
@@ -269,10 +282,6 @@ msgstr "Неправильный формат JSON."
 msgctxt "Validation error"
 msgid "Name is too long."
 msgstr "Слишком длинное имя."
-
-msgctxt "Validation error"
-msgid "Phone is too long."
-msgstr "Слишком длинный номер телефона."
 
 msgctxt "Validation error"
 msgid "Please enter the message."
@@ -1049,10 +1058,6 @@ msgid "JSON"
 msgstr "JSON"
 
 msgctxt "Model field"
-msgid "phone"
-msgstr "телефон"
-
-msgctxt "Model field"
 msgid "message"
 msgstr "сообщение"
 
@@ -1471,6 +1476,10 @@ msgid "Reset Password"
 msgstr "Изменить пароль"
 
 msgctxt "Page title"
+msgid "Register as a Developer"
+msgstr "Регистрация для Разработчиков"
+
+msgctxt "Page title"
 msgid "Register"
 msgstr "Регистрация"
 
@@ -1519,6 +1528,15 @@ msgstr "Сохранить"
 msgctxt "Page title"
 msgid "Terms of Service"
 msgstr "Пользовательское соглашение"
+
+#, python-format
+msgctxt "Page description"
+msgid ""
+"bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
+"Effective."
+msgstr ""
+"bbTest.kz %(dash_code)s Платформа онлайн тестирования. Качественно, удобно, "
+"эффективно."
 
 msgctxt "Page title"
 msgid "Choose your Developer Plan"
@@ -1714,15 +1732,6 @@ msgstr "Сделано с %(heart_icon)s в Казахстане. %(copyright_co
 
 #, python-format
 msgctxt "Home page title"
-msgid ""
-"bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
-"Effective."
-msgstr ""
-"bbTest.kz %(dash_code)s Платформа онлайн тестирования. Качественно, удобно, "
-"эффективно."
-
-#, python-format
-msgctxt "Page description"
 msgid ""
 "bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
 "Effective."
