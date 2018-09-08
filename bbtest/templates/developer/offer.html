@@ -1,0 +1,16 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n %}
+
+{% block header_class %}col-xs-12 col-sm-10 col-sm-offset-1{% endblock %}
+
+{% block title %}{% trans 'Public Offer' context 'Page title' %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">{{ agreement_text|safe }}</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

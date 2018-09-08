@@ -42,6 +42,7 @@ from .views.developer import (
     DashboardView as DeveloperDashboardView,
     AcknowledgementView as DeveloperAcknowledgementView,
     TestsView as DeveloperTestsView,
+    OfferView as DeveloperOfferView,
 )
 from .views.super import (
     DashboardView as SuperDashboardView,
@@ -100,6 +101,7 @@ urlpatterns = [
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
     url(r"^developer/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="developer_acknowledgement"),
     url(r"^developer/tests/$",           DeveloperTestsView.as_view(),           name="developer_tests"          ),
+    url(r"^developer/offer/$",           DeveloperOfferView.as_view(),           name="developer_offer"          ),
 
     # SUPER URLS
     url(r"^super/$",                            SuperDashboardView.as_view(),                name="super_dashboard"                 ),
