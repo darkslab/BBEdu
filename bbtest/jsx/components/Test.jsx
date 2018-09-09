@@ -41,18 +41,22 @@ class Test extends React.Component {
                                 <div className="visible-xs-block">
                                     <button type="button"
                                             className="btn btn-primary btn-block"
-                                            onClick={this._start.bind(this)}>{this.props.texts.startButton}</button>
+                                            onClick={this._renderModal.bind(this, "start")}>{this.props.texts.startButton}</button>
+                                    {/*
                                     <button type="button"
                                             className="btn btn-danger btn-block"
                                             onClick={this._renderModal.bind(this, "skip")}>{this.props.texts.skipButton}</button>
+                                    */}
                                 </div>
                                 <div className="hidden-xs">
                                     <button type="button"
                                             className="btn btn-primary btn-lg"
-                                            onClick={this._start.bind(this)}>{this.props.texts.startButton}</button>
+                                            onClick={this._renderModal.bind(this, "start")}>{this.props.texts.startButton}</button>
+                                    {/*
                                     <button type="button"
                                             className="btn btn-danger btn-lg ml-5"
                                             onClick={this._renderModal.bind(this, "skip")}>{this.props.texts.skipButton}</button>
+                                    */}
                                 </div>
                             </div>
                         </div>
@@ -188,11 +192,15 @@ class Test extends React.Component {
                               cancelCaption={this.props.texts.cancelRefreshButton} />
             );
         } else if (this.state.confirmationFor !== undefined) {
+            var isInverse = true;
+            if (this.state.confirmationFor === "start") {
+                isInverse = false;
+            }
             modal = (
                 <ConfirmModal title={this.props.texts.confirmModalTitle}
                               yesCaption={this.props.texts.confirmModalYesCaption}
                               noCaption={this.props.texts.confirmModalNoCaption}
-                              isInverse={true}
+                              isInverse={isInverse}
                               complete={this._completeModal.bind(this)} />
             );
         }
@@ -427,6 +435,9 @@ class Test extends React.Component {
                     break;
                 case "end":
                     this._end();
+                    break;
+                case "start":
+                    this._start();
                     break;
             }
         }
