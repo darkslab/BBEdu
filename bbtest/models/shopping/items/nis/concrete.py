@@ -11,6 +11,8 @@ class MathematicsNISItem(NISItem):
             raise ItemError(pgettext("Item error", "Mathematics NIS Test is required."))
 
     def price(self):
+        if self.test().is_free:
+            return Decimal("0.00")
         return Decimal("6.00") * self.test().section.question_count
 
 
@@ -21,6 +23,8 @@ class KazakhLanguageNISItem(NISItem):
             raise ItemError(pgettext("Item error", "Kazakh Language NIS Test is required."))
 
     def price(self):
+        if self.test().is_free:
+            return Decimal("0.00")
         return Decimal("6.00") * self.test().section.question_count
 
 
@@ -31,6 +35,8 @@ class RussianLanguageNISItem(NISItem):
             raise ItemError(pgettext("Item error", "Russian Language NIS Test is required."))
 
     def price(self):
+        if self.test().is_free:
+            return Decimal("0.00")
         return Decimal("6.00") * self.test().section.question_count
 
 
@@ -41,6 +47,8 @@ class EnglishLanguageNISItem(NISItem):
             raise ItemError(pgettext("Item error", "English Language NIS Test is required."))
 
     def price(self):
+        if self.test().is_free:
+            return Decimal("0.00")
         return Decimal("6.00") * self.test().section.question_count
 
 
@@ -51,4 +59,6 @@ class QuantitativeNISItem(NISItem):
             raise ItemError(pgettext("Item error", "Quantitative NIS Test is required."))
 
     def price(self):
+        if self.test().is_free:
+            return Decimal("0.00")
         return Decimal("6.00") * self.test().section.question_count

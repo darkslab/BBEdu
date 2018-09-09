@@ -146,7 +146,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                     section=section,
                 ).exclude(
                     pk__in=self.obtained_test_ids(),
-                ).order_by("is_free", "sales_count")[:1])
+                ).order_by("-is_free", "sales_count")[:1])
             if not len(query_sets):
                 raise RuntimeError("Cannot query for next tests")
             self.__next_tests = query_sets[0].union(*query_sets[1:], all=True)

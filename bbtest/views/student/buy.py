@@ -11,6 +11,7 @@ from bbtest.models import TestDomain, Test
 from bbtest.http import TightJsonResponse
 from bbtest.models.shopping.handle import CartHandleAccessMixin
 from bbtest.forms.buy import BuyTestsCartForm
+from bbtest.models.shopping.items import *
 from bbtest.models.shopping.items.map import TEST_SECTION_MAP
 from bbtest.models.shopping.items.test import TestItem
 from bbtest.models.shopping.exceptions import ItemError
@@ -51,14 +52,6 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixi
         kwargs["test_domain"] = get_test_domain_or_404(self.kwargs["test_domain_id"])
         for section in kwargs["test_domain"].sections.all():
             section.minutes = section.duration // 60
-
-            # DARK_TODO  fix the hardcoded pricing
-            if section.is_unt_compulsory():
-                section.price = 120
-            elif section.is_unt_profile():
-                section.price = 180
-            else:
-                section.price = 0
 
         kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
 
@@ -163,7 +156,10 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
         }
 
         for section in domain.sections.all():
-            response["sections"][str(section.pk)] = False
+            response["sections"][str(section.pk)] = {
+                "enabled": False,
+                "price": None,
+            }
         discount = Decimal("0.00")
         for item in self.cart_handle():
             if response["data"].get("language") is None:
@@ -184,10 +180,51 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
         response["totals"]["total"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": self.cart_handle().total() }
 
         available_tests = self.cart_handle().buyer().next_tests(domain, response["data"]["language"])
-        for section_id in [ str(test.section_id) for test in available_tests ]:
+        for test in available_tests:
+            section_id = str(test.section_id)
             if section_id not in response["sections"]:
                 continue
-            response["sections"][section_id] = True
+            response["sections"][section_id]["enabled"] = True
+            if test.is_free:
+                response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "Free")
+            else:
+                amount = Decimal("0.00")
+                try:
+                    if TEST_SECTION_MAP[section_id] in (
+                        KazakhLanguageNISItem,
+                        RussianLanguageNISItem,
+                        EnglishLanguageNISItem,
+                        MathematicalLiteracyCompulsoryUNTItem,
+                        ReadingLiteracyCompulsoryUNTItem,
+                        HistoryOfKazakhstanCompulsoryUNTItem,
+                    ):
+                        amount = Decimal("120.00")
+                    elif TEST_SECTION_MAP[section_id] in (
+                        MathematicsProfileUNTItem,
+                        PhysicsProfileUNTItem,
+                        ChemistryProfileUNTItem,
+                        BiologyProfileUNTItem,
+                        GeographyProfileUNTItem,
+                        HistoryProfileUNTItem,
+                        EnglishLanguageProfileUNTItem,
+                        FrenchLanguageProfileUNTItem,
+                        GermanLanguageProfileUNTItem,
+                        KazakhLanguageAndLiteratureProfileUNTItem,
+                        RussianLanguageAndLiteratureProfileUNTItem,
+                        HumanSocietyRightProfileUNTItem,
+                    ):
+                        amount = Decimal("180.00")
+                    elif TEST_SECTION_MAP[section_id] in (
+                        MathematicsNISItem,
+                    ):
+                        amount = Decimal("240.00")
+                    elif TEST_SECTION_MAP[section_id] in (
+                        QuantitativeNISItem,
+                    ):
+                        amount = Decimal("360.00")
+                except IndexError:
+                    pass
+                response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": amount }
 
         response["affordable"] = False
         if self.cart_handle().buyer().balance_account().balance() >= self.cart_handle().total():
@@ -199,10 +236,13 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
 class BuyTestsCheckoutView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixin, CartHandleAccessMixin, View):
     def post(self, request, *args, **kwargs):
         try:
-            charge(
-                CreditPaymentProcessor(self.cart_handle().total()),
-                self.cart_handle(),
-            )
+            if self.cart_handle().total().is_zero():
+                self.cart_handle().checkout()
+            else:
+                charge(
+                    CreditPaymentProcessor(self.cart_handle().total()),
+                    self.cart_handle(),
+                )
             return TightJsonResponse({
                 "success": True,
                 "url": reverse("bbtest:student_exam"),
