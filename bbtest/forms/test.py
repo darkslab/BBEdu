@@ -843,11 +843,12 @@ class TestCheckForm(ModelForm):
             TestQuestion.DIFFICULTY_LOW:     { "required": 10, "count": 0 },
         }
         for question in questions_queryset:
-            if question.taxonomy is not None:
+            if question.taxonomy is not None and question.taxonomy in taxonomy_counts:
                 taxonomy_counts[question.taxonomy]["count"] += 1
-            if question.topic is not None:
+            if question.topic is not None and question.topic in topic_counts:
                 topic_counts[question.topic]["count"] += 1
-            difficulty_counts[question.difficulty]["count"] += 1
+            if question.difficulty in difficulty_counts:
+                difficulty_counts[question.difficulty]["count"] += 1
         for taxonomy, stats in taxonomy_counts.items():
             if stats["required"] != stats["count"]:
                 self.add_error(None, ValidationError(
@@ -896,9 +897,10 @@ class TestCheckForm(ModelForm):
             TestQuestion.DIFFICULTY_LOW:     { "required": 5, "count": 0 },
         }
         for question in questions_queryset:
-            if question.taxonomy is not None:
+            if question.taxonomy is not None and question.taxonomy in taxonomy_counts:
                 taxonomy_counts[question.taxonomy]["count"] += 1
-            difficulty_counts[question.difficulty]["count"] += 1
+            if question.difficulty in difficulty_counts:
+                difficulty_counts[question.difficulty]["count"] += 1
         for taxonomy, stats in taxonomy_counts.items():
             if stats["required"] != stats["count"]:
                 self.add_error(None, ValidationError(
@@ -927,7 +929,7 @@ class TestCheckForm(ModelForm):
 
         topic_counts = {}
         for topic in self.instance.section.topics.order_by("through"):
-            if topic.pk in (5164, 5165, 5166, 5167):
+            if topic.pk in (5164, 5165, 5166, 5167, 5156, 5168, 5169, 5170):
                 topic_counts[topic] = { "required": 5, "count": 0 }
             elif topic.pk in (5163, 5171, 5172, 5173):
                 topic_counts[topic] = { "required": 4, "count": 0 }
@@ -939,10 +941,11 @@ class TestCheckForm(ModelForm):
             TestQuestion.DIFFICULTY_LOW:     { "required": 15, "count": 0 },
         }
         for question in questions_queryset:
-            if question.topic is not None:
+            if question.topic is not None and question.topic in topic_counts:
                 topic_counts[question.topic]["count"] += 1
-            difficulty_counts[question.difficulty]["count"] += 1
-        for topic, stats in taxonomy_counts.items():
+            if question.difficulty in difficulty_counts:
+                difficulty_counts[question.difficulty]["count"] += 1
+        for topic, stats in topic_counts.items():
             if stats["required"] != stats["count"]:
                 self.add_error(None, ValidationError(
                     self.error_messages["topic"],
@@ -974,7 +977,8 @@ class TestCheckForm(ModelForm):
             TestQuestion.DIFFICULTY_LOW:     { "required": 10, "count": 0 },
         }
         for question in questions_queryset:
-            difficulty_counts[question.difficulty]["count"] += 1
+            if question.difficulty in difficulty_counts:
+                difficulty_counts[question.difficulty]["count"] += 1
         for difficulty, stats in difficulty_counts.items():
             if stats["required"] != stats["count"]:
                 self.add_error(None, ValidationError(
@@ -1009,7 +1013,8 @@ class TestCheckForm(ModelForm):
             TestQuestion.DIFFICULTY_LOW:     { "required": 15, "count": 0 },
         }
         for question in questions_queryset:
-            difficulty_counts[question.difficulty]["count"] += 1
+            if question.difficulty in difficulty_counts:
+                difficulty_counts[question.difficulty]["count"] += 1
         for difficulty, stats in difficulty_counts.items():
             if stats["required"] != stats["count"]:
                 self.add_error(None, ValidationError(
