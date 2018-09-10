@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-10 07:48+0600\n"
+"POT-Creation-Date: 2018-09-10 14:45+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2187,6 +2187,13 @@ msgstr ""
 msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
 msgstr ""
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Results"
+msgctxt "/student/results/xxxx/"
+msgid "Go back to results"
+msgstr "Тестілеудің нәтижелері"
 
 #, fuzzy
 #| msgctxt "Navigation link"
