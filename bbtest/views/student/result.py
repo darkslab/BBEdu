@@ -2,13 +2,15 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.lorem_ipsum import paragraphs
 from django.utils.translation import ugettext as _
 from django.core.cache import cache
+from django.shortcuts import get_object_or_404
 from random import randint
-from bbtest.views.generic import TemplateView
-from bbtest.views.common import UserContextMixin, PaginationMixin, results_progress
+from bbtest.views.generic import TemplateView, View
+from bbtest.views.common import UserContextMixin, PaginationMixin, results_progress, inject_questions_and_report_into_started_response
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.utils.json import tight_dumps
 from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
-from bbtest.models import TestTopic
+from bbtest.models import TestTopic, Quiz
+from bbtest.http import TightJsonResponse
 
 
 class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
@@ -90,3 +92,42 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         branch["title"] = topic_branch_names[branch["__topic_id"]]
 
         return super().get_context_data(**kwargs)
+
+
+def get_quiz_for_result_or_404(request, test_code):
+    return get_object_or_404(Quiz.objects.filter(
+        is_finished=True,
+        quiz_set__student=request.user,
+        test__code=test_code,
+    ).select_related("test"))
+
+
+class ResultView(StudentPermissionRequiredMixin, UserContextMixin, TemplateView):
+    template_name = "student/result.html"
+
+    def get_context_data(self, **kwargs):
+        quiz = get_quiz_for_result_or_404(self.request, self.kwargs["code"])
+        kwargs["test"] = quiz.test
+        kwargs["code"] = self.kwargs["code"]
+        kwargs["section_name"] = _(quiz.test.section.name)
+        return super().get_context_data(**kwargs)
+
+
+class ResultDataView(StudentPermissionRequiredMixin, View):
+    def get(self, request, code, *args, **kwargs):
+        quiz = get_quiz_for_result_or_404(request, code)
+        response = {
+            "success": True,
+            "status": "started",
+            "seconds": quiz.test.section.duration,
+        }
+        inject_questions_and_report_into_started_response(response, quiz.test, hide_answers=False)
+        if quiz.report is None:
+            for data in response["report"]["answers"]:
+                data["answer"] = None
+        else:
+            response["report"] = quiz.report
+        return TightJsonResponse(response)
+
+    def post(self, request, code, *args, **kwargs):
+        return self.get(request, code, *args, **kwargs)

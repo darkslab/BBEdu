@@ -96,6 +96,15 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                                 React.createElement(
                                     "div",
                                     { className: "col-xs-6 pr-5" },
+                                    React.createElement(
+                                        "h5",
+                                        { className: "text-center mt-0 mb-10" },
+                                        React.createElement(
+                                            "em",
+                                            null,
+                                            this.props.texts.columnACaption
+                                        )
+                                    ),
                                     React.createElement("textarea", { className: leftClassName,
                                         placeholder: this.props.texts.paragraphTextareaPlaceholder,
                                         value: this.props.data.left.text,
@@ -104,6 +113,15 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                                 React.createElement(
                                     "div",
                                     { className: "col-xs-6 pl-5" },
+                                    React.createElement(
+                                        "h5",
+                                        { className: "text-center mt-0 mb-10" },
+                                        React.createElement(
+                                            "em",
+                                            null,
+                                            this.props.texts.columnBCaption
+                                        )
+                                    ),
                                     React.createElement("textarea", { className: rightClassName,
                                         placeholder: this.props.texts.paragraphTextareaPlaceholder,
                                         value: this.props.data.right.text,

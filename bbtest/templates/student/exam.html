@@ -12,6 +12,8 @@
             data: {
                 class: "Test",
                 props: {
+                    hasTimer: true,
+                    canEnd: true,
                     spinnerLogo: "{% static 'img/logo.png' %}",
                     continueUrl: "{% url 'bbtest:student_exam_continue' %}",
                     startUrl: "{% url 'bbtest:student_exam_start' %}",
@@ -43,6 +45,8 @@
                         confirmModalNoCaption:        "{% trans 'No'                                           context 'Exam' %}",
                         expiredTitle:                 "{% trans 'Time is up'                                   context 'Exam' %}",
                         concludedTitle:               "{% trans 'Finished'                                     context 'Exam' %}",
+                        columnACaption:               "{% trans 'Column A'                                     context 'Exam' %}",
+                        columnBCaption:               "{% trans 'Column B'                                     context 'Exam' %}",
 
                         expiredExplanation: "{% trans 'You ran out of allocated time for the test. Please continue to the next test.' context 'Exam' %}",
                         concludedExplanation: "{% trans 'All tests are finished. Please continue to view the results.' context 'Exam' %}"

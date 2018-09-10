@@ -10,6 +10,7 @@ function ProgressPieChart($container, values, options) {
     this._options["font-size"] = this._optionValue(options, "font-size", 20);
     this._options["font-weight"] = this._optionValue(options, "font-weight", "normal");
     this._options["font-color"] = this._optionValue(options, "font-color", "#ffffff");
+    this._options["percentage"] = this._optionValue(options, "percentage", false);
 
     this._values = [];
     var value;
@@ -135,46 +136,61 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
                 (this._radius - (this._radius - this._hole_radius) / 2) * Math.sin(this._deg2rad(this._angles[i] / 2))
             ].join() + ")" + "rotate(" + (-current_angle) + ")"
         });
-        var text1 = this._createElement("text", {
-            "x": 0,
-            "y": 0,
-            "text-anchor": "middle",
-            "dominant-baseline": "central",
-            "font-size": this._options["font-size"],
-            "font-weight": this._options["font-weight"],
-            "fill": this._options["font-color"],
-            "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
-        });
-        text1.appendChild(document.createTextNode("0"));
-        var text2 = this._createElement("text", {
-            "x": 0,
-            "y": 0,
-            "text-anchor": "middle",
-            "dominant-baseline": "central",
-            "font-size": Math.max(this._options["font-size"] * 0.75, 1),
-            "font-weight": this._options["font-weight"],
-            "fill": this._options["font-color"],
-            "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
-        });
-        text2.appendChild(document.createTextNode("──"));
-        var text3 = this._createElement("text", {
-            "x": 0,
-            "y": 0,
-            "text-anchor": "middle",
-            "dominant-baseline": "central",
-            "font-size": Math.max(this._options["font-size"] * 0.75, 1),
-            "font-weight": this._options["font-weight"],
-            "fill": this._options["font-color"],
-            "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
-        });
-        text3.appendChild(document.createTextNode(this._values[i]["max-value"]));
-        group4.appendChild(text1);
-        group4.appendChild(text2);
-        group4.appendChild(text3);
-        texts.push([
-            text1,
-            text3
-        ]);
+        if (this._options["percentage"]) {
+            var text1 = this._createElement("text", {
+                "x": 0,
+                "y": 0,
+                "text-anchor": "middle",
+                "dominant-baseline": "central",
+                "font-size": this._options["font-size"],
+                "font-weight": this._options["font-weight"],
+                "fill": this._options["font-color"],
+                "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
+            });
+            text1.appendChild(document.createTextNode("0%"));
+            group4.appendChild(text1);
+        } else {
+            var text1 = this._createElement("text", {
+                "x": 0,
+                "y": 0,
+                "text-anchor": "middle",
+                "dominant-baseline": "central",
+                "font-size": this._options["font-size"],
+                "font-weight": this._options["font-weight"],
+                "fill": this._options["font-color"],
+                "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
+            });
+            text1.appendChild(document.createTextNode("0"));
+            var text2 = this._createElement("text", {
+                "x": 0,
+                "y": 0,
+                "text-anchor": "middle",
+                "dominant-baseline": "central",
+                "font-size": Math.max(this._options["font-size"] * 0.75, 1),
+                "font-weight": this._options["font-weight"],
+                "fill": this._options["font-color"],
+                "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
+            });
+            text2.appendChild(document.createTextNode("──"));
+            var text3 = this._createElement("text", {
+                "x": 0,
+                "y": 0,
+                "text-anchor": "middle",
+                "dominant-baseline": "central",
+                "font-size": Math.max(this._options["font-size"] * 0.75, 1),
+                "font-weight": this._options["font-weight"],
+                "fill": this._options["font-color"],
+                "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
+            });
+            text3.appendChild(document.createTextNode(this._values[i]["max-value"]));
+            group4.appendChild(text1);
+            group4.appendChild(text2);
+            group4.appendChild(text3);
+            texts.push([
+                text1,
+                text3
+            ]);
+        }
 
         group3.appendChild(group4);
 
@@ -315,7 +331,11 @@ _ProgressPieChartHelper.prototype._render_pie = function(percentage) {
         ) / rad_angle
     );
 
-    this._$text.text(Math.round(this._progress_pie_chart._values[this._index]["value"] * percentage));
+    if (this._progress_pie_chart._options["percentage"]) {
+        this._$text.text(Math.round(this._progress_pie_chart._values[this._index]["value"] / this._progress_pie_chart._values[this._index]["max-value"] * 100 * percentage) + "%");
+    } else {
+        this._$text.text(Math.round(this._progress_pie_chart._values[this._index]["value"] * percentage));
+    }
     this._$path.attr("d", this._progress_pie_chart._d([
         [ "M", [ this._progress_pie_chart._hole_radius, 0 ] ],
         [ "L", [ radius, 0 ] ],

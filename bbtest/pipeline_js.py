@@ -26,6 +26,7 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/SettingsPageModule.js",
     "js/modules/RegisterPageModule.js",
     "js/modules/BuyCreditsQazkomPageModule.js",
+    "js/modules/HomePageModule.js",
 
     "js/modules/DeveloperTestsPageModule.js",
     "js/modules/DeveloperAcknowledgementPageModule.js",
@@ -56,6 +57,7 @@ BASE3_SOURCE_FILENAMES = (
 
     "js/react/objects/StudentTestObject.js",
     "js/react/objects/PreviewTestObject.js",
+    "js/react/objects/ResultTestObject.js",
 
     "js/react/components/TextParagraph.js",
     "js/react/components/SplitTextParagraph.js",

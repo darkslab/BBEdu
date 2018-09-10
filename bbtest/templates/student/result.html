@@ -1,0 +1,68 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n static %}
+
+{% block title %}{{ section_name }}{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "ReactModule",
+            data: {
+                class: "Test",
+                props: {
+                    hasTimer: false,
+                    canEnd: false,
+                    spinnerLogo: "{% static 'img/logo.png' %}",
+                    continueUrl: "{% url 'bbtest:student_result_data' code %}",
+                    startUrl: "{% url 'bbtest:student_result_data' code %}",
+                    skipUrl: "{% url 'bbtest:student_result_data' code %}",
+                    endUrl: "{% url 'bbtest:student_result_data' code %}",
+                    reportUrl: "{% url 'bbtest:student_result_data' code %}",
+                    resultsUrl: "{% url 'bbtest:student_result' code %}",
+                    buyUrl: "{% url 'bbtest:student_result' code %}",
+                    refreshUrl: "{% url 'bbtest:student_result' code %}",
+                    cancelRefreshUrl: "{% url 'bbtest:student_results' %}",
+                    objectClass: "ResultTestObject",
+                    texts: {
+                        error:                        "{% trans 'There was an error, please reload the page.'  context 'Exam' %}",
+                        startButton:                  "{% trans 'Start the test'                               context 'Exam' %}",
+                        skipButton:                   "{% trans 'Skip the test'                                context 'Exam' %}",
+                        endButton:                    "{% trans 'End the test'                                 context 'Exam' %}",
+                        continueButton:               "{% trans 'Continue'                                     context 'Exam' %}",
+                        resultsButton:                "{% trans 'Go to Results'                                context 'Exam' %}",
+                        buyButton:                    "{% trans 'Buy new tests'                                context 'Exam' %}",
+                        refreshButton:                "{% trans 'Reload the page'                              context 'Exam' %}",
+                        cancelRefreshButton:          "{% trans 'Cancel'                                       context 'Exam' %}",
+                        question:                     "{% trans 'Question'                                     context 'Exam' %}",
+                        multichoiceOneAnswerTitle:    "{% trans 'Please choose an answer choice'               context 'Exam' %}",
+                        multichoiceMultiAnswerTitle:  "{% trans 'Please choose answer choices that apply'      context 'Exam' %}",
+                        previousPager:                "{% trans 'Previous'                                     context 'Exam' %}",
+                        nextPager:                    "{% trans 'Next'                                         context 'Exam' %}",
+                        confirmModalTitle:            "{% trans 'Are you sure?'                                context 'Exam' %}",
+                        confirmModalYesCaption:       "{% trans 'Yes'                                          context 'Exam' %}",
+                        confirmModalNoCaption:        "{% trans 'No'                                           context 'Exam' %}",
+                        expiredTitle:                 "{% trans 'Time is up'                                   context 'Exam' %}",
+                        concludedTitle:               "{% trans 'Finished'                                     context 'Exam' %}",
+                        columnACaption:               "{% trans 'Column A'                                     context 'Exam' %}",
+                        columnBCaption:               "{% trans 'Column B'                                     context 'Exam' %}",
+
+                        expiredExplanation: "{% trans 'You ran out of allocated time for the test. Please continue to the next test.' context 'Exam' %}",
+                        concludedExplanation: "{% trans 'All tests are finished. Please continue to view the results.' context 'Exam' %}"
+                    }
+                }
+            }
+        });
+    </script>
+    <div class="row">
+        <div class="col-xs-12 mb-23">
+            <a href="{% url 'bbtest:student_results' %}" class="btn btn-default mr-5 mb-5">{% trans 'Go back to results' context '/student/results/xxxx/' %}</a>
+        </div>
+    </div>
+    <div id="root" class="mb-10">
+        <div class="row">
+            <div class="col-xs-12 bb-test-container">
+                <img class="bb-spinner" src="{% static 'img/logo.png' %}">
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -150,13 +150,17 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
 
     this._$test_section.each(function() {
         var $test_section = $(this);
+        var $test_section_price = $test_section.find("[data-test-section-price]");
+        var section_data = data.sections[$test_section.data("test-section").toString()];
 
-        if (!data.sections[$test_section.data("test-section").toString()]) {
+        if (!section_data.enabled) {
             $test_section.addClass("disabled");
             $test_section.data("available", false);
 
             $test_section.removeClass("active");
             $test_section.data("selected", false);
+
+            $test_section_price.text("");
             return;
         }
 
@@ -169,6 +173,7 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
             $test_section.removeClass("active");
             $test_section.data("selected", false);
         }
+        $test_section_price.text(section_data.price);
     });
 
     var i;

@@ -1,7 +1,7 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n static %}
 
-{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (#{{ code }}){% endblocktrans %} <small><span class="label label-default">{{ domain_name }}</span>{% if language %} <span class="label label-default">{{ language }}</span>{% endif %}{% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}</small>{% endblock %}
 
 {% block content %}
     <script>
@@ -54,7 +54,9 @@
                             saved:                                               "{% trans 'Saved'                                                  context 'Developer tools' %}",
                             controlFormulasButton:                               "{% trans 'Formulas'                                               context 'Developer tools' %}",
                             saveAndExitButton:                                   "{% trans 'Save and Exit'                                          context 'Developer tools' %}",
-                            saveAndPreviewButton:                                "{% trans 'Save and Preview'                                       context 'Developer tools' %}"
+                            saveAndPreviewButton:                                "{% trans 'Save and Preview'                                       context 'Developer tools' %}",
+                            columnACaption:                                      "{% trans 'Column A'                                               context 'Developer tools' %}",
+                            columnBCaption:                                      "{% trans 'Column B'                                               context 'Developer tools' %}"
                         },
                         ability: undefined
                     }

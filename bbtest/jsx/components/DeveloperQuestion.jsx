@@ -73,7 +73,8 @@ class DeveloperQuestion extends React.Component {
             paragraphs.push(
                 <ParagraphClass key={id}
                                 data={paragraphData.meta_data}
-                                optionalTexts={this.props.texts} />
+                                texts={this.props.texts}
+                                forDevelopers={true} />
             );
         });
         if (!paragraphs.length) {

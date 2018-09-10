@@ -22,7 +22,7 @@ class BaseUserForm(ModelForm):
 
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email")
+        fields = ("first_name", "last_name", "email", "phone")
         error_messages = {
             "first_name": {
                 "required": pgettext_lazy("Validation error", "Please enter first name."),
@@ -37,6 +37,9 @@ class BaseUserForm(ModelForm):
                 "invalid": pgettext_lazy("Validation error", "Incorrect email."),
                 "max_length": pgettext_lazy("Validation error", "Email is too long."),
                 "unique": pgettext_lazy("Validation error", "This email is already taken."),
+            },
+            "phone": {
+                "max_length": pgettext_lazy("Validation error", "Phone is too long."),
             },
         }
 

@@ -40,6 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = EmailField(pgettext_lazy("Model field", "email"), max_length=100, null=True, blank=True, unique=True)
     first_name = CharField(pgettext_lazy("Model field", "first name"), max_length=100, blank=True)
     last_name = CharField(pgettext_lazy("Model field", "last name"), max_length=100, blank=True)
+    phone = CharField(pgettext_lazy("Model field", "phone"), max_length=100, blank=True)
     joined_at = DateTimeField(pgettext_lazy("Model field", "joined at"), auto_now_add=True, db_index=True)
     is_active = BooleanField(pgettext_lazy("Model field", "active?"), db_index=True, default=True)
 
@@ -145,7 +146,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                     section=section,
                 ).exclude(
                     pk__in=self.obtained_test_ids(),
-                ).order_by("is_free", "sales_count")[:1])
+                ).order_by("-is_free", "sales_count")[:1])
             if not len(query_sets):
                 raise RuntimeError("Cannot query for next tests")
             self.__next_tests = query_sets[0].union(*query_sets[1:], all=True)

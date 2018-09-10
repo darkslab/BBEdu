@@ -1,6 +1,8 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n widget_tweaks %}
 
+{% block extended_footer %}{% endblock %}
+
 {% block title %}{% trans 'Settings' context 'Page title' %}{% endblock %}
 
 {% block nav_base_settings_class %}active{% endblock %}
@@ -56,6 +58,13 @@
                                     <label for="{{ form.email.id_for_label }}" class="control-label">{{ form.email.label }}</label>
                                     {{ form.email|add_class:'form-control' }}
                                     {% for error in form.email.errors %}
+                                        <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group {% if form.phone.errors %}has-error{% endif %}">
+                                    <label for="{{ form.phone.id_for_label }}" class="control-label">{{ form.phone.label }}</label>
+                                    {{ form.phone|add_class:'form-control' }}
+                                    {% for error in form.phone.errors %}
                                         <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
                                     {% endfor %}
                                 </div>

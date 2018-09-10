@@ -76,6 +76,29 @@ class BadPasswordValidator:
         })
 
 
+class MinLengthPasswordValidator:
+    def __init__(self):
+        self.min_length = 10
+
+    def validate(self, password, user=None):
+        if len(password) < self.min_length:
+            raise ValidationError(
+                pgettext("Validation error", "The password has to be at least %(min_length)d characters."),
+                code="password_too_short",
+                params={
+                    "min_length": self.min_length
+                },
+            )
+
+    def get_help_text(self):
+        return str(pgettext_lazy(
+            "Password validation help text",
+            "The password has to be at least %(min_length)d characters long.",
+        ) % {
+            "min_length": self.min_length,
+        })
+
+
 class UserAttributeSimilarityValidator:
     def __init__(self):
         self.user_attributes = ("first_name", "last_name", "email")

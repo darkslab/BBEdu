@@ -1,7 +1,7 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n static permission %}
 
-{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (Test #{{ code }}){% endblocktrans %}{% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}{% endblock %}
+{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (#{{ code }}){% endblocktrans %} <small><span class="label label-default">{{ domain_name }}</span>{% if language %} <span class="label label-default">{{ language }}</span>{% endif %}{% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}</small>{% endblock %}
 
 {% block content %}
     <script>
@@ -13,6 +13,8 @@
             data: {
                 class: "Test",
                 props: {
+                    hasTimer: false,
+                    canEnd: false,
                     spinnerLogo: "{% static 'img/logo.png' %}",
                     continueUrl: "{% url 'bbtest:build_test_preview_data' code %}",
                     startUrl: "{% url 'bbtest:build_test_preview_data' code %}",
@@ -44,6 +46,8 @@
                         confirmModalNoCaption:        "{% trans 'No'                                           context 'Exam' %}",
                         expiredTitle:                 "{% trans 'Time is up'                                   context 'Exam' %}",
                         concludedTitle:               "{% trans 'Finished'                                     context 'Exam' %}",
+                        columnACaption:               "{% trans 'Column A'                                     context 'Exam' %}",
+                        columnBCaption:               "{% trans 'Column B'                                     context 'Exam' %}",
 
                         expiredExplanation: "{% trans 'You ran out of allocated time for the test. Please continue to the next test.' context 'Exam' %}",
                         concludedExplanation: "{% trans 'All tests are finished. Please continue to view the results.' context 'Exam' %}"

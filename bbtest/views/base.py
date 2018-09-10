@@ -6,33 +6,33 @@ from django.http import HttpResponse
 from django.utils.translation import get_language
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.contrib.messages import success
+from django.utils.translation import pgettext
 from urllib.parse import urlencode
 from decimal import Decimal
 from bbtest.auth.mixins import LoginRequiredMixin
 from bbtest.views.generic import FormView, RedirectView, TemplateView, View
 from bbtest.views.common import UserContextMixin
 from bbtest.forms.user import SettingsForm
-from bbtest.forms.subscription import SubscriptionForm
 from bbtest.forms.base import BuyCreditsForm
+from bbtest.forms.message import MessageForm
 from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError
 from bbtest.models.shopping.handle import CartHandleAccessMixin, CartHandle
 from bbtest.models.shopping.items import CreditItem
 from bbtest.models.shopping.operate import charge
-from bbtest.models import Cart
+from bbtest.models import Cart, TestDomain
 
 
-class HomeView(FormView):
-    template_name = "base/home.html"
-    form_class = SubscriptionForm
+class HomeView(TemplateView):
+    template_name = "home.html"
 
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return "%s?%s" % (reverse("bbtest:home"), urlencode({
-            "subscribed": "true",
-        }))
+    def get_context_data(self, **kwargs):
+        for domain in TestDomain.objects.all():
+            if domain.pk == 7911:
+                kwargs["nis"] = domain
+            elif domain.pk == 7912:
+                kwargs["unt"] = domain
+        return super().get_context_data(**kwargs)
 
 
 class DashboardView(LoginRequiredMixin, RedirectView):
@@ -151,3 +151,18 @@ class ProcessCreditsQazkomView(View):
             raise PaymentProcessorError(str(error))
 
         return HttpResponse("0", content_type="text/plain")
+
+
+class TermsView(TemplateView):
+    template_name = "base/terms.html"
+
+
+class ContactUsView(FormView):
+    template_name = "base/contact_us.html"
+    form_class = MessageForm
+    success_url = reverse_lazy("bbtest:contact_us")
+
+    def form_valid(self, form):
+        form.save()
+        success(self.request, pgettext("Success alert message", "Thank you. We have received your message and we will get back to you as soon as possible."))
+        return super().form_valid(form)

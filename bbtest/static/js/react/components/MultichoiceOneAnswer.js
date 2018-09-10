@@ -30,12 +30,22 @@ var MultichoiceOneAnswer = function (_React$Component) {
                 if (this.props.answer && this.props.answer.correct_id === this.props.data.choices[i].id) {
                     chosen = true;
                 }
+                var isCorrect = false;
+                if (this.props.showCorrectAnswer) {
+                    if (this.props.data.correct_id !== null && this.props.data.correct_id === this.props.data.choices[i].id) {
+                        isCorrect = true;
+                    }
+                }
                 choices.push(React.createElement(ChoiceClass, { key: this.props.data.choices[i].id,
                     data: this.props.data.choices[i].meta_data,
                     label: this._alphabet[i],
                     chosen: chosen,
                     isMulti: false,
-                    onChoose: this._handleChoose.bind(this, this.props.data.choices[i].id) }));
+                    onChoose: this._handleChoose.bind(this, this.props.data.choices[i].id),
+                    texts: this.props.texts,
+                    forDevelopers: false,
+                    showCorrectAnswer: this.props.showCorrectAnswer,
+                    isCorrect: isCorrect }));
             }
 
             return React.createElement(
@@ -72,6 +82,9 @@ var MultichoiceOneAnswer = function (_React$Component) {
     }, {
         key: "_handleChoose",
         value: function _handleChoose(choiceId) {
+            if (!this.props.canAnswer) {
+                return;
+            }
             var data = {
                 answer: {
                     correct_id: choiceId

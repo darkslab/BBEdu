@@ -50,6 +50,7 @@
                         {% elif perms.bbtest.developer %}
                             <li class="{% block nav_developer_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:developer_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_developer_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_developer_offer_class %}{% endblock %}"><a href="{% url 'bbtest:developer_offer' %}"><i class="fa fa-fw fa-handshake-o"></i> {% trans 'Public Offer' context 'Navigation link' %}</a></li>
                         {% elif perms.bbtest.student %}
                             <li class="{% block nav_student_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:student_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
                             {% if has_exam %}
@@ -76,7 +77,7 @@
                         <a target="_blank" href="https://www.instagram.com/bbtest.kz/" class="bb-social-icon bb-social-icon-instagram"><i class="fa fa-fw fa-instagram"></i></a>
                     </div>
                     <div class="col-xs-4 pr-0 pl-0">
-                        <a target="_blank" href="https://twitter.com/bbtest_kz" class="bb-social-icon bb-social-icon-twitter"><i class="fa fa-fw fa-twitter"></i></a>
+                        <a target="_blank" href="https://vk.com/bbtestkz" class="bb-social-icon bb-social-icon-vk"><i class="fa fa-fw fa-vk"></i></a>
                     </div>
                 </div>
             </div>
@@ -113,7 +114,7 @@
                     </nav>
                 </div>
                 <div class="row">
-                    <div class="container bb-content">
+                    <div class="container bb-content {% block extended_footer %}bb-content-extended{% endblock %}">
                         {% if messages %}
                             {% for message in messages %}
                                 <div class="row">
@@ -147,6 +148,12 @@
                     </div>
                 </div>
             </div>
+            <div class="bb-footer bb-footer-personalized text-center text-bold pr-15 pl-15">
+                <ul class="list-inline mb-0">
+                    <li><strong><a href="{% url 'bbtest:terms' %}">{% trans 'Terms' context 'Footer navigation link' %}</a></strong></li>
+                    <li><strong><a href="{% url 'bbtest:contact_us' %}">{% trans 'Contact Us' context 'Footer navigation link' %}</a></strong></li>
+                </ul>
+            </div>
             <div class="bb-copyright bb-copyright-personalized text-center">{% blocktrans with heart_icon='<i class="fa fa-heart-o"></i>' copyright_code='&copy;' context 'Bottom copyright' %}Made with {{ heart_icon }} in Kazakhstan. {{ copyright_code }} bbTest.kz{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
             <div class="bb-overlay" data-bb-overlay></div>
         </div>
@@ -155,6 +162,7 @@
 
 {% comment %}
 
+    extended_footer
     header
       header_class
       title
@@ -167,6 +175,7 @@
 
     nav_developer_dashboard_class
     nav_developer_create_test_class
+    nav_developer_offer_class
 
     nav_student_dashboard_class
     nav_student_buy_tests_class

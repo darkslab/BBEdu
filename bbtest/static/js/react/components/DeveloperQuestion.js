@@ -99,7 +99,8 @@ var DeveloperQuestion = function (_React$Component) {
                     texts: _this2.props.texts }));
                 paragraphs.push(React.createElement(ParagraphClass, { key: id,
                     data: paragraphData.meta_data,
-                    optionalTexts: _this2.props.texts }));
+                    texts: _this2.props.texts,
+                    forDevelopers: true }));
             });
             if (!paragraphs.length) {
                 paragraphs.push(React.createElement(

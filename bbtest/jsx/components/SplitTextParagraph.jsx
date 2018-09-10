@@ -44,9 +44,9 @@ class SplitTextParagraph extends React.Component {
         let leftClassName = "bb-test-paragraph";
         if (!this.props.data.left.text) {
             let content = null;
-            if (this.props.optionalTexts) {
+            if (this.props.forDevelopers) {
                 leftClassName += " bb-placeholder";
-                content = this.props.optionalTexts.paragraphEmptyPlaceholder;
+                content = this.props.texts.paragraphEmptyPlaceholder;
             }
             leftContent = (
                 <div className={leftClassName}>{content}</div>
@@ -65,9 +65,9 @@ class SplitTextParagraph extends React.Component {
         let rightClassName = "bb-test-paragraph";
         if (!this.props.data.right.text) {
             let content = null;
-            if (this.props.optionalTexts) {
+            if (this.props.forDevelopers) {
                 rightClassName += " bb-placeholder";
-                content = this.props.optionalTexts.paragraphEmptyPlaceholder;
+                content = this.props.texts.paragraphEmptyPlaceholder;
             }
             rightContent = (
                 <div className={rightClassName}>{content}</div>
@@ -88,9 +88,11 @@ class SplitTextParagraph extends React.Component {
                 <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                     <div className="row">
                         <div className="col-xs-6 pr-5">
+                            <h5 className="text-center mt-0 mb-0"><em>{this.props.texts.columnACaption}</em></h5>
                             {leftContent}
                         </div>
                         <div className="col-xs-6 pl-5">
+                            <h5 className="text-center mt-0 mb-0"><em>{this.props.texts.columnBCaption}</em></h5>
                             {rightContent}
                         </div>
                     </div>

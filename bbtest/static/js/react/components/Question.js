@@ -24,15 +24,27 @@ var Question = function (_React$Component) {
             for (var i = 0; i < this.props.object.paragraphs.length; i++) {
                 var ParagraphClass = eval(this.props.object.paragraphs[i].paragraph_class);
                 paragraphs.push(React.createElement(ParagraphClass, { key: i,
-                    data: this.props.object.paragraphs[i].meta_data }));
+                    data: this.props.object.paragraphs[i].meta_data,
+                    texts: this.props.texts,
+                    forDevelopers: false }));
             }
 
-            var countDown = parseInt(this.props.secondsLeft / 60, 10) + ":" + ("0" + this.props.secondsLeft % 60).substr(-2);
-            var countDownClassName = "bb-test-timer label mt-0 mb-0 pull-right";
-            if (this.props.secondsLeft > 10) {
-                countDownClassName += " label-success";
-            } else {
-                countDownClassName += " label-danger";
+            var timer = null;
+            if (this.props.hasTimer) {
+                var countDown = parseInt(this.props.secondsLeft / 60, 10) + ":" + ("0" + this.props.secondsLeft % 60).substr(-2);
+                var countDownClassName = "bb-test-timer label mt-0 mb-0 pull-right";
+                if (this.props.secondsLeft > 10) {
+                    countDownClassName += " label-success";
+                } else {
+                    countDownClassName += " label-danger";
+                }
+
+                timer = React.createElement(
+                    "span",
+                    { className: countDownClassName },
+                    React.createElement("i", { className: "fa fa-clock-o mr-10" }),
+                    countDown
+                );
             }
 
             var answerContent = null;
@@ -41,14 +53,9 @@ var Question = function (_React$Component) {
                 answerContent = React.createElement(AnswerClass, { data: this.props.object.meta_data,
                     answer: this.props.answerData,
                     onUpdate: this.props.onAnswerUpdate,
+                    canAnswer: this.props.canAnswer,
+                    showCorrectAnswer: this.props.showCorrectAnswer,
                     texts: this.props.texts });
-            }
-
-            var panelClassName = "panel mb-15";
-            if (this.props.answerData) {
-                panelClassName += " panel-success";
-            } else {
-                panelClassName += " panel-primary";
             }
 
             return React.createElement(
@@ -62,7 +69,7 @@ var Question = function (_React$Component) {
                         { className: "col-xs-12" },
                         React.createElement(
                             "div",
-                            { className: panelClassName },
+                            { className: "panel mb-15 panel-primary" },
                             React.createElement(
                                 "div",
                                 { className: "panel-heading bb-rel clearfix" },
@@ -76,12 +83,7 @@ var Question = function (_React$Component) {
                                     { className: "panel-title bb-test-title mt-15 mb-15 pull-left" },
                                     this.props.texts.question
                                 ),
-                                React.createElement(
-                                    "span",
-                                    { className: countDownClassName },
-                                    React.createElement("i", { className: "fa fa-clock-o mr-10" }),
-                                    countDown
-                                )
+                                timer
                             ),
                             React.createElement(
                                 "div",
