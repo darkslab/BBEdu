@@ -13,6 +13,8 @@
             data: {
                 class: "Test",
                 props: {
+                    hasTimer: false,
+                    canEnd: false,
                     spinnerLogo: "{% static 'img/logo.png' %}",
                     continueUrl: "{% url 'bbtest:build_test_preview_data' code %}",
                     startUrl: "{% url 'bbtest:build_test_preview_data' code %}",

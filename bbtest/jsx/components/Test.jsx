@@ -95,6 +95,19 @@ class Test extends React.Component {
                     );
                 }
 
+                let endControl = null;
+                if (this.props.canEnd) {
+                    endControl = (
+                        <div className="row">
+                            <div className="col-xs-12 text-center">
+                                <button type="button"
+                                        className="btn btn-danger btn-sm"
+                                        onClick={this._renderModal.bind(this, "end")}>{this.props.texts.endButton}</button>
+                            </div>
+                        </div>
+                    );
+                }
+
                 content = (
                     <React.Fragment>
                         <div className="row">
@@ -109,8 +122,11 @@ class Test extends React.Component {
                                   object={this._statusData.testObject.question(this._statusData.questionIndex)}
                                   answerData={this._statusData.testObject.answer(this._statusData.questionIndex)}
                                   onAnswerUpdate={this._statusData.testObject.updateAnswer.bind(this._statusData.testObject, this._statusData.questionIndex)}
+                                  canAnswer={this._statusData.testObject.canAnswer()}
+                                  showCorrectAnswer={this._statusData.testObject.showCorrectAnswer()}
                                   secondsLeft={this._statusData.seconds}
-                                  texts={this.props.texts} />
+                                  texts={this.props.texts}
+                                  hasTimer={this.props.hasTimer} />
                         <div className="row">
                             <div className="col-xs-12">
                                 <ul className="pager mt-0 mb-0">
@@ -119,13 +135,7 @@ class Test extends React.Component {
                                 </ul>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-xs-12 text-center">
-                                <button type="button"
-                                        className="btn btn-danger btn-sm"
-                                        onClick={this._renderModal.bind(this, "end")}>{this.props.texts.endButton}</button>
-                            </div>
-                        </div>
+                        {endControl}
                     </React.Fragment>
                 );
                 break;
@@ -295,6 +305,9 @@ class Test extends React.Component {
         this._errorOut();
     }
     _tick() {
+        if (!this.props.hasTimer) {
+            return;
+        }
         this._statusData.seconds -= 1;
         if (this._statusData.seconds >= 0) {
             this._statusData.timer = setTimeout(this._tick.bind(this), 1000);

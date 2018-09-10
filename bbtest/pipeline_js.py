@@ -57,6 +57,7 @@ BASE3_SOURCE_FILENAMES = (
 
     "js/react/objects/StudentTestObject.js",
     "js/react/objects/PreviewTestObject.js",
+    "js/react/objects/ResultTestObject.js",
 
     "js/react/components/TextParagraph.js",
     "js/react/components/SplitTextParagraph.js",

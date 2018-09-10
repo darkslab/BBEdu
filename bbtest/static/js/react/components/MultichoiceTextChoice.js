@@ -87,6 +87,28 @@ var MultichoiceTextChoice = function (_React$Component) {
                 );
             }
 
+            var answer = null;
+            if (this.props.showCorrectAnswer) {
+                var answerClass = "";
+                if (this.props.isMulti) {
+                    answerClass += " bb-test-answer-choice-squared";
+                } else {
+                    answerClass += " bb-test-answer-choice-rounded";
+                }
+                if (this.props.isCorrect) {
+                    answerClass += " bb-test-answer-choice-correct";
+                    answer = React.createElement("div", { className: answerClass });
+                } else {
+                    answerClass += " bb-test-answer-choice-incorrect";
+                    answer = React.createElement(
+                        "div",
+                        { className: answerClass },
+                        React.createElement("div", { className: "bb-test-answer-choice-incorrect-first" }),
+                        React.createElement("div", { className: "bb-test-answer-choice-incorrect-last" })
+                    );
+                }
+            }
+
             return React.createElement(
                 "div",
                 { className: "row" },
@@ -101,7 +123,8 @@ var MultichoiceTextChoice = function (_React$Component) {
                             { className: choiceClassName,
                                 onClick: this._handleClick.bind(this) },
                             this.props.label
-                        )
+                        ),
+                        answer
                     )
                 ),
                 React.createElement(

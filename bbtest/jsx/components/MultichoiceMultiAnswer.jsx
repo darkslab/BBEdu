@@ -16,6 +16,12 @@ class MultichoiceMultiAnswer extends React.Component {
             if (this.props.answer && this.props.answer.correct_ids.indexOf(this.props.data.choices[i].id) > -1) {
                 chosen = true;
             }
+            let isCorrect = false;
+            if (this.props.showCorrectAnswer) {
+                if (this.props.data.correct_ids.length && this.props.data.correct_ids.indexOf(this.props.data.choices[i].id) > -1) {
+                    isCorrect = true;
+                }
+            }
             choices.push(
                 <ChoiceClass key={this.props.data.choices[i].id}
                              data={this.props.data.choices[i].meta_data}
@@ -24,7 +30,9 @@ class MultichoiceMultiAnswer extends React.Component {
                              isMulti={true}
                              onChoose={this._handleChoose.bind(this, this.props.data.choices[i].id)}
                              texts={this.props.texts}
-                             forDevelopers={false} />
+                             forDevelopers={false}
+                             showCorrectAnswer={this.props.showCorrectAnswer}
+                             isCorrect={isCorrect} />
             );
         }
 
@@ -47,6 +55,9 @@ class MultichoiceMultiAnswer extends React.Component {
     }
 
     _handleChoose(choiceId) {
+        if (!this.props.canAnswer) {
+            return;
+        }
         let i = this._correctIds.indexOf(choiceId);
         if (i > -1) {
             this._correctIds.splice(i, 1);

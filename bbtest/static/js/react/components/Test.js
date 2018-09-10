@@ -150,6 +150,25 @@ var Test = function (_React$Component) {
                         );
                     }
 
+                    var endControl = null;
+                    if (this.props.canEnd) {
+                        endControl = React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "col-xs-12 text-center" },
+                                React.createElement(
+                                    "button",
+                                    { type: "button",
+                                        className: "btn btn-danger btn-sm",
+                                        onClick: this._renderModal.bind(this, "end") },
+                                    this.props.texts.endButton
+                                )
+                            )
+                        );
+                    }
+
                     content = React.createElement(
                         React.Fragment,
                         null,
@@ -179,8 +198,11 @@ var Test = function (_React$Component) {
                             object: this._statusData.testObject.question(this._statusData.questionIndex),
                             answerData: this._statusData.testObject.answer(this._statusData.questionIndex),
                             onAnswerUpdate: this._statusData.testObject.updateAnswer.bind(this._statusData.testObject, this._statusData.questionIndex),
+                            canAnswer: this._statusData.testObject.canAnswer(),
+                            showCorrectAnswer: this._statusData.testObject.showCorrectAnswer(),
                             secondsLeft: this._statusData.seconds,
-                            texts: this.props.texts }),
+                            texts: this.props.texts,
+                            hasTimer: this.props.hasTimer }),
                         React.createElement(
                             "div",
                             { className: "row" },
@@ -195,21 +217,7 @@ var Test = function (_React$Component) {
                                 )
                             )
                         ),
-                        React.createElement(
-                            "div",
-                            { className: "row" },
-                            React.createElement(
-                                "div",
-                                { className: "col-xs-12 text-center" },
-                                React.createElement(
-                                    "button",
-                                    { type: "button",
-                                        className: "btn btn-danger btn-sm",
-                                        onClick: this._renderModal.bind(this, "end") },
-                                    this.props.texts.endButton
-                                )
-                            )
-                        )
+                        endControl
                     );
                     break;
                 case "expired":
@@ -443,6 +451,9 @@ var Test = function (_React$Component) {
     }, {
         key: "_tick",
         value: function _tick() {
+            if (!this.props.hasTimer) {
+                return;
+            }
             this._statusData.seconds -= 1;
             if (this._statusData.seconds >= 0) {
                 this._statusData.timer = setTimeout(this._tick.bind(this), 1000);

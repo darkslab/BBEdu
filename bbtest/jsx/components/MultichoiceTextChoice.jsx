@@ -60,12 +60,37 @@ class MultichoiceTextChoice extends React.Component {
             );
         }
 
+        let answer = null;
+        if (this.props.showCorrectAnswer) {
+            let answerClass = "";
+            if (this.props.isMulti) {
+                answerClass += " bb-test-answer-choice-squared";
+            } else {
+                answerClass += " bb-test-answer-choice-rounded";
+            }
+            if (this.props.isCorrect) {
+                answerClass += " bb-test-answer-choice-correct";
+                answer = (
+                    <div className={answerClass}></div>
+                );
+            } else {
+                answerClass += " bb-test-answer-choice-incorrect";
+                answer = (
+                    <div className={answerClass}>
+                        <div className="bb-test-answer-choice-incorrect-first"></div>
+                        <div className="bb-test-answer-choice-incorrect-last"></div>
+                    </div>
+                );
+            }
+        }
+
         return (
             <div className="row">
                 <div className="col-xs-2 col-sm-3 pr-0">
                     <div className="bb-rel bb-test-answer">
                         <div className={choiceClassName}
                              onClick={this._handleClick.bind(this)}>{this.props.label}</div>
+                        {answer}
                     </div>
                 </div>
                 <div className="col-xs-10 col-sm-7 pl-0">

@@ -938,7 +938,50 @@ html {
 }
 
 .bb-test-answer-choice-selected {
-    background-color: #4caf50;
+    background-color: #2196f3;
+}
+
+.bb-test-answer-choice-correct {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    width: 46px;
+    height: 46px;
+    margin-top: -23px;
+    border: 3px solid #4caf50;
+}
+
+.bb-test-answer-choice-incorrect {
+    position: absolute;
+    top: 50%;
+    right: -8px;
+    width: 42px;
+    height: 42px;
+    margin-top: -21px;
+}
+
+.bb-test-answer-choice-incorrect > div {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: 3px;
+    border-radius: 20px;
+    background-color: #e51c23;
+}
+
+.bb-test-answer-choice-incorrect > div.bb-test-answer-choice-incorrect-first {
+    -webkit-transform: translate(0px, 20px) rotate(45deg);
+        -ms-transform: translate(0px, 20px) rotate(45deg);
+         -o-transform: translate(0px, 20px) rotate(45deg);
+            transform: translate(0px, 20px) rotate(45deg);
+}
+
+.bb-test-answer-choice-incorrect > div.bb-test-answer-choice-incorrect-last {
+    -webkit-transform: translate(0px, 20px) rotate(-45deg);
+        -ms-transform: translate(0px, 20px) rotate(-45deg);
+         -o-transform: translate(0px, 20px) rotate(-45deg);
+            transform: translate(0px, 20px) rotate(-45deg);
 }
 
 .bb-test-answer-textarea,
@@ -1028,10 +1071,16 @@ html {
     }
 }
 
+.bb-test-container .pagination > .active > a,
+.bb-test-container .pagination > .active > a:hover,
+.bb-test-container .pagination > .active > a:focus {
+    background-color: #9c27b0;
+    border-color: #9c27b0;
+}
 .pagination > li > a.bb-pagination-success {
     color: #fff;
-    background-color: #4caf50;
-    border-color: #4caf50;
+    background-color: #2196f3;
+    border-color: #2196f3;
     z-index: 3;
 }
 

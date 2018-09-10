@@ -14,12 +14,22 @@ class Question extends React.Component {
             );
         }
 
-        let countDown = (parseInt(this.props.secondsLeft / 60, 10)) + ":" + ("0" + (this.props.secondsLeft % 60)).substr(-2);
-        let countDownClassName = "bb-test-timer label mt-0 mb-0 pull-right";
-        if (this.props.secondsLeft > 10) {
-            countDownClassName += " label-success";
-        } else {
-            countDownClassName += " label-danger";
+        let timer = null;
+        if (this.props.hasTimer) {
+            let countDown = (parseInt(this.props.secondsLeft / 60, 10)) + ":" + ("0" + (this.props.secondsLeft % 60)).substr(-2);
+            let countDownClassName = "bb-test-timer label mt-0 mb-0 pull-right";
+            if (this.props.secondsLeft > 10) {
+                countDownClassName += " label-success";
+            } else {
+                countDownClassName += " label-danger";
+            }
+
+            timer = (
+                <span className={countDownClassName}>
+                    <i className="fa fa-clock-o mr-10"></i>
+                    {countDown}
+                </span>
+            );
         }
 
         let answerContent = null;
@@ -29,29 +39,21 @@ class Question extends React.Component {
                 <AnswerClass data={this.props.object.meta_data}
                              answer={this.props.answerData}
                              onUpdate={this.props.onAnswerUpdate}
+                             canAnswer={this.props.canAnswer}
+                             showCorrectAnswer={this.props.showCorrectAnswer}
                              texts={this.props.texts} />
             );
-        }
-
-        let panelClassName = "panel mb-15";
-        if (this.props.answerData) {
-            panelClassName += " panel-success";
-        } else {
-            panelClassName += " panel-primary";
         }
 
         return (
             <React.Fragment>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className={panelClassName}>
+                        <div className="panel mb-15 panel-primary">
                             <div className="panel-heading bb-rel clearfix">
                                 <div className="bb-test-number">{this.props.count}</div>
                                 <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question}</h4>
-                                <span className={countDownClassName}>
-                                    <i className="fa fa-clock-o mr-10"></i>
-                                    {countDown}
-                                </span>
+                                {timer}
                             </div>
                             <div className="panel-body">
                                 <div className="mb-15">
