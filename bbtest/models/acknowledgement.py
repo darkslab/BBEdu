@@ -15,7 +15,7 @@ class DeveloperAcknowledgement(Model):
     )
     AGREEMENT_CODES_FOR_PLANS = {
         PLAN_A: "928d4499e9f1e6b90111710ecf607795",
-        PLAN_C: "d16bb9fb5a2264c43ce4cdfc31ce1e75",
+        PLAN_C: "61011ada89570a6d41140a656fbbbd37",
     }
     AGREEMENT_CODES = []
     AGREEMENT_CODES.append((AGREEMENT_CODES_FOR_PLANS[PLAN_A], AGREEMENT_CODES_FOR_PLANS[PLAN_A]))
