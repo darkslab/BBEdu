@@ -37,6 +37,7 @@ SECRET_KEY = SECRETS["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = SECRETS["DEBUG"]
+STAGING = SECRETS["STAGING"]
 
 ALLOWED_HOSTS = SECRETS["ALLOWED_HOSTS"]
 
@@ -108,7 +109,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "bbtest.auth.password_validation.BadPasswordValidator",
+        "NAME": "bbtest.auth.password_validation.MinLengthPasswordValidator",
     },
     {
         "NAME": "bbtest.auth.password_validation.UserAttributeSimilarityValidator",
@@ -310,14 +311,14 @@ LOGGING = {
 }
 
 ADMINS = [
-    ("Darkhan Baimyrza", "darkhan@baimyrza.com"),
+    ("Darkhan Baimyrza", "darkhan@bbtest.kz"),
 ]
 EMAIL_SUBJECT_PREFIX = ""
 DEFAULT_FROM_EMAIL = "bbTest.kz <no-reply@bbtest.kz>"
 SERVER_EMAIL = "bbTest.kz ERROR <errors@bbtest.kz>"
-if DEBUG:
+if SECRETS["LOCAL_EMAIL_FORCED"]:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-    EMAIL_HOST = "127.0.0.1"
+    EMAIL_HOST = SECRETS["LOCAL_EMAIL_HOST"]
     EMAIL_PORT = 1025
 else:
     EMAIL_BACKEND = "bbtest.mail.backends.async.EmailBackend"
@@ -344,8 +345,9 @@ RQ_EXCEPTION_HANDLERS = [
 BB_USER_AGENT = "bbTest.kz"
 
 BB_MANAGERS = [
-    "darkhan@baimyrza.com",
+    "darkhan@bbtest.kz",
     "admin@bbtest.kz",
+    "junior@bbtest.kz",
 ]
 
 BB_BASE_URL = SECRETS["BASE_URL"]

@@ -33,6 +33,12 @@ StudentTestObject.prototype.updateAnswer = function(index, data) {
     }.bind(this));
     this._push();
 }
+StudentTestObject.prototype.canAnswer = function() {
+    return true;
+}
+StudentTestObject.prototype.showCorrectAnswer = function() {
+    return false;
+}
 StudentTestObject.prototype._push = function() {
     if (this._$xhr !== undefined) {
         this._queuedReport = true;

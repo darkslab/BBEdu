@@ -7,6 +7,7 @@ function ColumnChart($container, values, max_value, options) {
     this._options["duration"] = this._optionValue(options, "duration", 2000);
     this._options["chain-duration"] = this._optionValue(options, "chain-duration", 100);
     this._options["line-width"] = this._optionValue(options, "line-width", 6);
+    this._options["padding-width"] = this._optionValue(options, "padding-width", undefined);
     this._options["line-color"] = this._optionValue(options, "line-color", "#2196f3");
     this._options["line-background-color"] = this._optionValue(options, "line-background-color", "#cae6fc");
     this._options["font-size"] = this._optionValue(options, "font-size", 20);
@@ -14,14 +15,11 @@ function ColumnChart($container, values, max_value, options) {
     this._options["font-color"] = this._optionValue(options, "font-color", "#444444");
     this._options["padding-right"] = this._optionValue(options, "padding-right", 15);
     this._options["padding-left"] = this._optionValue(options, "padding-left", 15);
+    this._options["percentage"] = this._optionValue(options, "percentage", false);
     this._options["round-linecap"] = false;
 
     this._values = values;
     this._max_value = max_value;
-    this._shift_y = 0;
-    if (this._options["round-linecap"]) {
-        this._shift_y = this._options["line-width"] / 2;
-    }
     this._timers = [];
     this._helpers = [];
 
@@ -39,7 +37,11 @@ ColumnChart.prototype._afterCreate = function(svg) {
         "font-weight": this._options["font-weight"],
         "fill": this._options["font-color"]
     });
-    text.appendChild(document.createTextNode(this._max_value.toString()));
+    if (this._options["percentage"]) {
+        text.appendChild(document.createTextNode(Math.round(this._max_value / this._max_value * 100) + "%"));
+    } else {
+        text.appendChild(document.createTextNode(this._max_value.toString()));
+    }
     svg.appendChild(text);
     texts.push(text);
 
@@ -56,7 +58,11 @@ ColumnChart.prototype._afterCreate = function(svg) {
             "font-weight": this._options["font-weight"],
             "fill": this._options["font-color"]
         });
-        text.appendChild(document.createTextNode(Math.round(text_value_step * i)));
+        if (this._options["percentage"]) {
+            text.appendChild(document.createTextNode(Math.round(text_value_step * i / this._max_value * 100) + "%"));
+        } else {
+            text.appendChild(document.createTextNode(Math.round(text_value_step * i)));
+        }
         svg.appendChild(text);
         texts.push(text);
     }
@@ -81,9 +87,17 @@ ColumnChart.prototype._afterCreate = function(svg) {
     for (var i = 0; i < texts.length; i++) {
         texts[i].setAttributeNS(null, "x", max_text_width);
     }
+    var shift_y = 0;
+    var line_width = this._options["line-width"];
+    if (this._options["padding-width"] !== undefined) {
+        line_width = Math.max(($(svg).width() - max_text_width - this._options["padding-left"] - this._options["padding-right"] - this._options["padding-width"] * (this._values.length - 1)) / this._values.length, 1);
+    }
+    if (this._options["round-linecap"]) {
+        shift_y = line_width / 2;
+    }
 
-    var current_x = max_text_width + this._options["padding-left"] + this._options["line-width"] / 2;
-    var step_x = ($(svg).width() - this._options["padding-right"] - this._options["line-width"] / 2 - current_x) / (this._values.length - 1);
+    var current_x = max_text_width + this._options["padding-left"] + line_width / 2;
+    var step_x = ($(svg).width() - this._options["padding-right"] - line_width / 2 - current_x) / (this._values.length - 1);
     for (var i = 0; i < this._values.length; i++) {
         var group = this._createElement("g", {
             "transform": "translate(" + [
@@ -94,27 +108,27 @@ ColumnChart.prototype._afterCreate = function(svg) {
 
         group.appendChild(this._createElement("path", {
             "d": this._d([
-                [ "M", [ 0, this._shift_y ] ],
-                [ "L", [ 0, $(svg).height() - this._shift_y ] ]
+                [ "M", [ 0, shift_y ] ],
+                [ "L", [ 0, $(svg).height() - shift_y ] ]
             ]),
             "fill": "none",
             "stroke": this._options["line-background-color"],
-            "stroke-width": this._options["line-width"],
+            "stroke-width": line_width,
             "stroke-linecap": this._options["round-linecap"] ? "round" : "butt"
         }));
 
         if (this._values[i] > 0) {
             var path = this._createElement("path", {
                 "d": this._d([
-                    [ "M", [ 0, this._shift_y ] ],
-                    [ "L", [ 0, this._shift_y ] ]
+                    [ "M", [ 0, shift_y ] ],
+                    [ "L", [ 0, shift_y ] ]
                 ]),
                 "fill": "none",
                 "stroke": this._options["line-color"],
-                "stroke-width": this._options["line-width"],
+                "stroke-width": line_width,
                 "stroke-linecap": this._options["round-linecap"] ? "round" : "butt"
             });
-            this._helpers.push(new _ColumnChartHelper(this, $(path), this._values[i], $(svg)));
+            this._helpers.push(new _ColumnChartHelper(this, $(path), this._values[i], $(svg), shift_y));
             group.appendChild(path);
         }
 
@@ -166,11 +180,12 @@ ColumnChart.prototype._scheduleNextHelper = function(index) {
     }).bind(this), this._options["chain-duration"]));
 }
 
-function _ColumnChartHelper(column_chart, $path, value, $container) {
+function _ColumnChartHelper(column_chart, $path, value, $container, shift_y) {
     this._column_chart = column_chart;
     this._$path = $path;
     this._value = value;
     this._$container = $container;
+    this._shift_y = shift_y;
 }
 _ColumnChartHelper.prototype.start_animation = function() {
     this._$path.animate({
@@ -187,9 +202,9 @@ _ColumnChartHelper.prototype.stop_animation = function() {
 _ColumnChartHelper.prototype._render_column = function(percentage) {
     var current_value = this._value * percentage;
     current_value = Math.min(current_value, this._column_chart._max_value) / this._column_chart._max_value * this._$container.height();
-    current_value = Math.max(current_value - this._column_chart._shift_y, this._column_chart._shift_y);
+    current_value = Math.max(current_value - this._shift_y, this._shift_y);
     this._$path.attr("d", this._column_chart._d([
-        [ "M", [ 0, this._column_chart._shift_y ] ],
+        [ "M", [ 0, this._shift_y ] ],
         [ "L", [ 0, current_value ] ]
     ]));
 }

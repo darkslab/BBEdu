@@ -1,7 +1,9 @@
 {% extends '../public_base_1.html' %}
 {% load i18n widget_tweaks %}
 
-{% block title %}{% trans 'Register' context 'Page title' %}{% endblock %}
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% if group == 'developer' %}{% trans 'Register as a Developer' context 'Page title' %}{% else %}{% trans 'Register' context 'Page title' %}{% endif %}{% endblock %}
 
 {% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3{% endblock %}
 
@@ -36,7 +38,7 @@
                             </div>
                         {% endfor %}
 
-                        <div class="form-group">
+                        <div class="form-group hidden">
                             <label class="control-label">{% trans 'I want to register as' context 'Form label' %}</label>
                             <div class="mr-23 ml-23">
                                 <div class="radio">

@@ -72,7 +72,10 @@ class DeveloperMultichoiceOneAnswer extends React.Component {
                              label={this._alphabet[index]}
                              chosen={chosen}
                              isMulti={false}
-                             optionalTexts={this.props.texts} />
+                             texts={this.props.texts}
+                             forDevelopers={true}
+                             showCorrectAnswer={false}
+                             isCorrect={false} />
             );
         });
         if (!choices.length) {

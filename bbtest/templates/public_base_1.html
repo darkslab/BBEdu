@@ -1,7 +1,7 @@
 {% extends './base_0.html' %}
 {% load static i18n %}
 
-{% block _d0_body_class %}bb-body-public{% endblock %}
+{% block _d0_body_class %}bb-body-public {% block extended_footer %}bb-body-public-extended{% endblock %}{% endblock %}
 
 {% block _d0_content %}
     <div class="container-fluid">
@@ -73,7 +73,7 @@
             </div>
         {% endif %}
         <div class="row">
-            <div class="container mb-23">
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1">
                         {% block header %}
@@ -89,11 +89,18 @@
             </div>
         </div>
     </div>
+    <div class="bb-footer text-center text-bold pr-15 pl-15">
+        <ul class="list-inline mb-0">
+            <li><strong><a href="{% url 'bbtest:terms' %}">{% trans 'Terms' context 'Footer navigation link' %}</a></strong></li>
+            <li><strong><a href="{% url 'bbtest:contact_us' %}">{% trans 'Contact Us' context 'Footer navigation link' %}</a></strong></li>
+        </ul>
+    </div>
     <div class="bb-copyright text-center">{% blocktrans with heart_icon='<i class="fa fa-heart-o"></i>' copyright_code='&copy;' context 'Bottom copyright' %}Made with {{ heart_icon }} in Kazakhstan. {{ copyright_code }} bbTest.kz{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
 {% endblock %}
 
 {% comment %}
 
+    extended_footer
     header
       header_class
       title

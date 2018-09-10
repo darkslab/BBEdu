@@ -1,14 +1,14 @@
 # Kazakh language translations for BBEdu project.
 # Copyright (C) 2017 bbTest.kz
-# Darkhan Baimyrza <darkhan@baimyrza.com>
+# Darkhan Baimyrza <darkhan@bbtest.kz>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 18:35+0600\n"
+"POT-Creation-Date: 2018-09-10 14:45+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
-"Last-Translator: Darkhan Baimyrza <darkhan@baimyrza.com>\n"
+"Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
 "MIME-Version: 1.0\n"
@@ -105,6 +105,10 @@ msgid "last name"
 msgstr "тегі"
 
 msgctxt "Model field"
+msgid "phone"
+msgstr ""
+
+msgctxt "Model field"
 msgid "joined at"
 msgstr "тіркелген уақыты"
 
@@ -181,6 +185,13 @@ msgstr ""
 "Құпиясөз %(secure_length)d белгіден аз болса, құпиясөз құрамында бас және "
 "кіші әріпі мен бір символы бар кем дегенде %(min_length)d белгіден тұратын "
 "болу керек."
+
+#, fuzzy, python-format
+#| msgctxt "Password validation error"
+#| msgid "The password has to be at least %(min_length)d characters."
+msgctxt "Password validation help text"
+msgid "The password has to be at least %(min_length)d characters long."
+msgstr "Құпиясөз кем дегенде %(min_length)d белгіден тұру керек."
 
 #, fuzzy, python-format
 #| msgctxt "Password validation error"
@@ -297,6 +308,13 @@ msgctxt "Validation error"
 msgid "This email is already taken."
 msgstr "Бұл электрондық пошта тіркелген."
 
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Last name is too long."
+msgctxt "Validation error"
+msgid "Phone is too long."
+msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+
 msgctxt "Form label"
 msgid "Amount"
 msgstr ""
@@ -358,6 +376,24 @@ msgstr "Тегіңізді енгізіңіз."
 
 msgctxt "Validation error"
 msgid "Invalid JSON format."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Last name is too long."
+msgctxt "Validation error"
+msgid "Name is too long."
+msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Please enter email."
+msgctxt "Validation error"
+msgid "Please enter the message."
+msgstr "Электрондық поштаңызды енгізіңіз."
+
+msgctxt "/contact_us/"
+msgid "Hello..."
 msgstr ""
 
 msgctxt "Validation error"
@@ -1106,10 +1142,6 @@ msgid "Immediate"
 msgstr ""
 
 msgctxt "Developer acknowledgement plan"
-msgid "Qualitative"
-msgstr ""
-
-msgctxt "Developer acknowledgement plan"
 msgid "Profitable"
 msgstr ""
 
@@ -1163,6 +1195,10 @@ msgstr "жіберілген уақыты"
 
 msgctxt "Field class description"
 msgid "JSON"
+msgstr ""
+
+msgctxt "Model field"
+msgid "message"
 msgstr ""
 
 msgctxt "Model field"
@@ -1563,50 +1599,11 @@ msgctxt "/buy-credits/"
 msgid "All transactions are handled by %(bank_name)s."
 msgstr ""
 
-#, python-format
-msgctxt "Splash page title"
-msgid "bbTest.kz %(dash_code)s Powerful and simple online testing platform"
+msgctxt "Page title"
+msgid "Contact Us"
 msgstr ""
 
-#, python-format
-msgctxt "Splash page description"
-msgid ""
-"bbTest.kz %(dash_code)s Powerful and simple online testing platform. Coming "
-"soon..."
-msgstr ""
-
-#, python-format
-msgctxt "Splash page content"
-msgid ""
-"%(quote_code)sPowerful and simple online testing platform.%(quote_code)s"
-msgstr ""
-
-#, python-format
-msgctxt "Splash page content"
-msgid ""
-"%(quote_code)sThorough testing, productive results, personal approach."
-"%(quote_code)s"
-msgstr ""
-
-msgctxt "Splash page content"
-msgid "coming soon..."
-msgstr ""
-
-msgctxt "Splash page content"
-msgid "Leave your email and you will be the first to know when we are live!"
-msgstr ""
-
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Email"
-msgctxt "Splash page content"
-msgid "Your Email"
-msgstr "Электрондық пошта"
-
-#, fuzzy
-#| msgctxt "Form button"
-#| msgid "Send"
-msgctxt "Splash page button"
+msgctxt "Form button"
 msgid "Send"
 msgstr "Жіберу"
 
@@ -1640,10 +1637,6 @@ msgstr ""
 "Құпиясөзді өзгерту бойынша сілтемені алу үшін электрондық поштаңызды "
 "енгізіңіз"
 
-msgctxt "Form button"
-msgid "Send"
-msgstr "Жіберу"
-
 msgctxt "Form link"
 msgid "Go back to Login"
 msgstr "Артқа қайту"
@@ -1663,6 +1656,13 @@ msgstr "Құпиясөзді өзгерту бойынша сілтемесі е
 msgctxt "Button"
 msgid "Reset Password"
 msgstr "Құпиясөзді өзгерту"
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Test developer"
+msgctxt "Page title"
+msgid "Register as a Developer"
+msgstr "Тестілеуді құрастырушы"
 
 msgctxt "Page title"
 msgid "Register"
@@ -1711,6 +1711,17 @@ msgid "Save"
 msgstr "Сақтау"
 
 msgctxt "Page title"
+msgid "Terms of Service"
+msgstr ""
+
+#, python-format
+msgctxt "Page description"
+msgid ""
+"bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
+"Effective."
+msgstr ""
+
+msgctxt "Page title"
 msgid "Choose your Developer Plan"
 msgstr ""
 
@@ -1728,22 +1739,6 @@ msgstr ""
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 4."
-msgstr ""
-
-msgctxt "Developer acknowledgement page"
-msgid "Plan B line 1."
-msgstr ""
-
-msgctxt "Developer acknowledgement page"
-msgid "Plan B line 2."
-msgstr ""
-
-msgctxt "Developer acknowledgement page"
-msgid "Plan B line 3."
-msgstr ""
-
-msgctxt "Developer acknowledgement page"
-msgid "Plan B line 4."
 msgstr ""
 
 msgctxt "Developer acknowledgement page"
@@ -1806,6 +1801,13 @@ msgctxt "/developer/"
 msgid "Section"
 msgstr ""
 
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "/developer/"
+msgid "Language"
+msgstr "Электрондық поштаңыз дұрыс емес."
+
 msgctxt "/developer/"
 msgid "Variant"
 msgstr ""
@@ -1840,6 +1842,15 @@ msgstr ""
 
 msgctxt "/developer/"
 msgid "Next"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Public Offer"
+msgstr ""
+
+#, python-format
+msgctxt "/developer/offer/"
+msgid "Accepted on %(date)s"
 msgstr ""
 
 #, fuzzy
@@ -1901,6 +1912,67 @@ msgctxt "Bottom copyright"
 msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
 msgstr "Қазақстанда %(heart_icon)s-пен жасалған. %(copyright_code)s bbTest.kz"
 
+#, python-format
+msgctxt "Home page title"
+msgid ""
+"bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
+"Effective."
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Dashboard"
+msgstr "Жеке кабинет"
+
+msgctxt "Navigation link"
+msgid "Settings"
+msgstr "Құрылғылар"
+
+msgctxt "Navigation link"
+msgid "Logout"
+msgstr "Шығу"
+
+msgctxt "Navigation link"
+msgid "Login"
+msgstr "Кіру"
+
+msgctxt "Navigation link"
+msgid "Register"
+msgstr "Тіркелу"
+
+msgctxt "Home page"
+msgid "Start practicing to the test right now!"
+msgstr ""
+
+msgctxt "Home page"
+msgid "We are working on other tests..."
+msgstr ""
+
+msgctxt "Home page"
+msgid "Online testing platform."
+msgstr ""
+
+msgctxt "Home page"
+msgid "Thorough. Convenient. Effective."
+msgstr ""
+
+msgctxt "Home page"
+msgid ""
+"Get a detailed test result analysis, find out your current skills and "
+"knowledge. Check out your progress and get better."
+msgstr ""
+
+msgctxt "Home page"
+msgid "Connect with us"
+msgstr ""
+
+msgctxt "Footer navigation link"
+msgid "Terms"
+msgstr ""
+
+msgctxt "Footer navigation link"
+msgid "Contact Us"
+msgstr ""
+
 msgctxt "Badge label under avatar"
 msgid "Administrator"
 msgstr "Администратор"
@@ -1915,10 +1987,6 @@ msgid "Balance: %(balance)s cred."
 msgstr ""
 
 msgctxt "Navigation link"
-msgid "Dashboard"
-msgstr "Жеке кабинет"
-
-msgctxt "Navigation link"
 msgid "All Tests"
 msgstr ""
 
@@ -1928,6 +1996,10 @@ msgstr ""
 msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "жасалған уақыты"
+
+msgctxt "Navigation link"
+msgid "Public Offer"
+msgstr ""
 
 #, fuzzy
 #| msgctxt "Navigation link"
@@ -1947,22 +2019,6 @@ msgstr "Тестілеудің нәтижелері"
 msgctxt "Navigation link"
 msgid "Buy Credits"
 msgstr ""
-
-msgctxt "Navigation link"
-msgid "Settings"
-msgstr "Құрылғылар"
-
-msgctxt "Navigation link"
-msgid "Logout"
-msgstr "Шығу"
-
-msgctxt "Navigation link"
-msgid "Login"
-msgstr "Кіру"
-
-msgctxt "Navigation link"
-msgid "Register"
-msgstr "Тіркелу"
 
 msgctxt "Page title"
 msgid "Choose the test domain"
@@ -2010,11 +2066,6 @@ msgstr ""
 
 #, python-format
 msgid "Duration: %(minutes)s min."
-msgstr ""
-
-#, python-format
-msgctxt "/student/buy-tests/xxxx/"
-msgid "%(price)s cred."
 msgstr ""
 
 msgctxt "/student/buy-tests/xxxx/"
@@ -2121,6 +2172,14 @@ msgid "Finished"
 msgstr ""
 
 msgctxt "Exam"
+msgid "Column A"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Column B"
+msgstr ""
+
+msgctxt "Exam"
 msgid ""
 "You ran out of allocated time for the test. Please continue to the next test."
 msgstr ""
@@ -2128,6 +2187,13 @@ msgstr ""
 msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
 msgstr ""
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Results"
+msgctxt "/student/results/xxxx/"
+msgid "Go back to results"
+msgstr "Тестілеудің нәтижелері"
 
 #, fuzzy
 #| msgctxt "Navigation link"
@@ -2264,6 +2330,13 @@ msgctxt "/super/tests/"
 msgid "Section"
 msgstr ""
 
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "/super/tests/"
+msgid "Language"
+msgstr "Электрондық поштаңыз дұрыс емес."
+
 msgctxt "/super/tests/"
 msgid "Variant"
 msgstr ""
@@ -2310,7 +2383,11 @@ msgstr ""
 
 #, python-format
 msgctxt "Page title"
-msgid "%(section_name)s (Test #%(code)s)"
+msgid "%(section_name)s (#%(code)s)"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Free"
 msgstr ""
 
 msgctxt "Developer tools"
@@ -2462,15 +2539,19 @@ msgid "Save and Preview"
 msgstr ""
 
 msgctxt "Developer tools"
+msgid "Column A"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Column B"
+msgstr ""
+
+msgctxt "Developer tools"
 msgid "Test Specification"
 msgstr ""
 
 msgctxt "Developer tools"
 msgid "Close"
-msgstr ""
-
-msgctxt "Page title"
-msgid "Free"
 msgstr ""
 
 msgctxt "Developer tools"
@@ -2535,6 +2616,12 @@ msgctxt "Developer tools"
 msgid "Send for Approval"
 msgstr ""
 
+msgctxt "Success alert message"
+msgid ""
+"Thank you. We have received your message and we will get back to you as soon "
+"as possible."
+msgstr ""
+
 msgctxt "/developer/tests/"
 msgid "Choose test language"
 msgstr ""
@@ -2575,6 +2662,10 @@ msgstr ""
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/cart/"
+msgid "Free"
 msgstr ""
 
 msgctxt "Error alert message"

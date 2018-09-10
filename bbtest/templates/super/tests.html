@@ -1,6 +1,8 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n permission %}
 
+{% block extended_footer %}{% endblock %}
+
 {% block title %}{% trans 'All tests' context 'Page title' %}{% endblock %}
 
 {% block nav_super_tests_class %}active{% endblock %}
@@ -50,6 +52,7 @@
                                 <th class="pr-15 pl-15">{% trans 'Developer' context '/super/tests/' %}</th>
                                 <th class="pr-15 pl-15">{% trans 'Domain' context '/super/tests/' %}</th>
                                 <th class="pr-15 pl-15">{% trans 'Section' context '/super/tests/' %}</th>
+                                <th class="pr-15 pl-15 text-center">{% trans 'Language' context '/super/tests/' %}</th>
                                 <th class="pr-15 pl-15 text-center">{% trans 'Variant' context '/super/tests/' %}</th>
                                 <th class="pr-15 pl-15 text-center">{% trans 'Free?' context '/super/tests/' %}</th>
                                 <th class="pr-15 pl-15 text-center">{% trans 'Status' context '/super/tests/' %}</th>
@@ -62,6 +65,7 @@
                                     <td class="pr-15 pl-15">{{ test.developer.get_full_name }}</td>
                                     <td class="pr-15 pl-15">{% trans test.section.domain.name %}</td>
                                     <td class="pr-15 pl-15">{% trans test.section.name %}</td>
+                                    <td class="pr-15 pl-15 text-center">{{ test.display_language }}</td>
                                     <td class="pr-15 pl-15 text-center">#{{ test.code|upper }}</td>
                                     <td class="pr-15 pl-15 text-center">
                                         <span class="label {% if test.is_free %}label-danger{% else %}label-success{% endif %}">{% if test.is_free %}{% trans 'Yes' context '/super/tests/' %}{% else %}{% trans 'No' context '/super/tests/' %}{% endif %}</span>

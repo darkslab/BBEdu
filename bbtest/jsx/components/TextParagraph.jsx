@@ -32,9 +32,9 @@ class TextParagraph extends React.Component {
 
         if (!this.props.data.text) {
             let _content = null;
-            if (this.props.optionalTexts) {
+            if (this.props.forDevelopers) {
                 className += " bb-placeholder";
-                _content = this.props.optionalTexts.paragraphEmptyPlaceholder;
+                _content = this.props.texts.paragraphEmptyPlaceholder;
             }
             content = (
                 <div className={className}>{_content}</div>

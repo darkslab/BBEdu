@@ -1,0 +1,48 @@
+{% extends '../public_base_1.html' %}
+{% load i18n widget_tweaks %}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'Contact Us' context 'Page title' %}{% endblock %}
+
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+    </script>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form method="post" action="{% url 'bbtest:contact_us' %}" class="mt-15" data-bb-form>
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                            <div class="form-group has-error">
+                                {% for error in form.non_field_errors %}
+                                    <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% for field in form %}
+                            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                {{ field|add_class:'form-control' }}
+                                {% for error in field.errors %}
+                                    <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block" data-bb-submit>{% trans 'Send' context 'Form button' %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

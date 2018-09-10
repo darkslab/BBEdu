@@ -79,15 +79,8 @@ var Test = function (_React$Component) {
                                         "button",
                                         { type: "button",
                                             className: "btn btn-primary btn-block",
-                                            onClick: this._start.bind(this) },
+                                            onClick: this._renderModal.bind(this, "start") },
                                         this.props.texts.startButton
-                                    ),
-                                    React.createElement(
-                                        "button",
-                                        { type: "button",
-                                            className: "btn btn-danger btn-block",
-                                            onClick: this._renderModal.bind(this, "skip") },
-                                        this.props.texts.skipButton
                                     )
                                 ),
                                 React.createElement(
@@ -97,15 +90,8 @@ var Test = function (_React$Component) {
                                         "button",
                                         { type: "button",
                                             className: "btn btn-primary btn-lg",
-                                            onClick: this._start.bind(this) },
+                                            onClick: this._renderModal.bind(this, "start") },
                                         this.props.texts.startButton
-                                    ),
-                                    React.createElement(
-                                        "button",
-                                        { type: "button",
-                                            className: "btn btn-danger btn-lg ml-5",
-                                            onClick: this._renderModal.bind(this, "skip") },
-                                        this.props.texts.skipButton
                                     )
                                 )
                             )
@@ -164,6 +150,25 @@ var Test = function (_React$Component) {
                         );
                     }
 
+                    var endControl = null;
+                    if (this.props.canEnd) {
+                        endControl = React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "col-xs-12 text-center" },
+                                React.createElement(
+                                    "button",
+                                    { type: "button",
+                                        className: "btn btn-danger btn-sm",
+                                        onClick: this._renderModal.bind(this, "end") },
+                                    this.props.texts.endButton
+                                )
+                            )
+                        );
+                    }
+
                     content = React.createElement(
                         React.Fragment,
                         null,
@@ -193,8 +198,11 @@ var Test = function (_React$Component) {
                             object: this._statusData.testObject.question(this._statusData.questionIndex),
                             answerData: this._statusData.testObject.answer(this._statusData.questionIndex),
                             onAnswerUpdate: this._statusData.testObject.updateAnswer.bind(this._statusData.testObject, this._statusData.questionIndex),
+                            canAnswer: this._statusData.testObject.canAnswer(),
+                            showCorrectAnswer: this._statusData.testObject.showCorrectAnswer(),
                             secondsLeft: this._statusData.seconds,
-                            texts: this.props.texts }),
+                            texts: this.props.texts,
+                            hasTimer: this.props.hasTimer }),
                         React.createElement(
                             "div",
                             { className: "row" },
@@ -209,21 +217,7 @@ var Test = function (_React$Component) {
                                 )
                             )
                         ),
-                        React.createElement(
-                            "div",
-                            { className: "row" },
-                            React.createElement(
-                                "div",
-                                { className: "col-xs-12 text-center" },
-                                React.createElement(
-                                    "button",
-                                    { type: "button",
-                                        className: "btn btn-danger btn-sm",
-                                        onClick: this._renderModal.bind(this, "end") },
-                                    this.props.texts.endButton
-                                )
-                            )
-                        )
+                        endControl
                     );
                     break;
                 case "expired":
@@ -341,10 +335,14 @@ var Test = function (_React$Component) {
                     refreshCaption: this.props.texts.refreshButton,
                     cancelCaption: this.props.texts.cancelRefreshButton });
             } else if (this.state.confirmationFor !== undefined) {
+                var isInverse = true;
+                if (this.state.confirmationFor === "start") {
+                    isInverse = false;
+                }
                 modal = React.createElement(ConfirmModal, { title: this.props.texts.confirmModalTitle,
                     yesCaption: this.props.texts.confirmModalYesCaption,
                     noCaption: this.props.texts.confirmModalNoCaption,
-                    isInverse: true,
+                    isInverse: isInverse,
                     complete: this._completeModal.bind(this) });
             }
 
@@ -453,6 +451,9 @@ var Test = function (_React$Component) {
     }, {
         key: "_tick",
         value: function _tick() {
+            if (!this.props.hasTimer) {
+                return;
+            }
             this._statusData.seconds -= 1;
             if (this._statusData.seconds >= 0) {
                 this._statusData.timer = setTimeout(this._tick.bind(this), 1000);
@@ -639,6 +640,9 @@ var Test = function (_React$Component) {
                         break;
                     case "end":
                         this._end();
+                        break;
+                    case "start":
+                        this._start();
                         break;
                 }
             }

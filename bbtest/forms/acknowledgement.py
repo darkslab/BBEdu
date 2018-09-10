@@ -25,12 +25,6 @@ class DeveloperAcknowledgementForm(ModelForm):
             },
         }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # DARK_TODO  remove this when more developer plans are available
-        self.fields["plan"].choices = [ DeveloperAcknowledgement.PLANS[0] ]
-        self.fields["agreement_code"].choices = [ DeveloperAcknowledgement.AGREEMENT_CODES[0] ]
-
     def clean(self):
         if self.cleaned_data.get("plan") is None or self.cleaned_data.get("agreement_code") is None:
             return self.cleaned_data

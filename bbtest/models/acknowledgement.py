@@ -8,21 +8,17 @@ from django.utils.translation import pgettext_lazy
 
 class DeveloperAcknowledgement(Model):
     PLAN_A  = 0x0001
-    PLAN_B  = 0x0002
     PLAN_C  = 0x0003
     PLANS = (
         ( PLAN_A, pgettext_lazy("Developer acknowledgement plan", "Immediate")   ),
-        ( PLAN_B, pgettext_lazy("Developer acknowledgement plan", "Qualitative") ),
         ( PLAN_C, pgettext_lazy("Developer acknowledgement plan", "Profitable")  ),
     )
     AGREEMENT_CODES_FOR_PLANS = {
-        PLAN_A: "09b90737225eb2551d9e9344bbb68ba0",
-        PLAN_B: "",
-        PLAN_C: "",
+        PLAN_A: "928d4499e9f1e6b90111710ecf607795",
+        PLAN_C: "61011ada89570a6d41140a656fbbbd37",
     }
     AGREEMENT_CODES = []
     AGREEMENT_CODES.append((AGREEMENT_CODES_FOR_PLANS[PLAN_A], AGREEMENT_CODES_FOR_PLANS[PLAN_A]))
-    AGREEMENT_CODES.append((AGREEMENT_CODES_FOR_PLANS[PLAN_B], AGREEMENT_CODES_FOR_PLANS[PLAN_B]))
     AGREEMENT_CODES.append((AGREEMENT_CODES_FOR_PLANS[PLAN_C], AGREEMENT_CODES_FOR_PLANS[PLAN_C]))
 
     developer  = OneToOneField  ( get_user_model(), on_delete=CASCADE, related_name="acknowledgement", )

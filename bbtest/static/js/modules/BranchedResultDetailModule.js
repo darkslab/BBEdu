@@ -31,15 +31,15 @@ function BranchedResultDetailModule(data) {
         "duration": 2000,
         "chain-duration": 0,
         "activate-duration": 150,
-        "hole-radius": "30%",
-        "active-radius": "15%",
+        "hole-radius": "20%",
+        "active-radius": "10%",
         "font-size": 18,
         "font-weight": "bold",
         "font-color": "#fff"
     });
     this._progressChart = new ColumnChart($(data.progress_selector), data.progress, max, {
         "avg_value": data.avg,
-        "line-width": 16,
+        "padding-width": 4,
         "line-color": data.colors[0],
         "line-background-color": data.colors[1],
         "font-size": 14
