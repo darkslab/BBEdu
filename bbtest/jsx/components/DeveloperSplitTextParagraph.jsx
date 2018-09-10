@@ -56,12 +56,14 @@ class DeveloperSplitTextParagraph extends React.Component {
                         <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                             <div className="row">
                                 <div className="col-xs-6 pr-5">
+                                    <h5 className="text-center mt-0 mb-10"><em>{this.props.texts.columnACaption}</em></h5>
                                     <textarea className={leftClassName}
                                               placeholder={this.props.texts.paragraphTextareaPlaceholder}
                                               value={this.props.data.left.text}
                                               onChange={this._handleChange.bind(this, "left")} />
                                 </div>
                                 <div className="col-xs-6 pl-5">
+                                    <h5 className="text-center mt-0 mb-10"><em>{this.props.texts.columnBCaption}</em></h5>
                                     <textarea className={rightClassName}
                                               placeholder={this.props.texts.paragraphTextareaPlaceholder}
                                               value={this.props.data.right.text}

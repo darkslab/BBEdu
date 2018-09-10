@@ -67,9 +67,9 @@ var MultichoiceTextChoice = function (_React$Component) {
 
             if (!this.props.data.text) {
                 var _content = null;
-                if (this.props.optionalTexts) {
+                if (this.props.forDevelopers) {
                     contentClassName += " bb-placeholder";
-                    _content = this.props.optionalTexts.paragraphEmptyPlaceholder;
+                    _content = this.props.texts.paragraphEmptyPlaceholder;
                 }
                 content = React.createElement(
                     "div",

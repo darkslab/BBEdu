@@ -44,7 +44,9 @@ var MultichoiceMultiAnswer = function (_React$Component) {
                     label: this._alphabet[i],
                     chosen: chosen,
                     isMulti: true,
-                    onChoose: this._handleChoose.bind(this, this.props.data.choices[i].id) }));
+                    onChoose: this._handleChoose.bind(this, this.props.data.choices[i].id),
+                    texts: this.props.texts,
+                    forDevelopers: false }));
             }
 
             return React.createElement(

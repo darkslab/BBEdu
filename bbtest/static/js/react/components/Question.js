@@ -24,7 +24,9 @@ var Question = function (_React$Component) {
             for (var i = 0; i < this.props.object.paragraphs.length; i++) {
                 var ParagraphClass = eval(this.props.object.paragraphs[i].paragraph_class);
                 paragraphs.push(React.createElement(ParagraphClass, { key: i,
-                    data: this.props.object.paragraphs[i].meta_data }));
+                    data: this.props.object.paragraphs[i].meta_data,
+                    texts: this.props.texts,
+                    forDevelopers: false }));
             }
 
             var countDown = parseInt(this.props.secondsLeft / 60, 10) + ":" + ("0" + this.props.secondsLeft % 60).substr(-2);

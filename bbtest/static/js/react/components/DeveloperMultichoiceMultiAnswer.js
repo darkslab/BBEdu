@@ -102,7 +102,8 @@ var DeveloperMultichoiceMultiAnswer = function (_React$Component) {
                     label: _this2._alphabet[index],
                     chosen: chosen,
                     isMulti: true,
-                    optionalTexts: _this2.props.texts }));
+                    texts: _this2.props.texts,
+                    forDevelopers: true }));
             });
             if (!choices.length) {
                 choices.push(React.createElement(

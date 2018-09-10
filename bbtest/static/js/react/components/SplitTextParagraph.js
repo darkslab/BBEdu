@@ -69,9 +69,9 @@ var SplitTextParagraph = function (_React$Component) {
             var leftClassName = "bb-test-paragraph";
             if (!this.props.data.left.text) {
                 var content = null;
-                if (this.props.optionalTexts) {
+                if (this.props.forDevelopers) {
                     leftClassName += " bb-placeholder";
-                    content = this.props.optionalTexts.paragraphEmptyPlaceholder;
+                    content = this.props.texts.paragraphEmptyPlaceholder;
                 }
                 leftContent = React.createElement(
                     "div",
@@ -92,9 +92,9 @@ var SplitTextParagraph = function (_React$Component) {
             var rightClassName = "bb-test-paragraph";
             if (!this.props.data.right.text) {
                 var _content = null;
-                if (this.props.optionalTexts) {
+                if (this.props.forDevelopers) {
                     rightClassName += " bb-placeholder";
-                    _content = this.props.optionalTexts.paragraphEmptyPlaceholder;
+                    _content = this.props.texts.paragraphEmptyPlaceholder;
                 }
                 rightContent = React.createElement(
                     "div",
@@ -124,11 +124,29 @@ var SplitTextParagraph = function (_React$Component) {
                         React.createElement(
                             "div",
                             { className: "col-xs-6 pr-5" },
+                            React.createElement(
+                                "h5",
+                                { className: "text-center mt-0 mb-0" },
+                                React.createElement(
+                                    "em",
+                                    null,
+                                    this.props.texts.columnACaption
+                                )
+                            ),
                             leftContent
                         ),
                         React.createElement(
                             "div",
                             { className: "col-xs-6 pl-5" },
+                            React.createElement(
+                                "h5",
+                                { className: "text-center mt-0 mb-0" },
+                                React.createElement(
+                                    "em",
+                                    null,
+                                    this.props.texts.columnBCaption
+                                )
+                            ),
                             rightContent
                         )
                     )

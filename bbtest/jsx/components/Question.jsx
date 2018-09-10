@@ -8,7 +8,9 @@ class Question extends React.Component {
             let ParagraphClass = eval(this.props.object.paragraphs[i].paragraph_class);
             paragraphs.push(
                 <ParagraphClass key={i}
-                                data={this.props.object.paragraphs[i].meta_data} />
+                                data={this.props.object.paragraphs[i].meta_data}
+                                texts={this.props.texts}
+                                forDevelopers={false} />
             );
         }
 
