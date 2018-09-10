@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-10 14:45+0600\n"
+"POT-Creation-Date: 2018-09-11 04:34+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2240,12 +2240,6 @@ msgstr ""
 #, python-format
 msgctxt "Results page"
 msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-msgstr ""
-
-msgctxt "Results page"
-msgid ""
-"This feature is not yet available. But we are working on it. Please check "
-"back later for updates."
 msgstr ""
 
 #, fuzzy
