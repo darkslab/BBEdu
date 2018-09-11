@@ -55,7 +55,7 @@
     </script>
     <div class="row">
         <div class="col-xs-12 mb-23">
-            <a href="{% url 'bbtest:student_results' %}" class="btn btn-default mr-5 mb-5">{% trans 'Go back to results' context '/student/results/xxxx/' %}</a>
+            <a href="{% url 'bbtest:student_results' %}{% if result_page is not None %}?page={{ result_page }}{% endif %}" class="btn btn-default mr-5 mb-5">{% trans 'Go back to results' context '/student/results/xxxx/' %}</a>
         </div>
     </div>
     <div id="root" class="mb-10">

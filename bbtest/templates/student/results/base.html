@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-xs-12">
             {% for quiz_set in quiz_sets %}
-                {% include './bundle.html' with quiz_set=quiz_set index=forloop.counter0 only %}
+                {% include './bundle.html' with quiz_set=quiz_set index=forloop.counter0 quiz_sets=quiz_sets only %}
             {% empty %}
                 <div class="panel panel-default">
                     <div class="panel-body">

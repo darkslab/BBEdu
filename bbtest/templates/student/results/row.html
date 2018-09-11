@@ -112,8 +112,7 @@
                         </div>
                     {% endif %}
                     <div class="text-center mt-23">
-                        {% trans 'This feature is not yet available. But we are working on it. Please check back later for updates.' context 'Results page' as popover_text %}
-                        <button type="button" class="btn btn-primary text-help" data-toggle="popover" data-content="{{ popover_text }}" data-placement="auto" data-container="body" data-trigger="hover">{% trans 'Review correct answers' context 'Results page' %}</button>
+                        <a href="{% url 'bbtest:student_result' quiz.test.code %}{% if quiz_sets.has_other_pages %}?page={{ quiz_sets.number }}{% endif %}" class="btn btn-primary">{% trans 'Review correct answers' context 'Results page' %}</a>
                     </div>
                 </div>
             </div>

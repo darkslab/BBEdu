@@ -251,8 +251,11 @@
     "status": "queued",
     "section": "Математика",
     "instructions": [
-        "Lorem ipsum.",
-        "Lorem ipsum."
+        [
+            "Lorem ipsum.",
+            "Lorem ipsum."
+            // ...
+        ]
         // ...
     ]
 }
