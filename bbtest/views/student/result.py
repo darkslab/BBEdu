@@ -110,6 +110,7 @@ class ResultView(StudentPermissionRequiredMixin, UserContextMixin, TemplateView)
         kwargs["test"] = quiz.test
         kwargs["code"] = self.kwargs["code"]
         kwargs["section_name"] = _(quiz.test.section.name)
+        kwargs["result_page"] = self.request.GET.get("page")
         return super().get_context_data(**kwargs)
 
 

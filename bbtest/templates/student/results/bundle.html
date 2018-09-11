@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 {% for quiz in quiz_set.quizzes.all %}
-                    {% include './row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 only %}
+                    {% include './row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 quiz_sets=quiz_sets only %}
                 {% endfor %}
             </div>
         </div>
