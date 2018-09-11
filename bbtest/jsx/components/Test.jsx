@@ -25,12 +25,21 @@ class Test extends React.Component {
                 let instructions = [];
                 for (let i = 0; i < this._statusData.instructions.length; i++) {
                     let className = "lead";
+                    let isLastGroup = true;
                     if (i < this._statusData.instructions.length - 1) {
-                        className += " mb-10";
+                        isLastGroup = false;
                     }
-                    instructions.push(
-                        <p key={i} className={className}>{this._statusData.instructions[i]}</p>
-                    );
+                    for (let j = 0; j < this._statusData.instructions[i].length; j++) {
+                        let innerClassName = "";
+                        if (j < this._statusData.instructions[i].length - 1) {
+                            innerClassName += " mb-0";
+                        } else if (!isLastGroup) {
+                            innerClassName += " mb-10";
+                        }
+                        instructions.push(
+                            <p key={i + "-" + j} className={className + innerClassName}>{this._statusData.instructions[i][j]}</p>
+                        );
+                    }
                 }
                 content = (
                     <div className="panel panel-default">

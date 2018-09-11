@@ -2,7 +2,6 @@ from django.utils.translation import ugettext as _
 from django.utils.timezone import now
 from django.db.transaction import atomic
 from django.db.models import F
-from django.utils.lorem_ipsum import paragraphs
 from django.core.cache import cache
 from json import loads
 from ool import ConcurrentUpdate
@@ -14,6 +13,7 @@ from .mixins import CurrentQuizSetRequiredMixin
 from bbtest.http import TightJsonResponse
 from bbtest.models import Test
 from bbtest.forms.exam import ExamReportForm
+from bbtest.test_instructions import INSTRUCTION_TEXTS
 
 
 class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
@@ -30,8 +30,7 @@ class ExamMixin:
             "success": True,
             "status": "queued",
             "section": _(self.current_quiz().test.section.name),
-            # DARK_TODO  implement this!
-            "instructions": paragraphs(2, False),
+            "instructions": INSTRUCTION_TEXTS[self.current_quiz().test.section.pk][self.current_quiz().test.language],
         }
 
     def started_response(self, now_at):

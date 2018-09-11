@@ -48,14 +48,23 @@ var Test = function (_React$Component) {
                     var instructions = [];
                     for (var i = 0; i < this._statusData.instructions.length; i++) {
                         var className = "lead";
+                        var isLastGroup = true;
                         if (i < this._statusData.instructions.length - 1) {
-                            className += " mb-10";
+                            isLastGroup = false;
                         }
-                        instructions.push(React.createElement(
-                            "p",
-                            { key: i, className: className },
-                            this._statusData.instructions[i]
-                        ));
+                        for (var j = 0; j < this._statusData.instructions[i].length; j++) {
+                            var innerClassName = "";
+                            if (j < this._statusData.instructions[i].length - 1) {
+                                innerClassName += " mb-0";
+                            } else if (!isLastGroup) {
+                                innerClassName += " mb-10";
+                            }
+                            instructions.push(React.createElement(
+                                "p",
+                                { key: i + "-" + j, className: className + innerClassName },
+                                this._statusData.instructions[i][j]
+                            ));
+                        }
                     }
                     content = React.createElement(
                         "div",
