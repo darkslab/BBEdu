@@ -11,6 +11,8 @@ def inject_questions_and_report_into_started_response(response, test, hide_answe
         "observation": {},
     }
 
+    paragraphs_map = {}
+    paragraphs_questions = {}
     for question in test.questions.prefetch_related(
         Prefetch("paragraphs", queryset=TestParagraph.objects.order_by("through").all()),
     ).all():
@@ -48,11 +50,25 @@ def inject_questions_and_report_into_started_response(response, test, hide_answe
             _paragraph = {
                 "paragraph_class": paragraph.paragraph_class,
                 "meta_data": paragraph.meta_data,
+                "is_shared": False,
             }
             _question["paragraphs"].append(_paragraph)
 
+            if paragraph.pk not in paragraphs_map:
+                paragraphs_map[paragraph.pk] = []
+            paragraphs_map[paragraph.pk].append(_paragraph)
+
+            if paragraph.pk not in paragraphs_questions:
+                paragraphs_questions[paragraph.pk] = set()
+            paragraphs_questions[paragraph.pk].add(question.pk)
+
         response["questions"].append(_question)
         response["report"]["answers"].append(_answer)
+
+    for paragraph_pk, questions_pk_set in paragraphs_questions.items():
+        if len(questions_pk_set) > 1:
+            for _paragraph in paragraphs_map[paragraph_pk]:
+                _paragraph["is_shared"] = True
 
 
 def results_progress(test_section, user):

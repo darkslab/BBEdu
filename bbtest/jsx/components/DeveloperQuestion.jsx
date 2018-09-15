@@ -57,6 +57,7 @@ class DeveloperQuestion extends React.Component {
         let paragraphs = [];
         this.props.object.paragraphIds().map(id => {
             let paragraphData = this.props.object.paragraph(id);
+            let sharedQuestionIds = this.props.object.paragraphSharedWith(id);
 
             let DeveloperParagraphClass = eval("Developer" + paragraphData.paragraph_class);
             let ParagraphClass = eval(paragraphData.paragraph_class);
@@ -65,6 +66,7 @@ class DeveloperQuestion extends React.Component {
                 <DeveloperParagraphClass key={id}
                                          paragraphId={id}
                                          data={paragraphData.meta_data}
+                                         sharedQuestionIds={sharedQuestionIds}
                                          onChange={this._paragraphChange.bind(this, id)}
                                          onDelete={this._paragraphDelete.bind(this, id)}
                                          canDelete={this.props.ability.canDeleteParagraph(id)}
@@ -73,6 +75,7 @@ class DeveloperQuestion extends React.Component {
             paragraphs.push(
                 <ParagraphClass key={id}
                                 data={paragraphData.meta_data}
+                                isShared={sharedQuestionIds.length > 0}
                                 texts={this.props.texts}
                                 forDevelopers={true} />
             );

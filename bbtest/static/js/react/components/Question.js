@@ -25,6 +25,7 @@ var Question = function (_React$Component) {
                 var ParagraphClass = eval(this.props.object.paragraphs[i].paragraph_class);
                 paragraphs.push(React.createElement(ParagraphClass, { key: i,
                     data: this.props.object.paragraphs[i].meta_data,
+                    isShared: this.props.object.paragraphs[i].is_shared,
                     texts: this.props.texts,
                     forDevelopers: false }));
             }

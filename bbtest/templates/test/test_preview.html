@@ -1,6 +1,8 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n static permission %}
 
+{% block window_title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (#{{ code }}){% endblocktrans %}{% endblock %}
+
 {% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (#{{ code }}){% endblocktrans %} <small><span class="label label-default">{{ domain_name }}</span>{% if language %} <span class="label label-default">{{ language }}</span>{% endif %}{% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}</small>{% endblock %}
 
 {% block content %}
@@ -48,6 +50,7 @@
                         concludedTitle:               "{% trans 'Finished'                                     context 'Exam' %}",
                         columnACaption:               "{% trans 'Column A'                                     context 'Exam' %}",
                         columnBCaption:               "{% trans 'Column B'                                     context 'Exam' %}",
+                        sharedTitleTextParagraph:     "{% trans 'Text'                                         context 'Exam' %}",
 
                         expiredExplanation: "{% trans 'You ran out of allocated time for the test. Please continue to the next test.' context 'Exam' %}",
                         concludedExplanation: "{% trans 'All tests are finished. Please continue to view the results.' context 'Exam' %}"
@@ -95,8 +98,18 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-xs-12 mb-15 text-danger text-center text-uppercase">
+                            <div class="col-xs-12 mb-10 text-danger text-center text-uppercase">
                                 <strong>{% trans 'This action is irreversable!' context 'Developer tools' %}</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 mb-15 text-danger text-center">
+                                <div class="checkbox mt-0 mb-0">
+                                    <label>
+                                        <input type="checkbox" name="skip_check" value="true">
+                                        <strong>{% trans 'Skip test checks!' context 'Developer tools' %}</strong>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
