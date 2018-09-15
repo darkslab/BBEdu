@@ -98,8 +98,18 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-xs-12 mb-15 text-danger text-center text-uppercase">
+                            <div class="col-xs-12 mb-10 text-danger text-center text-uppercase">
                                 <strong>{% trans 'This action is irreversable!' context 'Developer tools' %}</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 mb-15 text-danger text-center">
+                                <div class="checkbox mt-0 mb-0">
+                                    <label>
+                                        <input type="checkbox" name="skip_check" value="true">
+                                        <strong>{% trans 'Skip test checks!' context 'Developer tools' %}</strong>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="row">

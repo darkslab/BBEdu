@@ -195,7 +195,10 @@ class ApproveTestView(SuperPermissionRequiredMixin, View):
             raise Http404("Superusers cannot approve draft tests of other developers")
 
         form = TestCheckForm(instance=test, data={})
-        if not form.is_valid():
+        skip = False
+        if "skip_check" in request.POST and request.POST["skip_check"] == "true":
+            skip = True
+        if not form.is_valid() and not skip:
             error(request, pgettext("Error alert message", "Could not approve the Test. Please check the Test for correctness."))
             return redirect("bbtest:build_test_preview", code=test.code)
 
