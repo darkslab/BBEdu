@@ -29,6 +29,14 @@ class TextParagraph extends React.Component {
     render() {
         let content = null;
         let className = "bb-test-paragraph";
+        let sharedAddon = null;
+
+        if (this.props.isShared) {
+            className += " bb-test-paragraph-shared";
+            sharedAddon = (
+                <h5 className="text-center mt-0 mb-5"><em>{this.props.texts.sharedTitleTextParagraph}</em></h5>
+            );
+        }
 
         if (!this.props.data.text) {
             let _content = null;
@@ -37,16 +45,25 @@ class TextParagraph extends React.Component {
                 _content = this.props.texts.paragraphEmptyPlaceholder;
             }
             content = (
-                <div className={className}>{_content}</div>
+                <React.Fragment>
+                    {sharedAddon}
+                    <div className={className}>{_content}</div>
+                </React.Fragment>
             );
         } else if (this.props.data.has_formulas) {
             content = (
-                <div className={className}
-                     dangerouslySetInnerHTML={{ __html: this.state.rawHtml }}></div>
+                <React.Fragment>
+                    {sharedAddon}
+                    <div className={className}
+                         dangerouslySetInnerHTML={{ __html: this.state.rawHtml }}></div>
+                </React.Fragment>
             );
         } else {
             content = (
-                <div className={className}>{SimpleFormattedFragment(this.props.data.text)}</div>
+                <React.Fragment>
+                    {sharedAddon}
+                    <div className={className}>{SimpleFormattedFragment(this.props.data.text)}</div>
+                </React.Fragment>
             );
         }
 

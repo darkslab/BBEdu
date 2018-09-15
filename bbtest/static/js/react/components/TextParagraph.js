@@ -54,6 +54,20 @@ var TextParagraph = function (_React$Component) {
         value: function render() {
             var content = null;
             var className = "bb-test-paragraph";
+            var sharedAddon = null;
+
+            if (this.props.isShared) {
+                className += " bb-test-paragraph-shared";
+                sharedAddon = React.createElement(
+                    "h5",
+                    { className: "text-center mt-0 mb-5" },
+                    React.createElement(
+                        "em",
+                        null,
+                        this.props.texts.sharedTitleTextParagraph
+                    )
+                );
+            }
 
             if (!this.props.data.text) {
                 var _content = null;
@@ -62,18 +76,33 @@ var TextParagraph = function (_React$Component) {
                     _content = this.props.texts.paragraphEmptyPlaceholder;
                 }
                 content = React.createElement(
-                    "div",
-                    { className: className },
-                    _content
+                    React.Fragment,
+                    null,
+                    sharedAddon,
+                    React.createElement(
+                        "div",
+                        { className: className },
+                        _content
+                    )
                 );
             } else if (this.props.data.has_formulas) {
-                content = React.createElement("div", { className: className,
-                    dangerouslySetInnerHTML: { __html: this.state.rawHtml } });
+                content = React.createElement(
+                    React.Fragment,
+                    null,
+                    sharedAddon,
+                    React.createElement("div", { className: className,
+                        dangerouslySetInnerHTML: { __html: this.state.rawHtml } })
+                );
             } else {
                 content = React.createElement(
-                    "div",
-                    { className: className },
-                    SimpleFormattedFragment(this.props.data.text)
+                    React.Fragment,
+                    null,
+                    sharedAddon,
+                    React.createElement(
+                        "div",
+                        { className: className },
+                        SimpleFormattedFragment(this.props.data.text)
+                    )
                 );
             }
 

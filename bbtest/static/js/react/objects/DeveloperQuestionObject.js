@@ -134,6 +134,14 @@ DeveloperQuestionObject.prototype.paragraph = function(id) {
         }
     }
 }
+DeveloperQuestionObject.prototype.paragraphSharedWith = function(id) {
+    var i;
+    for (i = 0; i < this._paragraphs.length; i++) {
+        if (id === this._paragraphs[i].id) {
+            return this._paragraphs[i].questionIds;
+        }
+    }
+}
 DeveloperQuestionObject.prototype.updateParagraph = function(id, data) {
     var i;
     for (i = 0; i < this._paragraphs.length; i++) {

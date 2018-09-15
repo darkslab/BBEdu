@@ -86,6 +86,7 @@ var DeveloperQuestion = function (_React$Component) {
             var paragraphs = [];
             this.props.object.paragraphIds().map(function (id) {
                 var paragraphData = _this2.props.object.paragraph(id);
+                var sharedQuestionIds = _this2.props.object.paragraphSharedWith(id);
 
                 var DeveloperParagraphClass = eval("Developer" + paragraphData.paragraph_class);
                 var ParagraphClass = eval(paragraphData.paragraph_class);
@@ -93,12 +94,14 @@ var DeveloperQuestion = function (_React$Component) {
                 developerParagraphs.push(React.createElement(DeveloperParagraphClass, { key: id,
                     paragraphId: id,
                     data: paragraphData.meta_data,
+                    sharedQuestionIds: sharedQuestionIds,
                     onChange: _this2._paragraphChange.bind(_this2, id),
                     onDelete: _this2._paragraphDelete.bind(_this2, id),
                     canDelete: _this2.props.ability.canDeleteParagraph(id),
                     texts: _this2.props.texts }));
                 paragraphs.push(React.createElement(ParagraphClass, { key: id,
                     data: paragraphData.meta_data,
+                    isShared: sharedQuestionIds.length > 0,
                     texts: _this2.props.texts,
                     forDevelopers: true }));
             });

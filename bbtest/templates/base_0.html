@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block title_full %}{% block title %}{% endblock %} - bbTest.kz{% endblock %}</title>
+    <title>{% block window_title %}{% block title %}{% endblock %}{% endblock %}{% block window_title_suffix %} - bbTest.kz{% endblock %}</title>
 
     <meta name="description" content="{% block description %}{% blocktrans with dash_code='&mdash;' context 'Page description' %}bbTest.kz {{ dash_code }} Online testing platform. Thorough. Convenient. Effective.{% endblocktrans %}{% endblock %}">
 
@@ -46,8 +46,9 @@
 
 {% comment %}
 
-    title_full
+    window_title
       title
+    window_title_suffix
     description
 
     _d0_body_class

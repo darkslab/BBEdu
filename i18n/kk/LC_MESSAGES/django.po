@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-11 04:34+0600\n"
+"POT-Creation-Date: 2018-09-15 11:42+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2180,6 +2180,10 @@ msgid "Column B"
 msgstr ""
 
 msgctxt "Exam"
+msgid "Text"
+msgstr ""
+
+msgctxt "Exam"
 msgid ""
 "You ran out of allocated time for the test. Please continue to the next test."
 msgstr ""
@@ -2449,6 +2453,10 @@ msgid "Text Section"
 msgstr ""
 
 msgctxt "Developer tools"
+msgid "Shared paragraph"
+msgstr ""
+
+msgctxt "Developer tools"
 msgid "Split Text Section"
 msgstr ""
 
@@ -2541,6 +2549,10 @@ msgid "Column B"
 msgstr ""
 
 msgctxt "Developer tools"
+msgid "Text"
+msgstr ""
+
+msgctxt "Developer tools"
 msgid "Test Specification"
 msgstr ""
 
@@ -2550,6 +2562,10 @@ msgstr ""
 
 msgctxt "Developer tools"
 msgid "This action is irreversable!"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Skip test checks!"
 msgstr ""
 
 msgctxt "Developer tools"

@@ -6,6 +6,8 @@ class DeveloperTextParagraph extends React.Component {
         };
     }
     render() {
+        let paragraphClassName = "form-group bb-test-section-movable";
+
         let buttons = [];
         if (this.props.canDelete) {
             buttons.push(
@@ -24,9 +26,19 @@ class DeveloperTextParagraph extends React.Component {
                     onClick={this._handleFormulas.bind(this)}>{this.props.texts.controlFormulasButton}</button>
         );
 
-        let className = "form-control bb-test-paragraph bb-test-paragraph-textarea";
+        let sharedLabel = null;
+        if (this.props.sharedQuestionIds.length > 0) {
+            sharedLabel = (
+                <p className="text-danger pull-left mb-0">{this.props.texts.paragraphsSharedLabelTextParagraph}</p>
+            );
+            paragraphClassName += " bb-test-section-background-shared";
+        } else {
+            paragraphClassName += " bb-test-section-background";
+        }
+
+        let textareaClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
         if (!this.props.data.text) {
-            className += " bb-test-paragraph-textarea-empty";
+            textareaClassName += " bb-test-paragraph-textarea-empty";
         }
 
         let modal = null;
@@ -43,12 +55,13 @@ class DeveloperTextParagraph extends React.Component {
         return (
             <React.Fragment>
                 {modal}
-                <div className="form-group bb-test-section-movable bb-test-section-background" data-paragraph-id={this.props.paragraphId}>
+                <div className={paragraphClassName} data-paragraph-id={this.props.paragraphId}>
                     <div className="pt-5 pr-5 pb-5 pl-5 clearfix">
+                        {sharedLabel}
                         {buttons}
                         <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
                     </div>
-                    <textarea className={className}
+                    <textarea className={textareaClassName}
                               placeholder={this.props.texts.paragraphTextareaPlaceholder}
                               value={this.props.data.text}
                               onChange={this._handleChange.bind(this)} />
