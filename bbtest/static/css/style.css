@@ -835,7 +835,11 @@ html {
 }
 
 .bb-test-section-background {
-    background-color: rgba(33, 150, 243, 0.15) !important;
+    background-color: rgba(33, 150, 243, 0.25) !important;
+}
+
+.bb-test-section-background-shared {
+    background-color: rgba(229, 28, 35, 0.25) !important;
 }
 
 .bb-test-section-movable {
@@ -852,6 +856,11 @@ html {
     letter-spacing: normal;
     line-height: 1.5;
     word-wrap: break-word;
+}
+
+.bb-test-paragraph-shared {
+    border-color: #2196f3;
+    border-radius: 2px;
 }
 
 .bb-test-paragraph-placeholder {

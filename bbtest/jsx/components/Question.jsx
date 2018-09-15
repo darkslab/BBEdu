@@ -9,6 +9,7 @@ class Question extends React.Component {
             paragraphs.push(
                 <ParagraphClass key={i}
                                 data={this.props.object.paragraphs[i].meta_data}
+                                isShared={this.props.object.paragraphs[i].is_shared}
                                 texts={this.props.texts}
                                 forDevelopers={false} />
             );

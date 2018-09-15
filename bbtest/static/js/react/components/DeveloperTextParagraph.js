@@ -29,6 +29,8 @@ var DeveloperTextParagraph = function (_React$Component) {
     _createClass(DeveloperTextParagraph, [{
         key: "render",
         value: function render() {
+            var paragraphClassName = "form-group bb-test-section-movable";
+
             var buttons = [];
             if (this.props.canDelete) {
                 buttons.push(React.createElement(
@@ -49,9 +51,21 @@ var DeveloperTextParagraph = function (_React$Component) {
                 this.props.texts.controlFormulasButton
             ));
 
-            var className = "form-control bb-test-paragraph bb-test-paragraph-textarea";
+            var sharedLabel = null;
+            if (this.props.sharedQuestionIds.length > 0) {
+                sharedLabel = React.createElement(
+                    "p",
+                    { className: "text-danger pull-left mb-0" },
+                    this.props.texts.paragraphsSharedLabelTextParagraph
+                );
+                paragraphClassName += " bb-test-section-background-shared";
+            } else {
+                paragraphClassName += " bb-test-section-background";
+            }
+
+            var textareaClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
             if (!this.props.data.text) {
-                className += " bb-test-paragraph-textarea-empty";
+                textareaClassName += " bb-test-paragraph-textarea-empty";
             }
 
             var modal = null;
@@ -69,10 +83,11 @@ var DeveloperTextParagraph = function (_React$Component) {
                 modal,
                 React.createElement(
                     "div",
-                    { className: "form-group bb-test-section-movable bb-test-section-background", "data-paragraph-id": this.props.paragraphId },
+                    { className: paragraphClassName, "data-paragraph-id": this.props.paragraphId },
                     React.createElement(
                         "div",
                         { className: "pt-5 pr-5 pb-5 pl-5 clearfix" },
+                        sharedLabel,
                         buttons,
                         React.createElement(
                             "button",
@@ -80,7 +95,7 @@ var DeveloperTextParagraph = function (_React$Component) {
                             "Spacer"
                         )
                     ),
-                    React.createElement("textarea", { className: className,
+                    React.createElement("textarea", { className: textareaClassName,
                         placeholder: this.props.texts.paragraphTextareaPlaceholder,
                         value: this.props.data.text,
                         onChange: this._handleChange.bind(this) })
