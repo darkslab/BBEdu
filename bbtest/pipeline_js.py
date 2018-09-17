@@ -20,6 +20,7 @@ BASE1_SOURCE_FILENAMES = (
 
     "js/modules/PersonalizedTemplateModule.js",
     "js/modules/ResultRowModule.js",
+    "js/modules/ResultEmptyRowModule.js",
     "js/modules/SimpleResultDetailModule.js",
     "js/modules/BranchedResultDetailModule.js",
 
