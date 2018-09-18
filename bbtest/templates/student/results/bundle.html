@@ -34,13 +34,17 @@
                             </div>
                             <div class="col-sm-2 pr-5 pl-5 text-center">
                                 {% trans 'Average score of students on bbTest.kz website for the section.' context 'Results page' as avg_msg %}
-                                <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' progress_msg=progress_msg context 'Results page' %}Average score {{ question_icon_start }}{{ avg_msg }}{{ question_icon_end }}{% endblocktrans %}</strong>
+                                <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' context 'Results page' %}Average score {{ question_icon_start }}{{ avg_msg }}{{ question_icon_end }}{% endblocktrans %}</strong>
                             </div>
                         </div>
                     </div>
                 </div>
                 {% for quiz in quiz_set.quizzes.all %}
-                    {% include './row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 quiz_sets=quiz_sets only %}
+                    {% if quiz.is_finished %}
+                        {% include './row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 quiz_sets=quiz_sets has_detail=True compact=False only %}
+                    {% else %}
+                        {% include './empty_row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 compact=False only %}
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
