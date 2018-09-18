@@ -37,12 +37,18 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                 quiz.stats = {
                     "row": {
                         "max": quiz.test.max_score(),
-                        "colors": tight_dumps([ quiz.test.section.fg_color(), quiz.test.section.bg_color() ]),
-                        "score": quiz.score(),
+                        "score": 0,
                     },
                 }
+                if quiz.is_finished:
+                    quiz.stats["row"]["colors"] = tight_dumps([ quiz.test.section.fg_color(), quiz.test.section.bg_color() ])
+                    quiz.stats["row"]["score"] = quiz.score()
+
                 # DARK_TODO  implement this!
                 quiz.stats["row"]["avg"] = quiz.stats["row"]["max"] // 2
+
+                if not quiz.is_finished:
+                    continue
 
                 if quiz.test.section.can_measure_topics():
                     # BranchedResultDetailModule
@@ -86,7 +92,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                 topic_branch_names[topic_branch.pk] = _(topic_branch.name)
             for quiz_set in kwargs["quiz_sets"]:
                 for quiz in quiz_set.quizzes.all():
-                    if quiz.stats["detail"]["type"] != "branched":
+                    if not quiz.is_finished or quiz.stats["detail"]["type"] != "branched":
                         continue
                     for branch in quiz.stats["detail"]["branches"]:
                         branch["title"] = topic_branch_names[branch["__topic_id"]]
