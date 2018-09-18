@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-17 06:38+0600\n"
+"POT-Creation-Date: 2018-09-18 14:11+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2084,6 +2084,56 @@ msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr ""
 
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Results"
+msgctxt "/student/"
+msgid "Last test results"
+msgstr "Тестілеудің нәтижелері"
+
+msgctxt "Results page"
+msgid "Not finished"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Section"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Your score"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Average score of students on bbTest.kz website for the section."
+msgstr ""
+
+#, python-format
+msgctxt "Results page"
+msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Results"
+msgctxt "/student/"
+msgid "Go to results page"
+msgstr "Тестілеудің нәтижелері"
+
+msgctxt "/student/"
+msgid "You have not taken any tests."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Start testing"
+msgctxt "/student/"
+msgid "Start testing"
+msgstr "Тестілеуді бастау"
+
+msgctxt "/student/"
+msgid "Your progress will be shown here."
+msgstr ""
+
 #, python-format
 msgctxt "Page title"
 msgid "%(domain_name)s Testing"
@@ -2223,27 +2273,6 @@ msgstr ""
 #, python-format
 msgctxt "Results page"
 msgid "Test #%(count)s (%(domain_name)s)"
-msgstr ""
-
-msgctxt "Results page"
-msgid "Not finished"
-msgstr ""
-
-msgctxt "Results page"
-msgid "Section"
-msgstr ""
-
-msgctxt "Results page"
-msgid "Your score"
-msgstr ""
-
-msgctxt "Results page"
-msgid "Average score of students on bbTest.kz website for the section."
-msgstr ""
-
-#, python-format
-msgctxt "Results page"
-msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
 msgstr ""
 
 #, fuzzy
@@ -2662,6 +2691,22 @@ msgstr ""
 
 msgctxt "Success alert message"
 msgid "You have created a new Test."
+msgstr ""
+
+msgctxt "/student/"
+msgid "Section 1"
+msgstr ""
+
+msgctxt "/student/"
+msgid "Section 2"
+msgstr ""
+
+msgctxt "/student/"
+msgid "Section 3"
+msgstr ""
+
+msgctxt "/student/"
+msgid "Section 4"
 msgstr ""
 
 #, python-format
