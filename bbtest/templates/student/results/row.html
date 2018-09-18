@@ -16,7 +16,7 @@
         }
     });
 </script>
-<div class="panel">
+<div class="panel {% if interactive_row_value is not None %}container-interactive{% endif %}" {% if interactive_row_value is not None %}data-result-row="{{ interactive_row_value }}"{% endif %}>
     <div class="bb-accordion-panel-heading {% if not is_first %}bb-accordion-panel-heading-bordered{% endif %}">
         <div class="row">
             <div class="col-xs-12 col-sm-6 bb-result-cell">
@@ -27,8 +27,8 @@
                     </a>
                 {% endif %}
             </div>
-            <div class="col-xs-3 col-xs-offset-3 col-sm-2 col-sm-offset-1 bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-score></div>
-            <div class="col-xs-3 col-sm-2 bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-avg></div>
+            <div class="{% if compact %}col-xs-3 col-xs-offset-3 col-sm-3 col-sm-offset-0{% else %}col-xs-3 col-xs-offset-3 col-sm-2 col-sm-offset-1{% endif %} bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-score></div>
+            <div class="{% if compact %}col-xs-3 col-sm-3{% else %}col-xs-3 col-sm-2{% endif %} bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-avg></div>
             {% if has_detail %}
                 <div class="col-sm-1 bb-result-cell hidden-xs">
                     <a href="#bb-results-{{ parent_index }}-{{ index }}" class="bb-accordion-toggle collapsed pull-right" data-toggle="collapse" data-parent="#bb-results-{{ parent_index }}">

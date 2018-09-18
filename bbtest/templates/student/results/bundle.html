@@ -41,9 +41,9 @@
                 </div>
                 {% for quiz in quiz_set.quizzes.all %}
                     {% if quiz.is_finished %}
-                        {% include './row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 quiz_sets=quiz_sets has_detail=True only %}
+                        {% include './row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 quiz_sets=quiz_sets has_detail=True compact=False only %}
                     {% else %}
-                        {% include './empty_row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 only %}
+                        {% include './empty_row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 compact=False only %}
                     {% endif %}
                 {% endfor %}
             </div>

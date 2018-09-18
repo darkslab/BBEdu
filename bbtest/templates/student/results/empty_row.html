@@ -18,13 +18,13 @@
             <div class="col-xs-12 col-sm-6 bb-result-cell">
                 <span>{% trans quiz.test.section.name %}</span>
             </div>
-            <div class="col-xs-3 col-xs-offset-3 col-sm-2 col-sm-offset-1 bb-chart bb-result-cell pr-5 pl-5 text-center">
+            <div class="{% if compact %}col-xs-3 col-xs-offset-3 col-sm-3 col-sm-offset-0{% else %}col-xs-3 col-xs-offset-3 col-sm-2 col-sm-offset-1{% endif %} bb-chart bb-result-cell pr-5 pl-5 text-center">
                 <h3 class="mt-0 mb-0" style="height: 100%;">
                     {% trans 'You have not yet completed this section.' context 'Results page' as incomplete_msg %}
                     <i class="fa fa-question text-help" style="vertical-align: middle;" data-toggle="popover" data-content="{{ incomplete_msg }}" data-placement="auto" data-container="body" data-trigger="hover"></i>
                 </h3>
             </div>
-            <div class="col-xs-3 col-sm-2 bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-avg></div>
+            <div class="{% if compact %}col-xs-3 col-sm-3{% else %}col-xs-3 col-sm-2{% endif %} bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-avg></div>
         </div>
     </div>
 </div>
