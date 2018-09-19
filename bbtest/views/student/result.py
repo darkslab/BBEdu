@@ -38,10 +38,10 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                     "row": {
                         "max": quiz.test.max_score(),
                         "score": 0,
+                        "colors": tight_dumps([ quiz.test.section.fg_color(), quiz.test.section.bg_color() ]),
                     },
                 }
                 if quiz.is_finished:
-                    quiz.stats["row"]["colors"] = tight_dumps([ quiz.test.section.fg_color(), quiz.test.section.bg_color() ])
                     quiz.stats["row"]["score"] = quiz.score()
 
                 # DARK_TODO  implement this!

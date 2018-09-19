@@ -21,10 +21,10 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
                         "max": quiz.test.max_score(),
                         "score": 0,
                         "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
+                        "colors": tight_dumps([ quiz.test.section.fg_color(), quiz.test.section.bg_color() ]),
                     },
                 }
                 if quiz.is_finished:
-                    quiz.stats["row"]["colors"] = tight_dumps([ quiz.test.section.fg_color(), quiz.test.section.bg_color() ])
                     quiz.stats["row"]["score"] = quiz.score()
 
                 # DARK_TODO  implement this!
