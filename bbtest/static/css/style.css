@@ -1202,14 +1202,16 @@ html {
 
 .bb-student-dashboard-results-overlay .bb-student-dashboard-results-inner-overlay-0 {
     width: 260px;
-    height: 160px;
-    margin-top: -80px;
+    height: 150px;
+    margin-top: -75px;
     margin-left: -130px;
 }
 @media (min-width: 768px) {
     .bb-student-dashboard-results-overlay .bb-student-dashboard-results-inner-overlay-0 {
         width: 320px;
+        height: 180px;
         margin-left: -160px;
+        margin-top: -90px;
     }
 }
 
@@ -1218,4 +1220,12 @@ html {
     height: 100px;
     margin-top: -60px;
     margin-left: -120px;
+}
+@media (min-width: 768px) {
+    .bb-student-dashboard-results-overlay .bb-student-dashboard-results-inner-overlay-1 {
+        width: 300px;
+        height: 110px;
+        margin-top: -70px;
+        margin-left: -150px;
+    }
 }
