@@ -82,7 +82,7 @@ def results_progress(test_section, user):
         quiz_set__student=user,
         test__section=test_section,
         is_finished=True,
-    ).exclude(report=None).select_related("test__section").prefetch_related("test__questions").order_by("-pk")[:limit].all():
+    ).select_related("test__section").prefetch_related("test__questions").order_by("-pk")[:limit].all():
         progress.append(quiz.score())
     progress.reverse()
     for i in range(limit - len(progress)):
