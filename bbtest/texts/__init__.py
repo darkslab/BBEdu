@@ -1,0 +1,2 @@
+from .developer_agreements import DEVELOPER_AGREEMENT_TEXTS
+from .test_instructions import TEST_INSTRUCTION_TEXTS

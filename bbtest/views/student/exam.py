@@ -13,7 +13,7 @@ from .mixins import CurrentQuizSetRequiredMixin
 from bbtest.http import TightJsonResponse
 from bbtest.models import Test
 from bbtest.forms.exam import ExamReportForm
-from bbtest.test_instructions import INSTRUCTION_TEXTS
+from bbtest.texts import TEST_INSTRUCTION_TEXTS
 
 
 class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
@@ -30,7 +30,7 @@ class ExamMixin:
             "success": True,
             "status": "queued",
             "section": _(self.current_quiz().test.section.name),
-            "instructions": INSTRUCTION_TEXTS[self.current_quiz().test.section.pk][self.current_quiz().test.language],
+            "instructions": TEST_INSTRUCTION_TEXTS[self.current_quiz().test.section.pk][self.current_quiz().test.language],
         }
 
     def started_response(self, now_at):

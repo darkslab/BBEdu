@@ -77,7 +77,7 @@ __NIS_LANGUAGES_INSTRUCTION_TEXT = {
     ],
 }
 
-INSTRUCTION_TEXTS = {
+TEST_INSTRUCTION_TEXTS = {
     9540: {
         "kk": [
             [
