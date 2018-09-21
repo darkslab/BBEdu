@@ -1,5 +1,4 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.utils.lorem_ipsum import paragraphs
 from django.utils.translation import ugettext as _
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404
@@ -11,6 +10,7 @@ from bbtest.utils.json import tight_dumps
 from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
 from bbtest.models import TestTopic, Quiz
 from bbtest.http import TightJsonResponse
+from bbtest.texts import result_main_description_text, result_topic_description_text
 
 
 class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
@@ -58,7 +58,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "colors": quiz.stats["row"]["colors"],
                         "avg": quiz.stats["row"]["avg"],
                         "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
-                        "texts": paragraphs(randint(1, 3), False),
+                        "texts": result_main_description_text(quiz.test.section.pk),
                     }
                     topic_branches = quiz.test.topic_branches()
                     topic_ids |= set([ topic_branch["topic_id"] for topic_branch in topic_branches ])
@@ -72,7 +72,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                             ]),
                             "title": None,
                             "__topic_id": topic_branch["topic_id"],
-                            "texts": paragraphs(randint(1, 3), False),
+                            "texts": result_topic_description_text(topic_branch["topic_id"]),
                         })
 
                 else:
@@ -84,7 +84,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "score": quiz.stats["row"]["score"],
                         "avg": quiz.stats["row"]["avg"],
                         "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
-                        "texts": paragraphs(randint(1, 2), False),
+                        "texts": result_main_description_text(quiz.test.section.pk),
                     }
 
         if len(topic_ids):
