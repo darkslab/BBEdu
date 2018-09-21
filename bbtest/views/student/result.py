@@ -58,6 +58,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "colors": quiz.stats["row"]["colors"],
                         "avg": quiz.stats["row"]["avg"],
                         "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
+                        "texts": paragraphs(randint(1, 3), False),
                     }
                     topic_branches = quiz.test.topic_branches()
                     topic_ids |= set([ topic_branch["topic_id"] for topic_branch in topic_branches ])

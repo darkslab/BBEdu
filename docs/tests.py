@@ -52,3 +52,54 @@ for i, _question in enumerate(_test.questions.all()):
     _paragraph = _question.paragraphs.first()
     _paragraph.meta_data["text"] = paragraph()
     _paragraph.save()
+
+
+# NIS Kazakh language
+_test = TestForm(data={
+    "section": 9541,
+    "language": "kk",
+}).create_test_suite(_developer)
+for i, _question in enumerate(_test.questions.all()):
+    # difficulty
+    if i in range(0, 5):
+        _question.difficulty = TestQuestion.DIFFICULTY_LOW
+    elif i in range(5, 15):
+        _question.difficulty = TestQuestion.DIFFICULTY_NORMAL
+    elif i in range(15, 20):
+        _question.difficulty = TestQuestion.DIFFICULTY_HIGH
+    # taxonomy
+    if i in range(0, 13):
+        _question.taxonomy_id = 3531
+    elif i in range(13, 18):
+        _question.taxonomy_id = 3532
+    elif i in range(18, 20):
+        _question.taxonomy_id = 3533
+    # topic
+    if i in range(0, 5):
+        _question.topic_id = 5176
+    elif i in range(5, 10):
+        _question.topic_id = 5182
+    elif i in range(10, 15):
+        _question.topic_id = 5185
+    elif i in range(15, 20):
+        _question.topic_id = 5190
+    # answer
+    _question.meta_data["correct_id"] = _question.meta_data["choices"][0]["id"]
+    for _choice in _question.meta_data["choices"]:
+        _choice["meta_data"]["text"] = words(randint(3, 6), False)
+    _question.save()
+    # paragraphs
+    _shared_paragraph_pks = set()
+    if _question.paragraphs.count():
+        _paragraph = _question.paragraphs.first()
+        if _paragraph.pk not in _shared_paragraph_pks:
+            _paragraph.meta_data["text"] = paragraph()
+            _paragraph.save()
+            _shared_paragraph_pks.add(_paragraph.pk)
+        _paragraph = _question.paragraphs.last()
+        _paragraph.meta_data["text"] = paragraph()
+        _paragraph.save()
+    else:
+        _paragraph = _question.paragraphs.first()
+        _paragraph.meta_data["text"] = paragraph()
+        _paragraph.save()

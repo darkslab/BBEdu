@@ -32,6 +32,7 @@
                 colors: {{ quiz.stats.detail.colors|safe }},
                 avg: {{ quiz.stats.detail.avg }},
                 progress: {{ quiz.stats.detail.progress|safe }},
+                summary_selector: "[data-result-chart-{{ parent_index }}-{{ index }}-summary]",
                 detail_selector: "[data-result-chart-{{ parent_index }}-{{ index }}-detail]",
                 dropdown_selector: "[data-result-tab-dropdown-{{ parent_index }}-{{ index }}]",
                 dropdown_caption_selector: "[data-result-tab-dropdown-caption]",
@@ -44,16 +45,44 @@
 </script>
 <div class="collapse" id="bb-results-{{ parent_index }}-{{ index }}" data-result-collapse-{{ parent_index }}-{{ index }}>
     <div class="bb-accordion-panel-body">
-        <div class="row">
-            <div class="col-xs-12 col-sm-5">
-                <div class="bb-chart {% if quiz.stats.detail.type == 'simple' %}bb-chart-md mt-10 mb-10{% elif quiz.stats.detail.type == 'branched' %}bb-chart-lg{% endif %}" data-result-chart-{{ parent_index }}-{{ index }}-detail></div>
-            </div>
-            <div class="col-xs-12 col-sm-7">
-                {% if quiz.stats.detail.type == 'simple' %}
+        {% if quiz.stats.detail.type == 'simple' %}
+            <div class="row">
+                <div class="col-xs-12 col-sm-5">
+                    <div class="bb-chart bb-chart-md mt-10 mb-10" data-result-chart-{{ parent_index }}-{{ index }}-detail></div>
+                </div>
+                <div class="col-xs-12 col-sm-7">
                     {% for text in quiz.stats.detail.texts %}
                         <p class="mb-10 {% if forloop.first %}mt-10{% endif %}">{{ text }}</p>
                     {% endfor %}
-                {% elif quiz.stats.detail.type == 'branched' %}
+                    <div class="text-center mt-23">
+                        <a href="{% url 'bbtest:student_result' quiz.test.code %}{% if quiz_sets.has_other_pages %}?page={{ quiz_sets.number }}{% endif %}" class="btn btn-primary">{% trans 'Review correct answers' context 'Results page' %}</a>
+                    </div>
+                </div>
+            </div>
+        {% elif quiz.stats.detail.type == 'branched' %}
+            <div class="row">
+                <div class="col-xs-12 col-sm-5">
+                    <div class="bb-chart bb-chart-md mt-10 mb-10" data-result-chart-{{ parent_index }}-{{ index }}-summary></div>
+                </div>
+                <div class="col-xs-12 col-sm-7">
+                    {% for text in quiz.stats.detail.texts %}
+                        <p class="mb-10 {% if forloop.first %}mt-10{% endif %}">{{ text }}</p>
+                    {% endfor %}
+                    <div class="text-center mt-23">
+                        <a href="{% url 'bbtest:student_result' quiz.test.code %}{% if quiz_sets.has_other_pages %}?page={{ quiz_sets.number }}{% endif %}" class="btn btn-primary">{% trans 'Review correct answers' context 'Results page' %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                    <hr style="border-color: #ccc; width: 75%;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-5">
+                    <div class="bb-chart bb-chart-lg" data-result-chart-{{ parent_index }}-{{ index }}-detail></div>
+                </div>
+                <div class="col-xs-12 col-sm-7">
                     <div class="btn-group mt-10 fade" data-result-tab-dropdown-{{ parent_index }}-{{ index }}>
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                             <span data-result-tab-dropdown-caption></span>
@@ -74,12 +103,9 @@
                             </div>
                         {% endfor %}
                     </div>
-                {% endif %}
-                <div class="text-center mt-23">
-                    <a href="{% url 'bbtest:student_result' quiz.test.code %}{% if quiz_sets.has_other_pages %}?page={{ quiz_sets.number }}{% endif %}" class="btn btn-primary">{% trans 'Review correct answers' context 'Results page' %}</a>
                 </div>
             </div>
-        </div>
+        {% endif %}
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                 <hr style="border-color: #ccc; width: 75%;">
