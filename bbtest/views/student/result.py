@@ -86,6 +86,10 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "texts": result_main_description_text(quiz.test.section.pk),
                     }
 
+                if quiz.test.section.is_nis():
+                    # DARK_TODO  implement this!
+                    quiz.stats["detail"]["avg_texts"] = ""
+
         if len(topic_ids):
             topic_branch_names = {}
             for topic_branch in TestTopic.objects.filter(pk__in=topic_ids).all():

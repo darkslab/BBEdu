@@ -51,9 +51,7 @@
                     <div class="bb-chart bb-chart-md mt-10 mb-10" data-result-chart-{{ parent_index }}-{{ index }}-detail></div>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    {% for text in quiz.stats.detail.texts %}
-                        <p class="mb-10 {% if forloop.first %}mt-10{% endif %}">{{ text }}</p>
-                    {% endfor %}
+                    {{ quiz.stats.detail.texts|safe }}
                     <div class="text-center mt-23">
                         <a href="{% url 'bbtest:student_result' quiz.test.code %}{% if quiz_sets.has_other_pages %}?page={{ quiz_sets.number }}{% endif %}" class="btn btn-primary">{% trans 'Review correct answers' context 'Results page' %}</a>
                     </div>
@@ -65,9 +63,7 @@
                     <div class="bb-chart bb-chart-md mt-10 mb-10" data-result-chart-{{ parent_index }}-{{ index }}-summary></div>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                    {% for text in quiz.stats.detail.texts %}
-                        <p class="mb-10 {% if forloop.first %}mt-10{% endif %}">{{ text }}</p>
-                    {% endfor %}
+                    {{ quiz.stats.detail.texts|safe }}
                     <div class="text-center mt-23">
                         <a href="{% url 'bbtest:student_result' quiz.test.code %}{% if quiz_sets.has_other_pages %}?page={{ quiz_sets.number }}{% endif %}" class="btn btn-primary">{% trans 'Review correct answers' context 'Results page' %}</a>
                     </div>
@@ -97,9 +93,7 @@
                     <div class="tab-content">
                         {% for branch in quiz.stats.detail.branches %}
                             <div class="tab-pane fade" data-result-tab-{{ parent_index }}-{{ index }}="{{ forloop.counter0 }}">
-                                {% for text in branch.texts %}
-                                    <p class="mb-10 {% if not forloop.counter0 %}mt-10{% endif %}">{{ text }}</p>
-                                {% endfor %}
+                                {{ branch.texts|safe }}
                             </div>
                         {% endfor %}
                     </div>
@@ -115,7 +109,8 @@
                     <div class="col-sm-10 col-sm-offset-1 bb-chart bb-chart-sm" data-result-chart-{{ parent_index }}-{{ index }}-progress></div>
                 </div>
                 <p class="mt-10 mb-5 text-center text-normal">
-                    <em>{% lorem 6 w random %}</em>
+                    {# DARK_TODO  implement this! #}
+                    <em>{% if quiz.stats.detail.avg_texts %}{{ quiz.stats.detail.avg_texts }}{% else %}{% trans '' context 'Results page' %}{% endif %}</em>
                 </p>
             </div>
         </div>
