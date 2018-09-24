@@ -1,6 +1,6 @@
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.views.generic import TemplateView
-from bbtest.views.common import UserContextMixin, results_progress
+from bbtest.views.common import UserContextMixin, results_progress, average_score
 from bbtest.utils.json import tight_dumps
 from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
 from django.utils.translation import pgettext
@@ -27,8 +27,7 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
                 if quiz.is_finished:
                     quiz.stats["row"]["score"] = quiz.score()
 
-                # DARK_TODO  implement this!
-                quiz.stats["row"]["avg"] = quiz.stats["row"]["max"] // 2
+                quiz.stats["row"]["avg"] = average_score(quiz.test.section)
 
         else:
             kwargs["quiz_set"] = {

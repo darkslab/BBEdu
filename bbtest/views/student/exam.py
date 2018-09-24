@@ -162,6 +162,7 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
                 Test.objects.filter(pk=self.current_quiz().test.pk).update(completed_count=(F("completed_count") + 1))
 
             cache.delete("test-progress-%s-%s" % (self.quiz_set().student_id, self.current_quiz().test.section_id))
+            cache.delete("test-average-score-%s" % self.current_quiz().test.section_id)
 
             self.reset_current_quiz()
             if self.current_status(now_at) == "queued":

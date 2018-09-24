@@ -4,7 +4,7 @@ from django.core.cache import cache
 from django.shortcuts import get_object_or_404
 from random import randint
 from bbtest.views.generic import TemplateView, View
-from bbtest.views.common import UserContextMixin, PaginationMixin, results_progress, inject_questions_and_report_into_started_response
+from bbtest.views.common import UserContextMixin, PaginationMixin, results_progress, inject_questions_and_report_into_started_response, average_score
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.utils.json import tight_dumps
 from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
@@ -44,8 +44,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                 if quiz.is_finished:
                     quiz.stats["row"]["score"] = quiz.score()
 
-                # DARK_TODO  implement this!
-                quiz.stats["row"]["avg"] = quiz.stats["row"]["max"] // 2
+                quiz.stats["row"]["avg"] = average_score(quiz.test.section)
 
                 if not quiz.is_finished:
                     continue
