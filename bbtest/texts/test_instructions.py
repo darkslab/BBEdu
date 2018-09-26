@@ -67,12 +67,11 @@ __NIS_LANGUAGES_INSTRUCTION_TEXT = {
             "Не забудьте перепроверить свои ответы.",
         ],
     ],
-    # DARK_TODO  implement this!
     "xx": [
         [
-            "",
-            "",
-            "",
+            "This subject contains 10 texts and 20 questions.",
+            "To answer all questions you will have 40 minutes.",
+            "Do not forget to double-check your answers.",
         ],
     ],
 }
