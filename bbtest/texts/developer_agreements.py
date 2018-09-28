@@ -1,7 +1,7 @@
 from django.conf import settings
 
 
-AGREEMENT_TEXTS = {
+DEVELOPER_AGREEMENT_TEXTS = {
     "09b90737225eb2551d9e9344bbb68ba0": {
         "kk": """
         """,

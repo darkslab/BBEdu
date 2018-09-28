@@ -8,3 +8,5 @@ test-progress-%{user_id}-%{test_section_id}
         0,
         ...
     ]
+
+test-average-score-%{test_section_id}

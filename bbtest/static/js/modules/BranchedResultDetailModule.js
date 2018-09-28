@@ -13,6 +13,7 @@ function BranchedResultDetailModule(data) {
     this._boundActivated = this._activated.bind(this);
 
     var max = 0;
+    var score = 0;
     var detailChartData = [];
     var i;
     for (i = 0; i < data.branches.length; i++) {
@@ -24,9 +25,16 @@ function BranchedResultDetailModule(data) {
             "active-callback-start": this._boundActivated
         });
         max += data.branches[i].max;
+        score += data.branches[i].score;
     }
 
     this._index;
+    this._summaryChart = new RadialChart($(data.summary_selector), score, max, {
+        "line-width": 16,
+        "arc-color": data.colors[0],
+        "circle-color": data.colors[1],
+        "font-size": 52
+    });
     this._detailChart = new ProgressPieChart($(data.detail_selector), detailChartData, {
         "duration": 2000,
         "chain-duration": 0,
@@ -52,6 +60,7 @@ function BranchedResultDetailModule(data) {
     Module.call(this);
 }
 BranchedResultDetailModule.prototype._uncollapsed = function() {
+    this._summaryChart.create();
     this._detailChart.create();
     this._progressChart.create();
 
@@ -59,6 +68,7 @@ BranchedResultDetailModule.prototype._uncollapsed = function() {
     this._$dropdown.addClass("in");
 }
 BranchedResultDetailModule.prototype._collapsed = function() {
+    this._summaryChart.destroy();
     this._detailChart.destroy();
     this._progressChart.destroy();
     this._index = undefined;

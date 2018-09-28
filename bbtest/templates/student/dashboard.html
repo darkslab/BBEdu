@@ -37,7 +37,8 @@
                     <div class="panel {% if quiz_set.is_current %}panel-primary{% else %}panel-success{% endif %} {% if not has_results %}bb-rel{% endif %}">
                         <div class="panel-heading">
                             <h4 class="panel-title text-center">
-                                {% trans 'Last test results' context '/student/' %}
+                                {% trans quiz_set.test_domain.name as domain_name %}
+                                {% blocktrans with domain_name=domain_name context '/student/' %}Last test results ({{ domain_name }}){% endblocktrans %}
                             </h4>
                             {% if quiz_set.is_current %}
                                 <h4 class="panel-title text-center mt-10">
@@ -56,7 +57,7 @@
                                             <strong>{% trans 'Your score' context 'Results page' %}</strong>
                                         </div>
                                         <div class="col-sm-3 pr-5 pl-5 text-center">
-                                            {% trans 'Average score of students on bbTest.kz website for the section.' context 'Results page' as avg_msg %}
+                                            {% trans 'Average score of students on bbtest.kz website for the section.' context 'Results page' as avg_msg %}
                                             <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' context 'Results page' %}Average score {{ question_icon_start }}{{ avg_msg }}{{ question_icon_end }}{% endblocktrans %}</strong>
                                         </div>
                                     </div>
@@ -99,6 +100,7 @@
         <div class="col-sm-4 col-md-5">
             <div class="row">
                 <div class="col-xs-12">
+                    <p class="text-center text-normal mb-10"><strong>{% trans 'Test progress monitoring' context 'Results page' %}</strong></p>
                     <div class="bb-chart bb-chart-sm mb-23" data-student-dashboard-chart-progress></div>
                     {% if not has_results %}
                         <div class="bb-student-dashboard-results-overlay" style="background-color: transparent;">
