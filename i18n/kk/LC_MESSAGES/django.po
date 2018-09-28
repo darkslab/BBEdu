@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-28 11:57+0600\n"
+"POT-Creation-Date: 2018-09-28 13:01+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2084,11 +2084,11 @@ msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr ""
 
-#, fuzzy
+#, fuzzy, python-format
 #| msgctxt "Navigation link"
 #| msgid "Results"
 msgctxt "/student/"
-msgid "Last test results"
+msgid "Last test results (%(domain_name)s)"
 msgstr "Тестілеудің нәтижелері"
 
 msgctxt "Results page"

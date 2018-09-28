@@ -37,7 +37,8 @@
                     <div class="panel {% if quiz_set.is_current %}panel-primary{% else %}panel-success{% endif %} {% if not has_results %}bb-rel{% endif %}">
                         <div class="panel-heading">
                             <h4 class="panel-title text-center">
-                                {% trans 'Last test results' context '/student/' %}
+                                {% trans quiz_set.test_domain.name as domain_name %}
+                                {% blocktrans with domain_name=domain_name context '/student/' %}Last test results ({{ domain_name }}){% endblocktrans %}
                             </h4>
                             {% if quiz_set.is_current %}
                                 <h4 class="panel-title text-center mt-10">
