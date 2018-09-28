@@ -82,10 +82,31 @@ def results_progress(test_section, user):
         quiz_set__student=user,
         test__section=test_section,
         is_finished=True,
-    ).exclude(report=None).select_related("test__section").prefetch_related("test__questions").order_by("-pk")[:limit].all():
+    ).select_related("test__section").prefetch_related("test__questions").order_by("-pk")[:limit].all():
         progress.append(quiz.score())
     progress.reverse()
     for i in range(limit - len(progress)):
         progress.append(0)
     cache.set(key, progress, None)
     return progress
+
+
+def average_score(test_section):
+    key = "test-average-score-%s" % test_section.pk
+    score = cache.get(key)
+    if score is not None:
+        return score
+    score = 0
+    scores_count = 0
+    for quiz in Quiz.objects.filter(
+        test__section=test_section,
+        is_finished=True,
+    ).exclude(
+        report=None,
+    ).select_related("test__section").prefetch_related("test__questions").all():
+        score += quiz.score()
+        scores_count += 1
+    if scores_count > 0:
+        score = round(score / scores_count)
+    cache.set(key, score, None)
+    return score

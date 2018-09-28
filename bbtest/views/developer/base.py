@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin
-from bbtest.developer_agreements import AGREEMENT_TEXTS
+from bbtest.texts import DEVELOPER_AGREEMENT_TEXTS
 from bbtest.models import DeveloperAcknowledgement, Test
 from .mixins import DeveloperAcknowledgementRequiredMixin
 
@@ -36,5 +36,5 @@ class OfferView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
     def get_context_data(self, **kwargs):
         acknowledgement = get_object_or_404(DeveloperAcknowledgement.objects, developer=self.request.user)
         kwargs["acknowledgement"] = acknowledgement
-        kwargs["agreement_text"] = AGREEMENT_TEXTS[acknowledgement.agreement_code][get_language()]
+        kwargs["agreement_text"] = DEVELOPER_AGREEMENT_TEXTS[acknowledgement.agreement_code][get_language()]
         return super().get_context_data(**kwargs)

@@ -1,16 +1,16 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.utils.lorem_ipsum import paragraphs
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, pgettext
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404
 from random import randint
 from bbtest.views.generic import TemplateView, View
-from bbtest.views.common import UserContextMixin, PaginationMixin, results_progress, inject_questions_and_report_into_started_response
+from bbtest.views.common import UserContextMixin, PaginationMixin, results_progress, inject_questions_and_report_into_started_response, average_score
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.utils.json import tight_dumps
 from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
 from bbtest.models import TestTopic, Quiz
 from bbtest.http import TightJsonResponse
+from bbtest.texts import result_main_description_text, result_topic_description_text
 
 
 class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
@@ -44,8 +44,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                 if quiz.is_finished:
                     quiz.stats["row"]["score"] = quiz.score()
 
-                # DARK_TODO  implement this!
-                quiz.stats["row"]["avg"] = quiz.stats["row"]["max"] // 2
+                quiz.stats["row"]["avg"] = average_score(quiz.test.section)
 
                 if not quiz.is_finished:
                     continue
@@ -58,6 +57,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "colors": quiz.stats["row"]["colors"],
                         "avg": quiz.stats["row"]["avg"],
                         "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
+                        "texts": result_main_description_text(quiz.test.section.pk),
                     }
                     topic_branches = quiz.test.topic_branches()
                     topic_ids |= set([ topic_branch["topic_id"] for topic_branch in topic_branches ])
@@ -71,7 +71,7 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                             ]),
                             "title": None,
                             "__topic_id": topic_branch["topic_id"],
-                            "texts": paragraphs(randint(1, 3), False),
+                            "texts": result_topic_description_text(topic_branch["topic_id"]),
                         })
 
                 else:
@@ -83,8 +83,12 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "score": quiz.stats["row"]["score"],
                         "avg": quiz.stats["row"]["avg"],
                         "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
-                        "texts": paragraphs(randint(1, 2), False),
+                        "texts": result_main_description_text(quiz.test.section.pk),
                     }
+
+                # DARK_TODO  enable this when NIS 2018 average scores are available
+                if False and quiz.test.section.is_nis():
+                    quiz.stats["detail"]["avg_texts"] = pgettext("/student/results/", "The red line is the average score of the current test subject in comparison to your own results. The score represents an actual average result of NIS 2018 students (data is taken from nis.edu.kz).")
 
         if len(topic_ids):
             topic_branch_names = {}

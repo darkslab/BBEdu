@@ -13,7 +13,7 @@ from .mixins import CurrentQuizSetRequiredMixin
 from bbtest.http import TightJsonResponse
 from bbtest.models import Test
 from bbtest.forms.exam import ExamReportForm
-from bbtest.test_instructions import INSTRUCTION_TEXTS
+from bbtest.texts import test_instructions
 
 
 class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
@@ -30,7 +30,7 @@ class ExamMixin:
             "success": True,
             "status": "queued",
             "section": _(self.current_quiz().test.section.name),
-            "instructions": INSTRUCTION_TEXTS[self.current_quiz().test.section.pk][self.current_quiz().test.language],
+            "instructions": test_instructions(self.current_quiz().test),
         }
 
     def started_response(self, now_at):
@@ -162,6 +162,7 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
                 Test.objects.filter(pk=self.current_quiz().test.pk).update(completed_count=(F("completed_count") + 1))
 
             cache.delete("test-progress-%s-%s" % (self.quiz_set().student_id, self.current_quiz().test.section_id))
+            cache.delete("test-average-score-%s" % self.current_quiz().test.section_id)
 
             self.reset_current_quiz()
             if self.current_status(now_at) == "queued":

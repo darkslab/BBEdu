@@ -5,7 +5,7 @@ from bbtest.views.generic import FormView
 from bbtest.views.common import UserContextMixin
 from bbtest.forms.acknowledgement import DeveloperAcknowledgementForm
 from bbtest.models import DeveloperAcknowledgement
-from bbtest.developer_agreements import AGREEMENT_TEXTS as DEVELOPER_AGREEMENT_TEXTS
+from bbtest.texts import DEVELOPER_AGREEMENT_TEXTS
 from .mixins import DeveloperUnacceptedAcknowledgementRequiredMixin
 
 

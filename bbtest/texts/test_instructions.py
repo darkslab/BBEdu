@@ -1,58 +1,4 @@
-__UNT_COMPULSORY_INSTRUCTION_TEXT = {
-    "kk": [
-        [
-            "Бұл пән бойынша 20 сұрақ берілген.",
-            "Сұрақтарға жауап беру уақыты 40 минут.",
-            "Жауаптарды мұқиат тексеріңіз.",
-        ],
-    ],
-    "ru": [
-        [
-            "Данный предмет содержит 20 вопросов.",
-            "Для ответа на все вопросы выделено 40 минут.",
-            "Не забудьте перепроверить свои ответы.",
-        ],
-    ],
-}
-__UNT_PROFILE_INSTRUCTION_TEXT = {
-    "kk": [
-        [
-            "Бұл пән бойынша бір дұрыс жауабы бар 20 сұрақ және бір немесе бірнеше дұрыс жауабы бар 10 сұрақ берілген.",
-            "Сұрақтарға жауап беру уақыты 60 минут.",
-            "Жауаптарды мұқиат тексеріңіз.",
-        ],
-    ],
-    "ru": [
-        [
-            "Данный предмет содержит 20 вопросов с выбором одного правильного ответа и 10 вопросов с выбором одного или нескольких правильных ответов.",
-            "Для ответа на все вопросы выделено 60 минут.",
-            "Не забудьте перепроверить свои ответы.",
-        ],
-    ],
-    # DARK_TODO  implement this!
-    "en": [
-        [
-            "",
-            "",
-            "",
-        ],
-    ],
-    "fr": [
-        [
-            "",
-            "",
-            "",
-        ],
-    ],
-    "de": [
-        [
-            "",
-            "",
-            "",
-        ],
-    ],
-}
-__NIS_LANGUAGES_INSTRUCTION_TEXT = {
+NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS = {
     "kk": [
         [
             "Бұл пән бойынша 10 мәтінге 20 сұрақ берілген.",
@@ -67,17 +13,15 @@ __NIS_LANGUAGES_INSTRUCTION_TEXT = {
             "Не забудьте перепроверить свои ответы.",
         ],
     ],
-    # DARK_TODO  implement this!
     "xx": [
         [
-            "",
-            "",
-            "",
+            "This subject contains 10 texts and 20 questions.",
+            "To answer all questions you will have 40 minutes.",
+            "Do not forget to double-check your answers.",
         ],
     ],
 }
-
-INSTRUCTION_TEXTS = {
+NIS_TEST_INSTRUCTION_TEXTS = {
     9540: {
         "kk": [
             [
@@ -95,15 +39,15 @@ INSTRUCTION_TEXTS = {
         ],
     },
     9541: {
-        "kk": __NIS_LANGUAGES_INSTRUCTION_TEXT["kk"],
-        "ru": __NIS_LANGUAGES_INSTRUCTION_TEXT["kk"],
+        "kk": NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS["kk"],
+        "ru": NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS["kk"],
     },
     9542: {
-        "kk": __NIS_LANGUAGES_INSTRUCTION_TEXT["ru"],
-        "ru": __NIS_LANGUAGES_INSTRUCTION_TEXT["ru"],
+        "kk": NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS["ru"],
+        "ru": NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS["ru"],
     },
     9543: {
-        "xx": __NIS_LANGUAGES_INSTRUCTION_TEXT["xx"],
+        "xx": NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS["xx"],
     },
     9544: {
         "kk": [
@@ -145,33 +89,43 @@ INSTRUCTION_TEXTS = {
             ],
         ],
     },
-
-    9547: __UNT_COMPULSORY_INSTRUCTION_TEXT,
-    9546: __UNT_COMPULSORY_INSTRUCTION_TEXT,
-    9545: __UNT_COMPULSORY_INSTRUCTION_TEXT,
-
-    9548: __UNT_PROFILE_INSTRUCTION_TEXT,
-    9549: __UNT_PROFILE_INSTRUCTION_TEXT,
-    9550: __UNT_PROFILE_INSTRUCTION_TEXT,
-    9551: __UNT_PROFILE_INSTRUCTION_TEXT,
-    9552: __UNT_PROFILE_INSTRUCTION_TEXT,
-    9553: __UNT_PROFILE_INSTRUCTION_TEXT,
-    9554: {
-        "xx": __UNT_PROFILE_INSTRUCTION_TEXT["en"],
-    },
-    9555: {
-        "xx": __UNT_PROFILE_INSTRUCTION_TEXT["fr"],
-    },
-    9556: {
-        "xx": __UNT_PROFILE_INSTRUCTION_TEXT["de"],
-    },
-    9557: {
-        "kk": __UNT_PROFILE_INSTRUCTION_TEXT["kk"],
-        "ru": __UNT_PROFILE_INSTRUCTION_TEXT["kk"],
-    },
-    9558: {
-        "kk": __UNT_PROFILE_INSTRUCTION_TEXT["ru"],
-        "ru": __UNT_PROFILE_INSTRUCTION_TEXT["ru"],
-    },
-    9559: __UNT_PROFILE_INSTRUCTION_TEXT,
 }
+
+UNT_COMPULSORY_TEST_INSTRUCTION_TEXTS = [
+    [
+        "Данный предмет содержит 20 вопросов.",
+        "Для ответа на все вопросы выделено 40 минут.",
+        "Не забудьте перепроверить свои ответы.",
+    ],
+]
+UNT_PROFILE_TEST_INSTRUCTION_TEXTS = [
+    [
+        "Данный предмет содержит 20 вопросов с выбором одного правильного ответа и 10 вопросов с выбором одного или нескольких правильных ответов.",
+        "Для ответа на все вопросы выделено 60 минут.",
+        "Не забудьте перепроверить свои ответы.",
+    ],
+]
+UNT_TEST_INSTRUCTION_TEXTS = {
+    9547: UNT_COMPULSORY_TEST_INSTRUCTION_TEXTS,
+    9546: UNT_COMPULSORY_TEST_INSTRUCTION_TEXTS,
+    9545: UNT_COMPULSORY_TEST_INSTRUCTION_TEXTS,
+
+    9548: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9549: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9550: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9551: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9552: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9553: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9554: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9555: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9556: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9557: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9558: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+    9559: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
+}
+def test_instructions(test):
+    if test.section.is_nis():
+        return NIS_TEST_INSTRUCTION_TEXTS[test.section.pk][test.language]
+    elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
+        return UNT_TEST_INSTRUCTION_TEXTS[test.section.pk]
+    return []
