@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, pgettext
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404
 from random import randint
@@ -86,9 +86,9 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                         "texts": result_main_description_text(quiz.test.section.pk),
                     }
 
-                if quiz.test.section.is_nis():
-                    # DARK_TODO  implement this!
-                    quiz.stats["detail"]["avg_texts"] = ""
+                # DARK_TODO  enable this when NIS 2018 average scores are available
+                if False and quiz.test.section.is_nis():
+                    quiz.stats["detail"]["avg_texts"] = pgettext("/student/results/", "The red line is the average score of the current test subject in comparison to your own results. The score represents an actual average result of NIS 2018 students (data is taken from nis.edu.kz).")
 
         if len(topic_ids):
             topic_branch_names = {}

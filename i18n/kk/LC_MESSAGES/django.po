@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-22 11:15+0600\n"
+"POT-Creation-Date: 2018-09-28 11:57+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2104,7 +2104,7 @@ msgid "Your score"
 msgstr ""
 
 msgctxt "Results page"
-msgid "Average score of students on bbTest.kz website for the section."
+msgid "Average score of students on bbtest.kz website for the section."
 msgstr ""
 
 #, python-format
@@ -2291,6 +2291,12 @@ msgid "You can see your results and follow the progress on this test section."
 msgstr ""
 
 msgctxt "Results page"
+msgid ""
+"The red line is the average score of the current test subject on bbtest.kz "
+"website in comparison to your own results."
+msgstr ""
+
+msgctxt "Results page"
 msgid "You have not yet completed this section."
 msgstr ""
 
@@ -2320,7 +2326,7 @@ msgid "Admins"
 msgstr "Администратор"
 
 msgctxt "/super/"
-msgid "Superusers"
+msgid "All Users"
 msgstr ""
 
 #, fuzzy
@@ -2329,6 +2335,10 @@ msgstr ""
 msgctxt "/super/"
 msgid "Tests by Developers"
 msgstr "Тестілеуді құрастырушы"
+
+msgctxt "/super/"
+msgid "All Tests"
+msgstr ""
 
 msgctxt "/super/"
 msgid "Subscriptions"
@@ -2733,6 +2743,13 @@ msgstr ""
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Free"
+msgstr ""
+
+msgctxt "/student/results/"
+msgid ""
+"The red line is the average score of the current test subject in comparison "
+"to your own results. The score represents an actual average result of NIS "
+"2018 students (data is taken from nis.edu.kz)."
 msgstr ""
 
 msgctxt "Error alert message"

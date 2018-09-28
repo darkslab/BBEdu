@@ -109,8 +109,7 @@
                     <div class="col-sm-10 col-sm-offset-1 bb-chart bb-chart-sm" data-result-chart-{{ parent_index }}-{{ index }}-progress></div>
                 </div>
                 <p class="mt-10 mb-5 text-center text-normal">
-                    {# DARK_TODO  implement this! #}
-                    <em>{% if quiz.stats.detail.avg_texts %}{{ quiz.stats.detail.avg_texts }}{% else %}{% trans '' context 'Results page' %}{% endif %}</em>
+                    <em>{% if quiz.stats.detail.avg_texts %}{{ quiz.stats.detail.avg_texts }}{% else %}{% trans 'The red line is the average score of the current test subject on bbtest.kz website in comparison to your own results.' context 'Results page' %}{% endif %}</em>
                 </p>
             </div>
         </div>

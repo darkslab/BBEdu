@@ -56,7 +56,7 @@
                                             <strong>{% trans 'Your score' context 'Results page' %}</strong>
                                         </div>
                                         <div class="col-sm-3 pr-5 pl-5 text-center">
-                                            {% trans 'Average score of students on bbTest.kz website for the section.' context 'Results page' as avg_msg %}
+                                            {% trans 'Average score of students on bbtest.kz website for the section.' context 'Results page' as avg_msg %}
                                             <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' context 'Results page' %}Average score {{ question_icon_start }}{{ avg_msg }}{{ question_icon_end }}{% endblocktrans %}</strong>
                                         </div>
                                     </div>
