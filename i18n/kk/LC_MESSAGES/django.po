@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-28 13:01+0600\n"
+"POT-Creation-Date: 2018-10-01 13:19+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1990,6 +1990,10 @@ msgctxt "Navigation link"
 msgid "All Tests"
 msgstr ""
 
+msgctxt "Navigation link"
+msgid "All Users"
+msgstr ""
+
 #, fuzzy
 #| msgctxt "Model field"
 #| msgid "created at"
@@ -2357,11 +2361,7 @@ msgid "Download list"
 msgstr ""
 
 msgctxt "Page title"
-msgid "All tests"
-msgstr ""
-
-msgctxt "/super/tests/"
-msgid "All tests"
+msgid "All Tests"
 msgstr ""
 
 #, fuzzy
@@ -2428,6 +2428,73 @@ msgstr ""
 
 msgctxt "/super/tests/"
 msgid "Next"
+msgstr ""
+
+msgctxt "Page title"
+msgid "All Users"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Name"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Role"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "joined at"
+msgctxt "/super/users/"
+msgid "Joined at"
+msgstr "тіркелген уақыты"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "active?"
+msgctxt "/super/users/"
+msgid "Active?"
+msgstr "активті?"
+
+msgctxt "/super/users/"
+msgid "Actions"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Administrator"
+msgctxt "/super/users/"
+msgid "Administrator"
+msgstr "Администратор"
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Developer"
+msgctxt "/super/users/"
+msgid "Developer"
+msgstr "Құрастырушы"
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Student"
+msgctxt "/super/users/"
+msgid "Student"
+msgstr "Тестілеуге қатысушы"
+
+msgctxt "/super/users/"
+msgid "Yes"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "No"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Impersonate"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "There are no users yet"
 msgstr ""
 
 #, python-format
