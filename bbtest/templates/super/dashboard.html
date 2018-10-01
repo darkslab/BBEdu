@@ -18,7 +18,10 @@
                     <p class="mb-0">{% trans 'Students' context '/super/' %}: {{ student_count }}</p>
                     <p class="mb-0">{% trans 'Developers' context '/super/' %}: {{ developer_count }}</p>
                     <p class="mb-0">{% trans 'Admins' context '/super/' %}: {{ admin_count }}</p>
-                    <p class="mb-0">{% trans 'Superusers' context '/super/' %}: {{ super_count }}</p>
+                    <p class="mb-0">Superusers: {{ super_count }}</p>
+                </div>
+                <div class="panel-footer text-center">
+                    <a href="{% url 'bbtest:super_users' %}">{% trans 'All Users' context '/super/' %}</a>
                 </div>
             </div>
         </div>
@@ -31,6 +34,9 @@
                     {% for developer in developer_stats %}
                         <p class="mb-0">{{ developer.get_full_name }}: {{ developer.tests_count }}</p>
                     {% endfor %}
+                </div>
+                <div class="panel-footer text-center">
+                    <a href="{% url 'bbtest:super_tests' %}">{% trans 'All Tests' context '/super/' %}</a>
                 </div>
             </div>
         </div>

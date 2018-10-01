@@ -45,6 +45,7 @@
                         {% if perms.bbtest.super %}
                             <li class="{% block nav_super_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:super_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_tests_class %}{% endblock %}"><a href="{% url 'bbtest:super_tests' %}"><i class="fa fa-fw fa-list"></i> {% trans 'All Tests' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_super_users_class %}{% endblock %}"><a href="{% url 'bbtest:super_users' %}"><i class="fa fa-fw fa-users"></i> {% trans 'All Users' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
                         {% elif perms.admin %}
                         {% elif perms.bbtest.developer %}
@@ -172,6 +173,7 @@
 
     nav_super_dashboard_class
     nav_super_tests_class
+    nav_super_users_class
 
     nav_developer_dashboard_class
     nav_developer_create_test_class
