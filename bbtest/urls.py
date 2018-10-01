@@ -50,6 +50,7 @@ from .views.super import (
     DashboardView as SuperDashboardView,
     TestsView as SuperTestsView,
     DownloadSubscriptionListView as SuperDownloadSubscriptionListView,
+    UsersView as SuperUsersView,
 )
 
 
@@ -111,6 +112,7 @@ urlpatterns = [
     url(r"^super/$",                            SuperDashboardView.as_view(),                name="super_dashboard"                 ),
     url(r"^super/tests/$",                      SuperTestsView.as_view(),                    name="super_tests"                     ),
     url(r"^super/download-subscription-list/$", SuperDownloadSubscriptionListView.as_view(), name="super_download_subscription_list"),
+    url(r"^super/users/$",                      SuperUsersView.as_view(),                    name="super_users"                     ),
 
     # SYSTEM URLS
     url(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),

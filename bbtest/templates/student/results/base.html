@@ -36,7 +36,7 @@
         </div>
         {% if quiz_sets.has_other_pages %}
             <div class="col-xs-12 text-center">
-                <ul class="pagination mt-0">
+                <ul class="pagination mt-0 mb-0">
                     {% if quiz_sets.has_previous %}
                         <li><a href="{{ request.path }}?page={{ quiz_sets.previous_page_number }}">&laquo;</a></li>
                     {% else %}
