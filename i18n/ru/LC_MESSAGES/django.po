@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-28 13:01+0600\n"
-"PO-Revision-Date: 2018-09-28 00:04-0700\n"
+"POT-Creation-Date: 2018-10-01 13:19+0600\n"
+"PO-Revision-Date: 2018-10-01 00:23-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -1801,6 +1801,10 @@ msgid "All Tests"
 msgstr "Все Тесты"
 
 msgctxt "Navigation link"
+msgid "All Users"
+msgstr "Все Пользователи"
+
+msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Загрузить тест"
 
@@ -2125,11 +2129,7 @@ msgid "Download list"
 msgstr "Скачать список"
 
 msgctxt "Page title"
-msgid "All tests"
-msgstr "Все Тесты"
-
-msgctxt "/super/tests/"
-msgid "All tests"
+msgid "All Tests"
 msgstr "Все Тесты"
 
 msgctxt "/super/tests/"
@@ -2191,6 +2191,58 @@ msgstr "Предыдущий"
 msgctxt "/super/tests/"
 msgid "Next"
 msgstr "Следующий"
+
+msgctxt "Page title"
+msgid "All Users"
+msgstr "Все Пользователи"
+
+msgctxt "/super/users/"
+msgid "Name"
+msgstr "Имя"
+
+msgctxt "/super/users/"
+msgid "Role"
+msgstr "Тип пользователя"
+
+msgctxt "/super/users/"
+msgid "Joined at"
+msgstr "Зарегистрирован"
+
+msgctxt "/super/users/"
+msgid "Active?"
+msgstr "Активный?"
+
+msgctxt "/super/users/"
+msgid "Actions"
+msgstr "Действия"
+
+msgctxt "/super/users/"
+msgid "Administrator"
+msgstr "Администратор"
+
+msgctxt "/super/users/"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "/super/users/"
+msgid "Student"
+msgstr "Участник тестирования"
+
+msgctxt "/super/users/"
+msgid "Yes"
+msgstr "Да"
+
+msgctxt "/super/users/"
+msgid "No"
+msgstr "Нет"
+
+msgctxt "/super/users/"
+msgid "Impersonate"
+msgstr "Войти как пользователь"
+
+msgctxt "/super/users/"
+msgid "There are no users yet"
+msgstr "Нет пользователей"
 
 #, python-format
 msgctxt "Page title"
