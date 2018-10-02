@@ -1,7 +1,10 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
+from django.shortcuts import redirect, get_object_or_404
+from django.contrib.messages import warning
+from django.utils.translation import pgettext
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
-from bbtest.views.generic import TemplateView
+from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
 
 
@@ -30,3 +33,11 @@ class UsersView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin,
                     break
 
         return super().get_context_data(**kwargs)
+
+
+class ImpersonateUserView(SuperPermissionRequiredMixin, View):
+    def post(self, request, user_id, *args, **kwargs):
+        user = get_object_or_404(User.active_users.filter(is_superuser=False), pk=user_id)
+        login(request, user)
+        warning(request, pgettext("/super/users/", "Superuser, you are now logged in as %(name)s. PLEASE BE CAREFUL!") % { "name": user.get_full_name() })
+        return redirect("bbtest:dashboard")

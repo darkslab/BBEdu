@@ -51,6 +51,7 @@ from .views.super import (
     TestsView as SuperTestsView,
     DownloadSubscriptionListView as SuperDownloadSubscriptionListView,
     UsersView as SuperUsersView,
+    ImpersonateUserView as SuperImpersonateUserView,
 )
 
 
@@ -109,10 +110,11 @@ urlpatterns = [
     url(r"^developer/offer/$",           DeveloperOfferView.as_view(),           name="developer_offer"          ),
 
     # SUPER URLS
-    url(r"^super/$",                            SuperDashboardView.as_view(),                name="super_dashboard"                 ),
-    url(r"^super/tests/$",                      SuperTestsView.as_view(),                    name="super_tests"                     ),
-    url(r"^super/download-subscription-list/$", SuperDownloadSubscriptionListView.as_view(), name="super_download_subscription_list"),
-    url(r"^super/users/$",                      SuperUsersView.as_view(),                    name="super_users"                     ),
+    url(r"^super/$",                                       SuperDashboardView.as_view(),                name="super_dashboard"                 ),
+    url(r"^super/tests/$",                                 SuperTestsView.as_view(),                    name="super_tests"                     ),
+    url(r"^super/download-subscription-list/$",            SuperDownloadSubscriptionListView.as_view(), name="super_download_subscription_list"),
+    url(r"^super/users/$",                                 SuperUsersView.as_view(),                    name="super_users"                     ),
+    url(r"^super/users/(?P<user_id>[0-9]+)/impersonate/$", SuperImpersonateUserView.as_view(),          name="super_impersonate_user"          ),
 
     # SYSTEM URLS
     url(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),
