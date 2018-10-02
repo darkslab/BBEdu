@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-01 13:19+0600\n"
-"PO-Revision-Date: 2018-10-01 00:23-0700\n"
+"POT-Creation-Date: 2018-10-02 13:35+0600\n"
+"PO-Revision-Date: 2018-10-02 00:39-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -2090,7 +2090,7 @@ msgstr "Статистика Пользователей"
 
 msgctxt "/super/"
 msgid "Students"
-msgstr "Участники теста"
+msgstr "Участник тестирования"
 
 msgctxt "/super/"
 msgid "Developers"
@@ -2197,6 +2197,18 @@ msgid "All Users"
 msgstr "Все Пользователи"
 
 msgctxt "/super/users/"
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+msgctxt "/super/users/"
+msgid "Yes"
+msgstr "Да"
+
+msgctxt "/super/users/"
+msgid "No"
+msgstr "Нет"
+
+msgctxt "/super/users/"
 msgid "Name"
 msgstr "Имя"
 
@@ -2227,14 +2239,6 @@ msgstr "Разработчик"
 msgctxt "/super/users/"
 msgid "Student"
 msgstr "Участник тестирования"
-
-msgctxt "/super/users/"
-msgid "Yes"
-msgstr "Да"
-
-msgctxt "/super/users/"
-msgid "No"
-msgstr "Нет"
 
 msgctxt "/super/users/"
 msgid "Impersonate"
@@ -2554,6 +2558,11 @@ msgstr ""
 "Для сравнения Ваших результатов с результатами реального тестирования мы "
 "указали средний балл (красная линия) участников тестирования конкурсного "
 "отбора в НИШ 2018 года по данному предмету (взято с nis.edu.kz)."
+
+#, python-format
+msgctxt "/super/users/"
+msgid "Superuser, you are now logged in as %(name)s. PLEASE BE CAREFUL!"
+msgstr "Superuser, вы авторизировались как %(name)s. БУДЬТЕ ОСТОРОЖЕНЫ!"
 
 msgctxt "Error alert message"
 msgid "Could not approve the Test. Please check the Test for correctness."

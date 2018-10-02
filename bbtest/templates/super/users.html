@@ -8,6 +8,37 @@
 {% block nav_super_users_class %}active{% endblock %}
 
 {% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "SuperUsersPageModule"
+        });
+    </script>
+    <form method="post" action="" data-bb-form data-impersonate-form>
+        {% csrf_token %}
+        <div class="modal fade" data-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context '/super/users/' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-danger btn-block btn-lg" data-bb-submit>{% trans 'Yes' context '/super/users/' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context '/super/users/' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
@@ -47,7 +78,7 @@
                                         {% endif %}
                                     </td>
                                     <td class="pr-15 pl-15 text-center">
-                                        <button type="button" class="btn btn-danger btn-xs" disabled>{% trans 'Impersonate' context '/super/users/' %}</button>
+                                        <button type="button" class="btn btn-danger btn-xs" data-impersonate-url="{% url 'bbtest:super_impersonate_user' user.pk %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Impersonate' context '/super/users/' %}</button>
                                     </td>
                                 </tr>
                             {% empty %}
