@@ -6,7 +6,7 @@ import csv
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin
-from bbtest.models import Subscription
+from bbtest.models import Subscription, Test
 
 
 User = get_user_model()
@@ -25,6 +25,8 @@ class DashboardView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView
         ).annotate(
             tests_count=Count("tests"),
         ).order_by("last_name")
+
+        kwargs["superuser_tests_count"] = Test.objects.filter(developer__is_superuser=True).count()
 
         kwargs["subscriptions_total"] = Subscription.objects.count()
         kwargs["subscriptions_last"] = Subscription.objects.order_by("-created_at").first()

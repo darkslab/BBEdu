@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-01 13:19+0600\n"
+"POT-Creation-Date: 2018-10-02 13:35+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2435,6 +2435,18 @@ msgid "All Users"
 msgstr ""
 
 msgctxt "/super/users/"
+msgid "Are you sure?"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Yes"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "No"
+msgstr ""
+
+msgctxt "/super/users/"
 msgid "Name"
 msgstr ""
 
@@ -2480,14 +2492,6 @@ msgstr "Құрастырушы"
 msgctxt "/super/users/"
 msgid "Student"
 msgstr "Тестілеуге қатысушы"
-
-msgctxt "/super/users/"
-msgid "Yes"
-msgstr ""
-
-msgctxt "/super/users/"
-msgid "No"
-msgstr ""
 
 msgctxt "/super/users/"
 msgid "Impersonate"
@@ -2817,6 +2821,11 @@ msgid ""
 "The red line is the average score of the current test subject in comparison "
 "to your own results. The score represents an actual average result of NIS "
 "2018 students (data is taken from nis.edu.kz)."
+msgstr ""
+
+#, python-format
+msgctxt "/super/users/"
+msgid "Superuser, you are now logged in as %(name)s. PLEASE BE CAREFUL!"
 msgstr ""
 
 msgctxt "Error alert message"

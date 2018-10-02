@@ -31,6 +31,7 @@
                     <h4 class="panel-title">{% trans 'Tests by Developers' context '/super/' %}</h4>
                 </div>
                 <div class="panel-body">
+                    <p class="mb-0"><em>Superusers</em>: {{ superuser_tests_count }}</p>
                     {% for developer in developer_stats %}
                         <p class="mb-0">{{ developer.get_full_name }}: {{ developer.tests_count }}</p>
                     {% endfor %}
