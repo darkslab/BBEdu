@@ -1,0 +1,27 @@
+{% extends '../../email_base_0.html' %}
+
+{% block content %}
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="left" valign="top">
+                Друзья, у нас отличная новость!<br><br>
+
+                С сегодняшнего дня для Вас начинает работу сайт <strong>bbtest.kz</strong>!<br>
+                У нас Вы найдете подготовительные тесты для поступления в НИШ и успешной сдачи ЕНТ.<br>
+                <a href="{{ base_url }}{% url 'bbtest:home' %}" target="_blank">Начни готовиться к тесту уже сегодня!</a><br><br>
+
+                ~<br><br>
+
+                Достар, бізде тамаша жaңалық!<br><br>
+
+                Бүгінгі күннен бастап Сіздер үшін <strong>bbtest.kz</strong> сайты өз жұмысын бастайды!<br>
+                Сайтымызда Назарбаев Зияткерлік мектептеріне түсу үшін және ҰБТ-ға дайындалу тестілері ұсынылған.<br>
+                <a href="{{ base_url }}{% url 'bbtest:home' %}" target="_blank">Тестілеуге бүгіннен бастап дайындал!</a><br><br><br>
+
+
+                С Уважением,<br>
+                Команда bbtest.kz
+            </td>
+        </tr>
+    </table>
+{% endblock %}
