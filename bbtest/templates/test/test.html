@@ -13,7 +13,7 @@
                 data: {
                     class: "DeveloperTest",
                     props: {
-                        spinnerLogo: "{% static 'img/logo.png' %}",
+                        spinnerLogo: "{% static 'img/logo2_spinner.png' %}",
                         questionUrl: "{% url 'bbtest:build_test_question' code %}",
                         questionIds: {{ question_ids|safe }},
                         paragraphsUrl: "{% url 'bbtest:build_test_paragraphs' code %}",
@@ -96,7 +96,7 @@
     <div id="root">
         <div class="row">
             <div class="col-xs-12 bb-test-container">
-                <img class="bb-spinner" src="{% static 'img/logo.png' %}">
+                <img class="bb-spinner" src="{% static 'img/logo2_spinner.png' %}">
             </div>
         </div>
     </div>
