@@ -35,6 +35,9 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
                 "quizzes": {
                     "all": [],
                 },
+                "test_domain": {
+                    "name": pgettext("/student/", "Test Domain 1"),
+                },
             }
             kwargs["quiz_set"]["quizzes"]["all"].append({
                 "test": {
