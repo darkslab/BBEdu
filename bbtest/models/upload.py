@@ -18,7 +18,12 @@ def storage_bucket():
 
 
 def expiring_url(asset_object_name, expire_in=3600):
-    return storage_bucket().blob(asset_object_name).generate_signed_url(now() + timedelta(seconds=(expire_in + 5)))
+    url = storage_bucket().blob(asset_object_name).generate_signed_url(now() + timedelta(seconds=(expire_in + 5)))
+    if not settings.DEBUG:
+        ORIGINAL_API_ACCESS_ENDPOINT = "https://storage.googleapis.com"
+        if url[:len(ORIGINAL_API_ACCESS_ENDPOINT)] == ORIGINAL_API_ACCESS_ENDPOINT:
+            url = "%s%s" % (settings.SECRETS["GOOGLE_STORAGE_OVERRIDE_API_ACCESS_ENDPOINT"], url[len(ORIGINAL_API_ACCESS_ENDPOINT):])
+    return url
 
 
 class UploadingObjectsManager(Manager):
