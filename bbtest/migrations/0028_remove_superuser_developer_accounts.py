@@ -8,7 +8,7 @@ from bbtest.models import Account
 
 
 def remove_accounts(apps, schema_editor):
-    for user in get_user_model().objects.all():
+    for user in get_user_model().objects.only("pk").all():
         if user.has_perm("bbtest.super"):
             try:
                 Account.objects.get(name="Developer-%s" % user.pk).delete()

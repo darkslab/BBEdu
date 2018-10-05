@@ -11,7 +11,7 @@ def create_accounts_retroactively(apps, schema_editor):
     Account.objects.create_revenue_account("Tests-NIS")
     Account.objects.create_revenue_account("Tests-UNT")
 
-    for user in get_user_model().objects.all():
+    for user in get_user_model().objects.only("pk").all():
         if user.has_perm("bbtest.developer"):
             Account.objects.create_liability_account("Developer-%s" % user.pk)
 

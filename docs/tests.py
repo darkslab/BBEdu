@@ -54,6 +54,58 @@ for i, _question in enumerate(_test.questions.all()):
     _paragraph.save()
 
 
+# NIS Quantitative
+_test = TestForm(data={
+    "section": 9544,
+    "language": "kk",
+}).create_test_suite(_developer)
+for i, _question in enumerate(_test.questions.all()):
+    # difficulty
+    if i in range(0, 15):
+        _question.difficulty = TestQuestion.DIFFICULTY_LOW
+    elif i in range(15, 45):
+        _question.difficulty = TestQuestion.DIFFICULTY_NORMAL
+    elif i in range(45, 60):
+        _question.difficulty = TestQuestion.DIFFICULTY_HIGH
+    # topic
+    if i in range(0, 5):
+        _question.topic_id = 5164
+    elif i in range(5, 10):
+        _question.topic_id = 5165
+    elif i in range(10, 15):
+        _question.topic_id = 5166
+    elif i in range(15, 20):
+        _question.topic_id = 5167
+    elif i in range(20, 24):
+        _question.topic_id = 5163
+    elif i in range(24, 29):
+        _question.topic_id = 5156
+    elif i in range(29, 34):
+        _question.topic_id = 5168
+    elif i in range(34, 39):
+        _question.topic_id = 5169
+    elif i in range(39, 44):
+        _question.topic_id = 5170
+    elif i in range(44, 48):
+        _question.topic_id = 5171
+    elif i in range(48, 52):
+        _question.topic_id = 5172
+    elif i in range(52, 56):
+        _question.topic_id = 5173
+    elif i in range(56, 58):
+        _question.topic_id = 5174
+    elif i in range(58, 60):
+        _question.topic_id = 5175
+    # answer
+    _question.meta_data["correct_id"] = _question.meta_data["choices"][0]["id"]
+    _question.save()
+    # paragraphs
+    _paragraph = _question.paragraphs.first()
+    _paragraph.meta_data["right"]["text"] = words(randint(3, 6), False)
+    _paragraph.meta_data["left"]["text"] = words(randint(3, 6), False)
+    _paragraph.save()
+
+
 # NIS Kazakh language
 _test = TestForm(data={
     "section": 9541,

@@ -195,6 +195,8 @@ class Test(Model):
             if question_ids is not None and question.pk not in question_ids:
                 continue
             score += question.weight
+        if self.section_id == 9544:
+            score = round(score / 10)
         return score
 
     def topic_branches(self):
