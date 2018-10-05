@@ -12,7 +12,7 @@ def create_accounts_retroactively(apps, schema_editor):
     Account.objects.create_asset_account("Cash")
     Account.objects.create_expense_account("MerchantFees-Qazkom")
 
-    for user in get_user_model().objects.all():
+    for user in get_user_model().objects.only("pk").all():
         BalanceAccount.objects.create_equity_account(user.balance_account_name())
 
 

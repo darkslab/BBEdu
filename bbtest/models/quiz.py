@@ -48,64 +48,72 @@ class Quiz(Model):
         if self.report is None:
             return score
 
-        calculate_method = None
         if self.test.section.is_nis():
-            calculate_method = self.__calculate_nis
+            if self.test.section.pk == 9544:
+                score = self.__calculate_nis_quantitative(question_ids)
+            else:
+                score = self.__calculate_nis_non_quantitative(question_ids)
         elif self.test.section.is_unt_compulsory():
-            calculate_method = self.__calculate_unt_compulsory
+            score = self.__calculate_unt_compulsory(question_ids)
         elif self.test.section.is_unt_profile():
-            calculate_method = self.__calculate_unt_profile
-        if calculate_method is None:
-            return score
+            score = self.__calculate_unt_profile(question_ids)
 
+        return score
+
+    def __calculate_simple_multichoice_one_answer(self, answer, test_question):
+        score = 0
+        if test_question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+            if (
+                test_question.meta_data["correct_id"] is not None
+                and answer["answer"] is not None
+                and test_question.meta_data["correct_id"] == answer["answer"]["correct_id"]
+            ):
+                score += test_question.weight
+        return score
+
+    def __calculate_nis_non_quantitative(self, question_ids):
+        score = 0
         for i, question in enumerate(self.test.questions.all()):
             if question_ids is not None and question.pk not in question_ids:
                 continue
-            score += calculate_method(self.report["answers"][i], question)
+            score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
         return score
 
-    def __calculate_nis(self, answer, test_question):
+    def __calculate_nis_quantitative(self, question_ids):
         score = 0
-        if test_question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
-            if (
-                test_question.meta_data["correct_id"] is not None
-                and answer["answer"] is not None
-                and test_question.meta_data["correct_id"] == answer["answer"]["correct_id"]
-            ):
-                score += test_question.weight
+        for i, question in enumerate(self.test.questions.all()):
+            if question_ids is not None and question.pk not in question_ids:
+                continue
+            score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
+        return round(score / 10)
+
+    def __calculate_unt_compulsory(self, question_ids):
+        score = 0
+        for i, question in enumerate(self.test.questions.all()):
+            if question_ids is not None and question.pk not in question_ids:
+                continue
+            score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
         return score
 
-    def __calculate_unt_compulsory(self, answer, test_question):
+    def __calculate_unt_profile(self, question_ids):
         score = 0
-        if test_question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
-            if (
-                test_question.meta_data["correct_id"] is not None
-                and answer["answer"] is not None
-                and test_question.meta_data["correct_id"] == answer["answer"]["correct_id"]
-            ):
-                score += test_question.weight
-        return score
-
-    def __calculate_unt_profile(self, answer, test_question):
-        score = 0
-        if test_question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
-            if (
-                test_question.meta_data["correct_id"] is not None
-                and answer["answer"] is not None
-                and test_question.meta_data["correct_id"] == answer["answer"]["correct_id"]
-            ):
-                score += test_question.weight
-        elif test_question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
-            if (
-                len(test_question.meta_data["correct_ids"]) > 0
-                and len(test_question.meta_data["correct_ids"]) <= 3
-                and answer["answer"] is not None
-            ):
-                correct_answers = set(test_question.meta_data["correct_ids"])
-                report_answers = set(answer["answer"]["correct_ids"])
-                if not len(correct_answers ^ report_answers):
-                    score += test_question.weight
-                elif len(correct_answers & report_answers) >= ceil(len(correct_answers) / 2):
-                    if len(report_answers - correct_answers) <= 1:
-                        score += test_question.weight / 2
+        for i, question in enumerate(self.test.questions.all()):
+            if question_ids is not None and question.pk not in question_ids:
+                continue
+            if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
+            elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
+                answer = self.report["answers"][i]
+                if (
+                    len(question.meta_data["correct_ids"]) > 0
+                    and len(question.meta_data["correct_ids"]) <= 3
+                    and answer["answer"] is not None
+                ):
+                    correct_answers = set(question.meta_data["correct_ids"])
+                    report_answers = set(answer["answer"]["correct_ids"])
+                    if not len(correct_answers ^ report_answers):
+                        score += question.weight
+                    elif len(correct_answers & report_answers) >= ceil(len(correct_answers) / 2):
+                        if len(report_answers - correct_answers) <= 1:
+                            score += question.weight / 2
         return score
