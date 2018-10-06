@@ -1,3 +1,3 @@
 from .developer_agreements import DEVELOPER_AGREEMENT_TEXTS
-from .test_instructions import test_instructions
+from .test_instructions import test_instructions, test_instructions_title
 from .result_descriptions import result_main_description_text, result_topic_description_text
