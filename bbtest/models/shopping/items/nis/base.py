@@ -1,4 +1,5 @@
 from django.utils.translation import pgettext
+from decimal import Decimal
 from ..test import TestItem
 from ...exceptions import ItemError
 from bbtest.models import Account
@@ -26,3 +27,27 @@ class NISItem(TestItem):
             new_items.append(self)
         new_items.sort(key=lambda new_item: new_item.test().section.order)
         return new_items
+
+    def question_discount(self):
+        non_language_items_count = 0
+        language_items_count = 0
+        for item in self.handle():
+            if isinstance(item, NonLanguageNISItem) and not item.test().is_free:
+                non_language_items_count += 1
+            elif isinstance(item, LanguageNISItem) and not item.test().is_free:
+                language_items_count += 1
+        if non_language_items_count > 1:
+            if language_items_count > 0:
+                return Decimal("2.00")
+            return Decimal("1.00")
+        elif non_language_items_count > 0 and language_items_count > 0:
+            return Decimal("1.00")
+        return Decimal("0.00")
+
+
+class NonLanguageNISItem(NISItem):
+    pass
+
+
+class LanguageNISItem(NISItem):
+    pass
