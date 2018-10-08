@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" href="{% static 'img/favicon/favicon_ico.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/favicon/favicon_32.png' %}" sizes="32x32">
+    <link rel="icon" href="{% static 'img/favicon/favicon_48.png' %}" sizes="48x48">
+    <link rel="icon" href="{% static 'img/favicon/favicon_96.png' %}" sizes="96x96">
+    <link rel="icon" href="{% static 'img/favicon/favicon_144.png' %}" sizes="144x144">
+
     <title>{% block window_title %}{% block title %}{% endblock %}{% endblock %}{% block window_title_suffix %} - bbTest.kz{% endblock %}</title>
 
     <meta name="description" content="{% block description %}{% blocktrans with dash_code='&mdash;' context 'Page description' %}bbTest.kz {{ dash_code }} Online testing platform. Thorough. Convenient. Effective.{% endblocktrans %}{% endblock %}">
