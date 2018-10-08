@@ -88,11 +88,11 @@ class SplitTextParagraph extends React.Component {
                 <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                     <div className="row">
                         <div className="col-xs-6 pr-5">
-                            <h5 className="text-center mt-0 mb-0"><em>{this.props.texts.columnACaption}</em></h5>
+                            <h5 className="text-center mt-0 mb-0"><em>{this.props.testTexts.column_a}</em></h5>
                             {leftContent}
                         </div>
                         <div className="col-xs-6 pl-5">
-                            <h5 className="text-center mt-0 mb-0"><em>{this.props.texts.columnBCaption}</em></h5>
+                            <h5 className="text-center mt-0 mb-0"><em>{this.props.testTexts.column_b}</em></h5>
                             {rightContent}
                         </div>
                     </div>

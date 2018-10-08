@@ -98,11 +98,13 @@ var DeveloperQuestion = function (_React$Component) {
                     onChange: _this2._paragraphChange.bind(_this2, id),
                     onDelete: _this2._paragraphDelete.bind(_this2, id),
                     canDelete: _this2.props.ability.canDeleteParagraph(id),
-                    texts: _this2.props.texts }));
+                    texts: _this2.props.texts,
+                    testTexts: _this2.props.object.texts() }));
                 paragraphs.push(React.createElement(ParagraphClass, { key: id,
                     data: paragraphData.meta_data,
                     isShared: sharedQuestionIds.length > 0,
                     texts: _this2.props.texts,
+                    testTexts: _this2.props.object.texts(),
                     forDevelopers: true }));
             });
             if (!paragraphs.length) {

@@ -12,7 +12,7 @@ from .mixins import CurrentQuizSetRequiredMixin
 from bbtest.http import TightJsonResponse
 from bbtest.models import Test
 from bbtest.forms.exam import ExamReportForm
-from bbtest.texts import test_instructions, test_instructions_title
+from bbtest.texts import test_instructions, test_instructions_title, inject_texts_into_response
 
 
 class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
@@ -39,6 +39,7 @@ class ExamMixin:
             "seconds": (self.current_quiz().due_at - now_at).seconds,
         }
         inject_questions_and_report_into_started_response(response, self.current_quiz().test)
+        inject_texts_into_response(response, self.current_quiz().test)
         if self.current_quiz().report is None:
             for data in response["report"]["answers"]:
                 data["answer"] = None

@@ -210,6 +210,7 @@ class DeveloperTest extends React.Component {
                 data.id,
                 data.data,
                 data.paragraphs,
+                data.texts,
                 this.props.questionUrl,
                 this.props.paragraphsUrl,
                 this.props.uploadStartUrl,

@@ -1,8 +1,9 @@
-function StudentTestObject(component, reportUrl, questions, report) {
+function StudentTestObject(component, reportUrl, questions, report, texts) {
     this._component = component;
     this._reportUrl = reportUrl;
     this._questions = questions;
     this._report = report;
+    this._texts = texts;
 
     this._updateTimer;
     this._$xhr;
@@ -70,4 +71,7 @@ StudentTestObject.prototype._ajaxError = function($xhr, status, error) {
         return;
     }
     this._component.reportFailed();
+}
+StudentTestObject.prototype.texts = function() {
+    return this._texts;
 }

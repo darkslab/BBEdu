@@ -1,7 +1,8 @@
-function PreviewTestObject(component, reportUrl, questions, report) {
+function PreviewTestObject(component, reportUrl, questions, report, texts) {
     this._component = component;
     this._questions = questions;
     this._report = report;
+    this._texts = texts;
 }
 PreviewTestObject.prototype.stop = function() {
 }
@@ -18,4 +19,7 @@ PreviewTestObject.prototype.canAnswer = function() {
 }
 PreviewTestObject.prototype.showCorrectAnswer = function() {
     return false;
+}
+PreviewTestObject.prototype.texts = function() {
+    return this._texts;
 }

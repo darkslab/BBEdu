@@ -72,7 +72,12 @@
                 "paragraph_class": "TextParagraph"
             }
         }
-    ]
+    ],
+    "texts": {
+        "shared_paragraph_header": "Text",
+        "column_a": "Column A",
+        "column_b": "Column B"
+    }
 }
 
 
@@ -310,6 +315,11 @@
         "observation": {
             // ...
         }
+    },
+    "texts": {
+        "shared_paragraph_header": "Text",
+        "column_a": "Column A",
+        "column_b": "Column B"
     }
 }
 // or

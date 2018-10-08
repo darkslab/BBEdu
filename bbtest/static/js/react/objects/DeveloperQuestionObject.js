@@ -1,7 +1,8 @@
-function DeveloperQuestionObject(id, data, paragraphs, questionUrl, paragraphsUrl, uploadStartUrl, spinnerLogoUrl) {
+function DeveloperQuestionObject(id, data, paragraphs, texts, questionUrl, paragraphsUrl, uploadStartUrl, spinnerLogoUrl) {
     this._id = id;
     this._data = data;
     this._paragraphs = [];
+    this._texts = texts;
 
     this._contextData = {};
     this._questionUrl = questionUrl;
@@ -245,6 +246,9 @@ DeveloperQuestionObject.prototype.deleteAnswer = function() {
     this._data.answer_class = "";
     this._data.meta_data = null;
     this._isQuestionSaved = false;
+}
+DeveloperQuestionObject.prototype.texts = function() {
+    return this._texts;
 }
 
 DeveloperQuestionObject.prototype._ajaxSuccess = function(context, type, data, status, $xhr) {
