@@ -32,9 +32,9 @@ class NISItem(TestItem):
         non_language_items_count = 0
         language_items_count = 0
         for item in self.handle():
-            if isinstance(item, NonLanguageNISItem):
+            if isinstance(item, NonLanguageNISItem) and not item.test().is_free:
                 non_language_items_count += 1
-            elif isinstance(item, LanguageNISItem):
+            elif isinstance(item, LanguageNISItem) and not item.test().is_free:
                 language_items_count += 1
         if non_language_items_count > 1:
             if language_items_count > 0:
