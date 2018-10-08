@@ -64,7 +64,7 @@ var TextParagraph = function (_React$Component) {
                     React.createElement(
                         "em",
                         null,
-                        this.props.texts.sharedTitleTextParagraph
+                        this.props.testTexts.shared_paragraph_header
                     )
                 );
             }

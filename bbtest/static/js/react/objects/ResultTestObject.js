@@ -1,7 +1,8 @@
-function ResultTestObject(component, reportUrl, questions, report) {
+function ResultTestObject(component, reportUrl, questions, report, texts) {
     this._component = component;
     this._questions = questions;
     this._report = report;
+    this._texts = texts;
 }
 ResultTestObject.prototype.stop = function() {
 }
@@ -18,4 +19,7 @@ ResultTestObject.prototype.canAnswer = function() {
 }
 ResultTestObject.prototype.showCorrectAnswer = function() {
     return true;
+}
+ResultTestObject.prototype.texts = function() {
+    return this._texts;
 }

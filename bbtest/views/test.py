@@ -14,6 +14,7 @@ from bbtest.models import TestQuestion, Test, TestParagraph
 from bbtest.http import TightJsonResponse
 from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestSendForm, TestCheckForm
 from bbtest.jobs.upload import image_paragraph_destroyer
+from bbtest.texts import inject_texts_into_response
 
 
 def get_test_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
@@ -85,7 +86,8 @@ class TestView(DeveloperPermissionRequiredMixin, UserContextMixin, TemplateView)
 
 class TestQuestionView(DeveloperPermissionRequiredMixin, View):
     def get(self, request, code, question_id, *args, **kwargs):
-        question = self.__question(request, code, question_id)
+        test = get_test_for_edit_or_404(request, code)
+        question = get_object_or_404(test.questions, pk=question_id)
 
         question_data = {
             "id": question.id,
@@ -115,11 +117,14 @@ class TestQuestionView(DeveloperPermissionRequiredMixin, View):
                     paragraph_data["question_ids"].append(through.question_id)
             question_data["paragraphs"].append(paragraph_data)
 
+        inject_texts_into_response(question_data, test)
+
         # DARK_TODO  add "success" to response
         return TightJsonResponse(question_data)
 
     def post(self, request, code, question_id, *args, **kwargs):
-        question = self.__question(request, code, question_id)
+        test = get_test_for_edit_or_404(request, code)
+        question = get_object_or_404(test.questions, pk=question_id)
 
         form = TestQuestionForm(data=request.POST, instance=question)
         if not form.is_valid():
@@ -134,10 +139,6 @@ class TestQuestionView(DeveloperPermissionRequiredMixin, View):
             test_question.weight = new_weight
             test_question.save()
         return TightJsonResponse({"success": True})
-
-    def __question(self, request, code, question_id):
-        test = get_test_for_edit_or_404(request, code)
-        return get_object_or_404(test.questions, pk=question_id)
 
 
 class TestParagraphsView(DeveloperPermissionRequiredMixin, View):
@@ -325,6 +326,7 @@ class TestPreviewDataView(DeveloperPermissionRequiredMixin, View):
             "seconds": test.section.duration,
         }
         inject_questions_and_report_into_started_response(response, test)
+        inject_texts_into_response(response, test)
         return TightJsonResponse(response)
 
     def post(self, request, code, *args, **kwargs):

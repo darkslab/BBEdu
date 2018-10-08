@@ -27,6 +27,7 @@ var Question = function (_React$Component) {
                     data: this.props.object.paragraphs[i].meta_data,
                     isShared: this.props.object.paragraphs[i].is_shared,
                     texts: this.props.texts,
+                    testTexts: this.props.testTexts,
                     forDevelopers: false }));
             }
 

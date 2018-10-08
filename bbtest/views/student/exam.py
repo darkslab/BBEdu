@@ -1,4 +1,3 @@
-from django.utils.translation import ugettext as _
 from django.utils.timezone import now
 from django.db.transaction import atomic
 from django.db.models import F
@@ -13,7 +12,7 @@ from .mixins import CurrentQuizSetRequiredMixin
 from bbtest.http import TightJsonResponse
 from bbtest.models import Test
 from bbtest.forms.exam import ExamReportForm
-from bbtest.texts import test_instructions
+from bbtest.texts import test_instructions, test_instructions_title, inject_texts_into_response
 
 
 class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
@@ -29,7 +28,7 @@ class ExamMixin:
         return {
             "success": True,
             "status": "queued",
-            "section": _(self.current_quiz().test.section.name),
+            "section": test_instructions_title(self.current_quiz().test),
             "instructions": test_instructions(self.current_quiz().test),
         }
 
@@ -40,6 +39,7 @@ class ExamMixin:
             "seconds": (self.current_quiz().due_at - now_at).seconds,
         }
         inject_questions_and_report_into_started_response(response, self.current_quiz().test)
+        inject_texts_into_response(response, self.current_quiz().test)
         if self.current_quiz().report is None:
             for data in response["report"]["answers"]:
                 data["answer"] = None

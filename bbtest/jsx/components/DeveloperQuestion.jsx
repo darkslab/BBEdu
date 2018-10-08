@@ -70,13 +70,15 @@ class DeveloperQuestion extends React.Component {
                                          onChange={this._paragraphChange.bind(this, id)}
                                          onDelete={this._paragraphDelete.bind(this, id)}
                                          canDelete={this.props.ability.canDeleteParagraph(id)}
-                                         texts={this.props.texts} />
+                                         texts={this.props.texts}
+                                         testTexts={this.props.object.texts()} />
             );
             paragraphs.push(
                 <ParagraphClass key={id}
                                 data={paragraphData.meta_data}
                                 isShared={sharedQuestionIds.length > 0}
                                 texts={this.props.texts}
+                                testTexts={this.props.object.texts()}
                                 forDevelopers={true} />
             );
         });
