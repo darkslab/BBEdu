@@ -8,6 +8,8 @@ from .result_descriptions import (
     result_topic_description_text,
 )
 from .exam import (
-    nis_quantitative_answer,
     inject_texts_into_response,
+)
+from .test import (
+    nis_quantitative_answer,
 )
