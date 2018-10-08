@@ -34,9 +34,9 @@ class CompulsoryUNTItem(UNTItem):
         compulsory_items_count = 0
         profile_items_count = 0
         for item in self.handle():
-            if isinstance(item, CompulsoryUNTItem):
+            if isinstance(item, CompulsoryUNTItem) and not item.test().is_free:
                 compulsory_items_count += 1
-            elif isinstance(item, ProfileUNTItem):
+            elif isinstance(item, ProfileUNTItem) and not item.test().is_free:
                 profile_items_count += 1
         if compulsory_items_count < 3:
             return Decimal("0.00")
@@ -51,9 +51,9 @@ class ProfileUNTItem(UNTItem):
         profile_items_count = 0
         self_index = None
         for i, item in enumerate(self.handle()):
-            if isinstance(item, CompulsoryUNTItem):
+            if isinstance(item, CompulsoryUNTItem) and not item.test().is_free:
                 compulsory_items_count += 1
-            elif isinstance(item, ProfileUNTItem):
+            elif isinstance(item, ProfileUNTItem) and not item.test().is_free:
                 profile_items_count += 1
                 if item == self:
                     self_index = i - compulsory_items_count

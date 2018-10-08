@@ -1,10 +1,10 @@
 from django.utils.translation import pgettext
 from decimal import Decimal
-from .base import NISItem
+from .base import NonLanguageNISItem, LanguageNISItem
 from ...exceptions import ItemError
 
 
-class MathematicsNISItem(NISItem):
+class MathematicsNISItem(NonLanguageNISItem):
     def assert_init_args(self, test, student, language):
         super().assert_init_args(test, student, language)
         if test.section_id != 9540:
@@ -15,8 +15,13 @@ class MathematicsNISItem(NISItem):
             return Decimal("0.00")
         return Decimal("6.00") * self.test().section.question_count
 
+    def discount(self):
+        if self.price().is_zero():
+            return Decimal("0.00")
+        return self.question_discount() * self.test().section.question_count
 
-class KazakhLanguageNISItem(NISItem):
+
+class KazakhLanguageNISItem(LanguageNISItem):
     def assert_init_args(self, test, student, language):
         super().assert_init_args(test, student, language)
         if test.section_id != 9541:
@@ -27,8 +32,13 @@ class KazakhLanguageNISItem(NISItem):
             return Decimal("0.00")
         return Decimal("6.00") * self.test().section.question_count
 
+    def discount(self):
+        if self.price().is_zero():
+            return Decimal("0.00")
+        return self.question_discount() * self.test().section.question_count
 
-class RussianLanguageNISItem(NISItem):
+
+class RussianLanguageNISItem(LanguageNISItem):
     def assert_init_args(self, test, student, language):
         super().assert_init_args(test, student, language)
         if test.section_id != 9542:
@@ -39,8 +49,13 @@ class RussianLanguageNISItem(NISItem):
             return Decimal("0.00")
         return Decimal("6.00") * self.test().section.question_count
 
+    def discount(self):
+        if self.price().is_zero():
+            return Decimal("0.00")
+        return self.question_discount() * self.test().section.question_count
 
-class EnglishLanguageNISItem(NISItem):
+
+class EnglishLanguageNISItem(LanguageNISItem):
     def assert_init_args(self, test, student, language):
         super().assert_init_args(test, student, language)
         if test.section_id != 9543:
@@ -51,8 +66,13 @@ class EnglishLanguageNISItem(NISItem):
             return Decimal("0.00")
         return Decimal("6.00") * self.test().section.question_count
 
+    def discount(self):
+        if self.price().is_zero():
+            return Decimal("0.00")
+        return self.question_discount() * self.test().section.question_count
 
-class QuantitativeNISItem(NISItem):
+
+class QuantitativeNISItem(NonLanguageNISItem):
     def assert_init_args(self, test, student, language):
         super().assert_init_args(test, student, language)
         if test.section_id != 9544:
@@ -62,3 +82,8 @@ class QuantitativeNISItem(NISItem):
         if self.test().is_free:
             return Decimal("0.00")
         return Decimal("6.00") * self.test().section.question_count
+
+    def discount(self):
+        if self.price().is_zero():
+            return Decimal("0.00")
+        return self.question_discount() * self.test().section.question_count
