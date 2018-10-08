@@ -1,13 +1,14 @@
 from django.forms import ModelForm, Form
 from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
-from django.utils.translation import pgettext_lazy, pgettext, ugettext as _, npgettext_lazy
+from django.utils.translation import pgettext_lazy, ugettext as _, npgettext_lazy
 from random import randint
 from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset
 from bbtest.forms.fields import JSONField
 from bbtest.utils.json import tight_dumps
 from bbtest.models.asset_classes import ImageParagraphAsset
 from bbtest.jobs.upload import image_paragraph_destroyer
+from bbtest.texts import nis_quantitative_answer
 
 
 class TestQuestionForm(ModelForm):
@@ -508,14 +509,10 @@ class TestForm(ModelForm):
                     "correct_id": None,
                 }
                 if test.section.id == 9544:
-                    meta_data["choices"][0]["meta_data"]["text"] = str(
-                        pgettext("NIS Quantitative section answer", "Quantity A is greater."))
-                    meta_data["choices"][1]["meta_data"]["text"] = str(
-                        pgettext("NIS Quantitative section answer", "Quantity B is greater."))
-                    meta_data["choices"][2]["meta_data"]["text"] = str(
-                        pgettext("NIS Quantitative section answer", "The two quantities are equal."))
-                    meta_data["choices"][3]["meta_data"]["text"] = str(pgettext("NIS Quantitative section answer",
-                                                                                "The relationship cannot be determined from the information given."))
+                    meta_data["choices"][0]["meta_data"]["text"] = nis_quantitative_answer(test, "a")
+                    meta_data["choices"][1]["meta_data"]["text"] = nis_quantitative_answer(test, "b")
+                    meta_data["choices"][2]["meta_data"]["text"] = nis_quantitative_answer(test, "=")
+                    meta_data["choices"][3]["meta_data"]["text"] = nis_quantitative_answer(test, "?")
 
                 question = test.questions.create(
                     answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,

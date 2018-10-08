@@ -273,7 +273,7 @@ var DeveloperTest = function (_React$Component) {
         key: "_ajaxSuccess",
         value: function _ajaxSuccess(type, data, status, $xhr) {
             if (type === "question") {
-                this._questionObject = new DeveloperQuestionObject(data.id, data.data, data.paragraphs, this.props.questionUrl, this.props.paragraphsUrl, this.props.uploadStartUrl, this.props.spinnerLogo);
+                this._questionObject = new DeveloperQuestionObject(data.id, data.data, data.paragraphs, data.texts, this.props.questionUrl, this.props.paragraphsUrl, this.props.uploadStartUrl, this.props.spinnerLogo);
                 this._abilityObject = new (eval(this.props.ability))(this._questionObject);
                 this.setState({
                     isQuestionLoading: false

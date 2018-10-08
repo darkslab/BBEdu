@@ -102,7 +102,7 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                                         React.createElement(
                                             "em",
                                             null,
-                                            this.props.texts.columnACaption
+                                            this.props.testTexts.column_a
                                         )
                                     ),
                                     React.createElement("textarea", { className: leftClassName,
@@ -119,7 +119,7 @@ var DeveloperSplitTextParagraph = function (_React$Component) {
                                         React.createElement(
                                             "em",
                                             null,
-                                            this.props.texts.columnBCaption
+                                            this.props.testTexts.column_b
                                         )
                                     ),
                                     React.createElement("textarea", { className: rightClassName,

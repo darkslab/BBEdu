@@ -133,6 +133,7 @@ class Test extends React.Component {
                                   onAnswerUpdate={this._statusData.testObject.updateAnswer.bind(this._statusData.testObject, this._statusData.questionIndex)}
                                   canAnswer={this._statusData.testObject.canAnswer()}
                                   showCorrectAnswer={this._statusData.testObject.showCorrectAnswer()}
+                                  testTexts={this._statusData.testObject.texts()}
                                   secondsLeft={this._statusData.seconds}
                                   texts={this.props.texts}
                                   hasTimer={this.props.hasTimer} />
@@ -291,7 +292,7 @@ class Test extends React.Component {
                 } else {
                     this._statusData = {
                         seconds: seconds,
-                        testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report),
+                        testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report, data.texts),
                         questionIndex: 0,
                         questionsCount: data.questions.length,
                         timer: setTimeout(this._tick.bind(this), 1000)

@@ -10,7 +10,7 @@ from bbtest.utils.json import tight_dumps
 from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
 from bbtest.models import TestTopic, Quiz
 from bbtest.http import TightJsonResponse
-from bbtest.texts import result_main_description_text, result_topic_description_text
+from bbtest.texts import result_main_description_text, result_topic_description_text, inject_texts_into_response
 
 
 class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
@@ -133,6 +133,7 @@ class ResultDataView(StudentPermissionRequiredMixin, View):
             "seconds": quiz.test.section.duration,
         }
         inject_questions_and_report_into_started_response(response, quiz.test, hide_answers=False)
+        inject_texts_into_response(response, quiz.test)
         if quiz.report is None:
             for data in response["report"]["answers"]:
                 data["answer"] = None

@@ -34,7 +34,7 @@ class TextParagraph extends React.Component {
         if (this.props.isShared) {
             className += " bb-test-paragraph-shared";
             sharedAddon = (
-                <h5 className="text-center mt-0 mb-5"><em>{this.props.texts.sharedTitleTextParagraph}</em></h5>
+                <h5 className="text-center mt-0 mb-5"><em>{this.props.testTexts.shared_paragraph_header}</em></h5>
             );
         }
 

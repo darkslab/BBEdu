@@ -1,3 +1,6 @@
+from django.utils.translation import ugettext as _
+
+
 NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS = {
     "kk": [
         [
@@ -123,9 +126,40 @@ UNT_TEST_INSTRUCTION_TEXTS = {
     9558: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
     9559: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
 }
+
 def test_instructions(test):
     if test.section.is_nis():
         return NIS_TEST_INSTRUCTION_TEXTS[test.section.pk][test.language]
     elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
         return UNT_TEST_INSTRUCTION_TEXTS[test.section.pk]
     return []
+
+
+NIS_TEST_INSTRUCTION_TITLE_TEXTS = {
+    9540: {
+        "kk": "Математика",
+        "ru": "Математика",
+    },
+    9541: {
+        "kk": "Қазақ тілі",
+        "ru": "Қазақ тілі",
+    },
+    9542: {
+        "kk": "Русский язык",
+        "ru": "Русский язык",
+    },
+    9543: {
+        "xx": "English language",
+    },
+    9544: {
+        "kk": "Сандық сипаттамалар",
+        "ru": "Количественные характеристики",
+    },
+}
+
+def test_instructions_title(test):
+    if test.section.is_nis():
+        return NIS_TEST_INSTRUCTION_TITLE_TEXTS[test.section.pk][test.language]
+    elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
+        return _(test.section.name)
+    return ""
