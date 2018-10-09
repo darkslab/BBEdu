@@ -98,9 +98,11 @@ class TestItem(Item):
         return hash((self.test().pk, self.student().pk))
 
     def funds(self):
-        _funds = [
-            Debit(account=self.__balance_account, amount=self.total()),
-        ]
+        _funds = []
+        if self.total().is_zero():
+            return _funds
+
+        _funds.append(Debit(account=self.__balance_account, amount=self.total()))
         question_amount = (self.total() / self.test().section.question_count).quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
         liabilities_amount = Decimal("0.00")
 
