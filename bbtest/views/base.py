@@ -74,22 +74,16 @@ class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin
         }
 
     def form_valid(self, form):
-        credit_item = None
         old_items = []
         for item in self.cart_handle():
-            if isinstance(item, CreditItem):
-                credit_item = item
-            else:
+            if not isinstance(item, CreditItem):
                 old_items.append({
                     "item_class": type(item).__name__,
                     "meta_data": item.meta_data(),
                 })
         self.cart_handle().empty()
 
-        amount = Decimal(form.cleaned_data["amount"])
-        if credit_item is None:
-            credit_item = CreditItem(self.cart_handle(), amount, self.request.user)
-        credit_item.set_amount(amount)
+        CreditItem(self.cart_handle(), Decimal(form.cleaned_data["amount"]), self.request.user)
         self.cart_handle().save()
 
         self.request.session["cart_type"] = "credits"
