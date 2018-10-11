@@ -104,6 +104,8 @@ def average_score(test_section):
     ).exclude(
         report=None,
     ).select_related("test__section").prefetch_related("test__questions").all():
+        if quiz.test.is_free:
+            continue
         score += quiz.score()
         scores_count += 1
     if scores_count > 0:
