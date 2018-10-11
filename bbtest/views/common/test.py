@@ -1,5 +1,6 @@
 from django.db.models import Prefetch
 from django.core.cache import cache
+from random import randint
 from bbtest.models import TestQuestion, TestParagraph, Quiz
 from bbtest.models.upload import expiring_url
 
@@ -108,6 +109,13 @@ def average_score(test_section):
             continue
         score += quiz.score()
         scores_count += 1
+    # DARK_TODO  As of right now, we are mixing an actual average score with an artificial one. But one
+    #            day we should get rid of it. Remove the condition below when ready.
+    if True:
+        first_test = test_section.tests.first()
+        if first_test:
+            score += round(first_test.max_score() * ((70 + randint(0, 10)) / 100))
+            scores_count += 1
     if scores_count > 0:
         score = round(score / scores_count)
     cache.set(key, score, None)
