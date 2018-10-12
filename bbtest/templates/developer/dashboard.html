@@ -89,23 +89,30 @@
                         </tbody>
                     </table>
                 </div>
-                {% if tests.has_other_pages %}
-                    <div class="panel-body">
-                        <ul class="pager mt-0 mb-0">
-                            {% if tests.has_previous %}
-                                <li class="previous"><a href="{{ request.path }}?page={{ tests.previous_page_number }}">&larr; {% trans 'Previous' context '/developer/' %}</a></li>
-                            {% else %}
-                                <li class="previous disabled"><a href="javascript:void(0);">&larr; {% trans 'Previous' context '/developer/' %}</a></li>
-                            {% endif %}
-                            {% if tests.has_next %}
-                                <li class="next"><a href="{{ request.path }}?page={{ tests.next_page_number }}">{% trans 'Next' context '/developer/' %} &rarr;</a></li>
-                            {% else %}
-                                <li class="next disabled"><a href="javascript:void(0);">{% trans 'Next' context '/developer/' %} &rarr;</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                {% endif %}
             </div>
         </div>
+        {% if tests.has_other_pages %}
+            <div class="col-xs-12 text-center">
+                <ul class="pagination mt-0 mb-0">
+                    {% if tests.has_previous %}
+                        <li><a href="{{ request.path }}?page={{ tests.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
+                    {% endif %}
+                    {% for page_index in tests.paginator.page_indexes %}
+                        {% if page_index == tests.number %}
+                            <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
+                        {% else %}
+                            <li><a href="{{ request.path }}?page={{ page_index }}">{{ page_index }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if tests.has_next %}
+                        <li><a href="{{ request.path }}?page={{ tests.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
