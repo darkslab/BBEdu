@@ -56,6 +56,7 @@
                                 <th class="pr-15 pl-15 text-center">{% trans 'Variant' context '/super/tests/' %}</th>
                                 <th class="pr-15 pl-15 text-center">{% trans 'Free?' context '/super/tests/' %}</th>
                                 <th class="pr-15 pl-15 text-center">{% trans 'Status' context '/super/tests/' %}</th>
+                                <th class="pr-15 pl-15 text-center">{% trans 'Sold/Completed' context '/super/tests/' %}</th>
                                 <th class="pr-15 pl-15 text-center">{% trans 'Actions' context '/super/tests/' %}</th>
                             </tr>
                         </thead>
@@ -73,6 +74,7 @@
                                     <td class="pr-15 pl-15 text-center">
                                         <span class="label {% if test.is_archived %}label-danger{% elif test.is_approved %}label-success{% elif test.is_pending %}label-info{% elif test.is_draft %}label-default{% endif %}">{{ test.get_status_display }}</span>
                                     </td>
+                                    <td class="pr-15 pl-15 text-center">{{ test.sales_count }}/{{ test.completed_count }}</td>
                                     {% if test.is_archived or test.is_approved %}
                                         <td class="pr-15 pl-15 text-center">
                                             <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/super/tests/' %}</a>
