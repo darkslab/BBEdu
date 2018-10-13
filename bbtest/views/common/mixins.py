@@ -1,5 +1,12 @@
+from bbtest.utils.json import tight_dumps
+
+
 class UserContextMixin:
     def get_context_data(self, **kwargs):
+        kwargs["ga_events"] = []
+        for ga_event_data in self.request.session.pop("ga_events", []):
+            kwargs["ga_events"].append(tight_dumps(ga_event_data))
+
         if self.__is_student():
             kwargs["balance_account_total"] = self.request.user.balance_account().balance()
 

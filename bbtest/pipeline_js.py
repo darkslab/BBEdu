@@ -17,6 +17,7 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/PopoverModule.js",
     "js/modules/SubmitModule.js",
     "js/modules/ReactModule.js",
+    "js/modules/GAModule.js",
 
     "js/modules/PersonalizedTemplateModule.js",
     "js/modules/ResultRowModule.js",
