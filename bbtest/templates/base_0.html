@@ -44,6 +44,19 @@
     <script>
         var moduleDataStack = [];
     </script>
+    <script>
+        moduleDataStack.push({
+            module: "GAModule",
+            data: {
+                events: [
+                    {% for ga_event_data in ga_events %}
+                        {{ ga_event_data|safe }}
+                        {% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                ]
+            }
+        });
+    </script>
 </head>
 <body class="bb-body {% block _d0_body_class %}{% endblock %}">
     {% block _d0_content %}{% endblock %}
