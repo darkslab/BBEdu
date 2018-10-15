@@ -42,10 +42,7 @@ class RegisterView(LogoutRequiredMixin, FormView):
 
     def form_valid(self, form):
         login(self.request, form.save(self._group))
-        self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[
-            "registration",
-            self._group,
-        ]]
+        self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "registration", { "event_category": self._group } ]]
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
