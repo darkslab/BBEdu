@@ -16,10 +16,12 @@ cart_old_items:
     ]
 
 ga_events:
-    (array of Google Analytics event arguments)
+    (Google Analytics (gtag.js) event arguments)
     [
-        "eventCategory",  // text,    required
-        "eventAction",    // text,    required
-        "eventLabel",     // text,    optional
-        "eventValue"      // integer, optional
+        "<action>",                          // required
+        {                                    // optional
+            "event_category": "<category>",  // optional
+            "event_label": "<label>",        // optional
+            "value": "<value>"               // optional
+        }
     ]
