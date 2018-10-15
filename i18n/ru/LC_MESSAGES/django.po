@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-03 02:13+0600\n"
-"PO-Revision-Date: 2018-10-04 21:19-0700\n"
+"POT-Creation-Date: 2018-10-16 01:57+0600\n"
+"PO-Revision-Date: 2018-10-15 13:00-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2\n"
 
 msgctxt "Form label"
 msgid "Email"
@@ -339,22 +339,6 @@ msgctxt "Validation error"
 msgid "Incorrect test language value."
 msgstr "Язык тестирования указан неверно."
 
-msgctxt "NIS Quantitative section answer"
-msgid "Quantity A is greater."
-msgstr "Значение А больше."
-
-msgctxt "NIS Quantitative section answer"
-msgid "Quantity B is greater."
-msgstr "Значение В больше."
-
-msgctxt "NIS Quantitative section answer"
-msgid "The two quantities are equal."
-msgstr "Оба значения равны."
-
-msgctxt "NIS Quantitative section answer"
-msgid "The relationship cannot be determined from the information given."
-msgstr "Не достаточно информации."
-
 msgctxt "Validation error"
 msgid "Answer types should only be Multichoice with one answer."
 msgstr ""
@@ -501,10 +485,10 @@ msgid "Algebraic Operations and Analysis"
 msgstr "Алгебраические операции и мышление"
 
 msgid "Numbers and Decimal Arithmetic Operations"
-msgstr "Числа и арифмитические операции в десятичной системе счисления"
+msgstr "Числа и арифметические операции в десятичной системе счисления"
 
 msgid "Numbers and Fractional Arithmetic Operations"
-msgstr "Числа и арифмитические операции с дробями"
+msgstr "Числа и арифметические операции с дробями"
 
 msgid "Measurement Units and Data"
 msgstr "Единицы измерения и данные"
@@ -654,7 +638,7 @@ msgid "Kazakhstan in iron epoch"
 msgstr "Казахстан в эпоху железа"
 
 msgid "The states of the early and developed Middle Ages (VI-beg. XIII cc)"
-msgstr "Государства раннего и развитого средневековья (VI-нач.XIII вв.)"
+msgstr "Государства раннего и развитого средневековья (VI нач.-XIII вв.)"
 
 msgid "Culture (VI-XVII centuries)"
 msgstr "Культура (VI-XVII вв.)"
@@ -894,7 +878,7 @@ msgid "Lexicology"
 msgstr "Лексикология"
 
 msgid "Morphemistry and word formation"
-msgstr "Морфеика и словообразование"
+msgstr "Морфемика и словообразование"
 
 msgid "Syntax and punctuation"
 msgstr "Синтаксис и пунктуация"
@@ -1481,7 +1465,7 @@ msgstr "Регистрация"
 
 msgctxt "Form label"
 msgid "I want to register as"
-msgstr "Зарегестрироваться в качестве"
+msgstr "Зарегистрироваться в качестве"
 
 msgctxt "Form label"
 msgid "Student"
@@ -1497,7 +1481,7 @@ msgstr "Регистрация"
 
 msgctxt "/register/"
 msgid "Already have an account?"
-msgstr "Уже зарегестрированы?"
+msgstr "Уже зарегистрированы?"
 
 msgctxt "/register/"
 msgid "Login"
@@ -1577,7 +1561,7 @@ msgstr ""
 
 msgctxt "/developer/acknowledgement/"
 msgid "View Agreement"
-msgstr "Ознакомиться с Публичной Офертой"
+msgstr "Ознакомиться с Публичной офертой"
 
 msgctxt "/developer/acknowledgement/"
 msgid "Agreement"
@@ -1585,7 +1569,7 @@ msgstr "Публичная Оферта"
 
 msgctxt "/developer/acknowledgement/"
 msgid "I have read the agreement"
-msgstr "Я прочитал и безусловно принимаю условия Публичной Оферты"
+msgstr "Я прочитал(а) и безусловно принимаю условия Публичной Оферты"
 
 msgctxt "/developer/acknowledgement/"
 msgid "Accept"
@@ -1632,6 +1616,10 @@ msgid "Status"
 msgstr "Статус"
 
 msgctxt "/developer/"
+msgid "Sold/Completed"
+msgstr "Продано/Пройдено"
+
+msgctxt "/developer/"
 msgid "Actions"
 msgstr "Действия"
 
@@ -1650,14 +1638,6 @@ msgstr "Удалить"
 msgctxt "/developer/"
 msgid "You have not created tests yet"
 msgstr "У Вас нет загруженных тестов"
-
-msgctxt "/developer/"
-msgid "Previous"
-msgstr "Предыдущий"
-
-msgctxt "/developer/"
-msgid "Next"
-msgstr "Следующий"
 
 msgctxt "Page title"
 msgid "Public Offer"
@@ -1692,7 +1672,7 @@ msgstr "Профильные предметы"
 
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"
-msgstr "логотип bbTest.kz"
+msgstr "логотип bbtest.kz"
 
 msgctxt "Email body element"
 msgid "link"
@@ -1716,7 +1696,7 @@ msgstr ""
 #, python-format
 msgctxt "Bottom copyright"
 msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
-msgstr "Сделано с %(heart_icon)s в Казахстане. %(copyright_code)s bbTest.kz"
+msgstr "Сделано с %(heart_icon)s в Казахстане. %(copyright_code)s bbtest.kz"
 
 #, python-format
 msgctxt "Home page title"
@@ -1724,7 +1704,7 @@ msgid ""
 "bbTest.kz %(dash_code)s Online testing platform. Thorough. Convenient. "
 "Effective."
 msgstr ""
-"bbTest.kz %(dash_code)s Платформа онлайн тестирования. Качественно, удобно, "
+"bbtest.kz %(dash_code)s Платформа онлайн тестирования. Качественно, удобно, "
 "эффективно."
 
 msgctxt "Navigation link"
@@ -2013,18 +1993,6 @@ msgid "Finished"
 msgstr "Завершено"
 
 msgctxt "Exam"
-msgid "Column A"
-msgstr "Колонка A"
-
-msgctxt "Exam"
-msgid "Column B"
-msgstr "Колонка B"
-
-msgctxt "Exam"
-msgid "Text"
-msgstr "Текст"
-
-msgctxt "Exam"
 msgid ""
 "You ran out of allocated time for the test. Please continue to the next test."
 msgstr "Время вышло. Пройдите к следующему предмету."
@@ -2161,6 +2129,10 @@ msgid "Status"
 msgstr "Статус"
 
 msgctxt "/super/tests/"
+msgid "Sold/Completed"
+msgstr "Продано/Пройдено"
+
+msgctxt "/super/tests/"
 msgid "Actions"
 msgstr "Действия"
 
@@ -2183,14 +2155,6 @@ msgstr "Редактировать"
 msgctxt "/super/tests/"
 msgid "There are no tests yet"
 msgstr "Нет загруженных тестов"
-
-msgctxt "/super/tests/"
-msgid "Previous"
-msgstr "Предыдущий"
-
-msgctxt "/super/tests/"
-msgid "Next"
-msgstr "Следующий"
 
 msgctxt "Page title"
 msgid "All Users"
@@ -2402,18 +2366,6 @@ msgid "Save and Preview"
 msgstr "Сохранить и просмотреть"
 
 msgctxt "Developer tools"
-msgid "Column A"
-msgstr "Колонка A"
-
-msgctxt "Developer tools"
-msgid "Column B"
-msgstr "Колонка B"
-
-msgctxt "Developer tools"
-msgid "Text"
-msgstr "Текст"
-
-msgctxt "Developer tools"
 msgid "Test Specification"
 msgstr "Тестовая спецификация"
 
@@ -2566,7 +2518,7 @@ msgstr ""
 #, python-format
 msgctxt "/super/users/"
 msgid "Superuser, you are now logged in as %(name)s. PLEASE BE CAREFUL!"
-msgstr "Superuser, вы авторизировались как %(name)s. БУДЬТЕ ОСТОРОЖНЫ!"
+msgstr "Superuser, вы авторизовались как %(name)s. БУДЬТЕ ОСТОРОЖНЫ!"
 
 msgctxt "Error alert message"
 msgid "Could not approve the Test. Please check the Test for correctness."
