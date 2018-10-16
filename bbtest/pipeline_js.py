@@ -8,6 +8,8 @@ BASE0_SOURCE_FILENAMES = (
     "js/script.js",
 )
 BASE1_SOURCE_FILENAMES = (
+    "js/common/utils.js",
+
     "js/charts/SVGChart.js",
     "js/charts/RadialChart.js",
     "js/charts/ColumnChart.js",

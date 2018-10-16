@@ -30,10 +30,10 @@ class DeveloperTest extends React.Component {
             }
         }
 
-        this._getQuestionData(questionNumber - 1);
+        this._getQuestionData(questionNumber - 1, false);
         this._$xhrs["attributes"] = $.get({
             url: this.props.attributesUrl,
-            success: this._ajaxSuccess.bind(this, "attributes"),
+            success: this._ajaxSuccess.bind(this, "attributes", false),
             error: this._ajaxError.bind(this, "attributes")
         });
 
@@ -202,9 +202,12 @@ class DeveloperTest extends React.Component {
             object.save("test", this._questionSave.bind(this));
             this._oldQuestionObjects.push(object);
         }
-        this._getQuestionData(index);
+        this._getQuestionData(index, true);
     }
-    _ajaxSuccess(type, data, status, $xhr) {
+    _ajaxSuccess(type, pageview, data, status, $xhr) {
+        if (pageview) {
+            ga_report_pageview();
+        }
         if (type === "question") {
             this._questionObject = new DeveloperQuestionObject(
                 data.id,
@@ -273,7 +276,7 @@ class DeveloperTest extends React.Component {
         $(document).off("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
         Turbolinks.visit(followUrl);
     }
-    _getQuestionData(index) {
+    _getQuestionData(index, pageview) {
         this.setState({
             questionIndex: index
         });
@@ -284,7 +287,7 @@ class DeveloperTest extends React.Component {
         }
         this._$xhrs["question"] = $.get({
             url: this.props.questionUrl + this.props.questionIds[index] + "/",
-            success: this._ajaxSuccess.bind(this, "question"),
+            success: this._ajaxSuccess.bind(this, "question", pageview),
             error: this._ajaxError.bind(this, "question")
         });
     }

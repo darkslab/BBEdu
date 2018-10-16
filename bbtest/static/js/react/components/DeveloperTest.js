@@ -49,10 +49,10 @@ var DeveloperTest = function (_React$Component) {
                 }
             }
 
-            this._getQuestionData(questionNumber - 1);
+            this._getQuestionData(questionNumber - 1, false);
             this._$xhrs["attributes"] = $.get({
                 url: this.props.attributesUrl,
-                success: this._ajaxSuccess.bind(this, "attributes"),
+                success: this._ajaxSuccess.bind(this, "attributes", false),
                 error: this._ajaxError.bind(this, "attributes")
             });
 
@@ -267,11 +267,14 @@ var DeveloperTest = function (_React$Component) {
                 object.save("test", this._questionSave.bind(this));
                 this._oldQuestionObjects.push(object);
             }
-            this._getQuestionData(index);
+            this._getQuestionData(index, true);
         }
     }, {
         key: "_ajaxSuccess",
-        value: function _ajaxSuccess(type, data, status, $xhr) {
+        value: function _ajaxSuccess(type, pageview, data, status, $xhr) {
+            if (pageview) {
+                ga_report_pageview();
+            }
             if (type === "question") {
                 this._questionObject = new DeveloperQuestionObject(data.id, data.data, data.paragraphs, data.texts, this.props.questionUrl, this.props.paragraphsUrl, this.props.uploadStartUrl, this.props.spinnerLogo);
                 this._abilityObject = new (eval(this.props.ability))(this._questionObject);
@@ -341,7 +344,7 @@ var DeveloperTest = function (_React$Component) {
         }
     }, {
         key: "_getQuestionData",
-        value: function _getQuestionData(index) {
+        value: function _getQuestionData(index, pageview) {
             this.setState({
                 questionIndex: index
             });
@@ -352,7 +355,7 @@ var DeveloperTest = function (_React$Component) {
             }
             this._$xhrs["question"] = $.get({
                 url: this.props.questionUrl + this.props.questionIds[index] + "/",
-                success: this._ajaxSuccess.bind(this, "question"),
+                success: this._ajaxSuccess.bind(this, "question", pageview),
                 error: this._ajaxError.bind(this, "question")
             });
         }
