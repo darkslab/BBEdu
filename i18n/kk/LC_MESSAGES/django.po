@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-16 01:57+0600\n"
+"POT-Creation-Date: 2018-10-16 12:33+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2276,6 +2276,32 @@ msgid "You have not yet completed this section."
 msgstr ""
 
 msgctxt "/super/"
+msgid "Demand for NIS Tests"
+msgstr ""
+
+msgctxt "/super/"
+msgid "No tests"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Immediate demand"
+msgstr ""
+
+#, python-format
+msgctxt "/super/"
+msgid "%(counter)s test left"
+msgid_plural "%(counter)s tests left"
+msgstr[0] ""
+
+msgctxt "/super/"
+msgid "All Tests"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Demand for UNT Tests"
+msgstr ""
+
+msgctxt "/super/"
 msgid "User Statistics"
 msgstr ""
 
@@ -2310,26 +2336,6 @@ msgstr ""
 msgctxt "/super/"
 msgid "Tests by Developers"
 msgstr "Тестілеуді құрастырушы"
-
-msgctxt "/super/"
-msgid "All Tests"
-msgstr ""
-
-msgctxt "/super/"
-msgid "Subscriptions"
-msgstr ""
-
-msgctxt "/super/"
-msgid "Total"
-msgstr ""
-
-msgctxt "/super/"
-msgid "Last subscription"
-msgstr ""
-
-msgctxt "/super/"
-msgid "Download list"
-msgstr ""
 
 msgctxt "Page title"
 msgid "All Tests"
