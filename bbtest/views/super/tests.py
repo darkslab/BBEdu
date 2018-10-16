@@ -1,16 +1,18 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from bbtest.views.generic import TemplateView
-from bbtest.views.common import UserContextMixin
+from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.models import Test
 
 
-class TestsView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView):
+class TestsView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/tests.html"
 
     def get_context_data(self, **kwargs):
-        tests = Test.objects.select_related("section__domain", "developer").order_by("-created_at")
-        paginator = Paginator(tests, 25)
+        paginator = Paginator(
+            Test.objects.select_related("section__domain", "developer").order_by("-created_at"),
+            25,
+        )
 
         try:
             kwargs["tests"] = paginator.page(self.request.GET.get("page"))
@@ -18,6 +20,8 @@ class TestsView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView):
             kwargs["tests"] = paginator.page(1)
         except EmptyPage:
             kwargs["tests"] = paginator.page(paginator.num_pages)
+        paginator.page_indexes = self.page_indexes(kwargs["tests"], 5)
+
         for test in kwargs["tests"]:
             test.display_language = ""
             if test.language != Test.LANGUAGE_XX:

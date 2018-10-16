@@ -9,16 +9,96 @@
 
 {% block content %}
     <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Demand for NIS Tests' context '/super/' %}</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-condensed">
+                        <tbody>
+                            {% for section in tests_demand.nis_sections %}
+                                {% for test_info in section.tests_info %}
+                                    <tr>
+                                        <td class="pl-10">{% trans section.name %}</td>
+                                        <td class="text-center">{{ test_info.display_language }}</td>
+                                        {% if test_info.requires_development %}
+                                            <td class="pr-10 text-center"><span class="label label-danger">{% trans 'No tests' context '/super/' %}</span></td>
+                                        {% elif test_info.queued_for_purchase <= 0 %}
+                                            <td class="pr-10 text-center"><span class="label label-danger">{% trans 'Immediate demand' context '/super/' %}</span></td>
+                                        {% elif test_info.queued_for_purchase <= 2 %}
+                                            <td class="pr-10 text-center"><span class="label label-warning">{% blocktrans count counter=test_info.queued_for_purchase context '/super/' %}{{ counter }} test left{% plural %}{{ counter }} tests left{% endblocktrans %}</span></td>
+                                        {% else %}
+                                            <td class="pr-10 text-center"><span class="label label-success">{% blocktrans count counter=test_info.queued_for_purchase context '/super/' %}{{ counter }} test left{% plural %}{{ counter }} tests left{% endblocktrans %}</span></td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer text-center">
+                    <a href="{% url 'bbtest:super_tests' %}">{% trans 'All Tests' context '/super/' %}</a>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Demand for UNT Tests' context '/super/' %}</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-condensed">
+                        <tbody>
+                            {% for section in tests_demand.unt_sections %}
+                                {% for test_info in section.tests_info %}
+                                    <tr>
+                                        <td class="pl-10">{% trans section.name %}</td>
+                                        <td class="text-center">{{ test_info.display_language }}</td>
+                                        {% if test_info.requires_development %}
+                                            <td class="pr-10 text-center"><span class="label label-danger">{% trans 'No tests' context '/super/' %}</span></td>
+                                        {% elif test_info.queued_for_purchase <= 0 %}
+                                            <td class="pr-10 text-center"><span class="label label-danger">{% trans 'Immediate demand' context '/super/' %}</span></td>
+                                        {% elif test_info.queued_for_purchase <= 2 %}
+                                            <td class="pr-10 text-center"><span class="label label-warning">{% blocktrans count counter=test_info.queued_for_purchase context '/super/' %}{{ counter }} test left{% plural %}{{ counter }} tests left{% endblocktrans %}</span></td>
+                                        {% else %}
+                                            <td class="pr-10 text-center"><span class="label label-success">{% blocktrans count counter=test_info.queued_for_purchase context '/super/' %}{{ counter }} test left{% plural %}{{ counter }} tests left{% endblocktrans %}</span></td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer text-center">
+                    <a href="{% url 'bbtest:super_tests' %}">{% trans 'All Tests' context '/super/' %}</a>
+                </div>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">{% trans 'User Statistics' context '/super/' %}</h4>
                 </div>
-                <div class="panel-body">
-                    <p class="mb-0">{% trans 'Students' context '/super/' %}: {{ student_count }}</p>
-                    <p class="mb-0">{% trans 'Developers' context '/super/' %}: {{ developer_count }}</p>
-                    <p class="mb-0">{% trans 'Admins' context '/super/' %}: {{ admin_count }}</p>
-                    <p class="mb-0">Superusers: {{ super_count }}</p>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-condensed">
+                        <tbody>
+                            <tr>
+                                <td class="pl-10">{% trans 'Students' context '/super/' %}</td>
+                                <td class="pr-10 text-center"><strong>{{ student_count }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="pl-10">{% trans 'Developers' context '/super/' %}</td>
+                                <td class="pr-10 text-center"><strong>{{ developer_count }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="pl-10">{% trans 'Admins' context '/super/' %}</td>
+                                <td class="pr-10 text-center"><strong>{{ admin_count }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="pl-10">Superusers</td>
+                                <td class="pr-10 text-center"><strong>{{ super_count }}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="panel-footer text-center">
                     <a href="{% url 'bbtest:super_users' %}">{% trans 'All Users' context '/super/' %}</a>
@@ -30,31 +110,24 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">{% trans 'Tests by Developers' context '/super/' %}</h4>
                 </div>
-                <div class="panel-body">
-                    <p class="mb-0"><em>Superusers</em>: {{ superuser_tests_count }}</p>
-                    {% for developer in developer_stats %}
-                        <p class="mb-0">{{ developer.get_full_name }}: {{ developer.tests_count }}</p>
-                    {% endfor %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-condensed">
+                        <tbody>
+                            <tr>
+                                <td class="pl-10"><em>Superusers</em></td>
+                                <td class="pr-10 text-center"><strong>{{ superuser_tests_count }}</strong></td>
+                            </tr>
+                            {% for developer in developer_stats %}
+                                <tr>
+                                    <td class="pl-10">{{ developer.get_full_name }}</td>
+                                    <td class="pr-10 text-center"><strong>{{ developer.tests_count }}</strong></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
                 <div class="panel-footer text-center">
                     <a href="{% url 'bbtest:super_tests' %}">{% trans 'All Tests' context '/super/' %}</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4 class="panel-title">{% trans 'Subscriptions' context '/super/' %}</h4>
-                </div>
-                <div class="panel-body">
-                    <p class="mb-0">{% trans 'Total' context '/super/' %}: {{ subscriptions_total }}</p>
-                    <p class="mb-0">{% trans 'Last subscription' context '/super/' %}: {{ subscriptions_last.created_at|timesince }}</p>
-                    <p class="mb-0 text-center">
-                        <em>{{ subscriptions_last.email }}</em>
-                    </p>
-                    <p class="mt-10 mb-0 text-center">
-                        <a target="_blank" class="btn btn-primary btn-xs" href="{% url 'bbtest:super_download_subscription_list' %}">{% trans 'Download list' context '/super/' %}</a>
-                    </p>
                 </div>
             </div>
         </div>
