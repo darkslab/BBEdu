@@ -20,13 +20,18 @@ class DashboardView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView
         kwargs["admin_count"] = User.active_users.filter(user_permissions__codename="admin").count()
         kwargs["super_count"] = User.active_users.filter(is_superuser=True).count()
 
-        kwargs["developer_stats"] = User.active_users.filter(
-            user_permissions__codename="developer",
-        ).annotate(
-            tests_count=Count("tests"),
-        ).order_by("last_name")
-
-        kwargs["superuser_tests_count"] = Test.objects.filter(developer__is_superuser=True).count()
+        kwargs["developer_tests_stats"] = User.active_users.filter(user_permissions__codename="developer").order_by("last_name").all()
+        for developer in kwargs["developer_tests_stats"]:
+            developer.total_tests_count = developer.tests.count()
+            developer.approved_tests_count = developer.tests(manager="approved_tests").count()
+            developer.pending_tests_count = developer.tests(manager="pending_tests").count()
+            developer.draft_tests_count = developer.tests(manager="draft_tests").count()
+        kwargs["superuser_tests_stats"] = {
+            "total_tests_count": Test.objects.filter(developer__is_superuser=True).count(),
+            "approved_tests_count": Test.approved_tests.filter(developer__is_superuser=True).count(),
+            "pending_tests_count": Test.pending_tests.filter(developer__is_superuser=True).count(),
+            "draft_tests_count": Test.draft_tests.filter(developer__is_superuser=True).count(),
+        }
 
         # kwargs["subscriptions_total"] = Subscription.objects.count()
         # kwargs["subscriptions_last"] = Subscription.objects.order_by("-created_at").first()
