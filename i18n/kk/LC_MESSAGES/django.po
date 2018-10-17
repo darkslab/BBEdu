@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-16 12:33+0600\n"
+"POT-Creation-Date: 2018-10-18 02:35+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2277,6 +2277,28 @@ msgstr ""
 
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Section"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "/super/"
+msgid "Language"
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "created at"
+msgctxt "/super/"
+msgid "Sold/Completed"
+msgstr "жасалған уақыты"
+
+msgctxt "/super/"
+msgid "Demand"
 msgstr ""
 
 msgctxt "/super/"
