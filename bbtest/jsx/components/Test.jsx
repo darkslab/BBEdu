@@ -13,7 +13,7 @@ class Test extends React.Component {
         this._lingerTimer = null;
     }
     componentDidMount() {
-        this._continue(true);
+        this._continue(true, false);
     }
     componentWillUnmount() {
         this._stop();
@@ -269,7 +269,10 @@ class Test extends React.Component {
         }
         clearTimeout(this._lingerTimer);
     }
-    _ajaxSuccess(data, status, $xhr) {
+    _ajaxSuccess(pageview, data, status, $xhr) {
+        if (pageview) {
+            ga_report_pageview();
+        }
         if (!data.success) {
             this._errorOut();
             return;
@@ -287,7 +290,7 @@ class Test extends React.Component {
                 if (seconds <= 1) {
                     data.status = undefined;
                     this._lingerTimer = setTimeout(function() {
-                        this._continue(true);
+                        this._continue(true, false);
                     }.bind(this), 2000);
                 } else {
                     this._statusData = {
@@ -328,7 +331,7 @@ class Test extends React.Component {
         }
         this._continue();
     }
-    _request(idempotent, url, $xhrMethod) {
+    _request(idempotent, url, $xhrMethod, pageview) {
         if (idempotent && this.state.status === undefined) {
             return;
         }
@@ -336,7 +339,7 @@ class Test extends React.Component {
         this._xhrStartTime = (new Date()).getTime();
         let xhrData = {
             url: url,
-            success: this._ajaxSuccess.bind(this),
+            success: this._ajaxSuccess.bind(this, pageview),
             error: this._ajaxError.bind(this)
         };
         if ($xhrMethod === $.post) {
@@ -347,17 +350,17 @@ class Test extends React.Component {
             status: undefined
         });
     }
-    _continue(force = false) {
-        this._request(!force, this.props.continueUrl, $.get);
+    _continue(force = false, pageview = true) {
+        this._request(!force, this.props.continueUrl, $.get, pageview);
     }
     _start() {
-        this._request(true, this.props.startUrl, $.post);
+        this._request(true, this.props.startUrl, $.post, true);
     }
     _skip() {
-        this._request(true, this.props.skipUrl, $.post);
+        this._request(true, this.props.skipUrl, $.post, true);
     }
     _end() {
-        this._request(true, this.props.endUrl, $.post);
+        this._request(true, this.props.endUrl, $.post, true);
     }
     _setQuestionIndex(index) {
         if (this.state.status !== "started") {
@@ -367,6 +370,7 @@ class Test extends React.Component {
         this.setState(prevState => ({
             toggleFlag: !prevState.toggleFlag
         }));
+        ga_report_pageview();
     }
     _paginationElements(width) {
         if (width < 1) {

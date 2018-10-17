@@ -68,7 +68,7 @@ class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin
             if isinstance(item, CreditItem):
                 amount += item.total()
         if amount.is_zero():
-            amount = Decimal("1000.00")
+            amount = Decimal("800.00")
         return {
             "amount": int(amount),
         }
@@ -118,6 +118,8 @@ class BuyCreditsQazkomView(LoginRequiredMixin, CartHandleAccessMixin, UserContex
             kwargs["qazkom_form"]["language"] = "kaz"
         elif get_language() == settings.BB_LANGUAGE_CODE_RU:
             kwargs["qazkom_form"]["language"] = "rus"
+
+        kwargs["cart_rounded_total"] = round(self.cart_handle().total())
 
         return super().get_context_data(**kwargs)
 
