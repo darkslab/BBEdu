@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% with lastmod='2018-10-17' %}
+        <url>
+            <loc>{{ BASE_URL }}{% url 'bbtest:home' %}</loc>
+            <lastmod>{{ lastmod }}</lastmod>
+        </url>
+        <url>
+            <loc>{{ BASE_URL }}{% url 'bbtest:register' %}</loc>
+            <lastmod>{{ lastmod }}</lastmod>
+        </url>
+        <url>
+            <loc>{{ BASE_URL }}{% url 'bbtest:contact_us' %}</loc>
+            <lastmod>{{ lastmod }}</lastmod>
+        </url>
+        <url>
+            <loc>{{ BASE_URL }}{% url 'bbtest:terms' %}</loc>
+            <lastmod>{{ lastmod }}</lastmod>
+        </url>
+    {% endwith %}
+</urlset>
