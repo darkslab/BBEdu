@@ -45,7 +45,7 @@ function StudentBuyTestsPageModule(data) {
 
     this._$xhr = $.get({
         url: this._cartUrl,
-        success: this._ajaxSuccess.bind(this, "cart"),
+        success: this._ajaxSuccess.bind(this, "cart", false),
         error: this._ajaxError.bind(this)
     });
 
@@ -74,7 +74,7 @@ StudentBuyTestsPageModule.prototype._checkout = function(event) {
     this._$xhr = $.post({
         url: this._checkoutUrl,
         headers: {"X-CSRFToken": Cookies.get("csrftoken")},
-        success: this._ajaxSuccess.bind(this, "checkout"),
+        success: this._ajaxSuccess.bind(this, "checkout", false),
         error: this._ajaxError.bind(this)
     });
 }
@@ -113,7 +113,10 @@ StudentBuyTestsPageModule.prototype._selectSection = function(event) {
 
     this._post(true);
 }
-StudentBuyTestsPageModule.prototype._ajaxSuccess = function(type, data, status, $xhr) {
+StudentBuyTestsPageModule.prototype._ajaxSuccess = function(type, pageview, data, status, $xhr) {
+    if (pageview) {
+        ga_report_pageview();
+    }
     switch (type) {
         case "cart":
             this._$xhr = undefined;
@@ -265,7 +268,7 @@ StudentBuyTestsPageModule.prototype._post = function(include_sections) {
         data: {
             data: JSON.stringify(data)
         },
-        success: this._ajaxSuccess.bind(this, "cart"),
+        success: this._ajaxSuccess.bind(this, "cart", true),
         error: this._ajaxError.bind(this)
     });
 }

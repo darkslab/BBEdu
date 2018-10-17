@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _, pgettext
 from django.urls import reverse
 from json import loads
@@ -33,6 +33,13 @@ def get_test_domain_or_404(test_domain_id):
 
 class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
     template_name = "student/buy_test_domains.html"
+
+    def get(self, request, *args, **kwargs):
+        purchasing_credits = request.GET.get("purchasing_credits")
+        if purchasing_credits is not None:
+            self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "purchase", { "event_category": "credits", "value": int(purchasing_credits) } ]]
+            return redirect("bbtest:student_buy_test_domains")
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         kwargs["test_domains"] = TestDomain.objects.filter(pk__in=TEST_DOMAIN_IDS_DISPLAY).all()
@@ -236,13 +243,15 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
 class BuyTestsCheckoutView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixin, CartHandleAccessMixin, View):
     def post(self, request, *args, **kwargs):
         try:
-            if self.cart_handle().total().is_zero():
+            cart_total = self.cart_handle().total()
+            if cart_total.is_zero():
                 self.cart_handle().checkout()
             else:
                 charge(
                     CreditPaymentProcessor(self.cart_handle().total()),
                     self.cart_handle(),
                 )
+            self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "purchase", { "event_category": "tests", "value": round(cart_total) } ]]
             return TightJsonResponse({
                 "success": True,
                 "url": reverse("bbtest:student_exam"),

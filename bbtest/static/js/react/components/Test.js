@@ -32,7 +32,7 @@ var Test = function (_React$Component) {
     _createClass(Test, [{
         key: "componentDidMount",
         value: function componentDidMount() {
-            this._continue(true);
+            this._continue(true, false);
         }
     }, {
         key: "componentWillUnmount",
@@ -411,7 +411,10 @@ var Test = function (_React$Component) {
         }
     }, {
         key: "_ajaxSuccess",
-        value: function _ajaxSuccess(data, status, $xhr) {
+        value: function _ajaxSuccess(pageview, data, status, $xhr) {
+            if (pageview) {
+                ga_report_pageview();
+            }
             if (!data.success) {
                 this._errorOut();
                 return;
@@ -429,7 +432,7 @@ var Test = function (_React$Component) {
                     if (seconds <= 1) {
                         data.status = undefined;
                         this._lingerTimer = setTimeout(function () {
-                            this._continue(true);
+                            this._continue(true, false);
                         }.bind(this), 2000);
                     } else {
                         this._statusData = {
@@ -478,7 +481,7 @@ var Test = function (_React$Component) {
         }
     }, {
         key: "_request",
-        value: function _request(idempotent, url, $xhrMethod) {
+        value: function _request(idempotent, url, $xhrMethod, pageview) {
             if (idempotent && this.state.status === undefined) {
                 return;
             }
@@ -486,7 +489,7 @@ var Test = function (_React$Component) {
             this._xhrStartTime = new Date().getTime();
             var xhrData = {
                 url: url,
-                success: this._ajaxSuccess.bind(this),
+                success: this._ajaxSuccess.bind(this, pageview),
                 error: this._ajaxError.bind(this)
             };
             if ($xhrMethod === $.post) {
@@ -501,23 +504,24 @@ var Test = function (_React$Component) {
         key: "_continue",
         value: function _continue() {
             var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+            var pageview = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
-            this._request(!force, this.props.continueUrl, $.get);
+            this._request(!force, this.props.continueUrl, $.get, pageview);
         }
     }, {
         key: "_start",
         value: function _start() {
-            this._request(true, this.props.startUrl, $.post);
+            this._request(true, this.props.startUrl, $.post, true);
         }
     }, {
         key: "_skip",
         value: function _skip() {
-            this._request(true, this.props.skipUrl, $.post);
+            this._request(true, this.props.skipUrl, $.post, true);
         }
     }, {
         key: "_end",
         value: function _end() {
-            this._request(true, this.props.endUrl, $.post);
+            this._request(true, this.props.endUrl, $.post, true);
         }
     }, {
         key: "_setQuestionIndex",
@@ -531,6 +535,7 @@ var Test = function (_React$Component) {
                     toggleFlag: !prevState.toggleFlag
                 };
             });
+            ga_report_pageview();
         }
     }, {
         key: "_paginationElements",
