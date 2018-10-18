@@ -49,18 +49,18 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th class="pr-15 pl-15">{% trans 'Name' context '/super/users/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Role' context '/super/users/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Joined at' context '/super/users/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Active?' context '/super/users/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Actions' context '/super/users/' %}</th>
+                                <th class="pl-15">{% trans 'Name' context '/super/users/' %}</th>
+                                <th class="text-center">{% trans 'Role' context '/super/users/' %}</th>
+                                <th class="text-center">{% trans 'Joined at' context '/super/users/' %}</th>
+                                <th class="text-center">{% trans 'Active?' context '/super/users/' %}</th>
+                                <th class="pr-15 text-center">{% trans 'Actions' context '/super/users/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for user in users %}
                                 <tr>
-                                    <td class="pr-15 pl-15">{{ user.get_full_name }}</td>
-                                    <td class="pr-15 pl-15 text-center">
+                                    <td class="pl-15">{{ user.get_full_name }}</td>
+                                    <td class="text-center">
                                         {% if user.role == 'admin' %}
                                             <span class="label label-info">{% trans 'Administrator' context '/super/users/' %}</span>
                                         {% elif user.role == 'developer' %}
@@ -69,15 +69,15 @@
                                             <span class="label label-success">{% trans 'Student' context '/super/users/' %}</span>
                                         {% endif %}
                                     </td>
-                                    <td class="pr-15 pl-15 text-center">{{ user.joined_at|date:'SHORT_DATETIME_FORMAT' }}</td>
-                                    <td class="pr-15 pl-15 text-center">
+                                    <td class="text-center">{{ user.joined_at|date:'SHORT_DATETIME_FORMAT' }}</td>
+                                    <td class="text-center">
                                         {% if user.is_active %}
                                             <span class="label label-success">{% trans 'Yes' context '/super/users/' %}</span>
                                         {% else %}
                                             <span class="label label-danger">{% trans 'No' context '/super/users/' %}</span>
                                         {% endif %}
                                     </td>
-                                    <td class="pr-15 pl-15 text-center">
+                                    <td class="pr-15 text-center">
                                         <button type="button" class="btn btn-danger btn-xs" data-impersonate-url="{% url 'bbtest:super_impersonate_user' user.pk %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Impersonate' context '/super/users/' %}</button>
                                     </td>
                                 </tr>

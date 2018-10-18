@@ -49,43 +49,43 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th class="pr-15 pl-15">{% trans 'Developer' context '/super/tests/' %}</th>
-                                <th class="pr-15 pl-15">{% trans 'Domain' context '/super/tests/' %}</th>
-                                <th class="pr-15 pl-15">{% trans 'Section' context '/super/tests/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Language' context '/super/tests/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Variant' context '/super/tests/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Free?' context '/super/tests/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Status' context '/super/tests/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Sold/Completed' context '/super/tests/' %}</th>
-                                <th class="pr-15 pl-15 text-center">{% trans 'Actions' context '/super/tests/' %}</th>
+                                <th class="pl-15">{% trans 'Developer' context '/super/tests/' %}</th>
+                                <th>{% trans 'Domain' context '/super/tests/' %}</th>
+                                <th>{% trans 'Section' context '/super/tests/' %}</th>
+                                <th class="text-center">{% trans 'Language' context '/super/tests/' %}</th>
+                                <th class="text-center">{% trans 'Variant' context '/super/tests/' %}</th>
+                                <th class="text-center">{% trans 'Free?' context '/super/tests/' %}</th>
+                                <th class="text-center">{% trans 'Status' context '/super/tests/' %}</th>
+                                <th class="text-center">{% trans 'Sold/Completed' context '/super/tests/' %}</th>
+                                <th class="pr-15 text-center">{% trans 'Actions' context '/super/tests/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for test in tests %}
                                 <tr {% if test.developer == user %}class="success"{% endif %}>
-                                    <td class="pr-15 pl-15">{{ test.developer.get_full_name }}</td>
-                                    <td class="pr-15 pl-15">{% trans test.section.domain.name %}</td>
-                                    <td class="pr-15 pl-15">{% trans test.section.name %}</td>
-                                    <td class="pr-15 pl-15 text-center">{{ test.display_language }}</td>
-                                    <td class="pr-15 pl-15 text-center">#{{ test.code|upper }}</td>
-                                    <td class="pr-15 pl-15 text-center">
+                                    <td class="pl-15">{{ test.developer.get_full_name }}</td>
+                                    <td>{% trans test.section.domain.name %}</td>
+                                    <td>{% trans test.section.name %}</td>
+                                    <td class="text-center">{{ test.display_language }}</td>
+                                    <td class="text-center">#{{ test.code|upper }}</td>
+                                    <td class="text-center">
                                         <span class="label {% if test.is_free %}label-danger{% else %}label-success{% endif %}">{% if test.is_free %}{% trans 'Yes' context '/super/tests/' %}{% else %}{% trans 'No' context '/super/tests/' %}{% endif %}</span>
                                     </td>
-                                    <td class="pr-15 pl-15 text-center">
+                                    <td class="text-center">
                                         <span class="label {% if test.is_archived %}label-danger{% elif test.is_approved %}label-success{% elif test.is_pending %}label-info{% elif test.is_draft %}label-default{% endif %}">{{ test.get_status_display }}</span>
                                     </td>
-                                    <td class="pr-15 pl-15 text-center">{{ test.sales_count }}/{{ test.completed_count }}</td>
+                                    <td class="text-center">{{ test.sales_count }}/{{ test.completed_count }}</td>
                                     {% if test.is_archived or test.is_approved %}
-                                        <td class="pr-15 pl-15 text-center">
+                                        <td class="pr-15 text-center">
                                             <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/super/tests/' %}</a>
                                         </td>
                                     {% elif test.is_pending %}
-                                        <td class="pr-15 pl-15 text-center">
+                                        <td class="pr-15 text-center">
                                             <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs">{% trans 'Edit' context '/super/tests/' %}</a>
                                             <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/super/tests/' %}</a>
                                         </td>
                                     {% elif test.is_draft %}
-                                        <td class="pr-15 pl-15 text-center">
+                                        <td class="pr-15 text-center">
                                             {% if test.developer|has_perm:'bbtest.super' %}
                                                 <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs">{% trans 'Edit' context '/developer/' %}</a>
                                             {% endif %}
@@ -98,7 +98,7 @@
                                 </tr>
                             {% empty %}
                                 <tr>
-                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="8">{% trans 'There are no tests yet' context '/super/tests/' %}</td>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/super/tests/' %}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
