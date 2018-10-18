@@ -35,9 +35,9 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequir
     template_name = "student/buy_test_domains.html"
 
     def get(self, request, *args, **kwargs):
-        purchasing_credits = request.GET.get("purchasing_credits")
-        if purchasing_credits is not None:
-            self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "purchase", { "event_category": "credits", "value": int(purchasing_credits) } ]]
+        ga_events_purchase_credits = request.GET.get("ga_events_purchase_credits")
+        if ga_events_purchase_credits is not None:
+            self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "purchase", { "event_category": "credits", "value": int(ga_events_purchase_credits) } ]]
             return redirect("bbtest:student_buy_test_domains")
         return super().get(request, *args, **kwargs)
 
