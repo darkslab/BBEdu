@@ -59,7 +59,7 @@
                         <tbody>
                             {% for user in users %}
                                 <tr>
-                                    <td class="pl-15">{{ user.get_full_name }}</td>
+                                    <td class="pl-15">{{ user.get_full_name }}<br><small class="text-primary">{{ user.email }}</small></td>
                                     <td class="text-center">
                                         {% if user.role == 'admin' %}
                                             <span class="label label-info">{% trans 'Administrator' context '/super/users/' %}</span>
