@@ -1,0 +1,123 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n %}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'All Quizzes' context 'Page title' %}{% endblock %}
+
+{% block nav_super_quizzes_class %}active{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">&nbsp;</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="pl-15">{% trans 'Student' context '/super/quizzes/' %}</th>
+                                <th>{% trans 'Domain' context '/super/quizzes/' %}</th>
+                                <th>{% trans 'Section' context '/super/quizzes/' %}</th>
+                                <th class="text-center">{% trans 'Language' context '/super/quizzes/' %}</th>
+                                <th class="text-center">{% trans 'Variant' context '/super/quizzes/' %}</th>
+                                <th class="text-center">{% trans 'Status' context '/super/quizzes/' %}</th>
+                                <th class="pr-15 text-center">{% trans 'Score' context '/super/quizzes/' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for quiz_set in quiz_sets %}
+                                {% if quiz_set.quizzes.all|length > 1 %}
+                                    <tr {% if not quiz_set.is_current %}class="success"{% endif %}>
+                                        <td class="pl-15" rowspan="{{ quiz_set.quizzes.all|length|add:'1' }}">{{ quiz_set.student.get_full_name }}</td>
+                                        <td rowspan="{{ quiz_set.quizzes.all|length|add:'1' }}">{% trans quiz_set.test_domain.name %}</td>
+                                    </tr>
+                                    {% for quiz in quiz_set.quizzes.all %}
+                                        <tr {% if not quiz_set.is_current %}class="success"{% endif %}>
+                                            <td {% if not quiz.is_finished %}class="warning"{% endif %}>{% trans quiz.test.section.name %}</td>
+                                            <td class="text-center {% if not quiz.is_finished %}warning{% endif %}">{{ quiz.test.display_language }}</td>
+                                            <td class="text-center {% if not quiz.is_finished %}warning{% endif %}">#{{ quiz.test.code|upper }}</td>
+                                            {% if quiz.is_finished %}
+                                                {% if quiz.ended_at is None %}
+                                                    <td class="text-center"><span class="label label-primary">{% blocktrans count minutes=quiz.display_finish_minutes context '/super/quizzes/' %}Timed out in {{ minutes }} minute{% plural %}Timed out in {{ minutes }} minutes{% endblocktrans %}</span></td>
+                                                {% else %}
+                                                    <td class="text-center"><span class="label label-primary">{% blocktrans count minutes=quiz.display_finish_minutes context '/super/quizzes/' %}Finished in ~{{ minutes }} minute{% plural %}Finished in ~{{ minutes }} minutes{% endblocktrans %}</span></td>
+                                                {% endif %}
+                                                <td class="pr-15 text-center">{{ quiz.score }}/{{ quiz.test.max_score }}</td>
+                                            {% else %}
+                                                {% if quiz.started_at is None %}
+                                                    <td class="text-center {% if not quiz.is_finished %}warning{% endif %}"><span class="label label-danger">{% trans 'Not started' context '/super/quizzes/' %}</span></td>
+                                                {% elif quiz.due_at >= now_at %}
+                                                    <td class="text-center {% if not quiz.is_finished %}warning{% endif %}"><span class="label label-warning">{% trans 'Pending' context '/super/quizzes/' %}</span></td>
+                                                {% else %}
+                                                    <td class="text-center {% if not quiz.is_finished %}warning{% endif %}"><span class="label label-default">{% trans 'Expired' context '/super/quizzes/' %}</span></td>
+                                                {% endif %}
+                                                <td class="pr-15 text-center {% if not quiz.is_finished %}warning{% endif %}"><i class="fa fa-question"></i></td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for quiz in quiz_set.quizzes.all %}
+                                        <tr {% if not quiz_set.is_current %}class="success"{% endif %}>
+                                            <td class="pl-15 {% if not quiz.is_finished %}warning{% endif %}">{{ quiz_set.student.get_full_name }}</td>
+                                            <td {% if not quiz.is_finished %}class="warning"{% endif %}>{% trans quiz_set.test_domain.name %}</td>
+                                            <td {% if not quiz.is_finished %}class="warning"{% endif %}>{% trans quiz.test.section.name %}</td>
+                                            <td class="text-center {% if not quiz.is_finished %}warning{% endif %}">{{ quiz.test.display_language }}</td>
+                                            <td class="text-center {% if not quiz.is_finished %}warning{% endif %}">#{{ quiz.test.code|upper }}</td>
+                                            {% if quiz.is_finished %}
+                                                {% if quiz.ended_at is None %}
+                                                    <td class="text-center"><span class="label label-primary">{% blocktrans count minutes=quiz.display_finish_minutes context '/super/quizzes/' %}Timed out in {{ minutes }} minute{% plural %}Timed out in {{ minutes }} minutes{% endblocktrans %}</span></td>
+                                                {% else %}
+                                                    <td class="text-center"><span class="label label-primary">{% blocktrans count minutes=quiz.display_finish_minutes context '/super/quizzes/' %}Finished in ~{{ minutes }} minute{% plural %}Finished in ~{{ minutes }} minutes{% endblocktrans %}</span></td>
+                                                {% endif %}
+                                                <td class="pr-15 text-center">{{ quiz.score }}/{{ quiz.test.max_score }}</td>
+                                            {% else %}
+                                                {% if quiz.started_at is None %}
+                                                    <td class="text-center {% if not quiz.is_finished %}warning{% endif %}"><span class="label label-danger">{% trans 'Not started' context '/super/quizzes/' %}</span></td>
+                                                {% elif quiz.due_at >= now_at %}
+                                                    <td class="text-center {% if not quiz.is_finished %}warning{% endif %}"><span class="label label-warning">{% trans 'Pending' context '/super/quizzes/' %}</span></td>
+                                                {% else %}
+                                                    <td class="text-center {% if not quiz.is_finished %}warning{% endif %}"><span class="label label-default">{% trans 'Expired' context '/super/quizzes/' %}</span></td>
+                                                {% endif %}
+                                                <td class="pr-15 text-center {% if not quiz.is_finished %}warning{% endif %}"><i class="fa fa-question"></i></td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            {% empty %}
+                                <tr>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="7">{% trans 'There are no quizzes yet' context '/super/quizzes/' %}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% if quiz_sets.has_other_pages %}
+            <div class="col-xs-12 text-center">
+                <ul class="pagination mt-0 mb-0">
+                    {% if quiz_sets.has_previous %}
+                        <li><a href="{{ request.path }}?page={{ quiz_sets.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
+                    {% endif %}
+                    {% for page_index in quiz_sets.paginator.page_indexes %}
+                        {% if page_index == quiz_sets.number %}
+                            <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
+                        {% else %}
+                            <li><a href="{{ request.path }}?page={{ page_index }}">{{ page_index }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if quiz_sets.has_next %}
+                        <li><a href="{{ request.path }}?page={{ quiz_sets.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

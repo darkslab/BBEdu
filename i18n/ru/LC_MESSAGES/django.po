@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-18 02:35+0600\n"
-"PO-Revision-Date: 2018-10-17 13:37-0700\n"
+"POT-Creation-Date: 2018-10-18 12:23+0600\n"
+"PO-Revision-Date: 2018-10-17 23:33-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -1787,6 +1787,10 @@ msgid "All Users"
 msgstr "Все Пользователи"
 
 msgctxt "Navigation link"
+msgid "All Quizzes"
+msgstr "Все Пробные тесты"
+
+msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Загрузить тест"
 
@@ -2122,6 +2126,72 @@ msgstr "Все Пользователи"
 msgctxt "/super/"
 msgid "Tests by Developers"
 msgstr "Тесты разработчиков"
+
+msgctxt "Page title"
+msgid "All Quizzes"
+msgstr "Все Пробные тесты"
+
+msgctxt "/super/quizzes/"
+msgid "Student"
+msgstr "Участник тестирования"
+
+msgctxt "/super/quizzes/"
+msgid "Domain"
+msgstr "Тестирование"
+
+msgctxt "/super/quizzes/"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "/super/quizzes/"
+msgid "Language"
+msgstr "Язык"
+
+msgctxt "/super/quizzes/"
+msgid "Variant"
+msgstr "Код теста"
+
+msgctxt "/super/quizzes/"
+msgid "Status"
+msgstr "Статус"
+
+msgctxt "/super/quizzes/"
+msgid "Score"
+msgstr "Результат"
+
+#, python-format
+msgctxt "/super/quizzes/"
+msgid "Timed out in %(minutes)s minute"
+msgid_plural "Timed out in %(minutes)s minutes"
+msgstr[0] "Время вышло через %(minutes)s минуту"
+msgstr[1] "Время вышло через %(minutes)s минуты"
+msgstr[2] "Время вышло через %(minutes)s минут"
+msgstr[3] "Продолжительность: %(minutes)s минут."
+
+#, python-format
+msgctxt "/super/quizzes/"
+msgid "Finished in ~%(minutes)s minute"
+msgid_plural "Finished in ~%(minutes)s minutes"
+msgstr[0] "Закончен через ~%(minutes)s минуту"
+msgstr[1] "Закончен через ~%(minutes)s минуты"
+msgstr[2] "Закончен через ~%(minutes)s минут"
+msgstr[3] "Продолжительность: %(minutes)s минут."
+
+msgctxt "/super/quizzes/"
+msgid "Not started"
+msgstr "Не начато"
+
+msgctxt "/super/quizzes/"
+msgid "Pending"
+msgstr "В процессе"
+
+msgctxt "/super/quizzes/"
+msgid "Expired"
+msgstr "Время вышло"
+
+msgctxt "/super/quizzes/"
+msgid "There are no quizzes yet"
+msgstr "Нет пробных тестов"
 
 msgctxt "Page title"
 msgid "All Tests"

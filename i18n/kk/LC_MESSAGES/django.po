@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-18 02:35+0600\n"
+"POT-Creation-Date: 2018-10-18 12:23+0600\n"
 "PO-Revision-Date: 2017-11-23 14:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1977,6 +1977,10 @@ msgctxt "Navigation link"
 msgid "All Users"
 msgstr ""
 
+msgctxt "Navigation link"
+msgid "All Quizzes"
+msgstr ""
+
 #, fuzzy
 #| msgctxt "Model field"
 #| msgid "created at"
@@ -2358,6 +2362,75 @@ msgstr ""
 msgctxt "/super/"
 msgid "Tests by Developers"
 msgstr "Тестілеуді құрастырушы"
+
+msgctxt "Page title"
+msgid "All Quizzes"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Student"
+msgctxt "/super/quizzes/"
+msgid "Student"
+msgstr "Тестілеуге қатысушы"
+
+msgctxt "/super/quizzes/"
+msgid "Domain"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Section"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Form field error"
+#| msgid "Incorrect email."
+msgctxt "/super/quizzes/"
+msgid "Language"
+msgstr "Электрондық поштаңыз дұрыс емес."
+
+msgctxt "/super/quizzes/"
+msgid "Variant"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Status"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Score"
+msgstr ""
+
+#, python-format
+msgctxt "/super/quizzes/"
+msgid "Timed out in %(minutes)s minute"
+msgid_plural "Timed out in %(minutes)s minutes"
+msgstr[0] ""
+
+#, python-format
+msgctxt "/super/quizzes/"
+msgid "Finished in ~%(minutes)s minute"
+msgid_plural "Finished in ~%(minutes)s minutes"
+msgstr[0] ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "created at"
+msgctxt "/super/quizzes/"
+msgid "Not started"
+msgstr "жасалған уақыты"
+
+msgctxt "/super/quizzes/"
+msgid "Pending"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Expired"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "There are no quizzes yet"
+msgstr ""
 
 msgctxt "Page title"
 msgid "All Tests"
