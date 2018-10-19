@@ -39,6 +39,8 @@ from .views.student import (
     ResultsView as StudentResultsView,
     ResultView as StudentResultView,
     ResultDataView as StudentResultDataView,
+    TransactionsView as StudentTransactionsView,
+    TransactionView as StudentTransactionView,
 )
 from .views.developer import (
     DashboardView as DeveloperDashboardView,
@@ -103,6 +105,8 @@ urlpatterns = [
     url(r"^student/results/$",                                 StudentResultsView.as_view(),          name="student_results"           ),
     url(r"^student/results/(?P<code>[0-9A-Fa-f]{4,6})/$",      StudentResultView.as_view(),           name="student_result"            ),
     url(r"^student/results/(?P<code>[0-9A-Fa-f]{4,6})/data/$", StudentResultDataView.as_view(),       name="student_result_data"       ),
+    url(r"^student/transactions/$",                            StudentTransactionsView.as_view(),     name="student_transactions"      ),
+    url(r"^student/transactions/(?P<transaction_id>\d+)/$",    StudentTransactionView.as_view(),      name="student_transaction"       ),
 
     # DEVELOPER URLS
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
