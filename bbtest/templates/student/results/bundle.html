@@ -14,7 +14,7 @@
                     {% if quiz_set.is_current %}
                         <span class="label label-danger ml-5 hidden-xs">{% trans 'Not finished' context 'Results page' %}</span>
                     {% endif %}
-                    <span class="pull-right">{{ quiz_set.created_at|date:'Y-m-d H:i:s' }}</span>
+                    <span class="pull-right">{{ quiz_set.created_at|date:'SHORT_DATETIME_FORMAT' }}</span>
                 </h4>
                 {% if quiz_set.is_current %}
                     <h4 class="panel-title text-center visible-xs-block mt-10">
