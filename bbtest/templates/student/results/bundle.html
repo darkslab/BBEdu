@@ -46,6 +46,15 @@
                         {% include './empty_row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 compact=False only %}
                     {% endif %}
                 {% endfor %}
+                <div class="panel">
+                    <div class="bb-accordion-panel-footer">
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <a href="{% url 'bbtest:student_transaction' quiz_set.cart_id %}">{% blocktrans with transaction_id=quiz_set.cart_id context 'Results page' %}View Transaction #{{ transaction_id }}{% endblocktrans %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -584,6 +584,12 @@ html {
     padding-bottom: 5px;
 }
 
+.bb-accordion-panel-footer {
+    border-top: 1px solid #dddddd;
+    padding: 5px 15px 5px 15px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 .bb-accordion-panel-heading.bb-accordion-panel-heading-bordered {
     border-top: 1px solid #dddddd;
 }
