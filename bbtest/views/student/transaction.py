@@ -32,9 +32,9 @@ def prepare_carts(carts):
                 "domain": _(test.section.domain.name),
             }
 
-    cart.total = Decimal("0.00")
-    cart.actual_money = False
     for cart in carts:
+        cart.total = Decimal("0.00")
+        cart.actual_money = False
         for line_item in cart.line_items.all():
             cart.total = cart.total + line_item.price - line_item.discount
             if issubclass(line_item.item_class_class(), CreditItem):
