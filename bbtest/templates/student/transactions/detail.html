@@ -1,0 +1,43 @@
+{% load i18n %}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    {% if include_header %}
+                        <strong>{% blocktrans with order_id=cart.pk context '/student/transactions/xxxx/' %}Transaction #{{ order_id }}{% endblocktrans %}</strong>
+                    {% else %}
+                        &nbsp;
+                    {% endif %}
+                    <span class="pull-right">{{ cart.completed_at|date:'SHORT_DATETIME_FORMAT' }}</span>
+                </h4>
+            </div>
+            <ul class="list-group">
+                {% for line_item in cart.line_items.all %}
+                    <li class="list-group-item pt-10 pb-10">
+                        <div class="row">
+                            <div class="col-sm-10">{{ line_item.display_description }}</div>
+                            <div class="col-sm-2 text-right"><strong>{% blocktrans with price=line_item.price|floatformat:'0' context '/student/transactions/xxxx/' %}{{ price }} cred.{% endblocktrans %}</strong></div>
+                        </div>
+                        {% if line_item.discount > 0 %}
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-10 text-right pr-0">{% trans 'Discount' context '/student/transactions/xxxx/' %}</div>
+                                <div class="col-xs-4 col-sm-2 text-right pl-5"><strong>{% blocktrans with discount=line_item.discount|floatformat:'0' minus_sign='-' context '/student/transactions/xxxx/' %}{{ minus_sign }}{{ discount }} cred.{% endblocktrans %}</strong></div>
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                <li class="list-group-item pt-5 pb-5 active">
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-10 text-right pr-0"><strong>{% trans 'Total' context '/student/transactions/xxxx/' %}</strong></div>
+                        {% if cart.actual_money %}
+                            <div class="col-xs-4 col-sm-2 text-right pl-5"><strong>{% blocktrans with total=cart.total|floatformat:'0' context '/student/transactions/xxxx/' %}₸{{ total }}{% endblocktrans %}</strong></div>
+                        {% else %}
+                            <div class="col-xs-4 col-sm-2 text-right pl-5"><strong>{% blocktrans with total=cart.total|floatformat:'0' context '/student/transactions/xxxx/' %}{{ total }} cred.{% endblocktrans %}</strong></div>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

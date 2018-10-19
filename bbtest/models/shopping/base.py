@@ -8,6 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from ool import VersionField, VersionedMixin
 from ..fields import JSONField
+from . import items
 
 
 class Cart(VersionedMixin, Model):
@@ -56,6 +57,9 @@ class LineItem(Model):
         if self.pk:
             return "LineItem #%s (%s)" % (self.pk, description)
         return "New LineItem (%s)" % description
+
+    def item_class_class(self):
+        return getattr(items, self.item_class)
 
 
 class Transaction(Model):
