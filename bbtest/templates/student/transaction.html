@@ -1,0 +1,19 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n %}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% blocktrans with transaction_id=cart.pk context '/student/transactions/xxxx/' %}Transaction #{{ transaction_id }}{% endblocktrans %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            {% include './transactions/detail.html' with cart=cart include_header=False only %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <a href="{% url 'bbtest:student_transactions' %}">{% trans 'View all Transactions' context '/student/transactions/xxxx/' %}</a>
+        </div>
+    </div>
+{% endblock %}

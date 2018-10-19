@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-18 13:05+0600\n"
-"PO-Revision-Date: 2018-10-18 00:06-0700\n"
+"POT-Creation-Date: 2018-10-19 13:31+0600\n"
+"PO-Revision-Date: 2018-10-19 00:44-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -1814,6 +1814,10 @@ msgctxt "Navigation link"
 msgid "Buy Credits"
 msgstr "Приобрести единицы"
 
+msgctxt "Navigation link"
+msgid "Transactions"
+msgstr "Транзакции"
+
 msgctxt "Page title"
 msgid "Choose the test domain"
 msgstr "Выберите тест"
@@ -2036,6 +2040,11 @@ msgctxt "Results page"
 msgid "Test #%(count)s (%(domain_name)s)"
 msgstr "Тест #%(count)s (%(domain_name)s)"
 
+#, python-format
+msgctxt "Results page"
+msgid "View Transaction #%(transaction_id)s"
+msgstr "Просмотреть транзакцию №%(transaction_id)s"
+
 msgctxt "Results page"
 msgid "Review correct answers"
 msgstr "Просмотреть правильные ответы"
@@ -2057,6 +2066,64 @@ msgstr ""
 msgctxt "Results page"
 msgid "You have not yet completed this section."
 msgstr "Вы еще не закончили этот предмет."
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "Transaction #%(transaction_id)s"
+msgstr "Транзакция №%(transaction_id)s"
+
+msgctxt "/student/transactions/xxxx/"
+msgid "View all Transactions"
+msgstr "Просмотреть все транзакции"
+
+msgctxt "Page title"
+msgid "Transactions"
+msgstr "Транзакции"
+
+msgctxt "/student/transactions/"
+msgid "There are no transactions"
+msgstr "Нет никаких транзакции"
+
+msgctxt "/student/transactions/"
+msgid "Buy credits and start taking tests."
+msgstr "Вы можете приобрести единицы чтобы начать тестирование."
+
+msgctxt "/student/transactions/"
+msgid "Buy credits"
+msgstr "Приобрести единицы"
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "Transaction #%(order_id)s"
+msgstr "Транзакция №%(order_id)s"
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "%(price)s cred."
+msgstr "%(price)s ед."
+
+msgctxt "/student/transactions/xxxx/"
+msgid "Discount"
+msgstr "Скидка"
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "%(minus_sign)s%(discount)s cred."
+msgstr "%(minus_sign)s%(discount)s ед."
+
+msgctxt "/student/transactions/xxxx/"
+msgid "Total"
+msgstr "Итого"
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "₸%(total)s"
+msgstr "₸%(total)s"
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "%(total)s cred."
+msgstr "%(total)s ед."
 
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
@@ -2170,7 +2237,7 @@ msgid_plural "Timed out in %(minutes)s minutes"
 msgstr[0] "Время вышло через %(minutes)s минуту"
 msgstr[1] "Время вышло через %(minutes)s минуты"
 msgstr[2] "Время вышло через %(minutes)s минут"
-msgstr[3] "Продолжительность: %(minutes)s минут."
+msgstr[3] ""
 
 #, python-format
 msgctxt "/super/quizzes/"
@@ -2179,7 +2246,7 @@ msgid_plural "Finished in ~%(minutes)s minutes"
 msgstr[0] "Закончен через ~%(minutes)s минуту"
 msgstr[1] "Закончен через ~%(minutes)s минуты"
 msgstr[2] "Закончен через ~%(minutes)s минут"
-msgstr[3] "Продолжительность: %(minutes)s минут."
+msgstr[3] ""
 
 msgctxt "/super/quizzes/"
 msgid "Not started"
@@ -2615,6 +2682,21 @@ msgstr ""
 "Для сравнения Ваших результатов с результатами реального тестирования мы "
 "указали средний балл (красная линия) участников тестирования конкурсного "
 "отбора в НИШ 2018 года по данному предмету (взято с nis.edu.kz)."
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "%(section)s (%(domain)s) - %(language)s"
+msgstr "%(section)s (%(domain)s) - %(language)s"
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "%(section)s (%(domain)s)"
+msgstr "%(section)s (%(domain)s)"
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "%(credits).0f Credits"
+msgstr "Единицы: %(credits).0f"
 
 #, python-format
 msgctxt "/super/users/"

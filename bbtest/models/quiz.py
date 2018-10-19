@@ -8,11 +8,13 @@ from ool import VersionField, VersionedMixin
 from math import ceil
 from .test import TestDomain, Test, TestQuestion
 from .fields import JSONField
+from .shopping.base import Cart, LineItem
 
 
 class QuizSet(VersionedMixin, Model):
     test_domain  = ForeignKey  ( TestDomain,       on_delete=CASCADE, related_name="quiz_sets", )
     student      = ForeignKey  ( get_user_model(), on_delete=CASCADE, related_name="quiz_sets", )
+    cart         = ForeignKey  ( Cart,             on_delete=CASCADE, related_name="quiz_sets", )
 
     lock_version  = VersionField      ( pgettext_lazy("Model field", "lock version"),                                                 default=0, )
     is_current    = NullBooleanField  ( pgettext_lazy("Model field", "is current?"),                     default=True, db_index=True,            )
@@ -26,8 +28,9 @@ class QuizSet(VersionedMixin, Model):
 
 
 class Quiz(Model):
-    quiz_set  = ForeignKey  ( QuizSet, on_delete=CASCADE, related_name="quizzes", )
-    test      = ForeignKey  ( Test,    on_delete=CASCADE, related_name="quizzes", )
+    quiz_set   = ForeignKey  ( QuizSet,  on_delete=CASCADE, related_name="quizzes", )
+    test       = ForeignKey  ( Test,     on_delete=CASCADE, related_name="quizzes", )
+    line_item  = ForeignKey  ( LineItem, on_delete=CASCADE, related_name="quizzes", )
 
     report       = JSONField                  ( pgettext_lazy("Model field", "report"),                             null=True, blank=True,                               )
     order        = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                                                    db_index=True, )

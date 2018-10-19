@@ -1,0 +1,56 @@
+{% extends '../../personalized_base_1.html' %}
+{% load i18n %}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'Transactions' context 'Page title' %}{% endblock %}
+
+{% block nav_student_transactions_class %}active{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            {% for cart in carts %}
+                {% include './detail.html' with cart=cart include_header=True only %}
+            {% empty %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3 class="text-center mb-15 text-danger">{% trans 'There are no transactions' context '/student/transactions/' %}</h3>
+                        <p class="lead text-center">{% trans 'Buy credits and start taking tests.' context '/student/transactions/' %}</p>
+                        <div class="text-center mb-23">
+                            <div class="visible-xs-block">
+                                <a href="{% url 'bbtest:buy_credits' %}" class="btn btn-primary btn-block">{% trans 'Buy credits' context '/student/transactions/' %}</a>
+                            </div>
+                            <div class="hidden-xs">
+                                <a href="{% url 'bbtest:buy_credits' %}" class="btn btn-primary btn-lg">{% trans 'Buy credits' context '/student/transactions/' %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if carts.has_other_pages %}
+            <div class="col-xs-12 text-center">
+                <ul class="pagination mt-0 mb-0">
+                    {% if carts.has_previous %}
+                        <li><a href="{{ request.path }}?page={{ carts.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
+                    {% endif %}
+                    {% for page_index in carts.paginator.page_indexes %}
+                        {% if page_index == carts.number %}
+                            <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
+                        {% else %}
+                            <li><a href="{{ request.path }}?page={{ page_index }}">{{ page_index }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if carts.has_next %}
+                        <li><a href="{{ request.path }}?page={{ carts.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
