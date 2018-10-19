@@ -92,8 +92,8 @@ class CartHandle:
                 self.__cart.completed_at = now()
                 self.__cart.save()
 
-                for item in self.__items():
-                    item.checkout()
+                for product in self.__products:
+                    product["item"].checkout(self.__cart, product["line_item"])
 
         except ConcurrentUpdate:
             raise CartHandleError("Could not checkout the cart")

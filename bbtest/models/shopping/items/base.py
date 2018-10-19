@@ -74,7 +74,7 @@ class Item:
         """
         raise NotImplementedError("%s has to implement 'funds' method" % type(self).__name__)
 
-    def checkout(self):
+    def checkout(self, cart, line_item):
         """
         Can raise ItemError with a translated message.
         """

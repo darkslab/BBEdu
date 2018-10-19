@@ -115,7 +115,7 @@ class TestItem(Item):
 
         return _funds
 
-    def checkout(self):
+    def checkout(self, cart, line_item):
         try:
             for item in self.handle():
                 if not isinstance(item, TestItem):
@@ -124,12 +124,12 @@ class TestItem(Item):
                     return
                 break
 
-            quiz_set = self.student().quiz_sets.create(test_domain=self.test().section.domain)
+            quiz_set = self.student().quiz_sets.create(test_domain=self.test().section.domain, cart=cart)
             quiz_order = 0
             for item in self.handle():
                 if not isinstance(item, TestItem):
                     continue
-                quiz_set.quizzes.create(test=item.test(), order=quiz_order)
+                quiz_set.quizzes.create(test=item.test(), order=quiz_order, line_item=line_item)
                 quiz_order += 1
 
                 Test.objects.filter(pk=item.test().pk).update(sales_count=(F("sales_count") + 1))
