@@ -16,7 +16,7 @@
     <form method="post" action="{{ qazkom_form.action }}" data-qazkom-form>
         <input type="hidden" name="Signed_Order_B64" value="{{ qazkom_form.signed_order_b64 }}">
         <input type="hidden" name="email" value="{{ user.email }}">
-        <input type="hidden" name="BackLink" value="{{ BASE_URL }}{% url 'bbtest:student_buy_test_domains' %}?ga_events_purchase_credits={{ cart_rounded_total }}">
+        <input type="hidden" name="BackLink" value="{{ BASE_URL }}{% url 'bbtest:student_buy_test_domains' %}?ga_events_checkout_credits={{ cart_rounded_total }}">
         <input type="hidden" name="FailureBackLink" value="{{ BASE_URL }}{% url 'bbtest:buy_credits' %}">
         <input type="hidden" name="PostLink" value="{{ BASE_URL }}{% url 'process_credits_qazkom' %}">
         <input type="hidden" name="FailurePostLink" value="">

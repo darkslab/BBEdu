@@ -35,9 +35,9 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequir
     template_name = "student/buy_test_domains.html"
 
     def get(self, request, *args, **kwargs):
-        ga_events_purchase_credits = request.GET.get("ga_events_purchase_credits")
-        if ga_events_purchase_credits is not None:
-            self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "purchase", { "event_category": "credits", "value": int(ga_events_purchase_credits) } ]]
+        ga_events_checkout_credits = request.GET.get("ga_events_checkout_credits")
+        if ga_events_checkout_credits is not None:
+            self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "checkout", { "event_category": "credits", "value": int(ga_events_checkout_credits) } ]]
             return redirect("bbtest:student_buy_test_domains")
         return super().get(request, *args, **kwargs)
 
@@ -251,7 +251,7 @@ class BuyTestsCheckoutView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequ
                     CreditPaymentProcessor(self.cart_handle().total()),
                     self.cart_handle(),
                 )
-            self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "purchase", { "event_category": "tests", "value": round(cart_total) } ]]
+            self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "checkout", { "event_category": "tests", "value": round(cart_total) } ]]
             return TightJsonResponse({
                 "success": True,
                 "url": reverse("bbtest:student_exam"),
