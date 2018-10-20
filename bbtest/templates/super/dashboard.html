@@ -134,16 +134,22 @@
                             <tr>
                                 <td class="pl-10"><em>Superusers</em></td>
                                 <td class="pr-0 text-center"><span class="label label-success">{{ superuser_tests_stats.approved_tests_count }}</span></td>
+                                <td class="pr-0 pl-0 text-center">+</td>
                                 <td class="pr-0 pl-0 text-center"><span class="label label-info">{{ superuser_tests_stats.pending_tests_count }}</span></td>
+                                <td class="pr-0 pl-0 text-center">+</td>
                                 <td class="pr-0 pl-0 text-center"><span class="label label-default">{{ superuser_tests_stats.draft_tests_count }}</span></td>
+                                <td class="pr-0 pl-0 text-center">=</td>
                                 <td class="pr-10 pl-0 text-center"><span class="label label-primary">{{ superuser_tests_stats.total_tests_count }}</span></td>
                             </tr>
                             {% for developer in developer_tests_stats %}
                                 <tr>
                                     <td class="pl-10">{{ developer.get_full_name }}</td>
                                     <td class="pr-0 text-center"><span class="label label-success">{{ developer.approved_tests_count }}</span></td>
+                                    <td class="pr-0 pl-0 text-center">+</td>
                                     <td class="pr-0 pl-0 text-center"><span class="label label-info">{{ developer.pending_tests_count }}</span></td>
+                                    <td class="pr-0 pl-0 text-center">+</td>
                                     <td class="pr-0 pl-0 text-center"><span class="label label-default">{{ developer.draft_tests_count }}</span></td>
+                                    <td class="pr-0 pl-0 text-center">=</td>
                                     <td class="pr-10 pl-0 text-center"><span class="label label-primary">{{ developer.total_tests_count }}</span></td>
                                 </tr>
                             {% endfor %}
