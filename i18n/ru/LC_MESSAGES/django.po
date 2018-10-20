@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-19 13:31+0600\n"
-"PO-Revision-Date: 2018-10-19 00:44-0700\n"
+"PO-Revision-Date: 2018-10-20 00:08-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -1399,7 +1399,7 @@ msgstr "Все транзакции обрабатываются через %(ba
 
 msgctxt "Page title"
 msgid "Contact Us"
-msgstr "Обратная связь"
+msgstr "Написать письмо"
 
 msgctxt "Form button"
 msgid "Send"
