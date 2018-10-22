@@ -123,6 +123,17 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
 
                 kwargs["unt_spec_data"].append(data)
 
+        kwargs["nufypet"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7913)
+        kwargs["nufypet_data"] = []
+        for section in kwargs["nufypet"].sections.all():
+            kwargs["nufypet_data"].append({
+                "section": section,
+                "language": None,
+                "specification": {
+                    Test.LANGUAGE_XX: section.specification[Test.LANGUAGE_XX][get_language()],
+                },
+            })
+
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):

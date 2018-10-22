@@ -37,6 +37,9 @@
                                 <li>
                                     <a href="#unt" data-toggle="tab">{% trans unt.name %}</a>
                                 </li>
+                                <li>
+                                    <a href="#nufypet" data-toggle="tab">{% trans nufypet.name %}</a>
+                                </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade" id="nis">
@@ -280,6 +283,54 @@
                                             {% endfor %}
                                         </div>
                                     </div>
+                                </div>
+                                <div class="tab-pane fade" id="nufypet">
+                                    {% for data in nufypet_data %}
+                                        <div class="row mt-10">
+                                            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                                                <button type="button"
+                                                        class="btn btn-lg btn-block btn-primary"
+                                                        data-get-section="{{ data.section.id }}"
+                                                        {% if data.language %}
+                                                        data-next-modal="[data-language-modal='{{ data.section.id }}']"
+                                                        {% else %}
+                                                        data-get-language="{{ empty_language_code }}"
+                                                        data-next-modal="[data-specification-modal='{{ data.section.id }}-{{ empty_language_code }}']"
+                                                        {% endif %}>{% trans data.section.name %}</button>
+                                            </div>
+
+                                            {% for lang_code, specification in data.specification.items %}
+                                                <div class="modal fade"
+                                                     data-specification-modal="{{ data.section.id }}-{{ lang_code }}">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        data-specification-close>&times;
+                                                                </button>
+                                                                <h4 class="modal-title text-center">{% trans 'Test Specification' context '/developer/tests/' %}</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-xs-12 col-sm-10 col-sm-offset-1">{{ specification|safe }}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <div class="row">
+                                                                    <div class="col-xs-12 text-center">
+                                                                        <button type="submit"
+                                                                                class="btn btn-lg btn-success"
+                                                                                data-bb-submit
+                                                                                data-specification-submit>{% trans 'Create Test' context '/developer/tests/' %}</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
