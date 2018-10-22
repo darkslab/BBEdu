@@ -835,6 +835,7 @@ class TestCheckForm(ModelForm):
         "nis_answer_class":             pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
         "unt_compulsory_answer_class":  pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
         "unt_profile_answer_class":     pgettext_lazy("Validation error", "There should be 20 answers of type Multichoice with one answer and 10 answers of type Multichoice with one or more answers."),
+        "nufypet_answer_class":         pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
         "taxonomy":                     npgettext_lazy(
                                             "Validation error",
                                             "There has to be %(count)s question in taxonomy: %(taxonomy)s.",
@@ -867,6 +868,7 @@ class TestCheckForm(ModelForm):
                                                  "count",
                                              ),
         },
+        "nufypet_missing_topic":        pgettext_lazy("Validation error", "Some questions do not have a topic assigned to it."),
     }
 
     class Meta:
@@ -890,6 +892,8 @@ class TestCheckForm(ModelForm):
                 self.__clean_unt_compulsory(questions_queryset)
             elif self.instance.section.is_unt_profile():
                 self.__clean_unt_profile(questions_queryset)
+        elif self.instance.section.is_nufypet():
+            self.__clean_nufypet(questions_queryset)
         return self.cleaned_data
 
     def __clean_nis_mathematics(self, questions_queryset):
@@ -1100,3 +1104,22 @@ class TestCheckForm(ModelForm):
                     code="incomplete",
                     params={ "count": stats["required"] },
                 ))
+
+    def __clean_nufypet(self, questions_queryset):
+        questions_queryset = questions_queryset.all()
+
+        for question in questions_queryset:
+            if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                self.add_error(None, ValidationError(
+                    self.error_messages["nufypet_answer_class"],
+                    code="incomplete",
+                ))
+                break
+
+        for question in questions_queryset:
+            if question.topic is None:
+                self.add_error(None, ValidationError(
+                    self.error_messages["nufypet_missing_topic"],
+                    code="incomplete",
+                ))
+                break
