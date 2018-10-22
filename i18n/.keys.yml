@@ -1,0 +1,51 @@
+---
+_common:
+  domains:
+    nufypet: 'NUFYPET'
+  sections:
+    nufypet:
+      section0: 'Mathematics'
+      section1: 'Physics'
+      section2: 'Biology/Chemistry'
+      section3: 'Thinking skills'
+  topics:
+    nufypet:
+      section0:
+        topic0: 'Number'
+        topic1: 'Algebra'
+        topic2: 'Geometry'
+        topic3: 'Measures'
+      section1:
+        topic0: 'Electricity'
+        topic1: 'Motion and Energy'
+        topic2: 'Thermal Physics'
+        topic3: 'Waves'
+        topic4: 'Electromagnetic Spectrum'
+        topic5: 'Radioactivity'
+      section2:
+        topic00: 'Cells'
+        topic01: 'Movement across membranes'
+        topic02: 'Cell division and sex determination'
+        topic03: 'Inheritance'
+        topic04: 'DNA and protein synthesis'
+        topic05: 'Variation'
+        topic06: 'Enzymes'
+        topic07: 'Animal physiology'
+        topic08: 'Environment'
+        topic09: 'Plant physiology'
+        topic10: 'Sexual reproduction in humans'
+        topic11: 'Atomic structure'
+        topic12: 'The Periodic Table (IUPAC)'
+        topic13: 'Chemical reactions and equations'
+        topic14: 'Quantitative Chemistry'
+        topic15: 'Chemical bonding, structure and properties'
+        topic16: 'Group Chemistry'
+        topic17: 'Separation techniques'
+        topic18: 'Acids, bases and salts'
+        topic19: 'Rates of reaction'
+        topic20: 'Energetics'
+        topic21: 'Electrolysis'
+        topic22: 'Carbon/Organic Chemistry'
+      section3:
+        topic0: 'Problem Solving'
+        topic1: 'Critical Thinking'
