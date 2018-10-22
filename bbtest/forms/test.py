@@ -1,7 +1,7 @@
 from django.forms import ModelForm, Form
 from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
-from django.utils.translation import pgettext_lazy, ugettext as _, npgettext_lazy
+from django.utils.translation import pgettext_lazy, ugettext as _, npgettext_lazy, pgettext
 from random import randint
 from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset
 from bbtest.forms.fields import JSONField
@@ -487,9 +487,53 @@ class TestForm(ModelForm):
             },
         }
 
-    # def clean(self):
-    #     # DARK_TODO  clean language by section, i.e. only certain languages for certain sections
-    #     pass
+    def clean(self):
+        section = self.cleaned_data.get("section")
+        language = self.cleaned_data.get("language")
+        if section is None or language is None:
+            return self.cleaned_data
+
+        try:
+            # NIS sections
+            if section.pk in (9540, 9541, 9542, 9544):
+                if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
+                    raise ValueError("Incorrect language")
+            # NIS sections
+            elif section.pk in (9543,):
+                if language not in (Test.LANGUAGE_XX,):
+                    raise ValueError("Incorrect language")
+            # UNT sections
+            elif section.pk in (9547, 9546, 9545, 9548, 9549, 9550, 9551, 9552, 9553, 9559):
+                if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
+                    raise ValueError("Incorrect language")
+            # UNT sections
+            elif section.pk in (9554, 9555, 9556):
+                if language not in (Test.LANGUAGE_XX,):
+                    raise ValueError("Incorrect language")
+            # UNT sections
+            elif section.pk in (9557,):
+                if language not in (Test.LANGUAGE_KK,):
+                    raise ValueError("Incorrect language")
+            # UNT sections
+            elif section.pk in (9558,):
+                if language not in (Test.LANGUAGE_RU,):
+                    raise ValueError("Incorrect language")
+            # NUFYPET sections
+            elif section.pk in (9560, 9561, 9562, 9563):
+                if language not in (Test.LANGUAGE_XX,):
+                    raise ValueError("Incorrect language")
+            else:
+                raise ValidationError(
+                    pgettext("Validation error", "Unrecognized test section."),
+                    code="incorrect",
+                )
+
+        except ValueError:
+            raise ValidationError(
+                pgettext("Validation error", "Incorrect test language."),
+                code="incorrect",
+            )
+        return self.cleaned_data
 
     def create_test_suite(self, developer):
         test = self.save(developer)
@@ -586,6 +630,7 @@ class TestForm(ModelForm):
                         paragraph=paragraph,
                         order=0,
                     )
+
         # UNT core sections
         elif test.section.is_unt_compulsory():
             shared_paragraph = None
@@ -702,6 +747,42 @@ class TestForm(ModelForm):
 
                 question = test.questions.create(
                     answer_class=answer_class,
+                    meta_data=meta_data,
+                    weight=0,
+                    order=i,
+                    developer=test.developer,
+                )
+                question.weight = TestQuestion.calculate_weight(question, test.section)
+                question.save()
+
+                paragraph = TestParagraph.objects.create(
+                    paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                    meta_data={"text": ""},
+                )
+                TestParagraphQuestion.objects.create(
+                    question=question,
+                    paragraph=paragraph,
+                    order=0,
+                )
+
+        # NUFYPET sections
+        elif test.section.is_nufypet():
+            shared_paragraph = None
+            for i in range(test.section.question_count):
+                choice_id = randint(0x0000, 0xffff)
+                meta_data = {
+                    "choices": [
+                        { "id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
+                        { "id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
+                        { "id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
+                        { "id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
+                        { "id": choice_id + 4, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
+                    ],
+                    "correct_id": None,
+                }
+
+                question = test.questions.create(
+                    answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
                     meta_data=meta_data,
                     weight=0,
                     order=i,

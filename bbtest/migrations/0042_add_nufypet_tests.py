@@ -15,7 +15,7 @@ def seed_nufypet_data(apps, schema_editor):
                 settings.BB_LANGUAGE_CODE_KK: "",
                 settings.BB_LANGUAGE_CODE_RU: """
 <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
-<p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти <a href="https://admissions.nu.edu.kz/wps/wcm/connect/7832d3ca-5c62-4d5e-81f1-adfba0e7b325/List+of+topics-Mathematics.pdf?MOD=AJPERES" target="_blank">здесь</a>.</p>
+<p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти в <a href="https://admissions.nu.edu.kz/wps/wcm/connect/7832d3ca-5c62-4d5e-81f1-adfba0e7b325/List+of+topics-Mathematics.pdf?MOD=AJPERES" target="_blank">nu.edu.kz</a>.</p>
                 """,
             },
         },
@@ -24,7 +24,7 @@ def seed_nufypet_data(apps, schema_editor):
                 settings.BB_LANGUAGE_CODE_KK: "",
                 settings.BB_LANGUAGE_CODE_RU: """
 <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
-<p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти <a href="https://admissions.nu.edu.kz/wps/wcm/connect/2df8c78c-b78e-4943-8f18-f5ac56643003/List+of+topics-Physics.pdf?MOD=AJPERES" target="_blank">здесь</a>.</p>
+<p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти в <a href="https://admissions.nu.edu.kz/wps/wcm/connect/2df8c78c-b78e-4943-8f18-f5ac56643003/List+of+topics-Physics.pdf?MOD=AJPERES" target="_blank">nu.edu.kz</a>.</p>
                 """,
             },
         },
@@ -33,7 +33,7 @@ def seed_nufypet_data(apps, schema_editor):
                 settings.BB_LANGUAGE_CODE_KK: "",
                 settings.BB_LANGUAGE_CODE_RU: """
 <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
-<p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти <a href="https://admissions.nu.edu.kz/wps/wcm/connect/8540ed2c-3f8b-4d76-b08c-4a4388e51b5f/List+of+topics-Biology.pdf?MOD=AJPERES" target="_blank">здесь</a> и <a href="https://admissions.nu.edu.kz/wps/wcm/connect/4182627e-f01e-47f2-b6bf-06abed6477cd/List+of+topics-Chemistry.pdf?MOD=AJPERES" target="_blank">здесь</a>.</p>
+<p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти в <a href="https://admissions.nu.edu.kz/wps/wcm/connect/8540ed2c-3f8b-4d76-b08c-4a4388e51b5f/List+of+topics-Biology.pdf?MOD=AJPERES" target="_blank">nu.edu.kz (Biology)</a> и <a href="https://admissions.nu.edu.kz/wps/wcm/connect/4182627e-f01e-47f2-b6bf-06abed6477cd/List+of+topics-Chemistry.pdf?MOD=AJPERES" target="_blank">nu.edu.kz (Chemistry)</a>.</p>
                 """,
             },
         },
@@ -42,7 +42,7 @@ def seed_nufypet_data(apps, schema_editor):
                 settings.BB_LANGUAGE_CODE_KK: "",
                 settings.BB_LANGUAGE_CODE_RU: """
 <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
-<p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти <a href="https://admissions.nu.edu.kz/wps/wcm/connect/b2e91b2c-cdd1-4f7b-a881-50072b0e53ab/List+of+topics-Thinking+Skills.pdf?MOD=AJPERES" target="_blank">здесь</a>.</p>
+<p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти в <a href="https://admissions.nu.edu.kz/wps/wcm/connect/b2e91b2c-cdd1-4f7b-a881-50072b0e53ab/List+of+topics-Thinking+Skills.pdf?MOD=AJPERES" target="_blank">nu.edu.kz</a>.</p>
                 """,
             },
         },
