@@ -13,9 +13,9 @@
     <link rel="icon" href="{% static 'img/favicon/favicon_96.png' %}" sizes="96x96">
     <link rel="icon" href="{% static 'img/favicon/favicon_144.png' %}" sizes="144x144">
 
-    <title>{% block window_title %}{% block title %}{% endblock %}{% endblock %}{% block window_title_suffix %} - bbTest.kz{% endblock %}</title>
+    <title>{% block window_title %}{% block title %}{% endblock %}{% endblock %}{% block window_title_suffix %} | bbtest.kz{% endblock %}</title>
 
-    <meta name="description" content="{% block description %}{% blocktrans with dash_code='&mdash;' context 'Page description' %}bbTest.kz {{ dash_code }} Online testing platform. Thorough. Convenient. Effective.{% endblocktrans %}{% endblock %}">
+    <meta name="description" content="{% block description %}{% trans '_common.html_description' %}{% endblock %}">
 
     <meta name="turbolinks-cache-control" content="no-cache">
 
