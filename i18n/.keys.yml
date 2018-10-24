@@ -1,5 +1,7 @@
 ---
 _common:
+  html_description: ~
+
   domains:
     nufypet: 'NUFYPET'
   sections:
@@ -49,3 +51,7 @@ _common:
       section3:
         topic0: 'Problem Solving'
         topic1: 'Critical Thinking'
+
+page:
+  '/':
+    html_title: ~
