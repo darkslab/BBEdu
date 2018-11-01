@@ -1,0 +1,19 @@
+{% extends '../../email_base_0.html' %}
+
+{% block content %}
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="left" valign="top">
+                Здравствуйте!<br><br>
+
+                Мы благодарим Вас за проявленный интерес к сайту <a href="{{ base_url }}{% url 'bbtest:home' %}" target="_blank">bbtest.kz</a>!<br>
+                Нам бы хотелось узнать Ваше мнение о сайте через опрос по ссылке <a href="https://goo.gl/forms/oSOVrPm37m5hAye43" target="_blank">https://goo.gl/forms/oSOVrPm37m5hAye43</a><br><br>
+                Ваше мнение важно для нас.<br><br><br>
+
+
+                С Уважением,<br>
+                Команда bbtest.kz
+            </td>
+        </tr>
+    </table>
+{% endblock %}
