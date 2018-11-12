@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-25 02:39+0600\n"
-"PO-Revision-Date: 2018-10-21 23:45-0700\n"
+"POT-Creation-Date: 2018-11-12 12:10+0600\n"
+"PO-Revision-Date: 2018-11-11 22:13-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -21,9 +21,6 @@ msgctxt "Form label"
 msgid "Email"
 msgstr "Электрондық пошта"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter email."
 msgctxt "Validation error"
 msgid "Please enter email."
 msgstr "Электрондық поштаңызды енгізіңіз."
@@ -32,23 +29,14 @@ msgctxt "Form label"
 msgid "Password"
 msgstr "Құпиясөз"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter password."
 msgctxt "Validation error"
 msgid "Please enter password."
 msgstr "Құпиясөзді енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form validation error"
-#| msgid "Please enter a correct email and password."
 msgctxt "Validation error"
 msgid "Please enter a correct email and password."
-msgstr "Дұрыс электрондық поштаңызбен құпиясөзді енгізіңіз."
+msgstr "Дұрыс электрондық поштаңызды және құпиясөзді енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect email."
 msgstr "Электрондық поштаңыз дұрыс емес."
@@ -59,9 +47,6 @@ msgstr ""
 "Электрондық поштаңызға жіберілген хаттағы нұсқаулық бойынша құпиясөзіңізді "
 "өзгертіңіз."
 
-#, fuzzy
-#| msgctxt "Form validation error"
-#| msgid "Passwords do not match."
 msgctxt "Validation error"
 msgid "Passwords do not match."
 msgstr "Құпиясөздер сәйкес келмейді."
@@ -70,9 +55,6 @@ msgctxt "Form label"
 msgid "New password"
 msgstr "Жаңа құпиясөз"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter new password."
 msgctxt "Validation error"
 msgid "Please enter new password."
 msgstr "Жаңа құпиясөзді енгізіңіз."
@@ -81,9 +63,6 @@ msgctxt "Form label"
 msgid "Confirm new password"
 msgstr "Жаңа құпиясөзді растаңыз"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter new password confirmation."
 msgctxt "Validation error"
 msgid "Please enter new password confirmation."
 msgstr "Жаңа құпиясөздің растауын енгізіңіз."
@@ -106,7 +85,7 @@ msgstr "тегі"
 
 msgctxt "Model field"
 msgid "phone"
-msgstr ""
+msgstr "телефон нөмірі"
 
 msgctxt "Model field"
 msgid "joined at"
@@ -116,18 +95,12 @@ msgctxt "Model field"
 msgid "active?"
 msgstr "активті?"
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid "The password has to be at least %(min_length)d characters."
+#, python-format
 msgctxt "Validation error"
 msgid "The password has to be at least %(min_length)d characters."
 msgstr "Құпиясөз кем дегенде %(min_length)d белгіден тұру керек."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid ""
-#| "If the password is less than %(secure_length)d characters, it has to "
-#| "contain at least one uppercase character."
+#, python-format
 msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
@@ -136,11 +109,7 @@ msgstr ""
 "Құпиясөз %(secure_length)d белгіден аз болса, құрамында кем дегенде бір бас "
 "әріп болу керек."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid ""
-#| "If the password is less than %(secure_length)d characters, it has to "
-#| "contain at least one lowercase character."
+#, python-format
 msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
@@ -149,11 +118,7 @@ msgstr ""
 "Құпиясөз %(secure_length)d белгіден аз болса, құрамында кем дегенде бір кіші "
 "әріп болу керек."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid ""
-#| "If the password is less than %(secure_length)d characters, it has to "
-#| "contain at least one numeric character."
+#, python-format
 msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
@@ -162,11 +127,7 @@ msgstr ""
 "Құпиясөз %(secure_length)d белгіден аз болса, құрамында кем дегенде бір цифр "
 "болу керек."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid ""
-#| "If the password is less than %(secure_length)d characters, it has to "
-#| "contain at least one symbol character."
+#, python-format
 msgctxt "Validation error"
 msgid ""
 "If the password is less than %(secure_length)d characters, it has to contain "
@@ -186,16 +147,12 @@ msgstr ""
 "кіші әріпі мен бір символы бар кем дегенде %(min_length)d белгіден тұратын "
 "болу керек."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid "The password has to be at least %(min_length)d characters."
+#, python-format
 msgctxt "Password validation help text"
 msgid "The password has to be at least %(min_length)d characters long."
 msgstr "Құпиясөз кем дегенде %(min_length)d белгіден тұру керек."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid "The password is too similar to the %(verbose_name)s."
+#, python-format
 msgctxt "Validation error"
 msgid "The password is too similar to the %(verbose_name)s."
 msgstr "Құпиясөз сіздің жеке мәліметтеріңізге тым ұқсас: %(verbose_name)s."
@@ -204,9 +161,6 @@ msgctxt "Password validation help text"
 msgid "The password can't be too similar to your other personal information."
 msgstr "Құпиясөз сіздің жеке мәліметтеріңізге ұқсас бола алмайды."
 
-#, fuzzy
-#| msgctxt "Password validation error"
-#| msgid "The password is too common."
 msgctxt "Validation error"
 msgid "The password is too common."
 msgstr "Бұл құпиясөз өте оңай. Тағы ойланып көріңіз."
@@ -223,427 +177,314 @@ msgctxt "Email subject"
 msgid "Password reset"
 msgstr "Құпиясөзді өзгерту"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter last name."
 msgctxt "Validation error"
 msgid "Please select plan."
-msgstr "Тегіңізді енгізіңіз."
+msgstr "Тарифті таңдаңыз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect plan value."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Таңдалған тариф дұрыс емес."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter email."
 msgctxt "Validation error"
 msgid "Please select agreement code."
-msgstr "Электрондық поштаңызды енгізіңіз."
+msgstr "Келісім кодын енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect agreement code value."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Енгізілген келісім коды дұрыс емес."
 
 msgctxt "Validation error"
 msgid "Agreement code does not match the plan."
-msgstr ""
+msgstr "Енгізілген келісім коды тарифке сай емес."
 
 msgctxt "Form label"
 msgid "Confirm password"
 msgstr "Құпиясөзді растау"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter password confirmation."
 msgctxt "Validation error"
 msgid "Please enter password confirmation."
 msgstr "Құпиясөздің растауын енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter first name."
 msgctxt "Validation error"
 msgid "Please enter first name."
 msgstr "Атыңызды енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "First name is too long."
 msgctxt "Validation error"
 msgid "First name is too long."
-msgstr "Атыңыздың ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+msgstr "Атыңыздың ұзындығы тым үлкен."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter last name."
 msgctxt "Validation error"
 msgid "Please enter last name."
 msgstr "Тегіңізді енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Last name is too long."
 msgctxt "Validation error"
 msgid "Last name is too long."
-msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+msgstr "Тегіңіздің ұзындығы тым үлкен."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Email is too long."
 msgctxt "Validation error"
 msgid "Email is too long."
-msgstr "Электрондық поштаңыздың ұзындығын тексеріңіз."
+msgstr "Электрондық поштаңыздың ұзындығы тым үлкен."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "This email is already taken."
 msgctxt "Validation error"
 msgid "This email is already taken."
 msgstr "Бұл электрондық пошта тіркелген."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Last name is too long."
 msgctxt "Validation error"
 msgid "Phone is too long."
-msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+msgstr "Телефон нөмірінің ұзындығы тым үлкен."
 
 msgctxt "Form label"
 msgid "Amount"
-msgstr ""
+msgstr "Сома"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter last name."
 msgctxt "Validation error"
 msgid "Please provide an amount."
-msgstr "Тегіңізді енгізіңіз."
+msgstr "Соманы белгілеңіз."
 
 msgctxt "Validation error"
 msgid "Amount is invalid."
-msgstr ""
+msgstr "Сома дұрыс емес."
 
 #, python-format
 msgctxt "Validation error"
 msgid "Amount cannot be more than %(limit_value)s."
-msgstr ""
+msgstr "Сома %(limit_value)s дан үлкен болмауы тиіс."
 
-#, fuzzy, python-format
-#| msgctxt "Password validation error"
-#| msgid "The password has to be at least %(min_length)d characters."
+#, python-format
 msgctxt "Validation error"
 msgid "Amount has to be at least %(limit_value)s."
-msgstr "Құпиясөз кем дегенде %(min_length)d белгіден тұру керек."
+msgstr "Сома кем дегенде %(limit_value)s болуы тиіс."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect data."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Мәлімет дұрыс емес."
 
 msgctxt "Form label"
 msgid "Data"
-msgstr ""
+msgstr "Мәлімет"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter last name."
 msgctxt "Validation error"
 msgid "Please provide data."
-msgstr "Тегіңізді енгізіңіз."
+msgstr "Мәліметті енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect report."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Мәліметтер дұрыс енгізілмеген."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter last name."
 msgctxt "Validation error"
 msgid "Please provide report."
-msgstr "Тегіңізді енгізіңіз."
+msgstr "Мәліметтерді дұрыс енгізіңіз."
 
 msgctxt "Validation error"
 msgid "Invalid JSON format."
-msgstr ""
+msgstr "JSON форматы дұрыс емес."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Last name is too long."
 msgctxt "Validation error"
 msgid "Name is too long."
-msgstr "Тегіңіздің ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+msgstr "Аты-жөніңіздің ұзындығы тым үлкен."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter email."
 msgctxt "Validation error"
 msgid "Please enter the message."
-msgstr "Электрондық поштаңызды енгізіңіз."
+msgstr "Хабарламаңызды енгізіңіз."
 
 msgctxt "/contact_us/"
 msgid "Hello..."
-msgstr ""
+msgstr "Сәлеметсіз бе…"
 
 msgctxt "Validation error"
 msgid "Please select difficulty."
-msgstr ""
+msgstr "Күрделілік деңгейін белгілеңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Күрделілік деңгейі дұрыс белгіленбеген."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect taxonomy value."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Бағалау мақсаты дұрыс белгіленбеген."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect topic value."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Тарау дұрыс белгіленбеген."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect answer class."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Жауап дұрыс белгіленбеген."
 
 msgctxt "Validation error"
 msgid "Please provide paragraph class."
-msgstr ""
+msgstr "Мәтінді енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect paragraph class."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Мәтін дұрыс енгізілмеген."
 
 msgctxt "Validation error"
 msgid "Please provide meta data."
-msgstr ""
+msgstr "Мета мәліметтерін енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter email."
 msgctxt "Validation error"
 msgid "Please select test section."
-msgstr "Электрондық поштаңызды енгізіңіз."
+msgstr "Тестті таңдаңыз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect test section value."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Тест дұрыс таңдалмаған."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter last name."
 msgctxt "Validation error"
 msgid "Please select test language."
-msgstr "Тегіңізді енгізіңіз."
+msgstr "Тест тілін таңдаңыз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect test language value."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Тест тілі дұрыс таңдалмаған."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Unrecognized test section."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Түсініксіз тест пәні."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect test language."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Түсініксіз тест тілі."
 
 msgctxt "Validation error"
 msgid "Answer types should only be Multichoice with one answer."
-msgstr ""
+msgstr "Жауаптың түрі бірнеше жауап арасынан бір дұрыс жауабы бар болуы тиіс."
 
 msgctxt "Validation error"
 msgid ""
 "There should be 20 answers of type Multichoice with one answer and 10 "
 "answers of type Multichoice with one or more answers."
 msgstr ""
+"Бірнеше жауап арасынан бір дұрыс жауабы бар 20 және бірнеше жауап арасынан "
+"бірнеше дұрыс жауабы бар 10 жауаптар болуы тиіс."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s question in taxonomy: %(taxonomy)s."
 msgid_plural "There has to be %(count)s questions in taxonomy: %(taxonomy)s."
-msgstr[0] ""
+msgstr[0] "%(taxonomy)s бағалау мақсаты бойынша %(count)s сұрақ болуы тиіс."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s question in topic: %(topic)s."
 msgid_plural "There has to be %(count)s questions in topic: %(topic)s."
-msgstr[0] ""
+msgstr[0] "%(topic)s тақырып бойынша %(count)s сұрақ болуы тиіс."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s high difficulty question."
 msgid_plural "There has to be %(count)s high difficulty questions."
-msgstr[0] ""
+msgstr[0] "Күрделілік деңгейі жоғары  %(count)s сұрақ болуы тиіс."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s normal difficulty question."
 msgid_plural "There has to be %(count)s normal difficulty questions."
-msgstr[0] ""
+msgstr[0] "Күрделілік деңгейі орта  %(count)s сұрақ болуы тиіс."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s low difficulty question."
 msgid_plural "There has to be %(count)s low difficulty questions."
-msgstr[0] ""
+msgstr[0] "Күрделілік деңгейі төмен  %(count)s сұрақ болуы тиіс."
 
 msgctxt "Validation error"
 msgid "Some questions do not have a topic assigned to it."
-msgstr ""
+msgstr "Кейбір сұрақтарға тақырып белгіленбеген."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect upload starter data."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Жүктелген мәлімет дұрыс емес."
 
 msgctxt "Form label"
 msgid "Upload starter"
-msgstr ""
+msgstr "Стартерді жүктеу"
 
 msgctxt "Validation error"
 msgid "Please provide upload starter data."
-msgstr ""
+msgstr "Жүктеуге мәлімет енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter first name."
 msgctxt "Validation error"
 msgid "Please provide file name."
-msgstr "Атыңызды енгізіңіз."
+msgstr "Файл атын енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "First name is too long."
 msgctxt "Validation error"
 msgid "File name is too long."
-msgstr "Атыңыздың ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+msgstr "Файл атының ұзындығы тым үлкен."
 
 msgctxt "Validation error"
 msgid "Please provide file size."
-msgstr ""
+msgstr "Файл көлемін енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Validation error"
 msgid "Incorrect file size value."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Файл көлемі дұрыс емес."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "First name is too long."
 msgctxt "Validation error"
 msgid "File content type value is too long."
-msgstr "Атыңыздың ұзындығын тексеріңіз. Қысқа нұсқасын беріңіз."
+msgstr "Файл түрінің ұзындығы тым үлкен."
 
 msgctxt "Form label"
 msgid "Old password"
 msgstr "Ескі құпиясөз"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Please enter old password."
 msgctxt "Validation error"
 msgid "Please enter old password."
 msgstr "Ескі құпиясөзді енгізіңіз."
 
-#, fuzzy
-#| msgctxt "Form validation error"
-#| msgid "Incorrect old password."
 msgctxt "Validation error"
 msgid "Incorrect old password."
 msgstr "Ескі құпиясөз дұрыс емес."
 
 msgid "Knowledge"
-msgstr ""
+msgstr "Білім"
 
 msgid "Application"
-msgstr ""
+msgstr "Қолдану"
 
 msgid "Meaning"
-msgstr ""
+msgstr "Мағына"
 
 msgid "Communication"
-msgstr ""
+msgstr "Коммуникация"
 
 msgid "Structure"
-msgstr ""
+msgstr "Құрылым"
 
 msgid "Ratios and Proportions"
-msgstr ""
+msgstr "Қатынас және пропорция"
 
 msgid "Rational Numbers"
-msgstr ""
+msgstr "Рационалды сандар"
 
 msgid "Modulus"
-msgstr ""
+msgstr "Сан модулі"
 
 msgid "Linear Equations and Inequalities"
-msgstr ""
+msgstr "Сызықтық теңдеулер мен теңсіздіктер"
 
 msgid "Factorization"
-msgstr ""
+msgstr "Өрнектерді түрлендіру"
 
 msgid "Division"
-msgstr ""
+msgstr "Сандардың бөлінгіштігі"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "recipients"
 msgid "Percents"
-msgstr "қабылдаушылар"
+msgstr "Пайыз"
 
 msgid "Geometry"
-msgstr ""
+msgstr "Геометрия"
 
 msgid "Algebraic Operations and Analysis"
-msgstr ""
+msgstr "Алгебралық операциялар мен ойлау"
 
 msgid "Numbers and Decimal Arithmetic Operations"
 msgstr ""
+"Сандар және Числа и арифметические операции в десятичной системе счисления"
 
 msgid "Numbers and Fractional Arithmetic Operations"
-msgstr ""
+msgstr "Числа и арифметические операции с дробями"
 
 msgid "Measurement Units and Data"
 msgstr ""
@@ -667,324 +508,328 @@ msgid "Sequence Rules"
 msgstr ""
 
 msgid "Statistics"
-msgstr ""
+msgstr "Статистика"
 
 msgid "Combinatorics"
-msgstr ""
+msgstr "Комбинаторика"
 
 msgid "People"
-msgstr ""
+msgstr "Адамдар"
 
 msgid "Animals"
-msgstr ""
+msgstr "Жануарлар"
 
 msgid "Nature"
-msgstr ""
+msgstr "Табиғат"
 
 msgid "Weather"
-msgstr ""
+msgstr "Ауа райы"
 
 msgid "Food"
-msgstr ""
+msgstr "Тамақ"
 
 msgid "Science"
-msgstr ""
+msgstr "Ғылым"
 
 msgid "Education"
-msgstr ""
+msgstr "Білім"
 
 msgid "History"
-msgstr ""
+msgstr "Тарих"
 
 msgid "Ethics"
-msgstr ""
+msgstr "Этика"
 
 msgid "Sports"
-msgstr ""
+msgstr "Спорт"
 
 msgid "Art"
-msgstr ""
+msgstr "Өнер"
 
 msgid "Health"
-msgstr ""
+msgstr "Денсаулық"
 
 msgid "Traditions"
-msgstr ""
+msgstr "Салт дәстүр"
 
 msgid "Upbringing"
-msgstr ""
+msgstr "Тәрбие"
 
 msgid "Culture"
-msgstr ""
+msgstr "Мәдениет"
 
 msgid "Hobby"
-msgstr ""
+msgstr "Хобби"
 
 msgid "Ecology"
-msgstr ""
+msgstr "Экология"
 
 msgid "Fables and Fairy Tales"
-msgstr ""
+msgstr "Ертегілер"
 
 msgid "NIS"
-msgstr ""
+msgstr "Назарбаев Зияткерлік мектептеріне түсу тесті"
 
 msgid "Mathematics"
-msgstr ""
+msgstr "Математика"
 
 msgid "Kazakh Language"
-msgstr ""
+msgstr "Қазақ тілі"
 
 msgid "Russian Language"
-msgstr ""
+msgstr "Орыс тілі"
 
 msgid "English Language"
-msgstr ""
+msgstr "Ағылшын тілі"
 
 msgid "Quantitative"
-msgstr ""
+msgstr "Сандық сипаттамалар"
 
 msgid "UNT"
-msgstr ""
+msgstr "Ұлттық біріңғай тестілеу"
 
 msgid "Numeracy"
-msgstr ""
+msgstr "Математикалық сауаттылық"
 
 msgid "Analysis"
-msgstr ""
+msgstr "Талдау"
 
 msgid "Synthesis"
-msgstr ""
+msgstr "Синтез"
 
 msgid "Mixed problems"
-msgstr ""
+msgstr "Қосылған сұрақтар"
 
 msgid "Indeterminancy"
-msgstr ""
+msgstr "Анықсыздық"
 
 msgid "Changes and dependencies"
-msgstr ""
+msgstr "Өзгерістер мен тәуелділіктер"
 
 msgid "Space and shape"
-msgstr ""
+msgstr "Кеңістік пен форма"
 
 msgid "Literacy"
-msgstr ""
+msgstr "Оқу сауаттылығы"
 
 msgid "Human and environment"
-msgstr ""
+msgstr "Адам және оның қоршаған ортасы"
 
 msgid "Education and science"
-msgstr ""
+msgstr "Білім және ғылым"
 
 msgid "Cities and countries"
-msgstr ""
+msgstr "Мемлекеттер мен қалалар"
 
 msgid "Social relationships"
-msgstr ""
+msgstr "Әлеуметтік қарым қатынас"
 
 msgid "History of Kazakhstan"
-msgstr ""
+msgstr "Қазақстан тарихы"
 
 msgid "Stone and bronze epoch"
-msgstr ""
+msgstr "Тас және қола дәуірі"
 
 msgid "Kazakhstan in iron epoch"
-msgstr ""
+msgstr "Темір дәуіріндегі Қазақстан"
 
 msgid "The states of the early and developed Middle Ages (VI-beg. XIII cc)"
-msgstr ""
+msgstr "Ерте және дамыған ортағасырдағы (VI-XIII ғғ.) Қазақстан"
 
 msgid "Culture (VI-XVII centuries)"
-msgstr ""
+msgstr "VI-XVII ғғ. мәдениеті"
 
 msgid "Kazakhstan in the XIII-XVII centuries"
-msgstr ""
+msgstr "XIII-XVII ғғ. Қазақстан"
 
 msgid "Socio-economic position of Kazakhstan in the XIII-XVII centuries"
-msgstr ""
+msgstr "XIII-XVII ғғ. Қазақстанның әлеуметтік-экономикалық дамуы"
 
 msgid "Socio-economic development of Kazakhstan in the XVIII-XIX centuries"
-msgstr ""
+msgstr "XVIII-XIX ғғ. Қазақстанның әлеуметтік-экономикалық дамуы"
 
 msgid "Socio-political development of Kazakhstan in the XVIII-XIX centuries"
-msgstr ""
+msgstr "XVIII-XIX ғғ. Қазақстанның қоғамдық-саяси дамуы"
 
 msgid "Kazakhstan in the first half of XX century"
-msgstr ""
+msgstr "XX ғ. бірінші жартығасырдағы Қазақстан"
 
 msgid "Culture of Kazakhstan XVIII-XX centuries"
-msgstr ""
+msgstr "XVIII-XX ғғ. Қазақстан мәдениеті"
 
 msgid "Kazakhstan in the 50-80-ies. XX century"
-msgstr ""
+msgstr "XX ғ. 50-80 жж. Қазақстан"
 
 msgid "Independent Kazakhstan"
-msgstr ""
+msgstr "Тәуелсіз Қазақстан"
 
 msgid "History in documents"
-msgstr ""
+msgstr "Құжаттардағы тарих"
 
 msgid "Arithmetic calculations. Transformations of expressions"
-msgstr ""
+msgstr "Арифметикалық есептеулер. Өрнектерді түрлендіру"
 
 msgid "Equations. Systems of equations. Formulation of equations"
-msgstr ""
+msgstr "Теңдеулер. Теңдеулер жүйесі. Теңдеулер құруға берілген мәселе есептер"
 
 msgid "Inequalities. Systems of inequalities"
-msgstr ""
+msgstr "Теңсіздіктер. Теңсіздіктер жүйесі"
 
 msgid "Functions. Derivatives. Integral"
-msgstr ""
+msgstr "Функция. Туынды. Интеграл"
 
 msgid "Planimetry"
-msgstr ""
+msgstr "Планиметрия"
 
 msgid "Stereometry"
-msgstr ""
+msgstr "Стереометрия"
 
 msgid "Sequences. Progression"
-msgstr ""
+msgstr "Тізбектер. Прогрессиялар"
 
 msgid "Physics"
-msgstr ""
+msgstr "Физика"
 
 msgid "Mechanics"
-msgstr ""
+msgstr "Механика"
 
 msgid "Molecular physics. Fundamentals of thermodynamics"
-msgstr ""
+msgstr "Молекулалық физика. Термодинамика негіздері"
 
 msgid "Electrodynamics"
-msgstr ""
+msgstr "Электродинамика"
 
 msgid "Optics"
-msgstr ""
+msgstr "Оптика"
 
 msgid "Quantum and Atomic Physics"
-msgstr ""
+msgstr "Кванттық және атомдық физика"
 
 msgid "Qualitative objectives"
-msgstr ""
+msgstr "Сапалық есептер"
 
 msgid "Chemistry"
-msgstr ""
+msgstr "Химия"
 
 msgid "General chemistry"
-msgstr ""
+msgstr "Жалпы химия"
 
 msgid "Inorganic chemistry"
-msgstr ""
+msgstr "Бейорганикалық химия"
 
 msgid "Organic chemistry"
-msgstr ""
+msgstr "Органикалық химия"
 
 msgid "Calculation problems: General chemistry"
-msgstr ""
+msgstr "Химия курсы бойынша есептер: Жалпы химия"
 
 msgid "Calculation problems: Inorganic chemistry"
-msgstr ""
+msgstr "Химия курсы бойынша есептер: Бейорганикалық химия"
 
 msgid "Calculation problems: Organic chemistry"
-msgstr ""
+msgstr "Химия курсы бойынша есептер: Органикалық химия"
 
 msgid "Biology"
-msgstr ""
+msgstr "Биология"
 
 msgid "Plants"
-msgstr ""
+msgstr "Өсімдіктер"
 
 msgid "Human Anatomy and Physiology"
-msgstr ""
+msgstr "Адам анатомиясы мен физиологиясы"
 
 msgid "Cytology, genetics, ecology"
-msgstr ""
+msgstr "Цитология, генетика, экология"
 
 msgid "Geography"
-msgstr ""
+msgstr "География"
 
 msgid "Physical Geography of the World"
-msgstr ""
+msgstr "Дүниежүзінің физикалық географиясы"
 
 msgid "Geography of Kazakhstan"
-msgstr ""
+msgstr "Қазақстан географиясы"
 
 msgid "Economic and social geography of the world"
-msgstr ""
+msgstr "Дүниежүзінің экономикалық және әлеуметтік географиясы"
 
 msgid "Geography course tasks"
-msgstr ""
+msgstr "География курсы бойынша тапсырмалар"
 
 msgid "Age of stone and bronze"
-msgstr ""
+msgstr "Тас және қола дәуірі"
 
 msgid "Kazakhstan in the Iron Age"
-msgstr ""
+msgstr "Темір дәуіріндегі Қазақстан"
 
 msgid "The states of the Ancient East. Ancient civilization"
-msgstr ""
+msgstr "Ежелгі Шығыс елдері. Антикалық өркениет"
 
 msgid ""
 "The Middle Ages (early V-X centuries, the flowering of the XI-XV centuries, "
 "later the XV-XVII centuries)"
-msgstr ""
+msgstr "Орта ғасырлар (ерте V-X ғғ., дамыған XI-XV ғғ., кейінгі XV-XVII ғғ.)"
 
 msgid ""
 "Culture of the ancient world (before the V century), medieval culture of "
 "peace (V - XVII centuries)"
 msgstr ""
+"Ежелгі дүние мәдениеті (V ғ. дейін), Орта ғасырлардағы дүние жүзі мәдениеті"
 
 msgid ""
 "Europe and North America, Countries of Asia and Africa (XVII - early XX "
 "centuries)"
 msgstr ""
+"Еуропа және Солтүстік Америка, Азия және Африка елдері (XVII ғ. - XX ғ. басы)"
 
 msgid ""
 "Culture of Europe, North America, Asia and Africa (XVIII century - the "
 "beginning of the XXI century)"
 msgstr ""
+"Еуропа және Солтүстік Америка, Азия және Африка елдерінің мәдениеті (XVIII "
+"ғ. - XXI ғ. басы)"
 
 msgid "International relations (XVII - beginning of the XXI centuries)"
-msgstr ""
+msgstr "Халықаралық қатынастар (XVII ғ. - XXI ғ. басы)"
 
 msgid "World Wars and Their Consequences"
-msgstr ""
+msgstr "Дүниежүзілік соғыстар және олардың салдары"
 
 msgid "The countries of Europe and America, Asia and Africa (1918-2014)"
-msgstr ""
+msgstr "Еуропа және Америка елдері, Азия және Африка елдері (1918-2014 жж.)"
 
 msgid "English"
-msgstr ""
+msgstr "Ағылшын тілі"
 
 msgid "Vocabulary and translation"
-msgstr ""
+msgstr "Лексика мен аударма"
 
 msgid "Spelling"
-msgstr ""
+msgstr "Орфография"
 
 msgid "Morphology"
-msgstr ""
+msgstr "Морфология"
 
 msgid "Syntax"
-msgstr ""
+msgstr "Синтаксис"
 
 msgid "Work with text"
-msgstr ""
+msgstr "Мәтінмен жұмыс"
 
 msgid "Country studies"
-msgstr ""
+msgstr "Елтану"
 
 msgid "French"
-msgstr ""
+msgstr "Француз тілі"
 
 msgid "Phonetics"
-msgstr ""
+msgstr "Фонетика"
 
 msgid "German"
-msgstr ""
+msgstr "Неміс тілі"
 
 msgid "Kazakh and literature"
-msgstr ""
+msgstr "Қазақ тілі және әдебиеті"
 
 msgid "Vocabulary"
 msgstr "Лексика"
@@ -1008,7 +853,7 @@ msgid "XIX century literature"
 msgstr "ХІХ ғ. әдебиет"
 
 msgid "Literature in the first half of 20th century "
-msgstr "ХХ ғ. І жартысындағы әдебиет"
+msgstr "ХХ ғ. І жартысындағы әдебиет "
 
 msgid "Literature in the Great Patriotic War and later"
 msgstr "Ұлы Отан соғысындағы және одан кейінгі әдебиет"
@@ -1020,19 +865,19 @@ msgid "Literature in II half of 20th century"
 msgstr "ХХ ғ. ІІ жартысындағы әдебиет"
 
 msgid "Russian and literature"
-msgstr ""
+msgstr "Орыс тілі және әдебиеті"
 
 msgid "Phonetics and spelling"
-msgstr ""
+msgstr "Фонетика мен орфография"
 
 msgid "Lexicology"
-msgstr ""
+msgstr "Лексика"
 
 msgid "Morphemistry and word formation"
-msgstr ""
+msgstr "Морфемика мен сөзжасам"
 
 msgid "Syntax and punctuation"
-msgstr ""
+msgstr "Синтаксис және пунктуация"
 
 msgid "Theory of Literature"
 msgstr ""
@@ -1053,28 +898,28 @@ msgid "Content of works"
 msgstr ""
 
 msgid "Human. Society. Law"
-msgstr ""
+msgstr "Адам. Қоғам. Құқық"
 
 msgid "Human in the world"
-msgstr ""
+msgstr "Адам әлемі"
 
 msgid "Social sphere of society"
-msgstr ""
+msgstr "Әлеуметтік сала"
 
 msgid "The economic sphere of society"
-msgstr ""
+msgstr "Экономикалық сала"
 
 msgid "Spiritual sphere of society"
-msgstr ""
+msgstr "Рухани өмір"
 
 msgid "Political Science and Politics"
-msgstr ""
+msgstr "Саясаттану негіздері"
 
 msgid "Constitutional law"
-msgstr ""
+msgstr "Конституциялық құқық"
 
 msgid "Introduction to Jurisprudence"
-msgstr ""
+msgstr "Заңға кіріспе"
 
 msgid "_common.topics.nufypet.section0.topic0"
 msgstr "Number"
@@ -1198,45 +1043,39 @@ msgstr "Thinking skills"
 
 msgctxt "Account type"
 msgid "Asset"
-msgstr ""
+msgstr "Актив"
 
 msgctxt "Account type"
 msgid "Expense"
-msgstr ""
+msgstr "Шығын"
 
 msgctxt "Account type"
 msgid "Dividend"
-msgstr ""
+msgstr "Дивиденд"
 
 msgctxt "Account type"
 msgid "Liability"
-msgstr ""
+msgstr "Қарыз"
 
 msgctxt "Account type"
 msgid "Equity"
-msgstr ""
+msgstr "Капитал"
 
 msgctxt "Account type"
 msgid "Revenue"
-msgstr ""
+msgstr "Кіріс"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "username"
 msgctxt "Model field"
 msgid "name"
 msgstr "аты-жөні"
 
 msgctxt "Model field"
 msgid "type"
-msgstr ""
+msgstr "түрі"
 
-#, fuzzy
-#| msgctxt "/login/"
-#| msgid "Don't have an account?"
 msgctxt "Model field"
 msgid "is contra account?"
-msgstr "Аккаунт жоқ па?"
+msgstr "контра шот па?"
 
 msgctxt "Model field"
 msgid "created at"
@@ -1244,55 +1083,51 @@ msgstr "жасалған уақыты"
 
 msgctxt "Model field"
 msgid "description"
-msgstr ""
+msgstr "сипаттама"
 
-#, fuzzy
 msgctxt "Model field"
 msgid "object ID"
-msgstr "пән"
+msgstr "объект идентификаторы"
 
 msgctxt "Model field"
 msgid "is debit?"
-msgstr ""
+msgstr "дебит?"
 
 msgctxt "Model field"
 msgid "amount"
-msgstr ""
+msgstr "шот"
 
 msgctxt "Developer acknowledgement plan"
 msgid "Immediate"
-msgstr ""
+msgstr "Дереу"
 
 msgctxt "Developer acknowledgement plan"
 msgid "Profitable"
-msgstr ""
+msgstr "Тиімді"
 
 msgctxt "Model field"
 msgid "plan"
-msgstr ""
+msgstr "тариф"
 
 msgctxt "Model field"
 msgid "agreement code"
-msgstr ""
+msgstr "келісім коды"
 
 msgctxt "Model field"
 msgid "signature"
-msgstr ""
+msgstr "қолы"
 
 msgctxt "Model field"
 msgid "acknowledged at"
-msgstr ""
+msgstr "ретінде қарастырылған"
 
 msgctxt "Model field"
 msgid "ip address"
-msgstr ""
+msgstr "ip мекен-жайы"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "username"
 msgctxt "Model field"
 msgid "user agent"
-msgstr "аты-жөні"
+msgstr "қолданушының аты-жөні"
 
 msgctxt "Model field"
 msgid "from email"
@@ -1302,14 +1137,13 @@ msgctxt "Model field"
 msgid "recipients"
 msgstr "қабылдаушылар"
 
-#, fuzzy
 msgctxt "Model field"
 msgid "subject"
 msgstr "пән"
 
 msgctxt "Model field"
 msgid "mime data"
-msgstr "MIME мәліметі"
+msgstr "mime мәліметі"
 
 msgctxt "Model field"
 msgid "sent at"
@@ -1317,384 +1151,342 @@ msgstr "жіберілген уақыты"
 
 msgctxt "Field class description"
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 msgctxt "Model field"
 msgid "message"
-msgstr ""
+msgstr "хабарлама"
 
 msgctxt "Model field"
 msgid "lock version"
-msgstr ""
+msgstr "блоктау нұсқасы"
 
 msgctxt "Model field"
 msgid "is current?"
-msgstr ""
+msgstr "ағымдағы?"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "Model field"
 msgid "updated at"
-msgstr "жасалған уақыты"
+msgstr "жаңартылған уақыты"
 
 msgctxt "Model field"
 msgid "report"
-msgstr ""
+msgstr "есеп"
 
 msgctxt "Model field"
 msgid "order"
-msgstr ""
+msgstr "реті"
 
 msgctxt "Model field"
 msgid "is finished?"
-msgstr ""
+msgstr "аяқталған ба?"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "Model field"
 msgid "quiz started at"
-msgstr "жасалған уақыты"
+msgstr "басталған уақыты"
 
 msgctxt "Model field"
 msgid "quiz due at"
-msgstr ""
+msgstr "аяқталу уақыты"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "joined at"
 msgctxt "Model field"
 msgid "quiz ended at"
-msgstr "тіркелген уақыты"
+msgstr "аяқталған уақыты"
 
 msgctxt "Model field"
 msgid "discount"
-msgstr ""
+msgstr "жеңілдік"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "Model field"
 msgid "completed at"
 msgstr "жасалған уақыты"
 
 msgctxt "Model field"
 msgid "item class"
-msgstr ""
+msgstr "сұрақ түрі"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "mime data"
 msgctxt "Model field"
 msgid "meta data"
-msgstr "MIME мәліметі"
+msgstr "meta мәліметі"
 
 msgctxt "Model field"
 msgid "price"
-msgstr ""
+msgstr "бағасы"
 
 msgctxt "Model field"
 msgid "payment processor class"
-msgstr ""
+msgstr "төлем процессор топы"
 
 msgctxt "Model field"
 msgid "is complete?"
-msgstr ""
+msgstr "аяқталды ма?"
 
 msgctxt "Item error"
 msgid "User is required."
-msgstr ""
+msgstr "Қолданушы қажет."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Item error"
 msgid "Incorrect amount value."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Енгізілген мән дұрыс емес."
 
 msgctxt "Item error"
 msgid "User no longer exists."
-msgstr ""
+msgstr "Ондай қолданушы жоқ."
 
 msgid "Credits"
-msgstr ""
+msgstr "Бірлік"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Item error"
 msgid "NIS Test is required."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "НЗМ тестілері қажет."
 
 msgctxt "Item error"
 msgid "Mathematics NIS Test is required."
-msgstr ""
+msgstr "НЗМ Математика тестілері қажет."
 
 msgctxt "Item error"
 msgid "Kazakh Language NIS Test is required."
-msgstr ""
+msgstr "НЗМ Қазақ тілі тестілері қажет."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Item error"
 msgid "Russian Language NIS Test is required."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "НЗМ Орыс тілі тестілері қажет."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Item error"
 msgid "English Language NIS Test is required."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "НЗМ Ағылшын тілі тестілері қажет."
 
 msgctxt "Item error"
 msgid "Quantitative NIS Test is required."
-msgstr ""
+msgstr "НЗМ Сандық сипаттамалары тестілері қажет."
 
 msgctxt "Item error"
 msgid "Test is required."
-msgstr ""
+msgstr "Тестілер қажет."
 
 msgctxt "Item error"
 msgid "Student is required."
-msgstr ""
+msgstr "Тест қатысушы қажет."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Item error"
 msgid "Correct test language is required."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Тестілеу тілі дұрыс емес."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "This email is already taken."
 msgctxt "Item error"
 msgid "Test has already been taken."
-msgstr "Бұл электрондық пошта тіркелген."
+msgstr "Тестілеу қолданыста."
 
 msgctxt "Item error"
 msgid "Test has to be approved."
-msgstr ""
+msgstr "Тест келісуі қажет."
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Item error"
 msgid "Incorrect Test language."
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Тестілеу тілі дұрыс емес."
 
 msgctxt "Item error"
 msgid "Test no longer exists."
-msgstr ""
+msgstr "Тест жоқ."
 
 msgctxt "Item error"
 msgid "Could not checkout. Please try again."
-msgstr ""
+msgstr "Сатып алу мүмкін емес. Қайтадан көріңіз."
 
 msgctxt "Item error"
 msgid "UNT Test is required."
-msgstr ""
+msgstr "ҰБТ тесті қажет."
 
 msgctxt "Item error"
 msgid "Mathematical Literacy Compulsory UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Математикалық сауаттылық тесті қажет."
 
 msgctxt "Item error"
 msgid "Reading Literacy Compulsory UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Оқу сауаттылығы тесті қажет."
 
 msgctxt "Item error"
 msgid "History of Kazakhstan Compulsory UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Қазақстан тарихы тесті қажет."
 
 msgctxt "Item error"
 msgid "Mathematics Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Математика тесті қажет."
 
 msgctxt "Item error"
 msgid "Physics Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Физика тесті қажет."
 
 msgctxt "Item error"
 msgid "Chemistry Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Химия тесті қажет."
 
 msgctxt "Item error"
 msgid "Biology Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Биология тесті қажет."
 
 msgctxt "Item error"
 msgid "Geography Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ География тесті қажет."
 
 msgctxt "Item error"
 msgid "History Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Тарихы тесті қажет."
 
 msgctxt "Item error"
 msgid "English Language Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Ағылшын тілі тесті қажет."
 
 msgctxt "Item error"
 msgid "French Language Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Француз тілі тесті қажет."
 
 msgctxt "Item error"
 msgid "German Language Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Неміс тілі тесті қажет."
 
 msgctxt "Item error"
 msgid "Kazakh Language and Literature Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Қазақ тілі және әдебиет тесті қажет."
 
 msgctxt "Item error"
 msgid "Russian Language and Literature Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Орыс тілі және әдебиет тесті қажет."
 
 msgctxt "Item error"
 msgid "Human. Society. Right Profile UNT Test is required."
-msgstr ""
+msgstr "ҰБТ Адам. Қоғам. Құқық. тесті қажет."
 
 msgctxt "Model field"
 msgid "duration in seconds"
-msgstr ""
+msgstr "секунд"
 
 msgctxt "Model field"
 msgid "question count"
-msgstr ""
+msgstr "сұрақ нөмірі"
 
 msgctxt "Model field"
 msgid "specification"
-msgstr ""
+msgstr "спецификация"
 
 msgctxt "Test language"
 msgid "N/A"
-msgstr ""
+msgstr "Белгіленбеген"
 
 msgctxt "Test language"
 msgid "Kazakh"
-msgstr ""
+msgstr "Қазақша"
 
 msgctxt "Test language"
 msgid "Russian"
-msgstr ""
+msgstr "Орысша"
 
 msgctxt "Test status"
 msgid "Draft"
-msgstr ""
+msgstr "Шимай нұсқасы"
 
 msgctxt "Test status"
 msgid "Pending"
-msgstr ""
+msgstr "Жүктелу барысында"
 
 msgctxt "Test status"
 msgid "Approved"
-msgstr ""
+msgstr "Келісілді"
 
 msgctxt "Test status"
 msgid "Archived"
-msgstr ""
+msgstr "Мұрағатталды"
 
 msgctxt "Model field"
 msgid "code of the test"
-msgstr ""
+msgstr "тест коды"
 
 msgctxt "Model field"
 msgid "language of the test"
-msgstr ""
+msgstr "тест тілі"
 
 msgctxt "Model field"
 msgid "status"
-msgstr ""
+msgstr "статус"
 
 msgctxt "Model field"
 msgid "is free?"
-msgstr ""
+msgstr "ақысыз ба?"
 
 msgctxt "Model field"
 msgid "sales count"
-msgstr ""
+msgstr "сатылым саны"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "Model field"
 msgid "completed count"
-msgstr "жасалған уақыты"
+msgstr "санау аяқталды"
 
 msgctxt "Question difficulty"
 msgid "High"
-msgstr ""
+msgstr "Жоғары"
 
 msgctxt "Question difficulty"
 msgid "Normal"
-msgstr ""
+msgstr "Орта"
 
 msgctxt "Question difficulty"
 msgid "Low"
-msgstr ""
+msgstr "Төмен"
 
 msgctxt "Model field"
 msgid "answer class"
-msgstr ""
+msgstr "жауап"
 
 msgctxt "Model field"
 msgid "difficulty"
-msgstr ""
+msgstr "күрделілік"
 
 msgctxt "Model field"
 msgid "weight of question"
-msgstr ""
+msgstr "жауап ауырлығы"
 
 msgctxt "Model field"
 msgid "paragraph class"
-msgstr ""
+msgstr "мәтін"
 
 msgctxt "Model field"
 msgid "uuid"
-msgstr ""
+msgstr "универсалды уникалды идентификатор"
 
 msgctxt "Model field"
 msgid "expire at"
-msgstr ""
+msgstr "дейін жарамды"
 
 msgctxt "Model field"
 msgid "upload processor"
-msgstr ""
+msgstr "жүктеу процессоры"
 
 msgctxt "Model field"
 msgid "upload URL"
-msgstr ""
+msgstr "url жүктеңіз"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "first name"
 msgctxt "Model field"
 msgid "file name"
-msgstr "аты"
+msgstr "файлдың аты"
 
 msgctxt "Model field"
 msgid "file size"
-msgstr ""
+msgstr "файлдың көлемі"
 
 msgctxt "Model field"
 msgid "file content type"
-msgstr ""
+msgstr "файлдың түрі"
 
 msgctxt "Model field"
 msgid "asset adopter"
-msgstr ""
+msgstr "файлды қабылдаушы"
 
 msgctxt "Model field"
 msgid "broken?"
-msgstr ""
+msgstr "істемей ма?"
 
 msgctxt "Model field"
 msgid "asset class"
-msgstr ""
+msgstr "файлдың классы"
 
 msgctxt "Page title"
 msgid "Something went wrong"
@@ -1710,20 +1502,20 @@ msgstr "Парақша табылмады"
 
 msgctxt "Page title"
 msgid "Buy Credits"
-msgstr ""
+msgstr "Бірлік сатып алу"
 
 msgctxt "Form button"
 msgid "Make a payment"
-msgstr ""
+msgstr "Төлем жасау"
 
 #, python-format
 msgctxt "/buy-credits/"
 msgid "All transactions are handled by %(bank_name)s."
-msgstr ""
+msgstr "Барлық транзакциялар %(bank_name)s арқылы өткізіледі."
 
 msgctxt "Page title"
 msgid "Contact Us"
-msgstr ""
+msgstr "Хабарлама жазу"
 
 msgctxt "Form button"
 msgid "Send"
@@ -1779,12 +1571,9 @@ msgctxt "Button"
 msgid "Reset Password"
 msgstr "Құпиясөзді өзгерту"
 
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Test developer"
 msgctxt "Page title"
 msgid "Register as a Developer"
-msgstr "Тестілеуді құрастырушы"
+msgstr "Құрастырушы ретінде тіркелу"
 
 msgctxt "Page title"
 msgid "Register"
@@ -1834,62 +1623,72 @@ msgstr "Сақтау"
 
 msgctxt "Page title"
 msgid "Terms of Service"
-msgstr ""
+msgstr "Пайдаланушы келісімі"
 
 msgid "_common.html_description"
 msgstr ""
+"bbtest.kz – Ыңғайлы онлайн тестілеу платформасы. Тест нәтижелерін толықтай "
+"талдау. Назарбаев Зияткерлік мектептерінің 7-сыныпқа үміткерлер мен Ұлттық "
+"біріңғай тестілеуге қатысушы жас түлектер үшін байқау тестілері"
 
 msgctxt "Page title"
 msgid "Choose your Developer Plan"
-msgstr ""
+msgstr "Әріптестік тарифін таңдаңыз"
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 1."
-msgstr ""
+msgstr "1 тест сұрағының бағасы 300 теңге."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 2."
 msgstr ""
+"Төлем тест сұрақтарының сапасын сараптау жұмысы өткізілгеннен кейін жасалады."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 3."
-msgstr ""
+msgstr "Авторлық құқық Құрастырушыдан Тапсырыс берушіге беріледі."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 4."
 msgstr ""
+"Құрастырушы тест сұрақтарының психометриялық талдау нәтижелерін алмайды."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 1."
 msgstr ""
+"1 тест сұрағының бағасы 300 теңге және сатылым санына байланысты жоғары "
+"болады."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 2."
 msgstr ""
+"Төлем тест сұрақтарының сапасын сараптау жұмысы өткізілгеннен кейін жасалады."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 3."
-msgstr ""
+msgstr "Авторлық құқықты Құрастырушы өзіне қалдырады."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 4."
 msgstr ""
+"Құрастырушы тест сұрақтарының психометриялық талдау нәтижелерін\n"
+"тест сұрақтарының сапасын жақсарту мақсатында алады."
 
 msgctxt "/developer/acknowledgement/"
 msgid "View Agreement"
-msgstr ""
+msgstr "Жария офертасымен (келісім шартпен) танысып шығу"
 
 msgctxt "/developer/acknowledgement/"
 msgid "Agreement"
-msgstr ""
+msgstr "Жария офертасы (келісім шарт)"
 
 msgctxt "/developer/acknowledgement/"
 msgid "I have read the agreement"
-msgstr ""
+msgstr "Мен келісімді толықтай оқып танысып шықтым"
 
 msgctxt "/developer/acknowledgement/"
 msgid "Accept"
-msgstr ""
+msgstr "Қабылдау"
 
 msgctxt "Page title"
 msgid "Dashboard"
@@ -1897,112 +1696,98 @@ msgstr "Жеке кабинет"
 
 msgctxt "/developer/"
 msgid "Are you sure?"
-msgstr ""
+msgstr "Сенімдісіз бе?"
 
 msgctxt "/developer/"
 msgid "Yes"
-msgstr ""
+msgstr "Иә"
 
 msgctxt "/developer/"
 msgid "No"
-msgstr ""
+msgstr "Жоқ"
 
 msgctxt "/developer/"
 msgid "Tests"
-msgstr ""
+msgstr "Тестілер"
 
 msgctxt "/developer/"
 msgid "Domain"
-msgstr ""
+msgstr "Тестілеу"
 
 msgctxt "/developer/"
 msgid "Section"
-msgstr ""
+msgstr "Пән"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "/developer/"
 msgid "Language"
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Тіл"
 
 msgctxt "/developer/"
 msgid "Variant"
-msgstr ""
+msgstr "Нұсқа"
 
 msgctxt "/developer/"
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "/developer/"
 msgid "Sold/Completed"
-msgstr "жасалған уақыты"
+msgstr "Сатылды/аяқталды"
 
 msgctxt "/developer/"
 msgid "Actions"
-msgstr ""
+msgstr "Әрекеттер"
 
 msgctxt "/developer/"
 msgid "Preview"
-msgstr ""
+msgstr "Алдын ала көру"
 
 msgctxt "/developer/"
 msgid "Edit"
-msgstr ""
+msgstr "Өзгерту"
 
 msgctxt "/developer/"
 msgid "Delete"
-msgstr ""
+msgstr "Жою"
 
 msgctxt "/developer/"
 msgid "You have not created tests yet"
-msgstr ""
+msgstr "Сіз әлі тест жүктемедіңіз"
 
 msgctxt "Page title"
 msgid "Public Offer"
-msgstr ""
+msgstr "Жария офертасы"
 
 #, python-format
 msgctxt "/developer/offer/"
 msgid "Accepted on %(date)s"
-msgstr ""
+msgstr "%(date)s күні қабылданды"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "Page title"
 msgid "Create Test"
-msgstr "жасалған уақыты"
+msgstr "Тестіні жүктеу"
 
 msgctxt "/developer/tests/"
 msgid "Entrance Tests"
-msgstr ""
+msgstr "Қабылдаы тестілері"
 
 msgctxt "/developer/tests/"
 msgid "Test Specification"
-msgstr ""
+msgstr "Тест спецификациясы"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "/developer/tests/"
 msgid "Create Test"
-msgstr "жасалған уақыты"
+msgstr "Тест жүктеу"
 
-#, fuzzy
 msgid "Core subjects"
-msgstr "пән"
+msgstr "Негізгі пәндер"
 
-#, fuzzy
 msgid "Spec subjects"
-msgstr "пән"
+msgstr "Бейінді пәндер"
 
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"
-msgstr "bbTest.kz логотипі"
+msgstr "bbtest.kz логотипі"
 
 msgctxt "Email body element"
 msgid "link"
@@ -2027,10 +1812,10 @@ msgstr ""
 #, python-format
 msgctxt "Bottom copyright"
 msgid "Made with %(heart_icon)s in Kazakhstan. %(copyright_code)s bbTest.kz"
-msgstr "Қазақстанда %(heart_icon)s-пен жасалған. %(copyright_code)s bbTest.kz"
+msgstr "Қазақстанда %(heart_icon)s-пен жасалған. %(copyright_code)s bbtest.kz"
 
 msgid "page:/:html_title"
-msgstr ""
+msgstr "page:/:html_title"
 
 msgctxt "Navigation link"
 msgid "Dashboard"
@@ -2054,37 +1839,39 @@ msgstr "Тіркелу"
 
 msgctxt "Home page"
 msgid "Start practicing to the test right now!"
-msgstr ""
+msgstr "Тестілеуге бүгіннен бастап дайындал!"
 
 msgctxt "Home page"
 msgid "We are working on other tests..."
-msgstr ""
+msgstr "Басқа да тестілерді қосудамыз…"
 
 msgctxt "Home page"
 msgid "Online testing platform."
-msgstr ""
+msgstr "Онлайн тестілеу платформасы."
 
 msgctxt "Home page"
 msgid "Thorough. Convenient. Effective."
-msgstr ""
+msgstr "Сапалы, ыңғайлы, нәтижелі."
 
 msgctxt "Home page"
 msgid ""
 "Get a detailed test result analysis, find out your current skills and "
 "knowledge. Check out your progress and get better."
 msgstr ""
+"Тест нәтижелеріңнің толық талдауын ал да өзіңнің білім мен қабілеттілік "
+"деңгейіңді біл. Өзіңді жетілдіріп, әрі қарай өрле."
 
 msgctxt "Home page"
 msgid "Connect with us"
-msgstr ""
+msgstr "Біз әлеуметтік желіде"
 
 msgctxt "Footer navigation link"
 msgid "Terms"
-msgstr ""
+msgstr "Пайдаланушы келісімі"
 
 msgctxt "Footer navigation link"
 msgid "Contact Us"
-msgstr ""
+msgstr "Бізбен хабарласыңыз"
 
 msgctxt "Badge label under avatar"
 msgid "Administrator"
@@ -2097,37 +1884,31 @@ msgstr "Құрастырушы"
 #, python-format
 msgctxt "Total credits"
 msgid "Balance: %(balance)s cred."
-msgstr ""
+msgstr "Шот: %(balance)s бірлік."
 
 msgctxt "Navigation link"
 msgid "All Tests"
-msgstr ""
+msgstr "Барлық тестілер"
 
 msgctxt "Navigation link"
 msgid "All Users"
-msgstr ""
+msgstr "Барлық қолданушылар"
 
 msgctxt "Navigation link"
 msgid "All Quizzes"
-msgstr ""
+msgstr "Барлық байқау тестілері"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "Navigation link"
 msgid "Create Test"
-msgstr "жасалған уақыты"
+msgstr "Тестіні жүктеу"
 
 msgctxt "Navigation link"
 msgid "Public Offer"
-msgstr ""
+msgstr "Жария офертасы"
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Settings"
 msgctxt "Navigation link"
 msgid "Testing"
-msgstr "Құрылғылар"
+msgstr "Тестілеу"
 
 msgctxt "Navigation link"
 msgid "Start testing"
@@ -2139,946 +1920,859 @@ msgstr "Тестілеудің нәтижелері"
 
 msgctxt "Navigation link"
 msgid "Buy Credits"
-msgstr ""
+msgstr "Бірлік сатып алу"
 
 msgctxt "Navigation link"
 msgid "Transactions"
-msgstr ""
+msgstr "Транзакциялар"
 
 msgctxt "Page title"
 msgid "Choose the test domain"
-msgstr ""
+msgstr "Тестті таңдаңыз"
 
 #, python-format
 msgctxt "Page title"
 msgid "Select tests for %(domain_name)s"
-msgstr ""
+msgstr "%(domain_name)s тестінің пәндерін таңдаңыз"
 
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Something went wrong"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Something went wrong. Please refresh the page."
-msgstr "Бірдеңе дұрыс болмады"
+msgstr "Бірдеңе дұрыс болмады."
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Refresh the page"
-msgstr ""
+msgstr "Бетті жаңартыңыз"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Could not checkout"
-msgstr ""
+msgstr "Сатып алу мүмкін емес"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Close"
-msgstr ""
+msgstr "Жабу"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Test language"
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Тестілеу тілі"
 
-#, fuzzy
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Subjects"
-msgstr "пән"
+msgstr "Пәндер"
 
 #, python-format
 msgid "Questions count: %(count)s"
-msgstr ""
+msgstr "Сұрақтар саны: %(count)s"
 
 #, python-format
 msgid "Duration: %(minutes)s min."
-msgstr ""
+msgstr "Ұзақтығы: %(minutes)s минут."
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Total:"
-msgstr ""
+msgstr "Барлығы:"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy tests"
-msgstr ""
+msgstr "Тест сатып алу"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy credits"
-msgstr ""
+msgstr "Бірлік сатып алу"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
-msgstr ""
+msgstr "Басқа тестіні таңдау"
 
-#, fuzzy, python-format
-#| msgctxt "Navigation link"
-#| msgid "Results"
+#, python-format
 msgctxt "/student/"
 msgid "Last test results (%(domain_name)s)"
-msgstr "Тестілеудің нәтижелері"
+msgstr "Соңғы тест нәтижелері (%(domain_name)s)"
 
 msgctxt "Results page"
 msgid "Not finished"
-msgstr ""
+msgstr "Аяқталған жоқ"
 
 msgctxt "Results page"
 msgid "Section"
-msgstr ""
+msgstr "Пән"
 
 msgctxt "Results page"
 msgid "Your score"
-msgstr ""
+msgstr "Сіз жинаған балл"
 
 msgctxt "Results page"
 msgid "Average score of students on bbtest.kz website for the section."
-msgstr ""
+msgstr "Tест қатысушыларының осы пән бойынша bbtest.kz сайтындағы орташа балы."
 
 #, python-format
 msgctxt "Results page"
 msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-msgstr ""
+msgstr "Орташа балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Results"
 msgctxt "/student/"
 msgid "Go to results page"
-msgstr "Тестілеудің нәтижелері"
+msgstr "Тест нәтижелеріне бару"
 
 msgctxt "/student/"
 msgid "You have not taken any tests."
-msgstr ""
+msgstr "Сіз ешқандай тест орындаған жоқсыз."
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Start testing"
 msgctxt "/student/"
 msgid "Start testing"
-msgstr "Тестілеуді бастау"
+msgstr "Тестіні бастау"
 
 msgctxt "Results page"
 msgid "Test progress monitoring"
-msgstr ""
+msgstr "Тест қатысушысының өрлеу мониторингі"
 
 msgctxt "/student/"
 msgid "Your progress will be shown here."
-msgstr ""
+msgstr "Осында Сіз өз өрлеуіңізді көре аласыз."
 
 #, python-format
 msgctxt "Page title"
 msgid "%(domain_name)s Testing"
-msgstr ""
+msgstr "%(domain_name)s бойынша тестілеу"
 
 msgctxt "Exam"
 msgid "There was an error, please reload the page."
-msgstr ""
+msgstr "Қате! Бетті жаңартыңыз."
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Start testing"
 msgctxt "Exam"
 msgid "Start the test"
-msgstr "Тестілеуді бастау"
+msgstr "Тестіні бастау"
 
 msgctxt "Exam"
 msgid "Skip the test"
-msgstr ""
+msgstr "Тестіні өткізу"
 
 msgctxt "Exam"
 msgid "End the test"
-msgstr ""
+msgstr "Тестіні аяқтау"
 
 msgctxt "Exam"
 msgid "Continue"
-msgstr ""
+msgstr "Жалғастыру"
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Results"
 msgctxt "Exam"
 msgid "Go to Results"
-msgstr "Тестілеудің нәтижелері"
+msgstr "Тест нәтижелеріне бару"
 
 msgctxt "Exam"
 msgid "Buy new tests"
-msgstr ""
+msgstr "Жаңа тестілерді сатып алу"
 
 msgctxt "Exam"
 msgid "Reload the page"
-msgstr ""
+msgstr "Бетті жаңарту"
 
 msgctxt "Exam"
 msgid "Cancel"
-msgstr ""
+msgstr "Қайтару"
 
 msgctxt "Exam"
 msgid "Question"
-msgstr ""
+msgstr "Сұрақ"
 
 msgctxt "Exam"
 msgid "Please choose an answer choice"
-msgstr ""
+msgstr "Бір дұрыс жауапты таңдаңыз"
 
 msgctxt "Exam"
 msgid "Please choose answer choices that apply"
-msgstr ""
+msgstr "Бірнеше дұрыс жауаптарды таңдаңыз"
 
 msgctxt "Exam"
 msgid "Previous"
-msgstr ""
+msgstr "Алдағы"
 
 msgctxt "Exam"
 msgid "Next"
-msgstr ""
+msgstr "Келесі"
 
 msgctxt "Exam"
 msgid "Are you sure?"
-msgstr ""
+msgstr "Сенімдісіз бе?"
 
 msgctxt "Exam"
 msgid "Yes"
-msgstr ""
+msgstr "Иә"
 
 msgctxt "Exam"
 msgid "No"
-msgstr ""
+msgstr "Жоқ"
 
 msgctxt "Exam"
 msgid "Time is up"
-msgstr ""
+msgstr "Уақыт аяқталды"
 
 msgctxt "Exam"
 msgid "Finished"
-msgstr ""
+msgstr "Аяқталды"
 
 msgctxt "Exam"
 msgid ""
 "You ran out of allocated time for the test. Please continue to the next test."
-msgstr ""
+msgstr "Уақыт аяқталды. Келесі тестіге өтіңіз."
 
 msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
-msgstr ""
+msgstr "Тест аяқталды. Тест нәтижелеріне барыңыз."
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Results"
 msgctxt "/student/results/xxxx/"
 msgid "Go back to results"
-msgstr "Тестілеудің нәтижелері"
+msgstr "Тест нәтижелеріне бару"
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Results"
 msgctxt "Page title"
 msgid "Test Results"
-msgstr "Тестілеудің нәтижелері"
+msgstr "Тест нәтижелері"
 
 msgctxt "Results page"
 msgid "There are no results"
-msgstr ""
+msgstr "Нәтиже жоқ"
 
 msgctxt "Results page"
 msgid ""
 "You have not taken any tests yet. Once you take a test, you will be able to "
 "review the results here."
 msgstr ""
+"Сізде тапсырылаған тест жоқ. Тест тапсырған жағдайда Сіз осында қатемен "
+"жұмыс жасай аласыз."
 
 msgctxt "Results page"
 msgid "Buy new tests"
-msgstr ""
+msgstr "Жаңа тестілерді сатып алу"
 
 #, python-format
 msgctxt "Results page"
 msgid "Test #%(count)s (%(domain_name)s)"
-msgstr ""
+msgstr "Тест #%(count)s (%(domain_name)s)"
 
 #, python-format
 msgctxt "Results page"
 msgid "View Transaction #%(transaction_id)s"
-msgstr ""
+msgstr "#%(transaction_id)s транзакциясын қарау"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "Results page"
 msgid "Review correct answers"
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Дұрыс жауаптарды қарап шығу"
 
 msgctxt "Results page"
 msgid "You can see your results and follow the progress on this test section."
 msgstr ""
+"Графикте Сіздің осы пән бойынша нәтижелеріңіз көрсетілген. Сіз осында әр "
+"тестінің нәтижелерін және өрлеу жолыңызды көре аласыз."
 
 msgctxt "Results page"
 msgid ""
 "The red line is the average score of the current test subject on bbtest.kz "
 "website in comparison to your own results."
 msgstr ""
+"Сіздің тест нәтижелеріңізді салыстыру мақсатымен біз bbtest.kz сайтындағы "
+"тест қатысушыларының осы пән бойынша орташа балын (қызыл сызық) көрсетіп "
+"отырмыз."
 
 msgctxt "Results page"
 msgid "You have not yet completed this section."
-msgstr ""
+msgstr "Сіз бұл пәнді әлі аяқтаған жоқсыз."
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "Transaction #%(transaction_id)s"
-msgstr ""
+msgstr "Транзакция #%(transaction_id)s"
 
 msgctxt "/student/transactions/xxxx/"
 msgid "View all Transactions"
-msgstr ""
+msgstr "Барлық транзакцияны қарау"
 
 msgctxt "Page title"
 msgid "Transactions"
-msgstr ""
+msgstr "Транзакция"
 
 msgctxt "/student/transactions/"
 msgid "There are no transactions"
-msgstr ""
+msgstr "Транзакция жоқ"
 
 msgctxt "/student/transactions/"
 msgid "Buy credits and start taking tests."
-msgstr ""
+msgstr "Бірлік сатып алу және тестіні бастау."
 
 msgctxt "/student/transactions/"
 msgid "Buy credits"
-msgstr ""
+msgstr "Бірлік сатып алу"
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "Transaction #%(order_id)s"
-msgstr ""
+msgstr "Транзакция №%(order_id)s"
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(price)s cred."
-msgstr ""
+msgstr "%(price)s бірлік."
 
 msgctxt "/student/transactions/xxxx/"
 msgid "Discount"
-msgstr ""
+msgstr "Жеңілдік"
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(minus_sign)s%(discount)s cred."
-msgstr ""
+msgstr "%(minus_sign)s%(discount)s бірлік."
 
 msgctxt "/student/transactions/xxxx/"
 msgid "Total"
-msgstr ""
+msgstr "Барлығы"
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "₸%(total)s"
-msgstr ""
+msgstr "₸%(total)s"
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(total)s cred."
-msgstr ""
+msgstr "%(total)s бірлік."
 
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
-msgstr ""
+msgstr "НЗМ тестілеріне сұраныс"
 
 msgctxt "/super/"
 msgid "Section"
-msgstr ""
+msgstr "Пән"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "/super/"
 msgid "Language"
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Тіл"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "/super/"
 msgid "Sold/Completed"
-msgstr "жасалған уақыты"
+msgstr "Сатылды/аяқталды"
 
 msgctxt "/super/"
 msgid "Demand"
-msgstr ""
+msgstr "Сұраныс"
 
 msgctxt "/super/"
 msgid "No tests"
-msgstr ""
+msgstr "Тест жоқ"
 
 msgctxt "/super/"
 msgid "Immediate demand"
-msgstr ""
+msgstr "Дереу сұраныс"
 
 #, python-format
 msgctxt "/super/"
 msgid "%(counter)s test left"
 msgid_plural "%(counter)s tests left"
-msgstr[0] ""
+msgstr[0] "%(counter)s  тест қалды"
 
 msgctxt "/super/"
 msgid "All Tests"
-msgstr ""
+msgstr "Барлық тестілер"
 
 msgctxt "/super/"
 msgid "Demand for UNT Tests"
-msgstr ""
+msgstr "ҰБТ тестілеріне сұраныс"
 
 msgctxt "/super/"
 msgid "User Statistics"
-msgstr ""
+msgstr "Қолданушылар статистикасы"
 
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Student"
 msgctxt "/super/"
 msgid "Students"
 msgstr "Тестілеуге қатысушы"
 
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Developer"
 msgctxt "/super/"
 msgid "Developers"
 msgstr "Құрастырушы"
 
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Administrator"
 msgctxt "/super/"
 msgid "Admins"
 msgstr "Администратор"
 
 msgctxt "/super/"
 msgid "All Users"
-msgstr ""
+msgstr "Барлық қолданушылар"
 
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Test developer"
 msgctxt "/super/"
 msgid "Tests by Developers"
 msgstr "Тестілеуді құрастырушы"
 
 msgctxt "Page title"
 msgid "All Quizzes"
-msgstr ""
+msgstr "Барлық тестілер"
 
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Student"
 msgctxt "/super/quizzes/"
 msgid "Student"
 msgstr "Тестілеуге қатысушы"
 
 msgctxt "/super/quizzes/"
 msgid "Domain"
-msgstr ""
+msgstr "Тестілеу"
 
 msgctxt "/super/quizzes/"
 msgid "Bought at"
-msgstr ""
+msgstr "Сатып алынған уақыты"
 
 msgctxt "/super/quizzes/"
 msgid "Section"
-msgstr ""
+msgstr "Пән"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "/super/quizzes/"
 msgid "Language"
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Тіл"
 
 msgctxt "/super/quizzes/"
 msgid "Variant"
-msgstr ""
+msgstr "Нұсқа"
 
 msgctxt "/super/quizzes/"
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 msgctxt "/super/quizzes/"
 msgid "Score"
-msgstr ""
+msgstr "Нәтиже"
 
 #, python-format
 msgctxt "/super/quizzes/"
 msgid "Timed out in %(minutes)s minute"
 msgid_plural "Timed out in %(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "%(minutes)s минуттан кейін уақыты аяқталды"
 
 #, python-format
 msgctxt "/super/quizzes/"
 msgid "Finished in ~%(minutes)s minute"
 msgid_plural "Finished in ~%(minutes)s minutes"
-msgstr[0] ""
+msgstr[0] "~%(minutes)s минутта орындалды"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "/super/quizzes/"
 msgid "Not started"
-msgstr "жасалған уақыты"
+msgstr "Басталмады"
 
 msgctxt "/super/quizzes/"
 msgid "Pending"
-msgstr ""
+msgstr "Орындау барысында"
 
 msgctxt "/super/quizzes/"
 msgid "Expired"
-msgstr ""
+msgstr "Уақыт аяқталды"
 
 msgctxt "/super/quizzes/"
 msgid "There are no quizzes yet"
-msgstr ""
+msgstr "Байқау тестілері жоқ"
 
 msgctxt "Page title"
 msgid "All Tests"
-msgstr ""
+msgstr "Барлық тестілер"
 
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Developer"
 msgctxt "/super/tests/"
 msgid "Developer"
 msgstr "Құрастырушы"
 
 msgctxt "/super/tests/"
 msgid "Domain"
-msgstr ""
+msgstr "Тест"
 
 msgctxt "/super/tests/"
 msgid "Section"
-msgstr ""
+msgstr "Бөлім"
 
-#, fuzzy
-#| msgctxt "Form field error"
-#| msgid "Incorrect email."
 msgctxt "/super/tests/"
 msgid "Language"
-msgstr "Электрондық поштаңыз дұрыс емес."
+msgstr "Тіл"
 
 msgctxt "/super/tests/"
 msgid "Variant"
-msgstr ""
+msgstr "Нұсқа"
 
 msgctxt "/super/tests/"
 msgid "Free?"
-msgstr ""
+msgstr "Ақысыз?"
 
 msgctxt "/super/tests/"
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "/super/tests/"
 msgid "Sold/Completed"
-msgstr "жасалған уақыты"
+msgstr "Сатылды/аяқталды"
 
 msgctxt "/super/tests/"
 msgid "Actions"
-msgstr ""
+msgstr "Әрекеттер"
 
 msgctxt "/super/tests/"
 msgid "Yes"
-msgstr ""
+msgstr "Иә"
 
 msgctxt "/super/tests/"
 msgid "No"
-msgstr ""
+msgstr "Жоқ"
 
 msgctxt "/super/tests/"
 msgid "Preview"
-msgstr ""
+msgstr "Көру"
 
 msgctxt "/super/tests/"
 msgid "Edit"
-msgstr ""
+msgstr "Өзгерту"
 
 msgctxt "/super/tests/"
 msgid "There are no tests yet"
-msgstr ""
+msgstr "Тестілер жоқ"
 
 msgctxt "Page title"
 msgid "All Users"
-msgstr ""
+msgstr "Барлық қолданушылар"
 
 msgctxt "/super/users/"
 msgid "Are you sure?"
-msgstr ""
+msgstr "Сенімдісіз бе?"
 
 msgctxt "/super/users/"
 msgid "Yes"
-msgstr ""
+msgstr "Иә"
 
 msgctxt "/super/users/"
 msgid "No"
-msgstr ""
+msgstr "Жоқ"
 
 msgctxt "/super/users/"
 msgid "Name"
-msgstr ""
+msgstr "Аты-жөні"
 
 msgctxt "/super/users/"
 msgid "Role"
-msgstr ""
+msgstr "Лауазымы"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "joined at"
 msgctxt "/super/users/"
 msgid "Joined at"
-msgstr "тіркелген уақыты"
+msgstr "Тіркелген уақыты"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "active?"
 msgctxt "/super/users/"
 msgid "Active?"
-msgstr "активті?"
+msgstr "Активті?"
 
 msgctxt "/super/users/"
 msgid "Actions"
-msgstr ""
+msgstr "Әрекеттер"
 
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Administrator"
 msgctxt "/super/users/"
 msgid "Administrator"
 msgstr "Администратор"
 
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Developer"
 msgctxt "/super/users/"
 msgid "Developer"
 msgstr "Құрастырушы"
 
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Student"
 msgctxt "/super/users/"
 msgid "Student"
 msgstr "Тестілеуге қатысушы"
 
 msgctxt "/super/users/"
 msgid "Impersonate"
-msgstr ""
+msgstr "Қатысушы ретінде кіру"
 
 msgctxt "/super/users/"
 msgid "There are no users yet"
-msgstr ""
+msgstr "Қатысушылар жоқ"
 
 #, python-format
 msgctxt "Page title"
 msgid "%(section_name)s (#%(code)s)"
-msgstr ""
+msgstr "%(section_name)s (#%(code)s)"
 
 msgctxt "Page title"
 msgid "Free"
-msgstr ""
+msgstr "Ақысыз"
 
 msgctxt "Developer tools"
 msgid "There was an error, please reload the page."
-msgstr ""
+msgstr "Қате! Бетті жаңартыңыз."
 
 msgctxt "Developer tools"
 msgid "Question"
-msgstr ""
+msgstr "Сұрақ"
 
 msgctxt "Developer tools"
 msgid "Difficulty"
-msgstr ""
+msgstr "Күрделілік деңгейі"
 
 msgctxt "Developer tools"
 msgid "Taxonomy"
-msgstr ""
+msgstr "Блум таксономиясы"
 
 msgctxt "Developer tools"
 msgid "Topic"
-msgstr ""
+msgstr "Тақырып"
 
 msgctxt "Developer tools"
 msgid "Add Section"
-msgstr ""
+msgstr "Бөлім қосу"
 
 msgctxt "Developer tools"
 msgid "Type your question here"
-msgstr ""
+msgstr "Сұрағыңызды осында енгізіңіз"
 
 msgctxt "Developer tools"
 msgid "Your question will be previewed here"
-msgstr ""
+msgstr "Сіздің сұрағыңыз осында көрінеді"
 
 msgctxt "Developer tools"
 msgid "Add Answer"
-msgstr ""
+msgstr "Жауап қосу"
 
 msgctxt "Developer tools"
 msgid "Multi-choice with 1 answer"
-msgstr ""
+msgstr "Бір дұрыс жауабы бар жауап түрі"
 
 msgctxt "Developer tools"
 msgid "Multi-choice with multiple answers"
-msgstr ""
+msgstr "Бірнеше дұрыс жауабы бар жауап түрі"
 
 msgctxt "Developer tools"
 msgid "Add Answer Choice"
-msgstr ""
+msgstr "Жауап нұсқасын қосу"
 
 msgctxt "Developer tools"
 msgid "Type your answer choice here"
-msgstr ""
+msgstr "Жауап нұсқасын енгізіңіз"
 
 msgctxt "Developer tools"
 msgid "Your answer choice will be previewed here"
-msgstr ""
+msgstr "Сіздің жауабыңыз"
 
 msgctxt "Developer tools"
 msgid "Please choose Section type"
-msgstr ""
+msgstr "Бөлім түрін таңдаңыз"
 
 msgctxt "Developer tools"
 msgid "Text Section"
-msgstr ""
+msgstr "Мәтін бөлімі"
 
 msgctxt "Developer tools"
 msgid "Shared paragraph"
-msgstr ""
+msgstr "Орташа мәтін бөлімі"
 
 msgctxt "Developer tools"
 msgid "Split Text Section"
-msgstr ""
+msgstr "Екі қатар бөлімі"
 
 msgctxt "Developer tools"
 msgid "Image Section"
-msgstr ""
+msgstr "Сурет бөлімі"
 
 msgctxt "Developer tools"
 msgid "Upload Image"
-msgstr ""
+msgstr "Сурет жүктеу"
 
-#, fuzzy
-#| msgctxt "/password_reset/"
-#| msgid "Please provide your email to get a reset link"
 msgctxt "Developer tools"
 msgid "Please preview your image below."
-msgstr ""
-"Құпиясөзді өзгерту бойынша сілтемені алу үшін электрондық поштаңызды "
-"енгізіңіз"
+msgstr "Суретті төменде көруге болады."
 
 msgctxt "Developer tools"
 msgid "Could not process the file. Please try another one."
-msgstr ""
+msgstr "Файлды жүктеу мүмкін емес. Басқасын көріңіз."
 
 msgctxt "Developer tools"
 msgid "Please choose Answer type"
-msgstr ""
+msgstr "Жауап түрін таңдаңыз"
 
 msgctxt "Developer tools"
 msgid "Please add a Section above to preview it here."
-msgstr ""
+msgstr "Бөлімді көру үшін бөлімді жоғарыда енгізіңіз."
 
 msgctxt "Developer tools"
 msgid "Please add an Answer Choice above to preview it here."
-msgstr ""
+msgstr "Жауапты көру үшін жауапты жоғарыда енгізіңіз."
 
 msgctxt "Developer tools"
 msgid "Please choose Answer Choice type"
-msgstr ""
+msgstr "Жауап түрін таңдаңыз"
 
 msgctxt "Developer tools"
 msgid "Text Answer Choice"
-msgstr ""
+msgstr "Жауап"
 
 msgctxt "Developer tools"
 msgid "Correct"
-msgstr ""
+msgstr "Дұрыс"
 
 msgctxt "Developer tools"
 msgid "Solution"
-msgstr ""
+msgstr "Шешімі"
 
 msgctxt "Developer tools"
 msgid "Are you sure?"
-msgstr ""
+msgstr "Өзіңізге сенімдісіз бе?"
 
 msgctxt "Developer tools"
 msgid "Yes"
-msgstr ""
+msgstr "Иә"
 
 msgctxt "Developer tools"
 msgid "No"
-msgstr ""
+msgstr "Жоқ"
 
-#, fuzzy
-#| msgctxt "Form button"
-#| msgid "Save"
 msgctxt "Developer tools"
 msgid "Saved"
-msgstr "Сақтау"
+msgstr "Сақталды"
 
 msgctxt "Developer tools"
 msgid "Formulas"
-msgstr ""
+msgstr "Формулалар"
 
 msgctxt "Developer tools"
 msgid "Save and Exit"
-msgstr ""
+msgstr "Сақтау және шығу"
 
 msgctxt "Developer tools"
 msgid "Save and Preview"
-msgstr ""
+msgstr "Сақтау және қарап шығу"
 
 msgctxt "Developer tools"
 msgid "Test Specification"
-msgstr ""
+msgstr "Тест спецификациясы"
 
 msgctxt "Developer tools"
 msgid "Close"
-msgstr ""
+msgstr "Жабу"
 
 msgctxt "Developer tools"
 msgid "This action is irreversable!"
-msgstr ""
+msgstr "Бұл қайтымсыз әрекет!"
 
 msgctxt "Developer tools"
 msgid "Skip test checks!"
-msgstr ""
+msgstr "Тест тексерісін ескермеу!"
 
 msgctxt "Developer tools"
 msgid "Please wait for the feedback..."
-msgstr ""
+msgstr "Кері байланысты күтуіңізді сұраймыз…"
 
 msgctxt "Developer tools"
 msgid "Feedback"
-msgstr ""
+msgstr "Кері байланыс"
 
 msgctxt "Developer tools"
 msgid "The test is correct."
-msgstr ""
+msgstr "Тест дұрыс."
 
 msgctxt "Developer tools"
 msgid "There was an error. Please try again."
-msgstr ""
+msgstr "Қате! Қайтадан көріңіз."
 
 msgctxt "Developer tools"
 msgid "Approve"
-msgstr ""
+msgstr "Келісу"
 
 msgctxt "Developer tools"
 msgid "Refuse"
-msgstr ""
+msgstr "Қайтару"
 
 msgctxt "Developer tools"
 msgid "Edit"
-msgstr ""
+msgstr "Өзгерту"
 
 msgctxt "Developer tools"
 msgid "Delete"
-msgstr ""
+msgstr "Өшіру"
 
-#, fuzzy
-#| msgctxt "Form button"
-#| msgid "Change Password"
 msgctxt "Developer tools"
 msgid "Change to Paid"
-msgstr "Құпиясөзді өзгерту"
+msgstr "Ақылыға өзгерту"
 
-#, fuzzy
-#| msgctxt "Form button"
-#| msgid "Change Password"
 msgctxt "Developer tools"
 msgid "Change to Free"
-msgstr "Құпиясөзді өзгерту"
+msgstr "Ақызысға өзгерту"
 
 msgctxt "Developer tools"
 msgid "Check"
-msgstr ""
+msgstr "Тесксеру"
 
 msgctxt "Developer tools"
 msgid "Exit"
-msgstr ""
+msgstr "Шығу"
 
 msgctxt "Developer tools"
 msgid "Send for Approval"
-msgstr ""
+msgstr "Келісуге жіберу"
 
 msgctxt "Success alert message"
 msgid ""
 "Thank you. We have received your message and we will get back to you as soon "
 "as possible."
 msgstr ""
+"Бізге жазғаныңыз үшін рақмет! Жақын арада біз Сізге жауап беретін боламыз."
 
 msgctxt "/developer/tests/"
 msgid "Choose test language"
-msgstr ""
+msgstr "Тесттің тілін таңдаңыз"
 
 msgctxt "/developer/tests/"
 msgid "Choose type"
-msgstr ""
+msgstr "Пәннің түрін таңдаңыз"
 
 msgctxt "Test language"
 msgid "Kazakh 1"
-msgstr ""
+msgstr "Бірінші тіл ретінде Қазақ тілі"
 
 msgctxt "Test language"
 msgid "Kazakh 2"
-msgstr ""
+msgstr "Екінші тіл ретінде Қазақ тілі"
 
 msgctxt "Test language"
 msgid "Russian 1"
-msgstr ""
+msgstr "Бірінші тіл ретінде Орыс тілі"
 
 msgctxt "Test language"
 msgid "Russian 2"
-msgstr ""
+msgstr "Екінші тіл ретінде Орыс тілі"
 
 msgctxt "Success alert message"
 msgid "You have created a new Test."
-msgstr ""
+msgstr "Сіз жаңа тест жасадыңыз."
 
 msgctxt "/student/"
 msgid "Test Domain 1"
-msgstr ""
+msgstr "1-Тест"
 
 msgctxt "/student/"
 msgid "Section 1"
-msgstr ""
+msgstr "1-Секция"
 
 msgctxt "/student/"
 msgid "Section 2"
-msgstr ""
+msgstr "2-Секция"
 
 msgctxt "/student/"
 msgid "Section 3"
-msgstr ""
+msgstr "3-Секция"
 
 msgctxt "/student/"
 msgid "Section 4"
-msgstr ""
+msgstr "4-Секция"
 
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
-msgstr ""
+msgstr "%(amount).0f бірлік."
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Discount"
-msgstr ""
+msgstr "Жеңілдік"
 
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
-msgstr ""
+msgstr "-%(amount).0f бірлік."
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Free"
-msgstr ""
+msgstr "Ақысыз"
 
 msgctxt "/student/results/"
 msgid ""
@@ -3086,47 +2780,51 @@ msgid ""
 "to your own results. The score represents an actual average result of NIS "
 "2018 students (data is taken from nis.edu.kz)."
 msgstr ""
+"Сіздің тест нәтижелеріңізді шынайы тестілеу нәтижелерімен салыстыру "
+"мақсатымен біз 2018 жылдағы Назарбаев Зияткерлік мектептеріне іріктеу "
+"тестілеуіне қатысушыларының орташа балын (қызыл сызық) көрсетіп отырмыз (nis."
+"edu.kz сайтынан алынған)."
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(section)s (%(domain)s) - %(language)s"
-msgstr ""
+msgstr "%(section)s (%(domain)s) - %(language)s"
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(section)s (%(domain)s)"
-msgstr ""
+msgstr "%(section)s (%(domain)s)"
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(credits).0f Credits"
-msgstr ""
+msgstr "%(credits).0f бірлік"
 
 #, python-format
 msgctxt "/super/users/"
 msgid "Superuser, you are now logged in as %(name)s. PLEASE BE CAREFUL!"
-msgstr ""
+msgstr "Суперюзер, Сіз сайтқа %(name)s ретінде кірдіңіз. МҰҚИАТ БОЛЫҢЫЗ!"
 
 msgctxt "Error alert message"
 msgid "Could not approve the Test. Please check the Test for correctness."
-msgstr ""
+msgstr "Тест келісуі мүмкін емес. Тест дұрыстығын тексеріңіз."
 
 msgctxt "Success alert message"
 msgid "You have approved the Test."
-msgstr ""
+msgstr "Тест келісілді."
 
 msgctxt "Success alert message"
 msgid "You have refused the Test."
-msgstr ""
+msgstr "Тест қайтарылып жіберілді."
 
 msgctxt "Success alert message"
 msgid "You have deleted the Test."
-msgstr ""
+msgstr "Тест алып тасталды."
 
 msgctxt "Success alert message"
 msgid "Test is now free."
-msgstr ""
+msgstr "Тест ақысыз болып өзгертілді."
 
 msgctxt "Success alert message"
 msgid "Test is now paid."
-msgstr ""
+msgstr "Тест ақылы болып өзгертілді."
