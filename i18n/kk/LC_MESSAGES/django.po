@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-12 12:10+0600\n"
+"POT-Creation-Date: 2018-11-22 02:58+0600\n"
 "PO-Revision-Date: 2018-11-11 22:13-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1872,6 +1872,19 @@ msgstr "Пайдаланушы келісімі"
 msgctxt "Footer navigation link"
 msgid "Contact Us"
 msgstr "Бізбен хабарласыңыз"
+
+#, fuzzy
+#| msgid "page:/:html_title"
+msgid "page:/nis/:html_title"
+msgstr "page:/:html_title"
+
+#, fuzzy
+#| msgid "page:/:html_title"
+msgid "page:/nis/:html_description"
+msgstr "page:/:html_title"
+
+msgid "page:/nis/:nis_button"
+msgstr ""
 
 msgctxt "Badge label under avatar"
 msgid "Administrator"
