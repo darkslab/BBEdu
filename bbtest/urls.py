@@ -2,6 +2,7 @@ from django.conf.urls import url
 from .auth.views import LoginView, LogoutView, RegisterView, PasswordResetView, PasswordResetConfirmView
 from .views.base import (
     HomeView,
+    NisView,
     DashboardView,
     SettingsView,
     BuyCreditsView,
@@ -62,6 +63,7 @@ app_name = "bbtest"
 urlpatterns = [
     # PUBLIC URLS
     url(r"^$",            HomeView.as_view(),      name="home"      ),
+    url(r"^nis/$",        NisView.as_view(),       name="nis"       ),
     url(r"^terms/$",      TermsView.as_view(),     name="terms"     ),
     url(r"^contact-us/$", ContactUsView.as_view(), name="contact_us"),
 
