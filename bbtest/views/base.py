@@ -35,6 +35,16 @@ class HomeView(TemplateView):
         return super().get_context_data(**kwargs)
 
 
+class NisView(TemplateView):
+    template_name = "nis.html"
+
+    def get_context_data(self, **kwargs):
+        for domain in TestDomain.objects.all():
+            if domain.pk == 7911:
+                kwargs["nis"] = domain
+        return super().get_context_data(**kwargs)
+
+
 class DashboardView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return resolve_url(self.request.user)

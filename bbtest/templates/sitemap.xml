@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    {% with lastmod='2018-10-24' %}
+    {% with lastmod='2018-11-21' %}
         <url>
             <loc>{{ BASE_URL }}{% url 'bbtest:home' %}</loc>
+            <lastmod>{{ lastmod }}</lastmod>
+        </url>
+        <url>
+            <loc>{{ BASE_URL }}{% url 'bbtest:nis' %}</loc>
             <lastmod>{{ lastmod }}</lastmod>
         </url>
         <url>
