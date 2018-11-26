@@ -43,7 +43,8 @@ function BranchedResultDetailModule(data) {
         "active-radius": "10%",
         "font-size": 18,
         "font-weight": "bold",
-        "font-color": "#fff"
+        "font-color": "#fff",
+        "percentage": true
     });
     this._progressChart = new ColumnChart($(data.progress_selector), data.progress, max, {
         "avg_value": data.avg,
