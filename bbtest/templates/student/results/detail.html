@@ -93,6 +93,7 @@
                     <div class="tab-content">
                         {% for branch in quiz.stats.detail.branches %}
                             <div class="tab-pane fade" data-result-tab-{{ parent_index }}-{{ index }}="{{ forloop.counter0 }}">
+                                <p class="mt-10 mb-0"><strong>{% blocktrans with max_score=branch.max count score=branch.score %}page:/student/results/:score:{{ score }}:{{ max_score }}{% plural %}page:/student/results/:score:{{ score }}:{{ max_score }}{% endblocktrans %}</strong></p>
                                 {{ branch.texts|safe }}
                             </div>
                         {% endfor %}
