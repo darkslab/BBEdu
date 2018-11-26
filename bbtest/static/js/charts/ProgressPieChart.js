@@ -57,6 +57,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
 
     var current_angle = -90;
     var texts = [];
+    var text_position_radius = this._radius - (this._radius - this._hole_radius) * 0.3333;
     for (var i = 0; i < this._values.length; i++) {
         var group2 = this._createElement("g", {
             "transform": "rotate(" + current_angle + ")"
@@ -132,8 +133,8 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
 
         var group4 = this._createElement("g", {
             "transform": "translate(" + [
-                (this._radius - (this._radius - this._hole_radius) / 2) * Math.cos(this._deg2rad(this._angles[i] / 2)),
-                (this._radius - (this._radius - this._hole_radius) / 2) * Math.sin(this._deg2rad(this._angles[i] / 2))
+                text_position_radius * Math.cos(this._deg2rad(this._angles[i] / 2)),
+                text_position_radius * Math.sin(this._deg2rad(this._angles[i] / 2))
             ].join() + ")" + "rotate(" + (-current_angle) + ")"
         });
         if (this._options["percentage"]) {
@@ -149,6 +150,9 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
             });
             text1.appendChild(document.createTextNode("0%"));
             group4.appendChild(text1);
+            texts.push([
+                text1
+            ]);
         } else {
             var text1 = this._createElement("text", {
                 "x": 0,
@@ -171,7 +175,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
                 "fill": this._options["font-color"],
                 "style": "text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);"
             });
-            text2.appendChild(document.createTextNode("──"));
+            text2.appendChild(document.createTextNode(this._values[i]["max-value"] < 10 ? "─" : "──"));
             var text3 = this._createElement("text", {
                 "x": 0,
                 "y": 0,
@@ -188,6 +192,7 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
             group4.appendChild(text3);
             texts.push([
                 text1,
+                text2,
                 text3
             ]);
         }
@@ -204,8 +209,24 @@ ProgressPieChart.prototype._afterCreate = function(svg) {
     svg.appendChild(group1);
 
     for (var i = 0; i < texts.length; i++) {
-        $(texts[i][0]).attr("y", -(texts[i][0].getBBox().height / 2));
-        $(texts[i][1]).attr("y", texts[i][1].getBBox().height / 2);
+        var text_radius;
+        if (this._options["percentage"]) {
+            text_radius = Math.sqrt(Math.pow(texts[i][0].getBBox().width, 2) + Math.pow(texts[i][0].getBBox().height, 2)) / 2;
+        } else {
+            var text_height = texts[i][0].getBBox().height + texts[i][0].getBBox().height / 2 + texts[i][2].getBBox().height / 2;
+            text_radius = Math.sqrt(Math.pow(texts[i][2].getBBox().width, 2) + Math.pow(text_height, 2)) / 2;
+            text_radius *= 0.75;
+            $(texts[i][0]).attr("y", -(texts[i][0].getBBox().height / 2));
+            $(texts[i][2]).attr("y", texts[i][2].getBBox().height / 2);
+        }
+        if (
+            this._deg2rad(this._angles[i]) < Math.asin(text_radius / text_position_radius) * 2
+            || this._hole_radius > text_position_radius - text_radius
+        ) {
+            texts[i].filter(function(text_node) {
+                $(text_node).attr("opacity", "0");
+            });
+        }
     }
 
     if (this._helpers.length > 0) {

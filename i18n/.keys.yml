@@ -59,3 +59,5 @@ page:
     html_title: ~
     html_description: ~
     nis_button: ~
+  '/student/results/':
+    score: ~
