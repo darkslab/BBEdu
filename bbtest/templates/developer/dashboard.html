@@ -73,13 +73,13 @@
                                         <td class="pr-15 text-center"></td>
                                     {% elif test.is_approved or test.is_pending %}
                                         <td class="pr-15 text-center">
-                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/developer/' %}</a>
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/developer/' %}</a>
                                         </td>
                                     {% elif test.is_draft %}
                                         <td class="pr-15 text-center">
-                                            <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs">{% trans 'Edit' context '/developer/' %}</a>
-                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/developer/' %}</a>
-                                            <button class="btn btn-danger btn-xs" data-delete-test-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
+                                            <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/developer/' %}</a>
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/developer/' %}</a>
+                                            <button class="btn btn-danger btn-xs mr-5 mb-5" data-delete-test-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
                                         </td>
                                     {% endif %}
                                 </tr>
