@@ -46,20 +46,23 @@ class Quiz(Model):
         default_permissions = ()
         ordering = ("order",)
 
-    def score(self, question_ids=None):
+    def score(self, question_ids=None, correct_question_ids_bucket=None):
+        bucket = []
+        if correct_question_ids_bucket is not None:
+            bucket = correct_question_ids_bucket
         score = 0
         if self.report is None:
             return score
 
         if self.test.section.is_nis():
             if self.test.section.pk == 9544:
-                score = self.__calculate_nis_quantitative(question_ids)
+                score = self.__calculate_nis_quantitative(question_ids, bucket)
             else:
-                score = self.__calculate_nis_non_quantitative(question_ids)
+                score = self.__calculate_nis_non_quantitative(question_ids, bucket)
         elif self.test.section.is_unt_compulsory():
-            score = self.__calculate_unt_compulsory(question_ids)
+            score = self.__calculate_unt_compulsory(question_ids, bucket)
         elif self.test.section.is_unt_profile():
-            score = self.__calculate_unt_profile(question_ids)
+            score = self.__calculate_unt_profile(question_ids, bucket)
 
         return score
 
@@ -74,35 +77,45 @@ class Quiz(Model):
                 score += test_question.weight
         return score
 
-    def __calculate_nis_non_quantitative(self, question_ids):
+    def __calculate_nis_non_quantitative(self, question_ids, bucket):
         score = 0
         for i, question in enumerate(self.test.questions.all()):
             if question_ids is not None and question.pk not in question_ids:
                 continue
+            before_score = score
             score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
+            if before_score != score:
+                bucket.append(question.pk)
         return score
 
-    def __calculate_nis_quantitative(self, question_ids):
+    def __calculate_nis_quantitative(self, question_ids, bucket):
         score = 0
         for i, question in enumerate(self.test.questions.all()):
             if question_ids is not None and question.pk not in question_ids:
                 continue
+            before_score = score
             score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
+            if before_score != score:
+                bucket.append(question.pk)
         return round(score / 2)
 
-    def __calculate_unt_compulsory(self, question_ids):
+    def __calculate_unt_compulsory(self, question_ids, bucket):
         score = 0
         for i, question in enumerate(self.test.questions.all()):
             if question_ids is not None and question.pk not in question_ids:
                 continue
+            before_score = score
             score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
+            if before_score != score:
+                bucket.append(question.pk)
         return score
 
-    def __calculate_unt_profile(self, question_ids):
+    def __calculate_unt_profile(self, question_ids, bucket):
         score = 0
         for i, question in enumerate(self.test.questions.all()):
             if question_ids is not None and question.pk not in question_ids:
                 continue
+            before_score = score
             if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
                 score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
             elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
@@ -119,4 +132,6 @@ class Quiz(Model):
                     elif len(correct_answers & report_answers) >= ceil(len(correct_answers) / 2):
                         if len(report_answers - correct_answers) <= 1:
                             score += question.weight / 2
+            if before_score != score:
+                bucket.append(question.pk)
         return score

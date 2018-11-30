@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-26 12:14+0600\n"
+"POT-Creation-Date: 2018-11-30 14:15+0600\n"
 "PO-Revision-Date: 2018-11-11 22:13-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2171,8 +2171,17 @@ msgid "Review correct answers"
 msgstr "Дұрыс жауаптарды қарап шығу"
 
 #, python-format
-msgid "page:/student/results/:score:%(score)s:%(max_score)s"
-msgid_plural "page:/student/results/:score:%(score)s:%(max_score)s"
+msgid "page:/student/results/:score:%(score)s"
+msgid_plural "page:/student/results/:score:%(score)s"
+msgstr[0] ""
+
+#, python-format
+msgid ""
+"page:/student/results/:correct_questions:%(score)s:%(questions_count)s:"
+"%(total_questions_count)s"
+msgid_plural ""
+"page:/student/results/:correct_questions:%(score)s:%(questions_count)s:"
+"%(total_questions_count)s"
 msgstr[0] ""
 
 msgctxt "Results page"
