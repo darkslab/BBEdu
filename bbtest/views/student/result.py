@@ -62,9 +62,13 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                     topic_branches = quiz.test.topic_branches()
                     topic_ids |= set([ topic_branch["topic_id"] for topic_branch in topic_branches ])
                     for i, topic_branch in enumerate(topic_branches):
+                        correct_question_ids = []
+                        score = quiz.score(topic_branch["question_ids"], correct_question_ids)
                         quiz.stats["detail"]["branches"].append({
                             "max": quiz.test.max_score(topic_branch["question_ids"]),
-                            "score": quiz.score(topic_branch["question_ids"]),
+                            "score": score,
+                            "questions_count": len(topic_branch["question_ids"]),
+                            "correct_questions_count": len(correct_question_ids),
                             "colors": tight_dumps([
                                 GOOGLE_COLORS[i % len(GOOGLE_COLORS)],
                                 GOOGLE_COLORS_BLEACHED[i % len(GOOGLE_COLORS_BLEACHED)],

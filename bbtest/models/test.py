@@ -199,7 +199,7 @@ class Test(Model):
                 continue
             score += question.weight
         if self.section_id == 9544:
-            score = round(score / 10)
+            score = round(score / 2)
         return score
 
     def topic_branches(self):
