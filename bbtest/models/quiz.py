@@ -88,7 +88,7 @@ class Quiz(Model):
             if question_ids is not None and question.pk not in question_ids:
                 continue
             score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
-        return round(score / 10)
+        return round(score / 2)
 
     def __calculate_unt_compulsory(self, question_ids):
         score = 0
