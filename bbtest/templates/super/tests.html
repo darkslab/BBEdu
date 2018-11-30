@@ -77,21 +77,21 @@
                                     <td class="text-center">{{ test.sales_count }}/{{ test.completed_count }}</td>
                                     {% if test.is_archived or test.is_approved %}
                                         <td class="pr-15 text-center">
-                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/super/tests/' %}</a>
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/tests/' %}</a>
                                         </td>
                                     {% elif test.is_pending %}
                                         <td class="pr-15 text-center">
-                                            <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs">{% trans 'Edit' context '/super/tests/' %}</a>
-                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/super/tests/' %}</a>
+                                            <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/super/tests/' %}</a>
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/tests/' %}</a>
                                         </td>
                                     {% elif test.is_draft %}
                                         <td class="pr-15 text-center">
                                             {% if test.developer|has_perm:'bbtest.super' %}
-                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs">{% trans 'Edit' context '/developer/' %}</a>
+                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/developer/' %}</a>
                                             {% endif %}
-                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs">{% trans 'Preview' context '/developer/' %}</a>
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/developer/' %}</a>
                                             {% if test.developer == user %}
-                                                <button class="btn btn-danger btn-xs" data-delete-test-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
+                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-delete-test-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
                                             {% endif %}
                                         </td>
                                     {% endif %}
