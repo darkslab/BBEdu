@@ -1268,3 +1268,31 @@ html {
         margin-left: -150px;
     }
 }
+
+.bb-whatsapp-container {
+    position: fixed;
+    right: -180px;
+    bottom: 15px;
+    width: 180px;
+    height: 60px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #fafafa;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    -webkit-transition: right .3s ease-in-out;
+         -o-transition: right .3s ease-in-out;
+            transition: right .3s ease-in-out;
+}
+
+.bb-whatsapp-container .bb-whatsapp-number {
+    line-height: 60px;
+}
+
+.bb-whatsapp-container.bb-whatsapp-pulled {
+    right: -120px;
+}
+
+.bb-whatsapp-container.bb-whatsapp-focused {
+    right: 0px;
+}
