@@ -72,17 +72,6 @@ class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin
     form_class = BuyCreditsForm
     success_url = reverse_lazy("bbtest:buy_credits_qazkom")
 
-    def get_initial(self):
-        amount = Decimal("0.00")
-        for item in self.cart_handle():
-            if isinstance(item, CreditItem):
-                amount += item.total()
-        if amount.is_zero():
-            amount = Decimal("800.00")
-        return {
-            "amount": int(amount),
-        }
-
     def form_valid(self, form):
         old_items = []
         for item in self.cart_handle():
