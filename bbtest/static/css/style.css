@@ -91,6 +91,9 @@
 .table.table-pressed > tfoot > tr > td {
     line-height: normal;
 }
+.btn-wrappable {
+    white-space: normal;
+}
 
 
 /**
