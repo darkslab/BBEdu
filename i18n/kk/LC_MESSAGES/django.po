@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-07 14:41+0600\n"
-"PO-Revision-Date: 2018-11-11 22:13-0800\n"
+"POT-Creation-Date: 2018-12-12 14:03+0600\n"
+"PO-Revision-Date: 2018-12-12 01:07-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2\n"
 
 msgctxt "Form label"
@@ -167,7 +167,7 @@ msgstr "Бұл құпиясөз өте оңай. Тағы ойланып көр�
 
 msgctxt "Password validation help text"
 msgid "The password can't be a commonly used password."
-msgstr "Бұл құпиясөз өте оңай. Тағы ойланып көріңіз."
+msgstr "Құпиясөз өте оңай болмауы тиіс."
 
 msgctxt "Success alert message"
 msgid "Password was reset successfully."
@@ -325,7 +325,7 @@ msgstr "Мета мәліметтерін енгізіңіз."
 
 msgctxt "Validation error"
 msgid "Please select test section."
-msgstr "Тестті таңдаңыз."
+msgstr "Тестіні таңдаңыз."
 
 msgctxt "Validation error"
 msgid "Incorrect test section value."
@@ -364,30 +364,35 @@ msgctxt "Validation error"
 msgid "There has to be %(count)s question in taxonomy: %(taxonomy)s."
 msgid_plural "There has to be %(count)s questions in taxonomy: %(taxonomy)s."
 msgstr[0] "%(taxonomy)s бағалау мақсаты бойынша %(count)s сұрақ болуы тиіс."
+msgstr[1] "%(taxonomy)s бағалау мақсаты бойынша %(count)s сұрақтар болуы тиіс."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s question in topic: %(topic)s."
 msgid_plural "There has to be %(count)s questions in topic: %(topic)s."
 msgstr[0] "%(topic)s тақырып бойынша %(count)s сұрақ болуы тиіс."
+msgstr[1] "%(topic)s тақырып бойынша %(count)s сұрақтар болуы тиіс."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s high difficulty question."
 msgid_plural "There has to be %(count)s high difficulty questions."
-msgstr[0] "Күрделілік деңгейі жоғары  %(count)s сұрақ болуы тиіс."
+msgstr[0] "Күрделілік деңгейі жоғары %(count)s сұрақ болуы тиіс."
+msgstr[1] "Күрделілік деңгейі жоғары %(count)s сұрақтар болуы тиіс."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s normal difficulty question."
 msgid_plural "There has to be %(count)s normal difficulty questions."
-msgstr[0] "Күрделілік деңгейі орта  %(count)s сұрақ болуы тиіс."
+msgstr[0] "Күрделілік деңгейі орта %(count)s сұрақ болуы тиіс."
+msgstr[1] "Күрделілік деңгейі орта %(count)s сұрақтар болуы тиіс."
 
 #, python-format
 msgctxt "Validation error"
 msgid "There has to be %(count)s low difficulty question."
 msgid_plural "There has to be %(count)s low difficulty questions."
-msgstr[0] "Күрделілік деңгейі төмен  %(count)s сұрақ болуы тиіс."
+msgstr[0] "Күрделілік деңгейі төмен %(count)s сұрақ болуы тиіс."
+msgstr[1] "Күрделілік деңгейі төмен %(count)s сұрақтар болуы тиіс."
 
 msgctxt "Validation error"
 msgid "Some questions do not have a topic assigned to it."
@@ -487,25 +492,25 @@ msgid "Numbers and Fractional Arithmetic Operations"
 msgstr "Числа и арифметические операции с дробями"
 
 msgid "Measurement Units and Data"
-msgstr ""
+msgstr "Өлшеу бірліктері мен деректер"
 
 msgid "Notation"
-msgstr ""
+msgstr "Сандар жүйесі"
 
 msgid "Expressions and Equations"
-msgstr ""
+msgstr "Өрнек және теңдеулер"
 
 msgid "Functions"
-msgstr ""
+msgstr "Функциялар"
 
 msgid "Modeling"
-msgstr ""
+msgstr "Модельдеу"
 
 msgid "Scores"
-msgstr ""
+msgstr "Жиын"
 
 msgid "Sequence Rules"
-msgstr ""
+msgstr "Тізбектер заңдылығы"
 
 msgid "Statistics"
 msgstr "Статистика"
@@ -550,7 +555,7 @@ msgid "Health"
 msgstr "Денсаулық"
 
 msgid "Traditions"
-msgstr "Салт дәстүр"
+msgstr "Салт-дәстүр"
 
 msgid "Upbringing"
 msgstr "Тәрбие"
@@ -568,7 +573,7 @@ msgid "Fables and Fairy Tales"
 msgstr "Ертегілер"
 
 msgid "NIS"
-msgstr "Назарбаев Зияткерлік мектептеріне түсу тесті"
+msgstr "НЗМ"
 
 msgid "Mathematics"
 msgstr "Математика"
@@ -586,7 +591,7 @@ msgid "Quantitative"
 msgstr "Сандық сипаттамалар"
 
 msgid "UNT"
-msgstr "Ұлттық біріңғай тестілеу"
+msgstr "ҰБТ"
 
 msgid "Numeracy"
 msgstr "Математикалық сауаттылық"
@@ -880,10 +885,10 @@ msgid "Syntax and punctuation"
 msgstr "Синтаксис және пунктуация"
 
 msgid "Theory of Literature"
-msgstr ""
+msgstr "Әдебиет теориясы"
 
 msgid "Biography"
-msgstr ""
+msgstr "Биография"
 
 msgid "Literary criticism"
 msgstr ""
@@ -1551,8 +1556,7 @@ msgstr "Құпиясөзді өзгерту"
 msgctxt "/password_reset/"
 msgid "Please provide your email to get a reset link"
 msgstr ""
-"Құпиясөзді өзгерту бойынша сілтемені алу үшін электрондық поштаңызды "
-"енгізіңіз"
+"Құпиясөзді өзгерту сілтемесін алу үшін электрондық поштаңызды енгізіңіз"
 
 msgctxt "Form link"
 msgid "Go back to Login"
@@ -1654,7 +1658,7 @@ msgstr "Авторлық құқық Құрастырушыдан Тапсыры�
 msgctxt "Developer acknowledgement page"
 msgid "Plan A line 4."
 msgstr ""
-"Құрастырушы тест сұрақтарының психометриялық талдау нәтижелерін алмайды."
+"Құрастырушы тест сұрақтарының психометрикалық талдау нәтижелерін алмайды."
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 1."
@@ -1772,7 +1776,7 @@ msgstr "Тестіні жүктеу"
 
 msgctxt "/developer/tests/"
 msgid "Entrance Tests"
-msgstr "Қабылдаы тестілері"
+msgstr "Қабылдау тестілері"
 
 msgctxt "/developer/tests/"
 msgid "Test Specification"
@@ -1861,12 +1865,12 @@ msgid ""
 "Get a detailed test result analysis, find out your current skills and "
 "knowledge. Check out your progress and get better."
 msgstr ""
-"Тест нәтижелеріңнің толық талдауын ал да өзіңнің білім мен қабілеттілік "
-"деңгейіңді біл. Өзіңді жетілдіріп, әрі қарай өрле."
+"Тест нәтижелерінің толық талдауын ал да, білім мен қабілеттілік деңгейіңді "
+"біл. Өзіңді жетілдіріп, әрі қарай өрле."
 
 msgctxt "Home page"
 msgid "Connect with us"
-msgstr "Біз әлеуметтік желіде"
+msgstr "Бізді әлеуметтік желіде табыңыз"
 
 msgctxt "Footer navigation link"
 msgid "Terms"
@@ -1876,18 +1880,18 @@ msgctxt "Footer navigation link"
 msgid "Contact Us"
 msgstr "Бізбен хабарласыңыз"
 
-#, fuzzy
-#| msgid "page:/:html_title"
 msgid "page:/nis/:html_title"
-msgstr "page:/:html_title"
+msgstr ""
+"Назарбаев Зияткерлік мектептерінің 7-сыныптарына түсуге арналған байқау тесті"
 
-#, fuzzy
-#| msgid "page:/:html_title"
 msgid "page:/nis/:html_description"
-msgstr "page:/:html_title"
+msgstr ""
+"Тест нәтижелеріңнің толық талдауы бар ыңғайлы онлайн тестілеу платформасы. "
+"Назарбаев Зияткерлік мектептерінің 7-сыныптарына түсуге арналған байқау "
+"тесті."
 
 msgid "page:/nis/:nis_button"
-msgstr ""
+msgstr "Назарбаев Зияткерлік мектептеріне түсуге арналған байқау тесті"
 
 msgctxt "Badge label under avatar"
 msgid "Administrator"
@@ -1900,7 +1904,7 @@ msgstr "Құрастырушы"
 #, python-format
 msgctxt "Total credits"
 msgid "Balance: %(balance)s cred."
-msgstr "Шот: %(balance)s бірлік."
+msgstr "Шотыңызда: %(balance)s бірлік."
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -1944,12 +1948,12 @@ msgstr "Транзакциялар"
 
 msgctxt "Page title"
 msgid "Choose the test domain"
-msgstr "Тестті таңдаңыз"
+msgstr "Тестіні таңдаңыз"
 
 #, python-format
 msgctxt "Page title"
 msgid "Select tests for %(domain_name)s"
-msgstr "%(domain_name)s тестінің пәндерін таңдаңыз"
+msgstr "%(domain_name)s пәндерін таңдаңыз"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Something went wrong. Please refresh the page."
@@ -1985,11 +1989,11 @@ msgstr "Ұзақтығы: %(minutes)s минут."
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Total:"
-msgstr "Барлығы:"
+msgstr "Бағасы:"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy tests"
-msgstr "Тест сатып алу"
+msgstr "Тестіні сатып алу"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy credits"
@@ -2027,7 +2031,7 @@ msgstr "Орташа балл %(question_icon_start)s%(avg_msg)s%(question_icon_
 
 msgctxt "/student/"
 msgid "Go to results page"
-msgstr "Тест нәтижелеріне бару"
+msgstr "Тест нәтижелерін тексеру"
 
 msgctxt "/student/"
 msgid "You have not taken any tests."
@@ -2072,7 +2076,7 @@ msgstr "Жалғастыру"
 
 msgctxt "Exam"
 msgid "Go to Results"
-msgstr "Тест нәтижелеріне бару"
+msgstr "Тест нәтижелерін тексеру"
 
 msgctxt "Exam"
 msgid "Buy new tests"
@@ -2133,11 +2137,11 @@ msgstr "Уақыт аяқталды. Келесі тестіге өтіңіз."
 
 msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
-msgstr "Тест аяқталды. Тест нәтижелеріне барыңыз."
+msgstr "Тестілеу аяқталды. Тест нәтижелерін тексеріңіз."
 
 msgctxt "/student/results/xxxx/"
 msgid "Go back to results"
-msgstr "Тест нәтижелеріне бару"
+msgstr "Тест нәтижелерін тексеру"
 
 msgctxt "Page title"
 msgid "Test Results"
@@ -2176,7 +2180,8 @@ msgstr "Дұрыс жауаптарды қарап шығу"
 #, python-format
 msgid "page:/student/results/:score:%(score)s"
 msgid_plural "page:/student/results/:score:%(score)s"
-msgstr[0] ""
+msgstr[0] "%(score)s балл"
+msgstr[1] "%(score)s балл"
 
 #, python-format
 msgid ""
@@ -2186,6 +2191,11 @@ msgid_plural ""
 "page:/student/results/:correct_questions:%(score)s:%(questions_count)s:"
 "%(total_questions_count)s"
 msgstr[0] ""
+"Сіз бұл тарау бойынша %(questions_count)s сұраққа дұрыс жауап беріп, "
+"%(total_questions_count)s баллдан (%(score)s) балл жинадыңыз"
+msgstr[1] ""
+"Сіз бұл тарау бойынша %(questions_count)s сұраққа дұрыс жауап беріп, "
+"%(total_questions_count)s баллдан (%(score)s) балл жинадыңыз"
 
 msgctxt "Results page"
 msgid "You can see your results and follow the progress on this test section."
@@ -2225,7 +2235,7 @@ msgstr "Транзакция жоқ"
 
 msgctxt "/student/transactions/"
 msgid "Buy credits and start taking tests."
-msgstr "Бірлік сатып алу және тестіні бастау."
+msgstr "Бірлік сатып алу және тестілеуді бастау."
 
 msgctxt "/student/transactions/"
 msgid "Buy credits"
@@ -2296,7 +2306,8 @@ msgstr "Дереу сұраныс"
 msgctxt "/super/"
 msgid "%(counter)s test left"
 msgid_plural "%(counter)s tests left"
-msgstr[0] "%(counter)s  тест қалды"
+msgstr[0] "%(counter)s тест қалды"
+msgstr[1] "%(counter)s тест қалды"
 
 msgctxt "/super/"
 msgid "All Tests"
@@ -2328,7 +2339,7 @@ msgstr "Барлық қолданушылар"
 
 msgctxt "/super/"
 msgid "Tests by Developers"
-msgstr "Тестілеуді құрастырушы"
+msgstr "Тестілеуді құрастырушылар"
 
 msgctxt "Page title"
 msgid "All Quizzes"
@@ -2371,12 +2382,14 @@ msgctxt "/super/quizzes/"
 msgid "Timed out in %(minutes)s minute"
 msgid_plural "Timed out in %(minutes)s minutes"
 msgstr[0] "%(minutes)s минуттан кейін уақыты аяқталды"
+msgstr[1] "%(minutes)s минуттан кейін уақыты аяқталды"
 
 #, python-format
 msgctxt "/super/quizzes/"
 msgid "Finished in ~%(minutes)s minute"
 msgid_plural "Finished in ~%(minutes)s minutes"
 msgstr[0] "~%(minutes)s минутта орындалды"
+msgstr[1] "~%(minutes)s минутта орындалды"
 
 msgctxt "/super/quizzes/"
 msgid "Not started"
@@ -2541,7 +2554,7 @@ msgstr "Тақырып"
 
 msgctxt "Developer tools"
 msgid "Add Section"
-msgstr "Бөлім қосу"
+msgstr "Бөлімді қосу"
 
 msgctxt "Developer tools"
 msgid "Type your question here"
