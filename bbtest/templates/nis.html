@@ -1,5 +1,5 @@
 {% extends './base_0.html' %}
-{% load static i18n permission %}
+{% load static i18n permission i18nurl %}
 
 {% block window_title %}{% trans 'page:/nis/:html_title' %}{% endblock %}
 
@@ -49,11 +49,35 @@
                                                         <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
                                                     </ul>
                                                 </li>
+                                                <li class="bb-lang-container container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-xs-6 col-sm-12 pr-5 pl-5">
+                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block text-right visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                        </div>
+                                                        <div class="col-xs-6 col-sm-12 pr-5 pl-5">
+                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block text-left visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                        </div>
+                                                    </div>
+                                                </li>
                                             </ul>
                                         {% else %}
                                             <ul class="nav navbar-nav navbar-right">
                                                 <li><a href="{% url 'bbtest:login' %}">{% trans 'Login' context 'Navigation link' %}</a></li>
                                                 <li><a href="{% url 'bbtest:register' %}">{% trans 'Register' context 'Navigation link' %}</a></li>
+                                                <li class="bb-lang-container container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-xs-6 col-sm-12 pr-5 pl-5">
+                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block text-right visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                        </div>
+                                                        <div class="col-xs-6 col-sm-12 pr-5 pl-5">
+                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block text-left visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                        </div>
+                                                    </div>
+                                                </li>
                                             </ul>
                                         {% endif %}
                                     </div>
@@ -67,13 +91,13 @@
                         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3 bb-home-section-0-info bb-nis-section-0-info">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nis.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-warning btn-lg btn-block visible-lg-block">
+                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nis.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-warning btn-lg btn-block btn-wrappable visible-lg-block">
                                         <h4 class="mt-0 mb-0 pt-5 pb-5">{% trans 'page:/nis/:nis_button' %}</h4>
                                     </a>
-                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nis.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-warning btn-block hidden-lg hidden-xs">
+                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nis.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-warning btn-block btn-wrappable hidden-lg hidden-xs">
                                         <h5 class="mt-0 mb-0 pt-5 pb-5">{% trans 'page:/nis/:nis_button' %}</h5>
                                     </a>
-                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nis.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-warning btn-xs btn-block visible-xs-block" style="white-space: normal;">
+                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nis.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-warning btn-xs btn-block btn-wrappable visible-xs-block">
                                         <h6 class="mt-0 mb-0 pt-5 pb-5">{% trans 'page:/nis/:nis_button' %}</h6>
                                     </a>
                                 </div>

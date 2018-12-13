@@ -1,5 +1,5 @@
 {% extends './base_0.html' %}
-{% load static i18n %}
+{% load static i18n i18nurl %}
 
 {% block _d0_body_class %}bb-body-personalized{% endblock %}
 
@@ -71,6 +71,16 @@
                         <li class="{% block nav_base_settings_class %}{% endblock %}"><a href="{% url 'bbtest:settings' %}"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
                         <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
                     </ul>
+                    <div class="col-xs-12 text-bright mt-10 bb-lang-container pt-0 pr-5 pl-5">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5 pl-5 text-right">
+                                <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                            </div>
+                            <div class="col-xs-6 pr-5 pl-5 text-left">
+                                <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row bb-menu-section bb-menu-section-last pt-15 pb-15 pr-30 pl-30">
                     <div class="col-xs-4 pr-0 pl-0">
@@ -110,6 +120,16 @@
                                             <li class="divider"></li>
                                             <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
                                         </ul>
+                                    </li>
+                                    <li class="bb-lang-container bb-lang-inverse container-fluid">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-12 pr-5 pl-5">
+                                                <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-12 pr-5 pl-5">
+                                                <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                            </div>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
