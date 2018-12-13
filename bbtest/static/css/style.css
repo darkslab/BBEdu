@@ -114,6 +114,14 @@
     overflow-x: hidden;
     text-overflow: ellipsis;
 }
+.dropdown-menu .divider {
+    margin: 0px;
+}
+@media (min-width: 768px) {
+    .dropdown-menu .divider {
+        margin: 10.5px 0;
+    }
+}
 
 
 /**
@@ -207,7 +215,7 @@ html {
 }
 
 .bb-min {
-    min-height: 660px;
+    min-height: 740px;
 }
 
 .bb-min-220 {
@@ -1298,4 +1306,45 @@ html {
 
 .bb-whatsapp-container.bb-whatsapp-focused {
     right: 0px;
+}
+
+.bb-lang-container {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 7px 5px 0 15px;
+}
+@media (min-width: 768px) {
+    .bb-lang-container {
+        padding-top: 14px;
+        max-width: 44px;
+    }
+}
+
+.bb-lang-container .row {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.bb-lang-container a {
+    color: inherit;
+}
+
+.bb-lang-container.bb-lang-inverse a {
+    color: #b2dbfb;
+}
+
+.bb-lang-container a.active {
+    font-weight: bold;
+}
+
+.bb-lang-container a:hover,
+.bb-lang-container a:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+.bb-lang-container.bb-lang-inverse a:hover,
+.bb-lang-container.bb-lang-inverse a:focus {
+    color: #ffffff;
+    background-color: transparent;
 }

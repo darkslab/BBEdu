@@ -1,5 +1,5 @@
 {% extends './base_0.html' %}
-{% load static i18n %}
+{% load static i18n i18nurl %}
 
 {% block _d0_body_class %}bb-body-public {% block extended_footer %}bb-body-public-extended{% endblock %}{% endblock %}
 
@@ -33,11 +33,35 @@
                                                 <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
                                             </ul>
                                         </li>
+                                        <li class="bb-lang-container container-fluid">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-12 pr-5 pl-5">
+                                                    <a href="{% change_lang LANGUAGE_CODE_KK %}" class="center-block text-right visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                    <a href="{% change_lang LANGUAGE_CODE_KK %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-12 pr-5 pl-5">
+                                                    <a href="{% change_lang LANGUAGE_CODE_RU %}" class="center-block text-left visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                    <a href="{% change_lang LANGUAGE_CODE_RU %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                </div>
+                                            </div>
+                                        </li>
                                     </ul>
                                 {% else %}
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><a href="{% url 'bbtest:login' %}">{% trans 'Login' context 'Navigation link' %}</a></li>
                                         <li><a href="{% url 'bbtest:register' %}">{% trans 'Register' context 'Navigation link' %}</a></li>
+                                        <li class="bb-lang-container container-fluid">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-12 pr-5 pl-5">
+                                                    <a href="{% change_lang LANGUAGE_CODE_KK %}" class="center-block text-right visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                    <a href="{% change_lang LANGUAGE_CODE_KK %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-12 pr-5 pl-5">
+                                                    <a href="{% change_lang LANGUAGE_CODE_RU %}" class="center-block text-left visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                    <a href="{% change_lang LANGUAGE_CODE_RU %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                </div>
+                                            </div>
+                                        </li>
                                     </ul>
                                 {% endif %}
                             </div>
