@@ -1,24 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    {% with lastmod='2018-11-21' %}
+{% load i18nurl %}<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    {% with lastmod='2018-12-13' %}
         <url>
-            <loc>{{ BASE_URL }}{% url 'bbtest:home' %}</loc>
+            {% url 'bbtest:home' as next_url %}
+            <loc>{{ BASE_URL }}{{ next_url }}</loc>
+            <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_KK }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_KK }}" />
+            <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_RU }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_RU }}" />
             <lastmod>{{ lastmod }}</lastmod>
         </url>
         <url>
-            <loc>{{ BASE_URL }}{% url 'bbtest:nis' %}</loc>
+            {% url 'bbtest:nis' as next_url %}
+            <loc>{{ BASE_URL }}{{ next_url }}</loc>
+            <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_KK }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_KK }}" />
+            <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_RU }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_RU }}" />
             <lastmod>{{ lastmod }}</lastmod>
         </url>
         <url>
-            <loc>{{ BASE_URL }}{% url 'bbtest:register' %}</loc>
+            {% url 'bbtest:register' as next_url %}
+            <loc>{{ BASE_URL }}{{ next_url }}</loc>
+            <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_KK }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_KK }}" />
+            <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_RU }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_RU }}" />
             <lastmod>{{ lastmod }}</lastmod>
         </url>
         <url>
-            <loc>{{ BASE_URL }}{% url 'bbtest:contact_us' %}</loc>
+            {% url 'bbtest:contact_us' as next_url %}
+            <loc>{{ BASE_URL }}{{ next_url }}</loc>
+            <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_KK }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_KK }}" />
+            <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_RU }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_RU }}" />
             <lastmod>{{ lastmod }}</lastmod>
         </url>
         <url>
-            <loc>{{ BASE_URL }}{% url 'bbtest:terms' %}</loc>
+            {% url 'bbtest:terms' as next_url %}
+            <loc>{{ BASE_URL }}{{ next_url }}</loc>
+            <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_KK }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_KK }}" />
+            <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_RU }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_RU }}" />
             <lastmod>{{ lastmod }}</lastmod>
         </url>
     {% endwith %}
