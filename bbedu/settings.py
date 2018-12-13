@@ -358,3 +358,7 @@ CACHES = {
         "LOCATION": SECRETS["CACHES_DEFAULT_LOCATION"],
     }
 }
+
+FORMAT_MODULE_PATH = [
+    "bbtest.formats",
+]
