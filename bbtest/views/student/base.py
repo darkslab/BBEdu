@@ -44,6 +44,7 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
                     "section": {
                         "name": pgettext("/student/", "Section 1"),
                     },
+                    "code": "45AD",
                 },
                 "is_finished": True,
                 "stats": {
@@ -61,6 +62,7 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
                     "section": {
                         "name": pgettext("/student/", "Section 2"),
                     },
+                    "code": "F4B1",
                 },
                 "is_finished": True,
                 "stats": {
@@ -78,6 +80,7 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
                     "section": {
                         "name": pgettext("/student/", "Section 3"),
                     },
+                    "code": "8C73",
                 },
                 "is_finished": True,
                 "stats": {
@@ -95,6 +98,7 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
                     "section": {
                         "name": pgettext("/student/", "Section 4"),
                     },
+                    "code": "14EF",
                 },
                 "is_finished": True,
                 "stats": {
