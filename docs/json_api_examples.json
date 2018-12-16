@@ -182,11 +182,17 @@
     "totals": {
         "line_items": [
             {
-                "description": "Item 1",
+                "description": [
+                    "Item 1",
+                    "Variant 1234"
+                ],
                 "amount": "120 cred."
             },
             {
-                "description": "Item 2",
+                "description": [
+                    "Item 2",
+                    "Variant 1235"
+                ],
                 "amount": "240 cred."
             }
             // ...

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-16 17:39+0600\n"
-"PO-Revision-Date: 2018-12-16 13:26-0800\n"
+"POT-Creation-Date: 2018-12-17 03:55+0600\n"
+"PO-Revision-Date: 2018-12-16 13:56-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -2826,6 +2826,10 @@ msgstr "3-Секция"
 msgctxt "/student/"
 msgid "Section 4"
 msgstr "4-Секция"
+
+#, python-format
+msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
+msgstr "%(test_code)s нұсқасы"
 
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"

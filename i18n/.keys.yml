@@ -61,6 +61,8 @@ page:
     nis_button: ~
   '/student/':
     last_results_header: ~
+  '/student/buy-tests/xxxx/':
+    test_variant: ~
   '/student/results/':
     score: ~
     correct_questions: ~
