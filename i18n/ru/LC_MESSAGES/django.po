@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 03:55+0600\n"
-"PO-Revision-Date: 2018-12-16 13:56-0800\n"
+"POT-Creation-Date: 2018-12-17 05:02+0600\n"
+"PO-Revision-Date: 2018-12-16 15:06-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -2144,6 +2144,16 @@ msgstr "Время вышло. Пройдите к следующему пред
 msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
 msgstr "Тест завершен. Вы можете перейти к результатам."
+
+#, python-format
+msgid "page:/student/results/xxxx/:window_title:%(section_name)s;%(code)s"
+msgstr "%(section_name)s (%(code)s)"
+
+#, python-format
+msgid ""
+"page:/student/results/xxxx/:title:%(section_name)s;%(code)s;%(span_open)s;"
+"%(span_close)s"
+msgstr "%(section_name)s %(span_open)sВариант %(code)s%(span_close)s"
 
 msgctxt "/student/results/xxxx/"
 msgid "Go back to results"

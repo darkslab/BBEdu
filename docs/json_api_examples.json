@@ -260,7 +260,10 @@
 
 {
     "status": "queued",
-    "section": "Математика",
+    "section": [
+        "Математика",
+        "1234"
+    ],
     "instructions": [
         [
             "Lorem ipsum.",
@@ -273,6 +276,10 @@
 // or
 {
     "status": "started",
+    "section": [  // optional
+        "Математика",
+        "1234"
+    ],
     "seconds": 3600,
     "questions": [
         {

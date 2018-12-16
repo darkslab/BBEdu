@@ -68,6 +68,9 @@ page:
     correct_questions: ~
     bundle_header: ~
     row_caption: ~
+  '/student/results/xxxx/':
+    window_title: ~
+    title: ~
   '/student/transactions/':
     line_item_credits: ~
     line_item_test: ~

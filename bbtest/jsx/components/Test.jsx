@@ -44,7 +44,7 @@ class Test extends React.Component {
                 content = (
                     <div className="panel panel-default">
                         <div className="panel-body">
-                            <h3 className="text-center mb-15">{this._statusData.section}</h3>
+                            <h3 className="text-center mb-15">{this._statusData.section[0]} <span className="label label-default">{this._statusData.section[1]}</span></h3>
                             {instructions}
                             <div className="text-center mb-23">
                                 <div className="visible-xs-block">
@@ -73,6 +73,17 @@ class Test extends React.Component {
                 );
                 break;
             case "started":
+                let header = null;
+                if (this._statusData.section !== undefined) {
+                    header = (
+                        <div className="row">
+                            <div className="col-xs-12">
+                                <h4 className="text-center mt-0 mb-23">{this._statusData.section[0]} <span className="label label-default">{this._statusData.section[1]}</span></h4>
+                            </div>
+                        </div>
+                    );
+                }
+
                 let bottomPaginationLeft = null;
                 let bottomPaginationRight = null;
                 if (this._statusData.questionIndex > 0) {
@@ -119,6 +130,7 @@ class Test extends React.Component {
 
                 content = (
                     <React.Fragment>
+                        {header}
                         <div className="row">
                             <div className="col-xs-12 text-center hidden-xs">
                                 <ul className="pagination mt-0 mb-0">{this._paginationElements(13)}</ul>
@@ -300,6 +312,9 @@ class Test extends React.Component {
                         questionsCount: data.questions.length,
                         timer: setTimeout(this._tick.bind(this), 1000)
                     };
+                    if (data.section !== undefined) {
+                        this._statusData.section = data.section;
+                    }
                 }
                 break;
             case "expired":
