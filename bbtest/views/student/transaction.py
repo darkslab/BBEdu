@@ -1,6 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Prefetch
-from django.utils.translation import ugettext as _, pgettext
 from decimal import Decimal
 from django.shortcuts import get_object_or_404
 from bbtest.views.generic import TemplateView
@@ -18,18 +17,16 @@ def prepare_carts(carts):
             if not issubclass(line_item.item_class_class(), TestItem):
                 continue
             test_ids.add(line_item.meta_data["test_id"])
-    test_display_descriptions = {}
+    display_data = {}
     for test in Test.objects.filter(pk__in=test_ids).select_related("section__domain"):
         if test.language != Test.LANGUAGE_XX:
-            test_display_descriptions[test.pk] = pgettext("/student/transactions/xxxx/", "%(section)s (%(domain)s) - %(language)s") % {
-                "section": _(test.section.name),
-                "domain": _(test.section.domain.name),
+            display_data[test.pk] = {
+                "test": test,
                 "language": next(test_language[1] for test_language in Test.LANGUAGES if test_language[0] == test.language),
             }
         else:
-            test_display_descriptions[test.pk] = pgettext("/student/transactions/xxxx/", "%(section)s (%(domain)s)") % {
-                "section": _(test.section.name),
-                "domain": _(test.section.domain.name),
+            display_data[test.pk] = {
+                "test": test,
             }
 
     for cart in carts:
@@ -39,11 +36,14 @@ def prepare_carts(carts):
             cart.total = cart.total + line_item.price - line_item.discount
             if issubclass(line_item.item_class_class(), CreditItem):
                 cart.actual_money = True
-                line_item.display_description = pgettext("/student/transactions/xxxx/", "%(credits).0f Credits") % {
-                    "credits": line_item.price,
+                line_item.display_data = {
+                    "type": "credits",
                 }
             elif issubclass(line_item.item_class_class(), TestItem):
-                line_item.display_description = test_display_descriptions[line_item.meta_data["test_id"]]
+                line_item.display_data = {
+                    "type": "test",
+                }
+                line_item.display_data.update(display_data[line_item.meta_data["test_id"]])
         cart.total -= cart.discount
 
 

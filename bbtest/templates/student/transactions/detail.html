@@ -16,7 +16,17 @@
                 {% for line_item in cart.line_items.all %}
                     <li class="list-group-item pt-10 pb-10">
                         <div class="row">
-                            <div class="col-sm-10">{{ line_item.display_description }}</div>
+                            {% if line_item.display_data.type == 'credits' %}
+                                <div class="col-sm-10">{% blocktrans with price=line_item.price|floatformat:'0' %}page:/student/transactions/:line_item_credits:{{ price }}{% endblocktrans %}</div>
+                            {% elif line_item.display_data.type == 'test' %}
+                                {% trans line_item.display_data.test.section.name as section_name %}
+                                {% trans line_item.display_data.test.section.domain.name as domain_name %}
+                                {% if line_item.display_data.language %}
+                                    <div class="col-sm-10">{% blocktrans with test_code=line_item.display_data.test.code|upper language=line_item.display_data.language span_open='<span class="label label-default">' span_close='</span>' %}page:/student/transactions/:line_item_test_with_language:{{ section_name }};{{ test_code }};{{ domain_name }};{{ language }};{{ span_open }};{{ span_close }}{% endblocktrans %}</div>
+                                {% else %}
+                                    <div class="col-sm-10">{% blocktrans with test_code=line_item.display_data.test.code|upper span_open='<span class="label label-default">' span_close='</span>' %}page:/student/transactions/:line_item_test:{{ section_name }};{{ test_code }};{{ domain_name }};{{ span_open }};{{ span_close }}{% endblocktrans %}</div>
+                                {% endif %}
+                            {% endif %}
                             <div class="col-sm-2 text-right"><strong>{% blocktrans with price=line_item.price|floatformat:'0' context '/student/transactions/xxxx/' %}{{ price }} cred.{% endblocktrans %}</strong></div>
                         </div>
                         {% if line_item.discount > 0 %}

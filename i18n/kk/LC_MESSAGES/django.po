@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-16 16:07+0600\n"
-"PO-Revision-Date: 2018-12-16 02:14-0800\n"
+"POT-Creation-Date: 2018-12-16 16:57+0600\n"
+"PO-Revision-Date: 2018-12-16 03:02-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -1904,7 +1904,7 @@ msgstr "Құрастырушы"
 #, python-format
 msgctxt "Total credits"
 msgid "Balance: %(balance)s cred."
-msgstr "Шотыңызда: %(balance)s бірлік."
+msgstr "Шотыңызда: %(balance)s бірлік"
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -2254,9 +2254,29 @@ msgid "Transaction #%(order_id)s"
 msgstr "Транзакция №%(order_id)s"
 
 #, python-format
+msgid "page:/student/transactions/:line_item_credits:%(price)s"
+msgstr "%(price)s бірлік"
+
+#, python-format
+msgid ""
+"page:/student/transactions/:line_item_test_with_language:%(section_name)s;"
+"%(test_code)s;%(domain_name)s;%(language)s;%(span_open)s;%(span_close)s"
+msgstr ""
+"%(section_name)s %(span_open)s%(domain_name)s%(span_close)s %(span_open)s"
+"%(test_code)s нұсқасы%(span_close)s - %(language)s"
+
+#, python-format
+msgid ""
+"page:/student/transactions/:line_item_test:%(section_name)s;%(test_code)s;"
+"%(domain_name)s;%(span_open)s;%(span_close)s"
+msgstr ""
+"%(section_name)s %(span_open)s%(domain_name)s%(span_close)s %(span_open)s"
+"%(test_code)s нұсқасы%(span_close)s"
+
+#, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(price)s cred."
-msgstr "%(price)s бірлік."
+msgstr "%(price)s бірлік"
 
 msgctxt "/student/transactions/xxxx/"
 msgid "Discount"
@@ -2265,7 +2285,7 @@ msgstr "Жеңілдік"
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(minus_sign)s%(discount)s cred."
-msgstr "%(minus_sign)s%(discount)s бірлік."
+msgstr "%(minus_sign)s%(discount)s бірлік"
 
 msgctxt "/student/transactions/xxxx/"
 msgid "Total"
@@ -2279,7 +2299,7 @@ msgstr "₸%(total)s"
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(total)s cred."
-msgstr "%(total)s бірлік."
+msgstr "%(total)s бірлік"
 
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
@@ -2809,7 +2829,7 @@ msgstr "4-Секция"
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
-msgstr "%(amount).0f бірлік."
+msgstr "%(amount).0f бірлік"
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Discount"
@@ -2818,7 +2838,7 @@ msgstr "Жеңілдік"
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
-msgstr "-%(amount).0f бірлік."
+msgstr "-%(amount).0f бірлік"
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Free"
@@ -2834,21 +2854,6 @@ msgstr ""
 "мақсатымен біз 2018 жылдағы Назарбаев Зияткерлік мектептеріне іріктеу "
 "тестілеуіне қатысушыларының орташа балын (қызыл сызық) көрсетіп отырмыз (nis."
 "edu.kz сайтынан алынған)."
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(section)s (%(domain)s) - %(language)s"
-msgstr "%(section)s (%(domain)s) - %(language)s"
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(section)s (%(domain)s)"
-msgstr "%(section)s (%(domain)s)"
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(credits).0f Credits"
-msgstr "%(credits).0f бірлік"
 
 #, python-format
 msgctxt "/super/users/"

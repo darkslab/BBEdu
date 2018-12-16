@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-16 16:07+0600\n"
-"PO-Revision-Date: 2018-12-16 02:09-0800\n"
+"POT-Creation-Date: 2018-12-16 16:57+0600\n"
+"PO-Revision-Date: 2018-12-16 03:07-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -2262,6 +2262,26 @@ msgid "Transaction #%(order_id)s"
 msgstr "Транзакция №%(order_id)s"
 
 #, python-format
+msgid "page:/student/transactions/:line_item_credits:%(price)s"
+msgstr "Единицы: %(price)s"
+
+#, python-format
+msgid ""
+"page:/student/transactions/:line_item_test_with_language:%(section_name)s;"
+"%(test_code)s;%(domain_name)s;%(language)s;%(span_open)s;%(span_close)s"
+msgstr ""
+"%(section_name)s %(span_open)s%(domain_name)s%(span_close)s "
+"%(span_open)sВариант %(test_code)s%(span_close)s - %(language)s"
+
+#, python-format
+msgid ""
+"page:/student/transactions/:line_item_test:%(section_name)s;%(test_code)s;"
+"%(domain_name)s;%(span_open)s;%(span_close)s"
+msgstr ""
+"%(section_name)s %(span_open)s%(domain_name)s%(span_close)s "
+"%(span_open)sВариант %(test_code)s%(span_close)s"
+
+#, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(price)s cred."
 msgstr "%(price)s ед."
@@ -2843,21 +2863,6 @@ msgstr ""
 "Для сравнения Ваших результатов с результатами реального тестирования мы "
 "указали средний балл (красная линия) участников тестирования конкурсного "
 "отбора в НИШ 2018 года по данному предмету (взято с nis.edu.kz)."
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(section)s (%(domain)s) - %(language)s"
-msgstr "%(section)s (%(domain)s) - %(language)s"
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(section)s (%(domain)s)"
-msgstr "%(section)s (%(domain)s)"
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(credits).0f Credits"
-msgstr "Единицы: %(credits).0f"
 
 #, python-format
 msgctxt "/super/users/"

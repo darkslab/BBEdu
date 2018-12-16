@@ -65,5 +65,9 @@ page:
   '/student/results/':
     score: ~
     correct_questions: ~
+  '/student/transactions/':
+    line_item_credits: ~
+    line_item_test: ~
+    line_item_test_with_language: ~
   '/buy-credits/':
     enter_amount: ~
