@@ -16,7 +16,8 @@
     <div class="bb-accordion-panel-heading {% if not is_first %}bb-accordion-panel-heading-bordered{% endif %}">
         <div class="row">
             <div class="col-xs-12 col-sm-6 bb-result-cell">
-                <span>{% trans quiz.test.section.name %}</span>
+                {% trans quiz.test.section.name as section_name %}
+                <span>{% blocktrans with test_code=quiz.test.code|upper span_open='<span class="label label-default">' span_close='</span>' %}_common:test_section_with_variant:{{ section_name }};{{ test_code }};{{ span_open }};{{ span_close }}{% endblocktrans %}</span>
             </div>
             <div class="{% if compact %}col-xs-3 col-xs-offset-3 col-sm-3 col-sm-offset-0{% else %}col-xs-3 col-xs-offset-3 col-sm-2 col-sm-offset-1{% endif %} bb-chart bb-result-cell pr-5 pl-5 text-center">
                 <h3 class="mt-0 mb-0" style="height: 100%;">
