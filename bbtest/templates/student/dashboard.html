@@ -38,7 +38,7 @@
                         <div class="panel-heading">
                             <h4 class="panel-title text-center">
                                 {% trans quiz_set.test_domain.name as domain_name %}
-                                {% blocktrans with span_open='<span class="label label-default">' span_close='</span>' %}page:/student/:last_results_header:{{ domain_name }};{{ span_open }};{{ span_close }}{% endblocktrans %}
+                                {% blocktrans with span_open='<small><span class="label label-default">' span_close='</span></small>' %}page:/student/:last_results_header:{{ domain_name }};{{ span_open }};{{ span_close }}{% endblocktrans %}
                             </h4>
                             {% if quiz_set.is_current %}
                                 <h4 class="panel-title text-center mt-10">

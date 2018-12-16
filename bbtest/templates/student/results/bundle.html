@@ -10,7 +10,7 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     {% trans quiz_set.test_domain.name as domain_name %}
-                    <span>{% blocktrans with quiz_set_count=quiz_set.index span_open='<span class="label label-default">' span_close='</span>' %}page:/student/results/:bundle_header:{{ quiz_set_count }};{{ domain_name }};{{ span_open }};{{ span_close }}{% endblocktrans %}</span>
+                    <span>{% blocktrans with quiz_set_count=quiz_set.index span_open='<small><span class="label label-default">' span_close='</span></small>' %}page:/student/results/:bundle_header:{{ quiz_set_count }};{{ domain_name }};{{ span_open }};{{ span_close }}{% endblocktrans %}</span>
                     {% if quiz_set.is_current %}
                         <span class="label label-danger ml-5 hidden-xs">{% trans 'Not finished' context 'Results page' %}</span>
                     {% endif %}
