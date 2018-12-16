@@ -59,8 +59,21 @@ page:
     html_title: ~
     html_description: ~
     nis_button: ~
+  '/student/':
+    last_results_header: ~
+  '/student/buy-tests/xxxx/':
+    test_variant: ~
   '/student/results/':
     score: ~
     correct_questions: ~
+    bundle_header: ~
+    row_caption: ~
+  '/student/results/xxxx/':
+    window_title: ~
+    title: ~
+  '/student/transactions/':
+    line_item_credits: ~
+    line_item_test: ~
+    line_item_test_with_language: ~
   '/buy-credits/':
     enter_amount: ~

@@ -1,7 +1,9 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n static %}
 
-{% block title %}{{ section_name }}{% endblock %}
+{% block window_title %}{% blocktrans with code=code|upper %}page:/student/results/xxxx/:window_title:{{ section_name }};{{ code }}{% endblocktrans %}{% endblock %}
+
+{% block title %}{% blocktrans with code=code|upper span_open='<span class="label label-default">' span_close='</span>' %}page:/student/results/xxxx/:title:{{ section_name }};{{ code }};{{ span_open }};{{ span_close }}{% endblocktrans %}{% endblock %}
 
 {% block content %}
     <script>

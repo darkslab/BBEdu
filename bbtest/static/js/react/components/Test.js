@@ -75,7 +75,13 @@ var Test = function (_React$Component) {
                             React.createElement(
                                 "h3",
                                 { className: "text-center mb-15" },
-                                this._statusData.section
+                                this._statusData.section[0],
+                                " ",
+                                React.createElement(
+                                    "span",
+                                    { className: "label label-default" },
+                                    this._statusData.section[1]
+                                )
                             ),
                             instructions,
                             React.createElement(
@@ -108,6 +114,29 @@ var Test = function (_React$Component) {
                     );
                     break;
                 case "started":
+                    var header = null;
+                    if (this._statusData.section !== undefined) {
+                        header = React.createElement(
+                            "div",
+                            { className: "row" },
+                            React.createElement(
+                                "div",
+                                { className: "col-xs-12" },
+                                React.createElement(
+                                    "h4",
+                                    { className: "text-center mt-0 mb-23" },
+                                    this._statusData.section[0],
+                                    " ",
+                                    React.createElement(
+                                        "span",
+                                        { className: "label label-default" },
+                                        this._statusData.section[1]
+                                    )
+                                )
+                            )
+                        );
+                    }
+
                     var bottomPaginationLeft = null;
                     var bottomPaginationRight = null;
                     if (this._statusData.questionIndex > 0) {
@@ -181,6 +210,7 @@ var Test = function (_React$Component) {
                     content = React.createElement(
                         React.Fragment,
                         null,
+                        header,
                         React.createElement(
                             "div",
                             { className: "row" },
@@ -442,6 +472,9 @@ var Test = function (_React$Component) {
                             questionsCount: data.questions.length,
                             timer: setTimeout(this._tick.bind(this), 1000)
                         };
+                        if (data.section !== undefined) {
+                            this._statusData.section = data.section;
+                        }
                     }
                     break;
                 case "expired":

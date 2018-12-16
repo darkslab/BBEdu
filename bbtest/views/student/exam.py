@@ -36,6 +36,7 @@ class ExamMixin:
         response = {
             "success": True,
             "status": "started",
+            "section": test_instructions_title(self.current_quiz().test),
             "seconds": (self.current_quiz().due_at - now_at).seconds,
         }
         inject_questions_and_report_into_started_response(response, self.current_quiz().test)

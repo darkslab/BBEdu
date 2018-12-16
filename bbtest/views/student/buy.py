@@ -173,7 +173,10 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                 response["data"]["language"] = item.language()
             response["data"]["sections"].append(item.test().section.pk)
             response["totals"]["line_items"].append({
-                "description": _(item.description()),
+                "description": [
+                    _(item.description()),
+                    _("page:/student/buy-tests/xxxx/:test_variant:%(test_code)s") % { "test_code": item.test().code.upper() },
+                ],
                 "amount": pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": item.price() },
             })
             discount += item.discount()

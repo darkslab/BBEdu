@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-13 03:16+0600\n"
-"PO-Revision-Date: 2018-12-13 00:26-0800\n"
+"POT-Creation-Date: 2018-12-17 05:02+0600\n"
+"PO-Revision-Date: 2018-12-16 15:05-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -1904,7 +1904,7 @@ msgstr "Құрастырушы"
 #, python-format
 msgctxt "Total credits"
 msgid "Balance: %(balance)s cred."
-msgstr "Шотыңызда: %(balance)s бірлік."
+msgstr "Шотыңызда: %(balance)s бірлік"
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -2004,9 +2004,10 @@ msgid "Choose different test domain"
 msgstr "Басқа тестіні таңдау"
 
 #, python-format
-msgctxt "/student/"
-msgid "Last test results (%(domain_name)s)"
-msgstr "Соңғы тест нәтижелері (%(domain_name)s)"
+msgid ""
+"page:/student/:last_results_header:%(domain_name)s;%(span_open)s;"
+"%(span_close)s"
+msgstr "Соңғы тест нәтижелері %(span_open)s%(domain_name)s%(span_close)s"
 
 msgctxt "Results page"
 msgid "Not finished"
@@ -2139,6 +2140,16 @@ msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
 msgstr "Тестілеу аяқталды. Тест нәтижелерін тексеріңіз."
 
+#, python-format
+msgid "page:/student/results/xxxx/:window_title:%(section_name)s;%(code)s"
+msgstr "%(section_name)s (%(code)s)"
+
+#, python-format
+msgid ""
+"page:/student/results/xxxx/:title:%(section_name)s;%(code)s;%(span_open)s;"
+"%(span_close)s"
+msgstr "%(section_name)s %(span_open)s%(code)s нұсқасы%(span_close)s"
+
 msgctxt "/student/results/xxxx/"
 msgid "Go back to results"
 msgstr "Тест нәтижелерін тексеру"
@@ -2164,14 +2175,15 @@ msgid "Buy new tests"
 msgstr "Жаңа тестілерді сатып алу"
 
 #, python-format
-msgctxt "Results page"
-msgid "Test #%(count)s (%(domain_name)s)"
-msgstr "Тест #%(count)s (%(domain_name)s)"
+msgid ""
+"page:/student/results/:bundle_header:%(quiz_set_count)s;%(domain_name)s;"
+"%(span_open)s;%(span_close)s"
+msgstr "Тест №%(quiz_set_count)s %(span_open)s%(domain_name)s%(span_close)s"
 
 #, python-format
 msgctxt "Results page"
 msgid "View Transaction #%(transaction_id)s"
-msgstr "#%(transaction_id)s транзакциясын қарау"
+msgstr "№%(transaction_id)s транзакциясын қарау"
 
 msgctxt "Results page"
 msgid "Review correct answers"
@@ -2212,6 +2224,12 @@ msgstr ""
 "тест қатысушыларының осы пән бойынша орташа балын (қызыл сызық) көрсетіп "
 "отырмыз."
 
+#, python-format
+msgid ""
+"page:/student/results/:row_caption:%(section_name)s;%(test_code)s;"
+"%(span_open)s;%(span_close)s"
+msgstr "%(section_name)s %(span_open)s%(test_code)s нұсқасы%(span_close)s"
+
 msgctxt "Results page"
 msgid "You have not yet completed this section."
 msgstr "Сіз бұл пәнді әлі аяқтаған жоқсыз."
@@ -2219,7 +2237,7 @@ msgstr "Сіз бұл пәнді әлі аяқтаған жоқсыз."
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "Transaction #%(transaction_id)s"
-msgstr "Транзакция #%(transaction_id)s"
+msgstr "Транзакция №%(transaction_id)s"
 
 msgctxt "/student/transactions/xxxx/"
 msgid "View all Transactions"
@@ -2247,9 +2265,29 @@ msgid "Transaction #%(order_id)s"
 msgstr "Транзакция №%(order_id)s"
 
 #, python-format
+msgid "page:/student/transactions/:line_item_credits:%(price)s"
+msgstr "%(price)s бірлік"
+
+#, python-format
+msgid ""
+"page:/student/transactions/:line_item_test_with_language:%(section_name)s;"
+"%(test_code)s;%(domain_name)s;%(language)s;%(span_open)s;%(span_close)s"
+msgstr ""
+"%(section_name)s %(span_open)s%(domain_name)s%(span_close)s %(span_open)s"
+"%(test_code)s нұсқасы%(span_close)s - %(language)s"
+
+#, python-format
+msgid ""
+"page:/student/transactions/:line_item_test:%(section_name)s;%(test_code)s;"
+"%(domain_name)s;%(span_open)s;%(span_close)s"
+msgstr ""
+"%(section_name)s %(span_open)s%(domain_name)s%(span_close)s %(span_open)s"
+"%(test_code)s нұсқасы%(span_close)s"
+
+#, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(price)s cred."
-msgstr "%(price)s бірлік."
+msgstr "%(price)s бірлік"
 
 msgctxt "/student/transactions/xxxx/"
 msgid "Discount"
@@ -2258,7 +2296,7 @@ msgstr "Жеңілдік"
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(minus_sign)s%(discount)s cred."
-msgstr "%(minus_sign)s%(discount)s бірлік."
+msgstr "%(minus_sign)s%(discount)s бірлік"
 
 msgctxt "/student/transactions/xxxx/"
 msgid "Total"
@@ -2272,7 +2310,7 @@ msgstr "₸%(total)s"
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(total)s cred."
-msgstr "%(total)s бірлік."
+msgstr "%(total)s бірлік"
 
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
@@ -2781,7 +2819,7 @@ msgstr "Сіз жаңа тест жасадыңыз."
 
 msgctxt "/student/"
 msgid "Test Domain 1"
-msgstr "1-Тест"
+msgstr "Тест 1"
 
 msgctxt "/student/"
 msgid "Section 1"
@@ -2800,9 +2838,13 @@ msgid "Section 4"
 msgstr "4-Секция"
 
 #, python-format
+msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
+msgstr "%(test_code)s нұсқасы"
+
+#, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
-msgstr "%(amount).0f бірлік."
+msgstr "%(amount).0f бірлік"
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Discount"
@@ -2811,7 +2853,7 @@ msgstr "Жеңілдік"
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
-msgstr "-%(amount).0f бірлік."
+msgstr "-%(amount).0f бірлік"
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Free"
@@ -2827,21 +2869,6 @@ msgstr ""
 "мақсатымен біз 2018 жылдағы Назарбаев Зияткерлік мектептеріне іріктеу "
 "тестілеуіне қатысушыларының орташа балын (қызыл сызық) көрсетіп отырмыз (nis."
 "edu.kz сайтынан алынған)."
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(section)s (%(domain)s) - %(language)s"
-msgstr "%(section)s (%(domain)s) - %(language)s"
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(section)s (%(domain)s)"
-msgstr "%(section)s (%(domain)s)"
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(credits).0f Credits"
-msgstr "%(credits).0f бірлік"
 
 #, python-format
 msgctxt "/super/users/"
