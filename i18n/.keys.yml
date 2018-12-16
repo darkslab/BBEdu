@@ -3,6 +3,7 @@ _common:
   html_description: ~
 
   test_section_with_variant: ~
+  quiz_set_count_with_domain: ~
 
   domains:
     nufypet: 'NUFYPET'
