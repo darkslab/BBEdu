@@ -186,7 +186,9 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
         this._$totals_line_items.parent().removeClass("hidden");
         for (i = 0; i < data.totals.line_items.length; i++) {
             var $row = this._$totals_line_items_row.clone();
-            $row.find("[data-totals-description]").text(data.totals.line_items[i].description);
+            $row.find("[data-totals-description]").each(function() {
+                $(this).text(data.totals.line_items[i].description[$(this).data("totals-description")]);
+            });
             $row.find("[data-totals-amount]").text(data.totals.line_items[i].amount);
             this._$totals_line_items.append($row);
         }

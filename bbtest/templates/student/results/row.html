@@ -19,8 +19,9 @@
 <div class="panel {% if interactive_row_value is not None %}container-interactive{% endif %}" {% if interactive_row_value is not None %}data-result-row="{{ interactive_row_value }}"{% endif %}>
     <div class="bb-accordion-panel-heading {% if not is_first %}bb-accordion-panel-heading-bordered{% endif %}">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 bb-result-cell">
-                <span>{% trans quiz.test.section.name %}</span>
+            <div class="col-xs-12 col-sm-6 bb-result-cell container-responsive">
+                {% trans quiz.test.section.name as section_name %}
+                <span>{% blocktrans with test_code=quiz.test.code|upper span_open='<span class="label label-default">' span_close='</span>' %}page:/student/results/:row_caption:{{ section_name }};{{ test_code }};{{ span_open }};{{ span_close }}{% endblocktrans %}</span>
                 {% if has_detail %}
                     <a href="#bb-results-{{ parent_index }}-{{ index }}" class="bb-accordion-toggle collapsed pull-right visible-xs-block" data-toggle="collapse" data-parent="#bb-results-{{ parent_index }}">
                         <i class="fa fa-fw fa-chevron-up"></i>

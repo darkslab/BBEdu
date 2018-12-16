@@ -83,6 +83,10 @@
 .container-faded {
     background-color: rgba(0, 0, 0, 0.1);
 }
+.container-responsive {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
 .table.table-pressed > thead > tr > th,
 .table.table-pressed > tbody > tr > th,
 .table.table-pressed > tfoot > tr > th,

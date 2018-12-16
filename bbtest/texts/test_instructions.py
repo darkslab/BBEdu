@@ -159,7 +159,13 @@ NIS_TEST_INSTRUCTION_TITLE_TEXTS = {
 
 def test_instructions_title(test):
     if test.section.is_nis():
-        return NIS_TEST_INSTRUCTION_TITLE_TEXTS[test.section.pk][test.language]
+        return [
+            NIS_TEST_INSTRUCTION_TITLE_TEXTS[test.section.pk][test.language],
+            test.code.upper(),
+        ]
     elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
-        return _(test.section.name)
-    return ""
+        return [
+            _(test.section.name),
+            test.code.upper(),
+        ]
+    return []

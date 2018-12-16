@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-13 03:16+0600\n"
-"PO-Revision-Date: 2018-12-12 01:07-0800\n"
+"POT-Creation-Date: 2018-12-17 05:02+0600\n"
+"PO-Revision-Date: 2018-12-16 15:06-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -2009,9 +2009,10 @@ msgid "Choose different test domain"
 msgstr "Выбрать другой тест"
 
 #, python-format
-msgctxt "/student/"
-msgid "Last test results (%(domain_name)s)"
-msgstr "Результаты последнего теста (%(domain_name)s)"
+msgid ""
+"page:/student/:last_results_header:%(domain_name)s;%(span_open)s;"
+"%(span_close)s"
+msgstr "Результаты последнего теста %(span_open)s%(domain_name)s%(span_close)s"
 
 msgctxt "Results page"
 msgid "Not finished"
@@ -2144,6 +2145,16 @@ msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
 msgstr "Тест завершен. Вы можете перейти к результатам."
 
+#, python-format
+msgid "page:/student/results/xxxx/:window_title:%(section_name)s;%(code)s"
+msgstr "%(section_name)s (%(code)s)"
+
+#, python-format
+msgid ""
+"page:/student/results/xxxx/:title:%(section_name)s;%(code)s;%(span_open)s;"
+"%(span_close)s"
+msgstr "%(section_name)s %(span_open)sВариант %(code)s%(span_close)s"
+
 msgctxt "/student/results/xxxx/"
 msgid "Go back to results"
 msgstr "Назад к результатам"
@@ -2169,9 +2180,10 @@ msgid "Buy new tests"
 msgstr "Перейти к тестам"
 
 #, python-format
-msgctxt "Results page"
-msgid "Test #%(count)s (%(domain_name)s)"
-msgstr "Тест #%(count)s (%(domain_name)s)"
+msgid ""
+"page:/student/results/:bundle_header:%(quiz_set_count)s;%(domain_name)s;"
+"%(span_open)s;%(span_close)s"
+msgstr "Тест №%(quiz_set_count)s %(span_open)s%(domain_name)s%(span_close)s"
 
 #, python-format
 msgctxt "Results page"
@@ -2220,6 +2232,12 @@ msgstr ""
 "Для сравнения Ваших результатов мы указали средний балл (красная линия) всех "
 "участников на сайте bbtest.kz по данному предмету."
 
+#, python-format
+msgid ""
+"page:/student/results/:row_caption:%(section_name)s;%(test_code)s;"
+"%(span_open)s;%(span_close)s"
+msgstr "%(section_name)s %(span_open)sВариант %(test_code)s%(span_close)s"
+
 msgctxt "Results page"
 msgid "You have not yet completed this section."
 msgstr "Вы еще не закончили этот предмет."
@@ -2253,6 +2271,26 @@ msgstr "Приобрести единицы"
 msgctxt "/student/transactions/xxxx/"
 msgid "Transaction #%(order_id)s"
 msgstr "Транзакция №%(order_id)s"
+
+#, python-format
+msgid "page:/student/transactions/:line_item_credits:%(price)s"
+msgstr "Единицы: %(price)s"
+
+#, python-format
+msgid ""
+"page:/student/transactions/:line_item_test_with_language:%(section_name)s;"
+"%(test_code)s;%(domain_name)s;%(language)s;%(span_open)s;%(span_close)s"
+msgstr ""
+"%(section_name)s %(span_open)s%(domain_name)s%(span_close)s "
+"%(span_open)sВариант %(test_code)s%(span_close)s - %(language)s"
+
+#, python-format
+msgid ""
+"page:/student/transactions/:line_item_test:%(section_name)s;%(test_code)s;"
+"%(domain_name)s;%(span_open)s;%(span_close)s"
+msgstr ""
+"%(section_name)s %(span_open)s%(domain_name)s%(span_close)s "
+"%(span_open)sВариант %(test_code)s%(span_close)s"
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
@@ -2810,6 +2848,10 @@ msgid "Section 4"
 msgstr "Предмет 4"
 
 #, python-format
+msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
+msgstr "Вариант %(test_code)s"
+
+#, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
 msgstr "%(amount).0f ед."
@@ -2836,21 +2878,6 @@ msgstr ""
 "Для сравнения Ваших результатов с результатами реального тестирования мы "
 "указали средний балл (красная линия) участников тестирования конкурсного "
 "отбора в НИШ 2018 года по данному предмету (взято с nis.edu.kz)."
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(section)s (%(domain)s) - %(language)s"
-msgstr "%(section)s (%(domain)s) - %(language)s"
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(section)s (%(domain)s)"
-msgstr "%(section)s (%(domain)s)"
-
-#, python-format
-msgctxt "/student/transactions/xxxx/"
-msgid "%(credits).0f Credits"
-msgstr "Единицы: %(credits).0f"
 
 #, python-format
 msgctxt "/super/users/"
