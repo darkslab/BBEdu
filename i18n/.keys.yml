@@ -2,9 +2,6 @@
 _common:
   html_description: ~
 
-  test_section_with_variant: ~
-  quiz_set_count_with_domain: ~
-
   domains:
     nufypet: 'NUFYPET'
   sections:
@@ -65,6 +62,8 @@ page:
   '/student/results/':
     score: ~
     correct_questions: ~
+    bundle_header: ~
+    row_caption: ~
   '/student/transactions/':
     line_item_credits: ~
     line_item_test: ~

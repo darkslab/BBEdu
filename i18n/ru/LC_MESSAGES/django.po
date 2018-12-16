@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-16 16:57+0600\n"
-"PO-Revision-Date: 2018-12-16 03:07-0800\n"
+"POT-Creation-Date: 2018-12-16 17:19+0600\n"
+"PO-Revision-Date: 2018-12-16 03:24-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -2170,7 +2170,7 @@ msgstr "Перейти к тестам"
 
 #, python-format
 msgid ""
-"_common:quiz_set_count_with_domain:%(quiz_set_count)s;%(domain_name)s;"
+"page:/student/results/:bundle_header:%(quiz_set_count)s;%(domain_name)s;"
 "%(span_open)s;%(span_close)s"
 msgstr "Тест №%(quiz_set_count)s %(span_open)s%(domain_name)s%(span_close)s"
 
@@ -2223,7 +2223,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"_common:test_section_with_variant:%(section_name)s;%(test_code)s;"
+"page:/student/results/:row_caption:%(section_name)s;%(test_code)s;"
 "%(span_open)s;%(span_close)s"
 msgstr "%(section_name)s %(span_open)sВариант %(test_code)s%(span_close)s"
 
