@@ -182,17 +182,11 @@
     "totals": {
         "line_items": [
             {
-                "description": [
-                    "Item 1",
-                    "Variant 1234"
-                ],
+                "description": "Item 1",
                 "amount": "120 cred."
             },
             {
-                "description": [
-                    "Item 2",
-                    "Variant 1235"
-                ],
+                "description": "Item 2",
                 "amount": "240 cred."
             }
             // ...
@@ -207,17 +201,33 @@
         "total": "300 cred."
     },
     "sections": {
-        "9545": true,
-        "9546": true,
-        "9547": false,
-        "9548": true
+        "9545": {
+            "price": "120 ед.",
+            "variant": "Вариант 1234",
+            "enabled": true
+        },
+        "9546": {
+            "price": "120 ед.",
+            "variant": "Вариант 1235",
+            "enabled": true
+        },
+        "9547": {
+            "price": null,
+            "variant": null,
+            "enabled": false
+        },
+        "9548": {
+            "price": null,
+            "variant": null,
+            "enabled": false
+        }
         // ...
     },
     "data": {
         "language": "kk",
         "sections": [
             9545,
-            9548
+            9546
             // ...
         ]
     },

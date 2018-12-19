@@ -153,6 +153,7 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
 
     this._$test_section.each(function() {
         var $test_section = $(this);
+        var $test_section_variant = $test_section.find("[data-test-section-variant]");
         var $test_section_price = $test_section.find("[data-test-section-price]");
         var section_data = data.sections[$test_section.data("test-section").toString()];
 
@@ -163,6 +164,7 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
             $test_section.removeClass("active");
             $test_section.data("selected", false);
 
+            $test_section_variant.text("");
             $test_section_price.text("");
             return;
         }
@@ -176,6 +178,7 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
             $test_section.removeClass("active");
             $test_section.data("selected", false);
         }
+        $test_section_variant.text(section_data.variant);
         $test_section_price.text(section_data.price);
     });
 
@@ -186,9 +189,7 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
         this._$totals_line_items.parent().removeClass("hidden");
         for (i = 0; i < data.totals.line_items.length; i++) {
             var $row = this._$totals_line_items_row.clone();
-            $row.find("[data-totals-description]").each(function() {
-                $(this).text(data.totals.line_items[i].description[$(this).data("totals-description")]);
-            });
+            $row.find("[data-totals-description]").text(data.totals.line_items[i].description);
             $row.find("[data-totals-amount]").text(data.totals.line_items[i].amount);
             this._$totals_line_items.append($row);
         }
