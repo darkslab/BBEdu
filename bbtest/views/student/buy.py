@@ -166,6 +166,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
             response["sections"][str(section.pk)] = {
                 "enabled": False,
                 "price": None,
+                "variant": None,
             }
         discount = Decimal("0.00")
         for item in self.cart_handle():
@@ -173,10 +174,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                 response["data"]["language"] = item.language()
             response["data"]["sections"].append(item.test().section.pk)
             response["totals"]["line_items"].append({
-                "description": [
-                    _(item.description()),
-                    _("page:/student/buy-tests/xxxx/:test_variant:%(test_code)s") % { "test_code": item.test().code.upper() },
-                ],
+                "description": _(item.description()),
                 "amount": pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": item.price() },
             })
             discount += item.discount()
@@ -192,6 +190,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
         available_tests = self.cart_handle().buyer().next_tests(domain, response["data"]["language"])
         for test in available_tests:
             section_id = str(test.section_id)
+            response["sections"][section_id]["variant"] = _("page:/student/buy-tests/xxxx/:test_variant:%(test_code)s") % { "test_code": test.code.upper() }
             if section_id not in response["sections"]:
                 continue
             response["sections"][section_id]["enabled"] = True

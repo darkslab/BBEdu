@@ -81,8 +81,14 @@
                         <a href="javascript:void(0);" class="list-group-item" data-test-section="{{ section.pk }}" data-selected="false" data-available="false">
                             <div class="row">
                                 <div class="col-xs-8 col-sm-9">
-                                    <h4 class="list-group-item-heading hidden-xs">{% trans section.name %}</h4>
-                                    <h5 class="list-group-item-heading visible-xs-block">{% trans section.name %}</h5>
+                                    <h4 class="list-group-item-heading hidden-xs">
+                                        <span>{% trans section.name %}</span><br>
+                                        <small><span class="label label-default" data-test-section-variant="h4"></span></small>
+                                    </h4>
+                                    <h5 class="list-group-item-heading visible-xs-block">
+                                        <span>{% trans section.name %}</span><br>
+                                        <small><span class="label label-default" data-test-section-variant="h5"></span></small>
+                                    </h5>
                                     <!-- <p class="list-group-item-text">Description</p> -->
                                     <p class="list-group-item-text mt-15">{% blocktrans with count=section.question_count %}Questions count: {{ count }}{% endblocktrans %}</p>
                                     <p class="list-group-item-text">{% blocktrans with minutes=section.minutes %}Duration: {{ minutes }} min.{% endblocktrans %}</p>
@@ -109,8 +115,7 @@
                             <div data-totals-line-items>
                                 <div class="row" data-totals-row>
                                     <div class="col-xs-8">
-                                        <h6 class="mt-5 mb-0" data-totals-description="0"></h6>
-                                        <h6 class="mt-0 mb-5"><span class="label label-default" data-totals-description="1"></span></h6>
+                                        <h6 class="mt-5 mb-0" data-totals-description></h6>
                                     </div>
                                     <div class="col-xs-4 text-right">
                                         <h6 class="mt-5 mb-5">
