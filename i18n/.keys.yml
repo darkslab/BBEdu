@@ -3,6 +3,8 @@ _common:
   html_description: ~
 
   domains:
+    nis: 'NIS'
+    unt: 'UNT'
     nufypet: 'NUFYPET'
   sections:
     nufypet:

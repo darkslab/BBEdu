@@ -89,7 +89,7 @@ def seed_initial_values(apps, schema_editor):
     ):
         topics.append(apps.get_model("bbtest", "TestTopic").objects.create(name=topic_name))
 
-    domain = apps.get_model("bbtest", "TestDomain").objects.create(name=ugettext_noop("NIS"), order=0)
+    domain = apps.get_model("bbtest", "TestDomain").objects.create(name="NIS", order=0)
 
     section_order = 0
 

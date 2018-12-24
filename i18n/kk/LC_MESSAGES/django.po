@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 05:02+0600\n"
-"PO-Revision-Date: 2018-12-16 15:05-0800\n"
+"POT-Creation-Date: 2018-12-24 10:21+0600\n"
+"PO-Revision-Date: 2018-12-23 20:23-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -572,9 +572,6 @@ msgstr "Экология"
 msgid "Fables and Fairy Tales"
 msgstr "Ертегілер"
 
-msgid "NIS"
-msgstr "НЗМ"
-
 msgid "Mathematics"
 msgstr "Математика"
 
@@ -589,9 +586,6 @@ msgstr "Ағылшын тілі"
 
 msgid "Quantitative"
 msgstr "Сандық сипаттамалар"
-
-msgid "UNT"
-msgstr "ҰБТ"
 
 msgid "Numeracy"
 msgstr "Математикалық сауаттылық"
@@ -1045,6 +1039,12 @@ msgstr "Biology/Chemistry"
 
 msgid "_common.sections.nufypet.section3"
 msgstr "Thinking skills"
+
+msgid "_common.domains.nis"
+msgstr "НЗМ"
+
+msgid "_common.domains.unt"
+msgstr "ҰБТ"
 
 msgctxt "Account type"
 msgid "Asset"
@@ -2838,10 +2838,6 @@ msgid "Section 4"
 msgstr "4-Секция"
 
 #, python-format
-msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
-msgstr "%(test_code)s нұсқасы"
-
-#, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
 msgstr "%(amount).0f бірлік"
@@ -2854,6 +2850,10 @@ msgstr "Жеңілдік"
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
 msgstr "-%(amount).0f бірлік"
+
+#, python-format
+msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
+msgstr "%(test_code)s нұсқасы"
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Free"
