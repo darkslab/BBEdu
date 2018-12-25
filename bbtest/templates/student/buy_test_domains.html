@@ -14,9 +14,15 @@
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {% for test_domain in test_domains %}
-                        <a href="{% url 'bbtest:student_buy_tests' test_domain.id %}" class="btn btn-lg btn-primary btn-block {% if not forloop.last %}mb-15{% else %}mb-0{% endif %} {% if not test_domain.is_available %}disabled{% endif %}">{% trans test_domain.name %}</a>
-                    {% endfor %}
+                    {% trans '_common.domains.nis_full' as domain_name %}
+                    {% trans nis.name as domain_abbr %}
+                    <a href="{% url 'bbtest:student_buy_tests' nis.pk %}" class="btn btn-lg btn-primary btn-block">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
+                    {% trans '_common.domains.unt_full' as domain_name %}
+                    {% trans unt.name as domain_abbr %}
+                    <a href="{% url 'bbtest:student_buy_tests' unt.pk %}" class="btn btn-lg btn-primary btn-block mt-15">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
+                    {% trans '_common.domains.nufypet_full' as domain_name %}
+                    {% trans nufypet.name as domain_abbr %}
+                    <a href="{% url 'bbtest:student_buy_tests' nufypet.pk %}" class="btn btn-lg btn-primary btn-block mt-15 disabled">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
                 </div>
             </div>
         </div>

@@ -85,25 +85,23 @@
                     </nav>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 bb-home-section-0-info">
-                            <h2 class="text-center text-bright mb-23" style="text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.85);">{% trans 'Start practicing to the test right now!' context 'Home page' %}</h2>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2 mb-10">
-                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nis.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-lg btn-block">
-                                        <h3 class="mt-0 mb-0 text-bright">{% trans nis.name %}</h3>
-                                    </a>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4 mb-10">
-                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' unt.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-lg btn-block">
-                                        <h3 class="mt-0 mb-0 text-bright">{% trans unt.name %}</h3>
-                                    </a>
-                                </div>
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 bb-home-section-0-info">
+                        <h3 class="text-center text-bright mb-23" style="text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.85);">{% trans 'Start practicing to the test right now!' context 'Home page' %}</h3>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {% trans '_common.domains.nis_full' as domain_name %}
+                                {% trans nis.name as domain_abbr %}
+                                <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nis.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-lg btn-block btn-wrappable">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <h4 class="text-center text-bright" style="text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.85);">{% trans 'We are working on other tests...' context 'Home page' %}</h4>
-                                </div>
+                            <div class="col-xs-12 mt-10">
+                                {% trans '_common.domains.unt_full' as domain_name %}
+                                {% trans unt.name as domain_abbr %}
+                                <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' unt.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-lg btn-block btn-wrappable">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4 class="text-center text-bright" style="text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.85);">{% trans 'We are working on other tests...' context 'Home page' %}</h4>
                             </div>
                         </div>
                     </div>
