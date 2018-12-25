@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_noop
 def add_unt_test_domain(apps, schema_editor):
     apps.get_model("bbtest", "TestDomain").objects.create(
         id=7912,
-        name=ugettext_noop("UNT"),
+        name="UNT",
         order=1,
     )
 
