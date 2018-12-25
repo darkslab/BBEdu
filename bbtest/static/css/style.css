@@ -86,6 +86,7 @@
 .container-responsive {
     white-space: nowrap;
     overflow-x: scroll;
+    overflow-y: hidden;
 }
 .table.table-pressed > thead > tr > th,
 .table.table-pressed > tbody > tr > th,
@@ -1159,8 +1160,16 @@ html {
 
 @media (min-width: 768px) {
     .bb-home-section-0 .bb-home-section-0-info {
-        margin-top: 160px;
-        margin-bottom: 160px;
+        margin-top: 80px;
+        margin-bottom: 80px;
+        padding-bottom: 13px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .bb-home-section-0 .bb-home-section-0-info {
+        margin-top: 120px;
+        margin-bottom: 120px;
         padding-bottom: 13px;
     }
 }

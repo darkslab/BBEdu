@@ -8,7 +8,7 @@ from bbtest.models import Account
 class NISItem(TestItem):
     def assert_init_args(self, test, student, language):
         super().assert_init_args(test, student, language)
-        if test.section.domain.name != "NIS":
+        if test.section.domain.pk != 7911:
             raise ItemError(pgettext("Item error", "NIS Test is required."))
 
     def revenue_account(self):

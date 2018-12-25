@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 05:02+0600\n"
-"PO-Revision-Date: 2018-12-16 15:06-0800\n"
+"POT-Creation-Date: 2018-12-25 07:07+0600\n"
+"PO-Revision-Date: 2018-12-24 19:42-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -577,9 +577,6 @@ msgstr "Экология"
 msgid "Fables and Fairy Tales"
 msgstr "Сказки"
 
-msgid "NIS"
-msgstr "НИШ"
-
 msgid "Mathematics"
 msgstr "Математика"
 
@@ -594,9 +591,6 @@ msgstr "Английский язык"
 
 msgid "Quantitative"
 msgstr "Количественные характеристики"
-
-msgid "UNT"
-msgstr "ЕНТ"
 
 msgid "Numeracy"
 msgstr "Математическая грамотность"
@@ -1050,6 +1044,12 @@ msgstr "Biology/Chemistry"
 
 msgid "_common.sections.nufypet.section3"
 msgstr "Thinking skills"
+
+msgid "_common.domains.nis"
+msgstr "НИШ"
+
+msgid "_common.domains.unt"
+msgstr "ЕНТ"
 
 msgctxt "Account type"
 msgid "Asset"
@@ -1852,6 +1852,17 @@ msgctxt "Home page"
 msgid "Start practicing to the test right now!"
 msgstr "Начни готовиться к тесту прямо сейчас!"
 
+msgid "_common.domains.nis_full"
+msgstr "Вступительный тест в Назарбаев Интеллектуальные школы"
+
+#, python-format
+msgid ""
+"page:/:test_domain_full_name:%(domain_name)s;%(domain_abbr)s;%(break_code)s"
+msgstr "%(domain_name)s%(break_code)s(%(domain_abbr)s)"
+
+msgid "_common.domains.unt_full"
+msgstr "Единое Национальное Тестирование"
+
 msgctxt "Home page"
 msgid "We are working on other tests..."
 msgstr "Мы работаем над добавлением других тестов..."
@@ -1954,6 +1965,9 @@ msgstr "Транзакции"
 msgctxt "Page title"
 msgid "Choose the test domain"
 msgstr "Выберите тест"
+
+msgid "_common.domains.nufypet_full"
+msgstr "Nazarbayev University Foundation Year Preparation Test"
 
 #, python-format
 msgctxt "Page title"
@@ -2848,10 +2862,6 @@ msgid "Section 4"
 msgstr "Предмет 4"
 
 #, python-format
-msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
-msgstr "Вариант %(test_code)s"
-
-#, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
 msgstr "%(amount).0f ед."
@@ -2864,6 +2874,10 @@ msgstr "Скидка"
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
 msgstr "-%(amount).0f ед."
+
+#, python-format
+msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
+msgstr "Вариант %(test_code)s"
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Free"
