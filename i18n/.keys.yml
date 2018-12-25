@@ -3,7 +3,12 @@ _common:
   html_description: ~
 
   domains:
+    nis: 'NIS'
+    nis_full: ~
+    unt: 'UNT'
+    unt_full: ~
     nufypet: 'NUFYPET'
+    nufypet_full: ~
   sections:
     nufypet:
       section0: 'Mathematics'
@@ -55,6 +60,7 @@ _common:
 page:
   '/':
     html_title: ~
+    test_domain_full_name: ~
   '/nis/':
     html_title: ~
     html_description: ~

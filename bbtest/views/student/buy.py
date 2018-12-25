@@ -20,13 +20,9 @@ from bbtest.models.shopping.operate import charge
 from bbtest.payment_processors import CreditPaymentProcessor
 
 
-TEST_DOMAIN_IDS_DISPLAY = set([ 7911, 7912 ])
-TEST_DOMAIN_IDS_ALLOWED = set([ 7911, 7912 ])
-
-
 def get_test_domain_or_404(test_domain_id):
     return get_object_or_404(
-        TestDomain.objects.filter(pk__in=TEST_DOMAIN_IDS_ALLOWED).prefetch_related("sections"),
+        TestDomain.objects.filter(pk__in=[ 7911, 7912 ]).prefetch_related("sections"),
         pk=test_domain_id,
     )
 
@@ -42,12 +38,9 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequir
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        kwargs["test_domains"] = TestDomain.objects.filter(pk__in=TEST_DOMAIN_IDS_DISPLAY).all()
-        for domain in kwargs["test_domains"]:
-            if domain.pk in (TEST_DOMAIN_IDS_DISPLAY - TEST_DOMAIN_IDS_ALLOWED):
-                domain.is_available = False
-            else:
-                domain.is_available = True
+        kwargs["nis"] = TestDomain.objects.get(pk=7911)
+        kwargs["unt"] = TestDomain.objects.get(pk=7912)
+        kwargs["nufypet"] = TestDomain.objects.get(pk=7913)
 
         return super().get_context_data(**kwargs)
 
