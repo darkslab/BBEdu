@@ -2,6 +2,9 @@
 _common:
   html_description: ~
 
+  nav:
+    faq: ~
+
   domains:
     nis: 'NIS'
     nis_full: ~
@@ -85,3 +88,5 @@ page:
     enter_amount: ~
     credits_conversion_rate: ~
     bank_usage_info: ~
+  '/faq/':
+    title: ~
