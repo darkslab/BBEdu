@@ -83,3 +83,5 @@ page:
     line_item_test_with_language: ~
   '/buy-credits/':
     enter_amount: ~
+    credits_conversion_rate: ~
+    bank_usage_info: ~
