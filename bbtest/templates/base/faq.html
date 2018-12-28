@@ -1,0 +1,27 @@
+{% extends '../public_base_1.html' %}
+{% load i18n %}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'page:/faq/:title' %}{% endblock %}
+
+{% block header_class %}col-sm-10 col-sm-offset-1{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ol class="list-normal mb-0">
+                        {% for text in texts %}
+                            <li>
+                                <p class="mb-5"><strong>{{ text.0 }}</strong></p>
+                                <p class="mb-15">{{ text.1 }}</p>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

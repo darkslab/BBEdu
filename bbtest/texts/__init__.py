@@ -13,3 +13,4 @@ from .exam import (
 from .test import (
     nis_quantitative_answer,
 )
+from .faq import FAQ_TEXTS

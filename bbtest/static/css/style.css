@@ -220,7 +220,7 @@ html {
 }
 
 .bb-min {
-    min-height: 740px;
+    min-height: 780px;  /* increase this if need more space */
 }
 
 .bb-min-220 {
