@@ -199,7 +199,7 @@ var Test = function (_React$Component) {
                                 React.createElement(
                                     "button",
                                     { type: "button",
-                                        className: "btn btn-danger btn-sm",
+                                        className: "btn btn-danger btn-sm mt-10",
                                         onClick: this._renderModal.bind(this, "end") },
                                     this.props.texts.endButton
                                 )
