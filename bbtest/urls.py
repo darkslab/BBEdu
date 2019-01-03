@@ -9,6 +9,7 @@ from .views.base import (
     BuyCreditsQazkomView,
     TermsView,
     ContactUsView,
+    FaqView,
 )
 from .views.upload import UploadStartView, UploadCompleteView, UploadAdoptView
 from .views.test import (
@@ -66,6 +67,7 @@ urlpatterns = [
     url(r"^nis/$",        NisView.as_view(),       name="nis"       ),
     url(r"^terms/$",      TermsView.as_view(),     name="terms"     ),
     url(r"^contact-us/$", ContactUsView.as_view(), name="contact_us"),
+    url(r"^faq/$",        FaqView.as_view(),       name="faq"       ),
 
     # USER URLS
     url(r"^dashboard/$",          DashboardView.as_view(),        name="dashboard"         ),

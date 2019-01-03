@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-25 07:07+0600\n"
-"PO-Revision-Date: 2018-12-24 19:44-0800\n"
+"POT-Creation-Date: 2019-01-03 14:01+0600\n"
+"PO-Revision-Date: 2019-01-03 00:03-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -1516,10 +1516,13 @@ msgctxt "Form button"
 msgid "Make a payment"
 msgstr "Төлем жасау"
 
-#, python-format
-msgctxt "/buy-credits/"
-msgid "All transactions are handled by %(bank_name)s."
-msgstr "Барлық транзакциялар %(bank_name)s арқылы өткізіледі."
+msgid "page:/buy-credits/:credits_conversion_rate"
+msgstr "1 бірлік 1 теңгеге тең."
+
+msgid "page:/buy-credits/:bank_usage_info"
+msgstr ""
+"Кез келген банк картасын қолдануыңызға болады. Барлық транзакциялар Халық "
+"банк арқылы өткізіледі."
 
 msgctxt "Page title"
 msgid "Contact Us"
@@ -1528,6 +1531,9 @@ msgstr "Хабарлама жазу"
 msgctxt "Form button"
 msgid "Send"
 msgstr "Жіберу"
+
+msgid "page:/faq/:title"
+msgstr "Сұрақ-жауап"
 
 msgctxt "Page title"
 msgid "Login"
@@ -1832,6 +1838,9 @@ msgctxt "Navigation link"
 msgid "Settings"
 msgstr "Құрылғылар"
 
+msgid "_common.nav.faq"
+msgstr "Сұрақ-жауап"
+
 msgctxt "Navigation link"
 msgid "Logout"
 msgstr "Шығу"
@@ -2000,6 +2009,9 @@ msgstr "Сұрақтар саны: %(count)s"
 #, python-format
 msgid "Duration: %(minutes)s min."
 msgstr "Ұзақтығы: %(minutes)s минут."
+
+msgid "page:/student/buy-tests/xxxx/:test_variant_in_progress"
+msgstr "Жаңа нұсқа қосылуда, кейінірек кіріңіз."
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Total:"

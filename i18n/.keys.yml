@@ -2,6 +2,9 @@
 _common:
   html_description: ~
 
+  nav:
+    faq: ~
+
   domains:
     nis: 'NIS'
     nis_full: ~
@@ -69,6 +72,7 @@ page:
     last_results_header: ~
   '/student/buy-tests/xxxx/':
     test_variant: ~
+    test_variant_in_progress: ~
   '/student/results/':
     score: ~
     correct_questions: ~
@@ -83,3 +87,7 @@ page:
     line_item_test_with_language: ~
   '/buy-credits/':
     enter_amount: ~
+    credits_conversion_rate: ~
+    bank_usage_info: ~
+  '/faq/':
+    title: ~

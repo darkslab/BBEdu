@@ -155,6 +155,7 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
         var $test_section = $(this);
         var $test_section_variant = $test_section.find("[data-test-section-variant]");
         var $test_section_price = $test_section.find("[data-test-section-price]");
+        var $test_section_progress_message = $test_section.find("[data-progress-message]");
         var section_data = data.sections[$test_section.data("test-section").toString()];
 
         if (!section_data.enabled) {
@@ -166,6 +167,7 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
 
             $test_section_variant.text("");
             $test_section_price.text("");
+            $test_section_progress_message.removeClass("hidden");
             return;
         }
 
@@ -180,6 +182,7 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
         }
         $test_section_variant.text(section_data.variant);
         $test_section_price.text(section_data.price);
+        $test_section_progress_message.addClass("hidden");
     });
 
     var i;

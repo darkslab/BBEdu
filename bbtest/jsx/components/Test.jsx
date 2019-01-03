@@ -121,7 +121,7 @@ class Test extends React.Component {
                         <div className="row">
                             <div className="col-xs-12 text-center">
                                 <button type="button"
-                                        className="btn btn-danger btn-sm"
+                                        className="btn btn-danger btn-sm mt-10"
                                         onClick={this._renderModal.bind(this, "end")}>{this.props.texts.endButton}</button>
                             </div>
                         </div>

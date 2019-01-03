@@ -21,6 +21,7 @@ from bbtest.models.shopping.handle import CartHandleAccessMixin, CartHandle
 from bbtest.models.shopping.items import CreditItem
 from bbtest.models.shopping.operate import charge
 from bbtest.models import Cart, TestDomain
+from bbtest.texts import FAQ_TEXTS
 
 
 class HomeView(TemplateView):
@@ -161,3 +162,11 @@ class ContactUsView(FormView):
         form.save()
         success(self.request, pgettext("Success alert message", "Thank you. We have received your message and we will get back to you as soon as possible."))
         return super().form_valid(form)
+
+
+class FaqView(TemplateView):
+    template_name = "base/faq.html"
+
+    def get_context_data(self, **kwargs):
+        kwargs["texts"] = FAQ_TEXTS[get_language()]
+        return super().get_context_data(**kwargs)
