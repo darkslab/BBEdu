@@ -16,3 +16,4 @@ Equity accounts:
 Revenue accounts:
     Tests-NIS
     Tests-UNT
+    Tests-NUFYPET
