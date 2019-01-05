@@ -24,4 +24,9 @@ TEST_SECTION_MAP = {
     "9557": KazakhLanguageAndLiteratureProfileUNTItem,
     "9558": RussianLanguageAndLiteratureProfileUNTItem,
     "9559": HumanSocietyRightProfileUNTItem,
+
+    "9560": MathematicsNUFYPETItem,
+    "9561": PhysicsNUFYPETItem,
+    "9562": BiologyChemistryNUFYPETItem,
+    "9563": ThinkingSkillsNUFYPETItem,
 }

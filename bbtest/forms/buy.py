@@ -26,8 +26,11 @@ class BuyTestsCartForm(Form):
             if not isinstance(data, dict):
                 raise ValueError("Incorrect data")
 
-            if data["language"] not in [ test_language[0] for test_language in Test.LANGUAGES if test_language[0] != Test.LANGUAGE_XX ]:
-                raise ValueError("Incorrect data")
+            if self.__test_domain.pk == 7913:
+                data["language"] = Test.LANGUAGE_XX
+            else:
+                if data["language"] not in [ test_language[0] for test_language in Test.LANGUAGES if test_language[0] != Test.LANGUAGE_XX ]:
+                    raise ValueError("Incorrect data")
             clean_data["language"] = data["language"]
 
             clean_data["sections"] = []
