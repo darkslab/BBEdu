@@ -5,6 +5,7 @@ class DeveloperImageParagraph extends React.Component {
             confirmModal: false,
             isErrored: false
         };
+        this._fileInput;
         this._$fileInput;
         this._$xhr;
         this._xhrData = [];
@@ -14,12 +15,8 @@ class DeveloperImageParagraph extends React.Component {
         this._boundFileInputChanged = this._fileInputChanged.bind(this);
     }
     componentDidMount() {
-        this._$fileInput = $("[data-bb-file-input]");
-        if (this._$fileInput.length) {
-            this._$fileInput.on("change", this._boundFileInputChanged);
-        } else {
-            this._$fileInput = undefined;
-        }
+        this._$fileInput = $(this._fileInput);
+        this._$fileInput.on("change", this._boundFileInputChanged);
     }
     componentWillUnmount () {
         if (this._$fileInput) {
@@ -114,7 +111,7 @@ class DeveloperImageParagraph extends React.Component {
                                        className="hidden"
                                        type="file"
                                        accept="image/*"
-                                       data-bb-file-input />
+                                       ref={(input) => { this._fileInput = input; }} />
                             </div>
                         </div>
                     </div>
