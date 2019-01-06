@@ -22,6 +22,7 @@ var DeveloperImageParagraph = function (_React$Component) {
             confirmModal: false,
             isErrored: false
         };
+        _this._fileInput;
         _this._$fileInput;
         _this._$xhr;
         _this._xhrData = [];
@@ -35,12 +36,8 @@ var DeveloperImageParagraph = function (_React$Component) {
     _createClass(DeveloperImageParagraph, [{
         key: "componentDidMount",
         value: function componentDidMount() {
-            this._$fileInput = $("[data-bb-file-input]");
-            if (this._$fileInput.length) {
-                this._$fileInput.on("change", this._boundFileInputChanged);
-            } else {
-                this._$fileInput = undefined;
-            }
+            this._$fileInput = $(this._fileInput);
+            this._$fileInput.on("change", this._boundFileInputChanged);
         }
     }, {
         key: "componentWillUnmount",
@@ -59,6 +56,8 @@ var DeveloperImageParagraph = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
+            var _this2 = this;
+
             var uploadId = "upload_" + this.props.paragraphId;
 
             var buttons = [];
@@ -160,7 +159,9 @@ var DeveloperImageParagraph = function (_React$Component) {
                                     className: "hidden",
                                     type: "file",
                                     accept: "image/*",
-                                    "data-bb-file-input": true })
+                                    ref: function ref(input) {
+                                        _this2._fileInput = input;
+                                    } })
                             )
                         )
                     )
