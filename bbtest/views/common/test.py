@@ -111,7 +111,7 @@ def average_score(test_section):
         scores_count += 1
     # DARK_TODO  As of right now, we are mixing an actual average score with an artificial one. But one
     #            day we should get rid of it. Remove the condition below when ready.
-    if True:
+    if True and scores_count > 0:
         first_test = test_section.tests.first()
         if first_test:
             score += round(first_test.max_score() * ((70 + randint(0, 10)) / 100))
