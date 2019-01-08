@@ -113,6 +113,10 @@ def average_score(test_section):
             test__code__in=( "989c", "bf79", "ed26", "c305" ),
             created_at__lte=get_current_timezone().localize(datetime(2019, 1, 6)),
         )
+        quiz_queryset = quiz_queryset.exclude(
+            test__code__in=( "0a60", "48be" ),
+            created_at__gte=get_current_timezone().localize(datetime(2019, 1, 6)),
+        )
     for quiz in quiz_queryset:
         if quiz.test.is_free:
             continue
