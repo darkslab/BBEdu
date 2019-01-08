@@ -1,6 +1,7 @@
 from django.db.models import Prefetch
 from django.core.cache import cache
-from random import randint
+from django.utils.timezone import get_current_timezone
+from datetime import datetime
 from bbtest.models import TestQuestion, TestParagraph, Quiz
 from bbtest.models.upload import expiring_url
 
@@ -99,23 +100,35 @@ def average_score(test_section):
         return score
     score = 0
     scores_count = 0
-    for quiz in Quiz.objects.filter(
+    quiz_queryset = Quiz.objects.filter(
         test__section=test_section,
         is_finished=True,
     ).exclude(
         report=None,
-    ).select_related("test__section").prefetch_related("test__questions").all():
+    ).select_related("test__section").prefetch_related("test__questions").all()
+    # DARK_TODO  We are artificially ignoring certain former "free" tests, that are not paid.
+    #            Remove the condition below when ready.
+    if True:
+        quiz_queryset = quiz_queryset.exclude(
+            test__code__in=( "989c", "bf79", "ed26", "c305" ),
+            created_at__lte=get_current_timezone().localize(datetime(2019, 1, 6)),
+        )
+        quiz_queryset = quiz_queryset.exclude(
+            test__code__in=( "0a60", "48be" ),
+            created_at__gte=get_current_timezone().localize(datetime(2019, 1, 6)),
+        )
+    for quiz in quiz_queryset:
         if quiz.test.is_free:
             continue
         score += quiz.score()
         scores_count += 1
     # DARK_TODO  As of right now, we are mixing an actual average score with an artificial one. But one
     #            day we should get rid of it. Remove the condition below when ready.
-    if True:
+    if True and scores_count > 0:
         first_test = test_section.tests.first()
         if first_test:
-            score += round(first_test.max_score() * ((70 + randint(0, 10)) / 100))
-            scores_count += 1
+            score += first_test.max_score() * 10
+            scores_count += 10
     if scores_count > 0:
         score = round(score / scores_count)
     cache.set(key, score, None)
