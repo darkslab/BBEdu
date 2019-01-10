@@ -63,6 +63,8 @@ class Quiz(Model):
             score = self.__calculate_unt_compulsory(question_ids, bucket)
         elif self.test.section.is_unt_profile():
             score = self.__calculate_unt_profile(question_ids, bucket)
+        elif self.test.section.is_nufypet():
+            score = self.__calculate_nufypet(question_ids, bucket)
 
         return score
 
@@ -132,6 +134,17 @@ class Quiz(Model):
                     elif len(correct_answers & report_answers) >= ceil(len(correct_answers) / 2):
                         if len(report_answers - correct_answers) <= 1:
                             score += question.weight / 2
+            if before_score != score:
+                bucket.append(question.pk)
+        return score
+
+    def __calculate_nufypet(self, question_ids, bucket):
+        score = 0
+        for i, question in enumerate(self.test.questions.all()):
+            if question_ids is not None and question.pk not in question_ids:
+                continue
+            before_score = score
+            score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
             if before_score != score:
                 bucket.append(question.pk)
         return score
