@@ -25,6 +25,12 @@ from .unt.profile import (
     RussianLanguageAndLiteratureProfileUNTItem,
     HumanSocietyRightProfileUNTItem,
 )
+from .nufypet.concrete import (
+    MathematicsNUFYPETItem,
+    PhysicsNUFYPETItem,
+    BiologyChemistryNUFYPETItem,
+    ThinkingSkillsNUFYPETItem,
+)
 
 # DARK_COMM  Only keep concrete Item classes in __all__!
 __all__ = [
@@ -52,4 +58,9 @@ __all__ = [
     "KazakhLanguageAndLiteratureProfileUNTItem",
     "RussianLanguageAndLiteratureProfileUNTItem",
     "HumanSocietyRightProfileUNTItem",
+
+    "MathematicsNUFYPETItem",
+    "PhysicsNUFYPETItem",
+    "BiologyChemistryNUFYPETItem",
+    "ThinkingSkillsNUFYPETItem",
 ]

@@ -22,7 +22,7 @@ from bbtest.payment_processors import CreditPaymentProcessor
 
 def get_test_domain_or_404(test_domain_id):
     return get_object_or_404(
-        TestDomain.objects.filter(pk__in=[ 7911, 7912 ]).prefetch_related("sections"),
+        TestDomain.objects.filter(pk__in=[ 7911, 7912, 7913 ]).prefetch_related("sections"),
         pk=test_domain_id,
     )
 
@@ -53,7 +53,9 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixi
         for section in kwargs["test_domain"].sections.all():
             section.minutes = section.duration // 60
 
-        kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
+        kwargs["test_langs"] = None
+        if kwargs["test_domain"].pk != 7913:
+            kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
 
         return super().get_context_data(**kwargs)
 
@@ -224,7 +226,14 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                         QuantitativeNISItem,
                     ):
                         amount = Decimal("360.00")
-                except IndexError:
+                    elif TEST_SECTION_MAP[section_id] in (
+                        MathematicsNUFYPETItem,
+                        PhysicsNUFYPETItem,
+                        BiologyChemistryNUFYPETItem,
+                        ThinkingSkillsNUFYPETItem,
+                    ):
+                        amount = Decimal("480.00")
+                except KeyError:
                     pass
                 response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": amount }
 
