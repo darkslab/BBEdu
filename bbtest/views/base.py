@@ -33,6 +33,8 @@ class HomeView(TemplateView):
                 kwargs["nis"] = domain
             elif domain.pk == 7912:
                 kwargs["unt"] = domain
+            elif domain.pk == 7913:
+                kwargs["nufypet"] = domain
         return super().get_context_data(**kwargs)
 
 
