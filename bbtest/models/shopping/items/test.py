@@ -42,13 +42,13 @@ class TestItem(Item):
             raise ItemError(pgettext("Item error", "Test is required."))
         if not isinstance(student, User) or not student.has_perm("bbtest.student"):
             raise ItemError(pgettext("Item error", "Student is required."))
-        if language not in [ test_lang[0] for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]:
+        if language not in [ test_lang[0] for test_lang in Test.LANGUAGES ]:
             raise ItemError(pgettext("Item error", "Correct test language is required."))
         if test.pk in student.obtained_test_ids():
             raise ItemError(pgettext("Item error", "Test has already been taken."))
         if not test.is_approved():
             raise ItemError(pgettext("Item error", "Test has to be approved."))
-        if test.language != Test.LANGUAGE_XX and test.language != language:
+        if test.language != Test.LANGUAGE_XX and test.language != language or language == Test.LANGUAGE_XX and test.language != Test.LANGUAGE_XX:
             raise ItemError(pgettext("Item error", "Incorrect Test language."))
 
     def test(self):
