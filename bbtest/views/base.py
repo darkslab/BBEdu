@@ -160,6 +160,11 @@ class ContactUsView(FormView):
     form_class = MessageForm
     success_url = reverse_lazy("bbtest:contact_us")
 
+    def get_context_data(self, **kwargs):
+        kwargs["recaptcha_site_key"] = settings.RECAPTCHA_SITE_KEY
+        kwargs["recaptcha_secret_key"] = settings.RECAPTCHA_SECRET_KEY
+        return super().get_context_data(**kwargs)
+
     def form_valid(self, form):
         form.save()
         success(self.request, pgettext("Success alert message", "Thank you. We have received your message and we will get back to you as soon as possible."))
