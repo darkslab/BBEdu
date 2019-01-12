@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-03 14:01+0600\n"
-"PO-Revision-Date: 2019-01-09 23:45-0800\n"
+"POT-Creation-Date: 2019-01-12 14:56+0600\n"
+"PO-Revision-Date: 2019-01-12 03:08-0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -278,6 +278,9 @@ msgstr "Мәліметтерді дұрыс енгізіңіз."
 msgctxt "Validation error"
 msgid "Invalid JSON format."
 msgstr "JSON форматы дұрыс емес."
+
+msgid "_common.validation.message_form.recaptcha"
+msgstr "Робот емес екеніңізді растаңыз."
 
 msgctxt "Validation error"
 msgid "Name is too long."
@@ -1265,6 +1268,30 @@ msgid "Quantitative NIS Test is required."
 msgstr "НЗМ Сандық сипаттамалары тестілері қажет."
 
 msgctxt "Item error"
+msgid "NUFYPET Test is required."
+msgstr "NUFYPET тесті қажет."
+
+msgctxt "Item error"
+msgid "NUFYPET Test does not have test language."
+msgstr "NUFYPET тестінің тест тілі жоқ."
+
+msgctxt "Item error"
+msgid "Mathematics NUFYPET Test is required."
+msgstr "NUFYPET Mathematics тесті қажет."
+
+msgctxt "Item error"
+msgid "Physics NUFYPET Test is required."
+msgstr "NUFYPET Physics тесті қажет."
+
+msgctxt "Item error"
+msgid "Biology/Chemistry NUFYPET Test is required."
+msgstr "NUFYPET Biology/Chemistry тесті қажет."
+
+msgctxt "Item error"
+msgid "Thinking skills NUFYPET Test is required."
+msgstr "NUFYPET Thinking skills тесті қажет."
+
+msgctxt "Item error"
 msgid "Test is required."
 msgstr "Тестілер қажет."
 
@@ -1867,6 +1894,9 @@ msgstr "%(domain_name)s%(break_code)s(%(domain_abbr)s)"
 msgid "_common.domains.unt_full"
 msgstr "Ұлттық Біріңғай Тестілеу"
 
+msgid "_common.domains.nufypet_full"
+msgstr "Nazarbayev University Foundation Year Preparation Test"
+
 msgctxt "Home page"
 msgid "We are working on other tests..."
 msgstr "Басқа да тестілерді қосудамыз…"
@@ -1968,9 +1998,6 @@ msgstr "Транзакциялар"
 msgctxt "Page title"
 msgid "Choose the test domain"
 msgstr "Тестіні таңдаңыз"
-
-msgid "_common.domains.nufypet_full"
-msgstr "Nazarbayev University Foundation Year Preparation Test"
 
 #, python-format
 msgctxt "Page title"
