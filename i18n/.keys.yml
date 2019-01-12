@@ -5,6 +5,10 @@ _common:
   nav:
     faq: ~
 
+  validation:
+    message_form:
+      recaptcha: ~
+
   domains:
     nis: 'NIS'
     nis_full: ~
