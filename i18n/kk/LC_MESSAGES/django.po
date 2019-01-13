@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-12 14:56+0600\n"
+"POT-Creation-Date: 2019-01-13 07:23+0600\n"
 "PO-Revision-Date: 2019-01-12 03:08-0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1971,6 +1971,11 @@ msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Тестіні жүктеу"
 
+#, fuzzy
+#| msgid "_common.nav.faq"
+msgid "_common.nav.trial_balance"
+msgstr "Сұрақ-жауап"
+
 msgctxt "Navigation link"
 msgid "Public Offer"
 msgstr "Жария офертасы"
@@ -2557,6 +2562,12 @@ msgctxt "/super/tests/"
 msgid "There are no tests yet"
 msgstr "Тестілер жоқ"
 
+msgid "page:/super/trial-balance/:title"
+msgstr ""
+
+msgid "page:/super/trial-balance/:accounting_error"
+msgstr ""
+
 msgctxt "Page title"
 msgid "All Users"
 msgstr "Барлық қолданушылар"
@@ -2921,6 +2932,30 @@ msgstr ""
 "мақсатымен біз 2018 жылдағы Назарбаев Зияткерлік мектептеріне іріктеу "
 "тестілеуіне қатысушыларының орташа балын (қызыл сызық) көрсетіп отырмыз (nis."
 "edu.kz сайтынан алынған)."
+
+msgid "page:/super/trial-balance/:account.cash"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.qazkom"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.promo"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.developers"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.student"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.nis"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.unt"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.nufypet"
+msgstr ""
 
 #, python-format
 msgctxt "/super/users/"
