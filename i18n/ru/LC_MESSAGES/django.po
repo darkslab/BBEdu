@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-13 07:23+0600\n"
-"PO-Revision-Date: 2019-01-12 19:34-0600\n"
+"POT-Creation-Date: 2019-01-14 04:11+0600\n"
+"PO-Revision-Date: 2019-01-13 16:19-0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -2575,6 +2575,10 @@ msgstr "Нет загруженных тестов"
 msgid "page:/super/trial-balance/:title"
 msgstr "Пробный баланс"
 
+#, python-format
+msgid "page:/super/trial-balance/:last_cached:%(last_cached_datetime)s"
+msgstr "Последний запрос был %(last_cached_datetime)s"
+
 msgid "page:/super/trial-balance/:accounting_error"
 msgstr "Пробный баланс не балансирует!"
 
@@ -2942,28 +2946,28 @@ msgstr ""
 "отбора в НИШ 2018 года по данному предмету (взято с nis.edu.kz)."
 
 msgid "page:/super/trial-balance/:account.cash"
-msgstr "Наличный счёт"
+msgstr "Cash Account"
 
 msgid "page:/super/trial-balance/:account.qazkom"
-msgstr "Тарифные сборы Qazkom"
+msgstr "Qazkom Merchant Fees Account"
 
 msgid "page:/super/trial-balance/:account.promo"
-msgstr "Промо-кредитный счёт"
+msgstr "Promo-credits Account"
 
 msgid "page:/super/trial-balance/:account.developers"
-msgstr "Счета разработчиков"
+msgstr "Developer Accounts"
 
 msgid "page:/super/trial-balance/:account.student"
-msgstr "Счета участников тестирования"
+msgstr "Student Accounts"
 
 msgid "page:/super/trial-balance/:account.nis"
-msgstr "Доходный счёт НИШ"
+msgstr "NIS Test Income Account"
 
 msgid "page:/super/trial-balance/:account.unt"
-msgstr "Доходный счёт ЕНТ"
+msgstr "UNT Test Income Account"
 
 msgid "page:/super/trial-balance/:account.nufypet"
-msgstr "Доходный счёт NUFYPET"
+msgstr "NUFYPET Test Income Account"
 
 #, python-format
 msgctxt "/super/users/"

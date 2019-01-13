@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-13 07:23+0600\n"
-"PO-Revision-Date: 2019-01-12 03:08-0600\n"
+"POT-Creation-Date: 2019-01-14 04:11+0600\n"
+"PO-Revision-Date: 2019-01-13 16:19-0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -1971,10 +1971,8 @@ msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Тестіні жүктеу"
 
-#, fuzzy
-#| msgid "_common.nav.faq"
 msgid "_common.nav.trial_balance"
-msgstr "Сұрақ-жауап"
+msgstr "Пробный баланс"
 
 msgctxt "Navigation link"
 msgid "Public Offer"
@@ -2563,10 +2561,14 @@ msgid "There are no tests yet"
 msgstr "Тестілер жоқ"
 
 msgid "page:/super/trial-balance/:title"
-msgstr ""
+msgstr "Пробный баланс"
+
+#, python-format
+msgid "page:/super/trial-balance/:last_cached:%(last_cached_datetime)s"
+msgstr "Последний запрос был %(last_cached_datetime)s"
 
 msgid "page:/super/trial-balance/:accounting_error"
-msgstr ""
+msgstr "Пробный баланс не балансирует!"
 
 msgctxt "Page title"
 msgid "All Users"
@@ -2934,28 +2936,28 @@ msgstr ""
 "edu.kz сайтынан алынған)."
 
 msgid "page:/super/trial-balance/:account.cash"
-msgstr ""
+msgstr "Cash Account"
 
 msgid "page:/super/trial-balance/:account.qazkom"
-msgstr ""
+msgstr "Qazkom Merchant Fees Account"
 
 msgid "page:/super/trial-balance/:account.promo"
-msgstr ""
+msgstr "Promo-credits Account"
 
 msgid "page:/super/trial-balance/:account.developers"
-msgstr ""
+msgstr "Developer Accounts"
 
 msgid "page:/super/trial-balance/:account.student"
-msgstr ""
+msgstr "Student Accounts"
 
 msgid "page:/super/trial-balance/:account.nis"
-msgstr ""
+msgstr "NIS Test Income Account"
 
 msgid "page:/super/trial-balance/:account.unt"
-msgstr ""
+msgstr "UNT Test Income Account"
 
 msgid "page:/super/trial-balance/:account.nufypet"
-msgstr ""
+msgstr "NUFYPET Test Income Account"
 
 #, python-format
 msgctxt "/super/users/"
