@@ -2,11 +2,12 @@ from django.contrib.auth import get_user_model
 from django.db.models import Count, Sum
 from django.http import HttpResponse
 from django.utils.timezone import localtime
+from django.utils.translation import ugettext
 import csv
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin
-from bbtest.models import Subscription, Test, TestSection
+from bbtest.models import Subscription, Test, TestSection, Account
 
 
 User = get_user_model()
@@ -140,3 +141,28 @@ class DownloadSubscriptionListView(SuperPermissionRequiredMixin, View):
             ])
 
         return response
+
+
+class TrialBalanceView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView):
+    template_name = "super/trial_balance.html"
+
+    def get_context_data(self, **kwargs):
+        kwargs["balances_a"] = {
+            ugettext("page:/super/trial-balance/:account.cash"):    Account.objects.get(name="Cash").balance(),
+            ugettext("page:/super/trial-balance/:account.qazkom"):  Account.objects.get(name="MerchantFees-Qazkom").balance(),
+            ugettext("page:/super/trial-balance/:account.promo"):   Account.objects.get(name="Promo-Credits").balance(),
+        }
+        kwargs["balances_a_sum"] = sum(account_balance for account_name, account_balance in kwargs["balances_a"].items())
+
+        kwargs["balances_l"] = {
+            ugettext("page:/super/trial-balance/:account.developers"):  sum(account.balance() for account in Account.objects.filter(name__istartswith="Developer-").all()),
+            ugettext("page:/super/trial-balance/:account.student"):     sum(account.balance() for account in Account.objects.filter(name__istartswith="BalanceAccount-").all()),
+            ugettext("page:/super/trial-balance/:account.nis"):         Account.objects.get(name="Tests-NIS").balance(),
+            ugettext("page:/super/trial-balance/:account.unt"):         Account.objects.get(name="Tests-UNT").balance(),
+            ugettext("page:/super/trial-balance/:account.nufypet"):     Account.objects.get(name="Tests-NUFYPET").balance(),
+        }
+        kwargs["balances_l_sum"] = sum(account_balance for account_name, account_balance in kwargs["balances_l"].items())
+
+        kwargs["has_errors"] = Account.objects.has_errors()
+
+        return super().get_context_data(**kwargs)

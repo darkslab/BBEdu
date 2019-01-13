@@ -4,6 +4,7 @@ _common:
 
   nav:
     faq: ~
+    trial_balance: ~
 
   validation:
     message_form:
@@ -95,3 +96,15 @@ page:
     bank_usage_info: ~
   '/faq/':
     title: ~
+  '/super/trial-balance/':
+    title: ~
+    account:
+      cash: ~
+      qazkom: ~
+      promo: ~
+      developers: ~
+      student: ~
+      nis: ~
+      unt: ~
+      nufypet: ~
+    accounting_error: ~
