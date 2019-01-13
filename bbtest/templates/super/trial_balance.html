@@ -9,6 +9,11 @@
 
 {% block content %}
     <div class="row">
+        <div class="col-xs-12 text-center text-primary mb-10">
+            <strong>{% blocktrans with last_cached_datetime=last_cached|date:'SHORT_DATETIME_FORMAT' %}page:/super/trial-balance/:last_cached:{{ last_cached_datetime }}{% endblocktrans %}</strong>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-12 col-sm-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">

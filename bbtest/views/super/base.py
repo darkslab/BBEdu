@@ -1,9 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.db.models import Count, Sum
 from django.http import HttpResponse
-from django.utils.timezone import localtime
+from django.utils.timezone import localtime, now
 from django.utils.translation import ugettext
+from django.core.cache import cache
 import csv
+from collections import OrderedDict
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin
@@ -147,22 +149,29 @@ class TrialBalanceView(SuperPermissionRequiredMixin, UserContextMixin, TemplateV
     template_name = "super/trial_balance.html"
 
     def get_context_data(self, **kwargs):
-        kwargs["balances_a"] = {
-            ugettext("page:/super/trial-balance/:account.cash"):    Account.objects.get(name="Cash").balance(),
-            ugettext("page:/super/trial-balance/:account.qazkom"):  Account.objects.get(name="MerchantFees-Qazkom").balance(),
-            ugettext("page:/super/trial-balance/:account.promo"):   Account.objects.get(name="Promo-Credits").balance(),
-        }
-        kwargs["balances_a_sum"] = sum(account_balance for account_name, account_balance in kwargs["balances_a"].items())
+        balances = cache.get("balances")
 
-        kwargs["balances_l"] = {
-            ugettext("page:/super/trial-balance/:account.developers"):  sum(account.balance() for account in Account.objects.filter(name__istartswith="Developer-").all()),
-            ugettext("page:/super/trial-balance/:account.student"):     sum(account.balance() for account in Account.objects.filter(name__istartswith="BalanceAccount-").all()),
-            ugettext("page:/super/trial-balance/:account.nis"):         Account.objects.get(name="Tests-NIS").balance(),
-            ugettext("page:/super/trial-balance/:account.unt"):         Account.objects.get(name="Tests-UNT").balance(),
-            ugettext("page:/super/trial-balance/:account.nufypet"):     Account.objects.get(name="Tests-NUFYPET").balance(),
-        }
-        kwargs["balances_l_sum"] = sum(account_balance for account_name, account_balance in kwargs["balances_l"].items())
+        if not balances:
+            balances = {}
 
-        kwargs["has_errors"] = Account.objects.has_errors()
+            balances["balances_a"] = OrderedDict()
+            balances["balances_a"][ugettext("page:/super/trial-balance/:account.cash")]    = Account.objects.get(name="Cash").balance()
+            balances["balances_a"][ugettext("page:/super/trial-balance/:account.qazkom")]  = Account.objects.get(name="MerchantFees-Qazkom").balance()
+            balances["balances_a"][ugettext("page:/super/trial-balance/:account.promo")]   = Account.objects.get(name="Promo-Credits").balance()
+            balances["balances_a_sum"] = sum(account_balance for account_name, account_balance in balances["balances_a"].items())
 
+            balances["balances_l"] = OrderedDict()
+            balances["balances_l"][ugettext("page:/super/trial-balance/:account.developers")]  = sum(account.balance() for account in Account.objects.filter(name__istartswith="Developer-").all())
+            balances["balances_l"][ugettext("page:/super/trial-balance/:account.student")]     = sum(account.balance() for account in Account.objects.filter(name__istartswith="BalanceAccount-").all())
+            balances["balances_l"][ugettext("page:/super/trial-balance/:account.nis")]         = Account.objects.get(name="Tests-NIS").balance()
+            balances["balances_l"][ugettext("page:/super/trial-balance/:account.unt")]         = Account.objects.get(name="Tests-UNT").balance()
+            balances["balances_l"][ugettext("page:/super/trial-balance/:account.nufypet")]     = Account.objects.get(name="Tests-NUFYPET").balance()
+            balances["balances_l_sum"] = sum(account_balance for account_name, account_balance in balances["balances_l"].items())
+
+            balances["has_errors"] = Account.objects.has_errors()
+            balances["last_cached"] = now()
+
+            cache.set("balances", balances, 300)
+
+        kwargs.update(balances)
         return super().get_context_data(**kwargs)
