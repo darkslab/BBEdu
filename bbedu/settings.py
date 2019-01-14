@@ -362,3 +362,7 @@ CACHES = {
 FORMAT_MODULE_PATH = [
     "bbtest.formats",
 ]
+
+RECAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify"
+RECAPTCHA_SITE_KEY = SECRETS["RECAPTCHA_SITE_KEY"]
+RECAPTCHA_SECRET_KEY = SECRETS["RECAPTCHA_SECRET_KEY"]

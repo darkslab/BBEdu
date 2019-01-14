@@ -57,6 +57,7 @@ from .views.super import (
     UsersView as SuperUsersView,
     ImpersonateUserView as SuperImpersonateUserView,
     QuizzesView as SuperQuizzesView,
+    TrialBalanceView as SuperTrialBalanceView,
 )
 
 
@@ -125,6 +126,7 @@ urlpatterns = [
     url(r"^super/users/$",                                 SuperUsersView.as_view(),                    name="super_users"                     ),
     url(r"^super/users/(?P<user_id>[0-9]+)/impersonate/$", SuperImpersonateUserView.as_view(),          name="super_impersonate_user"          ),
     url(r"^super/quizzes/$",                               SuperQuizzesView.as_view(),                  name="super_quizzes"                   ),
+    url(r"^super/trial-balance/$",                         SuperTrialBalanceView.as_view(),             name="super_trial_balance"             ),
 
     # SYSTEM URLS
     url(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-03 14:01+0600\n"
-"PO-Revision-Date: 2019-01-03 00:04-0800\n"
+"POT-Creation-Date: 2019-01-14 04:11+0600\n"
+"PO-Revision-Date: 2019-01-13 16:19-0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -277,6 +277,9 @@ msgstr "Заполните данные."
 msgctxt "Validation error"
 msgid "Invalid JSON format."
 msgstr "Неправильный формат JSON."
+
+msgid "_common.validation.message_form.recaptcha"
+msgstr "Подтвердите что вы не робот."
 
 msgctxt "Validation error"
 msgid "Name is too long."
@@ -1271,6 +1274,30 @@ msgid "Quantitative NIS Test is required."
 msgstr "Требуется тест НИШ: Математика."
 
 msgctxt "Item error"
+msgid "NUFYPET Test is required."
+msgstr "Требуется тест NUFYPET."
+
+msgctxt "Item error"
+msgid "NUFYPET Test does not have test language."
+msgstr "Тест NUFYPET не имеет языка тестирования."
+
+msgctxt "Item error"
+msgid "Mathematics NUFYPET Test is required."
+msgstr "Требуется тест NUFYPET: Mathematics."
+
+msgctxt "Item error"
+msgid "Physics NUFYPET Test is required."
+msgstr "Требуется тест NUFYPET: Physics."
+
+msgctxt "Item error"
+msgid "Biology/Chemistry NUFYPET Test is required."
+msgstr "Требуется тест NUFYPET: Biology/Chemistry."
+
+msgctxt "Item error"
+msgid "Thinking skills NUFYPET Test is required."
+msgstr "Требуется тест NUFYPET: Thinking skills."
+
+msgctxt "Item error"
 msgid "Test is required."
 msgstr "Требуется тест."
 
@@ -1872,6 +1899,9 @@ msgstr "%(domain_name)s%(break_code)s(%(domain_abbr)s)"
 msgid "_common.domains.unt_full"
 msgstr "Единое Национальное Тестирование"
 
+msgid "_common.domains.nufypet_full"
+msgstr "Nazarbayev University Foundation Year Preparation Test"
+
 msgctxt "Home page"
 msgid "We are working on other tests..."
 msgstr "Мы работаем над добавлением других тестов..."
@@ -1947,6 +1977,9 @@ msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Загрузить тест"
 
+msgid "_common.nav.trial_balance"
+msgstr "Пробный баланс"
+
 msgctxt "Navigation link"
 msgid "Public Offer"
 msgstr "Публичная оферта"
@@ -1974,9 +2007,6 @@ msgstr "Транзакции"
 msgctxt "Page title"
 msgid "Choose the test domain"
 msgstr "Выберите тест"
-
-msgid "_common.domains.nufypet_full"
-msgstr "Nazarbayev University Foundation Year Preparation Test"
 
 #, python-format
 msgctxt "Page title"
@@ -2542,6 +2572,16 @@ msgctxt "/super/tests/"
 msgid "There are no tests yet"
 msgstr "Нет загруженных тестов"
 
+msgid "page:/super/trial-balance/:title"
+msgstr "Пробный баланс"
+
+#, python-format
+msgid "page:/super/trial-balance/:last_cached:%(last_cached_datetime)s"
+msgstr "Последний запрос был %(last_cached_datetime)s"
+
+msgid "page:/super/trial-balance/:accounting_error"
+msgstr "Пробный баланс не балансирует!"
+
 msgctxt "Page title"
 msgid "All Users"
 msgstr "Все Пользователи"
@@ -2904,6 +2944,30 @@ msgstr ""
 "Для сравнения Ваших результатов с результатами реального тестирования мы "
 "указали средний балл (красная линия) участников тестирования конкурсного "
 "отбора в НИШ 2018 года по данному предмету (взято с nis.edu.kz)."
+
+msgid "page:/super/trial-balance/:account.cash"
+msgstr "Cash Account"
+
+msgid "page:/super/trial-balance/:account.qazkom"
+msgstr "Qazkom Merchant Fees Account"
+
+msgid "page:/super/trial-balance/:account.promo"
+msgstr "Promo-credits Account"
+
+msgid "page:/super/trial-balance/:account.developers"
+msgstr "Developer Accounts"
+
+msgid "page:/super/trial-balance/:account.student"
+msgstr "Student Accounts"
+
+msgid "page:/super/trial-balance/:account.nis"
+msgstr "NIS Test Income Account"
+
+msgid "page:/super/trial-balance/:account.unt"
+msgstr "UNT Test Income Account"
+
+msgid "page:/super/trial-balance/:account.nufypet"
+msgstr "NUFYPET Test Income Account"
 
 #, python-format
 msgctxt "/super/users/"

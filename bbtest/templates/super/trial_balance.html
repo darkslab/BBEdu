@@ -1,0 +1,69 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n %}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'page:/super/trial-balance/:title' %}{% endblock %}
+
+{% block nav_super_trial_balance_class %}active{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 text-center text-primary mb-10">
+            <strong>{% blocktrans with last_cached_datetime=last_cached|date:'SHORT_DATETIME_FORMAT' %}page:/super/trial-balance/:last_cached:{{ last_cached_datetime }}{% endblocktrans %}</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">&nbsp;</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-pressed">
+                        <tbody>
+                            {% for account_name, account_balance in balances_a.items %}
+                                <tr>
+                                    <td class="pl-10 ">{{ account_name }}</td>
+                                    <td class="pr-10 text-right">₸ {{ account_balance }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pr-10 pl-10 panel-footer text-right">
+                    <strong>₸ {{ balances_a_sum }}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">&nbsp;</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-pressed">
+                        <tbody>
+                            {% for account_name, account_balance in balances_l.items %}
+                                <tr>
+                                    <td class="pl-10">{{ account_name }}</td>
+                                    <td class="pr-10 text-right">₸ {{ account_balance }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pr-10 pl-10 panel-footer text-right">
+                    <strong>₸ {{ balances_l_sum }}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if has_errors %}
+        <div class="row">
+            <div class="col-xs-12 text-center text-danger">
+                <strong>{% trans 'page:/super/trial-balance/:accounting_error' %}</strong>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
