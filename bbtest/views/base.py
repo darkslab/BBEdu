@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.contrib.messages import success
 from django.utils.translation import pgettext
+from django.core.cache import cache
 from urllib.parse import urlencode
 from decimal import Decimal
 from bbtest.auth.mixins import LoginRequiredMixin
@@ -88,9 +89,10 @@ class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin
         CreditItem(self.cart_handle(), Decimal(form.cleaned_data["amount"]), self.request.user)
         self.cart_handle().save()
 
-        self.request.session["cart_type"] = "credits"
+        cache_cart_timeout = 86400
+        cache.set("cart-type-%s" % self.request.user.pk, "credits", cache_cart_timeout)
         if len(old_items):
-            self.request.session["cart_old_items"] = old_items
+            cache.set("cart-old-items-%s" % self.request.user.pk, old_items, cache_cart_timeout)
 
         return super().form_valid(form)
 
