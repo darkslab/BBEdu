@@ -10,4 +10,19 @@ test-progress-%{user_id}-%{test_section_id}
     ]
 
 test-average-score-%{test_section_id}
+
 balances
+
+cart-type-%{user_id}
+    (all values are mutually exclusive)
+    credits
+    test-domain-%{test_domain_id}
+
+cart-old-items-%{user_id}
+    [
+        {
+            "item_class": "MathematicsProfileUNTItem",
+            "meta_data": { ... }
+        },
+        ...
+    ]
