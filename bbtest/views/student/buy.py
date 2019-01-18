@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _, pgettext
 from django.urls import reverse
+from django.core.cache import cache
 from json import loads
 from decimal import Decimal
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
@@ -63,8 +64,11 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixi
 class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixin, CartHandleAccessMixin, View):
     def get(self, request, test_domain_id, *args, **kwargs):
         test_domain = get_test_domain_or_404(test_domain_id)
+        cache_cart_type_key = "cart-type-%s" % request.user.pk
+        cache_cart_old_items = "cart-old-items-%s" % request.user.pk
+        cache_cart_timeout = 86400
 
-        if request.session.get("cart_type") not in [ "test-domain-%s" % test_domain.pk, "empty" ]:
+        if cache.get(cache_cart_type_key) not in [ "test-domain-%s" % test_domain.pk, None ]:
             is_emptied = False
             is_restored = False
 
@@ -72,7 +76,8 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                 self.cart_handle().empty()
                 is_emptied = True
 
-            old_items = request.session.pop("cart_old_items", [])
+            old_items = cache.get(cache_cart_old_items, [])
+            cache.delete(cache_cart_old_items)
             if len(old_items):
                 for old_item in old_items:
                     if old_item["item_class"] not in items.__all__:
@@ -86,9 +91,9 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
             if is_emptied or is_restored:
                 self.cart_handle().save()
             if is_restored:
-                request.session["cart_type"] = "test-domain-%s" % test_domain.pk
+                cache.set(cache_cart_type_key, "test-domain-%s" % test_domain.pk, cache_cart_timeout)
             else:
-                request.session["cart_type"] = "empty"
+                cache.delete(cache_cart_type_key)
 
         data = self.__response(test_domain)
         data.update({
@@ -132,10 +137,11 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
 
         self.cart_handle().save()
 
+        cache_cart_type_key = "cart-type-%s" % request.user.pk
         if len(self.cart_handle()):
-            request.session["cart_type"] = "test-domain-%s" % test_domain.pk
+            cache.set(cache_cart_type_key, "test-domain-%s" % test_domain.pk, 86400)
         else:
-            request.session["cart_type"] = "empty"
+            cache.delete(cache_cart_type_key)
 
         data = self.__response(test_domain, form.cleaned_data["data"]["language"])
         data.update({
