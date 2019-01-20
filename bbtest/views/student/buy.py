@@ -68,7 +68,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
         cache_cart_old_items = "cart-old-items-%s" % request.user.pk
         cache_cart_timeout = 86400
 
-        if cache.get(cache_cart_type_key) not in [ "test-domain-%s" % test_domain.pk, None ]:
+        if cache.get(cache_cart_type_key) not in [ "test-domain-%s" % test_domain.pk ]:
             is_emptied = False
             is_restored = False
 
