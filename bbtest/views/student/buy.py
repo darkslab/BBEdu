@@ -83,7 +83,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                     if old_item["item_class"] not in items.__all__:
                         continue
                     try:
-                        getattr(items, old_item["item_class"]).instantiate_from_meta_data(self.cart_handle(), old_item["meta_data"])
+                        getattr(items, old_item["item_class"]).instantiate_from_meta_data(self.cart_handle(), old_item)
                         is_restored = True
                     except ItemError:
                         pass
