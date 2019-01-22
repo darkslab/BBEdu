@@ -109,3 +109,7 @@ page:
       nufypet: ~
     accounting_error: ~
     last_cached: ~
+  '/super/users/':
+    query: ~
+    search: ~
+    reset: ~
