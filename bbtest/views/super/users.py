@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model, login
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.messages import warning
 from django.utils.translation import pgettext
+from django.db.models import Q
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
@@ -14,10 +15,14 @@ class UsersView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin,
     template_name = "super/users.html"
 
     def get_context_data(self, **kwargs):
-        paginator = Paginator(
-            User.objects.filter(is_superuser=False).order_by("-joined_at").prefetch_related("user_permissions__content_type"),
-            25,
-        )
+        users = User.objects.filter(is_superuser=False).order_by("-joined_at").prefetch_related("user_permissions__content_type")
+        kwargs["q"] = ""
+        try:
+            users = users.filter(Q(first_name__contains=self.request.GET["q"]) | Q(last_name__contains=self.request.GET["q"]) | Q(email__contains=self.request.GET["q"]))
+            kwargs["q"] = self.request.GET["q"]
+        except KeyError:
+            pass
+        paginator = Paginator(users, 25)
         try:
             kwargs["users"] = paginator.page(self.request.GET.get("page"))
         except PageNotAnInteger:

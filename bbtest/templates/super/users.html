@@ -16,7 +16,7 @@
             module: "SuperUsersPageModule"
         });
     </script>
-    <form method="post" action="" data-bb-form data-impersonate-form>
+    <form method="post" action="{{ request.path }}" data-bb-form data-impersonate-form>
         {% csrf_token %}
         <div class="modal fade" data-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -39,6 +39,21 @@
             </div>
         </div>
     </form>
+    <div class="row">
+        <div class="col-xs-12">
+            <form method="get" action="{{ request.path }}" data-bb-form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="{% trans 'page:/super/users/:query' %}" name="q" value="{{ q }}">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" data-bb-submit>{% trans 'page:/super/users/:search' %}</button>
+                            <a href="{{ request.path }}" class="btn btn-danger" data-bb-submit>{% trans 'page:/super/users/:reset' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
