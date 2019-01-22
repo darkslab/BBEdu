@@ -26,6 +26,7 @@ class NISItem(TestItem):
         if self not in new_items:
             new_items.append(self)
         new_items.sort(key=lambda new_item: new_item.test().section.order)
+        self.assert_price()
         return new_items
 
     def question_discount(self):

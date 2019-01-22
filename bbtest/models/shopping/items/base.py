@@ -11,7 +11,7 @@ class Item:
         self.__handle = handle
 
     @classmethod
-    def instantiate_from_meta_data(cls, handle, line_item):
+    def instantiate_from_meta_data(cls, handle, meta_data):
         """
         Can raise ItemError with a translated message.
         """
