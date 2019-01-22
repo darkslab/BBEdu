@@ -18,7 +18,7 @@ class UsersView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin,
         users = User.objects.filter(is_superuser=False).order_by("-joined_at").prefetch_related("user_permissions__content_type")
         kwargs["q"] = ""
         try:
-            users = users.filter(Q(first_name__contains=self.request.GET["q"]) | Q(last_name__contains=self.request.GET["q"]) | Q(email__contains=self.request.GET["q"]))
+            users = users.filter(Q(first_name__icontains=self.request.GET["q"]) | Q(last_name__icontains=self.request.GET["q"]) | Q(email__icontains=self.request.GET["q"]))
             kwargs["q"] = self.request.GET["q"]
         except KeyError:
             pass
