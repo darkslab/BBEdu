@@ -20,11 +20,11 @@ class CartHandle:
 
         if self.is_complete():
             raise CartHandleError("Only current carts are allowed")
-        for line_item in self.__cart.line_items.all():
+        for line_item in self.line_items_manager().all():
             if line_item.item_class not in items.__all__:
                 raise CartHandleError("Incorrect item class: %s" % line_item.item_class)
             try:
-                getattr(items, line_item.item_class).instantiate_from_meta_data(self, line_item)
+                getattr(items, line_item.item_class).instantiate_from_meta_data(self, line_item.meta_data)
             except ItemError as error:
                 self.__errors.append(str(error))
 
@@ -44,6 +44,9 @@ class CartHandle:
 
     def buyer(self):
         return self.__cart.buyer
+
+    def line_items_manager(self):
+        return self.__cart.line_items
 
     def is_complete(self):
         return not self.__cart.is_current

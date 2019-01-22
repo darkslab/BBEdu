@@ -64,16 +64,14 @@ class TestItem(Item):
         raise NotImplementedError("%s has to implement 'revenue_account' method" % type(self).__name__)
 
     @classmethod
-    def instantiate_from_meta_data(cls, handle, line_item):
+    def instantiate_from_meta_data(cls, handle, meta_data):
         try:
-            item = cls(
+            cls(
                 handle,
-                Test.objects.select_related("section__domain").get(pk=line_item.meta_data["test_id"]),
-                User.objects.get(pk=line_item.meta_data["student_id"]),
-                line_item.meta_data["language"],
+                Test.objects.select_related("section__domain").get(pk=meta_data["test_id"]),
+                User.objects.get(pk=meta_data["student_id"]),
+                meta_data["language"],
             )
-            if item.price() != line_item.price:
-                handle.force_save_post_instantiation()
         except Test.DoesNotExist:
             raise ItemError(pgettext("Item error", "Test no longer exists."))
         except User.DoesNotExist:
@@ -138,3 +136,8 @@ class TestItem(Item):
 
         except IntegrityError:
             raise ItemError(pgettext("Item error", "Could not checkout. Please try again."))
+
+    def assert_price(self):
+        line_item = self.handle().line_items_manager().filter(item_class=type(self).__name__).first()
+        if line_item is not None and self.price() != line_item.price:
+            self.handle().force_save_post_instantiation()
