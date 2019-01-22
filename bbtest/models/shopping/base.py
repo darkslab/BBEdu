@@ -5,7 +5,7 @@ from django.db.models import (
 from django.contrib.auth import get_user_model
 from django.utils.translation import pgettext_lazy
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from ool import VersionField, VersionedMixin
 from ..fields import JSONField
 from . import items
@@ -20,6 +20,8 @@ class Cart(VersionedMixin, Model):
     updated_at    = DateTimeField     ( pgettext_lazy("Model field", "updated at"),   auto_now=True,                                          db_index=True,            )
     is_current    = NullBooleanField  ( pgettext_lazy("Model field", "is current?"),                                                          db_index=True,            )
     completed_at  = DateTimeField     ( pgettext_lazy("Model field", "completed at"),                                  null=True, blank=True, db_index=True,            )
+
+    transactions  = GenericRelation("Transaction", related_query_name="cart")
 
     class Meta:
         db_table = "shopping_carts"

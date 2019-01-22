@@ -45,10 +45,10 @@ class CreditItem(Item):
         return self.__accounts["balance_account"]
 
     @classmethod
-    def instantiate_from_meta_data(cls, handle, meta_data):
+    def instantiate_from_meta_data(cls, handle, line_item):
         try:
-            amount = Decimal(meta_data["amount"])
-            user = User.objects.get(pk=meta_data["user_id"])
+            amount = Decimal(line_item.meta_data["amount"])
+            user = User.objects.get(pk=line_item.meta_data["user_id"])
             cls(handle, amount, user)
         except User.DoesNotExist:
             raise ItemError(pgettext("Item error", "User no longer exists."))

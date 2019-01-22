@@ -16,6 +16,7 @@ class CartHandle:
         self.__products = []
         self.__errors = []
         self.__is_modified = False
+        self.__save_post_instantiation = False
 
         if self.is_complete():
             raise CartHandleError("Only current carts are allowed")
@@ -23,7 +24,7 @@ class CartHandle:
             if line_item.item_class not in items.__all__:
                 raise CartHandleError("Incorrect item class: %s" % line_item.item_class)
             try:
-                getattr(items, line_item.item_class).instantiate_from_meta_data(self, line_item.meta_data)
+                getattr(items, line_item.item_class).instantiate_from_meta_data(self, line_item)
             except ItemError as error:
                 self.__errors.append(str(error))
 
@@ -35,7 +36,7 @@ class CartHandle:
                     break
 
         self.__is_modified = False
-        if len(self.__errors):
+        if len(self.__errors) or self.__save_post_instantiation:
             self.mark_modified()
             self.save()
 
@@ -151,6 +152,9 @@ class CartHandle:
 
     def mark_modified(self):
         self.__is_modified = True
+
+    def force_save_post_instantiation(self):
+        self.__save_post_instantiation = True
 
     def empty(self):
         for item in self.__items():
