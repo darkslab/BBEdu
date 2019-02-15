@@ -204,6 +204,9 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                         KazakhLanguageNISItem,
                         RussianLanguageNISItem,
                         EnglishLanguageNISItem,
+                    ):
+                        amount = Decimal("200.00")
+                    elif TEST_SECTION_MAP[section_id] in (
                         MathematicalLiteracyCompulsoryUNTItem,
                         ReadingLiteracyCompulsoryUNTItem,
                         HistoryOfKazakhstanCompulsoryUNTItem,
@@ -227,11 +230,11 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                     elif TEST_SECTION_MAP[section_id] in (
                         MathematicsNISItem,
                     ):
-                        amount = Decimal("240.00")
+                        amount = Decimal("400.00")
                     elif TEST_SECTION_MAP[section_id] in (
                         QuantitativeNISItem,
                     ):
-                        amount = Decimal("360.00")
+                        amount = Decimal("600.00")
                     elif TEST_SECTION_MAP[section_id] in (
                         MathematicsNUFYPETItem,
                         PhysicsNUFYPETItem,
