@@ -1,5 +1,6 @@
 Asset accounts:
     Cash
+    Correction-Credits
 
 Expense accounts:
     MerchantFees-Qazkom
