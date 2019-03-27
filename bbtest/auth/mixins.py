@@ -1,9 +1,9 @@
-from django.contrib.auth.mixins import AccessMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import AccessMixin, PermissionRequiredMixin as _PermissionRequiredMixin
 from django.contrib.auth.views import redirect_to_login
 from django.urls import reverse_lazy
 from django.conf import settings
 from django.shortcuts import redirect
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ImproperlyConfigured
 
 
 class LoginRequiredMixin(AccessMixin):
@@ -28,21 +28,47 @@ class LogoutRequiredMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
+class PermissionRequiredMixin(_PermissionRequiredMixin):
+    def base_permission(self):
+        raise NotImplementedError("%s has to implement 'base_permission' method" % type(self).__name__)
+
+    def get_permission_required(self):
+        permissions = set()
+        permissions.add(self.base_permission())
+        if self.permission_required is None:
+            return permissions
+        try:
+            if isinstance(self.permission_required, str):
+                self.permission_required = (self.permission_required,)
+            permissions |= set(self.permission_required)
+        except TypeError:
+            raise ImproperlyConfigured("Incorrect permission_required attribute value. Only iterable objects are allowed.")
+        return permissions
+
+
 class SuperPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     permission_denied_message = "Super access required"
-    permission_required = "bbtest.super"
+
+    def base_permission(self):
+        return "bbtest.super"
 
 
 class AdminPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     permission_denied_message = "Admin access required"
-    permission_required = "bbtest.admin"
+
+    def base_permission(self):
+        return "bbtest.admin"
 
 
 class DeveloperPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     permission_denied_message = "Developer access required"
-    permission_required = "bbtest.developer"
+
+    def base_permission(self):
+        return "bbtest.developer"
 
 
 class StudentPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     permission_denied_message = "Student access required"
-    permission_required = "bbtest.student"
+
+    def base_permission(self):
+        return "bbtest.student"
