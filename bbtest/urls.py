@@ -81,20 +81,6 @@ urlpatterns = [
     url(r"^uploads/(?P<uuid>[0-9A-Fa-f]{32})/complete/$", UploadCompleteView.as_view(), name="upload_complete"),
     url(r"^uploads/(?P<uuid>[0-9A-Fa-f]{32})/adopt/$",    UploadAdoptView.as_view(),    name="upload_adopt"   ),
 
-    # # TEST BUILDING URLS
-    # url(r"^build/tests/$",                                                                           BuildTestsView.as_view(),              name="build_tests"            ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/$",                                                BuildTestView.as_view(),               name="build_test"             ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/)?$",            BuildTestQuestionView.as_view(),       name="build_test_question"    ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", BuildTestParagraphsView.as_view(),     name="build_test_paragraphs"  ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/attributes/$",                                     BuildTestAttributesView.as_view(),     name="build_test_attributes"  ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/approve/$",                                        BuildApproveTestView.as_view(),        name="build_approve_test"     ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/refuse/$",                                         BuildRefuseTestView.as_view(),         name="build_refuse_test"      ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/delete/$",                                         BuildDeleteTestView.as_view(),         name="build_delete_test"      ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/toggle-free/(?P<free>true|false)$",                BuildToggleFreeTestView.as_view(),     name="build_toggle_free_test" ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/check/$",                                          BuildCheckTestView.as_view(),          name="build_check_test"       ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
-    # url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
-
     # STUDENT URLS
     url(r"^student/$",                                         StudentDashboardView.as_view(),        name="student_dashboard"         ),
     url(r"^student/buy-tests/$",                               StudentBuyTestDomainsView.as_view(),   name="student_buy_test_domains"  ),
@@ -113,12 +99,6 @@ urlpatterns = [
     url(r"^student/transactions/$",                            StudentTransactionsView.as_view(),     name="student_transactions"      ),
     url(r"^student/transactions/(?P<transaction_id>\d+)/$",    StudentTransactionView.as_view(),      name="student_transaction"       ),
 
-    # # DEVELOPER URLS
-    # url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
-    # url(r"^developer/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="developer_acknowledgement"),
-    # url(r"^developer/tests/$",           DeveloperTestsView.as_view(),           name="developer_tests"          ),
-    # url(r"^developer/offer/$",           DeveloperOfferView.as_view(),           name="developer_offer"          ),
-
     # SUPER URLS
     url(r"^super/$",                                       SuperDashboardView.as_view(),                name="super_dashboard"                 ),
     url(r"^super/tests/$",                                 SuperTestsView.as_view(),                    name="super_tests"                     ),
@@ -131,7 +111,6 @@ urlpatterns = [
     # SYSTEM URLS
     url(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),
     url(r"^logout/$",                                                                           LogoutView.as_view(),               name="logout"                ),
-    # url(r"^register/(?:(?P<group>developer)/)?$",                                               RegisterView.as_view(),             name="register"              ),
     url(r"^register/$",                                                                         RegisterView.as_view(),             name="register"              ),
     url(r"^password-reset/$",                                                                   PasswordResetView.as_view(),        name="password_reset"        ),
     url(r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),

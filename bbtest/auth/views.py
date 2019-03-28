@@ -35,9 +35,8 @@ class RegisterView(LogoutRequiredMixin, FormView):
     success_url = reverse_lazy("bbtest:dashboard")
     template_name = "base/register.html"
 
-    def dispatch(self, request, group, *args, **kwargs):
-        self._group = group or "student"
-        assert self._group in ("developer", "student")
+    def dispatch(self, request, *args, **kwargs):
+        self._group = "student"
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
