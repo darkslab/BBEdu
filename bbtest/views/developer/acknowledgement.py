@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.utils.translation import get_language
-from djanog.conf import settings
+from django.conf import settings
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
 from bbtest.views.generic import FormView
 from bbtest.views.common import UserContextMixin
