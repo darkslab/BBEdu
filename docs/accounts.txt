@@ -1,10 +1,10 @@
 Asset accounts:
     Cash
-    Correction-Credits
 
 Expense accounts:
     MerchantFees-Qazkom
     Promo-Credits
+    Correction-Credits
 
 Dividend accounts:
 
