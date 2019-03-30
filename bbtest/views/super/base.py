@@ -155,9 +155,10 @@ class TrialBalanceView(SuperPermissionRequiredMixin, UserContextMixin, TemplateV
             balances = {}
 
             balances["balances_a"] = OrderedDict()
-            balances["balances_a"][ugettext("page:/super/trial-balance/:account.cash")]    = Account.objects.get(name="Cash").balance()
-            balances["balances_a"][ugettext("page:/super/trial-balance/:account.qazkom")]  = Account.objects.get(name="MerchantFees-Qazkom").balance()
-            balances["balances_a"][ugettext("page:/super/trial-balance/:account.promo")]   = Account.objects.get(name="Promo-Credits").balance()
+            balances["balances_a"][ugettext("page:/super/trial-balance/:account.cash")]        = Account.objects.get(name="Cash").balance()
+            balances["balances_a"][ugettext("page:/super/trial-balance/:account.qazkom")]      = Account.objects.get(name="MerchantFees-Qazkom").balance()
+            balances["balances_a"][ugettext("page:/super/trial-balance/:account.promo")]       = Account.objects.get(name="Promo-Credits").balance()
+            balances["balances_a"][ugettext("page:/super/trial-balance/:account.correction")]  = Account.objects.get(name="Correction-Credits").balance()
             balances["balances_a_sum"] = sum(account_balance for account_name, account_balance in balances["balances_a"].items())
 
             balances["balances_l"] = OrderedDict()
