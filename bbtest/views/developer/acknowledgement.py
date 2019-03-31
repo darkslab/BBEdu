@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 from django.utils.translation import get_language
+from django.conf import settings
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
 from bbtest.views.generic import FormView
 from bbtest.views.common import UserContextMixin
@@ -11,12 +12,12 @@ from .mixins import DeveloperUnacceptedAcknowledgementRequiredMixin
 
 AGREEMENT_TEXTS = {
     "plan_a": {
-        "kk": "",
-        "ru": DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_A]]["ru"],
+        settings.BB_LANGUAGE_CODE_KK: DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_A]][settings.BB_LANGUAGE_CODE_RU],
+        settings.BB_LANGUAGE_CODE_RU: DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_A]][settings.BB_LANGUAGE_CODE_RU],
     },
     "plan_c": {
-        "kk": "",
-        "ru": DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_C]]["ru"],
+        settings.BB_LANGUAGE_CODE_KK: DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_C]][settings.BB_LANGUAGE_CODE_RU],
+        settings.BB_LANGUAGE_CODE_RU: DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_C]][settings.BB_LANGUAGE_CODE_RU],
     },
 }
 

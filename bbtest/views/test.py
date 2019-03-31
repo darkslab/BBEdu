@@ -14,7 +14,7 @@ from bbtest.models import TestQuestion, Test, TestParagraph
 from bbtest.http import TightJsonResponse
 from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestSendForm, TestCheckForm
 from bbtest.jobs.upload import image_paragraph_destroyer
-from bbtest.texts import inject_texts_into_response
+from bbtest.texts import inject_texts_into_response, test_specification
 
 
 def get_test_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
@@ -76,7 +76,7 @@ class TestView(DeveloperPermissionRequiredMixin, UserContextMixin, TemplateView)
         kwargs["language"] = None
         if test.language != Test.LANGUAGE_XX:
             kwargs["language"] = next(test_language[1] for test_language in Test.LANGUAGES if test_language[0] == test.language)
-        kwargs["specification"] = test.section.specification[test.language][get_language()]
+        kwargs["specification"] = test_specification(test.section, test.language, get_language())
         question_ids = []
         for data in test.questions.values("id").order_by("order"):
             question_ids.append(data["id"])

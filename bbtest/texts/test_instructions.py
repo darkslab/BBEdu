@@ -1,22 +1,23 @@
 from django.utils.translation import ugettext as _
+from bbtest.models import Test
 
 
 NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS = {
-    "kk": [
+    Test.LANGUAGE_KK: [
         [
             "Бұл пән бойынша 10 мәтінге 20 сұрақ берілген.",
             "Сұрақтарға жауап беру уақыты 40 минут.",
             "Жауаптарды мұқиат тексеріңіз.",
         ],
     ],
-    "ru": [
+    Test.LANGUAGE_RU: [
         [
             "Данный предмет содержит 10 текстов и 20 вопросов к ним.",
             "Для ответа на все вопросы выделено 40 минут.",
             "Не забудьте перепроверить свои ответы.",
         ],
     ],
-    "xx": [
+    Test.LANGUAGE_XX: [
         [
             "This subject contains 10 texts and 20 questions.",
             "To answer all questions you will have 40 minutes.",
@@ -26,14 +27,14 @@ NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS = {
 }
 NIS_TEST_INSTRUCTION_TEXTS = {
     9540: {
-        "kk": [
+        Test.LANGUAGE_KK: [
             [
                 "Бұл пән бойынша 40 сұрақ берілген.",
                 "Сұрақтарға жауап беру уақыты 60 минут.",
                 "Жауаптарды мұқиат тексеріңіз.",
             ],
         ],
-        "ru": [
+        Test.LANGUAGE_RU: [
             [
                 "Данный предмет содержит 40 вопросов.",
                 "Для ответа на все вопросы выделено 60 минут.",
@@ -42,18 +43,18 @@ NIS_TEST_INSTRUCTION_TEXTS = {
         ],
     },
     9541: {
-        "kk": NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS["kk"],
-        "ru": NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS["kk"],
+        Test.LANGUAGE_KK: NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS[Test.LANGUAGE_KK],
+        Test.LANGUAGE_RU: NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS[Test.LANGUAGE_KK],
     },
     9542: {
-        "kk": NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS["ru"],
-        "ru": NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS["ru"],
+        Test.LANGUAGE_KK: NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS[Test.LANGUAGE_RU],
+        Test.LANGUAGE_RU: NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS[Test.LANGUAGE_RU],
     },
     9543: {
-        "xx": NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS["xx"],
+        Test.LANGUAGE_XX: NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS[Test.LANGUAGE_XX],
     },
     9544: {
-        "kk": [
+        Test.LANGUAGE_KK: [
             [
                 "Бұл пән бойынша әрбір сұрақ екі бөліктен тұрады. А қатарында тапсырманың бірінші бөлігі орналасқан, ал В қатарында тапсырманың екінші бөлігі орналасқан.",
             ],
@@ -72,7 +73,7 @@ NIS_TEST_INSTRUCTION_TEXTS = {
                 "Жауаптарды мұқиат тексеріңіз.",
             ],
         ],
-        "ru": [
+        Test.LANGUAGE_RU: [
             [
                 "В данном разделе каждый вопрос состоит из двух частей. Первая часть расположена в колонке А. Вторая часть расположена в колонке В.",
             ],
@@ -162,23 +163,23 @@ def test_instructions(test):
 
 NIS_TEST_INSTRUCTION_TITLE_TEXTS = {
     9540: {
-        "kk": "Математика",
-        "ru": "Математика",
+        Test.LANGUAGE_KK: "Математика",
+        Test.LANGUAGE_RU: "Математика",
     },
     9541: {
-        "kk": "Қазақ тілі",
-        "ru": "Қазақ тілі",
+        Test.LANGUAGE_KK: "Қазақ тілі",
+        Test.LANGUAGE_RU: "Қазақ тілі",
     },
     9542: {
-        "kk": "Русский язык",
-        "ru": "Русский язык",
+        Test.LANGUAGE_KK: "Русский язык",
+        Test.LANGUAGE_RU: "Русский язык",
     },
     9543: {
-        "xx": "English language",
+        Test.LANGUAGE_XX: "English language",
     },
     9544: {
-        "kk": "Сандық сипаттамалар",
-        "ru": "Количественные характеристики",
+        Test.LANGUAGE_KK: "Сандық сипаттамалар",
+        Test.LANGUAGE_RU: "Количественные характеристики",
     },
 }
 
