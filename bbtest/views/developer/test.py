@@ -8,6 +8,7 @@ from bbtest.views.generic import FormView
 from bbtest.views.common import UserContextMixin
 from bbtest.forms.test import TestForm
 from bbtest.models import TestDomain, Test
+from bbtest.texts import test_specification
 
 
 class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, FormView):
@@ -35,7 +36,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                     if language[0] == Test.LANGUAGE_XX:
                         continue
                     data["language"]["choices"].append(language)
-                    data["specification"][language[0]] = section.specification[language[0]][get_language()]
+                    data["specification"][language[0]] = test_specification(section, language[0], get_language())
 
             elif section.id == 9541:
                 data["language"] = {
@@ -45,8 +46,8 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                         (Test.LANGUAGE_RU, pgettext("Test language", "Kazakh 2")),
                     ],
                 }
-                data["specification"][Test.LANGUAGE_KK] = section.specification[Test.LANGUAGE_KK][get_language()]
-                data["specification"][Test.LANGUAGE_RU] = section.specification[Test.LANGUAGE_RU][get_language()]
+                data["specification"][Test.LANGUAGE_KK] = test_specification(section, Test.LANGUAGE_KK, get_language())
+                data["specification"][Test.LANGUAGE_RU] = test_specification(section, Test.LANGUAGE_RU, get_language())
 
             elif section.id == 9542:
                 data["language"] = {
@@ -56,11 +57,11 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                         (Test.LANGUAGE_KK, pgettext("Test language", "Russian 2")),
                     ],
                 }
-                data["specification"][Test.LANGUAGE_RU] = section.specification[Test.LANGUAGE_RU][get_language()]
-                data["specification"][Test.LANGUAGE_KK] = section.specification[Test.LANGUAGE_KK][get_language()]
+                data["specification"][Test.LANGUAGE_RU] = test_specification(section, Test.LANGUAGE_RU, get_language())
+                data["specification"][Test.LANGUAGE_KK] = test_specification(section, Test.LANGUAGE_KK, get_language())
 
             elif section.id == 9543:
-                data["specification"][Test.LANGUAGE_XX] = section.specification[Test.LANGUAGE_XX][get_language()]
+                data["specification"][Test.LANGUAGE_XX] = test_specification(section, Test.LANGUAGE_XX, get_language())
 
             kwargs["nis_data"].append(data)
 
@@ -84,7 +85,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                     if language[0] == Test.LANGUAGE_XX:
                         continue
                     data["language"]["choices"].append(language)
-                    data["specification"][language[0]] = section.specification[language[0]][get_language()]
+                    data["specification"][language[0]] = test_specification(section, language[0], get_language())
                 kwargs["unt_core_data"].append(data)
 
             elif section.is_unt_profile():
@@ -96,8 +97,8 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                             (Test.LANGUAGE_RU, pgettext("Test language", "Kazakh 2")),
                         ],
                     }
-                    data["specification"][Test.LANGUAGE_KK] = section.specification[Test.LANGUAGE_KK][get_language()]
-                    data["specification"][Test.LANGUAGE_RU] = section.specification[Test.LANGUAGE_RU][get_language()]
+                    data["specification"][Test.LANGUAGE_KK] = test_specification(section, Test.LANGUAGE_KK, get_language())
+                    data["specification"][Test.LANGUAGE_RU] = test_specification(section, Test.LANGUAGE_RU, get_language())
                 elif section.id == 9558:
                     data["language"] = {
                         "title": pgettext("/developer/tests/", "Choose type"),
@@ -106,10 +107,10 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                             (Test.LANGUAGE_KK, pgettext("Test language", "Russian 2")),
                         ],
                     }
-                    data["specification"][Test.LANGUAGE_RU] = section.specification[Test.LANGUAGE_RU][get_language()]
-                    data["specification"][Test.LANGUAGE_KK] = section.specification[Test.LANGUAGE_KK][get_language()]
+                    data["specification"][Test.LANGUAGE_RU] = test_specification(section, Test.LANGUAGE_RU, get_language())
+                    data["specification"][Test.LANGUAGE_KK] = test_specification(section, Test.LANGUAGE_KK, get_language())
                 elif section.id == 9554 or section.id == 9555 or section.id == 9556:
-                    data["specification"][Test.LANGUAGE_XX] = section.specification[Test.LANGUAGE_XX][get_language()]
+                    data["specification"][Test.LANGUAGE_XX] = test_specification(section, Test.LANGUAGE_XX, get_language())
                 else:
                     data["language"] = {
                         "title": pgettext("/developer/tests/", "Choose test language"),
@@ -119,7 +120,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                         if language[0] == Test.LANGUAGE_XX:
                             continue
                         data["language"]["choices"].append(language)
-                        data["specification"][language[0]] = section.specification[language[0]][get_language()]
+                        data["specification"][language[0]] = test_specification(section, language[0], get_language())
 
                 kwargs["unt_spec_data"].append(data)
 
@@ -130,7 +131,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                 "section": section,
                 "language": None,
                 "specification": {
-                    Test.LANGUAGE_XX: section.specification[Test.LANGUAGE_XX][get_language()],
+                    Test.LANGUAGE_XX: test_specification(section, Test.LANGUAGE_XX, get_language()),
                 },
             })
 
