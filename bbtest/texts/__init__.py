@@ -12,5 +12,6 @@ from .exam import (
 )
 from .test import (
     nis_quantitative_answer,
+    test_specification,
 )
 from .faq import FAQ_TEXTS
