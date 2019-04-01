@@ -346,7 +346,10 @@ RQ_EXCEPTION_HANDLERS = [
 BB_USER_AGENT = "entapp.kz"
 
 BB_MANAGERS = [
+    "admin@entapp.kz",
     "darkhan@entapp.kz",
+    "omeke@entapp.kz",
+    "nurym@entapp.kz",
 ]
 
 BB_BASE_URL = SECRETS["BASE_URL"]
