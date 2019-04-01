@@ -1153,37 +1153,37 @@ html {
 }
 
 .bb-home-section-0 .bb-home-section-0-info {
-    margin-top: 30px;
-    margin-bottom: 40px;
+    margin-top: 80px;
+    margin-bottom: 80px;
     padding-bottom: 13px;
 }
 
 @media (min-width: 768px) {
     .bb-home-section-0 .bb-home-section-0-info {
-        margin-top: 80px;
-        margin-bottom: 80px;
+        margin-top: 220px;
+        margin-bottom: 180px;
         padding-bottom: 13px;
     }
 }
 
 @media (min-width: 1200px) {
     .bb-home-section-0 .bb-home-section-0-info {
-        margin-top: 100px;
-        margin-bottom: 120px;
+        margin-top: 220px;
+        margin-bottom: 220px;
         padding-bottom: 13px;
     }
 }
 
 .bb-home-section-1 {
-    background-color: rgba(10, 60, 100, 1);
+    background-color: rgba(156, 68, 110, 1);
 }
 
 .bb-home-section-1 .bb-home-section-1-logo {
-    max-width: 290px;
+    max-height: 160px;
 }
 
 .bb-home-section-3 {
-    background-color: rgba(40, 100, 90, 1);
+    background-color: rgba(95, 158, 70, 1);
 }
 
 .bb-home-social {
