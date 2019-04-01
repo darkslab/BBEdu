@@ -315,8 +315,8 @@ ADMINS = [
     ("Darkhan Baimyrza", "darkhan@bbtest.kz"),
 ]
 EMAIL_SUBJECT_PREFIX = ""
-DEFAULT_FROM_EMAIL = "bbTest.kz <no-reply@bbtest.kz>"
-SERVER_EMAIL = "bbTest.kz ERROR <errors@bbtest.kz>"
+DEFAULT_FROM_EMAIL = "bbtest.kz <no-reply@bbtest.kz>"
+SERVER_EMAIL = "bbtest.kz ERROR <errors@bbtest.kz>"
 if SECRETS["LOCAL_EMAIL_FORCED"]:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_HOST = SECRETS["LOCAL_EMAIL_HOST"]
@@ -343,7 +343,7 @@ RQ_EXCEPTION_HANDLERS = [
     "rq.handlers.move_to_failed_queue",
 ]
 
-BB_USER_AGENT = "bbTest.kz"
+BB_USER_AGENT = "bbtest.kz"
 
 BB_MANAGERS = [
     "darkhan@bbtest.kz",
