@@ -1,6 +1,7 @@
 ---
 _common:
   html_description: ~
+  copyright: ~
 
   nav:
     faq: ~
