@@ -13,12 +13,7 @@ class MathematicsProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class PhysicsProfileUNTItem(ProfileUNTItem):
@@ -30,12 +25,7 @@ class PhysicsProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class ChemistryProfileUNTItem(ProfileUNTItem):
@@ -47,12 +37,7 @@ class ChemistryProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class BiologyProfileUNTItem(ProfileUNTItem):
@@ -64,12 +49,7 @@ class BiologyProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class GeographyProfileUNTItem(ProfileUNTItem):
@@ -81,12 +61,7 @@ class GeographyProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class HistoryProfileUNTItem(ProfileUNTItem):
@@ -98,12 +73,7 @@ class HistoryProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class EnglishLanguageProfileUNTItem(ProfileUNTItem):
@@ -115,12 +85,7 @@ class EnglishLanguageProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class FrenchLanguageProfileUNTItem(ProfileUNTItem):
@@ -132,12 +97,7 @@ class FrenchLanguageProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class GermanLanguageProfileUNTItem(ProfileUNTItem):
@@ -149,12 +109,7 @@ class GermanLanguageProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class KazakhLanguageAndLiteratureProfileUNTItem(ProfileUNTItem):
@@ -166,12 +121,7 @@ class KazakhLanguageAndLiteratureProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class RussianLanguageAndLiteratureProfileUNTItem(ProfileUNTItem):
@@ -183,12 +133,7 @@ class RussianLanguageAndLiteratureProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
 
 
 class HumanSocietyRightProfileUNTItem(ProfileUNTItem):
@@ -200,9 +145,4 @@ class HumanSocietyRightProfileUNTItem(ProfileUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("3.00") * self.test().section.question_count
