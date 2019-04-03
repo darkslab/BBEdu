@@ -13,12 +13,7 @@ class MathematicalLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("4.00") * self.test().section.question_count
 
 
 class ReadingLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
@@ -30,12 +25,7 @@ class ReadingLiteracyCompulsoryUNTItem(CompulsoryUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("4.00") * self.test().section.question_count
 
 
 class HistoryOfKazakhstanCompulsoryUNTItem(CompulsoryUNTItem):
@@ -47,9 +37,4 @@ class HistoryOfKazakhstanCompulsoryUNTItem(CompulsoryUNTItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("6.00") * self.test().section.question_count
-
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+        return Decimal("4.00") * self.test().section.question_count
