@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-03 10:32+0600\n"
-"PO-Revision-Date: 2019-04-02 21:37-0700\n"
+"PO-Revision-Date: 2019-04-03 21:15-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -2078,7 +2078,7 @@ msgstr "Ваш балл"
 
 msgctxt "Results page"
 msgid "Average score of students on bbtest.kz website for the section."
-msgstr "Средний балл тестируемых по данному предмету на bbtest.kz."
+msgstr "Средний балл тестируемых по данному предмету на entapp.kz."
 
 #, python-format
 msgctxt "Results page"
@@ -2280,7 +2280,7 @@ msgid ""
 "website in comparison to your own results."
 msgstr ""
 "Для сравнения Ваших результатов мы указали средний балл (красная линия) всех "
-"участников на сайте bbtest.kz по данному предмету."
+"участников на сайте entapp.kz по данному предмету."
 
 #, python-format
 msgid ""
