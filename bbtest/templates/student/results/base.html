@@ -24,10 +24,10 @@
                         <p class="lead text-center">{% trans 'You have not taken any tests yet. Once you take a test, you will be able to review the results here.' context 'Results page' %}</p>
                         <div class="text-center mb-23">
                             <div class="visible-xs-block">
-                                <a href="{% url 'bbtest:student_buy_test_domains' %}" class="btn btn-primary btn-block">{% trans 'Buy new tests' context 'Results page' %}</a>
+                                <a href="{% url 'bbtest:student_buy_tests' 7912 %}" class="btn btn-primary btn-block">{% trans 'Buy new tests' context 'Results page' %}</a>
                             </div>
                             <div class="hidden-xs">
-                                <a href="{% url 'bbtest:student_buy_test_domains' %}" class="btn btn-primary btn-lg">{% trans 'Buy new tests' context 'Results page' %}</a>
+                                <a href="{% url 'bbtest:student_buy_tests' 7912 %}" class="btn btn-primary btn-lg">{% trans 'Buy new tests' context 'Results page' %}</a>
                             </div>
                         </div>
                     </div>
