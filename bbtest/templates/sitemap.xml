@@ -1,7 +1,7 @@
 {% load i18n i18nurl %}<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     {% get_available_languages as languages %}
-    {% with lastmod='2018-12-27' %}
+    {% with lastmod='2019-04-08' %}
         {% for language in languages reversed %}
             <url>
                 {% url 'bbtest:home' as next_url %}
@@ -31,13 +31,13 @@
                 <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_RU }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_RU }}" />
                 <lastmod>{{ lastmod }}</lastmod>
             </url>
-            {% comment %}<url>
+            <url>
                 {% url 'bbtest:faq' as next_url %}
                 <loc>{{ BASE_URL }}{{ next_url|url_for_lang:language.0 }}</loc>
                 <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_KK }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_KK }}" />
                 <xhtml:link rel="alternate" hreflang="{{ LANGUAGE_CODE_RU }}" href="{{ BASE_URL }}{{ next_url|url_for_lang:LANGUAGE_CODE_RU }}" />
                 <lastmod>{{ lastmod }}</lastmod>
-            </url>{% endcomment %}
+            </url>
         {% endfor %}
     {% endwith %}
 </urlset>

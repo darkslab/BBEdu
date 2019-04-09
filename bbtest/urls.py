@@ -67,7 +67,7 @@ urlpatterns = [
     url(r"^$",            HomeView.as_view(),      name="home"      ),
     url(r"^terms/$",      TermsView.as_view(),     name="terms"     ),
     url(r"^contact-us/$", ContactUsView.as_view(), name="contact_us"),
-    # url(r"^faq/$",        FaqView.as_view(),       name="faq"       ),
+    url(r"^faq/$",        FaqView.as_view(),       name="faq"       ),
 
     # USER URLS
     url(r"^dashboard/$",          DashboardView.as_view(),        name="dashboard"         ),
