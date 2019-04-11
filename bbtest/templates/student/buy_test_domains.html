@@ -16,8 +16,8 @@
                 <div class="panel-body">
                     {% trans '_common.domains.unt_full' as domain_name %}
                     {% trans unt.name as domain_abbr %}
-                    <a href="{% url 'bbtest:student_buy_tests' unt.pk %}" class="btn btn-lg btn-primary btn-block btn-wrappable hidden-xs mt-15">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
-                    <a href="{% url 'bbtest:student_buy_tests' unt.pk %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block mt-15">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
+                    <a href="{% url 'bbtest:student_buy_tests' unt.pk %}" class="btn btn-lg btn-primary btn-block btn-wrappable hidden-xs mt-15">{% blocktrans %}page:/:test_domain_full_name{% endblocktrans %}</a>
+                    <a href="{% url 'bbtest:student_buy_tests' unt.pk %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block mt-15">{% blocktrans %}page:/:test_domain_full_name{% endblocktrans %}</a>
                 </div>
             </div>
         </div>
