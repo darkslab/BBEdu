@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-03 10:32+0600\n"
-"PO-Revision-Date: 2019-04-03 21:14-0700\n"
+"PO-Revision-Date: 2019-04-10 19:26-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -1883,7 +1883,7 @@ msgstr "Назарбаев Зияткерлік мектепке қабылда�
 #, python-format
 msgid ""
 "page:/:test_domain_full_name:%(domain_name)s;%(domain_abbr)s;%(break_code)s"
-msgstr "%(domain_name)s%(break_code)s(%(domain_abbr)s)"
+msgstr "Тестілеуді бастау"
 
 msgid "_common.domains.unt_full"
 msgstr "Ұлттық Біріңғай Тестілеу"
