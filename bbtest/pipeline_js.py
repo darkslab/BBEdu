@@ -21,6 +21,7 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/ReactModule.js",
     "js/modules/GAModule.js",
     "js/modules/WhatsappModule.js",
+    "js/modules/CheckoutShortcutModule.js",
 
     "js/modules/PersonalizedTemplateModule.js",
     "js/modules/ResultRowModule.js",
