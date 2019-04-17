@@ -1307,6 +1307,7 @@ html {
     -webkit-transition: right .3s ease-in-out;
          -o-transition: right .3s ease-in-out;
             transition: right .3s ease-in-out;
+    z-index: 701;
 }
 
 .bb-whatsapp-container .bb-whatsapp-number {
@@ -1318,6 +1319,43 @@ html {
 }
 
 .bb-whatsapp-container.bb-whatsapp-focused {
+    right: 0px;
+}
+
+.bb-checkout-shortcut-container {
+    position: fixed;
+    right: -120px;
+    bottom: 15px;
+    width: 120px;
+    height: 60px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #fafafa;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    -webkit-transition: right .3s ease-in-out;
+         -o-transition: right .3s ease-in-out;
+            transition: right .3s ease-in-out;
+    z-index: 701;
+    font-size: 26px;
+    line-height: 60px;
+    background-color: #79c37c;
+    color: #fff;
+}
+
+.bb-checkout-shortcut-container:hover,
+.bb-checkout-shortcut-container:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .bb-checkout-shortcut-container {
+        display: none;
+    }
+}
+
+.bb-checkout-shortcut-container.bb-checkout-shortcut-pulled {
     right: 0px;
 }
 

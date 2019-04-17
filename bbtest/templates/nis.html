@@ -180,3 +180,5 @@
     </div>
     <div class="bb-copyright text-center">{% blocktrans with copyright_code='&copy;' %}_common.copyright:{{ copyright_code }}{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
 {% endblock %}
+
+{% block popup %}{% include 'popups/whatsapp.html' %}{% endblock %}
