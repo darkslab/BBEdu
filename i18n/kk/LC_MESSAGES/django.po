@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-17 12:23+0600\n"
-"PO-Revision-Date: 2019-04-16 23:23-0700\n"
+"PO-Revision-Date: 2019-04-17 21:13+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2\n"
 
 msgctxt "Form label"
 msgid "Email"
@@ -1241,7 +1241,7 @@ msgid "User no longer exists."
 msgstr "Ондай қолданушы жоқ."
 
 msgid "Credits"
-msgstr "Бірлік"
+msgstr "Бағасы"
 
 msgctxt "Item error"
 msgid "NIS Test is required."
@@ -1529,7 +1529,7 @@ msgstr "Парақша табылмады"
 
 msgctxt "Page title"
 msgid "Buy Credits"
-msgstr "Бірлік сатып алу"
+msgstr "Шотты толықтыру"
 
 msgid "page:/buy-credits/:enter_amount"
 msgstr "Соманы енгізіңіз"
@@ -1945,7 +1945,7 @@ msgstr "Құрастырушы"
 #, python-format
 msgctxt "Total credits"
 msgid "Balance: %(balance)s cred."
-msgstr "Шотыңызда: %(balance)s бірлік"
+msgstr "Шотыңызда: %(balance)s теңге"
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -1984,7 +1984,7 @@ msgstr "Тестілеудің нәтижелері"
 
 msgctxt "Navigation link"
 msgid "Buy Credits"
-msgstr "Бірлік сатып алу"
+msgstr "Шотты толықтыру"
 
 msgctxt "Navigation link"
 msgid "Transactions"
@@ -2047,7 +2047,7 @@ msgstr "Тестіні сатып алу"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy credits"
-msgstr "Бірлік сатып алу"
+msgstr "Шотты толықтыру"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
@@ -2303,11 +2303,11 @@ msgstr "Транзакция жоқ"
 
 msgctxt "/student/transactions/"
 msgid "Buy credits and start taking tests."
-msgstr "Бірлік сатып алу және тестілеуді бастау."
+msgstr "Шотты толықтыру және тестілеуді бастау."
 
 msgctxt "/student/transactions/"
 msgid "Buy credits"
-msgstr "Бірлік сатып алу"
+msgstr "Шотты толықтыру"
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
@@ -2316,7 +2316,7 @@ msgstr "Транзакция №%(order_id)s"
 
 #, python-format
 msgid "page:/student/transactions/:line_item_credits:%(price)s"
-msgstr "%(price)s бірлік"
+msgstr "%(price)s теңге"
 
 #, python-format
 msgid ""
@@ -2337,7 +2337,7 @@ msgstr ""
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(price)s cred."
-msgstr "%(price)s бірлік"
+msgstr "%(price)s теңге"
 
 msgctxt "/student/transactions/xxxx/"
 msgid "Discount"
@@ -2346,7 +2346,7 @@ msgstr "Жеңілдік"
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(minus_sign)s%(discount)s cred."
-msgstr "%(minus_sign)s%(discount)s бірлік"
+msgstr "%(minus_sign)s%(discount)s теңге"
 
 msgctxt "/student/transactions/xxxx/"
 msgid "Total"
@@ -2360,7 +2360,7 @@ msgstr "₸%(total)s"
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(total)s cred."
-msgstr "%(total)s бірлік"
+msgstr "%(total)s теңге"
 
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
@@ -2909,7 +2909,7 @@ msgstr "4-Секция"
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
-msgstr "%(amount).0f бірлік"
+msgstr "%(amount).0f теңге"
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Discount"
@@ -2918,7 +2918,7 @@ msgstr "Жеңілдік"
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
-msgstr "-%(amount).0f бірлік"
+msgstr "-%(amount).0f теңге"
 
 #, python-format
 msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-17 12:23+0600\n"
-"PO-Revision-Date: 2019-04-16 23:24-0700\n"
+"PO-Revision-Date: 2019-04-17 21:15+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2\n"
 
 msgctxt "Form label"
 msgid "Email"
@@ -1247,7 +1247,7 @@ msgid "User no longer exists."
 msgstr "Пользователя больше нет."
 
 msgid "Credits"
-msgstr "Единицы"
+msgstr "Стоимость"
 
 msgctxt "Item error"
 msgid "NIS Test is required."
@@ -1535,22 +1535,22 @@ msgstr "Страница не найдена"
 
 msgctxt "Page title"
 msgid "Buy Credits"
-msgstr "Приобрести единицы"
+msgstr "Пополнить счёт"
 
 msgid "page:/buy-credits/:enter_amount"
-msgstr "Введите сумму"
+msgstr "введите сумму"
 
 msgctxt "Form button"
 msgid "Make a payment"
 msgstr "Оплатить"
 
 msgid "page:/buy-credits/:credits_conversion_rate"
-msgstr "1 единица равна 1 тенге."
+msgstr "1 единица равна 1 тенге"
 
 msgid "page:/buy-credits/:bank_usage_info"
 msgstr ""
 "Воспользуйтесь банковской картой любого банка. Все транзакции обрабатываются "
-"через Халык банк."
+"через Халык банк"
 
 msgctxt "Page title"
 msgid "Contact Us"
@@ -1951,7 +1951,7 @@ msgstr "Разработчик"
 #, python-format
 msgctxt "Total credits"
 msgid "Balance: %(balance)s cred."
-msgstr "Счёт: %(balance)s ед."
+msgstr "Счёт: %(balance)s тенге"
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -1990,7 +1990,7 @@ msgstr "Результаты тестирования"
 
 msgctxt "Navigation link"
 msgid "Buy Credits"
-msgstr "Приобрести единицы"
+msgstr "Пополнить счёт"
 
 msgctxt "Navigation link"
 msgid "Transactions"
@@ -2053,7 +2053,7 @@ msgstr "Оплатить и Начать"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy credits"
-msgstr "Приобрести единицы"
+msgstr "Пополнить счёт"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
@@ -2312,11 +2312,11 @@ msgstr "Нет никаких транзакции"
 
 msgctxt "/student/transactions/"
 msgid "Buy credits and start taking tests."
-msgstr "Вы можете приобрести единицы чтобы начать тестирование."
+msgstr "Вы можете пополнить счёт чтобы начать тестирование."
 
 msgctxt "/student/transactions/"
 msgid "Buy credits"
-msgstr "Приобрести единицы"
+msgstr "Пополнить счёт"
 
 #, python-format
 msgctxt "/student/transactions/xxxx/"
@@ -2325,7 +2325,7 @@ msgstr "Транзакция №%(order_id)s"
 
 #, python-format
 msgid "page:/student/transactions/:line_item_credits:%(price)s"
-msgstr "Единицы: %(price)s"
+msgstr "Стоимость: %(price)s"
 
 #, python-format
 msgid ""
@@ -2346,7 +2346,7 @@ msgstr ""
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(price)s cred."
-msgstr "%(price)s ед."
+msgstr "%(price)s тенге"
 
 msgctxt "/student/transactions/xxxx/"
 msgid "Discount"
@@ -2355,7 +2355,7 @@ msgstr "Скидка"
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(minus_sign)s%(discount)s cred."
-msgstr "%(minus_sign)s%(discount)s ед."
+msgstr "%(minus_sign)s%(discount)s тенге"
 
 msgctxt "/student/transactions/xxxx/"
 msgid "Total"
@@ -2369,7 +2369,7 @@ msgstr "₸%(total)s"
 #, python-format
 msgctxt "/student/transactions/xxxx/"
 msgid "%(total)s cred."
-msgstr "%(total)s ед."
+msgstr "%(total)s тенге"
 
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
@@ -2920,7 +2920,7 @@ msgstr "Предмет 4"
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
-msgstr "%(amount).0f ед."
+msgstr "%(amount).0f тенге."
 
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "Discount"
@@ -2929,7 +2929,7 @@ msgstr "Скидка"
 #, python-format
 msgctxt "/student/buy-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
-msgstr "-%(amount).0f ед."
+msgstr "-%(amount).0f тенге."
 
 #, python-format
 msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
