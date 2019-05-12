@@ -113,7 +113,7 @@ class BuyCreditsQazkomView(LoginRequiredMixin, CartHandleAccessMixin, UserContex
 
     def get_context_data(self, **kwargs):
         kwargs["qazkom_form"] = {
-            "action": FirstQazkomPaymentProcessor.post_url(test=settings.DEBUG),
+            "action": FirstQazkomPaymentProcessor.post_url(test=(settings.DEBUG or settings.STAGING)),
             "signed_order_b64": FirstQazkomPaymentProcessor.encoded_order(self.cart_handle()),
             "appendix": FirstQazkomPaymentProcessor.encoded_appendix(self.cart_handle()),
             "language": "",
@@ -143,8 +143,12 @@ class ProcessCreditsQazkomView(View):
             if incorrect_cart:
                 raise PaymentProcessorError("Working on incorrect cart")
 
+            payment_processor = FirstQazkomPaymentProcessor(handle.total(), self.request.POST["response"])
+            if settings.DEBUG or settings.STAGING:
+                payment_processor.set_test()
+
             charge(
-                FirstQazkomPaymentProcessor(handle.total(), self.request.POST["response"]),
+                payment_processor,
                 handle,
             )
         except Cart.DoesNotExist as error:
