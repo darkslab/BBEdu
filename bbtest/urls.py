@@ -78,7 +78,7 @@ urlpatterns = [
     url(r"^buy-credits/$",                                     BuyCreditsView.as_view(),              name="buy_credits"               ),
     url(r"^buy-credits-qazkom/$",                              BuyCreditsQazkomView.as_view(),        name="buy_credits_qazkom"        ),
     url(r"^buy-credits-beeline/$",                             BuyCreditsBeelineView.as_view(),       name="buy_credits_beeline"       ),
-    url(r"^buy-credits-beelint/(?P<action>send|resend|pay)/$", BuyCreditsBeelineActionView.as_view(), name="buy_credits_beeline_action"),
+    url(r"^buy-credits-beeline/(?P<action>send|resend|pay)/$", BuyCreditsBeelineActionView.as_view(), name="buy_credits_beeline_action"),
 
     # UPLOAD URLS
     url(r"^uploads/start/$",                              UploadStartView.as_view(),    name="upload_start"   ),
