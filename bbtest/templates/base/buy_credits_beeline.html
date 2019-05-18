@@ -1,0 +1,78 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n static %}
+
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3{% endblock %}
+
+{% block title %}{% trans 'Buy Credits' context 'Page title' %}{% endblock %}
+
+{% block nav_student_buy_credits_class %}active{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "BuyCreditsBeelinePageModule",
+            data: {
+                send_url: "{% url 'bbtest:buy_credits_beeline_action' 'send' %}",
+                resend_url: "{% url 'bbtest:buy_credits_beeline_action' 'resend' %}",
+                pay_url: "{% url 'bbtest:buy_credits_beeline_action' 'pay' %}",
+                complete_url: "{% url 'bbtest:dashboard' %}"
+            }
+        });
+    </script>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body bb-rel">
+                    <div class="bb-spinner-overlay hidden" data-beeline-overlay>
+                        <img src="{% static 'img/logo2_spinner.png' %}" class="bb-spinner">
+                    </div>
+                    <form class="form-horizontal mt-15">
+                        <div class="form-group">
+                            <label class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 control-label text-font-16">Summa</label>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+                                <input type="text" class="form-control" value="₸ 200.00" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group has-error" data-beeline-group>
+                            <label for="beeline_number" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 control-label text-font-16">Nomer Beeline</label>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+                                <input type="text" class="form-control" id="beeline_number" placeholder="7771234567" data-beeline-input="number">
+                            </div>
+                        </div>
+                        <div class="form-group has-error hidden" data-beeline-group>
+                            <label for="beeline_code" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 control-label text-font-16">Vvedite Kod</label>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+                                <input type="text" class="form-control" id="beeline_code" placeholder="000000" data-beeline-input="code">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" data-beeline-action="send" disabled>Otpravit' Kod</button>
+                                <button type="button" class="btn btn-success btn-lg btn-block hidden" data-beeline-action="pay" disabled>Oplatit'</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block hidden" data-beeline-action="resend" disabled>Pereotpravit' Kod</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="lead text-center mb-10"><strong>{% trans 'page:/buy-credits/:credits_conversion_rate' %}</strong></p>
+                </div>
+                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <img src="{% static 'img/beeline.png' %}" class="img-responsive center-block" style="margin-top: 20px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popup %}{% include 'popups/whatsapp.html' %}{% endblock %}

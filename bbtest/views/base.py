@@ -2,7 +2,7 @@ from django.shortcuts import resolve_url, redirect
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import login
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.translation import get_language
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -74,7 +74,6 @@ class SettingsView(LoginRequiredMixin, UserContextMixin, FormView):
 class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, FormView):
     template_name = "base/buy_credits.html"
     form_class = BuyCreditsForm
-    success_url = reverse_lazy("bbtest:buy_credits_qazkom")
 
     def form_valid(self, form):
         old_items = []
@@ -94,7 +93,9 @@ class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin
         if len(old_items):
             cache.set("cart-old-items-%s" % self.request.user.pk, old_items, cache_cart_timeout)
 
-        return super().form_valid(form)
+        if form.cleaned_data["payment_type"] == "card":
+            return HttpResponseRedirect(reverse_lazy("bbtest:buy_credits_qazkom"))
+        return HttpResponseRedirect(reverse_lazy("bbtest:buy_credits_beeline"))
 
 
 class BuyCreditsQazkomView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, TemplateView):
@@ -126,6 +127,16 @@ class BuyCreditsQazkomView(LoginRequiredMixin, CartHandleAccessMixin, UserContex
         kwargs["cart_rounded_total"] = round(self.cart_handle().total())
 
         return super().get_context_data(**kwargs)
+
+
+class BuyCreditsBeelineView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, TemplateView):
+    template_name = "base/buy_credits_beeline.html"
+    # DARK_TODO  implement this!
+
+
+class BuyCreditsBeelineActionView(LoginRequiredMixin, CartHandleAccessMixin, View):
+    # DARK_TODO  implement this!
+    pass
 
 
 @method_decorator(csrf_exempt, name="dispatch")

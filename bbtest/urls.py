@@ -7,6 +7,8 @@ from .views.base import (
     SettingsView,
     BuyCreditsView,
     BuyCreditsQazkomView,
+    BuyCreditsBeelineView,
+    BuyCreditsBeelineActionView,
     TermsView,
     ContactUsView,
     FaqView,
@@ -71,10 +73,12 @@ urlpatterns = [
     url(r"^faq/$",        FaqView.as_view(),       name="faq"       ),
 
     # USER URLS
-    url(r"^dashboard/$",          DashboardView.as_view(),        name="dashboard"         ),
-    url(r"^settings/$",           SettingsView.as_view(),         name="settings"          ),
-    url(r"^buy-credits/$",        BuyCreditsView.as_view(),       name="buy_credits"       ),
-    url(r"^buy-credits-qazkom/$", BuyCreditsQazkomView.as_view(), name="buy_credits_qazkom"),
+    url(r"^dashboard/$",                                       DashboardView.as_view(),               name="dashboard"                 ),
+    url(r"^settings/$",                                        SettingsView.as_view(),                name="settings"                  ),
+    url(r"^buy-credits/$",                                     BuyCreditsView.as_view(),              name="buy_credits"               ),
+    url(r"^buy-credits-qazkom/$",                              BuyCreditsQazkomView.as_view(),        name="buy_credits_qazkom"        ),
+    url(r"^buy-credits-beeline/$",                             BuyCreditsBeelineView.as_view(),       name="buy_credits_beeline"       ),
+    url(r"^buy-credits-beelint/(?P<action>send|resend|pay)/$", BuyCreditsBeelineActionView.as_view(), name="buy_credits_beeline_action"),
 
     # UPLOAD URLS
     url(r"^uploads/start/$",                              UploadStartView.as_view(),    name="upload_start"   ),

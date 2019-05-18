@@ -31,7 +31,6 @@ try:
     kwargs["headers"]["Signature"] = hasher.hexdigest()
     kwargs["headers"]["Api-Name"] = "tstbbminds"
     response = post(url, data=data, **kwargs)
-    import pdb; pdb.set_trace()
     if response.status_code != 200 or response.json()["status"] != "ok":
         raise ValueError("Unsuccessful payment")
 

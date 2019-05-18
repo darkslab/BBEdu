@@ -96,6 +96,8 @@ page:
     enter_amount: ~
     credits_conversion_rate: ~
     bank_usage_info: ~
+    pay_with_credit_card: ~
+    pay_with_beeline: ~
   '/faq/':
     title: ~
   '/super/trial-balance/':

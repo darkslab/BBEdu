@@ -1,4 +1,4 @@
-from django.forms import ValidationError, ModelForm, Form, CharField, PasswordInput, IntegerField, TextInput
+from django.forms import ValidationError, ModelForm, Form, CharField, PasswordInput, IntegerField, TextInput, ChoiceField, HiddenInput
 from django.utils.translation import pgettext_lazy, pgettext
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import get_user_model
@@ -88,3 +88,10 @@ class BuyCreditsForm(Form):
         "max_value": pgettext_lazy("Validation error", "Amount cannot be more than %(limit_value)s."),
         "min_value": pgettext_lazy("Validation error", "Amount has to be at least %(limit_value)s."),
     }, widget=TextInput, max_value=int(MAX_CREDIT_AMOUNT), min_value=int(MIN_CREDIT_AMOUNT))
+    payment_type = ChoiceField(label=pgettext_lazy("Form label", "Payment type"), error_messages={
+        "required": pgettext_lazy("Validation error", "Please provide an payment type."),
+        "invalid_choice": pgettext_lazy("Validation error", "Payment type is invalid."),
+    }, widget=HiddenInput, choices=(
+        ( "card", None ),
+        ( "beeline", None ),
+    ))
