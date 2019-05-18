@@ -149,9 +149,9 @@ class QazkomPaymentProcessor(PaymentProcessor):
             amex = False
         fees = self.amount()
         if amex:
-            fees = (fees * Decimal("0.035")).quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
+            fees = (fees * Decimal("0.04")).quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
         else:
-            fees = (fees * Decimal("0.026")).quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
+            fees = (fees * Decimal("0.03")).quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
         fees = max(fees, self.min_amount())
         return [
             Debit("Cash", self.amount() - fees),
