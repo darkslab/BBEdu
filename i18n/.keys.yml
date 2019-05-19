@@ -105,6 +105,9 @@ page:
     send_code: ~
     pay: ~
     resend_code: ~
+    error_occurred: ~
+    start_over: ~
+    payment_failed: ~
   '/faq/':
     title: ~
   '/super/trial-balance/':

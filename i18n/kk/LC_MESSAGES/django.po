@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-19 08:53+0600\n"
-"PO-Revision-Date: 2019-05-18 19:58-0700\n"
+"POT-Creation-Date: 2019-05-20 04:47+0600\n"
+"PO-Revision-Date: 2019-05-19 15:49-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -1559,6 +1559,16 @@ msgstr "Beeline балансымен төлеу"
 
 msgid "page:/buy-credits/:credits_conversion_rate"
 msgstr "1 бірлік 1 теңгеге тең."
+
+msgid "page:/buy-credits-beeline/:error_occurred"
+msgstr "Қате болды."
+
+msgid "page:/buy-credits-beeline/:start_over"
+msgstr "Қайта бастау"
+
+msgid "page:/buy-credits-beeline/:payment_failed"
+msgstr ""
+"Төлем өткізілмеді. Дұрыс растау кодын немесе дұрыс телефон нөмірін енгізіңіз."
 
 msgid "page:/buy-credits-beeline/:total_sum"
 msgstr "Сома"
