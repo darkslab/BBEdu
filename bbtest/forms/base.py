@@ -89,7 +89,7 @@ class BuyCreditsForm(Form):
         "min_value": pgettext_lazy("Validation error", "Amount has to be at least %(limit_value)s."),
     }, widget=TextInput, max_value=int(MAX_CREDIT_AMOUNT), min_value=int(MIN_CREDIT_AMOUNT))
     payment_type = ChoiceField(label=pgettext_lazy("Form label", "Payment type"), error_messages={
-        "required": pgettext_lazy("Validation error", "Please provide an payment type."),
+        "required": pgettext_lazy("Validation error", "Please provide a payment type."),
         "invalid_choice": pgettext_lazy("Validation error", "Payment type is invalid."),
     }, widget=HiddenInput, choices=(
         ( "card", None ),

@@ -17,12 +17,13 @@ from bbtest.views.common import UserContextMixin
 from bbtest.forms.user import SettingsForm
 from bbtest.forms.base import BuyCreditsForm
 from bbtest.forms.message import MessageForm
-from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError
+from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError, FirstBeelinePaymentProcessor
 from bbtest.models.shopping.handle import CartHandleAccessMixin, CartHandle
 from bbtest.models.shopping.items import CreditItem
 from bbtest.models.shopping.operate import charge
 from bbtest.models import Cart, TestDomain
 from bbtest.texts import FAQ_TEXTS
+from bbtest.http import TightJsonResponse
 
 
 class HomeView(TemplateView):
@@ -98,17 +99,21 @@ class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin
         return HttpResponseRedirect(reverse_lazy("bbtest:buy_credits_beeline"))
 
 
+def is_cart_with_credits(handle):
+    result = False
+    for item in handle:
+        if not isinstance(item, CreditItem):
+            result = False
+            break
+        result = True
+    return result
+
+
 class BuyCreditsQazkomView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, TemplateView):
     template_name = "base/buy_credits_qazkom.html"
 
     def get(self, request, *args, **kwargs):
-        should_redirect = True
-        for item in self.cart_handle():
-            if not isinstance(item, CreditItem):
-                should_redirect = True
-                break
-            should_redirect = False
-        if should_redirect:
+        if not is_cart_with_credits(self.cart_handle()):
             return redirect("bbtest:buy_credits")
         return super().get(request, *args, **kwargs)
 
@@ -131,12 +136,81 @@ class BuyCreditsQazkomView(LoginRequiredMixin, CartHandleAccessMixin, UserContex
 
 class BuyCreditsBeelineView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, TemplateView):
     template_name = "base/buy_credits_beeline.html"
-    # DARK_TODO  implement this!
+
+    def get(self, request, *args, **kwargs):
+        if not is_cart_with_credits(self.cart_handle()):
+            return redirect("bbtest:buy_credits")
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        kwargs["cart_total"] = self.cart_handle().total()
+        return super().get_context_data(**kwargs)
 
 
 class BuyCreditsBeelineActionView(LoginRequiredMixin, CartHandleAccessMixin, View):
-    # DARK_TODO  implement this!
-    pass
+    def post(self, request, action, *args, **kwargs):
+        if not is_cart_with_credits(self.cart_handle()):
+            return TightJsonResponse({
+                "success": False,
+                "redirect": reverse("bbtest:buy_credits"),
+            }, status=400)
+
+        if action == "send":
+            try:
+                response = FirstBeelinePaymentProcessor.create_payment(
+                    self.cart_handle(),
+                    request.POST["number"],
+                    test=(settings.DEBUG or settings.STAGING),
+                )
+                return TightJsonResponse({
+                    "success": True,
+                    "payment_id": response["paymentId"]
+                })
+            except PaymentProcessorError as error:
+                return TightJsonResponse({
+                    "success": False,
+                })
+
+        elif action == "resend":
+            try:
+                response = FirstBeelinePaymentProcessor.resend_otp(
+                    request.POST["payment_id"],
+                    test=(settings.DEBUG or settings.STAGING),
+                )
+                return TightJsonResponse({
+                    "success": response,
+                })
+            except PaymentProcessorError as error:
+                return TightJsonResponse({
+                    "success": False,
+                })
+
+        elif action == "pay":
+            try:
+                payment_processor = FirstBeelinePaymentProcessor(
+                    self.cart_handle().total(),
+                    request.POST["payment_id"],
+                    request.POST["code"],
+                )
+                if settings.DEBUG or settings.STAGING:
+                    payment_processor.set_test()
+
+                charge(
+                    payment_processor,
+                    self.cart_handle(),
+                )
+
+                return TightJsonResponse({
+                    "success": True,
+                })
+            except PaymentProcessorError as error:
+                return TightJsonResponse({
+                    "success": False,
+                })
+
+        return TightJsonResponse({
+            "success": False,
+        }, status=400)
 
 
 @method_decorator(csrf_exempt, name="dispatch")
@@ -145,13 +219,7 @@ class ProcessCreditsQazkomView(View):
         try:
             handle = CartHandle(Cart.objects.get(pk=FirstQazkomPaymentProcessor.order_id(self.request.POST["response"])))
 
-            incorrect_cart = True
-            for item in handle:
-                if not isinstance(item, CreditItem):
-                    incorrect_cart = True
-                    break
-                incorrect_cart = False
-            if incorrect_cart:
+            if not is_cart_with_credits(handle):
                 raise PaymentProcessorError("Working on incorrect cart")
 
             payment_processor = FirstQazkomPaymentProcessor(handle.total(), self.request.POST["response"])
