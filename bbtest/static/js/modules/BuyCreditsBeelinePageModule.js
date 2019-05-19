@@ -13,6 +13,7 @@ function BuyCreditsBeelinePageModule(data) {
     this._$sendButton = this._$buttons.filter("[data-beeline-action=\"send\"]");
     this._$resendButton = this._$buttons.filter("[data-beeline-action=\"resend\"]");
     this._$payButton = this._$buttons.filter("[data-beeline-action=\"pay\"]");
+    this._$modals = $("[data-beeline-modal]");
 
     this._number = this._$numberInput.val();
     this._paymentId = 0;
@@ -20,9 +21,11 @@ function BuyCreditsBeelinePageModule(data) {
 
     this._$xhr;
 
+    this._boundInputKeyed = this._inputKeyed.bind(this);
     this._boundInputChange = this._inputChange.bind(this);
     this._boundButtonClick = this._buttonClick.bind(this);
 
+    this._$inputs.on("keypress", this._boundInputKeyed);
     this._$inputs.on("input", this._boundInputChange);
     this._$buttons.on("click", this._boundButtonClick);
 
@@ -31,6 +34,7 @@ function BuyCreditsBeelinePageModule(data) {
     Module.call(this);
 }
 BuyCreditsBeelinePageModule.prototype.unMount = function() {
+    this._$inputs.off("keypress", this._boundInputKeyed);
     this._$inputs.off("input", this._boundInputChange);
     this._$buttons.off("click", this._boundButtonClick);
 
@@ -39,25 +43,49 @@ BuyCreditsBeelinePageModule.prototype.unMount = function() {
         this._$xhr = undefined;
     }
 }
-BuyCreditsBeelinePageModule.prototype._inputChange = function(event) {
+BuyCreditsBeelinePageModule.prototype._inputKeyed = function(event) {
+    if (event.which < 48 || event.which > 57) {
+        event.preventDefault();
+        return;
+    }
     var $input = $(event.currentTarget);
     if ($input.data("beeline-input") == "number") {
+        var parts = $input.val().split(" ");
+        if (parts.length < 3) {
+            var value = parts.join(" ");
+            if (parts[parts.length - 1].length >= 3) {
+                value += " ";
+            }
+            $input.val(value);
+        } else if (parts[2].length >= 4) {
+            event.preventDefault();
+        }
+    } else if ($input.data("beeline-input") == "code") {
         if ($input.val().length >= 10) {
-            this._number = $input.val();
+            event.preventDefault();
+        }
+    }
+}
+BuyCreditsBeelinePageModule.prototype._inputChange = function(event) {
+    var $input = $(event.currentTarget);
+    var value = $input.val();
+    if ($input.data("beeline-input") == "number") {
+        value = value.split(" ").join("");
+
+        if (value.length >= 10) {
+            this._number = value;
         } else {
             this._number = "";
             this._paymentId = 0;
             this._code = "";
             this._$codeInput.val(this._code);
         }
-        $input.val($input.val());
     } else if ($input.data("beeline-input") == "code") {
-        if ($input.val().length >= 6) {
-            this._code = $input.val();
+        if (value.length >= 3) {
+            this._code = value;
         } else {
             this._code = "";
         }
-        $input.val($input.val());
     }
     this._normalize();
 }
@@ -153,6 +181,7 @@ BuyCreditsBeelinePageModule.prototype._ajaxSuccess = function(action, data, stat
             } else {
                 this._code = "";
                 this._$codeInput.val(this._code);
+                this._$modals.filter("[data-beeline-modal=\"failed\"]").modal("show");
             }
             break;
     }
@@ -161,7 +190,7 @@ BuyCreditsBeelinePageModule.prototype._ajaxSuccess = function(action, data, stat
 BuyCreditsBeelinePageModule.prototype._ajaxError = function($xhr, status, error) {
     this._$xhr = undefined;
     this._$overlay.addClass("hidden");
-    // DARK_TODO  implement this!
+    this._$modals.filter("[data-beeline-modal=\"error\"]").modal("show");
 }
 BuyCreditsBeelinePageModule.prototype._ajax = function(action, url, data) {
     this._$overlay.removeClass("hidden");
