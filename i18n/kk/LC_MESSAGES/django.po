@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-20 04:47+0600\n"
-"PO-Revision-Date: 2019-05-19 15:49-0700\n"
+"POT-Creation-Date: 2019-05-20 05:19+0600\n"
+"PO-Revision-Date: 2019-05-19 16:23-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -1553,6 +1553,12 @@ msgstr ""
 
 msgid "page:/buy-credits/:enter_amount"
 msgstr "Соманы енгізіңіз"
+
+msgid "page:/buy-credits/:payment_option_1"
+msgstr "Төлем тәсілі 1"
+
+msgid "page:/buy-credits/:payment_option_2"
+msgstr "Төлем тәсілі 2"
 
 msgid "page:/buy-credits/:pay_with_beeline"
 msgstr "Beeline балансымен төлеу"

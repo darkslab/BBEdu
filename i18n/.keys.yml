@@ -98,6 +98,8 @@ page:
     bank_usage_info: ~
     pay_with_credit_card: ~
     pay_with_beeline: ~
+    payment_option_1: ~
+    payment_option_2: ~
   '/buy-credits-beeline/':
     total_sum: ~
     beeline_number: ~
