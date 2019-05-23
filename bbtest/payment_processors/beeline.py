@@ -55,19 +55,22 @@ class BeelinePaymentProcessor(PaymentProcessor):
         return self.__meta_data
 
     def funds(self):
-        if not self.__captured or not self.__meta_data:
+        if not self.__meta_data:
             raise NotImplementedError("Currently it is not implemented")
-        return [
+        result = [
             Debit("Cash", Decimal(str(self.__meta_data["receipts"]["paymentReceipt"]["amount"]))),
-            Debit("MerchantFees-Beeline", Decimal(str(self.__meta_data["receipts"]["paymentReceipt"]["commission"]))),
         ]
+        fees = Decimal(str(self.__meta_data["receipts"]["paymentReceipt"]["commission"]))
+        if not fees.is_zero():
+            result.append(Debit("MerchantFees-Beeline", fees))
+        return result
 
     @classmethod
     def create_payment(cls, cart_handle, number, test=False):
         cart_id = cart_handle.cart_id(force=True)
 
         response = cls.__request("/merchant-api/v1/create-payment", {
-            "productId": 45,
+            "productId": cls.product_id(),
             "amount": str(cart_handle.total()),
             "productReceiver": number,
             "payerPhone": number,
@@ -105,6 +108,10 @@ class BeelinePaymentProcessor(PaymentProcessor):
         raise NotImplementedError("%s has to implement 'seller_id' class method" % cls.__name__)
 
     @classmethod
+    def product_id(cls):
+        raise NotImplementedError("%s has to implement 'product_id' class method" % cls.__name__)
+
+    @classmethod
     def __request(cls, uri, data, test=False):
         try:
             post_data = tight_dumps(data)
@@ -123,7 +130,7 @@ class BeelinePaymentProcessor(PaymentProcessor):
                     "Signature": hasher.hexdigest(),
                 },
                 "timeout": 8,
-                "verify": not test,
+                "verify": False,
             })
 
             if response.status_code != 200 or response.json()["status"] != "ok":
@@ -156,3 +163,7 @@ class FirstBeelinePaymentProcessor(BeelinePaymentProcessor):
     @classmethod
     def seller_id(cls):
         return settings.SECRETS["PAYMENT_PROCESSOR_CREDENTIALS"]["FIRST_BEELINE_PAYMENT_PROCESSOR"]["SELLER_ID"]
+
+    @classmethod
+    def product_id(cls):
+        return settings.SECRETS["PAYMENT_PROCESSOR_CREDENTIALS"]["FIRST_BEELINE_PAYMENT_PROCESSOR"]["PRODUCT_ID"]
