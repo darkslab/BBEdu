@@ -33,6 +33,8 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/RegisterPageModule.js",
     "js/modules/BuyCreditsQazkomPageModule.js",
     "js/modules/HomePageModule.js",
+    "js/modules/BuyCreditsPageModule.js",
+    "js/modules/BuyCreditsBeelinePageModule.js",
 
     "js/modules/DeveloperTestsPageModule.js",
     "js/modules/DeveloperAcknowledgementPageModule.js",

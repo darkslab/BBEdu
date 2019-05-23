@@ -12,16 +12,52 @@
         moduleDataStack.push({
             module: "SubmitModule"
         });
+        moduleDataStack.push({
+            module: "BuyCreditsPageModule"
+        });
     </script>
+    <div class="modal fade" data-qazkom-modal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title text-normal">{% trans 'page:/buy-credits/:pay_with_credit_card' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p class="lead text-center">{% trans 'page:/buy-credits/:bank_usage_info' %}</p>
+                        </div>
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                            <div class="row">
+                                <div class="col-xs-4 pr-10">
+                                    <img src="{% static 'img/epay.png' %}" class="img-responsive center-block" style="margin-top: 20px; max-height: 32px;">
+                                </div>
+                                <div class="col-xs-4 pr-5 pl-5">
+                                    <img src="{% static 'img/halykbank.png' %}" class="img-responsive center-block" style="margin-top: 14px; max-height: 38px;">
+                                </div>
+                                <div class="col-xs-4 pl-10">
+                                    <img src="{% static 'img/qazkom.png' %}" class="img-responsive center-block" style="max-height: 62px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h5 class="mt-15 mb-5 text-center">{% trans 'page:/buy-credits/:enter_amount' %}</h5>
-                    <form method="post" action="{{ request.path }}" class="form-horizontal" data-bb-form>
+                    <form method="post" action="{{ request.path }}" class="form-horizontal" data-bb-form data-payment-form>
                         {% csrf_token %}
 
-                        <div class="form-group {% if form.amount.errors %}has-error{% else %}has-success{% endif %}">
+                        {{ form.payment_type|attr:'data-payment-choice' }}
+
+                        <div class="form-group mb-23 {% if form.amount.errors %}has-error{% else %}has-success{% endif %}">
                             <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-addon">₸</span>
@@ -34,11 +70,27 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <button type="submit" class="btn btn-primary btn-block btn-lg" data-bb-submit>{% trans 'Make a payment' context 'Form button' %}</button>
+                        <fieldset>
+                            <legend class="text-center mb-5">
+                                <span>{% trans 'page:/buy-credits/:payment_option_1' %}</span>
+                                <a href="[data-qazkom-modal]" data-toggle="modal" class="bb-credits-info-button"><i class="fa fa-info-circle text-help"></i></a>
+                            </legend>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <button type="button" class="btn btn-primary btn-block btn-lg btn-wrappable" data-bb-submit data-payment-type="card">{% trans 'page:/buy-credits/:pay_with_credit_card' %}</button>
+                                </div>
                             </div>
-                        </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="text-center mb-5">
+                                <span>{% trans 'page:/buy-credits/:payment_option_2' %}</span>
+                            </legend>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <button type="button" class="btn btn-primary btn-block btn-lg btn-wrappable" data-bb-submit data-payment-type="beeline">{% trans 'page:/buy-credits/:pay_with_beeline' %}</button>
+                                </div>
+                            </div>
+                        </fieldset>
                     </form>
                 </div>
             </div>
@@ -48,21 +100,7 @@
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <div class="row">
                 <div class="col-xs-12">
-                    <p class="lead text-center mb-10"><strong>{% trans 'page:/buy-credits/:credits_conversion_rate' %}</strong></p>
-                    <p class="lead text-center">{% trans 'page:/buy-credits/:bank_usage_info' %}</p>
-                </div>
-                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-                    <div class="row">
-                        <div class="col-xs-4 pr-10">
-                            <img src="{% static 'img/epay.png' %}" class="img-responsive center-block" style="margin-top: 20px; max-height: 32px;">
-                        </div>
-                        <div class="col-xs-4 pr-5 pl-5">
-                            <img src="{% static 'img/halykbank.png' %}" class="img-responsive center-block" style="margin-top: 14px; max-height: 38px;">
-                        </div>
-                        <div class="col-xs-4 pl-10">
-                            <img src="{% static 'img/qazkom.png' %}" class="img-responsive center-block" style="max-height: 62px;">
-                        </div>
-                    </div>
+                    <p class="lead text-center"><strong>{% trans 'page:/buy-credits/:credits_conversion_rate' %}</strong></p>
                 </div>
             </div>
         </div>

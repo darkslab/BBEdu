@@ -7,6 +7,8 @@ from .views.base import (
     SettingsView,
     BuyCreditsView,
     BuyCreditsQazkomView,
+    BuyCreditsBeelineView,
+    BuyCreditsBeelineActionView,
     TermsView,
     ContactUsView,
     FaqView,
@@ -71,10 +73,12 @@ urlpatterns = [
     url(r"^faq/$",        FaqView.as_view(),       name="faq"       ),
 
     # USER URLS
-    url(r"^dashboard/$",          DashboardView.as_view(),        name="dashboard"         ),
-    url(r"^settings/$",           SettingsView.as_view(),         name="settings"          ),
-    url(r"^buy-credits/$",        BuyCreditsView.as_view(),       name="buy_credits"       ),
-    url(r"^buy-credits-qazkom/$", BuyCreditsQazkomView.as_view(), name="buy_credits_qazkom"),
+    url(r"^dashboard/$",                                       DashboardView.as_view(),               name="dashboard"                 ),
+    url(r"^settings/$",                                        SettingsView.as_view(),                name="settings"                  ),
+    url(r"^buy-credits/$",                                     BuyCreditsView.as_view(),              name="buy_credits"               ),
+    url(r"^buy-credits-qazkom/$",                              BuyCreditsQazkomView.as_view(),        name="buy_credits_qazkom"        ),
+    url(r"^buy-credits-beeline/$",                             BuyCreditsBeelineView.as_view(),       name="buy_credits_beeline"       ),
+    url(r"^buy-credits-beeline/(?P<action>send|resend|pay)/$", BuyCreditsBeelineActionView.as_view(), name="buy_credits_beeline_action"),
 
     # UPLOAD URLS
     url(r"^uploads/start/$",                              UploadStartView.as_view(),    name="upload_start"   ),
@@ -90,7 +94,7 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/approve/$",                                        BuildApproveTestView.as_view(),        name="build_approve_test"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/refuse/$",                                         BuildRefuseTestView.as_view(),         name="build_refuse_test"      ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/delete/$",                                         BuildDeleteTestView.as_view(),         name="build_delete_test"      ),
-    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/toggle-free/(?P<free>true|false)$",                BuildToggleFreeTestView.as_view(),     name="build_toggle_free_test" ),
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/toggle-free/(?P<free>true|false)/$",               BuildToggleFreeTestView.as_view(),     name="build_toggle_free_test" ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/check/$",                                          BuildCheckTestView.as_view(),          name="build_check_test"       ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),

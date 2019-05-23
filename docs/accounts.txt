@@ -3,6 +3,7 @@ Asset accounts:
 
 Expense accounts:
     MerchantFees-Qazkom
+    MerchantFees-Beeline
     Promo-Credits
     Correction-Credits
 

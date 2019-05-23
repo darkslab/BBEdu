@@ -1,0 +1,105 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n static %}
+
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3{% endblock %}
+
+{% block title %}{% trans 'Buy Credits' context 'Page title' %}{% endblock %}
+
+{% block nav_student_buy_credits_class %}active{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "BuyCreditsBeelinePageModule",
+            data: {
+                send_url: "{% url 'bbtest:buy_credits_beeline_action' 'send' %}",
+                resend_url: "{% url 'bbtest:buy_credits_beeline_action' 'resend' %}",
+                pay_url: "{% url 'bbtest:buy_credits_beeline_action' 'pay' %}",
+                complete_url: "{% url 'bbtest:dashboard' %}"
+            }
+        });
+    </script>
+    <div class="modal fade" data-beeline-modal="error" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p class="lead mt-15 mb-0 text-center">{% trans 'page:/buy-credits-beeline/:error_occurred' %}</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center">
+                        <a href="{% url 'bbtest:buy_credits' %}" class="btn btn-primary">{% trans 'page:/buy-credits-beeline/:start_over' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" data-beeline-modal="failed">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <p class="lead mt-15 mb-0 text-center">{% trans 'page:/buy-credits-beeline/:payment_failed' %}</p>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body bb-rel">
+                    <div class="bb-spinner-overlay hidden" data-beeline-overlay>
+                        <img src="{% static 'img/logo2_spinner.png' %}" class="bb-spinner">
+                    </div>
+                    <form class="form-horizontal mt-15">
+                        <div class="form-group">
+                            <label class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 control-label text-font-16">{% trans 'page:/buy-credits-beeline/:total_sum' %}</label>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+                                <input type="text" class="form-control" value="₸ {{ cart_total }}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group has-error" data-beeline-group>
+                            <label for="beeline_number" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 control-label text-font-16">{% trans 'page:/buy-credits-beeline/:beeline_number' %}</label>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+                                <input type="text" class="form-control" id="beeline_number" placeholder="777 123 4567" data-beeline-input="number">
+                            </div>
+                        </div>
+                        <div class="form-group has-error hidden" data-beeline-group>
+                            <label for="beeline_code" class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 control-label text-font-16">{% trans 'page:/buy-credits-beeline/:enter_code' %}</label>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+                                <input type="text" class="form-control" id="beeline_code" placeholder="000000" data-beeline-input="code">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <button type="button" class="btn btn-primary btn-lg btn-block btn-wrappable" data-beeline-action="send" disabled>{% trans 'page:/buy-credits-beeline/:send_code' %}</button>
+                                <button type="button" class="btn btn-success btn-lg btn-block btn-wrappable hidden" data-beeline-action="pay" disabled>{% trans 'page:/buy-credits-beeline/:pay' %}</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block btn-wrappable hidden" data-beeline-action="resend" disabled>{% trans 'page:/buy-credits-beeline/:resend_code' %}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="lead text-center mb-10"><strong>{% trans 'page:/buy-credits/:credits_conversion_rate' %}</strong></p>
+                </div>
+                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <img src="{% static 'img/beeline.png' %}" class="img-responsive center-block" style="height: 80px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popup %}{% include 'popups/whatsapp.html' %}{% endblock %}

@@ -3,7 +3,7 @@ from .exceptions import PaymentProcessorError
 
 
 class PaymentProcessor:
-    def __init__(self, amount, test=False):
+    def __init__(self, amount):
         try:
             if not isinstance(amount, Decimal):
                 raise ValueError("Invalid amount")
@@ -13,7 +13,7 @@ class PaymentProcessor:
             self.__amount = amount
         except ValueError:
             raise PaymentProcessorError("Incorrect amount")
-        self.__test = bool(test)
+        self.__test = False
 
     def amount(self):
         return self.__amount
