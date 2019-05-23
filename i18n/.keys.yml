@@ -96,6 +96,20 @@ page:
     enter_amount: ~
     credits_conversion_rate: ~
     bank_usage_info: ~
+    pay_with_credit_card: ~
+    pay_with_beeline: ~
+    payment_option_1: ~
+    payment_option_2: ~
+  '/buy-credits-beeline/':
+    total_sum: ~
+    beeline_number: ~
+    enter_code: ~
+    send_code: ~
+    pay: ~
+    resend_code: ~
+    error_occurred: ~
+    start_over: ~
+    payment_failed: ~
   '/faq/':
     title: ~
   '/super/trial-balance/':
