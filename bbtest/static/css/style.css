@@ -71,6 +71,9 @@
 .text-help {
     cursor: help;
 }
+.text-font-16 {
+    font-size: 16px;
+}
 .list-narrow {
     padding-left: 16px;
 }
@@ -1398,4 +1401,10 @@ html {
 .bb-lang-container.bb-lang-inverse a:focus {
     color: #ffffff;
     background-color: transparent;
+}
+
+.bb-credits-info-button,
+.bb-credits-info-button:hover,
+.bb-credits-info-button:focus {
+    color: rgba(0, 0, 0, 0.25);
 }

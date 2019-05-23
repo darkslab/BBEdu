@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-17 12:23+0600\n"
-"PO-Revision-Date: 2019-04-17 21:13+0600\n"
+"POT-Creation-Date: 2019-05-20 05:19+0600\n"
+"PO-Revision-Date: 2019-05-19 16:23-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -254,6 +254,18 @@ msgstr "Сома %(limit_value)s дан үлкен болмауы тиіс."
 msgctxt "Validation error"
 msgid "Amount has to be at least %(limit_value)s."
 msgstr "Сома кем дегенде %(limit_value)s болуы тиіс."
+
+msgctxt "Form label"
+msgid "Payment type"
+msgstr "Төлем түрі"
+
+msgctxt "Validation error"
+msgid "Please provide a payment type."
+msgstr "Төлем түрін белгілеңіз."
+
+msgctxt "Validation error"
+msgid "Payment type is invalid."
+msgstr "Төлем түрі дұрыс емес."
 
 msgctxt "Validation error"
 msgid "Incorrect data."
@@ -1531,20 +1543,56 @@ msgctxt "Page title"
 msgid "Buy Credits"
 msgstr "Шотты толықтыру"
 
-msgid "page:/buy-credits/:enter_amount"
-msgstr "Соманы енгізіңіз"
-
-msgctxt "Form button"
-msgid "Make a payment"
-msgstr "Төлем жасау"
-
-msgid "page:/buy-credits/:credits_conversion_rate"
-msgstr "1 бірлік 1 теңгеге тең."
+msgid "page:/buy-credits/:pay_with_credit_card"
+msgstr "Банк картасымен төлеу"
 
 msgid "page:/buy-credits/:bank_usage_info"
 msgstr ""
 "Кез келген банк картасын қолдануыңызға болады. Барлық транзакциялар Халық "
 "банк арқылы өткізіледі."
+
+msgid "page:/buy-credits/:enter_amount"
+msgstr "Соманы енгізіңіз"
+
+msgid "page:/buy-credits/:payment_option_1"
+msgstr "Төлем тәсілі 1"
+
+msgid "page:/buy-credits/:payment_option_2"
+msgstr "Төлем тәсілі 2"
+
+msgid "page:/buy-credits/:pay_with_beeline"
+msgstr "Beeline балансымен төлеу"
+
+msgid "page:/buy-credits/:credits_conversion_rate"
+msgstr "1 бірлік 1 теңгеге тең."
+
+msgid "page:/buy-credits-beeline/:error_occurred"
+msgstr "Қате болды."
+
+msgid "page:/buy-credits-beeline/:start_over"
+msgstr "Қайта бастау"
+
+msgid "page:/buy-credits-beeline/:payment_failed"
+msgstr ""
+"Төлем өткізілмеді. Дұрыс растау кодын немесе дұрыс телефон нөмірін енгізіңіз."
+
+msgid "page:/buy-credits-beeline/:total_sum"
+msgstr "Сома"
+
+msgid "page:/buy-credits-beeline/:beeline_number"
+msgstr "Beeline нөмірі"
+
+msgid "page:/buy-credits-beeline/:enter_code"
+msgstr "Растау коды"
+
+msgid "page:/buy-credits-beeline/:send_code"
+msgstr "Растау кодын жіберу"
+
+msgid "page:/buy-credits-beeline/:pay"
+msgstr "Төлем жасау"
+
+msgid "page:/buy-credits-beeline/:resend_code"
+msgstr "Растау кодын қайта жіберу"
 
 msgctxt "Page title"
 msgid "Contact Us"

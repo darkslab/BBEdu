@@ -12,10 +12,10 @@ def charge(payment_processor, cart_handle):
 
     payment_processor.authorize()
 
-    post_funds = squash_funds(payment_processor.funds() + cart_handle.funds())
-    post_funds.sort(key=lambda fund: fund.account().pk)
-
     try:
+        post_funds = squash_funds(payment_processor.funds() + cart_handle.funds())
+        post_funds.sort(key=lambda fund: fund.account().pk)
+
         with atomic(savepoint=False):
             for fund in post_funds:
                 if not fund.should_lock_account():

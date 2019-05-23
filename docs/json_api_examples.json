@@ -438,3 +438,59 @@
  * 
  * response object is empty or failure response
  */
+
+
+
+
+// ================================
+
+
+
+
+/**
+ * AJAX: SUCCESS
+ * 200
+ */
+
+{
+    "success": true,
+    // ...
+}
+
+
+
+
+/**
+ * AJAX: FAILURE
+ * 400
+ */
+
+{
+    "success": false,
+    "errors": {
+        "field0": [
+            {
+                "message": "some message 0",
+                "code": "some_code_0"
+            },
+            // ...
+        ],
+        "field1": [
+            {
+                "message": "some message 1",
+                "code": "some_code_1"
+            },
+            // ...
+        ]
+    }
+}
+
+
+
+
+/**
+ * AJAX: FAILURE
+ * 4XX and 5XX
+ * 
+ * Any content
+ */

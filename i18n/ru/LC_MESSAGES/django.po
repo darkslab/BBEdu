@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-17 12:23+0600\n"
-"PO-Revision-Date: 2019-04-17 21:15+0600\n"
+"POT-Creation-Date: 2019-05-20 05:19+0600\n"
+"PO-Revision-Date: 2019-05-19 16:24-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -253,6 +253,18 @@ msgstr "Сумма не может превышать %(limit_value)s."
 msgctxt "Validation error"
 msgid "Amount has to be at least %(limit_value)s."
 msgstr "Сумма должна быть не менее %(limit_value)s."
+
+msgctxt "Form label"
+msgid "Payment type"
+msgstr "Тип оплаты"
+
+msgctxt "Validation error"
+msgid "Please provide a payment type."
+msgstr "Укажите тип оплаты."
+
+msgctxt "Validation error"
+msgid "Payment type is invalid."
+msgstr "Тип оплаты недействителен."
 
 msgctxt "Validation error"
 msgid "Incorrect data."
@@ -1537,20 +1549,57 @@ msgctxt "Page title"
 msgid "Buy Credits"
 msgstr "Пополнить счёт"
 
-msgid "page:/buy-credits/:enter_amount"
-msgstr "введите сумму"
-
-msgctxt "Form button"
-msgid "Make a payment"
-msgstr "Оплатить"
-
-msgid "page:/buy-credits/:credits_conversion_rate"
-msgstr "1 единица равна 1 тенге"
+msgid "page:/buy-credits/:pay_with_credit_card"
+msgstr "Оплатить банковской картой"
 
 msgid "page:/buy-credits/:bank_usage_info"
 msgstr ""
 "Воспользуйтесь банковской картой любого банка. Все транзакции обрабатываются "
-"через Халык банк"
+"через Халык банк."
+
+msgid "page:/buy-credits/:enter_amount"
+msgstr "Введите сумму"
+
+msgid "page:/buy-credits/:payment_option_1"
+msgstr "Способ оплаты 1"
+
+msgid "page:/buy-credits/:payment_option_2"
+msgstr "Способ оплаты 2"
+
+msgid "page:/buy-credits/:pay_with_beeline"
+msgstr "Оплатить балансом Beeline"
+
+msgid "page:/buy-credits/:credits_conversion_rate"
+msgstr "1 единица равна 1 тенге"
+
+msgid "page:/buy-credits-beeline/:error_occurred"
+msgstr "Произошла ошибка."
+
+msgid "page:/buy-credits-beeline/:start_over"
+msgstr "Начать заново"
+
+msgid "page:/buy-credits-beeline/:payment_failed"
+msgstr ""
+"Не удалось оплатить. Введите правильный код подтверждения или проверьте "
+"номер телефона."
+
+msgid "page:/buy-credits-beeline/:total_sum"
+msgstr "Сумма"
+
+msgid "page:/buy-credits-beeline/:beeline_number"
+msgstr "Номер Beeline"
+
+msgid "page:/buy-credits-beeline/:enter_code"
+msgstr "Код подтверждения"
+
+msgid "page:/buy-credits-beeline/:send_code"
+msgstr "Отправить код подтверждения"
+
+msgid "page:/buy-credits-beeline/:pay"
+msgstr "Оплатить"
+
+msgid "page:/buy-credits-beeline/:resend_code"
+msgstr "Переотправить код подтверждения"
 
 msgctxt "Page title"
 msgid "Contact Us"
