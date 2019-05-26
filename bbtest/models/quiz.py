@@ -133,7 +133,7 @@ class Quiz(Model):
                         score += question.weight
                     elif len(correct_answers & report_answers) >= ceil(len(correct_answers) / 2):
                         if len(report_answers - correct_answers) <= 1:
-                            score += question.weight / 2
+                            score += round(question.weight / 2)
             if before_score != score:
                 bucket.append(question.pk)
         return score
