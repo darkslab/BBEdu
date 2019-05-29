@@ -1,0 +1,16 @@
+{% extends '../../email_base_0.html' %}
+{% load static %}
+
+{% block content %}
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="left" valign="top">
+                Друзья! Теперь вы можете пополнять счет на <a href="{{ base_url }}{% url 'bbtest:home' %}?utm_source=newsletter&utm_medium=email&utm_campaign=0004" target="_blank">bbtest.kz</a> балансом Beeline!<br><br>
+
+
+                С Уважением,<br>
+                Команда <span>bbtest</span>.kz
+            </td>
+        </tr>
+    </table>
+{% endblock %}
