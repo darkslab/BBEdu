@@ -26,18 +26,22 @@ from bbtest.texts import FAQ_TEXTS
 from bbtest.http import TightJsonResponse
 
 
-class HomeView(TemplateView):
-    template_name = "home.html"
+# class HomeView(TemplateView):
+#     template_name = "home.html"
 
-    def get_context_data(self, **kwargs):
-        for domain in TestDomain.objects.all():
-            if domain.pk == 7911:
-                kwargs["nis"] = domain
-            elif domain.pk == 7912:
-                kwargs["unt"] = domain
-            elif domain.pk == 7913:
-                kwargs["nufypet"] = domain
-        return super().get_context_data(**kwargs)
+#     def get_context_data(self, **kwargs):
+#         for domain in TestDomain.objects.all():
+#             if domain.pk == 7911:
+#                 kwargs["nis"] = domain
+#             elif domain.pk == 7912:
+#                 kwargs["unt"] = domain
+#             elif domain.pk == 7913:
+#                 kwargs["nufypet"] = domain
+#         return super().get_context_data(**kwargs)
+
+
+class HomeView(RedirectView):
+    url = reverse_lazy("bbtest:login")
 
 
 class NisView(TemplateView):

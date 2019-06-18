@@ -67,18 +67,18 @@ app_name = "bbtest"
 urlpatterns = [
     # PUBLIC URLS
     url(r"^$",            HomeView.as_view(),      name="home"      ),
-    url(r"^nis/$",        NisView.as_view(),       name="nis"       ),
-    url(r"^terms/$",      TermsView.as_view(),     name="terms"     ),
-    url(r"^contact-us/$", ContactUsView.as_view(), name="contact_us"),
-    url(r"^faq/$",        FaqView.as_view(),       name="faq"       ),
+    #url(r"^nis/$",        NisView.as_view(),       name="nis"       ),
+    #url(r"^terms/$",      TermsView.as_view(),     name="terms"     ),
+    #url(r"^contact-us/$", ContactUsView.as_view(), name="contact_us"),
+    #url(r"^faq/$",        FaqView.as_view(),       name="faq"       ),
 
     # USER URLS
     url(r"^dashboard/$",                                       DashboardView.as_view(),               name="dashboard"                 ),
-    url(r"^settings/$",                                        SettingsView.as_view(),                name="settings"                  ),
-    url(r"^buy-credits/$",                                     BuyCreditsView.as_view(),              name="buy_credits"               ),
-    url(r"^buy-credits-qazkom/$",                              BuyCreditsQazkomView.as_view(),        name="buy_credits_qazkom"        ),
-    url(r"^buy-credits-beeline/$",                             BuyCreditsBeelineView.as_view(),       name="buy_credits_beeline"       ),
-    url(r"^buy-credits-beeline/(?P<action>send|resend|pay)/$", BuyCreditsBeelineActionView.as_view(), name="buy_credits_beeline_action"),
+    #url(r"^settings/$",                                        SettingsView.as_view(),                name="settings"                  ),
+    #url(r"^buy-credits/$",                                     BuyCreditsView.as_view(),              name="buy_credits"               ),
+    #url(r"^buy-credits-qazkom/$",                              BuyCreditsQazkomView.as_view(),        name="buy_credits_qazkom"        ),
+    #url(r"^buy-credits-beeline/$",                             BuyCreditsBeelineView.as_view(),       name="buy_credits_beeline"       ),
+    #url(r"^buy-credits-beeline/(?P<action>send|resend|pay)/$", BuyCreditsBeelineActionView.as_view(), name="buy_credits_beeline_action"),
 
     # UPLOAD URLS
     url(r"^uploads/start/$",                              UploadStartView.as_view(),    name="upload_start"   ),
@@ -101,21 +101,21 @@ urlpatterns = [
 
     # STUDENT URLS
     url(r"^student/$",                                         StudentDashboardView.as_view(),        name="student_dashboard"         ),
-    url(r"^student/buy-tests/$",                               StudentBuyTestDomainsView.as_view(),   name="student_buy_test_domains"  ),
-    url(r"^student/buy-tests/(?P<test_domain_id>\d+)/$",       StudentBuyTestsView.as_view(),         name="student_buy_tests"         ),
-    url(r"^student/buy-tests/(?P<test_domain_id>\d+)/cart/$",  StudentBuyTestsCartView.as_view(),     name="student_buy_tests_cart"    ),
-    url(r"^student/buy-tests/checkout/$",                      StudentBuyTestsCheckoutView.as_view(), name="student_buy_tests_checkout"),
+    #url(r"^student/buy-tests/$",                               StudentBuyTestDomainsView.as_view(),   name="student_buy_test_domains"  ),
+    #url(r"^student/buy-tests/(?P<test_domain_id>\d+)/$",       StudentBuyTestsView.as_view(),         name="student_buy_tests"         ),
+    #url(r"^student/buy-tests/(?P<test_domain_id>\d+)/cart/$",  StudentBuyTestsCartView.as_view(),     name="student_buy_tests_cart"    ),
+    #url(r"^student/buy-tests/checkout/$",                      StudentBuyTestsCheckoutView.as_view(), name="student_buy_tests_checkout"),
     url(r"^student/exam/$",                                    StudentExamView.as_view(),             name="student_exam"              ),
     url(r"^student/exam/continue/$",                           StudentExamContinueView.as_view(),     name="student_exam_continue"     ),
     url(r"^student/exam/start/$",                              StudentExamStartView.as_view(),        name="student_exam_start"        ),
     url(r"^student/exam/skip/$",                               StudentExamSkipView.as_view(),         name="student_exam_skip"         ),
     url(r"^student/exam/end/$",                                StudentExamEndView.as_view(),          name="student_exam_end"          ),
     url(r"^student/exam/report/$",                             StudentExamReportView.as_view(),       name="student_exam_report"       ),
-    url(r"^student/results/$",                                 StudentResultsView.as_view(),          name="student_results"           ),
-    url(r"^student/results/(?P<code>[0-9A-Fa-f]{4,6})/$",      StudentResultView.as_view(),           name="student_result"            ),
-    url(r"^student/results/(?P<code>[0-9A-Fa-f]{4,6})/data/$", StudentResultDataView.as_view(),       name="student_result_data"       ),
-    url(r"^student/transactions/$",                            StudentTransactionsView.as_view(),     name="student_transactions"      ),
-    url(r"^student/transactions/(?P<transaction_id>\d+)/$",    StudentTransactionView.as_view(),      name="student_transaction"       ),
+    #url(r"^student/results/$",                                 StudentResultsView.as_view(),          name="student_results"           ),
+    #url(r"^student/results/(?P<code>[0-9A-Fa-f]{4,6})/$",      StudentResultView.as_view(),           name="student_result"            ),
+    #url(r"^student/results/(?P<code>[0-9A-Fa-f]{4,6})/data/$", StudentResultDataView.as_view(),       name="student_result_data"       ),
+    #url(r"^student/transactions/$",                            StudentTransactionsView.as_view(),     name="student_transactions"      ),
+    #url(r"^student/transactions/(?P<transaction_id>\d+)/$",    StudentTransactionView.as_view(),      name="student_transaction"       ),
 
     # DEVELOPER URLS
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
@@ -135,7 +135,7 @@ urlpatterns = [
     # SYSTEM URLS
     url(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),
     url(r"^logout/$",                                                                           LogoutView.as_view(),               name="logout"                ),
-    url(r"^register/(?:(?P<group>developer)/)?$",                                               RegisterView.as_view(),             name="register"              ),
-    url(r"^password-reset/$",                                                                   PasswordResetView.as_view(),        name="password_reset"        ),
-    url(r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+    #url(r"^register/(?:(?P<group>developer)/)?$",                                               RegisterView.as_view(),             name="register"              ),
+    #url(r"^password-reset/$",                                                                   PasswordResetView.as_view(),        name="password_reset"        ),
+    #url(r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]
