@@ -15,7 +15,8 @@
                 send_url: "{% url 'bbtest:buy_credits_beeline_action' 'send' %}",
                 resend_url: "{% url 'bbtest:buy_credits_beeline_action' 'resend' %}",
                 pay_url: "{% url 'bbtest:buy_credits_beeline_action' 'pay' %}",
-                complete_url: "{% url 'bbtest:dashboard' %}"
+                complete_url: "{% url 'bbtest:dashboard' %}",
+                amount: {{ cart_total|add:'0' }}
             }
         });
     </script>
