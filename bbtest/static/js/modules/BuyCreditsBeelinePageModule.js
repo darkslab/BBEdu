@@ -18,6 +18,7 @@ function BuyCreditsBeelinePageModule(data) {
     this._number = this._$numberInput.val();
     this._paymentId = 0;
     this._code = "";
+    this._amount = data.amount;
 
     this._$xhr;
 
@@ -177,6 +178,7 @@ BuyCreditsBeelinePageModule.prototype._ajaxSuccess = function(action, data, stat
             break;
         case "pay":
             if (data.success) {
+                ga_report_event([ "checkout", { "event_category": "credits", "value": this._amount } ]);
                 Turbolinks.visit(this._completeUrl);
             } else {
                 this._code = "";

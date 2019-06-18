@@ -7,3 +7,12 @@ function ga_report_pageview() {
         "page_path": location.pathname + location.search
     });
 }
+
+function ga_report_event(args) {
+    if (typeof gtag === "undefined") {
+        return;
+    }
+    var _args = args.slice(0);
+    _args.unshift("event");
+    gtag.apply(null, _args);
+}
