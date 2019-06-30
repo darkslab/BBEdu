@@ -9,8 +9,8 @@ def inject_texts_into_response(response, test):
     }
     if test.language == Test.LANGUAGE_KK:
         response["texts"]["shared_paragraph_header"] = "Мәтін"
-        response["texts"]["column_a"] = "Қатар A"
-        response["texts"]["column_b"] = "Қатар B"
+        response["texts"]["column_a"] = "A қатары"
+        response["texts"]["column_b"] = "B қатары"
     elif test.language == Test.LANGUAGE_RU:
         response["texts"]["shared_paragraph_header"] = "Текст"
         response["texts"]["column_a"] = "Колонка A"
