@@ -76,6 +76,7 @@ page:
     nis_button: ~
   '/student/':
     last_results_header: ~
+    iqanat_intro: ~
   '/student/buy-tests/xxxx/':
     test_variant: ~
     test_variant_in_progress: ~

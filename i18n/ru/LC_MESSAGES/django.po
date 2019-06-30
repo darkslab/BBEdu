@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-27 03:51+0600\n"
-"PO-Revision-Date: 2019-06-26 17:56-0400\n"
+"POT-Creation-Date: 2019-07-01 01:04+0600\n"
+"PO-Revision-Date: 2019-06-30 12:06-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -1620,18 +1620,6 @@ msgctxt "Form button"
 msgid "Login"
 msgstr "Войти"
 
-msgctxt "Form link"
-msgid "Forgot your password?"
-msgstr "Забыли пароль?"
-
-msgctxt "/login/"
-msgid "Don't have an account?"
-msgstr "Нет учетной записи?"
-
-msgctxt "/login/"
-msgid "Register"
-msgstr "Регистрация"
-
 msgctxt "Page title"
 msgid "Reset Password"
 msgstr "Сброс пароля"
@@ -1910,23 +1898,12 @@ msgid "Dashboard"
 msgstr "Личный кабинет"
 
 msgctxt "Navigation link"
-msgid "Settings"
-msgstr "Настройки"
-
-msgid "_common.nav.faq"
-msgstr "Вопрос-ответ"
-
-msgctxt "Navigation link"
 msgid "Logout"
 msgstr "Выйти"
 
 msgctxt "Navigation link"
 msgid "Login"
 msgstr "Войти"
-
-msgctxt "Navigation link"
-msgid "Register"
-msgstr "Регистрация"
 
 msgctxt "Home page"
 msgid "Start practicing to the test right now!"
@@ -1970,14 +1947,6 @@ msgctxt "Home page"
 msgid "Connect with us"
 msgstr "Мы в социальных  сетях"
 
-msgctxt "Footer navigation link"
-msgid "Terms"
-msgstr "Пользовательское соглашение"
-
-msgctxt "Footer navigation link"
-msgid "Contact Us"
-msgstr "Написать письмо"
-
 msgid "page:/nis/:html_title"
 msgstr ""
 "Пробное тестирование для поступления в 7 классы Назарбаев Интеллектуальных "
@@ -1989,8 +1958,27 @@ msgstr ""
 "результатов. Пробное тестирование для поступления в 7 классы Назарбаев "
 "Интеллектуальных школ."
 
+msgctxt "Navigation link"
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "_common.nav.faq"
+msgstr "Вопрос-ответ"
+
+msgctxt "Navigation link"
+msgid "Register"
+msgstr "Регистрация"
+
 msgid "page:/nis/:nis_button"
 msgstr "Пробный тест для поступающих в НИШ"
+
+msgctxt "Footer navigation link"
+msgid "Terms"
+msgstr "Пользовательское соглашение"
+
+msgctxt "Footer navigation link"
+msgid "Contact Us"
+msgstr "Написать письмо"
 
 msgctxt "Badge label under avatar"
 msgid "Administrator"
@@ -1999,11 +1987,6 @@ msgstr "Администратор"
 msgctxt "Badge label under avatar"
 msgid "Developer"
 msgstr "Разработчик"
-
-#, python-format
-msgctxt "Total credits"
-msgid "Balance: %(balance)s cred."
-msgstr "Счёт: %(balance)s ед."
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -2031,22 +2014,6 @@ msgstr "Публичная оферта"
 msgctxt "Navigation link"
 msgid "Testing"
 msgstr "Тестирование"
-
-msgctxt "Navigation link"
-msgid "Start testing"
-msgstr "Начать тестирование"
-
-msgctxt "Navigation link"
-msgid "Results"
-msgstr "Результаты тестирования"
-
-msgctxt "Navigation link"
-msgid "Buy Credits"
-msgstr "Приобрести единицы"
-
-msgctxt "Navigation link"
-msgid "Transactions"
-msgstr "Транзакции"
 
 msgid "page:/student/buy-tests/xxxx/:checkout_shortcut"
 msgstr "Начать"
@@ -2111,52 +2078,10 @@ msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr "Выбрать другой тест"
 
-#, python-format
-msgid ""
-"page:/student/:last_results_header:%(domain_name)s;%(span_open)s;"
-"%(span_close)s"
-msgstr "Результаты последнего теста %(span_open)s%(domain_name)s%(span_close)s"
-
-msgctxt "Results page"
-msgid "Not finished"
-msgstr "Не закончен"
-
-msgctxt "Results page"
-msgid "Section"
-msgstr "Предмет"
-
-msgctxt "Results page"
-msgid "Your score"
-msgstr "Ваш балл"
-
-msgctxt "Results page"
-msgid "Average score of students on bbtest.kz website for the section."
-msgstr "Средний балл тестируемых по данному предмету на bbtest.kz."
-
-#, python-format
-msgctxt "Results page"
-msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-msgstr "Средний балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-
-msgctxt "/student/"
-msgid "Go to results page"
-msgstr "Перейти к результатам тестирования"
-
-msgctxt "/student/"
-msgid "You have not taken any tests."
-msgstr "Вы еще не прошли тестирование."
-
-msgctxt "/student/"
-msgid "Start testing"
-msgstr "Начать тестирование"
-
-msgctxt "Results page"
-msgid "Test progress monitoring"
-msgstr "Мониторинг прогресса участника тестирования"
-
-msgctxt "/student/"
-msgid "Your progress will be shown here."
-msgstr "Здесь Вы сможете отслеживать свой прогресс."
+msgid "page:/student/:iqanat_intro"
+msgstr ""
+"Количественные характеристики - тест ориентирован на оценку логики, умений "
+"работать с цифрами, способностей мысленно производить расчеты."
 
 #, python-format
 msgctxt "Page title"
@@ -2288,6 +2213,27 @@ msgid ""
 "%(span_open)s;%(span_close)s"
 msgstr "Тест №%(quiz_set_count)s %(span_open)s%(domain_name)s%(span_close)s"
 
+msgctxt "Results page"
+msgid "Not finished"
+msgstr "Не закончен"
+
+msgctxt "Results page"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "Results page"
+msgid "Your score"
+msgstr "Ваш балл"
+
+msgctxt "Results page"
+msgid "Average score of students on bbtest.kz website for the section."
+msgstr "Средний балл тестируемых по данному предмету на bbtest.kz."
+
+#, python-format
+msgctxt "Results page"
+msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+msgstr "Средний балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+
 #, python-format
 msgctxt "Results page"
 msgid "View Transaction #%(transaction_id)s"
@@ -2320,6 +2266,10 @@ msgstr[1] ""
 msgstr[2] ""
 "Вы ответили правильно на %(questions_count)s вопросов (%(score)s) из "
 "%(total_questions_count)s по данному разделу"
+
+msgctxt "Results page"
+msgid "Test progress monitoring"
+msgstr "Мониторинг прогресса участника тестирования"
 
 msgctxt "Results page"
 msgid "You can see your results and follow the progress on this test section."
