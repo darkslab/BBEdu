@@ -19,7 +19,9 @@
                 </div>
                 <div class="row bb-menu-section pt-15 pb-15">
                     <div class="col-xs-8 col-xs-offset-2">
-                        <img class="img-responsive img-circle bb-menu-gravatar" src="{{ user.gravatar_url|safe }}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}">
+                        {% with iqanat_logo='img/iqanat_'|add:LANGUAGE_CODE|add:'.jpg' %}
+                            <img class="img-responsive img-circle bb-menu-gravatar" src="{% static iqanat_logo %}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}">
+                        {% endwith %}
                     </div>
                     <h5 class="col-xs-12 text-center text-bright mt-5 mb-0">{{ user.get_full_name }}</h5>
                     {% if perms.bbtest.super %}
