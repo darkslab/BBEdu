@@ -182,7 +182,7 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
 class ExamReportView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
     def post(self, request, *args, **kwargs):
         now_at = now()
-        if self.current_status(now_at) != "started":
+        if self.current_status(now_at) != "started" and not (self.current_status(now_at) == "expired" and (now_at - self.current_quiz().due_at).total_seconds() <= 30):
             return TightJsonResponse({
                 "success": False,
             })
