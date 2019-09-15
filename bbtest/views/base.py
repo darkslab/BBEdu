@@ -20,6 +20,7 @@ from bbtest.forms.message import MessageForm
 from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError, FirstBeelinePaymentProcessor
 from bbtest.models.shopping.handle import CartHandleAccessMixin, CartHandle
 from bbtest.models.shopping.items import CreditItem
+from bbtest.models.shopping.items.credit import MIN_CREDIT_AMOUNT
 from bbtest.models.shopping.operate import charge
 from bbtest.models import Cart, TestDomain
 from bbtest.texts import FAQ_TEXTS
@@ -75,6 +76,14 @@ class SettingsView(LoginRequiredMixin, UserContextMixin, FormView):
 class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, FormView):
     template_name = "base/buy_credits.html"
     form_class = BuyCreditsForm
+
+    def get_initial(self):
+        initial_total = self.cart_handle().total()
+        if initial_total < MIN_CREDIT_AMOUNT:
+            initial_total = MIN_CREDIT_AMOUNT
+        return {
+            "amount": int(initial_total),
+        }
 
     def form_valid(self, form):
         old_items = []
