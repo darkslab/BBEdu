@@ -1,0 +1,2985 @@
+# Kazakh language translations for BBEdu project.
+# Copyright (C) 2017 bbTest.kz
+# Darkhan Baimyrza <darkhan@bbtest.kz>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bbTest.kz English translation 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-19 02:42+0600\n"
+"PO-Revision-Date: 2019-09-18 13:42-0700\n"
+"Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
+"Language-Team: bbTest.kz <admin@bbtest.kz>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.3\n"
+
+msgctxt "Form label"
+msgid "Email"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please enter email."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Password"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please enter password."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please enter a correct email and password."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect email."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "Please follow password reset instructions in the sent email."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Passwords do not match."
+msgstr ""
+
+msgctxt "Form label"
+msgid "New password"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please enter new password."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Confirm new password"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please enter new password confirmation."
+msgstr ""
+
+msgctxt "Model field"
+msgid "username"
+msgstr ""
+
+msgctxt "Model field"
+msgid "email"
+msgstr ""
+
+msgctxt "Model field"
+msgid "first name"
+msgstr ""
+
+msgctxt "Model field"
+msgid "last name"
+msgstr ""
+
+msgctxt "Model field"
+msgid "phone"
+msgstr ""
+
+msgctxt "Model field"
+msgid "joined at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "active?"
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "The password has to be at least %(min_length)d characters."
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid ""
+"If the password is less than %(secure_length)d characters, it has to contain "
+"at least one uppercase character."
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid ""
+"If the password is less than %(secure_length)d characters, it has to contain "
+"at least one lowercase character."
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid ""
+"If the password is less than %(secure_length)d characters, it has to contain "
+"at least one numeric character."
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid ""
+"If the password is less than %(secure_length)d characters, it has to contain "
+"at least one symbol character."
+msgstr ""
+
+#, python-format
+msgctxt "Password validation help text"
+msgid ""
+"If the password is less than %(secure_length)d characters, it has to be at "
+"least %(min_length)d characters and contain uppercase, lowercase, numeric "
+"and a symbol character."
+msgstr ""
+
+#, python-format
+msgctxt "Password validation help text"
+msgid "The password has to be at least %(min_length)d characters long."
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "The password is too similar to the %(verbose_name)s."
+msgstr ""
+
+msgctxt "Password validation help text"
+msgid "The password can't be too similar to your other personal information."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "The password is too common."
+msgstr ""
+
+msgctxt "Password validation help text"
+msgid "The password can't be a commonly used password."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "Password was reset successfully."
+msgstr ""
+
+msgctxt "Email subject"
+msgid "Password reset"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please select plan."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect plan value."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please select agreement code."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect agreement code value."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Agreement code does not match the plan."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Confirm password"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please enter password confirmation."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please enter first name."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "First name is too long."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please enter last name."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Last name is too long."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Email is too long."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "This email is already taken."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Phone is too long."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Amount"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please provide an amount."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Amount is invalid."
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "Amount cannot be more than %(limit_value)s."
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "Amount has to be at least %(limit_value)s."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Payment type"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please provide a payment type."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Payment type is invalid."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect data."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Data"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please provide data."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect report."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please provide report."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Invalid JSON format."
+msgstr ""
+
+msgid "_common.validation.message_form.recaptcha"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Name is too long."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please enter the message."
+msgstr ""
+
+msgctxt "/contact_us/"
+msgid "Hello..."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please select difficulty."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect difficulty value."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect taxonomy value."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect topic value."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect answer class."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please provide paragraph class."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect paragraph class."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please provide meta data."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please select test section."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect test section value."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please select test language."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect test language value."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Unrecognized test section."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect test language."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Answer types should only be Multichoice with one answer."
+msgstr ""
+
+msgctxt "Validation error"
+msgid ""
+"There should be 20 answers of type Multichoice with one answer and 10 "
+"answers of type Multichoice with one or more answers."
+msgstr ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s question in taxonomy: %(taxonomy)s."
+msgid_plural "There has to be %(count)s questions in taxonomy: %(taxonomy)s."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s question in topic: %(topic)s."
+msgid_plural "There has to be %(count)s questions in topic: %(topic)s."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s high difficulty question."
+msgid_plural "There has to be %(count)s high difficulty questions."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s normal difficulty question."
+msgid_plural "There has to be %(count)s normal difficulty questions."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgctxt "Validation error"
+msgid "There has to be %(count)s low difficulty question."
+msgid_plural "There has to be %(count)s low difficulty questions."
+msgstr[0] ""
+msgstr[1] ""
+
+msgctxt "Validation error"
+msgid "Some questions do not have a topic assigned to it."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect upload starter data."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Upload starter"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please provide upload starter data."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please provide file name."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "File name is too long."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please provide file size."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect file size value."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "File content type value is too long."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Old password"
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Please enter old password."
+msgstr ""
+
+msgctxt "Validation error"
+msgid "Incorrect old password."
+msgstr ""
+
+msgid "Knowledge"
+msgstr ""
+
+msgid "Application"
+msgstr ""
+
+msgid "Meaning"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Structure"
+msgstr ""
+
+msgid "Ratios and Proportions"
+msgstr ""
+
+msgid "Rational Numbers"
+msgstr ""
+
+msgid "Modulus"
+msgstr ""
+
+msgid "Linear Equations and Inequalities"
+msgstr ""
+
+msgid "Factorization"
+msgstr ""
+
+msgid "Division"
+msgstr ""
+
+msgid "Percents"
+msgstr ""
+
+msgid "Geometry"
+msgstr ""
+
+msgid "Algebraic Operations and Analysis"
+msgstr ""
+
+msgid "Numbers and Decimal Arithmetic Operations"
+msgstr ""
+
+msgid "Numbers and Fractional Arithmetic Operations"
+msgstr ""
+
+msgid "Measurement Units and Data"
+msgstr ""
+
+msgid "Notation"
+msgstr ""
+
+msgid "Expressions and Equations"
+msgstr ""
+
+msgid "Functions"
+msgstr ""
+
+msgid "Modeling"
+msgstr ""
+
+msgid "Scores"
+msgstr ""
+
+msgid "Sequence Rules"
+msgstr ""
+
+msgid "Statistics"
+msgstr ""
+
+msgid "Combinatorics"
+msgstr ""
+
+msgid "People"
+msgstr ""
+
+msgid "Animals"
+msgstr ""
+
+msgid "Nature"
+msgstr ""
+
+msgid "Weather"
+msgstr ""
+
+msgid "Food"
+msgstr ""
+
+msgid "Science"
+msgstr ""
+
+msgid "Education"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "Ethics"
+msgstr ""
+
+msgid "Sports"
+msgstr ""
+
+msgid "Art"
+msgstr ""
+
+msgid "Health"
+msgstr ""
+
+msgid "Traditions"
+msgstr ""
+
+msgid "Upbringing"
+msgstr ""
+
+msgid "Culture"
+msgstr ""
+
+msgid "Hobby"
+msgstr ""
+
+msgid "Ecology"
+msgstr ""
+
+msgid "Fables and Fairy Tales"
+msgstr ""
+
+msgid "Mathematics"
+msgstr ""
+
+msgid "Kazakh Language"
+msgstr ""
+
+msgid "Russian Language"
+msgstr ""
+
+msgid "English Language"
+msgstr ""
+
+msgid "Quantitative"
+msgstr ""
+
+msgid "Numeracy"
+msgstr ""
+
+msgid "Analysis"
+msgstr ""
+
+msgid "Synthesis"
+msgstr ""
+
+msgid "Mixed problems"
+msgstr ""
+
+msgid "Indeterminancy"
+msgstr ""
+
+msgid "Changes and dependencies"
+msgstr ""
+
+msgid "Space and shape"
+msgstr ""
+
+msgid "Literacy"
+msgstr ""
+
+msgid "Human and environment"
+msgstr ""
+
+msgid "Education and science"
+msgstr ""
+
+msgid "Cities and countries"
+msgstr ""
+
+msgid "Social relationships"
+msgstr ""
+
+msgid "History of Kazakhstan"
+msgstr ""
+
+msgid "Stone and bronze epoch"
+msgstr ""
+
+msgid "Kazakhstan in iron epoch"
+msgstr ""
+
+msgid "The states of the early and developed Middle Ages (VI-beg. XIII cc)"
+msgstr ""
+
+msgid "Culture (VI-XVII centuries)"
+msgstr ""
+
+msgid "Kazakhstan in the XIII-XVII centuries"
+msgstr ""
+
+msgid "Socio-economic position of Kazakhstan in the XIII-XVII centuries"
+msgstr ""
+
+msgid "Socio-economic development of Kazakhstan in the XVIII-XIX centuries"
+msgstr ""
+
+msgid "Socio-political development of Kazakhstan in the XVIII-XIX centuries"
+msgstr ""
+
+msgid "Kazakhstan in the first half of XX century"
+msgstr ""
+
+msgid "Culture of Kazakhstan XVIII-XX centuries"
+msgstr ""
+
+msgid "Kazakhstan in the 50-80-ies. XX century"
+msgstr ""
+
+msgid "Independent Kazakhstan"
+msgstr ""
+
+msgid "History in documents"
+msgstr ""
+
+msgid "Arithmetic calculations. Transformations of expressions"
+msgstr ""
+
+msgid "Equations. Systems of equations. Formulation of equations"
+msgstr ""
+
+msgid "Inequalities. Systems of inequalities"
+msgstr ""
+
+msgid "Functions. Derivatives. Integral"
+msgstr ""
+
+msgid "Planimetry"
+msgstr ""
+
+msgid "Stereometry"
+msgstr ""
+
+msgid "Sequences. Progression"
+msgstr ""
+
+msgid "Physics"
+msgstr ""
+
+msgid "Mechanics"
+msgstr ""
+
+msgid "Molecular physics. Fundamentals of thermodynamics"
+msgstr ""
+
+msgid "Electrodynamics"
+msgstr ""
+
+msgid "Optics"
+msgstr ""
+
+msgid "Quantum and Atomic Physics"
+msgstr ""
+
+msgid "Qualitative objectives"
+msgstr ""
+
+msgid "Chemistry"
+msgstr ""
+
+msgid "General chemistry"
+msgstr ""
+
+msgid "Inorganic chemistry"
+msgstr ""
+
+msgid "Organic chemistry"
+msgstr ""
+
+msgid "Calculation problems: General chemistry"
+msgstr ""
+
+msgid "Calculation problems: Inorganic chemistry"
+msgstr ""
+
+msgid "Calculation problems: Organic chemistry"
+msgstr ""
+
+msgid "Biology"
+msgstr ""
+
+msgid "Plants"
+msgstr ""
+
+msgid "Human Anatomy and Physiology"
+msgstr ""
+
+msgid "Cytology, genetics, ecology"
+msgstr ""
+
+msgid "Geography"
+msgstr ""
+
+msgid "Physical Geography of the World"
+msgstr ""
+
+msgid "Geography of Kazakhstan"
+msgstr ""
+
+msgid "Economic and social geography of the world"
+msgstr ""
+
+msgid "Geography course tasks"
+msgstr ""
+
+msgid "Age of stone and bronze"
+msgstr ""
+
+msgid "Kazakhstan in the Iron Age"
+msgstr ""
+
+msgid "The states of the Ancient East. Ancient civilization"
+msgstr ""
+
+msgid ""
+"The Middle Ages (early V-X centuries, the flowering of the XI-XV centuries, "
+"later the XV-XVII centuries)"
+msgstr ""
+
+msgid ""
+"Culture of the ancient world (before the V century), medieval culture of "
+"peace (V - XVII centuries)"
+msgstr ""
+
+msgid ""
+"Europe and North America, Countries of Asia and Africa (XVII - early XX "
+"centuries)"
+msgstr ""
+
+msgid ""
+"Culture of Europe, North America, Asia and Africa (XVIII century - the "
+"beginning of the XXI century)"
+msgstr ""
+
+msgid "International relations (XVII - beginning of the XXI centuries)"
+msgstr ""
+
+msgid "World Wars and Their Consequences"
+msgstr ""
+
+msgid "The countries of Europe and America, Asia and Africa (1918-2014)"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Vocabulary and translation"
+msgstr ""
+
+msgid "Spelling"
+msgstr ""
+
+msgid "Morphology"
+msgstr ""
+
+msgid "Syntax"
+msgstr ""
+
+msgid "Work with text"
+msgstr ""
+
+msgid "Country studies"
+msgstr ""
+
+msgid "French"
+msgstr ""
+
+msgid "Phonetics"
+msgstr ""
+
+msgid "German"
+msgstr ""
+
+msgid "Kazakh and literature"
+msgstr ""
+
+msgid "Vocabulary"
+msgstr ""
+
+msgid "Word formation"
+msgstr ""
+
+msgid "Punctuation. Stylistics. Culture of speech"
+msgstr ""
+
+msgid "Ancient World Literature"
+msgstr ""
+
+msgid "Oral literature"
+msgstr ""
+
+msgid "Poetry of epos"
+msgstr ""
+
+msgid "XIX century literature"
+msgstr ""
+
+msgid "Literature in the first half of 20th century "
+msgstr ""
+
+msgid "Literature in the Great Patriotic War and later"
+msgstr ""
+
+msgid "The theory of literature"
+msgstr ""
+
+msgid "Literature in II half of 20th century"
+msgstr ""
+
+msgid "Russian and literature"
+msgstr ""
+
+msgid "Phonetics and spelling"
+msgstr ""
+
+msgid "Lexicology"
+msgstr ""
+
+msgid "Morphemistry and word formation"
+msgstr ""
+
+msgid "Syntax and punctuation"
+msgstr ""
+
+msgid "Theory of Literature"
+msgstr ""
+
+msgid "Biography"
+msgstr ""
+
+msgid "Literary criticism"
+msgstr ""
+
+msgid "The role of episodes"
+msgstr ""
+
+msgid "Cross-cutting themes"
+msgstr ""
+
+msgid "Content of works"
+msgstr ""
+
+msgid "Human. Society. Law"
+msgstr ""
+
+msgid "Human in the world"
+msgstr ""
+
+msgid "Social sphere of society"
+msgstr ""
+
+msgid "The economic sphere of society"
+msgstr ""
+
+msgid "Spiritual sphere of society"
+msgstr ""
+
+msgid "Political Science and Politics"
+msgstr ""
+
+msgid "Constitutional law"
+msgstr ""
+
+msgid "Introduction to Jurisprudence"
+msgstr ""
+
+msgid "_common.topics.nufypet.section0.topic0"
+msgstr ""
+
+msgid "_common.topics.nufypet.section0.topic1"
+msgstr ""
+
+msgid "_common.topics.nufypet.section0.topic2"
+msgstr ""
+
+msgid "_common.topics.nufypet.section0.topic3"
+msgstr ""
+
+msgid "_common.topics.nufypet.section1.topic0"
+msgstr ""
+
+msgid "_common.topics.nufypet.section1.topic1"
+msgstr ""
+
+msgid "_common.topics.nufypet.section1.topic2"
+msgstr ""
+
+msgid "_common.topics.nufypet.section1.topic3"
+msgstr ""
+
+msgid "_common.topics.nufypet.section1.topic4"
+msgstr ""
+
+msgid "_common.topics.nufypet.section1.topic5"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic00"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic01"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic02"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic03"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic04"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic05"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic06"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic07"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic08"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic09"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic10"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic11"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic12"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic13"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic14"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic15"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic16"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic17"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic18"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic19"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic20"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic21"
+msgstr ""
+
+msgid "_common.topics.nufypet.section2.topic22"
+msgstr ""
+
+msgid "_common.topics.nufypet.section3.topic0"
+msgstr ""
+
+msgid "_common.topics.nufypet.section3.topic1"
+msgstr ""
+
+msgid "_common.domains.nufypet"
+msgstr ""
+
+msgid "_common.sections.nufypet.section0"
+msgstr ""
+
+msgid "_common.sections.nufypet.section1"
+msgstr ""
+
+msgid "_common.sections.nufypet.section2"
+msgstr ""
+
+msgid "_common.sections.nufypet.section3"
+msgstr ""
+
+msgid "_common.domains.nis"
+msgstr ""
+
+msgid "_common.domains.unt"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Asset"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Expense"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Dividend"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Liability"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Equity"
+msgstr ""
+
+msgctxt "Account type"
+msgid "Revenue"
+msgstr ""
+
+msgctxt "Model field"
+msgid "name"
+msgstr ""
+
+msgctxt "Model field"
+msgid "type"
+msgstr ""
+
+msgctxt "Model field"
+msgid "is contra account?"
+msgstr ""
+
+msgctxt "Model field"
+msgid "created at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "description"
+msgstr ""
+
+msgctxt "Model field"
+msgid "object ID"
+msgstr ""
+
+msgctxt "Model field"
+msgid "is debit?"
+msgstr ""
+
+msgctxt "Model field"
+msgid "amount"
+msgstr ""
+
+msgctxt "Developer acknowledgement plan"
+msgid "Immediate"
+msgstr ""
+
+msgctxt "Developer acknowledgement plan"
+msgid "Profitable"
+msgstr ""
+
+msgctxt "Model field"
+msgid "plan"
+msgstr ""
+
+msgctxt "Model field"
+msgid "agreement code"
+msgstr ""
+
+msgctxt "Model field"
+msgid "signature"
+msgstr ""
+
+msgctxt "Model field"
+msgid "acknowledged at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "ip address"
+msgstr ""
+
+msgctxt "Model field"
+msgid "user agent"
+msgstr ""
+
+msgctxt "Model field"
+msgid "from email"
+msgstr ""
+
+msgctxt "Model field"
+msgid "recipients"
+msgstr ""
+
+msgctxt "Model field"
+msgid "subject"
+msgstr ""
+
+msgctxt "Model field"
+msgid "mime data"
+msgstr ""
+
+msgctxt "Model field"
+msgid "sent at"
+msgstr ""
+
+msgctxt "Field class description"
+msgid "JSON"
+msgstr ""
+
+msgctxt "Model field"
+msgid "message"
+msgstr ""
+
+msgctxt "Model field"
+msgid "lock version"
+msgstr ""
+
+msgctxt "Model field"
+msgid "is current?"
+msgstr ""
+
+msgctxt "Model field"
+msgid "updated at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "report"
+msgstr ""
+
+msgctxt "Model field"
+msgid "order"
+msgstr ""
+
+msgctxt "Model field"
+msgid "is finished?"
+msgstr ""
+
+msgctxt "Model field"
+msgid "quiz started at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "quiz due at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "quiz ended at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "discount"
+msgstr ""
+
+msgctxt "Model field"
+msgid "completed at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "item class"
+msgstr ""
+
+msgctxt "Model field"
+msgid "meta data"
+msgstr ""
+
+msgctxt "Model field"
+msgid "price"
+msgstr ""
+
+msgctxt "Model field"
+msgid "payment processor class"
+msgstr ""
+
+msgctxt "Model field"
+msgid "is complete?"
+msgstr ""
+
+msgctxt "Item error"
+msgid "User is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Incorrect amount value."
+msgstr ""
+
+msgctxt "Item error"
+msgid "User no longer exists."
+msgstr ""
+
+msgid "Credits"
+msgstr ""
+
+msgctxt "Item error"
+msgid "NIS Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Mathematics NIS Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Kazakh Language NIS Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Russian Language NIS Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "English Language NIS Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Quantitative NIS Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "NUFYPET Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "NUFYPET Test does not have test language."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Mathematics NUFYPET Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Physics NUFYPET Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Biology/Chemistry NUFYPET Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Thinking skills NUFYPET Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Student is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Correct test language is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Test has already been taken."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Test has to be approved."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Incorrect Test language."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Test no longer exists."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Could not checkout. Please try again."
+msgstr ""
+
+msgctxt "Item error"
+msgid "UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Mathematical Literacy Compulsory UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Reading Literacy Compulsory UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "History of Kazakhstan Compulsory UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Mathematics Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Physics Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Chemistry Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Biology Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Geography Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "History Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "English Language Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "French Language Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "German Language Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Kazakh Language and Literature Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Russian Language and Literature Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Item error"
+msgid "Human. Society. Right Profile UNT Test is required."
+msgstr ""
+
+msgctxt "Model field"
+msgid "duration in seconds"
+msgstr ""
+
+msgctxt "Model field"
+msgid "question count"
+msgstr ""
+
+msgctxt "Test language"
+msgid "N/A"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Kazakh"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Russian"
+msgstr ""
+
+msgctxt "Test status"
+msgid "Draft"
+msgstr ""
+
+msgctxt "Test status"
+msgid "Pending"
+msgstr ""
+
+msgctxt "Test status"
+msgid "Approved"
+msgstr ""
+
+msgctxt "Test status"
+msgid "Archived"
+msgstr ""
+
+msgctxt "Model field"
+msgid "code of the test"
+msgstr ""
+
+msgctxt "Model field"
+msgid "language of the test"
+msgstr ""
+
+msgctxt "Model field"
+msgid "status"
+msgstr ""
+
+msgctxt "Model field"
+msgid "is free?"
+msgstr ""
+
+msgctxt "Model field"
+msgid "sales count"
+msgstr ""
+
+msgctxt "Model field"
+msgid "completed count"
+msgstr ""
+
+msgctxt "Question difficulty"
+msgid "High"
+msgstr ""
+
+msgctxt "Question difficulty"
+msgid "Normal"
+msgstr ""
+
+msgctxt "Question difficulty"
+msgid "Low"
+msgstr ""
+
+msgctxt "Model field"
+msgid "answer class"
+msgstr ""
+
+msgctxt "Model field"
+msgid "difficulty"
+msgstr ""
+
+msgctxt "Model field"
+msgid "weight of question"
+msgstr ""
+
+msgctxt "Model field"
+msgid "paragraph class"
+msgstr ""
+
+msgctxt "Model field"
+msgid "uuid"
+msgstr ""
+
+msgctxt "Model field"
+msgid "expire at"
+msgstr ""
+
+msgctxt "Model field"
+msgid "upload processor"
+msgstr ""
+
+msgctxt "Model field"
+msgid "upload URL"
+msgstr ""
+
+msgctxt "Model field"
+msgid "file name"
+msgstr ""
+
+msgctxt "Model field"
+msgid "file size"
+msgstr ""
+
+msgctxt "Model field"
+msgid "file content type"
+msgstr ""
+
+msgctxt "Model field"
+msgid "asset adopter"
+msgstr ""
+
+msgctxt "Model field"
+msgid "broken?"
+msgstr ""
+
+msgctxt "Model field"
+msgid "asset class"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Something went wrong"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Sorry, but you should not be here"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Page not found"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Buy Credits"
+msgstr ""
+
+msgid "page:/buy-credits/:pay_with_credit_card"
+msgstr ""
+
+msgid "page:/buy-credits/:bank_usage_info"
+msgstr ""
+
+msgid "page:/buy-credits/:enter_amount"
+msgstr ""
+
+msgid "page:/buy-credits/:payment_option_1"
+msgstr ""
+
+msgid "page:/buy-credits/:payment_option_2"
+msgstr ""
+
+msgid "page:/buy-credits/:pay_with_beeline"
+msgstr ""
+
+msgid "page:/buy-credits/:credits_conversion_rate"
+msgstr ""
+
+msgid "page:/buy-credits-beeline/:error_occurred"
+msgstr ""
+
+msgid "page:/buy-credits-beeline/:start_over"
+msgstr ""
+
+msgid "page:/buy-credits-beeline/:payment_failed"
+msgstr ""
+
+msgid "page:/buy-credits-beeline/:total_sum"
+msgstr ""
+
+msgid "page:/buy-credits-beeline/:beeline_number"
+msgstr ""
+
+msgid "page:/buy-credits-beeline/:enter_code"
+msgstr ""
+
+msgid "page:/buy-credits-beeline/:send_code"
+msgstr ""
+
+msgid "page:/buy-credits-beeline/:pay"
+msgstr ""
+
+msgid "page:/buy-credits-beeline/:resend_code"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Contact Us"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Send"
+msgstr ""
+
+msgid "page:/faq/:title"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Login"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Login"
+msgstr ""
+
+msgctxt "Form link"
+msgid "Forgot your password?"
+msgstr ""
+
+msgctxt "/login/"
+msgid "Don't have an account?"
+msgstr ""
+
+msgctxt "/login/"
+msgid "Register"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Reset Password"
+msgstr ""
+
+msgctxt "/password_reset/"
+msgid "Please provide your email to get a reset link"
+msgstr ""
+
+msgctxt "Form link"
+msgid "Go back to Login"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Set Password"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Reset"
+msgstr ""
+
+msgctxt "/reset/"
+msgid "Password reset link has been expired."
+msgstr ""
+
+msgctxt "Button"
+msgid "Reset Password"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Register as a Developer"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Register"
+msgstr ""
+
+msgctxt "Form label"
+msgid "I want to register as"
+msgstr ""
+
+msgctxt "Form label"
+msgid "Student"
+msgstr ""
+
+msgctxt "Form label"
+msgid "Test developer"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Register"
+msgstr ""
+
+msgctxt "/register/"
+msgid "Already have an account?"
+msgstr ""
+
+msgctxt "/register/"
+msgid "Login"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Settings"
+msgstr ""
+
+#, python-format
+msgctxt "/settings/"
+msgid ""
+"If you want to change your avatar, you can do it by going to %(link_tag)s"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Change Password"
+msgstr ""
+
+msgctxt "Form button"
+msgid "Save"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Terms of Service"
+msgstr ""
+
+msgid "_common.html_description"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Choose your Developer Plan"
+msgstr ""
+
+msgctxt "Developer acknowledgement page"
+msgid "Plan A line 1."
+msgstr ""
+
+msgctxt "Developer acknowledgement page"
+msgid "Plan A line 2."
+msgstr ""
+
+msgctxt "Developer acknowledgement page"
+msgid "Plan A line 3."
+msgstr ""
+
+msgctxt "Developer acknowledgement page"
+msgid "Plan A line 4."
+msgstr ""
+
+msgctxt "Developer acknowledgement page"
+msgid "Plan C line 1."
+msgstr ""
+
+msgctxt "Developer acknowledgement page"
+msgid "Plan C line 2."
+msgstr ""
+
+msgctxt "Developer acknowledgement page"
+msgid "Plan C line 3."
+msgstr ""
+
+msgctxt "Developer acknowledgement page"
+msgid "Plan C line 4."
+msgstr ""
+
+msgctxt "/developer/acknowledgement/"
+msgid "View Agreement"
+msgstr ""
+
+msgctxt "/developer/acknowledgement/"
+msgid "Agreement"
+msgstr ""
+
+msgctxt "/developer/acknowledgement/"
+msgid "I have read the agreement"
+msgstr ""
+
+msgctxt "/developer/acknowledgement/"
+msgid "Accept"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Dashboard"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Are you sure?"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Yes"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "No"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Tests"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Domain"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Section"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Language"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Variant"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Status"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Sold/Completed"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Actions"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Preview"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Edit"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "Delete"
+msgstr ""
+
+msgctxt "/developer/"
+msgid "You have not created tests yet"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Public Offer"
+msgstr ""
+
+#, python-format
+msgctxt "/developer/offer/"
+msgid "Accepted on %(date)s"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Create Test"
+msgstr ""
+
+msgctxt "/developer/tests/"
+msgid "Entrance Tests"
+msgstr ""
+
+msgctxt "/developer/tests/"
+msgid "Test Specification"
+msgstr ""
+
+msgctxt "/developer/tests/"
+msgid "Create Test"
+msgstr ""
+
+msgid "Core subjects"
+msgstr ""
+
+msgid "Spec subjects"
+msgstr ""
+
+msgctxt "Logo img html tag alt parameter"
+msgid "bbTest.kz Logo"
+msgstr ""
+
+msgctxt "Email body element"
+msgid "link"
+msgstr ""
+
+#, python-format
+msgctxt "Email body"
+msgid ""
+"Hello %(name)s,%(line_break)s%(line_break)s We have received a request to "
+"reset your password. If you did not request this, then please ignore this "
+"email.%(line_break)s%(line_break)s To reset your password please follow this "
+"%(link_tag)s.%(line_break)s%(line_break)s Or copy and paste the link below:"
+"%(line_break)s %(link_tag_url)s"
+msgstr ""
+
+#, python-format
+msgid "_common.copyright:%(copyright_code)s"
+msgstr ""
+
+msgid "page:/:html_title"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Dashboard"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Settings"
+msgstr ""
+
+msgid "_common.nav.faq"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Logout"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Login"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Register"
+msgstr ""
+
+msgctxt "Home page"
+msgid "Start practicing to the test right now!"
+msgstr ""
+
+msgid "_common.domains.nis_full"
+msgstr ""
+
+#, python-format
+msgid ""
+"page:/:test_domain_full_name:%(domain_name)s;%(domain_abbr)s;%(break_code)s"
+msgstr ""
+
+msgid "_common.domains.unt_full"
+msgstr ""
+
+msgid "_common.domains.nufypet_full"
+msgstr ""
+
+msgctxt "Home page"
+msgid "We are working on other tests..."
+msgstr ""
+
+msgctxt "Home page"
+msgid "Online testing platform."
+msgstr ""
+
+msgctxt "Home page"
+msgid "Thorough. Convenient. Effective."
+msgstr ""
+
+msgctxt "Home page"
+msgid ""
+"Get a detailed test result analysis, find out your current skills and "
+"knowledge. Check out your progress and get better."
+msgstr ""
+
+msgctxt "Home page"
+msgid "Connect with us"
+msgstr ""
+
+msgctxt "Footer navigation link"
+msgid "Terms"
+msgstr ""
+
+msgctxt "Footer navigation link"
+msgid "Contact Us"
+msgstr ""
+
+msgid "page:/nis/:html_title"
+msgstr ""
+
+msgid "page:/nis/:html_description"
+msgstr ""
+
+msgid "page:/nis/:nis_button"
+msgstr ""
+
+msgctxt "Badge label under avatar"
+msgid "Administrator"
+msgstr ""
+
+msgctxt "Badge label under avatar"
+msgid "Developer"
+msgstr ""
+
+#, python-format
+msgctxt "Total credits"
+msgid "Balance: %(balance)s cred."
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "All Tests"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "All Users"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "All Quizzes"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Create Test"
+msgstr ""
+
+msgid "_common.nav.trial_balance"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Public Offer"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Testing"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Start testing"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Results"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Buy Credits"
+msgstr ""
+
+msgctxt "Navigation link"
+msgid "Transactions"
+msgstr ""
+
+msgid "page:/student/buy-tests/xxxx/:checkout_shortcut"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Choose the test domain"
+msgstr ""
+
+#, python-format
+msgctxt "Page title"
+msgid "Select tests for %(domain_name)s"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Something went wrong. Please refresh the page."
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Refresh the page"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Could not checkout"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Close"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Test language"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Subjects"
+msgstr ""
+
+#, python-format
+msgid "Questions count: %(count)s"
+msgstr ""
+
+#, python-format
+msgid "Duration: %(minutes)s min."
+msgstr ""
+
+msgid "page:/student/buy-tests/xxxx/:test_variant_in_progress"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Total:"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Buy tests"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Buy credits"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/"
+msgid "Choose different test domain"
+msgstr ""
+
+#, python-format
+msgid ""
+"page:/student/:last_results_header:%(domain_name)s;%(span_open)s;"
+"%(span_close)s"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Not finished"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Section"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Your score"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Average score of students on bbtest.kz website for the section."
+msgstr ""
+
+#, python-format
+msgctxt "Results page"
+msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+msgstr ""
+
+msgctxt "/student/"
+msgid "Go to results page"
+msgstr ""
+
+msgctxt "/student/"
+msgid "You have not taken any tests."
+msgstr ""
+
+msgctxt "/student/"
+msgid "Start testing"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Test progress monitoring"
+msgstr ""
+
+msgctxt "/student/"
+msgid "Your progress will be shown here."
+msgstr ""
+
+#, python-format
+msgctxt "Page title"
+msgid "%(domain_name)s Testing"
+msgstr ""
+
+msgctxt "Exam"
+msgid "There was an error, please reload the page."
+msgstr ""
+
+msgctxt "Exam"
+msgid "Start the test"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Skip the test"
+msgstr ""
+
+msgctxt "Exam"
+msgid "End the test"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Continue"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Go to Results"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Buy new tests"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Reload the page"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Cancel"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Question"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Please choose an answer choice"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Please choose answer choices that apply"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Previous"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Next"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Are you sure?"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Yes"
+msgstr ""
+
+msgctxt "Exam"
+msgid "No"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Time is up"
+msgstr ""
+
+msgctxt "Exam"
+msgid "Finished"
+msgstr ""
+
+msgctxt "Exam"
+msgid ""
+"You ran out of allocated time for the test. Please continue to the next test."
+msgstr ""
+
+msgctxt "Exam"
+msgid "All tests are finished. Please continue to view the results."
+msgstr ""
+
+#, python-format
+msgid "page:/student/results/xxxx/:window_title:%(section_name)s;%(code)s"
+msgstr ""
+
+#, python-format
+msgid ""
+"page:/student/results/xxxx/:title:%(section_name)s;%(code)s;%(span_open)s;"
+"%(span_close)s"
+msgstr ""
+
+msgctxt "/student/results/xxxx/"
+msgid "Go back to results"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Test Results"
+msgstr ""
+
+msgctxt "Results page"
+msgid "There are no results"
+msgstr ""
+
+msgctxt "Results page"
+msgid ""
+"You have not taken any tests yet. Once you take a test, you will be able to "
+"review the results here."
+msgstr ""
+
+msgctxt "Results page"
+msgid "Buy new tests"
+msgstr ""
+
+#, python-format
+msgid ""
+"page:/student/results/:bundle_header:%(quiz_set_count)s;%(domain_name)s;"
+"%(span_open)s;%(span_close)s"
+msgstr ""
+
+#, python-format
+msgctxt "Results page"
+msgid "View Transaction #%(transaction_id)s"
+msgstr ""
+
+msgctxt "Results page"
+msgid "Review correct answers"
+msgstr ""
+
+#, python-format
+msgid "page:/student/results/:score:%(score)s"
+msgid_plural "page:/student/results/:score:%(score)s"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid ""
+"page:/student/results/:correct_questions:%(score)s:%(questions_count)s:"
+"%(total_questions_count)s"
+msgid_plural ""
+"page:/student/results/:correct_questions:%(score)s:%(questions_count)s:"
+"%(total_questions_count)s"
+msgstr[0] ""
+msgstr[1] ""
+
+msgctxt "Results page"
+msgid "You can see your results and follow the progress on this test section."
+msgstr ""
+
+msgctxt "Results page"
+msgid ""
+"The red line is the average score of the current test subject on bbtest.kz "
+"website in comparison to your own results."
+msgstr ""
+
+#, python-format
+msgid ""
+"page:/student/results/:row_caption:%(section_name)s;%(test_code)s;"
+"%(span_open)s;%(span_close)s"
+msgstr ""
+
+msgctxt "Results page"
+msgid "You have not yet completed this section."
+msgstr ""
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "Transaction #%(transaction_id)s"
+msgstr ""
+
+msgctxt "/student/transactions/xxxx/"
+msgid "View all Transactions"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Transactions"
+msgstr ""
+
+msgctxt "/student/transactions/"
+msgid "There are no transactions"
+msgstr ""
+
+msgctxt "/student/transactions/"
+msgid "Buy credits and start taking tests."
+msgstr ""
+
+msgctxt "/student/transactions/"
+msgid "Buy credits"
+msgstr ""
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "Transaction #%(order_id)s"
+msgstr ""
+
+#, python-format
+msgid "page:/student/transactions/:line_item_credits:%(price)s"
+msgstr ""
+
+#, python-format
+msgid ""
+"page:/student/transactions/:line_item_test_with_language:%(section_name)s;"
+"%(test_code)s;%(domain_name)s;%(language)s;%(span_open)s;%(span_close)s"
+msgstr ""
+
+#, python-format
+msgid ""
+"page:/student/transactions/:line_item_test:%(section_name)s;%(test_code)s;"
+"%(domain_name)s;%(span_open)s;%(span_close)s"
+msgstr ""
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "%(price)s cred."
+msgstr ""
+
+msgctxt "/student/transactions/xxxx/"
+msgid "Discount"
+msgstr ""
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "%(minus_sign)s%(discount)s cred."
+msgstr ""
+
+msgctxt "/student/transactions/xxxx/"
+msgid "Total"
+msgstr ""
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "₸%(total)s"
+msgstr ""
+
+#, python-format
+msgctxt "/student/transactions/xxxx/"
+msgid "%(total)s cred."
+msgstr ""
+
+msgctxt "/super/"
+msgid "Demand for NIS Tests"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Section"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Language"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Sold/Completed"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Demand"
+msgstr ""
+
+msgctxt "/super/"
+msgid "No tests"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Immediate demand"
+msgstr ""
+
+#, python-format
+msgctxt "/super/"
+msgid "%(counter)s test left"
+msgid_plural "%(counter)s tests left"
+msgstr[0] ""
+msgstr[1] ""
+
+msgctxt "/super/"
+msgid "All Tests"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Demand for UNT Tests"
+msgstr ""
+
+msgctxt "/super/"
+msgid "User Statistics"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Students"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Developers"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Admins"
+msgstr ""
+
+msgctxt "/super/"
+msgid "All Users"
+msgstr ""
+
+msgctxt "/super/"
+msgid "Tests by Developers"
+msgstr ""
+
+msgctxt "Page title"
+msgid "All Quizzes"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Student"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Domain"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Bought at"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Section"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Language"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Variant"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Status"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Score"
+msgstr ""
+
+#, python-format
+msgctxt "/super/quizzes/"
+msgid "Timed out in %(minutes)s minute"
+msgid_plural "Timed out in %(minutes)s minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgctxt "/super/quizzes/"
+msgid "Finished in ~%(minutes)s minute"
+msgid_plural "Finished in ~%(minutes)s minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+msgctxt "/super/quizzes/"
+msgid "Not started"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Pending"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "Expired"
+msgstr ""
+
+msgctxt "/super/quizzes/"
+msgid "There are no quizzes yet"
+msgstr ""
+
+msgctxt "Page title"
+msgid "All Tests"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Developer"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Domain"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Section"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Language"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Variant"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Free?"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Status"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Sold/Completed"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Actions"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Yes"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "No"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Preview"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "Edit"
+msgstr ""
+
+msgctxt "/super/tests/"
+msgid "There are no tests yet"
+msgstr ""
+
+msgid "page:/super/trial-balance/:title"
+msgstr ""
+
+#, python-format
+msgid "page:/super/trial-balance/:last_cached:%(last_cached_datetime)s"
+msgstr ""
+
+msgid "page:/super/trial-balance/:accounting_error"
+msgstr ""
+
+msgctxt "Page title"
+msgid "All Users"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Are you sure?"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Yes"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "No"
+msgstr ""
+
+msgid "page:/super/users/:query"
+msgstr ""
+
+msgid "page:/super/users/:search"
+msgstr ""
+
+msgid "page:/super/users/:reset"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Name"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Role"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Joined at"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Active?"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Actions"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Administrator"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Developer"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Student"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "Impersonate"
+msgstr ""
+
+msgctxt "/super/users/"
+msgid "There are no users yet"
+msgstr ""
+
+#, python-format
+msgctxt "Page title"
+msgid "%(section_name)s (#%(code)s)"
+msgstr ""
+
+msgctxt "Page title"
+msgid "Free"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "There was an error, please reload the page."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Question"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Difficulty"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Taxonomy"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Topic"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Add Section"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Type your question here"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Your question will be previewed here"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Add Answer"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Multi-choice with 1 answer"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Multi-choice with multiple answers"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Add Answer Choice"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Type your answer choice here"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Your answer choice will be previewed here"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please choose Section type"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Text Section"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Shared paragraph"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Split Text Section"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Image Section"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Upload Image"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please preview your image below."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Could not process the file. Please try another one."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please choose Answer type"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please add a Section above to preview it here."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please add an Answer Choice above to preview it here."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please choose Answer Choice type"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Text Answer Choice"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Correct"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Solution"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Are you sure?"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Yes"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "No"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Saved"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Formulas"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Save and Exit"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Save and Preview"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Test Specification"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Close"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "This action is irreversable!"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Skip test checks!"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Please wait for the feedback..."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Feedback"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "The test is correct."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "There was an error. Please try again."
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Approve"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Refuse"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Edit"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Delete"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Change to Paid"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Change to Free"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Check"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Exit"
+msgstr ""
+
+msgctxt "Developer tools"
+msgid "Send for Approval"
+msgstr ""
+
+msgctxt "Success alert message"
+msgid ""
+"Thank you. We have received your message and we will get back to you as soon "
+"as possible."
+msgstr ""
+
+msgctxt "/developer/tests/"
+msgid "Choose test language"
+msgstr ""
+
+msgctxt "/developer/tests/"
+msgid "Choose type"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Kazakh 1"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Kazakh 2"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Russian 1"
+msgstr ""
+
+msgctxt "Test language"
+msgid "Russian 2"
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have created a new Test."
+msgstr ""
+
+msgctxt "/student/"
+msgid "Test Domain 1"
+msgstr ""
+
+msgctxt "/student/"
+msgid "Section 1"
+msgstr ""
+
+msgctxt "/student/"
+msgid "Section 2"
+msgstr ""
+
+msgctxt "/student/"
+msgid "Section 3"
+msgstr ""
+
+msgctxt "/student/"
+msgid "Section 4"
+msgstr ""
+
+#, python-format
+msgctxt "/student/buy-tests/xxxx/cart/"
+msgid "%(amount).0f cred."
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/cart/"
+msgid "Discount"
+msgstr ""
+
+#, python-format
+msgctxt "/student/buy-tests/xxxx/cart/"
+msgid "-%(amount).0f cred."
+msgstr ""
+
+#, python-format
+msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
+msgstr ""
+
+msgctxt "/student/buy-tests/xxxx/cart/"
+msgid "Free"
+msgstr ""
+
+msgctxt "/student/results/"
+msgid ""
+"The red line is the average score of the current test subject in comparison "
+"to your own results. The score represents an actual average result of NIS "
+"2018 students (data is taken from nis.edu.kz)."
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.cash"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.qazkom"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.beeline"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.promo"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.correction"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.developers"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.student"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.nis"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.unt"
+msgstr ""
+
+msgid "page:/super/trial-balance/:account.nufypet"
+msgstr ""
+
+#, python-format
+msgctxt "/super/users/"
+msgid "Superuser, you are now logged in as %(name)s. PLEASE BE CAREFUL!"
+msgstr ""
+
+msgctxt "Error alert message"
+msgid "Could not approve the Test. Please check the Test for correctness."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have approved the Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have refused the Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "You have deleted the Test."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "Test is now free."
+msgstr ""
+
+msgctxt "Success alert message"
+msgid "Test is now paid."
+msgstr ""
