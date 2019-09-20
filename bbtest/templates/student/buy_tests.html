@@ -56,7 +56,7 @@
                     <div class="bb-spinner-overlay" data-overlay-language></div>
                     <div class="list-group">
                         {% for test_lang in test_langs %}
-                            <a href="javascript:void(0);" class="list-group-item" data-test-language="{{ test_lang.0 }}" data-selected="false">
+                            <a href="javascript:void(0);" class="list-group-item" data-test-language="{{ test_lang.0 }}" data-test-language-explanation="{% blocktrans with test_language=test_lang.1 %}page:/student/buy-tests/xxxx/:test_language_explanation:{{ test_language }}{% endblocktrans %}" data-selected="false">
                                 <div class="row">
                                     <div class="col-xs-8 col-sm-9">
                                         <h4 class="list-group-item-heading mb-0">{{ test_lang.1 }}</h4>
@@ -146,6 +146,7 @@
                             <hr class="mt-10 mb-10" style="border-color: #ccc;">
                         </div>
                         <h4 class="text-right mt-15 mb-15" data-totals-total></h4>
+                        <h6 class="text-center mt-15 mb-15" data-totals-test-language></h4>
                         <button type="button" class="btn btn-success btn-lg btn-block" data-totals-buy-tests>{% trans 'Buy tests' context '/student/buy-tests/xxxx/' %}</button>
                         <a href="{% url 'bbtest:buy_credits' %}" class="btn btn-primary btn-lg btn-block" data-totals-buy-credits>{% trans 'Buy credits' context '/student/buy-tests/xxxx/' %}</a>
                         <p class="text-center mt-15 mb-0">
