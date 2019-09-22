@@ -6,7 +6,7 @@ from django.contrib.auth.views import (
 )
 from django.shortcuts import resolve_url
 from django.conf import settings
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.contrib.messages import success
 from django.utils.translation import pgettext
 from django.contrib.auth import login
@@ -27,7 +27,8 @@ class LoginView(_LoginView):
 
 
 class LogoutView(_LogoutView):
-    redirect_field_name=settings.BB_REDIRECT_FIELDNAME
+    def get_next_page(self):
+        return reverse_lazy("bbtest:home")
 
 
 class RegisterView(LogoutRequiredMixin, FormView):
