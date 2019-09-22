@@ -37,8 +37,8 @@
                                         </a>
                                     </div>
                                     <div class="navbar-collapse collapse" id="bb-navbar-collapse" style="height: 1px;">
-                                        {% if user.is_authenticated %}
-                                            <ul class="nav navbar-nav navbar-right">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            {% if user.is_authenticated %}
                                                 <li><a href="{% url 'bbtest:dashboard' %}">{% trans 'Dashboard' context 'Navigation link' %}</a></li>
                                                 <li class="bb-bar-gravatar-container hidden-xs"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="{{ user.gravatar_url|safe }}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}"></li>
                                                 <li class="dropdown">
@@ -50,38 +50,28 @@
                                                         <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
                                                     </ul>
                                                 </li>
-                                                <li class="bb-lang-container container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-xs-6 col-sm-12 pr-5 pl-5">
-                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block text-right visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
-                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-12 pr-5 pl-5">
-                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block text-left visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
-                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        {% else %}
-                                            <ul class="nav navbar-nav navbar-right">
+                                            {% else %}
                                                 <li><a href="{% url 'bbtest:login' %}">{% trans 'Login' context 'Navigation link' %}</a></li>
                                                 <li><a href="{% url 'bbtest:register' %}">{% trans 'Register' context 'Navigation link' %}</a></li>
                                                 <li><a href="{% url 'bbtest:faq' %}">{% trans '_common.nav.faq' %}</a></li>
-                                                <li class="bb-lang-container container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-xs-6 col-sm-12 pr-5 pl-5">
-                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block text-right visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
-                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
-                                                        </div>
-                                                        <div class="col-xs-6 col-sm-12 pr-5 pl-5">
-                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block text-left visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
-                                                            <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
-                                                        </div>
+                                            {% endif %}
+                                            <li class="bb-lang-container container-fluid">
+                                                <div class="row">
+                                                    <div class="col-xs-2 col-xs-offset-3 col-sm-12 col-sm-offset-0 pr-5 pl-5">
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block text-right visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
                                                     </div>
-                                                </li>
-                                            </ul>
-                                        {% endif %}
+                                                    <div class="col-xs-2 col-sm-12 pr-5 pl-5">
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block text-center visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                    </div>
+                                                    <div class="col-xs-2 col-sm-12 pr-5 pl-5">
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_EN %}" class="center-block text-left visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_EN %}active{% endif %}">Eng</a>
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_EN %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_EN %}active{% endif %}">Eng</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
