@@ -80,6 +80,7 @@ page:
     test_variant: ~
     test_variant_in_progress: ~
     checkout_shortcut: ~
+    test_language_explanation: ~
   '/student/results/':
     score: ~
     correct_questions: ~
