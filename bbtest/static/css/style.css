@@ -1364,12 +1364,12 @@ html {
 
 .bb-lang-container {
     font-size: 12px;
-    line-height: 18px;
+    line-height: 14px;
     padding: 7px 5px 0 15px;
 }
 @media (min-width: 768px) {
     .bb-lang-container {
-        padding-top: 14px;
+        padding-top: 10px;
         max-width: 44px;
     }
 }
@@ -1389,6 +1389,7 @@ html {
 
 .bb-lang-container a.active {
     font-weight: bold;
+    text-decoration: underline;
 }
 
 .bb-lang-container a:hover,
