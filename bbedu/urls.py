@@ -25,6 +25,4 @@ urlpatterns = [
 
     url(r"^process-credits-qazkom/$", ProcessCreditsQazkomView.as_view(), name="process_credits_qazkom"),
 ]
-urlpatterns += i18n_patterns(
-    url(r"^", include("bbtest.urls")),
-)
+urlpatterns += i18n_patterns(url(r"^", include("bbtest.urls")))

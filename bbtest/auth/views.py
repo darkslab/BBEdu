@@ -32,22 +32,27 @@ class LogoutView(_LogoutView):
 
 class RegisterView(LogoutRequiredMixin, FormView):
     form_class = UserCreationForm
-    success_url = reverse_lazy("bbtest:dashboard")
+    success_url = reverse_lazy("bbtest:student_dashboard")
     template_name = "base/register.html"
 
-    def dispatch(self, request, group, *args, **kwargs):
-        self._group = group or "student"
-        assert self._group in ("developer", "student")
-        return super().dispatch(request, *args, **kwargs)
-
     def form_valid(self, form):
-        login(self.request, form.save(self._group))
-        self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "registration", { "event_category": self._group } ]]
+        login(self.request, form.save(self.__group()))
+        self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "registration", { "event_category": self.__group() } ]]
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
-        kwargs["group"] = self._group
+        kwargs["group"] = self.__group()
         return super().get_context_data(**kwargs)
+
+    def __group(self):
+        return "student"
+
+
+class RegisterDeveloperView(RegisterView):
+    success_url = reverse_lazy("bbtest:developer_dashboard")
+
+    def __group(self):
+        return "developer"
 
 
 class PasswordResetView(LogoutRequiredMixin, _PasswordResetView):
