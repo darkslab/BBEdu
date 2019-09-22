@@ -224,7 +224,6 @@ AUTH_USER_MODEL = "bbtest.User"
 AUTHENTICATION_BACKENDS = [
     "bbtest.auth.backends.Backend",
 ]
-LOGOUT_REDIRECT_URL = "/"
 
 BB_REDIRECT_FIELDNAME = "r"
 
