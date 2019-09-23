@@ -15,17 +15,12 @@
         moduleDataStack.push({
             module: "SubmitModule"
         });
-        moduleDataStack.push({
-            module: "RegisterPageModule"
-        });
     </script>
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {% url 'bbtest:register' as student_url %}
-                    {% url 'bbtest:register' group='developer' as developer_url %}
-                    <form method="post" action="{% if group == 'developer' %}{{ developer_url }}{% else %}{{ student_url }}{% endif %}" class="mt-15" data-bb-form data-register-form="{{ '{"student":"'|add:student_url|add:'","developer":"'|add:developer_url|add:'"}'|force_escape }}">
+                    <form method="post" action="{% if group == 'developer' %}{% url 'bbtest:register_developer' %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="mt-15" data-bb-form>
                         {% csrf_token %}
 
                         {% for field in form %}

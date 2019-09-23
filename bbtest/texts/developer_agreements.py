@@ -57,6 +57,8 @@ DEVELOPER_AGREEMENT_TEXTS = {
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.3</span>Принимая условия настоящей Оферты путем ее акцепта, Заказчик подтверждает, что заключает Договор добровольно и соглашается со всеми условиями, изложенными в Оферте.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.4</span>Настоящая Оферта составлена в единственном экземпляре и опубликована на Веб-сайте.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     "928d4499e9f1e6b90111710ecf607795": {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -112,6 +114,8 @@ DEVELOPER_AGREEMENT_TEXTS = {
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.3.</span>Принимая условия настоящей Оферты путем ее акцепта, Заказчик подтверждает, что заключает Договор добровольно и соглашается со всеми условиями, изложенными в Оферте.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.4.</span>Настоящая Оферта составлена в единственном экземпляре и опубликована на Сайте.</p>
         """ % settings.BB_BASE_URL,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     "d16bb9fb5a2264c43ce4cdfc31ce1e75": {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -173,6 +177,8 @@ DEVELOPER_AGREEMENT_TEXTS = {
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.3.</span>Принимая условия настоящей Оферты путем ее акцепта, Заказчик подтверждает, что заключает Договор добровольно и соглашается со всеми условиями, изложенными в Оферте.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.4.</span>Настоящая Оферта составлена в единственном экземпляре и опубликована на Сайте.</p>
         """ % settings.BB_BASE_URL,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     "61011ada89570a6d41140a656fbbbd37": {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -228,9 +234,15 @@ DEVELOPER_AGREEMENT_TEXTS = {
 <p class="text-justify text-normal mb-0"><span class="text-left mr-5">8.3.</span>Принимая условия настоящей Оферты путем ее акцепта, Заказчик подтверждает, что заключает Договор добровольно и соглашается со всеми условиями, изложенными в Оферте.</p>
 <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.4.</span>Настоящая Оферта составлена в единственном экземпляре и опубликована на Сайте.</p>
         """ % settings.BB_BASE_URL,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
 }
 DEVELOPER_AGREEMENT_TEXTS["09b90737225eb2551d9e9344bbb68ba0"][settings.BB_LANGUAGE_CODE_KK] = DEVELOPER_AGREEMENT_TEXTS["09b90737225eb2551d9e9344bbb68ba0"][settings.BB_LANGUAGE_CODE_RU]
+DEVELOPER_AGREEMENT_TEXTS["09b90737225eb2551d9e9344bbb68ba0"][settings.BB_LANGUAGE_CODE_EN] = DEVELOPER_AGREEMENT_TEXTS["09b90737225eb2551d9e9344bbb68ba0"][settings.BB_LANGUAGE_CODE_RU]
 DEVELOPER_AGREEMENT_TEXTS["928d4499e9f1e6b90111710ecf607795"][settings.BB_LANGUAGE_CODE_KK] = DEVELOPER_AGREEMENT_TEXTS["928d4499e9f1e6b90111710ecf607795"][settings.BB_LANGUAGE_CODE_RU]
+DEVELOPER_AGREEMENT_TEXTS["928d4499e9f1e6b90111710ecf607795"][settings.BB_LANGUAGE_CODE_EN] = DEVELOPER_AGREEMENT_TEXTS["928d4499e9f1e6b90111710ecf607795"][settings.BB_LANGUAGE_CODE_RU]
 DEVELOPER_AGREEMENT_TEXTS["d16bb9fb5a2264c43ce4cdfc31ce1e75"][settings.BB_LANGUAGE_CODE_KK] = DEVELOPER_AGREEMENT_TEXTS["d16bb9fb5a2264c43ce4cdfc31ce1e75"][settings.BB_LANGUAGE_CODE_RU]
+DEVELOPER_AGREEMENT_TEXTS["d16bb9fb5a2264c43ce4cdfc31ce1e75"][settings.BB_LANGUAGE_CODE_EN] = DEVELOPER_AGREEMENT_TEXTS["d16bb9fb5a2264c43ce4cdfc31ce1e75"][settings.BB_LANGUAGE_CODE_RU]
 DEVELOPER_AGREEMENT_TEXTS["61011ada89570a6d41140a656fbbbd37"][settings.BB_LANGUAGE_CODE_KK] = DEVELOPER_AGREEMENT_TEXTS["61011ada89570a6d41140a656fbbbd37"][settings.BB_LANGUAGE_CODE_RU]
+DEVELOPER_AGREEMENT_TEXTS["61011ada89570a6d41140a656fbbbd37"][settings.BB_LANGUAGE_CODE_EN] = DEVELOPER_AGREEMENT_TEXTS["61011ada89570a6d41140a656fbbbd37"][settings.BB_LANGUAGE_CODE_RU]
