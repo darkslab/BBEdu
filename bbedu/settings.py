@@ -313,7 +313,7 @@ LOGGING = {
 }
 
 ADMINS = [
-    ("Darkhan Baimyrza", "darkhan@bbtest.kz"),
+    ("Darkhan Baimyrza", "darkhan@baimyrza.com"),
 ]
 EMAIL_SUBJECT_PREFIX = ""
 DEFAULT_FROM_EMAIL = "bbtest.kz <no-reply@bbtest.kz>"
