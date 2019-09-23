@@ -14,10 +14,12 @@ AGREEMENT_TEXTS = {
     "plan_a": {
         settings.BB_LANGUAGE_CODE_KK: DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_A]][settings.BB_LANGUAGE_CODE_RU],
         settings.BB_LANGUAGE_CODE_RU: DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_A]][settings.BB_LANGUAGE_CODE_RU],
+        settings.BB_LANGUAGE_CODE_EN: DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_A]][settings.BB_LANGUAGE_CODE_RU],
     },
     "plan_c": {
         settings.BB_LANGUAGE_CODE_KK: DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_C]][settings.BB_LANGUAGE_CODE_RU],
         settings.BB_LANGUAGE_CODE_RU: DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_C]][settings.BB_LANGUAGE_CODE_RU],
+        settings.BB_LANGUAGE_CODE_EN: DEVELOPER_AGREEMENT_TEXTS[DeveloperAcknowledgement.AGREEMENT_CODES_FOR_PLANS[DeveloperAcknowledgement.PLAN_C]][settings.BB_LANGUAGE_CODE_RU],
     },
 }
 

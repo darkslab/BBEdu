@@ -37,22 +37,22 @@ class RegisterView(LogoutRequiredMixin, FormView):
     template_name = "base/register.html"
 
     def form_valid(self, form):
-        login(self.request, form.save(self.__group()))
-        self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "registration", { "event_category": self.__group() } ]]
+        login(self.request, form.save(self._group()))
+        self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "registration", { "event_category": self._group() } ]]
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
-        kwargs["group"] = self.__group()
+        kwargs["group"] = self._group()
         return super().get_context_data(**kwargs)
 
-    def __group(self):
+    def _group(self):
         return "student"
 
 
 class RegisterDeveloperView(RegisterView):
     success_url = reverse_lazy("bbtest:developer_dashboard")
 
-    def __group(self):
+    def _group(self):
         return "developer"
 
 

@@ -153,6 +153,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             <p class="text-justify text-normal mb-0"><span class="text-left mr-5">9.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/1%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_KZ.pdf">«Математика на казахском языке»</a>.</p>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">9.1.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/1%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_RU.pdf">«Математика на русском языке»</a>.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9541: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -310,6 +312,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">10.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/1%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_KZ.pdf">«Казахский язык для учащихся на казахском языке»</a>.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9542: {
@@ -469,6 +473,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">10.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/1%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_KZ.pdf">«Русский язык для учащихся на русском языке»</a>.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9544: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -604,6 +610,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-0"><span class="text-left mr-5">9.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/2%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_KZ.rar">«Количественные характеристики на казахском языке»</a>.</p>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">9.1.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/2%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_RU.rar">«Количественные характеристики на русском языке»</a>.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9545: {
@@ -803,6 +811,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.2.</span>Один тестовый вопрос имеет 1 (один) правильный вариант ответа из 5 (пяти) предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9546: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -992,6 +1002,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span>Один тестовый вопрос имеет один правильный вариант ответа из пяти предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9547: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -1130,6 +1142,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2</span>Один тестовый вопрос имеет один правильный вариант ответа из пяти предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9548: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -1236,6 +1250,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9549: {
@@ -1347,6 +1363,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9550: {
@@ -1463,6 +1481,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9551: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -1570,6 +1590,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9552: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -1668,6 +1690,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9553: {
@@ -1964,6 +1988,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9557: {
@@ -2463,6 +2489,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9558: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -2827,6 +2855,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9559: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -2980,6 +3010,8 @@ SPECIFICATION_KK_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
 }
 SPECIFICATION_RU_TEST_TEXTS = {
@@ -2987,6 +3019,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
         settings.BB_LANGUAGE_CODE_KK: """
         """,
         settings.BB_LANGUAGE_CODE_RU: """
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9541: {
@@ -3146,6 +3180,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">10.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/1%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_RU.pdf">«Казахский язык для учащихся на русском языке»</a>.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9542: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -3304,11 +3340,15 @@ SPECIFICATION_RU_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">10.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/1%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_RU.pdf">«Русский язык для учащихся на русском языке»</a>.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9544: {
         settings.BB_LANGUAGE_CODE_KK: """
         """,
         settings.BB_LANGUAGE_CODE_RU: """
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9545: {
@@ -3508,6 +3548,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">6.2.</span>Один тестовый вопрос имеет 1 (один) правильный вариант ответа из 5 (пяти) предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9546: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -3697,6 +3739,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span>Один тестовый вопрос имеет один правильный вариант ответа из пяти предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9547: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -3835,6 +3879,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2</span>Один тестовый вопрос имеет один правильный вариант ответа из пяти предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9548: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -3941,6 +3987,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9549: {
@@ -4052,6 +4100,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9550: {
@@ -4168,6 +4218,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9551: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -4275,6 +4327,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9552: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -4373,6 +4427,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9553: {
@@ -4669,6 +4725,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-0"><span class="text-left mr-5">6.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9557: {
@@ -5168,6 +5226,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9558: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -5532,6 +5592,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9559: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -5684,6 +5746,8 @@ SPECIFICATION_RU_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">7.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
 }
@@ -5844,6 +5908,8 @@ SPECIFICATION_XX_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">10.</span>Образцы тестовых заданий по предмету <a target="_blank" href="http://nis.edu.kz/site/nis/repository/file/Selection%20test_SAMPLES/1%20%D0%B4%D0%B5%D0%BD%D1%8C_%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D1%8B%20%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B9_7%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81_RU.pdf">«Английский язык»</a>.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9554: {
@@ -6031,6 +6097,8 @@ SPECIFICATION_XX_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9555: {
@@ -6230,6 +6298,8 @@ SPECIFICATION_XX_TEST_TEXTS = {
                 </table>
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9556: {
@@ -6443,6 +6513,8 @@ SPECIFICATION_XX_TEST_TEXTS = {
             </div>
             <p class="text-justify text-normal mb-10"><span class="text-left mr-5">8.2.</span>Один вариант должен содержать 20 тестовых вопросов с выбором одного правильного ответа из 5 предложенных и 10 тестовых вопросов с выбором одного или нескольких правильных ответов из 5 – 8 предложенных.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9560: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -6450,6 +6522,8 @@ SPECIFICATION_XX_TEST_TEXTS = {
         settings.BB_LANGUAGE_CODE_RU: """
             <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
             <p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти в <a href="https://admissions.nu.edu.kz/wps/wcm/connect/7832d3ca-5c62-4d5e-81f1-adfba0e7b325/List+of+topics-Mathematics.pdf?MOD=AJPERES" target="_blank">nu.edu.kz</a>.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9561: {
@@ -6459,6 +6533,8 @@ SPECIFICATION_XX_TEST_TEXTS = {
             <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
             <p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти в <a href="https://admissions.nu.edu.kz/wps/wcm/connect/2df8c78c-b78e-4943-8f18-f5ac56643003/List+of+topics-Physics.pdf?MOD=AJPERES" target="_blank">nu.edu.kz</a>.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
     9562: {
         settings.BB_LANGUAGE_CODE_KK: """
@@ -6466,6 +6542,8 @@ SPECIFICATION_XX_TEST_TEXTS = {
         settings.BB_LANGUAGE_CODE_RU: """
             <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
             <p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти в <a href="https://admissions.nu.edu.kz/wps/wcm/connect/8540ed2c-3f8b-4d76-b08c-4a4388e51b5f/List+of+topics-Biology.pdf?MOD=AJPERES" target="_blank">nu.edu.kz (Biology)</a> и <a href="https://admissions.nu.edu.kz/wps/wcm/connect/4182627e-f01e-47f2-b6bf-06abed6477cd/List+of+topics-Chemistry.pdf?MOD=AJPERES" target="_blank">nu.edu.kz (Chemistry)</a>.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
     9563: {
@@ -6475,74 +6553,116 @@ SPECIFICATION_XX_TEST_TEXTS = {
             <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
             <p class="text-center text-normal mb-10">Тестовую спецификацию вы сможете найти в <a href="https://admissions.nu.edu.kz/wps/wcm/connect/b2e91b2c-cdd1-4f7b-a881-50072b0e53ab/List+of+topics-Thinking+Skills.pdf?MOD=AJPERES" target="_blank">nu.edu.kz</a>.</p>
         """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
     },
 }
 
 SPECIFICATION_KK_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_RU] = SPECIFICATION_KK_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9541][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9541][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9541][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9541][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9541][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9541][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9541][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9541][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9542][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9542][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9542][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9542][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9542][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9542][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9542][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9542][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_XX_TEST_TEXTS[9543][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9543][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_XX_TEST_TEXTS[9543][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9543][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_RU] = SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9546][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9546][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9546][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9546][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9546][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9546][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9546][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9546][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9547][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9547][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9547][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9547][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9547][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9547][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9547][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9547][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9548][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9548][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9548][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9548][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9548][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9548][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9548][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9548][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9549][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9549][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9549][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9549][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9549][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9549][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9549][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9549][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9550][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9550][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9550][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9550][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9550][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9550][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9550][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9550][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9551][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9551][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9551][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9551][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9551][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9551][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9551][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9551][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9552][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9552][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9552][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9552][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9552][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9552][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9552][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9552][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9553][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9553][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9553][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9553][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9553][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9553][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9553][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9553][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_XX_TEST_TEXTS[9554][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9554][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_XX_TEST_TEXTS[9554][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9554][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_XX_TEST_TEXTS[9555][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9555][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_XX_TEST_TEXTS[9555][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9555][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_XX_TEST_TEXTS[9556][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9556][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_XX_TEST_TEXTS[9556][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9556][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9557][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9557][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9557][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9557][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9557][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9557][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9557][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9557][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9558][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9558][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9558][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9558][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9558][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9558][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9558][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9558][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9559][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9559][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9559][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9559][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9559][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_RU_TEST_TEXTS[9559][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9559][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_RU_TEST_TEXTS[9559][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_XX_TEST_TEXTS[9560][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9560][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_XX_TEST_TEXTS[9560][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9560][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_XX_TEST_TEXTS[9561][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9561][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_XX_TEST_TEXTS[9561][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9561][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_XX_TEST_TEXTS[9562][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9562][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_XX_TEST_TEXTS[9562][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9562][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_XX_TEST_TEXTS[9563][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9563][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_XX_TEST_TEXTS[9563][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9563][settings.BB_LANGUAGE_CODE_RU]
 
 def test_specification(test_section, test_language, language):
     try:

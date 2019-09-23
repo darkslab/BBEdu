@@ -137,6 +137,8 @@ class BuyCreditsQazkomView(LoginRequiredMixin, CartHandleAccessMixin, UserContex
             kwargs["qazkom_form"]["language"] = "kaz"
         elif get_language() == settings.BB_LANGUAGE_CODE_RU:
             kwargs["qazkom_form"]["language"] = "rus"
+        elif get_language() == settings.BB_LANGUAGE_CODE_EN:
+            kwargs["qazkom_form"]["language"] = "eng"
 
         kwargs["cart_rounded_total"] = round(self.cart_handle().total())
 
