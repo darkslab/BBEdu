@@ -1,7 +1,7 @@
 {% load i18n i18nurl %}<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     {% get_available_languages as languages %}
-    {% with lastmod='2019-09-21' %}
+    {% with lastmod='2019-09-24' %}
         {% for language in languages %}
             <url>
                 {% url 'bbtest:home' as next_url %}
