@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
 from django.utils.timezone import now
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
@@ -11,16 +11,28 @@ class QuizzesView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixi
     template_name = "super/quizzes.html"
 
     def get_context_data(self, **kwargs):
-        paginator = Paginator(
-            QuizSet.objects.select_related(
-                "student",
-                "test_domain",
-            ).prefetch_related(
-                Prefetch("quizzes", queryset=Quiz.objects.order_by("-order").select_related("test__section").prefetch_related("test__questions").all()),
-            ).order_by("-pk").all(),
-            25,
-        )
+        quiz_sets = QuizSet.objects.select_related(
+            "student",
+            "test_domain",
+        ).prefetch_related(
+            Prefetch("quizzes", queryset=Quiz.objects.order_by("-order").select_related("test__section").prefetch_related("test__questions").all()),
+        ).order_by("-pk").all()
+        kwargs["q"] = ""
+        try:
+            quiz_sets = quiz_sets.filter(
+                Q(student__first_name__icontains=self.request.GET["q"])
+                |
+                Q(student__last_name__icontains=self.request.GET["q"])
+                |
+                Q(student__email__icontains=self.request.GET["q"])
+                |
+                Q(quizzes__test__code__iexact=self.request.GET["q"])
+            )
+            kwargs["q"] = self.request.GET["q"]
+        except KeyError:
+            pass
 
+        paginator = Paginator(quiz_sets, 25)
         try:
             kwargs["quiz_sets"] = paginator.page(self.request.GET.get("page"))
         except PageNotAnInteger:

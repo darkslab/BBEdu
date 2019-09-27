@@ -11,6 +11,11 @@ _common:
     message_form:
       recaptcha: ~
 
+  controls:
+    super:
+      search: ~
+      reset: ~
+
   domains:
     nis: 'NIS'
     nis_full: ~
@@ -129,5 +134,7 @@ page:
     last_cached: ~
   '/super/users/':
     query: ~
-    search: ~
-    reset: ~
+  '/super/tests/':
+    query: ~
+  '/super/quizzes/':
+    query: ~

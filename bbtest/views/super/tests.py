@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
@@ -9,11 +10,23 @@ class TestsView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin,
     template_name = "super/tests.html"
 
     def get_context_data(self, **kwargs):
-        paginator = Paginator(
-            Test.objects.select_related("section__domain", "developer").order_by("-created_at"),
-            25,
-        )
+        tests = Test.objects.select_related("section__domain", "developer").order_by("-created_at")
+        kwargs["q"] = ""
+        try:
+            tests = tests.filter(
+                Q(developer__first_name__icontains=self.request.GET["q"])
+                |
+                Q(developer__last_name__icontains=self.request.GET["q"])
+                |
+                Q(developer__email__icontains=self.request.GET["q"])
+                |
+                Q(code__iexact=self.request.GET["q"])
+            )
+            kwargs["q"] = self.request.GET["q"]
+        except KeyError:
+            pass
 
+        paginator = Paginator(tests, 25)
         try:
             kwargs["tests"] = paginator.page(self.request.GET.get("page"))
         except PageNotAnInteger:

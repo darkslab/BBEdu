@@ -1,5 +1,5 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n %}
+{% load i18n pagination %}
 
 {% block extended_footer %}{% endblock %}
 
@@ -8,6 +8,26 @@
 {% block nav_super_quizzes_class %}active{% endblock %}
 
 {% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+    </script>
+    <div class="row">
+        <div class="col-xs-12">
+            <form method="get" action="{{ request.path }}" data-bb-form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="{% trans 'page:/super/quizzes/:query' %}" name="q" value="{{ q }}">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" data-bb-submit>{% trans '_common.controls.super.search' %}</button>
+                            <a href="{{ request.path }}" class="btn btn-danger" data-bb-submit>{% trans '_common.controls.super.reset' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
@@ -103,7 +123,7 @@
             <div class="col-xs-12 text-center">
                 <ul class="pagination mt-0 mb-0">
                     {% if quiz_sets.has_previous %}
-                        <li><a href="{{ request.path }}?page={{ quiz_sets.previous_page_number }}">&laquo;</a></li>
+                        <li><a href="{{ request.path }}?{% pagination_qs quiz_sets.previous_page_number %}">&laquo;</a></li>
                     {% else %}
                         <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
                     {% endif %}
@@ -111,11 +131,11 @@
                         {% if page_index == quiz_sets.number %}
                             <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
                         {% else %}
-                            <li><a href="{{ request.path }}?page={{ page_index }}">{{ page_index }}</a></li>
+                            <li><a href="{{ request.path }}?{% pagination_qs page_index %}">{{ page_index }}</a></li>
                         {% endif %}
                     {% endfor %}
                     {% if quiz_sets.has_next %}
-                        <li><a href="{{ request.path }}?page={{ quiz_sets.next_page_number }}">&raquo;</a></li>
+                        <li><a href="{{ request.path }}?{% pagination_qs quiz_sets.next_page_number %}">&raquo;</a></li>
                     {% else %}
                         <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
                     {% endif %}

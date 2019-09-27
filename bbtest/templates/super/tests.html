@@ -1,5 +1,5 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n permission %}
+{% load i18n permission pagination %}
 
 {% block extended_footer %}{% endblock %}
 
@@ -39,6 +39,21 @@
             </div>
         </div>
     </form>
+    <div class="row">
+        <div class="col-xs-12">
+            <form method="get" action="{{ request.path }}" data-bb-form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="{% trans 'page:/super/tests/:query' %}" name="q" value="{{ q }}">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" data-bb-submit>{% trans '_common.controls.super.search' %}</button>
+                            <a href="{{ request.path }}" class="btn btn-danger" data-bb-submit>{% trans '_common.controls.super.reset' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
@@ -110,7 +125,7 @@
             <div class="col-xs-12 text-center">
                 <ul class="pagination mt-0 mb-0">
                     {% if tests.has_previous %}
-                        <li><a href="{{ request.path }}?page={{ tests.previous_page_number }}">&laquo;</a></li>
+                        <li><a href="{{ request.path }}?{% pagination_qs tests.previous_page_number %}">&laquo;</a></li>
                     {% else %}
                         <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
                     {% endif %}
@@ -118,11 +133,11 @@
                         {% if page_index == tests.number %}
                             <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
                         {% else %}
-                            <li><a href="{{ request.path }}?page={{ page_index }}">{{ page_index }}</a></li>
+                            <li><a href="{{ request.path }}?{% pagination_qs page_index %}">{{ page_index }}</a></li>
                         {% endif %}
                     {% endfor %}
                     {% if tests.has_next %}
-                        <li><a href="{{ request.path }}?page={{ tests.next_page_number }}">&raquo;</a></li>
+                        <li><a href="{{ request.path }}?{% pagination_qs tests.next_page_number %}">&raquo;</a></li>
                     {% else %}
                         <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
                     {% endif %}
