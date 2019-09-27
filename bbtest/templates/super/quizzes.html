@@ -8,6 +8,26 @@
 {% block nav_super_quizzes_class %}active{% endblock %}
 
 {% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+    </script>
+    <div class="row">
+        <div class="col-xs-12">
+            <form method="get" action="{{ request.path }}" data-bb-form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="{% trans 'page:/super/quizzes/:query' %}" name="q" value="{{ q }}">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" data-bb-submit>{% trans '_common.controls.super.search' %}</button>
+                            <a href="{{ request.path }}" class="btn btn-danger" data-bb-submit>{% trans '_common.controls.super.reset' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-27 09:47+0600\n"
-"PO-Revision-Date: 2019-09-26 20:49-0700\n"
+"POT-Creation-Date: 2019-09-27 10:03+0600\n"
+"PO-Revision-Date: 2019-09-26 21:05-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -2489,6 +2489,15 @@ msgctxt "Page title"
 msgid "All Quizzes"
 msgstr "Барлық тестілер"
 
+msgid "page:/super/quizzes/:query"
+msgstr "Seach by test code, first name, last name, email"
+
+msgid "_common.controls.super.search"
+msgstr "Search"
+
+msgid "_common.controls.super.reset"
+msgstr "Reset"
+
 msgctxt "/super/quizzes/"
 msgid "Student"
 msgstr "Тестілеуге қатысушы"
@@ -2557,12 +2566,6 @@ msgstr "Барлық тестілер"
 
 msgid "page:/super/tests/:query"
 msgstr "Seach by test code, developer name, developer email"
-
-msgid "_common.controls.super.search"
-msgstr "Search"
-
-msgid "_common.controls.super.reset"
-msgstr "Reset"
 
 msgctxt "/super/tests/"
 msgid "Developer"

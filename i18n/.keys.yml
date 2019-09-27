@@ -136,3 +136,5 @@ page:
     query: ~
   '/super/tests/':
     query: ~
+  '/super/quizzes/':
+    query: ~
