@@ -23,12 +23,16 @@ _common:
     unt_full: ~
     nufypet: 'NUFYPET'
     nufypet_full: ~
+    nqt: ~
+    nqt_full: ~
   sections:
     nufypet:
       section0: 'Mathematics'
       section1: 'Physics'
       section2: 'Biology/Chemistry'
       section3: 'Thinking skills'
+    nqt:
+      section00: ~
   topics:
     nufypet:
       section0:
@@ -70,6 +74,13 @@ _common:
       section3:
         topic0: 'Problem Solving'
         topic1: 'Critical Thinking'
+    nqt:
+      section00:
+        topic0: ~
+        topic1: ~
+        topic2: ~
+        topic3: ~
+        topic4: ~
 
 page:
   '/':
