@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-27 10:03+0600\n"
-"PO-Revision-Date: 2019-09-26 21:05-0700\n"
+"POT-Creation-Date: 2019-11-03 16:40+0600\n"
+"PO-Revision-Date: 2019-11-03 02:47-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -1059,6 +1059,27 @@ msgstr "НЗМ"
 
 msgid "_common.domains.unt"
 msgstr "ҰБТ"
+
+msgid "_common.topics.nqt.section00.topic0"
+msgstr "Тәрбие теориясы және әдістемесі "
+
+msgid "_common.topics.nqt.section00.topic1"
+msgstr "Дидактика"
+
+msgid "_common.topics.nqt.section00.topic2"
+msgstr "Оқыту процесін ұйымдастыру және басқару"
+
+msgid "_common.topics.nqt.section00.topic3"
+msgstr "Жалпы психология"
+
+msgid "_common.topics.nqt.section00.topic4"
+msgstr "Педагогикалық психология"
+
+msgid "_common.domains.nqt"
+msgstr "ҰБТ"
+
+msgid "_common.sections.nqt.section00"
+msgstr "Педагогика и методика обучения"
 
 msgctxt "Account type"
 msgid "Asset"
