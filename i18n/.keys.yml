@@ -157,6 +157,7 @@ page:
       nis: ~
       unt: ~
       nufypet: ~
+      law: ~
     accounting_error: ~
     last_cached: ~
   '/super/users/':
