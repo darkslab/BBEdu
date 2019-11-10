@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-27 10:03+0600\n"
-"PO-Revision-Date: 2019-09-26 21:04-0700\n"
+"POT-Creation-Date: 2019-11-10 13:20+0600\n"
+"PO-Revision-Date: 2019-11-09 23:28-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: en\n"
@@ -1061,6 +1061,65 @@ msgstr "NIS"
 
 msgid "_common.domains.unt"
 msgstr "UNT"
+
+msgid "_common.topics.nqt.section00.topic0"
+msgstr "Теория и методика воспитания"
+
+msgid "_common.topics.nqt.section00.topic1"
+msgstr "Дидактика"
+
+msgid "_common.topics.nqt.section00.topic2"
+msgstr "Управление и организация учебного процесса"
+
+msgid "_common.topics.nqt.section00.topic3"
+msgstr "Общая психология"
+
+msgid "_common.topics.nqt.section00.topic4"
+msgstr "Педагогическая психология"
+
+msgid "_common.domains.nqt"
+msgstr "НКТ"
+
+msgid "_common.sections.nqt.section00"
+msgstr "Педагогика и методика обучения"
+
+msgid "_common.topics.law.section0.topic0"
+msgstr "Constitution of the Republic of Kazakhstan"
+
+msgid "_common.topics.law.section0.topic1"
+msgstr "Civil code of the Republic of Kazakhstan"
+
+msgid "_common.topics.law.section0.topic2"
+msgstr "Civil procedure code of the Republic of Kazakhstan"
+
+msgid "_common.topics.law.section0.topic3"
+msgstr "Labor code of the Republic of Kazakhstan"
+
+msgid "_common.topics.law.section0.topic4"
+msgstr "Criminal code of the Republic of Kazakhstan"
+
+msgid "_common.topics.law.section0.topic5"
+msgstr "Business code of the Republic of Kazakhstan"
+
+msgid "_common.topics.law.section0.topic6"
+msgstr "Land code of the Republic of Kazakhstan"
+
+msgid "_common.topics.law.section0.topic7"
+msgstr "Law of the Republic of Kazakhstan “on combating corruption”"
+
+msgid "_common.topics.law.section0.topic8"
+msgstr ""
+"Law of the Republic of Kazakhstan “on state registration of rights to "
+"immovable property”"
+
+msgid "_common.topics.law.section0.topic9"
+msgstr "Law of the Republic of Kazakhstan “on advocacy and legal assistance”"
+
+msgid "_common.domains.law"
+msgstr "Тестирование юристов"
+
+msgid "_common.sections.law.section0"
+msgstr "Тестирование юристов"
 
 msgctxt "Account type"
 msgid "Asset"

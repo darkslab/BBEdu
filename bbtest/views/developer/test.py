@@ -157,6 +157,28 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
 
             kwargs["nqt_core_data"].append(data)
 
+        kwargs["law"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7915)
+        kwargs["law_data"] = []
+        for section in kwargs["law"].sections.all():
+            data = {
+                "section": section,
+                "language": None,
+                "specification": {
+                    Test.LANGUAGE_KK: test_specification(section, Test.LANGUAGE_KK, get_language()),
+                    Test.LANGUAGE_RU: test_specification(section, Test.LANGUAGE_RU, get_language()),
+                },
+            }
+            data["language"] = {
+                "title": pgettext("/developer/tests/", "Choose test language"),
+                "choices": [],
+            }
+            for language in Test.LANGUAGES:
+                if language[0] == Test.LANGUAGE_XX:
+                    continue
+                data["language"]["choices"].append(language)
+
+            kwargs["law_data"].append(data)
+
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
