@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-10 13:20+0600\n"
-"PO-Revision-Date: 2019-11-09 23:28-0800\n"
+"POT-Creation-Date: 2019-11-10 15:28+0600\n"
+"PO-Revision-Date: 2019-11-10 01:30-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: en\n"
@@ -1116,7 +1116,7 @@ msgid "_common.topics.law.section0.topic9"
 msgstr "Law of the Republic of Kazakhstan “on advocacy and legal assistance”"
 
 msgid "_common.domains.law"
-msgstr "Тестирование юристов"
+msgstr "Test for Lawyers"
 
 msgid "_common.sections.law.section0"
 msgstr "Тестирование юристов"
@@ -1315,6 +1315,10 @@ msgstr "User no longer exists."
 
 msgid "Credits"
 msgstr "Credits"
+
+msgctxt "Item error"
+msgid "Law Test is required."
+msgstr "Law Test is required."
 
 msgctxt "Item error"
 msgid "NIS Test is required."
@@ -1993,6 +1997,9 @@ msgstr "Unified National Testing"
 msgid "_common.domains.nufypet_full"
 msgstr "Nazarbayev University Foundation Year Preparation Entrance Test"
 
+msgid "_common.domains.law_full"
+msgstr "Test for Lawyers"
+
 msgctxt "Home page"
 msgid "We are working on other tests..."
 msgstr "We are working on other tests…"
@@ -2207,11 +2214,6 @@ msgstr "Test progress monitoring"
 msgctxt "/student/"
 msgid "Your progress will be shown here."
 msgstr "Your progress will be shown here."
-
-#, python-format
-msgctxt "Page title"
-msgid "%(domain_name)s Testing"
-msgstr "%(domain_name)s Testing"
 
 msgctxt "Exam"
 msgid "There was an error, please reload the page."
@@ -3080,6 +3082,9 @@ msgstr "UNT Tests [Revenue account]"
 
 msgid "page:/super/trial-balance/:account.nufypet"
 msgstr "NUFYPET Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.law"
+msgstr "LAW Tests [Revenue account]"
 
 #, python-format
 msgctxt "/super/users/"
