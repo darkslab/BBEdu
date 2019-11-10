@@ -25,6 +25,8 @@ _common:
     nufypet_full: ~
     nqt: ~
     nqt_full: ~
+    law: ~
+    law_full: ~
   sections:
     nufypet:
       section0: 'Mathematics'
@@ -33,6 +35,8 @@ _common:
       section3: 'Thinking skills'
     nqt:
       section00: ~
+    law:
+      section0: ~
   topics:
     nufypet:
       section0:
@@ -81,6 +85,18 @@ _common:
         topic2: ~
         topic3: ~
         topic4: ~
+    law:
+      section0:
+        topic0: ~
+        topic1: ~
+        topic2: ~
+        topic3: ~
+        topic4: ~
+        topic5: ~
+        topic6: ~
+        topic7: ~
+        topic8: ~
+        topic9: ~
 
 page:
   '/':

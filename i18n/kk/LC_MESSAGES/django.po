@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-03 16:40+0600\n"
-"PO-Revision-Date: 2019-11-03 02:47-0800\n"
+"POT-Creation-Date: 2019-11-10 13:20+0600\n"
+"PO-Revision-Date: 2019-11-09 23:22-0800\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -1080,6 +1080,42 @@ msgstr "ҰБТ"
 
 msgid "_common.sections.nqt.section00"
 msgstr "Педагогика и методика обучения"
+
+msgid "_common.topics.law.section0.topic0"
+msgstr "ҚР Конституциясы"
+
+msgid "_common.topics.law.section0.topic1"
+msgstr "ҚР Азаматтық кодексі"
+
+msgid "_common.topics.law.section0.topic2"
+msgstr "ҚР Азаматтық іс-жүргізу кодексі"
+
+msgid "_common.topics.law.section0.topic3"
+msgstr "ҚР Еңбек кодексі"
+
+msgid "_common.topics.law.section0.topic4"
+msgstr "ҚР Қылмыстық кодексі"
+
+msgid "_common.topics.law.section0.topic5"
+msgstr "ҚР Кәсіпкерлік кодексі"
+
+msgid "_common.topics.law.section0.topic6"
+msgstr "ҚР Жер кодексі"
+
+msgid "_common.topics.law.section0.topic7"
+msgstr "«Сыбайлас жемқорлыққа қарсы іс-қимыл туралы» ҚР Заңы"
+
+msgid "_common.topics.law.section0.topic8"
+msgstr "«Жылжымайтын мүлікке құқықтарды мемлекеттік тіркеу туралы» ҚР Заңы"
+
+msgid "_common.topics.law.section0.topic9"
+msgstr "«Адвокаттық қызмет және заң көмегі туралы» ҚР Заңы"
+
+msgid "_common.domains.law"
+msgstr "Заңгерлер тестілеуі"
+
+msgid "_common.sections.law.section0"
+msgstr "Заңгерлер тестілеуі"
 
 msgctxt "Account type"
 msgid "Asset"

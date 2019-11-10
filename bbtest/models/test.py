@@ -57,6 +57,9 @@ class TestSection(Model):
     def is_nqt_profile(self):
         return False
 
+    def is_law(self):
+        return self.pk == 9565
+
     def fg_color(self):
         return GOOGLE_COLORS[(self.pk - 9540) % len(GOOGLE_COLORS)]
 
@@ -288,7 +291,7 @@ class TestQuestion(Model):
     def calculate_weight(cls, test_question, test_section):
         if test_section.is_nis():
             return 10
-        elif test_section.is_unt_compulsory() or test_section.is_nufypet() or test_section.is_nqt_compulsory():
+        elif test_section.is_unt_compulsory() or test_section.is_nufypet() or test_section.is_nqt_compulsory() or test_section.is_law():
             return 1
         elif test_section.is_unt_profile():
             if test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_ONE:
