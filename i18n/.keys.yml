@@ -6,6 +6,7 @@ _common:
   nav:
     faq: ~
     trial_balance: ~
+    corporate: ~
 
   validation:
     message_form:
