@@ -18,7 +18,14 @@ class Question extends React.Component {
 
         let timer = null;
         if (this.props.hasTimer) {
-            let countDown = (parseInt(this.props.secondsLeft / 60, 10)) + ":" + ("0" + (this.props.secondsLeft % 60)).substr(-2);
+            let timerClassName = "fa fa-fw mr-10";
+            let countDown = "--:--";
+            if (this.props.secondsLeft >= 0) {
+                countDown = (parseInt(this.props.secondsLeft / 60, 10)) + ":" + ("0" + (this.props.secondsLeft % 60)).substr(-2);
+                timerClassName += " fa-clock-o";
+            } else {
+                timerClassName += " fa-refresh fa-spin";
+            }
             let countDownClassName = "bb-test-timer label mt-0 mb-0 pull-right";
             if (this.props.secondsLeft > 10) {
                 countDownClassName += " label-success";
@@ -28,7 +35,7 @@ class Question extends React.Component {
 
             timer = (
                 <span className={countDownClassName}>
-                    <i className="fa fa-clock-o mr-10"></i>
+                    <i className={timerClassName}></i>
                     {countDown}
                 </span>
             );

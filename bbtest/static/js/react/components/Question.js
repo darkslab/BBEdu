@@ -33,7 +33,14 @@ var Question = function (_React$Component) {
 
             var timer = null;
             if (this.props.hasTimer) {
-                var countDown = parseInt(this.props.secondsLeft / 60, 10) + ":" + ("0" + this.props.secondsLeft % 60).substr(-2);
+                var timerClassName = "fa fa-fw mr-10";
+                var countDown = "--:--";
+                if (this.props.secondsLeft >= 0) {
+                    countDown = parseInt(this.props.secondsLeft / 60, 10) + ":" + ("0" + this.props.secondsLeft % 60).substr(-2);
+                    timerClassName += " fa-clock-o";
+                } else {
+                    timerClassName += " fa-refresh fa-spin";
+                }
                 var countDownClassName = "bb-test-timer label mt-0 mb-0 pull-right";
                 if (this.props.secondsLeft > 10) {
                     countDownClassName += " label-success";
@@ -44,7 +51,7 @@ var Question = function (_React$Component) {
                 timer = React.createElement(
                     "span",
                     { className: countDownClassName },
-                    React.createElement("i", { className: "fa fa-clock-o mr-10" }),
+                    React.createElement("i", { className: timerClassName }),
                     countDown
                 );
             }
