@@ -25,25 +25,48 @@
             <div class="bb-accordion-panel-group" id="bb-results-{{ index }}">
                 <div class="panel hidden-xs">
                     <div class="bb-accordion-panel-heading bb-accordion-panel-heading-title">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <strong>{% trans 'Section' context 'Results page' %}</strong>
+                        {% if quiz_set.has_extra_column %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong>{% trans 'Section' context 'Results page' %}</strong>
+                                </div>
+                                <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+                                    <div class="row">
+                                        <div class="col-xs-4 pr-5 pl-5 text-center">
+                                            <strong>{% trans 'Your score' context 'Results page' %}</strong>
+                                        </div>
+                                        <div class="col-xs-4 pr-5 pl-5 text-center">
+                                            {% trans 'Average score of students on bbtest.kz website for the section.' context 'Results page' as avg_msg %}
+                                            <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' context 'Results page' %}Average score {{ question_icon_start }}{{ avg_msg }}{{ question_icon_end }}{% endblocktrans %}</strong>
+                                        </div>
+                                        <div class="col-xs-4 pr-5 pl-5 text-center">
+                                            {% trans 'page:/student/results/:nis_pass_msg' as nis_pass_msg %}
+                                            <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-html="true" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' %}page:/student/results/:nis_pass_column;{{ question_icon_start }};{{ question_icon_end }};{{ nis_pass_msg }}{% endblocktrans %}</strong>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-2 col-sm-offset-1 pr-5 pl-5 text-center">
-                                <strong>{% trans 'Your score' context 'Results page' %}</strong>
+                        {% else %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong>{% trans 'Section' context 'Results page' %}</strong>
+                                </div>
+                                <div class="col-sm-2 col-sm-offset-1 pr-5 pl-5 text-center">
+                                    <strong>{% trans 'Your score' context 'Results page' %}</strong>
+                                </div>
+                                <div class="col-sm-2 pr-5 pl-5 text-center">
+                                    {% trans 'Average score of students on bbtest.kz website for the section.' context 'Results page' as avg_msg %}
+                                    <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' context 'Results page' %}Average score {{ question_icon_start }}{{ avg_msg }}{{ question_icon_end }}{% endblocktrans %}</strong>
+                                </div>
                             </div>
-                            <div class="col-sm-2 pr-5 pl-5 text-center">
-                                {% trans 'Average score of students on bbtest.kz website for the section.' context 'Results page' as avg_msg %}
-                                <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' context 'Results page' %}Average score {{ question_icon_start }}{{ avg_msg }}{{ question_icon_end }}{% endblocktrans %}</strong>
-                            </div>
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 {% for quiz in quiz_set.quizzes.all %}
                     {% if quiz.is_finished %}
-                        {% include './row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 quiz_sets=quiz_sets has_detail=True compact=False only %}
+                        {% include './row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 quiz_sets=quiz_sets has_detail=True compact=False has_extra_column=quiz_set.has_extra_column only %}
                     {% else %}
-                        {% include './empty_row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 compact=False only %}
+                        {% include './empty_row.html' with quiz=quiz is_first=forloop.first parent_index=index index=forloop.counter0 compact=False has_extra_column=quiz_set.has_extra_column only %}
                     {% endif %}
                 {% endfor %}
                 <div class="panel">

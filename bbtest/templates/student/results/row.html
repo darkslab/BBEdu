@@ -28,14 +28,43 @@
                     </a>
                 {% endif %}
             </div>
-            <div class="{% if compact %}col-xs-3 col-xs-offset-3 col-sm-3 col-sm-offset-0{% else %}col-xs-3 col-xs-offset-3 col-sm-2 col-sm-offset-1{% endif %} bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-score></div>
-            <div class="{% if compact %}col-xs-3 col-sm-3{% else %}col-xs-3 col-sm-2{% endif %} bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-avg></div>
-            {% if has_detail %}
-                <div class="col-sm-1 bb-result-cell hidden-xs">
-                    <a href="#bb-results-{{ parent_index }}-{{ index }}" class="bb-accordion-toggle collapsed pull-right" data-toggle="collapse" data-parent="#bb-results-{{ parent_index }}">
-                        <i class="fa fa-fw fa-chevron-up"></i>
-                    </a>
+            {% if not compact and has_extra_column %}
+                <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-0">
+                    <div class="row">
+                        <div class="col-xs-4 bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-score></div>
+                        <div class="col-xs-4 bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-avg></div>
+                        <div class="col-xs-4 bb-chart bb-result-cell pr-5 pl-5 text-center">
+                            {% if quiz.nis_passed is not None %}
+                                {% if quiz.nis_passed %}
+                                    <h3 class="mt-0 mb-0" style="height: 100%;">
+                                        <i class="fa fa-check text-success" style="vertical-align: middle;"></i>
+                                    </h3>
+                                {% else %}
+                                    <h3 class="mt-0 mb-0" style="height: 100%;">
+                                        <i class="fa fa-times text-danger" style="vertical-align: middle;"></i>
+                                    </h3>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
+                {% if has_detail %}
+                    <div class="col-sm-1 bb-result-cell hidden-xs">
+                        <a href="#bb-results-{{ parent_index }}-{{ index }}" class="bb-accordion-toggle collapsed pull-right" data-toggle="collapse" data-parent="#bb-results-{{ parent_index }}">
+                            <i class="fa fa-fw fa-chevron-up"></i>
+                        </a>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="{% if compact %}col-xs-3 col-xs-offset-3 col-sm-3 col-sm-offset-0{% else %}col-xs-3 col-xs-offset-3 col-sm-2 col-sm-offset-1{% endif %} bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-score></div>
+                <div class="{% if compact %}col-xs-3 col-sm-3{% else %}col-xs-3 col-sm-2{% endif %} bb-chart bb-result-cell pr-5 pl-5" data-result-chart-{{ parent_index }}-{{ index }}-avg></div>
+                {% if has_detail %}
+                    <div class="col-sm-1 bb-result-cell hidden-xs">
+                        <a href="#bb-results-{{ parent_index }}-{{ index }}" class="bb-accordion-toggle collapsed pull-right" data-toggle="collapse" data-parent="#bb-results-{{ parent_index }}">
+                            <i class="fa fa-fw fa-chevron-up"></i>
+                        </a>
+                    </div>
+                {% endif %}
             {% endif %}
         </div>
     </div>

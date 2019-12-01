@@ -119,6 +119,8 @@ page:
     correct_questions: ~
     bundle_header: ~
     row_caption: ~
+    nis_pass_msg: ~
+    nis_pass_column: ~
   '/student/results/xxxx/':
     window_title: ~
     title: ~
