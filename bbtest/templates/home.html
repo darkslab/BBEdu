@@ -119,11 +119,11 @@
                                 <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nufypet.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-lg btn-block btn-wrappable hidden-xs">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
                                 <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nufypet.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
                             </div>
-                            <div class="col-xs-12 mt-10">
+                            <!-- <div class="col-xs-12 mt-10">
                                 {% trans '_common.domains.law_full' as domain_name %}
                                 <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' law.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-lg btn-block btn-wrappable hidden-xs">{{ domain_name }}</a>
                                 <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' law.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block">{{ domain_name }}</a>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
