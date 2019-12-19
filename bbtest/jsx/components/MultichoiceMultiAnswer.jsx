@@ -1,4 +1,19 @@
 class MultichoiceMultiAnswer extends React.Component {
+    static isCorrect(answerMetaData, report) {
+        if (!report) {
+            return false;
+        }
+        if (answerMetaData.correct_ids.length != report.correct_ids.length) {
+            return false;
+        }
+        for (let i = 0; i < answerMetaData.correct_ids.length; i++) {
+            if (report.correct_ids.indexOf(answerMetaData.correct_ids[i]) < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     constructor(props) {
         super(props);
         this._alphabet = "ABCDEFGH";

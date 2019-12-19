@@ -13,6 +13,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MultichoiceMultiAnswer = function (_React$Component) {
     _inherits(MultichoiceMultiAnswer, _React$Component);
 
+    _createClass(MultichoiceMultiAnswer, null, [{
+        key: "isCorrect",
+        value: function isCorrect(answerMetaData, report) {
+            if (!report) {
+                return false;
+            }
+            if (answerMetaData.correct_ids.length != report.correct_ids.length) {
+                return false;
+            }
+            for (var i = 0; i < answerMetaData.correct_ids.length; i++) {
+                if (report.correct_ids.indexOf(answerMetaData.correct_ids[i]) < 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }]);
+
     function MultichoiceMultiAnswer(props) {
         _classCallCheck(this, MultichoiceMultiAnswer);
 

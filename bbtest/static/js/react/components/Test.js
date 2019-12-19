@@ -653,6 +653,10 @@ var Test = function (_React$Component) {
                         )
                     ));
                 } else {
+                    var elementClassName = this._statusData.testObject.answer(indexes[_i2]) ? "bb-pagination-primary" : "";
+                    if (this._statusData.testObject.showCorrectAnswer()) {
+                        elementClassName = this._statusData.testObject.isCorrect(indexes[_i2]) ? "bb-pagination-success" : "bb-pagination-danger";
+                    }
                     paginationElements.push(React.createElement(
                         "li",
                         { key: indexes[_i2].toString() },
@@ -660,7 +664,7 @@ var Test = function (_React$Component) {
                             "a",
                             { href: "javascript:void(0);",
                                 onClick: this._setQuestionIndex.bind(this, indexes[_i2]),
-                                className: this._statusData.testObject.answer(indexes[_i2]) ? "bb-pagination-success" : "" },
+                                className: elementClassName },
                             indexes[_i2] + 1
                         )
                     ));
