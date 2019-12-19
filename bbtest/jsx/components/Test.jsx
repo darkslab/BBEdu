@@ -456,11 +456,15 @@ class Test extends React.Component {
                     </li>
                 );
             } else {
+                let elementClassName = this._statusData.testObject.answer(indexes[i]) ? "bb-pagination-primary" : "";
+                if (this._statusData.testObject.showCorrectAnswer()) {
+                    elementClassName = this._statusData.testObject.isCorrect(indexes[i]) ? "bb-pagination-success" : "bb-pagination-danger";
+                }
                 paginationElements.push(
                     <li key={indexes[i].toString()}>
                         <a href="javascript:void(0);"
                            onClick={this._setQuestionIndex.bind(this, indexes[i])}
-                           className={this._statusData.testObject.answer(indexes[i]) ? "bb-pagination-success" : ""}>{indexes[i] + 1}</a>
+                           className={elementClassName}>{indexes[i] + 1}</a>
                     </li>
                 );
             }

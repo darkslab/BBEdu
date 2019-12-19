@@ -1,4 +1,14 @@
 class MultichoiceOneAnswer extends React.Component {
+    static isCorrect(answerMetaData, report) {
+        if (!report) {
+            return false;
+        }
+        if (answerMetaData.correct_id == report.correct_id) {
+            return true;
+        }
+        return false;
+    }
+
     constructor(props) {
         super(props);
         this._alphabet = "ABCDEFGH";
