@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.utils.timezone import now
 from requests import post
 from requests.exceptions import RequestException
 import hmac
@@ -75,7 +76,11 @@ class BeelinePaymentProcessor(PaymentProcessor):
             "productReceiver": number,
             "payerPhone": number,
             "sellerId": cls.seller_id(),
-            "merchantOrderId": cart_id,
+            "merchantOrderId": int("".join([
+                str(cart_id),
+                "0",
+                now().strftime("%s"),
+            ])),
             "description": "Cart #%s" % cart_id,
         }, test=test)
 
