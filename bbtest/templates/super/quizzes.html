@@ -52,7 +52,7 @@
                             {% for quiz_set in quiz_sets %}
                                 {% if quiz_set.quizzes.all|length > 1 %}
                                     <tr {% if not quiz_set.is_current %}class="success"{% endif %}>
-                                        <td class="pl-15" rowspan="{{ quiz_set.quizzes.all|length|add:'1' }}">{{ quiz_set.student.get_full_name }}</td>
+                                        <td class="pl-15" rowspan="{{ quiz_set.quizzes.all|length|add:'1' }}"><a href="{% url 'bbtest:super_user' quiz_set.student.pk %}">{{ quiz_set.student.get_full_name }}</a><br><small class="text-info">{{ quiz_set.student.email }}</small></td>
                                         <td rowspan="{{ quiz_set.quizzes.all|length|add:'1' }}">{% trans quiz_set.test_domain.name %}</td>
                                         <td rowspan="{{ quiz_set.quizzes.all|length|add:'1' }}">{{ quiz_set.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
                                     </tr>
@@ -83,7 +83,7 @@
                                 {% else %}
                                     {% for quiz in quiz_set.quizzes.all %}
                                         <tr {% if not quiz_set.is_current %}class="success"{% endif %}>
-                                            <td class="pl-15">{{ quiz_set.student.get_full_name }}</td>
+                                            <td class="pl-15"><a href="{% url 'bbtest:super_user' quiz_set.student.pk %}">{{ quiz_set.student.get_full_name }}</a><br><small class="text-info">{{ quiz_set.student.email }}</small></td>
                                             <td>{% trans quiz_set.test_domain.name %}</td>
                                             <td>{{ quiz_set.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
                                             <td {% if not quiz.is_finished %}class="danger"{% endif %}>{% trans quiz.test.section.name %}</td>

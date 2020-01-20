@@ -78,7 +78,11 @@
                         <tbody>
                             {% for test in tests %}
                                 <tr {% if test.developer == user %}class="success"{% endif %}>
-                                    <td class="pl-15">{{ test.developer.get_full_name }}</td>
+                                    {% if test.developer|has_perm:'bbtest.super' %}
+                                        <td class="pl-15">{{ test.developer.get_full_name }}</td>
+                                    {% else %}
+                                        <td class="pl-15"><a href="{% url 'bbtest:super_user' test.developer.pk %}">{{ test.developer.get_full_name }}</a><br><small class="text-info">{{ test.developer.email }}</small></td>
+                                    {% endif %}
                                     <td>{% trans test.section.domain.name %}</td>
                                     <td>{% trans test.section.name %}</td>
                                     <td class="text-center">{{ test.display_language }}</td>
