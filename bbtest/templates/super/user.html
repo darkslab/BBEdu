@@ -1,5 +1,5 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n %}
+{% load i18n widget_tweaks %}
 
 {% block extended_footer %}{% endblock %}
 
@@ -12,10 +12,13 @@
         moduleDataStack.push({
             module: "SubmitModule"
         });
+        moduleDataStack.push({
+            module: "SuperUserPageModule"
+        });
     </script>
     <form method="post" action="{% url 'bbtest:super_impersonate_user' user_object.pk %}" data-bb-form>
         {% csrf_token %}
-        <div class="modal fade" data-modal data-backdrop="static" data-keyboard="false">
+        <div class="modal fade" data-impersonate-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -36,6 +39,26 @@
             </div>
         </div>
     </form>
+    <div class="modal fade" data-give-credits-modal data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{% trans 'Are you sure?' context '/super/users/' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6 pr-5">
+                            <button type="button" class="btn btn-danger btn-block btn-lg" data-give-credits-confirm="true">{% trans 'Yes' context '/super/users/' %}</button>
+                        </div>
+                        <div class="col-xs-6 pl-5">
+                            <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-give-credits-confirm="false">{% trans 'No' context '/super/users/' %}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12 col-sm-4 col-md-5">
             <div class="row">
@@ -84,7 +107,7 @@
                                     </dl>
                                 </div>
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="[data-modal]">Impersonate</button>
+                                    <button type="button" class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="[data-impersonate-modal]">Impersonate</button>
                                 </div>
                             </form>
                         </div>
@@ -94,7 +117,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 {% if user_object.role == 'student' %}col-sm-8{% endif %}">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">Transactions</h4>
@@ -134,12 +157,35 @@
                         </tbody>
                     </table>
                 </div>
-                {% if user_object.role == 'student' %}
-                    <div class="panel-footer text-center">
-                        {# DARK_NEXT  implement this! #}
-                    </div>
-                {% endif %}
+                <div class="panel-footer text-right">
+                    <strong>Balance: {{ user_object.balance_account.balance }}</strong>
+                </div>
             </div>
         </div>
+        {% if user_object.role == 'student' %}
+            <div class="col-xs-12 col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Add Credits</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form method="post" action="{% url 'bbtest:super_give_credits_user' user_object.pk %}" class="mt-15" data-bb-form data-give-credits-form>
+                            {% csrf_token %}
+
+                            {% for field in give_credits_form %}
+                                <div class="form-group has-error">
+                                    <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                    {{ field|add_class:'form-control' }}
+                                </div>
+                            {% endfor %}
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="[data-give-credits-modal]">Give Credits</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
