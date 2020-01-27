@@ -1,0 +1,191 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n widget_tweaks %}
+
+{% block extended_footer %}{% endblock %}
+
+{% block window_title %}{{ user_object.get_full_name }}{% endblock %}
+
+{% block title %}{{ user_object.get_full_name }} {% if user_object.role == 'developer' %}<span class="label label-danger">{% trans 'Developer' context '/super/users/' %}</span>{% elif user_object.role == 'student' %}<span class="label label-success">{% trans 'Student' context '/super/users/' %}</span>{% endif %}{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "SuperUserPageModule"
+        });
+    </script>
+    <form method="post" action="{% url 'bbtest:super_impersonate_user' user_object.pk %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-impersonate-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context '/super/users/' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-danger btn-block btn-lg" data-bb-submit>{% trans 'Yes' context '/super/users/' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context '/super/users/' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal fade" data-give-credits-modal data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{% trans 'Are you sure?' context '/super/users/' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6 pr-5">
+                            <button type="button" class="btn btn-danger btn-block btn-lg" data-give-credits-confirm="true">{% trans 'Yes' context '/super/users/' %}</button>
+                        </div>
+                        <div class="col-xs-6 pl-5">
+                            <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-give-credits-confirm="false">{% trans 'No' context '/super/users/' %}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-5">
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1">
+                    <img class="img-responsive img-circle bb-settings-gravatar center-block" src="{{ user_object.gravatar_url|safe }}" alt="{{ user_object.get_full_name }}" title="{{ user_object.get_full_name }}">
+                </div>
+                <div class="col-xs-10 col-xs-offset-1">
+                    <h3 class="text-center mt-10 mb-23">
+                        {% if user_object.is_active %}
+                            <span class="label label-success">Active</span>
+                        {% else %}
+                            <span class="label label-default">Inactive</span>
+                        {% endif %}
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-7">
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form class="mt-15">
+                                <div class="form-group">
+                                    <label for="first_name" class="control-label">First Name</label>
+                                    <input type="text" value="{{ user_object.first_name }}" class="form-control" id="first_name" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name" class="control-label">Last Name</label>
+                                    <input type="text" value="{{ user_object.last_name }}" class="form-control" id="last_name" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="control-label">Email</label>
+                                    <input type="text" value="{{ user_object.email }}" class="form-control" id="email" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" class="control-label">Phone</label>
+                                    <input type="text" value="{{ user_object.phone }}" class="form-control" id="phone" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <dl class="dl-horizontal">
+                                        <dt>Joined at</dt>
+                                        <dd>{{ user_object.joined_at|date:'SHORT_DATETIME_FORMAT' }} ({{ now_at|timeuntil:user_object.joined_at }})</dd>
+                                        <dt>Last logged in at</dt>
+                                        <dd>{{ user_object.last_login|date:'SHORT_DATETIME_FORMAT' }} ({{ now_at|timeuntil:user_object.last_login }})</dd>
+                                    </dl>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="[data-impersonate-modal]">Impersonate</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 {% if user_object.role == 'student' %}col-sm-8{% endif %}">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Transactions</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-condensed table-pressed">
+                        <thead>
+                            <tr>
+                                <th class="pl-15">Description</th>
+                                <th class="text-center">Created at</th>
+                                <th class="pr-15 text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if account_entries.count > 0 %}
+                                {% for account_entry in account_entries %}
+                                    <tr>
+                                        <td class="pl-15">{{ account_entry.description }}</td>
+                                        <td class="text-center">{{ account_entry.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
+                                        {% for amount in account_entry.amounts.all %}
+                                            {% if amount.account == balance_account %}
+                                                {% if amount.is_debit %}
+                                                    <td class="pr-15 text-right">-{{ amount.amount }}</td>
+                                                {% else %}
+                                                    <td class="pr-15 text-right">+{{ amount.amount }}</td>
+                                                {% endif %}
+                                            {% else %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="3">There are no transactions</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer text-right">
+                    <strong>Balance: {{ user_object.balance_account.balance }}</strong>
+                </div>
+            </div>
+        </div>
+        {% if user_object.role == 'student' %}
+            <div class="col-xs-12 col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Add Credits</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form method="post" action="{% url 'bbtest:super_give_credits_user' user_object.pk %}" class="mt-15" data-bb-form data-give-credits-form>
+                            {% csrf_token %}
+
+                            {% for field in give_credits_form %}
+                                <div class="form-group has-error">
+                                    <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                    {{ field|add_class:'form-control' }}
+                                </div>
+                            {% endfor %}
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="[data-give-credits-modal]">Give Credits</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

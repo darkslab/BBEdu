@@ -112,7 +112,7 @@
                                 <td class="pr-10 text-center"><strong>{{ admin_count }}</strong></td>
                             </tr>
                             <tr>
-                                <td class="pl-10">Superusers</td>
+                                <td class="pl-10"><em>Superusers</em></td>
                                 <td class="pr-10 text-center"><strong>{{ super_count }}</strong></td>
                             </tr>
                         </tbody>
@@ -143,7 +143,7 @@
                             </tr>
                             {% for developer in developer_tests_stats %}
                                 <tr>
-                                    <td class="pl-10">{{ developer.get_full_name }}</td>
+                                    <td class="pl-10"><a href="{% url 'bbtest:super_user' developer.pk %}">{{ developer.get_full_name }}</a></td>
                                     <td class="pr-0 text-center"><span class="label label-success">{{ developer.approved_tests_count }}</span></td>
                                     <td class="pr-0 pl-0 text-center">+</td>
                                     <td class="pr-0 pl-0 text-center"><span class="label label-info">{{ developer.pending_tests_count }}</span></td>
