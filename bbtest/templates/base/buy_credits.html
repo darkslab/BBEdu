@@ -91,6 +91,84 @@
                                 </div>
                             </div>
                         </fieldset>
+                        <fieldset>
+                            <legend class="text-center mb-5">
+                                <span>{% trans 'page:/buy-credits/:payment_option_3' %}</span>
+                            </legend>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="modal fade" id="kaspi-payment-type-modal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-4 col-xs-offset-4 col-sm-2 col-sm-offset-5">
+                                                            <img class="img-responsive" src="{% static 'img/kaspi.png' %}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <h4 class="text-center">{% trans 'page:/buy-credits/:kaspi_instructions' %}</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-3 col-sm-2 pr-0 text-center">
+                                                                            <h5 class="center-block bg-primary mt-0 mb-0 bb-kaspi-instruction-step">1</h5>
+                                                                        </div>
+                                                                        <div class="col-xs-9 col-sm-10">
+                                                                            <h6 class="mt-0 mb-0">{% trans 'page:/buy-credits/:kaspi_instruction_1' %}</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-3 col-sm-2 pr-0 text-center">
+                                                                            <h5 class="center-block bg-primary mt-0 mb-0 bb-kaspi-instruction-step">2</h5>
+                                                                        </div>
+                                                                        <div class="col-xs-9 col-sm-10">
+                                                                            <h6 class="mt-0 mb-0">{% trans 'page:/buy-credits/:kaspi_instruction_2' %}</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-3 col-sm-2 pr-0 text-center">
+                                                                            <h5 class="center-block bg-primary mt-0 mb-0 bb-kaspi-instruction-step">3</h5>
+                                                                        </div>
+                                                                        <div class="col-xs-9 col-sm-10">
+                                                                            <h6 class="mt-0 mb-0">{% blocktrans with email=user.email strong_start='<strong>' strong_end='</strong>' %}page:/buy-credits/:kaspi_instruction_3:{{ email }};{{ strong_start }};{{ strong_end }}{% endblocktrans %}</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-3 col-sm-2 pr-0 text-center">
+                                                                            <h5 class="center-block bg-primary mt-0 mb-0 bb-kaspi-instruction-step">4</h5>
+                                                                        </div>
+                                                                        <div class="col-xs-9 col-sm-10">
+                                                                            <h6 class="mt-0 mb-0">{% trans 'page:/buy-credits/:kaspi_instruction_4' %}</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-block btn-lg btn-wrappable" data-bb-submit data-toggle="modal" data-target="#kaspi-payment-type-modal">{% trans 'page:/buy-credits/:pay_with_kaspi' %}</button>
+                                </div>
+                            </div>
+                        </fieldset>
                     </form>
                 </div>
             </div>
