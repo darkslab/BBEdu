@@ -134,8 +134,15 @@ page:
     bank_usage_info: ~
     pay_with_credit_card: ~
     pay_with_beeline: ~
+    pay_with_kaspi: ~
     payment_option_1: ~
     payment_option_2: ~
+    payment_option_3: ~
+    kaspi_instructions: ~
+    kaspi_instruction_1: ~
+    kaspi_instruction_2: ~
+    kaspi_instruction_3: ~
+    kaspi_instruction_4: ~
   '/buy-credits-beeline/':
     total_sum: ~
     beeline_number: ~
