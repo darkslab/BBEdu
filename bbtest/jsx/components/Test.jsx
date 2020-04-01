@@ -11,12 +11,22 @@ class Test extends React.Component {
         this._$xhr;
         this._statusData;
         this._lingerTimer = null;
+        this._currentQuestionIndex = 0;
+
+        this._boundWindowBlur = this._windowBlur.bind(this);
+        this._boundWindowFocus = this._windowFocus.bind(this);
     }
     componentDidMount() {
         this._continue(true, false);
+
+        $(window).on("blur", this._boundWindowBlur);
+        $(window).on("focus", this._boundWindowFocus);
     }
     componentWillUnmount() {
         this._stop();
+
+        $(window).off("blur", this._boundWindowBlur);
+        $(window).off("focus", this._boundWindowFocus);
     }
     render() {
         let content = null;
@@ -146,7 +156,7 @@ class Test extends React.Component {
                                   canAnswer={this._statusData.testObject.canAnswer()}
                                   showCorrectAnswer={this._statusData.testObject.showCorrectAnswer()}
                                   testTexts={this._statusData.testObject.texts()}
-                                  secondsLeft={this._statusData.seconds}
+                                  secondsLeft={this._statusData.focused ? this._statusData.seconds : -1}
                                   texts={this.props.texts}
                                   hasTimer={this.props.hasTimer} />
                         <div className="row">
@@ -296,6 +306,7 @@ class Test extends React.Component {
                     section: data.section,
                     instructions: data.instructions
                 };
+                this._currentQuestionIndex = 0;
                 break;
             case "started":
                 let seconds = Math.max(data.seconds - Math.round(msecs / 1000), 0);
@@ -307,8 +318,9 @@ class Test extends React.Component {
                 } else {
                     this._statusData = {
                         seconds: seconds,
+                        focused: true,
                         testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report, data.texts),
-                        questionIndex: 0,
+                        questionIndex: this._currentQuestionIndex,
                         questionsCount: data.questions.length,
                         timer: setTimeout(this._tick.bind(this), 1000)
                     };
@@ -444,11 +456,15 @@ class Test extends React.Component {
                     </li>
                 );
             } else {
+                let elementClassName = this._statusData.testObject.answer(indexes[i]) ? "bb-pagination-primary" : "";
+                if (this._statusData.testObject.showCorrectAnswer()) {
+                    elementClassName = this._statusData.testObject.isCorrect(indexes[i]) ? "bb-pagination-success" : "bb-pagination-danger";
+                }
                 paginationElements.push(
                     <li key={indexes[i].toString()}>
                         <a href="javascript:void(0);"
                            onClick={this._setQuestionIndex.bind(this, indexes[i])}
-                           className={this._statusData.testObject.answer(indexes[i]) ? "bb-pagination-success" : ""}>{indexes[i] + 1}</a>
+                           className={elementClassName}>{indexes[i] + 1}</a>
                     </li>
                 );
             }
@@ -494,5 +510,18 @@ class Test extends React.Component {
         this.setState({
             confirmationFor: type
         });
+    }
+    _windowBlur() {
+        if (this.state.status !== "started") {
+            return;
+        }
+        this._currentQuestionIndex = this._statusData.questionIndex;
+        this._statusData.focused = false;
+    }
+    _windowFocus() {
+        if (this.state.status !== "started") {
+            return;
+        }
+        this._continue();
     }
 }

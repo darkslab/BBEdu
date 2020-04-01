@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 01:04+0600\n"
-"PO-Revision-Date: 2019-06-30 12:06-0700\n"
+"POT-Creation-Date: 2020-04-01 09:20+0600\n"
+"PO-Revision-Date: 2020-03-31 20:23-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -899,16 +899,16 @@ msgid "Biography"
 msgstr "Биография"
 
 msgid "Literary criticism"
-msgstr ""
+msgstr "Literary criticism"
 
 msgid "The role of episodes"
-msgstr ""
+msgstr "The role of episodes"
 
 msgid "Cross-cutting themes"
-msgstr ""
+msgstr "Cross-cutting themes"
 
 msgid "Content of works"
-msgstr ""
+msgstr "Content of works"
 
 msgid "Human. Society. Law"
 msgstr "Адам. Қоғам. Құқық"
@@ -1059,6 +1059,63 @@ msgstr "НЗМ"
 
 msgid "_common.domains.unt"
 msgstr "ҰБТ"
+
+msgid "_common.topics.nqt.section00.topic0"
+msgstr "Тәрбие теориясы және әдістемесі "
+
+msgid "_common.topics.nqt.section00.topic1"
+msgstr "Дидактика"
+
+msgid "_common.topics.nqt.section00.topic2"
+msgstr "Оқыту процесін ұйымдастыру және басқару"
+
+msgid "_common.topics.nqt.section00.topic3"
+msgstr "Жалпы психология"
+
+msgid "_common.topics.nqt.section00.topic4"
+msgstr "Педагогикалық психология"
+
+msgid "_common.domains.nqt"
+msgstr "ҰБТ"
+
+msgid "_common.sections.nqt.section00"
+msgstr "Педагогика и методика обучения"
+
+msgid "_common.topics.law.section0.topic0"
+msgstr "ҚР Конституциясы"
+
+msgid "_common.topics.law.section0.topic1"
+msgstr "ҚР Азаматтық кодексі"
+
+msgid "_common.topics.law.section0.topic2"
+msgstr "ҚР Азаматтық іс-жүргізу кодексі"
+
+msgid "_common.topics.law.section0.topic3"
+msgstr "ҚР Еңбек кодексі"
+
+msgid "_common.topics.law.section0.topic4"
+msgstr "ҚР Қылмыстық кодексі"
+
+msgid "_common.topics.law.section0.topic5"
+msgstr "ҚР Кәсіпкерлік кодексі"
+
+msgid "_common.topics.law.section0.topic6"
+msgstr "ҚР Жер кодексі"
+
+msgid "_common.topics.law.section0.topic7"
+msgstr "«Сыбайлас жемқорлыққа қарсы іс-қимыл туралы» ҚР Заңы"
+
+msgid "_common.topics.law.section0.topic8"
+msgstr "ҚР Қылмыстық-процестік кодексі"
+
+msgid "_common.topics.law.section0.topic9"
+msgstr "«Адвокаттық қызмет және заң көмегі туралы» ҚР Заңы"
+
+msgid "_common.domains.law"
+msgstr "Заңгерлерге арналған тестілеу"
+
+msgid "_common.sections.law.section0"
+msgstr "Заңгерлер тестілеуі"
 
 msgctxt "Account type"
 msgid "Asset"
@@ -1254,6 +1311,10 @@ msgstr "Ондай қолданушы жоқ."
 
 msgid "Credits"
 msgstr "Бірлік"
+
+msgctxt "Item error"
+msgid "Law Test is required."
+msgstr "Заңгерлер тестілері қажет."
 
 msgctxt "Item error"
 msgid "NIS Test is required."
@@ -1562,6 +1623,34 @@ msgstr "Төлем тәсілі 2"
 
 msgid "page:/buy-credits/:pay_with_beeline"
 msgstr "Beeline балансымен төлеу"
+
+msgid "page:/buy-credits/:payment_option_3"
+msgstr "Төлем тәсілі 3"
+
+msgid "page:/buy-credits/:kaspi_instructions"
+msgstr "Kaspi мобильді қосымшасында төлем жүргізу нұсқаулығы"
+
+msgid "page:/buy-credits/:kaspi_instruction_1"
+msgstr ""
+"Kaspi.kz мобильді қосымшасын AppStore немесе Google Play-де жүктеп алыңыз"
+
+msgid "page:/buy-credits/:kaspi_instruction_2"
+msgstr ""
+"«Платежи» бөлімін ашып, «Онлайн тесты - bbtest.kz» табыңыз (г.Нур-Султан)"
+
+#, python-format
+msgid ""
+"page:/buy-credits/:kaspi_instruction_3:%(email)s;%(strong_start)s;"
+"%(strong_end)s"
+msgstr ""
+"Төлеушінің, оқушының аты-жөні мен bbtest.kz сайтындағы логиніңізді "
+"енгізіңіз: %(strong_start)s%(email)s%(strong_end)s"
+
+msgid "page:/buy-credits/:kaspi_instruction_4"
+msgstr "Төлем сомасын енгізіп, «Оплатить» батырмасын басыңыз"
+
+msgid "page:/buy-credits/:pay_with_kaspi"
+msgstr "Kaspi мобильді қосымшасы арқылы төлеу"
 
 msgid "page:/buy-credits/:credits_conversion_rate"
 msgstr "1 бірлік 1 теңгеге тең."
@@ -1899,6 +1988,10 @@ msgctxt "Navigation link"
 msgid "Login"
 msgstr "Кіру"
 
+msgctxt "Navigation link"
+msgid "Register"
+msgstr "Тіркелу"
+
 msgctxt "Home page"
 msgid "Start practicing to the test right now!"
 msgstr "Тестілеуге бүгіннен бастап дайындал!"
@@ -1915,7 +2008,10 @@ msgid "_common.domains.unt_full"
 msgstr "Ұлттық Біріңғай Тестілеу"
 
 msgid "_common.domains.nufypet_full"
-msgstr "Nazarbayev University Foundation Year Preparation Test"
+msgstr "Nazarbayev University Foundation Year Preparation Entrance Test"
+
+msgid "_common.domains.law_full"
+msgstr "Заңгерлерге арналған тестілеу"
 
 msgctxt "Home page"
 msgid "We are working on other tests..."
@@ -1958,9 +2054,8 @@ msgstr "Құрылғылар"
 msgid "_common.nav.faq"
 msgstr "Сұрақ-жауап"
 
-msgctxt "Navigation link"
-msgid "Register"
-msgstr "Тіркелу"
+msgid "_common.nav.corporate"
+msgstr "Корпоративтiк клиенттерге"
 
 msgid "page:/nis/:nis_button"
 msgstr "Назарбаев Зияткерлік мектептеріне түсуге арналған байқау тесті"
@@ -2040,6 +2135,11 @@ msgctxt "/student/buy-tests/xxxx/"
 msgid "Test language"
 msgstr "Тестілеу тілі"
 
+#, python-format
+msgid ""
+"page:/student/buy-tests/xxxx/:test_language_explanation:%(test_language)s"
+msgstr "Тестілеу тілі: %(test_language)s"
+
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Subjects"
 msgstr "Пәндер"
@@ -2075,11 +2175,6 @@ msgid "page:/student/:iqanat_intro"
 msgstr ""
 "Сандық сипаттамалар - тест логиканы, цифрлармен жұмыс жасауды, ойша есептеу "
 "қабілеттерін бағалауға бағытталған."
-
-#, python-format
-msgctxt "Page title"
-msgid "%(domain_name)s Testing"
-msgstr "%(domain_name)s бойынша тестілеу"
 
 msgctxt "Exam"
 msgid "There was an error, please reload the page."
@@ -2226,6 +2321,18 @@ msgstr "Tест қатысушыларының осы пән бойынша bbte
 msgctxt "Results page"
 msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
 msgstr "Орташа балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+
+msgid "page:/student/results/:nis_pass_msg"
+msgstr ""
+"Математика пәнінен кем дегенде 140 балл, Сандық сипаттамалар пәнінен 120 "
+"балл жинау қажет"
+
+#, python-format
+msgid ""
+"page:/student/results/:nis_pass_column;%(question_icon_start)s;"
+"%(question_icon_end)s;%(nis_pass_msg)s"
+msgstr ""
+"Шекті балл %(question_icon_start)s%(nis_pass_msg)s%(question_icon_end)s"
 
 #, python-format
 msgctxt "Results page"
@@ -2434,6 +2541,15 @@ msgctxt "Page title"
 msgid "All Quizzes"
 msgstr "Барлық тестілер"
 
+msgid "page:/super/quizzes/:query"
+msgstr "Seach by test code, first name, last name, email"
+
+msgid "_common.controls.super.search"
+msgstr "Search"
+
+msgid "_common.controls.super.reset"
+msgstr "Reset"
+
 msgctxt "/super/quizzes/"
 msgid "Student"
 msgstr "Тестілеуге қатысушы"
@@ -2499,6 +2615,9 @@ msgstr "Байқау тестілері жоқ"
 msgctxt "Page title"
 msgid "All Tests"
 msgstr "Барлық тестілер"
+
+msgid "page:/super/tests/:query"
+msgstr "Seach by test code, developer name, developer email"
 
 msgctxt "/super/tests/"
 msgid "Developer"
@@ -2566,9 +2685,13 @@ msgstr "Last update was at %(last_cached_datetime)s"
 msgid "page:/super/trial-balance/:accounting_error"
 msgstr "Accounting error!"
 
-msgctxt "Page title"
-msgid "All Users"
-msgstr "Барлық қолданушылар"
+msgctxt "/super/users/"
+msgid "Developer"
+msgstr "Құрастырушы"
+
+msgctxt "/super/users/"
+msgid "Student"
+msgstr "Тестілеуге қатысушы"
 
 msgctxt "/super/users/"
 msgid "Are you sure?"
@@ -2582,14 +2705,12 @@ msgctxt "/super/users/"
 msgid "No"
 msgstr "Жоқ"
 
+msgctxt "Page title"
+msgid "All Users"
+msgstr "Барлық қолданушылар"
+
 msgid "page:/super/users/:query"
 msgstr "Seach by first name, last name or email"
-
-msgid "page:/super/users/:search"
-msgstr "Search"
-
-msgid "page:/super/users/:reset"
-msgstr "Reset"
 
 msgctxt "/super/users/"
 msgid "Name"
@@ -2614,14 +2735,6 @@ msgstr "Әрекеттер"
 msgctxt "/super/users/"
 msgid "Administrator"
 msgstr "Администратор"
-
-msgctxt "/super/users/"
-msgid "Developer"
-msgstr "Құрастырушы"
-
-msgctxt "/super/users/"
-msgid "Student"
-msgstr "Тестілеуге қатысушы"
 
 msgctxt "/super/users/"
 msgid "Impersonate"
@@ -2969,6 +3082,9 @@ msgstr "UNT Tests [Revenue account]"
 
 msgid "page:/super/trial-balance/:account.nufypet"
 msgstr "NUFYPET Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.law"
+msgstr "LAW Tests [Revenue account]"
 
 #, python-format
 msgctxt "/super/users/"

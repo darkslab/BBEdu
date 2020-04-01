@@ -1,0 +1,31 @@
+{% extends '../../email_base_0.html' %}
+{% load static %}
+
+{% block content %}
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="left" valign="top">
+                Дорогой пользователь сервиса онлайн тестирования <span>bbtest</span>.kz!<br><br>
+
+                Наша команда от всей души поздравляет Вас с наступающим Новым годом! Мы благодарим Вас за доверие и желаем успехов и достижений целей в следующем году!<br><br>
+
+                До 6 января мы дарим 1 вариант бесплатного теста для подготовки к поступлению в НИШ на нашем сайте <a href="{{ base_url }}{% url 'bbtest:home' %}?utm_source=newsletter&utm_medium=email&utm_campaign=0005" target="_blank">bbtest.kz</a>.<br><br>
+
+                Желаем удачи при поступлении!<br><br><br>
+
+
+                Құрметті <span>bbtest</span>.kz онлайн тестілеу сервисін пайдаланушы!<br><br>
+
+                Біздің командамыз Сізді келе жатқан Жаңа жылмен шын жүректен құттықтайды! Бізге артылған сенім үшін алғыс білдіре отырып Сізге Жаңа жылда табыс пен жетістіктерге жетуді тілейміз!<br><br>
+
+                Қаңтар айының 6-жұлдызына дейін біздің сайтымызда Назарбаев Зияткерлік мектебіне түсуге дайындық тестінің 1 нұсқасы тегін болады <a href="{{ base_url }}{% url 'bbtest:home' %}?utm_source=newsletter&utm_medium=email&utm_campaign=0005" target="_blank">bbtest.kz</a>.<br><br>
+
+                Сәттілік тілейміз!<br><br><br>
+
+
+                С Уважением,<br>
+                Команда <span>bbtest</span>.kz
+            </td>
+        </tr>
+    </table>
+{% endblock %}

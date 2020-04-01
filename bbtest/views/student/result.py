@@ -32,8 +32,10 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
         topic_ids = set()
         for index, quiz_set in enumerate(kwargs["quiz_sets"]):
             quiz_set.index = paginator.count - (kwargs["quiz_sets"].start_index() + index - 1)
+            quiz_set.has_extra_column = False
 
             for quiz in quiz_set.quizzes.all():
+                quiz.nis_passed = None
                 quiz.stats = {
                     "row": {
                         "max": quiz.test.max_score(),
@@ -43,6 +45,13 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                 }
                 if quiz.is_finished:
                     quiz.stats["row"]["score"] = quiz.score()
+                if quiz.test.section.pk in (9540, 9544):
+                    quiz_set.has_extra_column = True
+                    quiz.nis_passed = False
+                    if quiz.test.section.pk == 9540 and quiz.stats["row"]["score"] >= 140:
+                        quiz.nis_passed = True
+                    elif quiz.test.section.pk == 9544 and quiz.stats["row"]["score"] >= 120:
+                        quiz.nis_passed = True
 
                 quiz.stats["row"]["avg"] = average_score(quiz.test.section)
 

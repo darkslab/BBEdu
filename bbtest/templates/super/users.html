@@ -1,5 +1,5 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n %}
+{% load i18n pagination %}
 
 {% block extended_footer %}{% endblock %}
 
@@ -46,8 +46,8 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="{% trans 'page:/super/users/:query' %}" name="q" value="{{ q }}">
                         <div class="input-group-btn">
-                            <button type="submit" class="btn btn-primary" data-bb-submit>{% trans 'page:/super/users/:search' %}</button>
-                            <a href="{{ request.path }}" class="btn btn-danger" data-bb-submit>{% trans 'page:/super/users/:reset' %}</a>
+                            <button type="submit" class="btn btn-primary" data-bb-submit>{% trans '_common.controls.super.search' %}</button>
+                            <a href="{{ request.path }}" class="btn btn-danger" data-bb-submit>{% trans '_common.controls.super.reset' %}</a>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                         <tbody>
                             {% for user in users %}
                                 <tr>
-                                    <td class="pl-15">{{ user.get_full_name }}<br><small class="text-primary">{{ user.email }}</small></td>
+                                    <td class="pl-15"><a href="{% url 'bbtest:super_user' user.pk %}">{{ user.get_full_name }}</a><br><small class="text-info">{{ user.email }}</small></td>
                                     <td class="text-center">
                                         {% if user.role == 'admin' %}
                                             <span class="label label-info">{% trans 'Administrator' context '/super/users/' %}</span>
@@ -110,7 +110,7 @@
             <div class="col-xs-12 text-center">
                 <ul class="pagination mt-0 mb-0">
                     {% if users.has_previous %}
-                        <li><a href="{{ request.path }}?page={{ users.previous_page_number }}">&laquo;</a></li>
+                        <li><a href="{{ request.path }}?{% pagination_qs users.previous_page_number %}">&laquo;</a></li>
                     {% else %}
                         <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
                     {% endif %}
@@ -118,11 +118,11 @@
                         {% if page_index == users.number %}
                             <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
                         {% else %}
-                            <li><a href="{{ request.path }}?page={{ page_index }}">{{ page_index }}</a></li>
+                            <li><a href="{{ request.path }}?{% pagination_qs page_index %}">{{ page_index }}</a></li>
                         {% endif %}
                     {% endfor %}
                     {% if users.has_next %}
-                        <li><a href="{{ request.path }}?page={{ users.next_page_number }}">&raquo;</a></li>
+                        <li><a href="{{ request.path }}?{% pagination_qs users.next_page_number %}">&raquo;</a></li>
                     {% else %}
                         <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
                     {% endif %}

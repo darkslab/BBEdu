@@ -126,11 +126,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 BB_LANGUAGE_CODE_KK = "kk"
 BB_LANGUAGE_CODE_RU = "ru"
+BB_LANGUAGE_CODE_EN = "en"
 
 LANGUAGE_CODE = BB_LANGUAGE_CODE_RU
 LANGUAGES = [
     (BB_LANGUAGE_CODE_KK, "Kazakh"),
     (BB_LANGUAGE_CODE_RU, "Russian"),
+    (BB_LANGUAGE_CODE_EN, "English"),
 ]
 LOCALE_PATHS = [
     str(BASE_DIR_PATH / "i18n"),
@@ -222,7 +224,6 @@ AUTH_USER_MODEL = "bbtest.User"
 AUTHENTICATION_BACKENDS = [
     "bbtest.auth.backends.Backend",
 ]
-LOGOUT_REDIRECT_URL = "/"
 
 BB_REDIRECT_FIELDNAME = "r"
 
@@ -312,7 +313,7 @@ LOGGING = {
 }
 
 ADMINS = [
-    ("Darkhan Baimyrza", "darkhan@bbtest.kz"),
+    ("Darkhan Baimyrza", "darkhan@baimyrza.com"),
 ]
 EMAIL_SUBJECT_PREFIX = ""
 DEFAULT_FROM_EMAIL = "bbtest.kz <no-reply@bbtest.kz>"

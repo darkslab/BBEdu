@@ -26,6 +26,10 @@ var Test = function (_React$Component) {
         _this._$xhr;
         _this._statusData;
         _this._lingerTimer = null;
+        _this._currentQuestionIndex = 0;
+
+        _this._boundWindowBlur = _this._windowBlur.bind(_this);
+        _this._boundWindowFocus = _this._windowFocus.bind(_this);
         return _this;
     }
 
@@ -33,11 +37,17 @@ var Test = function (_React$Component) {
         key: "componentDidMount",
         value: function componentDidMount() {
             this._continue(true, false);
+
+            $(window).on("blur", this._boundWindowBlur);
+            $(window).on("focus", this._boundWindowFocus);
         }
     }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
             this._stop();
+
+            $(window).off("blur", this._boundWindowBlur);
+            $(window).off("focus", this._boundWindowFocus);
         }
     }, {
         key: "render",
@@ -240,7 +250,7 @@ var Test = function (_React$Component) {
                             canAnswer: this._statusData.testObject.canAnswer(),
                             showCorrectAnswer: this._statusData.testObject.showCorrectAnswer(),
                             testTexts: this._statusData.testObject.texts(),
-                            secondsLeft: this._statusData.seconds,
+                            secondsLeft: this._statusData.focused ? this._statusData.seconds : -1,
                             texts: this.props.texts,
                             hasTimer: this.props.hasTimer }),
                         React.createElement(
@@ -456,6 +466,7 @@ var Test = function (_React$Component) {
                         section: data.section,
                         instructions: data.instructions
                     };
+                    this._currentQuestionIndex = 0;
                     break;
                 case "started":
                     var seconds = Math.max(data.seconds - Math.round(msecs / 1000), 0);
@@ -467,8 +478,9 @@ var Test = function (_React$Component) {
                     } else {
                         this._statusData = {
                             seconds: seconds,
+                            focused: true,
                             testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report, data.texts),
-                            questionIndex: 0,
+                            questionIndex: this._currentQuestionIndex,
                             questionsCount: data.questions.length,
                             timer: setTimeout(this._tick.bind(this), 1000)
                         };
@@ -641,6 +653,10 @@ var Test = function (_React$Component) {
                         )
                     ));
                 } else {
+                    var elementClassName = this._statusData.testObject.answer(indexes[_i2]) ? "bb-pagination-primary" : "";
+                    if (this._statusData.testObject.showCorrectAnswer()) {
+                        elementClassName = this._statusData.testObject.isCorrect(indexes[_i2]) ? "bb-pagination-success" : "bb-pagination-danger";
+                    }
                     paginationElements.push(React.createElement(
                         "li",
                         { key: indexes[_i2].toString() },
@@ -648,7 +664,7 @@ var Test = function (_React$Component) {
                             "a",
                             { href: "javascript:void(0);",
                                 onClick: this._setQuestionIndex.bind(this, indexes[_i2]),
-                                className: this._statusData.testObject.answer(indexes[_i2]) ? "bb-pagination-success" : "" },
+                                className: elementClassName },
                             indexes[_i2] + 1
                         )
                     ));
@@ -707,6 +723,23 @@ var Test = function (_React$Component) {
             this.setState({
                 confirmationFor: type
             });
+        }
+    }, {
+        key: "_windowBlur",
+        value: function _windowBlur() {
+            if (this.state.status !== "started") {
+                return;
+            }
+            this._currentQuestionIndex = this._statusData.questionIndex;
+            this._statusData.focused = false;
+        }
+    }, {
+        key: "_windowFocus",
+        value: function _windowFocus() {
+            if (this.state.status !== "started") {
+                return;
+            }
+            this._continue();
         }
     }]);
 

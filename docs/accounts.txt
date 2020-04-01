@@ -19,3 +19,4 @@ Revenue accounts:
     Tests-NIS
     Tests-UNT
     Tests-NUFYPET
+    Tests-LAW

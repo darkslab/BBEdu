@@ -20,24 +20,11 @@ from bbtest.forms.message import MessageForm
 from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError, FirstBeelinePaymentProcessor
 from bbtest.models.shopping.handle import CartHandleAccessMixin, CartHandle
 from bbtest.models.shopping.items import CreditItem
+from bbtest.models.shopping.items.credit import MIN_CREDIT_AMOUNT
 from bbtest.models.shopping.operate import charge
 from bbtest.models import Cart, TestDomain
 from bbtest.texts import FAQ_TEXTS
 from bbtest.http import TightJsonResponse
-
-
-# class HomeView(TemplateView):
-#     template_name = "home.html"
-
-#     def get_context_data(self, **kwargs):
-#         for domain in TestDomain.objects.all():
-#             if domain.pk == 7911:
-#                 kwargs["nis"] = domain
-#             elif domain.pk == 7912:
-#                 kwargs["unt"] = domain
-#             elif domain.pk == 7913:
-#                 kwargs["nufypet"] = domain
-#         return super().get_context_data(**kwargs)
 
 
 class HomeView(RedirectView):
@@ -79,6 +66,14 @@ class SettingsView(LoginRequiredMixin, UserContextMixin, FormView):
 class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, FormView):
     template_name = "base/buy_credits.html"
     form_class = BuyCreditsForm
+
+    def get_initial(self):
+        initial_total = self.cart_handle().total()
+        if initial_total < MIN_CREDIT_AMOUNT:
+            initial_total = MIN_CREDIT_AMOUNT
+        return {
+            "amount": int(initial_total),
+        }
 
     def form_valid(self, form):
         old_items = []
@@ -132,6 +127,8 @@ class BuyCreditsQazkomView(LoginRequiredMixin, CartHandleAccessMixin, UserContex
             kwargs["qazkom_form"]["language"] = "kaz"
         elif get_language() == settings.BB_LANGUAGE_CODE_RU:
             kwargs["qazkom_form"]["language"] = "rus"
+        elif get_language() == settings.BB_LANGUAGE_CODE_EN:
+            kwargs["qazkom_form"]["language"] = "eng"
 
         kwargs["cart_rounded_total"] = round(self.cart_handle().total())
 

@@ -23,3 +23,6 @@ ResultTestObject.prototype.showCorrectAnswer = function() {
 ResultTestObject.prototype.texts = function() {
     return this._texts;
 }
+ResultTestObject.prototype.isCorrect = function(index) {
+    return eval(this.question(index).answer_class).isCorrect(this.question(index).meta_data, this.answer(index));
+}

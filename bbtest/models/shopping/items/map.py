@@ -29,4 +29,6 @@ TEST_SECTION_MAP = {
     "9561": PhysicsNUFYPETItem,
     "9562": BiologyChemistryNUFYPETItem,
     "9563": ThinkingSkillsNUFYPETItem,
+
+    "9565": LawItem,
 }

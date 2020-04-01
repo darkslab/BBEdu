@@ -11,6 +11,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MultichoiceOneAnswer = function (_React$Component) {
     _inherits(MultichoiceOneAnswer, _React$Component);
 
+    _createClass(MultichoiceOneAnswer, null, [{
+        key: "isCorrect",
+        value: function isCorrect(answerMetaData, report) {
+            if (!report) {
+                return false;
+            }
+            if (answerMetaData.correct_id == report.correct_id) {
+                return true;
+            }
+            return false;
+        }
+    }]);
+
     function MultichoiceOneAnswer(props) {
         _classCallCheck(this, MultichoiceOneAnswer);
 

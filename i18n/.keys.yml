@@ -6,10 +6,16 @@ _common:
   nav:
     faq: ~
     trial_balance: ~
+    corporate: ~
 
   validation:
     message_form:
       recaptcha: ~
+
+  controls:
+    super:
+      search: ~
+      reset: ~
 
   domains:
     nis: 'NIS'
@@ -18,12 +24,20 @@ _common:
     unt_full: ~
     nufypet: 'NUFYPET'
     nufypet_full: ~
+    nqt: ~
+    nqt_full: ~
+    law: ~
+    law_full: ~
   sections:
     nufypet:
       section0: 'Mathematics'
       section1: 'Physics'
       section2: 'Biology/Chemistry'
       section3: 'Thinking skills'
+    nqt:
+      section00: ~
+    law:
+      section0: ~
   topics:
     nufypet:
       section0:
@@ -65,6 +79,25 @@ _common:
       section3:
         topic0: 'Problem Solving'
         topic1: 'Critical Thinking'
+    nqt:
+      section00:
+        topic0: ~
+        topic1: ~
+        topic2: ~
+        topic3: ~
+        topic4: ~
+    law:
+      section0:
+        topic0: ~
+        topic1: ~
+        topic2: ~
+        topic3: ~
+        topic4: ~
+        topic5: ~
+        topic6: ~
+        topic7: ~
+        topic8: ~
+        topic9: ~
 
 page:
   '/':
@@ -81,11 +114,14 @@ page:
     test_variant: ~
     test_variant_in_progress: ~
     checkout_shortcut: ~
+    test_language_explanation: ~
   '/student/results/':
     score: ~
     correct_questions: ~
     bundle_header: ~
     row_caption: ~
+    nis_pass_msg: ~
+    nis_pass_column: ~
   '/student/results/xxxx/':
     window_title: ~
     title: ~
@@ -99,8 +135,15 @@ page:
     bank_usage_info: ~
     pay_with_credit_card: ~
     pay_with_beeline: ~
+    pay_with_kaspi: ~
     payment_option_1: ~
     payment_option_2: ~
+    payment_option_3: ~
+    kaspi_instructions: ~
+    kaspi_instruction_1: ~
+    kaspi_instruction_2: ~
+    kaspi_instruction_3: ~
+    kaspi_instruction_4: ~
   '/buy-credits-beeline/':
     total_sum: ~
     beeline_number: ~
@@ -125,9 +168,12 @@ page:
       nis: ~
       unt: ~
       nufypet: ~
+      law: ~
     accounting_error: ~
     last_cached: ~
   '/super/users/':
     query: ~
-    search: ~
-    reset: ~
+  '/super/tests/':
+    query: ~
+  '/super/quizzes/':
+    query: ~

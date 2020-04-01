@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 01:04+0600\n"
-"PO-Revision-Date: 2019-06-30 12:06-0700\n"
+"POT-Creation-Date: 2020-04-01 09:20+0600\n"
+"PO-Revision-Date: 2020-03-31 20:25-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -1066,6 +1066,63 @@ msgstr "НИШ"
 msgid "_common.domains.unt"
 msgstr "ЕНТ"
 
+msgid "_common.topics.nqt.section00.topic0"
+msgstr "Теория и методика воспитания"
+
+msgid "_common.topics.nqt.section00.topic1"
+msgstr "Дидактика"
+
+msgid "_common.topics.nqt.section00.topic2"
+msgstr "Управление и организация учебного процесса"
+
+msgid "_common.topics.nqt.section00.topic3"
+msgstr "Общая психология"
+
+msgid "_common.topics.nqt.section00.topic4"
+msgstr "Педагогическая психология"
+
+msgid "_common.domains.nqt"
+msgstr "НКТ"
+
+msgid "_common.sections.nqt.section00"
+msgstr "Педагогика и методика обучения"
+
+msgid "_common.topics.law.section0.topic0"
+msgstr "Конституция РК"
+
+msgid "_common.topics.law.section0.topic1"
+msgstr "Гражданский кодекс РК"
+
+msgid "_common.topics.law.section0.topic2"
+msgstr "Гражданский процессуальный кодекс РК"
+
+msgid "_common.topics.law.section0.topic3"
+msgstr "Трудовой кодекс РК"
+
+msgid "_common.topics.law.section0.topic4"
+msgstr "Уголовный кодекс РК"
+
+msgid "_common.topics.law.section0.topic5"
+msgstr "Предпринимательский кодекс РК"
+
+msgid "_common.topics.law.section0.topic6"
+msgstr "Земельный кодекс РК"
+
+msgid "_common.topics.law.section0.topic7"
+msgstr "Закон РК «О противодействии коррупции»"
+
+msgid "_common.topics.law.section0.topic8"
+msgstr "Уголовно-процессуальный кодекс РК"
+
+msgid "_common.topics.law.section0.topic9"
+msgstr "Закон РК «Об адвокатской деятельности и юридической помощи»"
+
+msgid "_common.domains.law"
+msgstr "Тестирование для юристов"
+
+msgid "_common.sections.law.section0"
+msgstr "Тестирование юристов"
+
 msgctxt "Account type"
 msgid "Asset"
 msgstr "Актив"
@@ -1260,6 +1317,10 @@ msgstr "Пользователя больше нет."
 
 msgid "Credits"
 msgstr "Единицы"
+
+msgctxt "Item error"
+msgid "Law Test is required."
+msgstr "Требуется тест по Тестированию юристов."
 
 msgctxt "Item error"
 msgid "NIS Test is required."
@@ -1568,6 +1629,34 @@ msgstr "Способ оплаты 2"
 
 msgid "page:/buy-credits/:pay_with_beeline"
 msgstr "Оплатить балансом Beeline"
+
+msgid "page:/buy-credits/:payment_option_3"
+msgstr "Способ оплаты 3"
+
+msgid "page:/buy-credits/:kaspi_instructions"
+msgstr "Инструкция для оплаты в мобильном приложении Kaspi"
+
+msgid "page:/buy-credits/:kaspi_instruction_1"
+msgstr "Скачайте Мобильное приложение Kaspi.kz в AppStore или Google Play"
+
+msgid "page:/buy-credits/:kaspi_instruction_2"
+msgstr ""
+"Откройте раздел \"Платежи\" и найдите \"Онлайн тесты - bbtest.kz\" (г.Нур-"
+"Султан)"
+
+#, python-format
+msgid ""
+"page:/buy-credits/:kaspi_instruction_3:%(email)s;%(strong_start)s;"
+"%(strong_end)s"
+msgstr ""
+"Введите ФИО плательщика, ученика и Ваш логин сайта bbtest.kz: "
+"%(strong_start)s%(email)s%(strong_end)s"
+
+msgid "page:/buy-credits/:kaspi_instruction_4"
+msgstr "Введите сумму к оплате и нажмите \"Оплатить\""
+
+msgid "page:/buy-credits/:pay_with_kaspi"
+msgstr "Оплатить через мобильное приложение Kaspi"
 
 msgid "page:/buy-credits/:credits_conversion_rate"
 msgstr "1 единица равна 1 тенге."
@@ -1905,6 +1994,10 @@ msgctxt "Navigation link"
 msgid "Login"
 msgstr "Войти"
 
+msgctxt "Navigation link"
+msgid "Register"
+msgstr "Регистрация"
+
 msgctxt "Home page"
 msgid "Start practicing to the test right now!"
 msgstr "Начни готовиться к тесту прямо сейчас!"
@@ -1921,7 +2014,10 @@ msgid "_common.domains.unt_full"
 msgstr "Единое Национальное Тестирование"
 
 msgid "_common.domains.nufypet_full"
-msgstr "Nazarbayev University Foundation Year Preparation Test"
+msgstr "Nazarbayev University Foundation Year Preparation Entrance Test"
+
+msgid "_common.domains.law_full"
+msgstr "Тестирование для юристов"
 
 msgctxt "Home page"
 msgid "We are working on other tests..."
@@ -1965,9 +2061,8 @@ msgstr "Настройки"
 msgid "_common.nav.faq"
 msgstr "Вопрос-ответ"
 
-msgctxt "Navigation link"
-msgid "Register"
-msgstr "Регистрация"
+msgid "_common.nav.corporate"
+msgstr "Корпоративным клиентам"
 
 msgid "page:/nis/:nis_button"
 msgstr "Пробный тест для поступающих в НИШ"
@@ -2047,6 +2142,11 @@ msgctxt "/student/buy-tests/xxxx/"
 msgid "Test language"
 msgstr "Язык теста"
 
+#, python-format
+msgid ""
+"page:/student/buy-tests/xxxx/:test_language_explanation:%(test_language)s"
+msgstr "Язык теста: %(test_language)s"
+
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Subjects"
 msgstr "Предметы"
@@ -2082,11 +2182,6 @@ msgid "page:/student/:iqanat_intro"
 msgstr ""
 "Количественные характеристики - тест ориентирован на оценку логики, умений "
 "работать с цифрами, способностей мысленно производить расчеты."
-
-#, python-format
-msgctxt "Page title"
-msgid "%(domain_name)s Testing"
-msgstr "Тестирование по %(domain_name)s"
 
 msgctxt "Exam"
 msgid "There was an error, please reload the page."
@@ -2233,6 +2328,18 @@ msgstr "Средний балл тестируемых по данному пр�
 msgctxt "Results page"
 msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
 msgstr "Средний балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+
+msgid "page:/student/results/:nis_pass_msg"
+msgstr ""
+"Необходимо набрать минимум 140 баллов по Математике и 120 баллов по "
+"Количественным характеристикам"
+
+#, python-format
+msgid ""
+"page:/student/results/:nis_pass_column;%(question_icon_start)s;"
+"%(question_icon_end)s;%(nis_pass_msg)s"
+msgstr ""
+"Пороговый балл %(question_icon_start)s%(nis_pass_msg)s%(question_icon_end)s"
 
 #, python-format
 msgctxt "Results page"
@@ -2445,6 +2552,15 @@ msgctxt "Page title"
 msgid "All Quizzes"
 msgstr "Все Пробные тесты"
 
+msgid "page:/super/quizzes/:query"
+msgstr "Seach by test code, first name, last name, email"
+
+msgid "_common.controls.super.search"
+msgstr "Search"
+
+msgid "_common.controls.super.reset"
+msgstr "Reset"
+
 msgctxt "/super/quizzes/"
 msgid "Student"
 msgstr "Участник тестирования"
@@ -2513,6 +2629,9 @@ msgctxt "Page title"
 msgid "All Tests"
 msgstr "Все Тесты"
 
+msgid "page:/super/tests/:query"
+msgstr "Seach by test code, developer name, developer email"
+
 msgctxt "/super/tests/"
 msgid "Developer"
 msgstr "Разработчик"
@@ -2579,9 +2698,13 @@ msgstr "Last update was at %(last_cached_datetime)s"
 msgid "page:/super/trial-balance/:accounting_error"
 msgstr "Accounting error!"
 
-msgctxt "Page title"
-msgid "All Users"
-msgstr "Все Пользователи"
+msgctxt "/super/users/"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "/super/users/"
+msgid "Student"
+msgstr "Участник тестирования"
 
 msgctxt "/super/users/"
 msgid "Are you sure?"
@@ -2595,14 +2718,12 @@ msgctxt "/super/users/"
 msgid "No"
 msgstr "Нет"
 
+msgctxt "Page title"
+msgid "All Users"
+msgstr "Все Пользователи"
+
 msgid "page:/super/users/:query"
 msgstr "Seach by first name, last name or email"
-
-msgid "page:/super/users/:search"
-msgstr "Search"
-
-msgid "page:/super/users/:reset"
-msgstr "Reset"
 
 msgctxt "/super/users/"
 msgid "Name"
@@ -2627,14 +2748,6 @@ msgstr "Действия"
 msgctxt "/super/users/"
 msgid "Administrator"
 msgstr "Администратор"
-
-msgctxt "/super/users/"
-msgid "Developer"
-msgstr "Разработчик"
-
-msgctxt "/super/users/"
-msgid "Student"
-msgstr "Участник тестирования"
 
 msgctxt "/super/users/"
 msgid "Impersonate"
@@ -2980,6 +3093,9 @@ msgstr "UNT Tests [Revenue account]"
 
 msgid "page:/super/trial-balance/:account.nufypet"
 msgstr "NUFYPET Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.law"
+msgstr "LAW Tests [Revenue account]"
 
 #, python-format
 msgctxt "/super/users/"

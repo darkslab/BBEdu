@@ -1,5 +1,5 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n static %}
+{% load i18n static pagination %}
 
 {% block window_title %}{% blocktrans with code=code|upper %}page:/student/results/xxxx/:window_title:{{ section_name }};{{ code }}{% endblocktrans %}{% endblock %}
 
@@ -55,7 +55,7 @@
     </script>
     <div class="row">
         <div class="col-xs-12 mb-23">
-            <a href="{% url 'bbtest:student_results' %}{% if result_page is not None %}?page={{ result_page }}{% endif %}" class="btn btn-default mr-5 mb-5">{% trans 'Go back to results' context '/student/results/xxxx/' %}</a>
+            <a href="{% url 'bbtest:student_results' %}{% if result_page is not None %}?{% pagination_qs result_page %}{% endif %}" class="btn btn-default mr-5 mb-5">{% trans 'Go back to results' context '/student/results/xxxx/' %}</a>
         </div>
     </div>
     <div id="root" class="mb-10">

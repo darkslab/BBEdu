@@ -1,7 +1,7 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n static %}
 
-{% block title %}{% trans test_domain.name as domain_name %}{% blocktrans context 'Page title' %}{{ domain_name }} Testing{% endblocktrans %}{% endblock %}
+{% block title %}{% with full_test_domain_name=test_domain.name|add:'_full' %}{% trans full_test_domain_name %}{% endwith %}{% endblock %}
 
 {% block nav_student_exam_class %}active{% endblock %}
 
