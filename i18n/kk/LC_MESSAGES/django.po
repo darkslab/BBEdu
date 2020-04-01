@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 10:14+0600\n"
+"POT-Creation-Date: 2020-04-01 10:50+0600\n"
 "PO-Revision-Date: 2020-03-31 21:33-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1779,12 +1779,6 @@ msgctxt "Page title"
 msgid "Settings"
 msgstr "Құрылғылар"
 
-#, python-format
-msgctxt "/settings/"
-msgid ""
-"If you want to change your avatar, you can do it by going to %(link_tag)s"
-msgstr "Аватарды мына сілтеме бойынша өзгертуіңізге болады %(link_tag)s"
-
 msgctxt "Form button"
 msgid "Change Password"
 msgstr "Құпиясөзді өзгерту"
@@ -2374,11 +2368,6 @@ msgid ""
 "%(question_icon_end)s;%(nis_pass_msg)s"
 msgstr ""
 "Шекті балл %(question_icon_start)s%(nis_pass_msg)s%(question_icon_end)s"
-
-#, python-format
-msgctxt "Results page"
-msgid "View Transaction #%(transaction_id)s"
-msgstr "№%(transaction_id)s транзакциясын қарау"
 
 msgctxt "Results page"
 msgid "Review correct answers"
