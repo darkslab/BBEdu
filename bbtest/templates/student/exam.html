@@ -5,8 +5,6 @@
 
 {% block nav_student_exam_class %}active{% endblock %}
 
-{% block header %}{% endblock %}
-
 {% block content %}
     <script>
         moduleDataStack.push({
@@ -22,8 +20,8 @@
                     skipUrl: "{% url 'bbtest:student_exam_skip' %}",
                     endUrl: "{% url 'bbtest:student_exam_end' %}",
                     reportUrl: "{% url 'bbtest:student_exam_report' %}",
-                    resultsUrl: "{% url 'bbtest:student_dashboard' %}",
-                    buyUrl: "{% url 'bbtest:student_dashboard' %}",
+                    resultsUrl: "{% url 'bbtest:student_results' %}",
+                    buyUrl: "{% url 'bbtest:student_buy_test_domains' %}",
                     refreshUrl: "{% url 'bbtest:student_exam' %}",
                     cancelRefreshUrl: "{% url 'bbtest:student_dashboard' %}",
                     objectClass: "StudentTestObject",

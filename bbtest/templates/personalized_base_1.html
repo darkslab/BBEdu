@@ -57,12 +57,16 @@
                             <li class="{% block nav_student_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:student_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
                             {% if has_exam %}
                                 <li class="bb-highlighted {% block nav_student_exam_class %}{% endblock %}"><a href="{% url 'bbtest:student_exam' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Testing' context 'Navigation link' %}</a></li>
+                            {% else %}
+                                <li class="{% block nav_student_buy_tests_class %}{% endblock %}"><a href="{% url 'bbtest:student_buy_test_domains' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Start testing' context 'Navigation link' %}</a></li>
                             {% endif %}
+                            <li class="{% block nav_student_results_class %}{% endblock %}"><a href="{% url 'bbtest:student_results' %}"><i class="fa fa-fw fa-line-chart"></i> {% trans 'Results' context 'Navigation link' %}</a></li>
                         {% endif %}
                     </ul>
                 </div>
                 <div class="row bb-menu-section pt-15 pb-15 visible-xs-block">
                     <ul class="nav nav-pills nav-stacked col-xs-12 pr-0">
+                        <li class="{% block nav_base_settings_class %}{% endblock %}"><a href="{% url 'bbtest:settings' %}"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
                         <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
                     </ul>
                     <div class="col-xs-12 text-bright mt-10 bb-lang-container pt-0 pr-5 pl-5">
@@ -101,6 +105,8 @@
                                     <li class="dropdown">
                                         <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">{{ user.get_full_name }} <span class="caret"></span></a>
                                         <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="{% url 'bbtest:settings' %}"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
+                                            <li class="divider"></li>
                                             <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
                                         </ul>
                                     </li>
@@ -153,6 +159,11 @@
                         {% block content %}{% endblock %}
                     </div>
                 </div>
+            </div>
+            <div class="bb-footer bb-footer-personalized text-center text-bold pr-15 pl-15">
+                <ul class="list-inline mb-0">
+                    <li><strong><a href="{% url 'bbtest:contact_us' %}">{% trans 'Contact Us' context 'Footer navigation link' %}</a></strong></li>
+                </ul>
             </div>
             <div class="bb-copyright bb-copyright-personalized text-center">{% blocktrans with copyright_code='&copy;' %}_common.copyright:{{ copyright_code }}{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
             <div class="bb-overlay" data-bb-overlay></div>
