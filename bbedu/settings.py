@@ -132,7 +132,6 @@ LANGUAGE_CODE = BB_LANGUAGE_CODE_RU
 LANGUAGES = [
     (BB_LANGUAGE_CODE_KK, "Kazakh"),
     (BB_LANGUAGE_CODE_RU, "Russian"),
-    (BB_LANGUAGE_CODE_EN, "English"),
 ]
 LOCALE_PATHS = [
     str(BASE_DIR_PATH / "i18n"),

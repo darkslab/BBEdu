@@ -1376,12 +1376,12 @@ html {
 
 .bb-lang-container {
     font-size: 12px;
-    line-height: 14px;
+    line-height: 18px;
     padding: 7px 5px 0 15px;
 }
 @media (min-width: 768px) {
     .bb-lang-container {
-        padding-top: 10px;
+        padding-top: 14px;
         max-width: 44px;
     }
 }
