@@ -180,6 +180,8 @@ class User(AbstractBaseUser, PermissionsMixin):
             "identification",
             "region",
             "district",
+            "village",
+            "school",
         ):
             raise KeyError("There is no info for %s" % key)
         if not self.meta_data or key not in self.meta_data:

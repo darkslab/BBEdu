@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 09:37+0600\n"
-"PO-Revision-Date: 2020-04-01 20:59-0700\n"
+"POT-Creation-Date: 2020-04-02 10:16+0600\n"
+"PO-Revision-Date: 2020-04-01 21:23-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -287,6 +287,10 @@ msgid "ID"
 msgstr "ЖСН"
 
 msgctxt "Validation error"
+msgid "Please enter an ID."
+msgstr "ЖСН-ді енгізіңіз."
+
+msgctxt "Validation error"
 msgid "Incorrect ID."
 msgstr "ЖСН дұрыс емес."
 
@@ -303,16 +307,48 @@ msgid "Region"
 msgstr "Облыс"
 
 msgctxt "Validation error"
+msgid "Please select a region."
+msgstr "Облысты таңдаңыз."
+
+msgctxt "Validation error"
 msgid "Please select a correct region."
 msgstr "Дұрыс облысты таңдаңыз."
 
 msgctxt "Form label"
 msgid "District"
-msgstr "Қала/Аудан"
+msgstr "Аудан"
+
+msgctxt "Validation error"
+msgid "Please enter a district."
+msgstr "Ауданды енгізіңіз."
 
 msgctxt "Validation error"
 msgid "District is too long."
 msgstr "Аудан атауы тым үлкен."
+
+msgctxt "Form label"
+msgid "Village"
+msgstr "Ауыл"
+
+msgctxt "Validation error"
+msgid "Please enter a village."
+msgstr "Ауылды енгізіңіз."
+
+msgctxt "Validation error"
+msgid "Village is too long."
+msgstr "Ауыл атауы тым үлкен."
+
+msgctxt "Form label"
+msgid "School"
+msgstr "Мектеп"
+
+msgctxt "Validation error"
+msgid "Please enter a school."
+msgstr "Мектепті енгізіңіз."
+
+msgctxt "Validation error"
+msgid "School is too long."
+msgstr "Мектеп атауы тым үлкен."
 
 msgctxt "Form label"
 msgid "Amount"

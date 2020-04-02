@@ -87,16 +87,27 @@ class BaseUserForm(ModelForm):
 
 class ExtendedBaseUserForm(BaseUserForm):
     identification = IntegerField(label=pgettext_lazy("Form label", "ID"), error_messages={
+        "required": pgettext_lazy("Validation error", "Please enter an ID."),
         "invalid": pgettext_lazy("Validation error", "Incorrect ID."),
         "max_value": pgettext_lazy("Validation error", "ID contains too many numbers."),
         "min_value": pgettext_lazy("Validation error", "ID contains too few numbers."),
-    }, max_value=999999999999, min_value=100000000000, required=False)
+    }, max_value=999999999999, min_value=100000000000, required=True)
     region = ChoiceField(label=pgettext_lazy("Form label", "Region"), error_messages={
+        "required": pgettext_lazy("Validation error", "Please select a region."),
         "invalid_choice": pgettext_lazy("Validation error", "Please select a correct region."),
-    }, choices=REGIONS, required=False)
+    }, choices=REGIONS, required=True)
     district = CharField(label=pgettext_lazy("Form label", "District"), error_messages={
+        "required": pgettext_lazy("Validation error", "Please enter a district."),
         "max_length": pgettext_lazy("Validation error", "District is too long."),
-    }, max_length=100, required=False)
+    }, max_length=100, required=True)
+    village = CharField(label=pgettext_lazy("Form label", "Village"), error_messages={
+        "required": pgettext_lazy("Validation error", "Please enter a village."),
+        "max_length": pgettext_lazy("Validation error", "Village is too long."),
+    }, max_length=100, required=True)
+    school = CharField(label=pgettext_lazy("Form label", "School"), error_messages={
+        "required": pgettext_lazy("Validation error", "Please enter a school."),
+        "max_length": pgettext_lazy("Validation error", "School is too long."),
+    }, max_length=100, required=True)
 
     def clean(self):
         self._meta_data = {}
@@ -106,6 +117,10 @@ class ExtendedBaseUserForm(BaseUserForm):
             self._meta_data["region"] = self.cleaned_data["region"]
         if self.cleaned_data.get("district"):
             self._meta_data["district"] = self.cleaned_data["district"]
+        if self.cleaned_data.get("village"):
+            self._meta_data["village"] = self.cleaned_data["village"]
+        if self.cleaned_data.get("school"):
+            self._meta_data["school"] = self.cleaned_data["school"]
         if not self._meta_data:
             self._meta_data = None
         return super().clean()

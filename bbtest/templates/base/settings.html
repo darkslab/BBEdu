@@ -87,6 +87,20 @@
                                             <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
                                         {% endfor %}
                                     </div>
+                                    <div class="form-group {% if form.village.errors %}has-error{% endif %}">
+                                        <label for="{{ form.village.id_for_label }}" class="control-label">{{ form.village.label }}</label>
+                                        {{ form.village|add_class:'form-control' }}
+                                        {% for error in form.village.errors %}
+                                            <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-group {% if form.school.errors %}has-error{% endif %}">
+                                        <label for="{{ form.school.id_for_label }}" class="control-label">{{ form.school.label }}</label>
+                                        {{ form.school|add_class:'form-control' }}
+                                        {% for error in form.school.errors %}
+                                            <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
                                 {% endif %}
                                 <div class="form-group pt-15 pb-15">
                                     <button type="button" class="btn btn-default btn-xs center-block" data-settings-password-button>{% trans 'Change Password' context 'Form button' %}</button>

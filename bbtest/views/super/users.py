@@ -70,6 +70,8 @@ class UserView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView):
             kwargs["extended_info"]["identification"] = user.info("identification")
             kwargs["extended_info"]["region"] = user.info("region")
             kwargs["extended_info"]["district"] = user.info("district")
+            kwargs["extended_info"]["village"] = user.info("village")
+            kwargs["extended_info"]["school"] = user.info("school")
 
         kwargs["balance_account"] = user.balance_account()
         kwargs["account_entries"] = user.balance_account().entries.order_by("created_at").prefetch_related("amounts__account")

@@ -75,6 +75,8 @@ class SettingsView(LoginRequiredMixin, UserContextMixin, FormView):
             "identification": self.request.user.info("identification", True),
             "region": self.request.user.info("region", True),
             "district": self.request.user.info("district", True),
+            "village": self.request.user.info("village", True),
+            "school": self.request.user.info("school", True),
         }
 
     def __is_student(self):

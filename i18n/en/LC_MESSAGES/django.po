@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 09:37+0600\n"
-"PO-Revision-Date: 2020-04-01 20:39-0700\n"
+"POT-Creation-Date: 2020-04-02 10:16+0600\n"
+"PO-Revision-Date: 2020-04-01 21:19-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: en\n"
@@ -285,6 +285,10 @@ msgid "ID"
 msgstr "ID"
 
 msgctxt "Validation error"
+msgid "Please enter an ID."
+msgstr "Please enter an ID."
+
+msgctxt "Validation error"
 msgid "Incorrect ID."
 msgstr "Incorrect ID."
 
@@ -301,6 +305,10 @@ msgid "Region"
 msgstr "Region"
 
 msgctxt "Validation error"
+msgid "Please select a region."
+msgstr "Please select a region."
+
+msgctxt "Validation error"
 msgid "Please select a correct region."
 msgstr "Please select a correct region."
 
@@ -309,8 +317,36 @@ msgid "District"
 msgstr "City/District"
 
 msgctxt "Validation error"
+msgid "Please enter a district."
+msgstr "Please enter a district."
+
+msgctxt "Validation error"
 msgid "District is too long."
 msgstr "District is too long."
+
+msgctxt "Form label"
+msgid "Village"
+msgstr "Village"
+
+msgctxt "Validation error"
+msgid "Please enter a village."
+msgstr "Please enter a village."
+
+msgctxt "Validation error"
+msgid "Village is too long."
+msgstr "Village is too long."
+
+msgctxt "Form label"
+msgid "School"
+msgstr "School"
+
+msgctxt "Validation error"
+msgid "Please enter a school."
+msgstr "Please enter a school."
+
+msgctxt "Validation error"
+msgid "School is too long."
+msgstr "School is too long."
 
 msgctxt "Form label"
 msgid "Amount"
