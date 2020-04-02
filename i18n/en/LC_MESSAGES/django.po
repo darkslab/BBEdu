@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 10:50+0600\n"
-"PO-Revision-Date: 2020-02-01 17:46-0800\n"
+"POT-Creation-Date: 2020-04-02 09:37+0600\n"
+"PO-Revision-Date: 2020-04-01 20:39-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: en\n"
@@ -65,6 +65,51 @@ msgctxt "Validation error"
 msgid "Please enter new password confirmation."
 msgstr "Please enter new password confirmation."
 
+msgid "_common.regions.select"
+msgstr "Select a region"
+
+msgid "_common.regions.names.akmola"
+msgstr "Akmola"
+
+msgid "_common.regions.names.aktobe"
+msgstr "Aktobe"
+
+msgid "_common.regions.names.almaty"
+msgstr "Almaty"
+
+msgid "_common.regions.names.atyrau"
+msgstr "Atyrau"
+
+msgid "_common.regions.names.west_kz"
+msgstr "West-Kazakhstan"
+
+msgid "_common.regions.names.zhambyl"
+msgstr "Zhambyl"
+
+msgid "_common.regions.names.karaganda"
+msgstr "Karagandy"
+
+msgid "_common.regions.names.kostanai"
+msgstr "Kostanay"
+
+msgid "_common.regions.names.kyzylorda"
+msgstr "Kyzylorda"
+
+msgid "_common.regions.names.magistau"
+msgstr "Mangystau"
+
+msgid "_common.regions.names.pavlodar"
+msgstr "Pavlodar"
+
+msgid "_common.regions.names.north_kz"
+msgstr "North-Kazakhstan"
+
+msgid "_common.regions.names.turkestan"
+msgstr "Turkestan"
+
+msgid "_common.regions.names.east_kz"
+msgstr "East-Kazakhstan"
+
 msgctxt "Model field"
 msgid "username"
 msgstr "username"
@@ -84,6 +129,10 @@ msgstr "last name"
 msgctxt "Model field"
 msgid "phone"
 msgstr "phone"
+
+msgctxt "Model field"
+msgid "meta_data"
+msgstr "meta data"
 
 msgctxt "Model field"
 msgid "joined at"
@@ -230,6 +279,38 @@ msgstr "This email is already taken."
 msgctxt "Validation error"
 msgid "Phone is too long."
 msgstr "Phone is too long."
+
+msgctxt "Form label"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "Validation error"
+msgid "Incorrect ID."
+msgstr "Incorrect ID."
+
+msgctxt "Validation error"
+msgid "ID contains too many numbers."
+msgstr "ID contains too many numbers."
+
+msgctxt "Validation error"
+msgid "ID contains too few numbers."
+msgstr "ID contains too few numbers."
+
+msgctxt "Form label"
+msgid "Region"
+msgstr "Region"
+
+msgctxt "Validation error"
+msgid "Please select a correct region."
+msgstr "Please select a correct region."
+
+msgctxt "Form label"
+msgid "District"
+msgstr "City/District"
+
+msgctxt "Validation error"
+msgid "District is too long."
+msgstr "District is too long."
 
 msgctxt "Form label"
 msgid "Amount"
