@@ -1,4 +1,4 @@
-from bbtest.auth.models import User
+from bbtest.auth.models import User, REGIONS
 from .email import Email
 from .test import TestDomain, TestSection, TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, Test, TestQuestion, TestParagraph, TestParagraphQuestion
 from .acknowledgement import DeveloperAcknowledgement

@@ -1,23 +1,14 @@
-from django.forms import ValidationError, CharField, PasswordInput
+from django.forms import ValidationError, ModelForm, CharField, PasswordInput
 from django.utils.translation import pgettext_lazy, pgettext
-from .base import BaseUserForm
+from .base import BaseUserForm, ExtendedBaseUserForm
 
 
-class SettingsForm(BaseUserForm):
+class SettingsFormMixin(ModelForm):
     require_password = False
 
     old_password = CharField(label=pgettext_lazy("Form label", "Old password"), error_messages={
         "required": pgettext_lazy("Validation error", "Please enter old password."),
     }, widget=PasswordInput, strip=False, required=False)
-
-    field_order = [
-        "first_name",
-        "last_name",
-        "email",
-        "old_password",
-        "password1",
-        "password2",
-    ]
 
     def clean(self):
         super().clean()
@@ -27,3 +18,11 @@ class SettingsForm(BaseUserForm):
                     pgettext("Validation error", "Incorrect old password."),
                     code="password_incorrect",
                 ))
+
+
+class SettingsForm(SettingsFormMixin, BaseUserForm):
+    pass
+
+
+class ExtendedSettingsForm(SettingsFormMixin, ExtendedBaseUserForm):
+    pass

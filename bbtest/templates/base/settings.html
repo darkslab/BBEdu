@@ -68,6 +68,22 @@
                                         <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
                                     {% endfor %}
                                 </div>
+                                {% if is_extended %}
+                                    <div class="form-group {% if form.identification.errors %}has-error{% endif %}">
+                                        <label for="{{ form.identification.id_for_label }}" class="control-label">{{ form.identification.label }}</label>
+                                        {{ form.identification|add_class:'form-control' }}
+                                        {% for error in form.identification.errors %}
+                                            <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-group {% if form.region.errors %}has-error{% endif %}">
+                                        <label for="{{ form.region.id_for_label }}" class="control-label">{{ form.region.label }}</label>
+                                        {{ form.region|add_class:'form-control' }}
+                                        {% for error in form.region.errors %}
+                                            <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
                                 <div class="form-group pt-15 pb-15">
                                     <button type="button" class="btn btn-default btn-xs center-block" data-settings-password-button>{% trans 'Change Password' context 'Form button' %}</button>
                                 </div>

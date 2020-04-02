@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from uuid import uuid4
 from bbtest.auth.password_validation import password_validators_help_text_html
 from bbtest.models.shopping.items.credit import MAX_CREDIT_AMOUNT, MIN_CREDIT_AMOUNT
+from bbtest.models import REGIONS
 
 
 User = get_user_model()
@@ -52,6 +53,7 @@ class BaseUserForm(ModelForm):
         if not self.require_password:
             self.fields["password1"].required = False
             self.fields["password2"].required = False
+        self._meta_data = None
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1", "")
@@ -76,9 +78,32 @@ class BaseUserForm(ModelForm):
                 user.username = uuid4().hex
                 if not User.objects.filter(username=user.username).exists():
                     break
+        if self._meta_data:
+            user.meta_data = self._meta_data
         if commit:
             user.save()
         return user
+
+
+class ExtendedBaseUserForm(BaseUserForm):
+    identification = IntegerField(label=pgettext_lazy("Form label", "ID"), error_messages={
+        "invalid": pgettext_lazy("Validation error", "Incorrect ID."),
+        "max_value": pgettext_lazy("Validation error", "ID contains too many numbers."),
+        "min_value": pgettext_lazy("Validation error", "ID contains too few numbers."),
+    }, max_value=999999999999, min_value=100000000000, required=False)
+    region = ChoiceField(label=pgettext_lazy("Form label", "Region"), error_messages={
+        "invalid_choice": pgettext_lazy("Validation error", "Please select a correct region."),
+    }, choices=REGIONS, required=False)
+
+    def clean(self):
+        self._meta_data = {}
+        if self.cleaned_data.get("identification"):
+            self._meta_data["identification"] = self.cleaned_data["identification"]
+        if self.cleaned_data.get("region"):
+            self._meta_data["region"] = self.cleaned_data["region"]
+        if not self._meta_data:
+            self._meta_data = None
+        return self.cleaned_data
 
 
 class BuyCreditsForm(Form):
