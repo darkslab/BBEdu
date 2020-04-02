@@ -94,6 +94,9 @@ class ExtendedBaseUserForm(BaseUserForm):
     region = ChoiceField(label=pgettext_lazy("Form label", "Region"), error_messages={
         "invalid_choice": pgettext_lazy("Validation error", "Please select a correct region."),
     }, choices=REGIONS, required=False)
+    district = CharField(label=pgettext_lazy("Form label", "District"), error_messages={
+        "max_length": pgettext_lazy("Validation error", "District is too long."),
+    }, max_length=100, required=False)
 
     def clean(self):
         self._meta_data = {}
@@ -101,9 +104,11 @@ class ExtendedBaseUserForm(BaseUserForm):
             self._meta_data["identification"] = self.cleaned_data["identification"]
         if self.cleaned_data.get("region"):
             self._meta_data["region"] = self.cleaned_data["region"]
+        if self.cleaned_data.get("district"):
+            self._meta_data["district"] = self.cleaned_data["district"]
         if not self._meta_data:
             self._meta_data = None
-        return self.cleaned_data
+        return super().clean()
 
 
 class BuyCreditsForm(Form):

@@ -179,10 +179,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         if key not in (
             "identification",
             "region",
+            "district",
         ):
             raise KeyError("There is no info for %s" % key)
         if not self.meta_data or key not in self.meta_data:
-            return None
+            return ""
         if key == "region" and not raw:
             return next(region[1] for region in REGIONS if region[0] == self.meta_data[key])
         return self.meta_data[key]
