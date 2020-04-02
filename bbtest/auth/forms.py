@@ -1,4 +1,4 @@
-from django.forms import CharField, EmailField, PasswordInput
+from django.forms import ModelForm, CharField, EmailField, PasswordInput
 from django.contrib.auth.forms import (
     AuthenticationForm as _AuthenticationForm,
     PasswordResetForm as _PasswordResetForm,
@@ -8,7 +8,7 @@ from django.utils.translation import pgettext_lazy, pgettext
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.messages import success
-from bbtest.forms.base import BaseUserForm
+from bbtest.forms.base import BaseUserForm, ExtendedBaseUserForm
 from bbtest.emails.password_reset import send_mail
 from bbtest.auth.password_validation import password_validators_help_text_html
 from bbtest.models import Account
@@ -26,7 +26,7 @@ class AuthenticationForm(_AuthenticationForm):
     }
 
 
-class UserCreationForm(BaseUserForm):
+class UserCreationFormMixin(ModelForm):
     def save(self, group):
         user = super().save()
 
@@ -40,6 +40,14 @@ class UserCreationForm(BaseUserForm):
             Account.objects.create_liability_account("Developer-%s" % user.pk)
 
         return user
+
+
+class UserCreationForm(UserCreationFormMixin, BaseUserForm):
+    pass
+
+
+class ExtendedUserCreationForm(UserCreationFormMixin, ExtendedBaseUserForm):
+    pass
 
 
 class PasswordResetForm(_PasswordResetForm):

@@ -98,6 +98,20 @@
                                     <label for="phone" class="control-label">Phone</label>
                                     <input type="text" value="{{ user_object.phone }}" class="form-control" id="phone" readonly>
                                 </div>
+                                {% if extended_info %}
+                                    <div class="form-group">
+                                        <label for="identification" class="control-label">ID</label>
+                                        <input type="text" value="{{ extended_info.identification }}" class="form-control" id="identification" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Region</label>
+                                        <input type="text" value="{{ extended_info.region }}" class="form-control" id="region" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="district" class="control-label">City/District</label>
+                                        <input type="text" value="{{ extended_info.district }}" class="form-control" id="district" readonly>
+                                    </div>
+                                {% endif %}
                                 <div class="form-group">
                                     <dl class="dl-horizontal">
                                         <dt>Joined at</dt>

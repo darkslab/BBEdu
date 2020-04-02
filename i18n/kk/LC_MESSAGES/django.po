@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-02 07:43+0600\n"
-"PO-Revision-Date: 2020-02-01 17:48-0800\n"
+"POT-Creation-Date: 2020-04-02 09:37+0600\n"
+"PO-Revision-Date: 2020-04-01 20:59-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -67,6 +67,51 @@ msgctxt "Validation error"
 msgid "Please enter new password confirmation."
 msgstr "Жаңа құпиясөздің растауын енгізіңіз."
 
+msgid "_common.regions.select"
+msgstr "Облысты таңдаңыз"
+
+msgid "_common.regions.names.akmola"
+msgstr "Ақмола облысы"
+
+msgid "_common.regions.names.aktobe"
+msgstr "Ақтөбе облысы"
+
+msgid "_common.regions.names.almaty"
+msgstr "Алматы облысы"
+
+msgid "_common.regions.names.atyrau"
+msgstr "Атырау облысы"
+
+msgid "_common.regions.names.west_kz"
+msgstr "Батыс Қазақстан облысы"
+
+msgid "_common.regions.names.zhambyl"
+msgstr "Жамбыл облысы"
+
+msgid "_common.regions.names.karaganda"
+msgstr "Қарағанды облысы"
+
+msgid "_common.regions.names.kostanai"
+msgstr "Қостанай облысы"
+
+msgid "_common.regions.names.kyzylorda"
+msgstr "Қызылорда облысы"
+
+msgid "_common.regions.names.magistau"
+msgstr "Маңғыстау облысы"
+
+msgid "_common.regions.names.pavlodar"
+msgstr "Павлодар облысы"
+
+msgid "_common.regions.names.north_kz"
+msgstr "Солтүстік Қазақстан облысы"
+
+msgid "_common.regions.names.turkestan"
+msgstr "Түркістан облысы"
+
+msgid "_common.regions.names.east_kz"
+msgstr "Шығыс Қазақстан облысы"
+
 msgctxt "Model field"
 msgid "username"
 msgstr "аты-жөні"
@@ -86,6 +131,10 @@ msgstr "тегі"
 msgctxt "Model field"
 msgid "phone"
 msgstr "телефон нөмірі"
+
+msgctxt "Model field"
+msgid "meta_data"
+msgstr "meta мәліметі"
 
 msgctxt "Model field"
 msgid "joined at"
@@ -232,6 +281,38 @@ msgstr "Бұл электрондық пошта тіркелген."
 msgctxt "Validation error"
 msgid "Phone is too long."
 msgstr "Телефон нөмірінің ұзындығы тым үлкен."
+
+msgctxt "Form label"
+msgid "ID"
+msgstr "ЖСН"
+
+msgctxt "Validation error"
+msgid "Incorrect ID."
+msgstr "ЖСН дұрыс емес."
+
+msgctxt "Validation error"
+msgid "ID contains too many numbers."
+msgstr "ЖСН артық сан енгіздіңіз."
+
+msgctxt "Validation error"
+msgid "ID contains too few numbers."
+msgstr "ЖСН толық емес."
+
+msgctxt "Form label"
+msgid "Region"
+msgstr "Облыс"
+
+msgctxt "Validation error"
+msgid "Please select a correct region."
+msgstr "Дұрыс облысты таңдаңыз."
+
+msgctxt "Form label"
+msgid "District"
+msgstr "Қала/Аудан"
+
+msgctxt "Validation error"
+msgid "District is too long."
+msgstr "Аудан атауы тым үлкен."
 
 msgctxt "Form label"
 msgid "Amount"
@@ -1627,9 +1708,6 @@ msgstr "Beeline балансымен төлеу"
 msgid "page:/buy-credits/:payment_option_3"
 msgstr "Төлем тәсілі 3"
 
-msgid "page:/buy-credits/:pay_with_kaspi"
-msgstr "Kaspi мобильді қосымшасы арқылы төлеу"
-
 msgid "page:/buy-credits/:kaspi_instructions"
 msgstr "Kaspi мобильді қосымшасында төлем жүргізу нұсқаулығы"
 
@@ -1651,6 +1729,9 @@ msgstr ""
 
 msgid "page:/buy-credits/:kaspi_instruction_4"
 msgstr "Төлем сомасын енгізіп, «Оплатить» батырмасын басыңыз"
+
+msgid "page:/buy-credits/:pay_with_kaspi"
+msgstr "Kaspi мобильді қосымшасы арқылы төлеу"
 
 msgid "page:/buy-credits/:credits_conversion_rate"
 msgstr "1 бірлік 1 теңгеге тең."

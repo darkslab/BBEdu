@@ -98,6 +98,23 @@ _common:
         topic7: ~
         topic8: ~
         topic9: ~
+  regions:
+    select: ~
+    names:
+      akmola: ~
+      aktobe: ~
+      almaty: ~
+      atyrau: ~
+      west_kz: ~
+      zhambyl: ~
+      karaganda: ~
+      kostanai: ~
+      kyzylorda: ~
+      magistau: ~
+      pavlodar: ~
+      north_kz: ~
+      turkestan: ~
+      east_kz: ~
 
 page:
   '/':

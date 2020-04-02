@@ -14,7 +14,7 @@ from decimal import Decimal
 from bbtest.auth.mixins import LoginRequiredMixin
 from bbtest.views.generic import FormView, RedirectView, TemplateView, View
 from bbtest.views.common import UserContextMixin
-from bbtest.forms.user import SettingsForm
+from bbtest.forms.user import SettingsForm, ExtendedSettingsForm
 from bbtest.forms.base import BuyCreditsForm
 from bbtest.forms.message import MessageForm
 from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError, FirstBeelinePaymentProcessor
@@ -60,7 +60,11 @@ class DashboardView(LoginRequiredMixin, RedirectView):
 
 class SettingsView(LoginRequiredMixin, UserContextMixin, FormView):
     template_name = "base/settings.html"
-    form_class = SettingsForm
+
+    def get_form_class(self):
+        if self.__is_student():
+            return ExtendedSettingsForm
+        return SettingsForm
 
     def get_success_url(self):
         return resolve_url(self.request.user)
@@ -73,6 +77,20 @@ class SettingsView(LoginRequiredMixin, UserContextMixin, FormView):
     def form_valid(self, form):
         login(self.request, form.save())
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        kwargs["is_extended"] = self.__is_student()
+        return super().get_context_data(**kwargs)
+
+    def get_initial(self):
+        return {
+            "identification": self.request.user.info("identification", True),
+            "region": self.request.user.info("region", True),
+            "district": self.request.user.info("district", True),
+        }
+
+    def __is_student(self):
+        return not self.request.user.is_superuser and self.request.user.has_perm("bbtest.student")
 
 
 class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, FormView):
