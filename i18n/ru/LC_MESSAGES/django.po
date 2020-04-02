@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-02 09:37+0600\n"
-"PO-Revision-Date: 2020-04-01 20:43-0700\n"
+"PO-Revision-Date: 2020-04-01 21:01-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -68,10 +68,8 @@ msgctxt "Validation error"
 msgid "Please enter new password confirmation."
 msgstr "Введите подтверждение нового пароля."
 
-#, fuzzy
-#| msgid "_common.sections.law.section0"
 msgid "_common.regions.select"
-msgstr "Тестирование юристов"
+msgstr "Выберите область"
 
 msgid "_common.regions.names.akmola"
 msgstr "Акмолинская область"
@@ -287,42 +285,33 @@ msgctxt "Form label"
 msgid "ID"
 msgstr "ИИН"
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "Incorrect data."
 msgctxt "Validation error"
 msgid "Incorrect ID."
-msgstr "Данные указаны неверно."
+msgstr "Неверный ИИН."
 
 msgctxt "Validation error"
 msgid "ID contains too many numbers."
-msgstr ""
+msgstr "Слишком много цифр в ИИН."
 
 msgctxt "Validation error"
 msgid "ID contains too few numbers."
-msgstr ""
+msgstr "Недостаточно цифр в ИИН."
 
 msgctxt "Form label"
 msgid "Region"
 msgstr "Область"
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "Please select test section."
 msgctxt "Validation error"
 msgid "Please select a correct region."
-msgstr "Выберите тест."
+msgstr "Выберите верную область."
 
 msgctxt "Form label"
 msgid "District"
 msgstr "Город/Район"
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "First name is too long."
 msgctxt "Validation error"
 msgid "District is too long."
-msgstr "Слишком длинное имя."
+msgstr "Слишком длинное название района."
 
 msgctxt "Form label"
 msgid "Amount"
