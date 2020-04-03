@@ -15,10 +15,10 @@ class MathematicsNISItem(NonLanguageNISItem):
             return Decimal("0.00")
         return Decimal("10.00") * self.test().section.question_count
 
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+    # def discount(self):
+    #     if self.price().is_zero():
+    #         return Decimal("0.00")
+    #     return self.question_discount() * self.test().section.question_count
 
 
 class KazakhLanguageNISItem(LanguageNISItem):
@@ -32,10 +32,10 @@ class KazakhLanguageNISItem(LanguageNISItem):
             return Decimal("0.00")
         return Decimal("10.00") * self.test().section.question_count
 
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+    # def discount(self):
+    #     if self.price().is_zero():
+    #         return Decimal("0.00")
+    #     return self.question_discount() * self.test().section.question_count
 
 
 class RussianLanguageNISItem(LanguageNISItem):
@@ -49,10 +49,10 @@ class RussianLanguageNISItem(LanguageNISItem):
             return Decimal("0.00")
         return Decimal("10.00") * self.test().section.question_count
 
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+    # def discount(self):
+    #     if self.price().is_zero():
+    #         return Decimal("0.00")
+    #     return self.question_discount() * self.test().section.question_count
 
 
 class EnglishLanguageNISItem(LanguageNISItem):
@@ -66,10 +66,10 @@ class EnglishLanguageNISItem(LanguageNISItem):
             return Decimal("0.00")
         return Decimal("10.00") * self.test().section.question_count
 
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+    # def discount(self):
+    #     if self.price().is_zero():
+    #         return Decimal("0.00")
+    #     return self.question_discount() * self.test().section.question_count
 
 
 class QuantitativeNISItem(NonLanguageNISItem):
@@ -83,7 +83,7 @@ class QuantitativeNISItem(NonLanguageNISItem):
             return Decimal("0.00")
         return Decimal("10.00") * self.test().section.question_count
 
-    def discount(self):
-        if self.price().is_zero():
-            return Decimal("0.00")
-        return self.question_discount() * self.test().section.question_count
+    # def discount(self):
+    #     if self.price().is_zero():
+    #         return Decimal("0.00")
+    #     return self.question_discount() * self.test().section.question_count
