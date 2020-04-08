@@ -52,7 +52,8 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixi
 
     def get_context_data(self, **kwargs):
         kwargs["test_domain"] = get_test_domain_or_404(self.kwargs["test_domain_id"])
-        for section in kwargs["test_domain"].sections.all():
+        kwargs["test_domain_sections"] = kwargs["test_domain"].sections.filter(pk__in=(9543, 9544)).all()
+        for section in kwargs["test_domain_sections"]:
             section.minutes = section.duration // 60
 
         kwargs["test_langs"] = None
