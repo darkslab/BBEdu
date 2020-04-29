@@ -76,6 +76,14 @@ var Test = function (_React$Component) {
                             ));
                         }
                     }
+                    var video = null;
+                    if (this._statusData.video) {
+                        video = React.createElement(
+                            "div",
+                            { "class": "embed-responsive embed-responsive-16by9 mb-23" },
+                            React.createElement("iframe", { src: this._statusData.video, frameborder: "0", allow: "accelerometer; encrypted-media; gyroscope; picture-in-picture", allowfullscreen: true })
+                        );
+                    }
                     content = React.createElement(
                         "div",
                         { className: "panel panel-default" },
@@ -94,6 +102,7 @@ var Test = function (_React$Component) {
                                 )
                             ),
                             instructions,
+                            video,
                             React.createElement(
                                 "div",
                                 { className: "text-center mb-23" },
@@ -466,6 +475,9 @@ var Test = function (_React$Component) {
                         section: data.section,
                         instructions: data.instructions
                     };
+                    if (data.video) {
+                        this._statusData["video"] = data.video;
+                    }
                     this._currentQuestionIndex = 0;
                     break;
                 case "started":

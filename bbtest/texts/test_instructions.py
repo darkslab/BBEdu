@@ -213,3 +213,31 @@ def test_instructions_title(test):
             test.code.upper(),
         ]
     return []
+
+
+NIS_TEST_VIDEO_LINKS = {
+    9540: {
+        Test.LANGUAGE_KK: "https://www.youtube.com/embed/QakiQUwFyqo",
+        Test.LANGUAGE_RU: "https://www.youtube.com/embed/a6wdikhANVI",
+    },
+    9541: {
+        Test.LANGUAGE_KK: "https://www.youtube.com/embed/vgw8KAiCapY",
+        Test.LANGUAGE_RU: "https://www.youtube.com/embed/JSpK3Mtmio0",
+    },
+    9542: {
+        Test.LANGUAGE_KK: "https://www.youtube.com/embed/7ZPcaY5tlSc",
+        Test.LANGUAGE_RU: "https://www.youtube.com/embed/gVw0dgXxFic",
+    },
+    9543: {
+        Test.LANGUAGE_XX: "https://www.youtube.com/embed/8Dsjsbwp5Tc",
+    },
+    9544: {
+        Test.LANGUAGE_KK: "https://www.youtube.com/embed/iUtaOOySSqM",
+        Test.LANGUAGE_RU: "https://www.youtube.com/embed/Bj31L0mADvw",
+    },
+}
+
+def test_video(test):
+    if not test.section.is_nis():
+        return None
+    return NIS_TEST_VIDEO_LINKS[test.section.pk][test.language]
