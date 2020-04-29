@@ -51,11 +51,20 @@ class Test extends React.Component {
                         );
                     }
                 }
+                let video = null;
+                if (this._statusData.video) {
+                    video = (
+                        <div class="embed-responsive embed-responsive-16by9 mb-23">
+                            <iframe src={this._statusData.video} frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    );
+                }
                 content = (
                     <div className="panel panel-default">
                         <div className="panel-body">
                             <h3 className="text-center mb-15">{this._statusData.section[0]} <span className="label label-default">{this._statusData.section[1]}</span></h3>
                             {instructions}
+                            {video}
                             <div className="text-center mb-23">
                                 <div className="visible-xs-block">
                                     <button type="button"
@@ -306,6 +315,9 @@ class Test extends React.Component {
                     section: data.section,
                     instructions: data.instructions
                 };
+                if (data.video) {
+                    this._statusData["video"] = data.video;
+                }
                 this._currentQuestionIndex = 0;
                 break;
             case "started":
