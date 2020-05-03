@@ -90,7 +90,7 @@ class ExtendedBaseUserForm(BaseUserForm):
         "invalid": pgettext_lazy("Validation error", "Incorrect ID."),
         "max_value": pgettext_lazy("Validation error", "ID contains too many numbers."),
         "min_value": pgettext_lazy("Validation error", "ID contains too few numbers."),
-    }, max_value=999999999999, min_value=100000000000, required=False)
+    }, max_value=999999999999, min_value=10000000000, required=False)
     region = ChoiceField(label=pgettext_lazy("Form label", "Region"), error_messages={
         "invalid_choice": pgettext_lazy("Validation error", "Please select a correct region."),
     }, choices=REGIONS, required=False)

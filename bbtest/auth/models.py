@@ -186,4 +186,6 @@ class User(AbstractBaseUser, PermissionsMixin):
             return ""
         if key == "region" and not raw:
             return next(region[1] for region in REGIONS if region[0] == self.meta_data[key])
+        if key == "identification" and not raw:
+            return str(self.meta_data[key]).zfill(12)
         return self.meta_data[key]
