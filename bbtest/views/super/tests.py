@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
+from django.urls import reverse
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
@@ -34,6 +35,10 @@ class TestsView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin,
         except EmptyPage:
             kwargs["tests"] = paginator.page(paginator.num_pages)
         paginator.page_indexes = self.page_indexes(kwargs["tests"], 5)
+
+        kwargs["test_page_redirect"] = reverse("bbtest:super_tests")
+        if self.request.GET.get("page"):
+            kwargs["test_page_redirect"] = "%s?page=%s" % (reverse("bbtest:super_tests"), self.request.GET.get("page"))
 
         for test in kwargs["tests"]:
             test.display_language = ""

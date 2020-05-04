@@ -238,7 +238,7 @@
                 {% if test.is_draft and test.developer == user %}
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
                 {% endif %}
-                {% if test.is_pending or test.is_draft and test.developer|has_perm:'bbtest.super' %}
+                {% if not test.is_archived %}
                     {% if test.is_free %}
                         <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-toggle-free-modal]">{% trans 'Change to Paid' context 'Developer tools' %}</button>
                     {% else %}

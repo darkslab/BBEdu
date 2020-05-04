@@ -247,9 +247,7 @@ class DeleteTestView(DeveloperPermissionRequiredMixin, View):
 
 class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
     def post(self, request, code, free, *args, **kwargs):
-        test = get_object_or_404(Test.worked_tests.select_related("developer"), code=code)
-        if not test.developer.has_perm("bbtest.super") and test.is_draft():
-            raise Http404("Superusers cannot toggle free status of other developers' draft tests")
+        test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)
 
         if free == "true":
             free = True
@@ -266,6 +264,8 @@ class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
             success(request, pgettext("Success alert message", "Test is now free."))
         else:
             success(request, pgettext("Success alert message", "Test is now paid."))
+        if "r" in self.request.GET:
+            return redirect(self.request.GET["r"])
         return redirect("bbtest:build_test_preview", code=test.code)
 
 
