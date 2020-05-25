@@ -54,8 +54,8 @@ class Test extends React.Component {
                 let video = null;
                 if (this._statusData.video) {
                     video = (
-                        <div class="embed-responsive embed-responsive-16by9 mb-23">
-                            <iframe src={this._statusData.video} frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div className="embed-responsive embed-responsive-16by9 mb-23">
+                            <iframe src={this._statusData.video} frameBorder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         </div>
                     );
                 }
