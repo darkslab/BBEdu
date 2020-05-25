@@ -80,8 +80,8 @@ var Test = function (_React$Component) {
                     if (this._statusData.video) {
                         video = React.createElement(
                             "div",
-                            { "class": "embed-responsive embed-responsive-16by9 mb-23" },
-                            React.createElement("iframe", { src: this._statusData.video, frameborder: "0", allow: "accelerometer; encrypted-media; gyroscope; picture-in-picture", allowfullscreen: true })
+                            { className: "embed-responsive embed-responsive-16by9 mb-23" },
+                            React.createElement("iframe", { src: this._statusData.video, frameBorder: "0", allow: "accelerometer; encrypted-media; gyroscope; picture-in-picture", allowFullScreen: true })
                         );
                     }
                     content = React.createElement(
