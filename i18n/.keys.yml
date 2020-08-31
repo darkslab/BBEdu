@@ -120,6 +120,7 @@ page:
   '/':
     html_title: ~
     test_domain_full_name: ~
+    media_about_us: ~
   '/nis/':
     html_title: ~
     html_description: ~
