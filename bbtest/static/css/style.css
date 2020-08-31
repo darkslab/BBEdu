@@ -1189,6 +1189,14 @@ html {
     }
 }
 
+.bb-home-section-0a {
+    background-color: rgba(217, 172, 68, 1);
+}
+
+.bb-home-section-0a-cell {
+    min-height: 210px;
+}
+
 .bb-home-section-1 {
     background-color: rgba(10, 60, 100, 1);
 }
