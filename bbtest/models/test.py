@@ -40,7 +40,7 @@ class TestSection(Model):
         return self.name
 
     def is_nis(self):
-        return self.pk in range(9540, 9545)
+        return self.pk in range(9540, 9545) or self.pk in (9566, 9567)
 
     def is_unt_compulsory(self):
         return self.pk in range(9545, 9548)

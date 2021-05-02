@@ -31,8 +31,8 @@ class ExamMixin:
             "section": test_instructions_title(self.current_quiz().test),
             "instructions": test_instructions(self.current_quiz().test),
         }
-        if test_video(self.current_quiz().test):
-            data["video"] = test_video(self.current_quiz().test)
+        # if test_video(self.current_quiz().test):
+        #     data["video"] = test_video(self.current_quiz().test)
         return data
 
     def started_response(self, now_at):

@@ -7,6 +7,8 @@ TEST_SECTION_MAP = {
     "9542": RussianLanguageNISItem,
     "9543": EnglishLanguageNISItem,
     "9544": QuantitativeNISItem,
+    "9566": CriticalThinkingNISItem,
+    "9567": SpatialThinkingNISItem,
 
     "9547": MathematicalLiteracyCompulsoryUNTItem,
     "9546": ReadingLiteracyCompulsoryUNTItem,

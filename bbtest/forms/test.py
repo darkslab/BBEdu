@@ -495,7 +495,7 @@ class TestForm(ModelForm):
 
         try:
             # NIS sections
-            if section.pk in (9540, 9541, 9542, 9544):
+            if section.pk in (9540, 9541, 9542, 9544, 9566, 9567):
                 if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
                     raise ValueError("Incorrect language")
             # NIS sections
@@ -576,7 +576,7 @@ class TestForm(ModelForm):
                 question.weight = TestQuestion.calculate_weight(question, test.section)
                 question.save()
 
-                if test.section.id == 9540:
+                if test.section.id == 9540 or test.section.id in (9566, 9567):
                     paragraph = TestParagraph.objects.create(
                         paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
                         meta_data={"text": ""},

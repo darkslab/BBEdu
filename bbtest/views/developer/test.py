@@ -63,6 +63,17 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
             elif section.id == 9543:
                 data["specification"][Test.LANGUAGE_XX] = test_specification(section, Test.LANGUAGE_XX, get_language())
 
+            elif section.id in (9566, 9567):
+                data["language"] = {
+                    "title": pgettext("/developer/tests/", "Choose test language"),
+                    "choices": [],
+                }
+                for language in Test.LANGUAGES:
+                    if language[0] == Test.LANGUAGE_XX:
+                        continue
+                    data["language"]["choices"].append(language)
+                    data["specification"][language[0]] = test_specification(section, language[0], get_language())
+
             kwargs["nis_data"].append(data)
 
         kwargs["unt"] = get_object_or_404(TestDomain.objects.prefetch_related("sections").order_by('order'), pk=7912)

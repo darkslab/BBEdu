@@ -52,7 +52,7 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixi
 
     def get_context_data(self, **kwargs):
         kwargs["test_domain"] = get_test_domain_or_404(self.kwargs["test_domain_id"])
-        kwargs["test_domain_sections"] = kwargs["test_domain"].sections.filter(pk__in=(9543, 9544)).all()
+        kwargs["test_domain_sections"] = kwargs["test_domain"].sections.filter(pk__in=(9543, 9544, 9566, 9567)).all()
         for section in kwargs["test_domain_sections"]:
             section.minutes = section.duration // 60
 
@@ -206,6 +206,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                         KazakhLanguageNISItem,
                         RussianLanguageNISItem,
                         EnglishLanguageNISItem,
+                        SpatialThinkingNISItem,
                     ):
                         amount = Decimal("200.00")
                     elif TEST_SECTION_MAP[section_id] in (
@@ -248,6 +249,10 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                         LawItem,
                     ):
                         amount = Decimal("200.00")
+                    elif TEST_SECTION_MAP[section_id] in (
+                        CriticalThinkingNISItem,
+                    ):
+                        amount = Decimal("50.00")
                 except KeyError:
                     pass
                 response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": amount }

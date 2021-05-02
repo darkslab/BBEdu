@@ -6576,6 +6576,26 @@ SPECIFICATION_XX_TEST_TEXTS = {
         settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
+    9566: {
+        settings.BB_LANGUAGE_CODE_KK: """
+        """,
+        settings.BB_LANGUAGE_CODE_RU: """
+            <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
+            <p class="text-center text-normal mb-10">Нет тестовой спецификации.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
+    },
+    9567: {
+        settings.BB_LANGUAGE_CODE_KK: """
+        """,
+        settings.BB_LANGUAGE_CODE_RU: """
+            <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
+            <p class="text-center text-normal mb-10">Нет тестовой спецификации.</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
+    },
 }
 
 SPECIFICATION_KK_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9540][settings.BB_LANGUAGE_CODE_RU]
@@ -6689,6 +6709,12 @@ SPECIFICATION_XX_TEST_TEXTS[9564][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_
 
 SPECIFICATION_XX_TEST_TEXTS[9565][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9565][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_XX_TEST_TEXTS[9565][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9565][settings.BB_LANGUAGE_CODE_RU]
+
+SPECIFICATION_XX_TEST_TEXTS[9566][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9566][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_XX_TEST_TEXTS[9566][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9566][settings.BB_LANGUAGE_CODE_RU]
+
+SPECIFICATION_XX_TEST_TEXTS[9567][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_XX_TEST_TEXTS[9567][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_XX_TEST_TEXTS[9567][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9567][settings.BB_LANGUAGE_CODE_RU]
 
 def test_specification(test_section, test_language, language):
     try:
