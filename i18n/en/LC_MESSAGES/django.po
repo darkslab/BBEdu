@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-03 03:41+0600\n"
+"POT-Creation-Date: 2021-05-07 21:16+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1833,21 +1833,6 @@ msgctxt "Form button"
 msgid "Login"
 msgstr "Login"
 
-msgctxt "Form link"
-msgid "Forgot your password?"
-msgstr "Forgot your password?"
-
-msgctxt "/login/"
-msgid "Don't have an account?"
-msgstr "Don't have an account?"
-
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Register"
-msgctxt "/login/"
-msgid "Register"
-msgstr "Register"
-
 msgctxt "Page title"
 msgid "Reset Password"
 msgstr "Reset Password"
@@ -2237,13 +2222,6 @@ msgctxt "Navigation link"
 msgid "Start testing"
 msgstr "Start the test"
 
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Test Results"
-msgctxt "Navigation link"
-msgid "Results"
-msgstr "Test Results"
-
 msgid "page:/student/buy-tests/xxxx/:checkout_shortcut"
 msgstr "Start"
 
@@ -2318,68 +2296,6 @@ msgstr "Buy credits"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr "Choose different test domain"
-
-#, fuzzy, python-format
-#| msgid ""
-#| "page:/student/results/:bundle_header:%(quiz_set_count)s;%(domain_name)s;"
-#| "%(span_open)s;%(span_close)s"
-msgid ""
-"page:/student/:last_results_header:%(domain_name)s;%(span_open)s;"
-"%(span_close)s"
-msgstr "Test #%(quiz_set_count)s %(span_open)s%(domain_name)s%(span_close)s"
-
-msgctxt "Results page"
-msgid "Not finished"
-msgstr "Not finished"
-
-msgctxt "Results page"
-msgid "Section"
-msgstr "Section"
-
-msgctxt "Results page"
-msgid "Your score"
-msgstr "Your score"
-
-msgctxt "Results page"
-msgid "Average score of students on bbtest.kz website for the section."
-msgstr "Average score of students on bbtest.kz website for the section."
-
-#, python-format
-msgctxt "Results page"
-msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-msgstr "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-
-#, fuzzy
-#| msgctxt "Exam"
-#| msgid "Go to Results"
-msgctxt "/student/"
-msgid "Go to results page"
-msgstr "Go to Results"
-
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "You have not created tests yet"
-msgctxt "/student/"
-msgid "You have not taken any tests."
-msgstr "You have not created tests yet"
-
-#, fuzzy
-#| msgctxt "Exam"
-#| msgid "Start the test"
-msgctxt "/student/"
-msgid "Start testing"
-msgstr "Start the test"
-
-msgctxt "Results page"
-msgid "Test progress monitoring"
-msgstr "Test progress monitoring"
-
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "Your question will be previewed here"
-msgctxt "/student/"
-msgid "Your progress will be shown here."
-msgstr "Your question will be previewed here"
 
 msgctxt "Exam"
 msgid "There was an error, please reload the page."
@@ -2507,6 +2423,27 @@ msgid ""
 "%(span_open)s;%(span_close)s"
 msgstr "Test #%(quiz_set_count)s %(span_open)s%(domain_name)s%(span_close)s"
 
+msgctxt "Results page"
+msgid "Not finished"
+msgstr "Not finished"
+
+msgctxt "Results page"
+msgid "Section"
+msgstr "Section"
+
+msgctxt "Results page"
+msgid "Your score"
+msgstr "Your score"
+
+msgctxt "Results page"
+msgid "Average score of students on bbtest.kz website for the section."
+msgstr "Average score of students on bbtest.kz website for the section."
+
+#, python-format
+msgctxt "Results page"
+msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+msgstr "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+
 msgid "page:/student/results/:nis_pass_msg"
 msgstr ""
 "You must score a minimum of 140 points in Mathematics and 120 points in "
@@ -2542,6 +2479,10 @@ msgstr[0] ""
 msgstr[1] ""
 "You have answered correctly to %(questions_count)s questions (%(score)s) out "
 "of %(total_questions_count)s in this section"
+
+msgctxt "Results page"
+msgid "Test progress monitoring"
+msgstr "Test progress monitoring"
 
 msgctxt "Results page"
 msgid "You can see your results and follow the progress on this test section."

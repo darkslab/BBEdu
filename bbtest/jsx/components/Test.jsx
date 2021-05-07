@@ -212,14 +212,10 @@ class Test extends React.Component {
                                 <div className="visible-xs-block">
                                     <a href={this.props.resultsUrl}
                                        className="btn btn-success btn-block">{this.props.texts.resultsButton}</a>
-                                    <a href={this.props.buyUrl}
-                                       className="btn btn-primary btn-block">{this.props.texts.buyButton}</a>
                                 </div>
                                 <div className="hidden-xs">
                                     <a href={this.props.resultsUrl}
                                        className="btn btn-success btn-lg">{this.props.texts.resultsButton}</a>
-                                    <a href={this.props.buyUrl}
-                                       className="btn btn-primary btn-lg ml-5">{this.props.texts.buyButton}</a>
                                 </div>
                             </div>
                         </div>

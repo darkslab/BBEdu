@@ -353,12 +353,6 @@ var Test = function (_React$Component) {
                                         { href: this.props.resultsUrl,
                                             className: "btn btn-success btn-block" },
                                         this.props.texts.resultsButton
-                                    ),
-                                    React.createElement(
-                                        "a",
-                                        { href: this.props.buyUrl,
-                                            className: "btn btn-primary btn-block" },
-                                        this.props.texts.buyButton
                                     )
                                 ),
                                 React.createElement(
@@ -369,12 +363,6 @@ var Test = function (_React$Component) {
                                         { href: this.props.resultsUrl,
                                             className: "btn btn-success btn-lg" },
                                         this.props.texts.resultsButton
-                                    ),
-                                    React.createElement(
-                                        "a",
-                                        { href: this.props.buyUrl,
-                                            className: "btn btn-primary btn-lg ml-5" },
-                                        this.props.texts.buyButton
                                     )
                                 )
                             )

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-03 03:41+0600\n"
-"PO-Revision-Date: 2021-05-02 14:43-0700\n"
+"POT-Creation-Date: 2021-05-07 21:16+0600\n"
+"PO-Revision-Date: 2021-05-07 08:13-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: kk\n"
@@ -1172,7 +1172,7 @@ msgid "_common.sections.nufypet.section3"
 msgstr "Thinking skills"
 
 msgid "_common.domains.nis"
-msgstr "НЗМ"
+msgstr "iQanat"
 
 msgid "_common.domains.unt"
 msgstr "ҰБТ"
@@ -1833,18 +1833,6 @@ msgctxt "Form button"
 msgid "Login"
 msgstr "Кіру"
 
-msgctxt "Form link"
-msgid "Forgot your password?"
-msgstr "Құпиясөз есіңізде жоқ па?"
-
-msgctxt "/login/"
-msgid "Don't have an account?"
-msgstr "Аккаунт жоқ па?"
-
-msgctxt "/login/"
-msgid "Register"
-msgstr "Тіркелу"
-
 msgctxt "Page title"
 msgid "Reset Password"
 msgstr "Құпиясөзді өзгерту"
@@ -2134,7 +2122,7 @@ msgid "Start practicing to the test right now!"
 msgstr "Тестілеуге бүгіннен бастап дайындал!"
 
 msgid "_common.domains.nis_full"
-msgstr "iQanat байқау тестілеуі"
+msgstr "iQanat тестілеуі"
 
 #, python-format
 msgid ""
@@ -2244,10 +2232,6 @@ msgctxt "Navigation link"
 msgid "Start testing"
 msgstr "Тестілеуді бастау"
 
-msgctxt "Navigation link"
-msgid "Results"
-msgstr "Тестілеудің нәтижелері"
-
 msgid "page:/student/buy-tests/xxxx/:checkout_shortcut"
 msgstr "Бастау"
 
@@ -2262,7 +2246,7 @@ msgstr "%(domain_name)s"
 #, python-format
 msgctxt "Page title"
 msgid "Select tests for %(domain_name)s"
-msgstr "%(domain_name)s пәндерін таңдаңыз"
+msgstr "%(domain_name)s тестілеуінің пәндерін таңдаңыз"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Something went wrong. Please refresh the page."
@@ -2310,7 +2294,7 @@ msgstr "Бағасы:"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy tests"
-msgstr "Тестіні сатып алу"
+msgstr "Тестіні бастау"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy credits"
@@ -2319,53 +2303,6 @@ msgstr "Бірлік сатып алу"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr "Басқа тестіні таңдау"
-
-#, python-format
-msgid ""
-"page:/student/:last_results_header:%(domain_name)s;%(span_open)s;"
-"%(span_close)s"
-msgstr "Соңғы тест нәтижелері %(span_open)s%(domain_name)s%(span_close)s"
-
-msgctxt "Results page"
-msgid "Not finished"
-msgstr "Аяқталған жоқ"
-
-msgctxt "Results page"
-msgid "Section"
-msgstr "Пән"
-
-msgctxt "Results page"
-msgid "Your score"
-msgstr "Сіз жинаған балл"
-
-msgctxt "Results page"
-msgid "Average score of students on bbtest.kz website for the section."
-msgstr "Tест қатысушыларының осы пән бойынша bbtest.kz сайтындағы орташа балы."
-
-#, python-format
-msgctxt "Results page"
-msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-msgstr "Орташа балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-
-msgctxt "/student/"
-msgid "Go to results page"
-msgstr "Тест нәтижелерін тексеру"
-
-msgctxt "/student/"
-msgid "You have not taken any tests."
-msgstr "Сіз ешқандай тест орындаған жоқсыз."
-
-msgctxt "/student/"
-msgid "Start testing"
-msgstr "Тестіні бастау"
-
-msgctxt "Results page"
-msgid "Test progress monitoring"
-msgstr "Тест қатысушысының өрлеу мониторингі"
-
-msgctxt "/student/"
-msgid "Your progress will be shown here."
-msgstr "Осында Сіз өз өрлеуіңізді көре аласыз."
 
 msgctxt "Exam"
 msgid "There was an error, please reload the page."
@@ -2389,7 +2326,7 @@ msgstr "Жалғастыру"
 
 msgctxt "Exam"
 msgid "Go to Results"
-msgstr "Тест нәтижелерін тексеру"
+msgstr "Шығу"
 
 msgctxt "Exam"
 msgid "Buy new tests"
@@ -2450,7 +2387,7 @@ msgstr "Уақыт аяқталды. Келесі тестіге өтіңіз."
 
 msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
-msgstr "Тестілеу аяқталды. Тест нәтижелерін тексеріңіз."
+msgstr "Тестілеу аяқталды."
 
 #, python-format
 msgid "page:/student/results/xxxx/:window_title:%(section_name)s;%(code)s"
@@ -2492,6 +2429,27 @@ msgid ""
 "%(span_open)s;%(span_close)s"
 msgstr "Тест №%(quiz_set_count)s %(span_open)s%(domain_name)s%(span_close)s"
 
+msgctxt "Results page"
+msgid "Not finished"
+msgstr "Аяқталған жоқ"
+
+msgctxt "Results page"
+msgid "Section"
+msgstr "Пән"
+
+msgctxt "Results page"
+msgid "Your score"
+msgstr "Сіз жинаған балл"
+
+msgctxt "Results page"
+msgid "Average score of students on bbtest.kz website for the section."
+msgstr "Tест қатысушыларының осы пән бойынша bbtest.kz сайтындағы орташа балы."
+
+#, python-format
+msgctxt "Results page"
+msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+msgstr "Орташа балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+
 msgid "page:/student/results/:nis_pass_msg"
 msgstr ""
 "Математика пәнінен кем дегенде 140 балл, Сандық сипаттамалар пәнінен 120 "
@@ -2527,6 +2485,10 @@ msgstr[0] ""
 msgstr[1] ""
 "Сіз бұл тарау бойынша %(total_questions_count)s сұрақтан %(questions_count)s "
 "сұрақтарға дұрыс жауап бердіңіз (%(score)s)"
+
+msgctxt "Results page"
+msgid "Test progress monitoring"
+msgstr "Тест қатысушысының өрлеу мониторингі"
 
 msgctxt "Results page"
 msgid "You can see your results and follow the progress on this test section."

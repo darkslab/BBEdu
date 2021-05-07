@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-03 03:41+0600\n"
-"PO-Revision-Date: 2021-05-02 14:45-0700\n"
+"POT-Creation-Date: 2021-05-07 21:16+0600\n"
+"PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
 "Language: ru\n"
@@ -1178,7 +1178,7 @@ msgid "_common.sections.nufypet.section3"
 msgstr "Thinking skills"
 
 msgid "_common.domains.nis"
-msgstr "НИШ"
+msgstr "iQanat"
 
 msgid "_common.domains.unt"
 msgstr "ЕНТ"
@@ -1840,18 +1840,6 @@ msgctxt "Form button"
 msgid "Login"
 msgstr "Войти"
 
-msgctxt "Form link"
-msgid "Forgot your password?"
-msgstr "Забыли пароль?"
-
-msgctxt "/login/"
-msgid "Don't have an account?"
-msgstr "Нет учетной записи?"
-
-msgctxt "/login/"
-msgid "Register"
-msgstr "Регистрация"
-
 msgctxt "Page title"
 msgid "Reset Password"
 msgstr "Сброс пароля"
@@ -2140,7 +2128,7 @@ msgid "Start practicing to the test right now!"
 msgstr "Начни готовиться к тесту прямо сейчас!"
 
 msgid "_common.domains.nis_full"
-msgstr "Пробное тестирование iQanat"
+msgstr "Тестирование iQanat"
 
 #, python-format
 msgid ""
@@ -2251,10 +2239,6 @@ msgctxt "Navigation link"
 msgid "Start testing"
 msgstr "Начать тестирование"
 
-msgctxt "Navigation link"
-msgid "Results"
-msgstr "Результаты тестирования"
-
 msgid "page:/student/buy-tests/xxxx/:checkout_shortcut"
 msgstr "Начать"
 
@@ -2317,7 +2301,7 @@ msgstr "Итого:"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy tests"
-msgstr "Оплатить и Начать"
+msgstr "Начать тест"
 
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Buy credits"
@@ -2326,53 +2310,6 @@ msgstr "Приобрести единицы"
 msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr "Выбрать другой тест"
-
-#, python-format
-msgid ""
-"page:/student/:last_results_header:%(domain_name)s;%(span_open)s;"
-"%(span_close)s"
-msgstr "Результаты последнего теста %(span_open)s%(domain_name)s%(span_close)s"
-
-msgctxt "Results page"
-msgid "Not finished"
-msgstr "Не закончен"
-
-msgctxt "Results page"
-msgid "Section"
-msgstr "Предмет"
-
-msgctxt "Results page"
-msgid "Your score"
-msgstr "Ваш балл"
-
-msgctxt "Results page"
-msgid "Average score of students on bbtest.kz website for the section."
-msgstr "Средний балл тестируемых по данному предмету на bbtest.kz."
-
-#, python-format
-msgctxt "Results page"
-msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-msgstr "Средний балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
-
-msgctxt "/student/"
-msgid "Go to results page"
-msgstr "Перейти к результатам тестирования"
-
-msgctxt "/student/"
-msgid "You have not taken any tests."
-msgstr "Вы еще не прошли тестирование."
-
-msgctxt "/student/"
-msgid "Start testing"
-msgstr "Начать тестирование"
-
-msgctxt "Results page"
-msgid "Test progress monitoring"
-msgstr "Мониторинг прогресса участника тестирования"
-
-msgctxt "/student/"
-msgid "Your progress will be shown here."
-msgstr "Здесь Вы сможете отслеживать свой прогресс."
 
 msgctxt "Exam"
 msgid "There was an error, please reload the page."
@@ -2396,7 +2333,7 @@ msgstr "Продолжить"
 
 msgctxt "Exam"
 msgid "Go to Results"
-msgstr "Перейти к результатам"
+msgstr "Выйти"
 
 msgctxt "Exam"
 msgid "Buy new tests"
@@ -2457,7 +2394,7 @@ msgstr "Время вышло. Пройдите к следующему пред
 
 msgctxt "Exam"
 msgid "All tests are finished. Please continue to view the results."
-msgstr "Тест завершен. Вы можете перейти к результатам."
+msgstr "Тест завершен."
 
 #, python-format
 msgid "page:/student/results/xxxx/:window_title:%(section_name)s;%(code)s"
@@ -2499,6 +2436,27 @@ msgid ""
 "%(span_open)s;%(span_close)s"
 msgstr "Тест №%(quiz_set_count)s %(span_open)s%(domain_name)s%(span_close)s"
 
+msgctxt "Results page"
+msgid "Not finished"
+msgstr "Не закончен"
+
+msgctxt "Results page"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "Results page"
+msgid "Your score"
+msgstr "Ваш балл"
+
+msgctxt "Results page"
+msgid "Average score of students on bbtest.kz website for the section."
+msgstr "Средний балл тестируемых по данному предмету на bbtest.kz."
+
+#, python-format
+msgctxt "Results page"
+msgid "Average score %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+msgstr "Средний балл %(question_icon_start)s%(avg_msg)s%(question_icon_end)s"
+
 msgid "page:/student/results/:nis_pass_msg"
 msgstr ""
 "Необходимо набрать минимум 140 баллов по Математике и 120 баллов по "
@@ -2538,6 +2496,10 @@ msgstr[1] ""
 msgstr[2] ""
 "Вы ответили правильно на %(questions_count)s вопросов (%(score)s) из "
 "%(total_questions_count)s по данному разделу"
+
+msgctxt "Results page"
+msgid "Test progress monitoring"
+msgstr "Мониторинг прогресса участника тестирования"
 
 msgctxt "Results page"
 msgid "You can see your results and follow the progress on this test section."

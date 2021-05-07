@@ -19,8 +19,8 @@ NIS_LANGUAGES_TEST_INSTRUCTION_TEXTS = {
     ],
     Test.LANGUAGE_XX: [
         [
-            "This subject contains 10 texts and 20 questions.",
-            "To answer all questions you will have 40 minutes.",
+            "This subject contains 20 questions.",
+            "To answer all questions you will have 30 minutes.",
             "Do not forget to double-check your answers.",
         ],
     ],

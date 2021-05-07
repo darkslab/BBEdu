@@ -106,9 +106,6 @@ urlpatterns = [
     url(r"^student/exam/skip/$",                               StudentExamSkipView.as_view(),         name="student_exam_skip"         ),
     url(r"^student/exam/end/$",                                StudentExamEndView.as_view(),          name="student_exam_end"          ),
     url(r"^student/exam/report/$",                             StudentExamReportView.as_view(),       name="student_exam_report"       ),
-    url(r"^student/results/$",                                 StudentResultsView.as_view(),          name="student_results"           ),
-    url(r"^student/results/(?P<code>[0-9A-Fa-f]{4,6})/$",      StudentResultView.as_view(),           name="student_result"            ),
-    url(r"^student/results/(?P<code>[0-9A-Fa-f]{4,6})/data/$", StudentResultDataView.as_view(),       name="student_result_data"       ),
 
     # DEVELOPER URLS
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
@@ -130,7 +127,4 @@ urlpatterns = [
     # SYSTEM URLS
     url(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),
     url(r"^logout/$",                                                                           LogoutView.as_view(),               name="logout"                ),
-    url(r"^register/$",                                                                         RegisterView.as_view(),             name="register"              ),
-    url(r"^password-reset/$",                                                                   PasswordResetView.as_view(),        name="password_reset"        ),
-    url(r"^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]
