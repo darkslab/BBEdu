@@ -13,6 +13,7 @@ User = get_user_model()
 
 class BaseUserForm(ModelForm):
     require_password = True
+    allow_weak_password = False
 
     password1 = CharField(label=pgettext_lazy("Form label", "Password"), error_messages={
         "required": pgettext_lazy("Validation error", "Please enter password."),
@@ -66,7 +67,8 @@ class BaseUserForm(ModelForm):
                 )
             else:
                 user_attributes = { key: self.cleaned_data.get(key) for key in self._meta.fields }
-                validate_password(password2, User(**user_attributes))
+                if not self.allow_weak_password:
+                    validate_password(password2, User(**user_attributes))
         return password2
 
     def save(self, commit=True):
