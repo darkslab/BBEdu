@@ -17,7 +17,7 @@ def set_auto_increment_values(apps, schema_editor):
         ("TestParagraph", 2220),
         ("TestQuestion", 6773),
         ("TestParagraphQuestion", 1795),
-        ("TestSection", 9540),
+        ("TestSection", 9539),
         ("TestTaxonomy", 3529),
         ("TestTaxonomySection", 1345),
         ("TestTopic", 5156),
@@ -92,6 +92,15 @@ def seed_initial_values(apps, schema_editor):
     domain = apps.get_model("bbtest", "TestDomain").objects.create(name="NIS", order=0)
 
     section_order = 0
+    section = apps.get_model("bbtest", "TestSection").objects.create(
+        name=ugettext_noop("Natural Science"),
+        duration=1800,
+        question_count=20,
+        question_weight=10,
+        order=section_order,
+        domain=domain,
+    )
+    section_order += 1
 
     section = apps.get_model("bbtest", "TestSection").objects.create(
         name=ugettext_noop("Mathematics"),

@@ -44,7 +44,7 @@ class DashboardView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView
             "unt_sections": TestSection.objects.filter(domain=7912).only("name").all(),
         }
         for section in kwargs["tests_demand"]["nis_sections"]:
-            if section.pk in (9540, 9541, 9542, 9544):
+            if section.pk in (9540, 9541, 9542, 9544, 9539):
                 section.tests_info = []
                 counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_KK).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
                 section.tests_info.append({

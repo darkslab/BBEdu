@@ -233,6 +233,10 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                     ):
                         amount = Decimal("800.00")
                     elif TEST_SECTION_MAP[section_id] in (
+                        NaturalScienceNISItem,
+                    ):
+                        amount = Decimal("300.00")
+                    elif TEST_SECTION_MAP[section_id] in (
                         QuantitativeNISItem,
                     ):
                         amount = Decimal("900.00")

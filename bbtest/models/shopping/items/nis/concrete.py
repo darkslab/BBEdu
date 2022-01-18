@@ -87,3 +87,19 @@ class QuantitativeNISItem(NonLanguageNISItem):
     #     if self.price().is_zero():
     #         return Decimal("0.00")
     #     return self.question_discount() * self.test().section.question_count
+
+class NaturalScienceNISItem(NonLanguageNISItem):
+    def assert_init_args(self, test, student, language):
+        super().assert_init_args(test, student, language)
+        if test.section_id != 9539:
+            raise ItemError(pgettext("Item error", "Natural Science NIS Test is required."))
+
+    def price(self):
+        if self.test().is_free:
+            return Decimal("0.00")
+        return Decimal("15.00") * self.test().section.question_count
+
+    # def discount(self):
+    #     if self.price().is_zero():
+    #         return Decimal("0.00")
+    #     return self.question_discount() * self.test().section.question_count
