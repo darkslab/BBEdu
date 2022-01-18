@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-17 15:39+0600\n"
+"POT-Creation-Date: 2022-01-17 21:54+0600\n"
 "PO-Revision-Date: 2020-08-31 22:04+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -664,6 +664,9 @@ msgstr "Ecology"
 
 msgid "Fables and Fairy Tales"
 msgstr "Fables and Fairy Tales"
+
+msgid "Natural Science"
+msgstr "Natural Science"
 
 msgid "Mathematics"
 msgstr "Mathematics"
@@ -1424,6 +1427,10 @@ msgid "Quantitative NIS Test is required."
 msgstr "Quantitative NIS Test is required."
 
 msgctxt "Item error"
+msgid "Natural Science NIS Test is required."
+msgstr "Natural Science NIS Test is required."
+
+msgctxt "Item error"
 msgid "NUFYPET Test is required."
 msgstr "NUFYPET Test is required."
 
@@ -1702,12 +1709,6 @@ msgstr "Payment Option 1"
 
 msgid "page:/buy-credits/:payment_option_2"
 msgstr "Payment Option 2"
-
-msgid "page:/buy-credits/:pay_with_beeline"
-msgstr "Pay with Beeline balance"
-
-msgid "page:/buy-credits/:payment_option_3"
-msgstr "Payment Option 3"
 
 msgid "page:/buy-credits/:kaspi_instructions"
 msgstr "Instructions for the Payment in the Kaspi App"
