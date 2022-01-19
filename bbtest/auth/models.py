@@ -115,6 +115,9 @@ class User(AbstractBaseUser, PermissionsMixin):
             return self.first_name
         return self.username
 
+    def get_ID(self):
+        return "{:05}".format(self.id)
+
     def gravatar_url(self):
         gravatar_hash = ""
         if self.email:
