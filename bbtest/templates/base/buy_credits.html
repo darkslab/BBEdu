@@ -87,16 +87,6 @@
                             </legend>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <button type="button" class="btn btn-primary btn-block btn-lg btn-wrappable" data-bb-submit data-payment-type="beeline">{% trans 'page:/buy-credits/:pay_with_beeline' %}</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend class="text-center mb-5">
-                                <span>{% trans 'page:/buy-credits/:payment_option_3' %}</span>
-                            </legend>
-                            <div class="form-group">
-                                <div class="col-xs-12">
                                     <div class="modal fade" id="kaspi-payment-type-modal">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -143,7 +133,7 @@
                                                                             <h5 class="center-block bg-primary mt-0 mb-0 bb-kaspi-instruction-step">3</h5>
                                                                         </div>
                                                                         <div class="col-xs-9 col-sm-10">
-                                                                            <h6 class="mt-0 mb-0">{% blocktrans with email=user.email strong_start='<strong>' strong_end='</strong>' %}page:/buy-credits/:kaspi_instruction_3:{{ email }};{{ strong_start }};{{ strong_end }}{% endblocktrans %}</h6>
+                                                                            <h6 class="mt-0 mb-0">{% blocktrans with uid=user.get_ID strong_start='<strong>' strong_end='</strong>' %}page:/buy-credits/:kaspi_instruction_3:{{ uid }};{{ strong_start }};{{ strong_end }}{% endblocktrans %}</h6>
                                                                         </div>
                                                                     </div>
                                                                 </li>
