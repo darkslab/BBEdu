@@ -1153,9 +1153,20 @@ class TestCheckForm(ModelForm):
                 TestQuestion.DIFFICULTY_NORMAL:  { "required": 10, "count": 0 },
                 TestQuestion.DIFFICULTY_LOW:     { "required": 5, "count": 0 },
             }
+        topic_counts = { "required": 20, "count": 0 }   # topic field should not be empty check
         for question in questions_queryset:
             if question.difficulty in difficulty_counts:
                 difficulty_counts[question.difficulty]["count"] += 1
+            if question.topic is not None and question.topic:
+                topic_counts["count"] += 1
+
+        if topic_counts["required"] != topic_counts["count"]:
+            self.add_error(None, ValidationError(
+                self.error_messages["topic"],
+                code="incomplete",
+                params={ "topic": _("Natural Science"), "count": topic_counts["required"] },
+            ))
+
         for difficulty, stats in difficulty_counts.items():
             if stats["required"] != stats["count"]:
                 self.add_error(None, ValidationError(
