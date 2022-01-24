@@ -495,7 +495,7 @@ class TestForm(ModelForm):
 
         try:
             # NIS sections
-            if section.pk in (9540, 9541, 9542, 9544):
+            if section.pk in (9539, 9540, 9541, 9542, 9544):
                 if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
                     raise ValueError("Incorrect language")
             # NIS sections
@@ -632,6 +632,16 @@ class TestForm(ModelForm):
                     paragraph = TestParagraph.objects.create(
                         paragraph_class=TestParagraph.PARAGRAPH_CLASS_SPLIT_TEXT,
                         meta_data={"right": {"text": ""}, "left": {"text": ""}},
+                    )
+                    TestParagraphQuestion.objects.create(
+                        question=question,
+                        paragraph=paragraph,
+                        order=0,
+                    )
+                elif test.section.id == 9539:
+                    paragraph = TestParagraph.objects.create(
+                        paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                        meta_data={"text": ""},
                     )
                     TestParagraphQuestion.objects.create(
                         question=question,
@@ -970,6 +980,8 @@ class TestCheckForm(ModelForm):
                 self.__clean_nis_language(questions_queryset)
             elif self.instance.section.pk == 9544:
                 self.__clean_nis_quantitative(questions_queryset)
+            elif self.instance.section.pk == 9539:
+                self.__clean_nis_natural(questions_queryset)
         elif self.instance.section.is_unt_compulsory() or self.instance.section.is_unt_profile():
             if self.instance.section.is_unt_compulsory():
                 self.__clean_unt_compulsory(questions_queryset)
@@ -1124,6 +1136,33 @@ class TestCheckForm(ModelForm):
                     code="incomplete",
                     params={ "count": stats["required"] },
                 ))
+
+    def __clean_nis_natural(self, questions_queryset):  # TODO
+        questions_queryset = questions_queryset.all()
+
+        for question in questions_queryset:
+            if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                self.add_error(None, ValidationError(
+                    self.error_messages["nis_answer_class"],
+                    code="incomplete",
+                ))
+                break
+
+        difficulty_counts = {
+                TestQuestion.DIFFICULTY_HIGH:    { "required": 5, "count": 0 },
+                TestQuestion.DIFFICULTY_NORMAL:  { "required": 10, "count": 0 },
+                TestQuestion.DIFFICULTY_LOW:     { "required": 5, "count": 0 },
+            }
+        for question in questions_queryset:
+            if question.difficulty in difficulty_counts:
+                difficulty_counts[question.difficulty]["count"] += 1
+        for difficulty, stats in difficulty_counts.items():
+            if stats["required"] != stats["count"]:
+                self.add_error(None, ValidationError(
+                    self.error_messages["difficulty"][difficulty],
+                    code="incomplete",
+                    params={ "count": stats["required"] },
+                ))   
 
     def __clean_unt_compulsory(self, questions_queryset):
         questions_queryset = questions_queryset.all()
