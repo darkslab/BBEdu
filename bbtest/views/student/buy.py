@@ -206,7 +206,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                         RussianLanguageNISItem,
                         EnglishLanguageNISItem,
                     ):
-                        amount = Decimal("400.00")
+                        amount = Decimal("500.00")
                     elif TEST_SECTION_MAP[section_id] in (
                         MathematicalLiteracyCompulsoryUNTItem,
                         ReadingLiteracyCompulsoryUNTItem,
@@ -231,7 +231,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                     elif TEST_SECTION_MAP[section_id] in (
                         MathematicsNISItem,
                     ):
-                        amount = Decimal("800.00")
+                        amount = Decimal("1600.00")
                     elif TEST_SECTION_MAP[section_id] in (
                         NaturalScienceNISItem,
                     ):
