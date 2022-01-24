@@ -93,6 +93,22 @@ NIS_TEST_INSTRUCTION_TEXTS = {
             ],
         ],
     },
+    9539: {
+        Test.LANGUAGE_KK: [
+            [
+                "Бұл пән бойынша 20 сұрақ берілген.",
+                "Сұрақтарға жауап беру уақыты 30 минут.",
+                "Жауаптарды мұқиат тексеріңіз.",
+            ],
+        ],
+        Test.LANGUAGE_RU: [
+            [
+                "Данный предмет содержит 20 вопросов.",
+                "Для ответа на все вопросы выделено 30 минут.",
+                "Не забудьте перепроверить свои ответы.",
+            ],
+        ],
+    },
 }
 
 UNT_COMPULSORY_TEST_INSTRUCTION_TEXTS = [
@@ -189,6 +205,10 @@ NIS_TEST_INSTRUCTION_TITLE_TEXTS = {
         Test.LANGUAGE_KK: "Сандық сипаттамалар",
         Test.LANGUAGE_RU: "Количественные характеристики",
     },
+    9539: {
+        Test.LANGUAGE_KK: "Жаратылыстану",
+        Test.LANGUAGE_RU: "Естествознание",
+    },
 }
 
 def test_instructions_title(test):
@@ -216,6 +236,10 @@ def test_instructions_title(test):
 
 
 NIS_TEST_VIDEO_LINKS = {
+    9539: {
+        Test.LANGUAGE_KK: "https://www.youtube.com/embed/7ZPcaY5tlSc",  ## TODO: Provide relevant link
+        Test.LANGUAGE_RU: "https://www.youtube.com/embed/gVw0dgXxFic",
+    },
     9540: {
         Test.LANGUAGE_KK: "https://www.youtube.com/embed/QakiQUwFyqo",
         Test.LANGUAGE_RU: "https://www.youtube.com/embed/a6wdikhANVI",
