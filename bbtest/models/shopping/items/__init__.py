@@ -4,6 +4,7 @@ from .nis.concrete import (
     RussianLanguageNISItem,
     EnglishLanguageNISItem,
     QuantitativeNISItem,
+    NaturalScienceNISItem,
 )
 from .credit import CreditItem
 from .unt.compulsory import (
@@ -40,7 +41,8 @@ __all__ = [
     "RussianLanguageNISItem",
     "EnglishLanguageNISItem",
     "QuantitativeNISItem",
-
+    "NaturalScienceNISItem",
+    
     "CreditItem",
 
     "MathematicalLiteracyCompulsoryUNTItem",
