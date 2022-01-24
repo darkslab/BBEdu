@@ -27,7 +27,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                 "specification": {},
             }
 
-            if section.id in (9540, 9544):
+            if section.id in (9540, 9544, 9539):
                 data["language"] = {
                     "title": pgettext("/developer/tests/", "Choose test language"),
                     "choices": [],

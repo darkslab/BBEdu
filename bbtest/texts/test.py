@@ -614,6 +614,16 @@ SPECIFICATION_KK_TEST_TEXTS = {
         settings.BB_LANGUAGE_CODE_EN: """
         """,
     },
+    9539: {
+        settings.BB_LANGUAGE_CODE_KK: """
+        """,
+        settings.BB_LANGUAGE_CODE_RU: """
+            <h6 class="text-center">ТРЕБОВАНИЯ К СОДЕРЖАНИЮ РАБОТ</h6>
+            <p class="text-justify text-normal mb-0"><span class="text-left mr-5">1.</span>Разработать тестовые вопросы на определение способностей Естествознания для учащихся 6 классов общеобразовательных школ – претендентов в Интеллектуальные школы, на русском и казахском языках в формате сравнения двух значений (переменных, выражений и т.д.) следующим образом:</p>
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
+    },
     9545: {
         settings.BB_LANGUAGE_CODE_KK: """
         """,
@@ -3344,6 +3354,14 @@ SPECIFICATION_RU_TEST_TEXTS = {
         """,
     },
     9544: {
+        settings.BB_LANGUAGE_CODE_KK: """
+        """,
+        settings.BB_LANGUAGE_CODE_RU: """
+        """,
+        settings.BB_LANGUAGE_CODE_EN: """
+        """,
+    },
+    9539: {
         settings.BB_LANGUAGE_CODE_KK: """
         """,
         settings.BB_LANGUAGE_CODE_RU: """
@@ -6602,6 +6620,12 @@ SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_
 SPECIFICATION_RU_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_RU] = SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_RU_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9544][settings.BB_LANGUAGE_CODE_RU]
+
+SPECIFICATION_KK_TEST_TEXTS[9539][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9539][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_KK_TEST_TEXTS[9539][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9539][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9539][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9539][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9539][settings.BB_LANGUAGE_CODE_RU] = SPECIFICATION_KK_TEST_TEXTS[9539][settings.BB_LANGUAGE_CODE_RU]
+SPECIFICATION_RU_TEST_TEXTS[9539][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9539][settings.BB_LANGUAGE_CODE_RU]
 
 SPECIFICATION_KK_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_KK_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_RU]
 SPECIFICATION_KK_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_KK_TEST_TEXTS[9545][settings.BB_LANGUAGE_CODE_RU]

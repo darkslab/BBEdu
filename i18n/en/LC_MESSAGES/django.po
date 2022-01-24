@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-20 21:27+0600\n"
+"POT-Creation-Date: 2022-01-24 17:42+0600\n"
 "PO-Revision-Date: 2020-08-31 22:04+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1200,6 +1200,30 @@ msgstr "Test for Lawyers"
 msgid "_common.sections.law.section0"
 msgstr "Тестирование юристов"
 
+msgid "Natural Science"
+msgstr "Natural Science"
+
+msgid "_common.topics.nis.9539.topic0"
+msgstr "Мир науки"
+
+msgid "_common.topics.nis.9539.topic1"
+msgstr "Человек. Земля. Вселенная."
+
+msgid "_common.topics.nis.9539.topic2"
+msgstr "Вещества и материалы"
+
+msgid "_common.topics.nis.9539.topic3"
+msgstr "Процессы в живой и неживой природе"
+
+msgid "_common.topics.nis.9539.topic4"
+msgstr "Энергия и движение"
+
+msgid "_common.topics.nis.9539.topic5"
+msgstr "Экология и устойчивое развитие"
+
+msgid "_common.topics.nis.9539.topic6"
+msgstr "Открытия, меняющие мир"
+
 msgctxt "Account type"
 msgid "Asset"
 msgstr "Asset"
@@ -1422,6 +1446,10 @@ msgstr "English Language NIS Test is required."
 msgctxt "Item error"
 msgid "Quantitative NIS Test is required."
 msgstr "Quantitative NIS Test is required."
+
+msgctxt "Item error"
+msgid "Natural Science NIS Test is required."
+msgstr "Natural Science NIS Test is required."
 
 msgctxt "Item error"
 msgid "NUFYPET Test is required."

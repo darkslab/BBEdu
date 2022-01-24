@@ -40,7 +40,7 @@ class TestSection(Model):
         return self.name
 
     def is_nis(self):
-        return self.pk in range(9540, 9545)
+        return self.pk in range(9539, 9545)
 
     def is_unt_compulsory(self):
         return self.pk in range(9545, 9548)
@@ -67,6 +67,7 @@ class TestSection(Model):
         return GOOGLE_COLORS_BLEACHED[(self.pk - 9540) % len(GOOGLE_COLORS_BLEACHED)]
 
     def can_measure_topics(self):
+        # 9539 NIS Natural science not measurable
         return self.pk in (9540, 9544, 9547, 9545) or self.pk in range(9548, 9560) or self.pk in range(9560, 9564) or self.pk == 9565
 
 

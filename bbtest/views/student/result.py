@@ -45,13 +45,16 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
                 }
                 if quiz.is_finished:
                     quiz.stats["row"]["score"] = quiz.score()
-                if quiz.test.section.pk in (9540, 9544):
+                if quiz.test.section.pk in (9540, 9544):  #  9539
                     quiz_set.has_extra_column = True
                     quiz.nis_passed = False
                     if quiz.test.section.pk == 9540 and quiz.stats["row"]["score"] >= 140:
                         quiz.nis_passed = True
                     elif quiz.test.section.pk == 9544 and quiz.stats["row"]["score"] >= 120:
                         quiz.nis_passed = True
+                    # no pass score for natural science, comment just for note
+                    # elif quiz.test.section.pk == 9539 and quiz.stats["row"]["score"] >= 120:
+                    #     quiz.nis_passed = True
 
                 quiz.stats["row"]["avg"] = average_score(quiz.test.section)
 
