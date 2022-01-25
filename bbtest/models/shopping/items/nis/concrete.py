@@ -13,7 +13,7 @@ class MathematicsNISItem(NonLanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("40.00") * self.test().section.question_count
+        return Decimal("25.00") * self.test().section.question_count
 
     # def discount(self):
     #     if self.price().is_zero():
@@ -30,7 +30,7 @@ class KazakhLanguageNISItem(LanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("25.00") * self.test().section.question_count
+        return Decimal("30.00") * self.test().section.question_count
 
     # def discount(self):
     #     if self.price().is_zero():
@@ -47,7 +47,7 @@ class RussianLanguageNISItem(LanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("25.00") * self.test().section.question_count
+        return Decimal("30.00") * self.test().section.question_count
 
     # def discount(self):
     #     if self.price().is_zero():
@@ -64,7 +64,7 @@ class EnglishLanguageNISItem(LanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("25.00") * self.test().section.question_count
+        return Decimal("30.00") * self.test().section.question_count
 
     # def discount(self):
     #     if self.price().is_zero():
@@ -81,7 +81,7 @@ class QuantitativeNISItem(NonLanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("15.00") * self.test().section.question_count
+        return Decimal("25.00") * self.test().section.question_count
 
     # def discount(self):
     #     if self.price().is_zero():
@@ -97,7 +97,7 @@ class NaturalScienceNISItem(NonLanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("25.00") * self.test().section.question_count
+        return Decimal("30.00") * self.test().section.question_count
 
     # def discount(self):
     #     if self.price().is_zero():
