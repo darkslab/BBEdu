@@ -314,6 +314,7 @@ LOGGING = {
 
 ADMINS = [
     ("Darkhan Baimyrza", "darkhan@baimyrza.com"),
+    ("Dmitriy Fedorov", "d.d.96@yandex.ru"),
 ]
 EMAIL_SUBJECT_PREFIX = ""
 DEFAULT_FROM_EMAIL = "bbtest.kz <no-reply@bbtest.kz>"
@@ -350,6 +351,7 @@ BB_MANAGERS = [
     "darkhan@bbtest.kz",
     "admin@bbtest.kz",
     "junior@bbtest.kz",
+    "d.d.96@yandex.ru"
 ]
 
 BB_BASE_URL = SECRETS["BASE_URL"]
