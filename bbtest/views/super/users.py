@@ -29,6 +29,8 @@ class UsersView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin,
                 Q(last_name__icontains=self.request.GET["q"])
                 |
                 Q(email__icontains=self.request.GET["q"])
+                |
+                Q(pk__icontains=self.request.GET["q"])
             )
             kwargs["q"] = self.request.GET["q"]
         except KeyError:

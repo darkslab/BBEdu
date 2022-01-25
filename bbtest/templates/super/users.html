@@ -74,7 +74,7 @@
                         <tbody>
                             {% for user in users %}
                                 <tr>
-                                    <td class="pl-15"><a href="{% url 'bbtest:super_user' user.pk %}">{{ user.get_full_name }}</a><br><small class="text-info">{{ user.email }}</small></td>
+                                    <td class="pl-15"><a href="{% url 'bbtest:super_user' user.pk %}">{{ user.get_full_name }}</a> ({{ user.get_ID }})<br><small class="text-info">{{ user.email }}</small></td>
                                     <td class="text-center">
                                         {% if user.role == 'admin' %}
                                             <span class="label label-info">{% trans 'Administrator' context '/super/users/' %}</span>
