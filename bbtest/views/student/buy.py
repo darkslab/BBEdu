@@ -62,6 +62,23 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixi
         return super().get_context_data(**kwargs)
 
 
+class BuyTestsViewNIS(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
+    template_name = "student/buy_tests_bundle_NIS.html"
+
+    def get_context_data(self, **kwargs):
+        kwargs["test_domain"] = get_test_domain_or_404(self.kwargs["test_domain_id"])
+        for section in kwargs["test_domain"].sections.all():
+            section.minutes = section.duration // 60
+
+        kwargs["test_langs"] = None
+        if kwargs["test_domain"].pk != 7913:
+            kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
+
+        # kwargs["bundles_names_manual_list"] = [{"pk": 0, "name": "Bundle 1"}, {"pk": 1, "name": "Bundle 2"}] #["Bundle 1", "bundle 2"]
+        kwargs["bundles_names_manual_list"] = [{"pk": i, "name": "Bundle {}".format(i)} for i in range(5)]
+        return super().get_context_data(**kwargs)
+
+
 class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixin, CartHandleAccessMixin, View):
     def get(self, request, test_domain_id, *args, **kwargs):
         test_domain = get_test_domain_or_404(test_domain_id)
@@ -143,10 +160,11 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
             cache.set(cache_cart_type_key, "test-domain-%s" % test_domain.pk, 86400)
         else:
             cache.delete(cache_cart_type_key)
-
+        # print(form.cleaned_data)
         data = self.__response(test_domain, form.cleaned_data["data"]["language"])
         data.update({
             "success": True,
+            # "selected_bundle_pk": form.cleaned_data["data"]["selected_bundle_pk"]
         })
         return TightJsonResponse(data)
 
