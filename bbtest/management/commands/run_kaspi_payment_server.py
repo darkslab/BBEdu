@@ -68,25 +68,38 @@ def retry_always(func):
                 print(e)    
     return inner
 
+def now_str():
+    return datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+
 class Command(BaseCommand):
     help = 'runs kaspi payment email service' 
-    
+    counter = 1
+
     @retry_always
     def handle(self, *args, **kwargs):
-        with MailBox(settings.SECRETS["KASPI_IMAP"]).login(settings.SECRETS["KASPI_EMAIL"], settings.SECRETS["KASPI_EMAIL_TOKEN"]) as mb:
-            i = 1
-            while True:
-                print("{:5}".format(i), end="\r")
-                messages = mb.fetch(criteria=AND(seen=False, from_=settings.SECRETS["KASPI_FROM"]), mark_seen=False, bulk=False)
+        while True:
+            with MailBox(settings.SECRETS["KASPI_IMAP"]).login(settings.SECRETS["KASPI_EMAIL"], settings.SECRETS["KASPI_EMAIL_TOKEN"]) as mb:
+                count_new = 0
+                count_from_kaspi = 0
+                to_print = ""
+                messages = mb.fetch(criteria=AND(seen=False), mark_seen=False, bulk=False)
                 for msg in messages:
+                    count_new += 1
+                    if msg.from_ != settings.SECRETS["KASPI_FROM"]: continue
+                    count_from_kaspi += 1
                     errors = process_msg(msg)
                     if errors is None:
-                        print(datetime.now().strftime("%d.%m.%Y %H:%M:%S"), msg.uid, msg.from_, '->', msg.subject)
+                        # print()
+                        # print("  ", now_str(), '->', msg.uid, "->", msg.from_, '->', msg.subject)
+                        to_print += "\n-> {}: {} : {} -> {}".format(now_str(), msg.uid, msg.from_, msg.subject)
                         mb.flag(msg.uid, MailMessageFlags.SEEN, True)
                         mb.move(msg.uid, "KaspiDone")
                     else:
                         print(errors)
                         mb.move(msg.uid, "KaspiError")
                         # mail_admins("Kaspi Payment Automation Error", errors)
-                sleep(60*1)
-                i += 1
+
+                print("{} [{}/{}] {:5} {}".format(now_str(), count_from_kaspi, count_new, self.counter, " "*10), end="\r")
+                if len(to_print): print(to_print)
+                sleep(60*2)
+                self.counter += 1
