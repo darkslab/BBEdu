@@ -7,6 +7,7 @@ from bbtest.models.accounting import Entry, Debit, Credit
 # from django.core.mail import mail_admins
 from time import sleep
 from django.conf import settings
+from datetime import datetime
 
 def process_msg(msg):
     # # Print form and subject
@@ -56,26 +57,36 @@ def parse_mail_kaspi(text):
         if r: deposit = r.group(1)
     return parsed_id, deposit
 
+# decorator to run aways
+def retry_always(func):
+    def inner(self, *args, **kwargs):
+        while True:
+            try:
+                func(self, *args, **kwargs)
+            except Exception as e:
+                print()
+                print(e)    
+    return inner
 
 class Command(BaseCommand):
     help = 'runs kaspi payment email service' 
-
-
+    
+    @retry_always
     def handle(self, *args, **kwargs):
-        # i = 1
-        while True:
-            # print("{:3}".format(i), end="\r")
-            with MailBox(settings.SECRETS["KASPI_IMAP"]).login(settings.SECRETS["KASPI_EMAIL"], settings.SECRETS["KASPI_EMAIL_TOKEN"]) as mb:
+        with MailBox(settings.SECRETS["KASPI_IMAP"]).login(settings.SECRETS["KASPI_EMAIL"], settings.SECRETS["KASPI_EMAIL_TOKEN"]) as mb:
+            i = 1
+            while True:
+                print("{:5}".format(i), end="\r")
                 messages = mb.fetch(criteria=AND(seen=False, from_=settings.SECRETS["KASPI_FROM"]), mark_seen=False, bulk=False)
                 for msg in messages:
                     errors = process_msg(msg)
                     if errors is None:
+                        print(datetime.now().strftime("%d.%m.%Y %H:%M:%S"), msg.uid, msg.from_, '->', msg.subject)
                         mb.flag(msg.uid, MailMessageFlags.SEEN, True)
                         mb.move(msg.uid, "KaspiDone")
                     else:
                         print(errors)
                         mb.move(msg.uid, "KaspiError")
                         # mail_admins("Kaspi Payment Automation Error", errors)
-            sleep(60*5)
-            
-            # i += 1
+                sleep(60*1)
+                i += 1
