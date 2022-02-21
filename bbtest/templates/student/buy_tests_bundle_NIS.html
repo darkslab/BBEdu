@@ -77,6 +77,41 @@
             <div class="bb-rel">
                 <div class="bb-spinner-overlay" data-overlay-sections></div>
                 <div class="list-group">
+                    {% for bname in bundles_names_manual_list %}
+                        <a href="javascript:void(0);" class="list-group-item" bundle-test-section="{{bname.pk}}" bundle-selected="false" bundle-available="false" bundle-sections="">
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-9">
+                                    <h4 class="list-group-item-heading hidden-xs">
+                                        <span>{% trans bname.name %}</span><br>
+                                        <small><span class="label label-default" bundle-test-section-variant="h4"></span></small>
+                                    </h4>
+                                    <h5 class="list-group-item-heading visible-xs-block">
+                                        <span>{% trans bname.name %}</span><br>
+                                        <small><span class="label label-default" bundle-test-section-variant="h5"></span></small>
+                                    </h5>
+                                    <p class="list-group-item-text mt-15">{% blocktrans with count="~" %}Subject count: {{ count }}{% endblocktrans %}</p>
+                                    <p class="list-group-item-text">{% blocktrans with minutes="~" %}Duration: {{ minutes }} min.{% endblocktrans %}</p>
+                                </div>
+                                <div class="col-xs-4 col-sm-3">
+                                    <h4 class="list-group-item-heading text-right lead" 30></h4>
+                                    <h1 class="list-group-item-heading bb-list-group-heading-active text-right">
+                                        <i class="fa fa-check-circle"></i>
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="row hidden" bundle-progress-message>
+                                <div class="col-xs-12">
+                                    <h6 class="text-danger text-center mt-10 mb-0">{% trans 'page:/student/buy-tests/xxxx/:test_variant_in_progress' %}</h6>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="bb-rel" style="display: true;">
+                <div class="bb-spinner-overlay" data-overlay-sections></div>
+                <div class="list-group">
                     {% for section in test_domain.sections.all %}
                         <a href="javascript:void(0);" class="list-group-item" data-test-section="{{ section.pk }}" data-selected="false" data-available="false">
                             <div class="row">
