@@ -32,7 +32,7 @@ rfh = logging.handlers.RotatingFileHandler(
 
 logging.basicConfig(
     level=logging.DEBUG,
-    format='%(asctime)s: %(levelname)s: %(message)s',
+    format='%(asctime)s:%(levelname)s: %(message)s',
     handlers=[
         rfh
     ]
