@@ -7,6 +7,37 @@ from bbtest.models.accounting import Entry, Debit, Credit
 # from django.core.mail import mail_admins
 from time import sleep
 from django.conf import settings
+from datetime import datetime
+import logging
+
+
+# run script every 2 minutes
+# crontab -e
+# */2 * * * * /usr/local/bin/python3 ~/BBEdu/manage.py run_kaspi_payment_server
+
+
+# logging.basicConfig(filename='/home/darkhan/kaspi.log',
+#                     # encoding='utf-8', 
+#                     format='%(asctime)s: %(levelname)s: %(message)s',
+#                     level=logging.DEBUG)
+
+rfh = logging.handlers.RotatingFileHandler(
+    filename='/home/darkhan/kaspi.log', 
+    mode='a',
+    maxBytes=5*1024*1024,  # 5mb maximum log file size
+    backupCount=2,
+    encoding=None,
+    delay=0
+)
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s:%(levelname)s: %(message)s',
+    handlers=[
+        rfh
+    ]
+)
+
 
 def process_msg(msg):
     # # Print form and subject
@@ -57,25 +88,77 @@ def parse_mail_kaspi(text):
     return parsed_id, deposit
 
 
+# decorator to run aways
+def retry_always(func):
+    def inner(self, *args, **kwargs):
+        while True:
+            try:
+                func(self, *args, **kwargs)
+            except Exception as e:
+                logging.error(e)
+                print()
+                print(e)    
+    return inner
+
+
+def now_str():
+    return datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+
+
 class Command(BaseCommand):
     help = 'runs kaspi payment email service' 
-
+    counter = 1
 
     def handle(self, *args, **kwargs):
-        # i = 1
+        with MailBox(settings.SECRETS["KASPI_IMAP"]).login(settings.SECRETS["KASPI_EMAIL"], settings.SECRETS["KASPI_EMAIL_TOKEN"]) as mb:
+            count_new = 0
+            count_from_kaspi = 0
+            to_print = ""
+            messages = mb.fetch(criteria=AND(seen=False), mark_seen=False, bulk=False)
+            for msg in messages:
+                count_new += 1
+                if msg.from_ != settings.SECRETS["KASPI_FROM"]: continue
+                count_from_kaspi += 1
+                errors = process_msg(msg)
+                if errors is None:
+                    # print()
+                    # print("  ", now_str(), '->', msg.uid, "->", msg.from_, '->', msg.subject)
+                    to_print += "-> {}: {} : {} -> {}\n".format(now_str(), msg.uid, msg.from_, msg.subject)
+                    mb.flag(msg.uid, MailMessageFlags.SEEN, True)
+                    mb.move(msg.uid, "KaspiDone")
+                else:
+                    print(errors)
+                    mb.move(msg.uid, "KaspiError")
+                    # mail_admins("Kaspi Payment Automation Error", errors)
+
+            logging.info("[{}/{}]".format(count_from_kaspi, count_new))
+            if len(to_print): logging.info(to_print.strip())
+
+    @retry_always
+    def handle_old(self, *args, **kwargs):
         while True:
-            # print("{:3}".format(i), end="\r")
             with MailBox(settings.SECRETS["KASPI_IMAP"]).login(settings.SECRETS["KASPI_EMAIL"], settings.SECRETS["KASPI_EMAIL_TOKEN"]) as mb:
-                messages = mb.fetch(criteria=AND(seen=False, from_=settings.SECRETS["KASPI_FROM"]), mark_seen=False, bulk=False)
+                count_new = 0
+                count_from_kaspi = 0
+                to_print = ""
+                messages = mb.fetch(criteria=AND(seen=False), mark_seen=False, bulk=False)
                 for msg in messages:
+                    count_new += 1
+                    if msg.from_ != settings.SECRETS["KASPI_FROM"]: continue
+                    count_from_kaspi += 1
                     errors = process_msg(msg)
                     if errors is None:
+                        # print()
+                        # print("  ", now_str(), '->', msg.uid, "->", msg.from_, '->', msg.subject)
+                        to_print += "\n-> {}: {} : {} -> {}".format(now_str(), msg.uid, msg.from_, msg.subject)
                         mb.flag(msg.uid, MailMessageFlags.SEEN, True)
                         mb.move(msg.uid, "KaspiDone")
                     else:
                         print(errors)
                         mb.move(msg.uid, "KaspiError")
                         # mail_admins("Kaspi Payment Automation Error", errors)
-            sleep(60*5)
-            
-            # i += 1
+
+                print("{} [{}/{}] {:5} {}".format(now_str(), count_from_kaspi, count_new, self.counter, " "*10), end="\r")
+                if len(to_print): print(to_print)
+                sleep(60*2)
+                self.counter += 1
