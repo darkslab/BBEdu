@@ -1,0 +1,197 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n static %}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans test_domain.name as domain_name %}{% blocktrans context 'Page title' %}Select tests for {{ domain_name }}{% endblocktrans %}{% endblock %}
+
+{% block nav_student_buy_tests_class %}active{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "StudentBuyTestsPageModule",
+            data: {
+                cartUrl: "{% url 'bbtest:student_buy_tests_cart' test_domain.pk %}",
+                checkoutUrl: "{% url 'bbtest:student_buy_tests_checkout' %}"
+            }
+        });
+    </script>
+    <div class="modal fade" data-failure-modal data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p class="lead mt-15 mb-0 text-center">{% trans 'Something went wrong. Please refresh the page.' context '/student/buy-tests/xxxx/' %}</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center">
+                        <a href="{% url 'bbtest:student_buy_tests' test_domain.pk %}" class="btn btn-primary">{% trans 'Refresh the page' context '/student/buy-tests/xxxx/' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" data-error-modal>
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{% trans 'Could not checkout' context '/student/buy-tests/xxxx/' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="lead mt-0 mb-0" data-error-modal-body></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' context '/student/buy-tests/xxxx/' %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img class="bb-spinner bb-spinner-fixed mt--15" src="{% static 'img/logo2_spinner.png' %}" data-spinner>
+    <div class="row">
+        <div class="col-sm-8">
+            {% if test_langs %}
+                <h4 class="mt-0 mb-10 text-center">{% trans 'Test language' context '/student/buy-tests/xxxx/' %}</h4>
+                <div class="bb-rel">
+                    <div class="bb-spinner-overlay" data-overlay-language></div>
+                    <div class="list-group">
+                        {% for test_lang in test_langs %}
+                            <a href="javascript:void(0);" class="list-group-item" data-test-language="{{ test_lang.0 }}" data-test-language-explanation="{% blocktrans with test_language=test_lang.1 %}page:/student/buy-tests/xxxx/:test_language_explanation:{{ test_language }}{% endblocktrans %}" data-selected="false">
+                                <div class="row">
+                                    <div class="col-xs-8 col-sm-9">
+                                        <h4 class="list-group-item-heading mb-0">{{ test_lang.1 }}</h4>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3">
+                                        <h4 class="list-group-item-heading bb-list-group-heading-active text-right mb-0">
+                                            <i class="fa fa-check-circle"></i>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <h4 class="mt-0 mb-10 text-center">{% trans 'Subjects' context '/student/buy-tests/xxxx/' %}</h4>
+            <div class="bb-rel">
+                <div class="bb-spinner-overlay" data-overlay-sections></div>
+                <div class="list-group">
+                    {% for bname in bundles_names_manual_list %}
+                        <a href="javascript:void(0);" class="list-group-item" bundle-test-section="{{bname.pk}}" bundle-selected="false" bundle-available="false" bundle-sections="">
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-9">
+                                    <h4 class="list-group-item-heading hidden-xs">
+                                        <span>{% trans bname.name %}</span><br>
+                                        <small><span class="label label-default" bundle-test-section-variant="h4"></span></small>
+                                    </h4>
+                                    <h5 class="list-group-item-heading visible-xs-block">
+                                        <span>{% trans bname.name %}</span><br>
+                                        <small><span class="label label-default" bundle-test-section-variant="h5"></span></small>
+                                    </h5>
+                                    <p class="list-group-item-text mt-15">{% blocktrans with count="~" %}Subject count: {{ count }}{% endblocktrans %}</p>
+                                    <p class="list-group-item-text">{% blocktrans with minutes="~" %}Duration: {{ minutes }} min.{% endblocktrans %}</p>
+                                </div>
+                                <div class="col-xs-4 col-sm-3">
+                                    <h4 class="list-group-item-heading text-right lead" 30></h4>
+                                    <h1 class="list-group-item-heading bb-list-group-heading-active text-right">
+                                        <i class="fa fa-check-circle"></i>
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="row hidden" bundle-progress-message>
+                                <div class="col-xs-12">
+                                    <h6 class="text-danger text-center mt-10 mb-0">{% trans 'page:/student/buy-tests/xxxx/:test_variant_in_progress' %}</h6>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="bb-rel" style="display: none;">
+                <div class="bb-spinner-overlay" data-overlay-sections></div>
+                <div class="list-group">
+                    {% for section in test_domain.sections.all %}
+                        <a href="javascript:void(0);" class="list-group-item" data-test-section="{{ section.pk }}" data-selected="false" data-available="false">
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-9">
+                                    <h4 class="list-group-item-heading hidden-xs">
+                                        <span>{% trans section.name %}</span><br>
+                                        <small><span class="label label-default" data-test-section-variant="h4"></span></small>
+                                    </h4>
+                                    <h5 class="list-group-item-heading visible-xs-block">
+                                        <span>{% trans section.name %}</span><br>
+                                        <small><span class="label label-default" data-test-section-variant="h5"></span></small>
+                                    </h5>
+                                    <!-- <p class="list-group-item-text">Description</p> -->
+                                    <p class="list-group-item-text mt-15">{% blocktrans with count=section.question_count %}Questions count: {{ count }}{% endblocktrans %}</p>
+                                    <p class="list-group-item-text">{% blocktrans with minutes=section.minutes %}Duration: {{ minutes }} min.{% endblocktrans %}</p>
+                                </div>
+                                <div class="col-xs-4 col-sm-3">
+                                    <h4 class="list-group-item-heading text-right lead" data-test-section-price></h4>
+                                    <h1 class="list-group-item-heading bb-list-group-heading-active text-right">
+                                        <i class="fa fa-check-circle"></i>
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="row hidden" data-progress-message>
+                                <div class="col-xs-12">
+                                    <h6 class="text-danger text-center mt-10 mb-0">{% trans 'page:/student/buy-tests/xxxx/:test_variant_in_progress' %}</h6>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default bb-totals-container hidden" data-totals data-hanging="false">
+                <div class="bb-rel">
+                    <div class="bb-spinner-overlay" data-overlay-totals></div>
+                    <div class="panel-body">
+                        <h5 class="mt-10 mb-10">{% trans 'Total:' context '/student/buy-tests/xxxx/' %}</h5>
+                        <div>
+                            <div data-totals-line-items>
+                                <div class="row" data-totals-row>
+                                    <div class="col-xs-8">
+                                        <h6 class="mt-5 mb-0" data-totals-description></h6>
+                                    </div>
+                                    <div class="col-xs-4 text-right">
+                                        <h6 class="mt-5 mb-5">
+                                            <span class="pull-left ml--15">&times;</span>
+                                            <span data-totals-amount></span>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mt-10 mb-10" style="border-color: #ccc;">
+                        </div>
+                        <div>
+                            <div data-totals-subtotals>
+                                <div class="row" data-totals-row>
+                                    <div class="col-xs-8">
+                                        <h6 class="mt-5 mb-5 text-right" data-totals-description></h6>
+                                    </div>
+                                    <div class="col-xs-4 text-right">
+                                        <h6 class="mt-5 mb-5" data-totals-amount></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mt-10 mb-10" style="border-color: #ccc;">
+                        </div>
+                        <h4 class="text-right mt-15 mb-15" data-totals-total></h4>
+                        <h6 class="text-center mt-15 mb-15" data-totals-test-language></h4>
+                        <button type="button" class="btn btn-success btn-lg btn-block" data-totals-buy-tests>{% trans 'Buy tests' context '/student/buy-tests/xxxx/' %}</button>
+                        <a href="{% url 'bbtest:buy_credits' %}" class="btn btn-primary btn-lg btn-block" data-totals-buy-credits>{% trans 'Buy credits' context '/student/buy-tests/xxxx/' %}</a>
+                        <p class="text-center mt-15 mb-0">
+                            <a href="{% url 'bbtest:student_buy_test_domains' %}">{% trans 'Choose different test domain' context '/student/buy-tests/xxxx/' %}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popup %}{% include 'popups/checkout_shortcut.html' %}{% endblock %}
