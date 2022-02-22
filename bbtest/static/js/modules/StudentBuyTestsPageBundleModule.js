@@ -99,7 +99,7 @@ StudentBuyTestsPageBundleModule.prototype._selectLanguage = function(event) {
         }
     });
 
-    this._post(false);
+    this._post(false, -1);
 }
 StudentBuyTestsPageBundleModule.prototype._selectSection = function(event) {
     if (this._$xhr !== undefined) {
@@ -114,7 +114,7 @@ StudentBuyTestsPageBundleModule.prototype._selectSection = function(event) {
     } else {
         $section.data("selected", true);
     }
-    this._post(true);
+    this._post(true, -1);
 }
 
 StudentBuyTestsPageBundleModule.prototype._selectBundle = function(event) {
@@ -320,7 +320,7 @@ StudentBuyTestsPageBundleModule.prototype._curtainsUp = function() {
     this._$overlay_sections.addClass("hidden");
     this._$overlay_totals.addClass("hidden");
 }
-StudentBuyTestsPageBundleModule.prototype._post = function(include_sections, bundle_id=-1) {
+StudentBuyTestsPageBundleModule.prototype._post = function(include_sections, bundle_id) {
     this._curtainsDown();
     var data = {
         language: undefined,
