@@ -32,6 +32,7 @@ from .views.student import (
     DashboardView         as StudentDashboardView,
     BuyTestDomainsView    as StudentBuyTestDomainsView,
     BuyTestsView          as StudentBuyTestsView,
+    BuyTestsViewNIS       as StudentBuyTestsViewNIS,
     BuyTestsCartView      as StudentBuyTestsCartView,
     BuyTestsCheckoutView  as StudentBuyTestsCheckoutView,
     ExamView              as StudentExamView,
@@ -104,6 +105,7 @@ urlpatterns = [
     # STUDENT URLS
     url(r"^student/$",                                         StudentDashboardView.as_view(),        name="student_dashboard"         ),
     url(r"^student/buy-tests/$",                               StudentBuyTestDomainsView.as_view(),   name="student_buy_test_domains"  ),
+    url(r"^student/buy-tests/(?P<test_domain_id>7911)/$",      StudentBuyTestsViewNIS.as_view(),      name="student_buy_tests_NIS"     ),
     url(r"^student/buy-tests/(?P<test_domain_id>\d+)/$",       StudentBuyTestsView.as_view(),         name="student_buy_tests"         ),
     url(r"^student/buy-tests/(?P<test_domain_id>\d+)/cart/$",  StudentBuyTestsCartView.as_view(),     name="student_buy_tests_cart"    ),
     url(r"^student/buy-tests/checkout/$",                      StudentBuyTestsCheckoutView.as_view(), name="student_buy_tests_checkout"),
