@@ -217,7 +217,7 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
         var $bundle_section_progress_message = $bundle_section.find("[bundle-progress-message]");
         var bundle_data = data.bundles[$bundle_pk];
 
-        if (!bundle_data.enabled.some(x => x)){
+        if (!bundle_data.enabled.some(function(e){return e;} )){
             $bundle_section.addClass("disabled");
             $bundle_section.data("available", false);
 
@@ -229,7 +229,7 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
         }
 
         $bundle_section.attr("bundle-sections", "");
-        data.bundles[$bundle_pk].enabled.forEach((en, i) => {
+        data.bundles[$bundle_pk].enabled.forEach(function(en, i){
             if(en){
                 var sects = $bundle_section.attr("bundle-sections");
                 var sect_id = 9539 + i;
@@ -351,7 +351,7 @@ StudentBuyTestsPageBundleModule.prototype._post = function(include_sections, bun
 
                     var sects = $bundle_section.attr("bundle-sections").split('_');
 
-                    sects.forEach((s, i) => {
+                    sects.forEach(function(s){
                         data.sections.push(parseInt(s));
                     });
 
