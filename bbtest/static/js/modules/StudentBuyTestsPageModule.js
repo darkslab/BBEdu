@@ -14,7 +14,6 @@ function StudentBuyTestsPageModule(data) {
 
     this._$test_language = $("[data-test-language]");
     this._$test_section = $("[data-test-section]");
-    this._$bundle_section = $("[bundle-test-section]");
     this._$totals = $("[data-totals]");
     this._$totals_line_items = this._$totals.find("[data-totals-line-items]");
     this._$totals_line_items_row = this._$totals_line_items.find("[data-totals-row]");
@@ -34,7 +33,6 @@ function StudentBuyTestsPageModule(data) {
     this._boundCheckout = this._checkout.bind(this);
     this._boundSelectLanguage = this._selectLanguage.bind(this);
     this._boundSelectSection = this._selectSection.bind(this);
-    this._boundBundleSection = this._selectBundle.bind(this);
     this._boundWindowScroll = this._windowScroll.bind(this);
     this._boundWindowScrollDone = this._windowScrollDone.bind(this);
     this._boundWindowResize = this._windowResize.bind(this);
@@ -43,7 +41,6 @@ function StudentBuyTestsPageModule(data) {
     this._$totals_buy_tests.on("click", this._boundCheckout);
     this._$test_language.on("click", this._boundSelectLanguage);
     this._$test_section.on("click", this._boundSelectSection);
-    this._$bundle_section.on("click", this._boundBundleSection);
     $(window).on("scroll", this._boundWindowScroll);
     $(window).on("resize", this._boundWindowResize);
 
@@ -114,28 +111,9 @@ StudentBuyTestsPageModule.prototype._selectSection = function(event) {
     } else {
         $section.data("selected", true);
     }
+
     this._post(true);
 }
-
-StudentBuyTestsPageModule.prototype._selectBundle = function(event) {
-    
-    if (this._$xhr !== undefined) {
-        return;
-    }
-    
-    var $bundle = $(event.currentTarget);
-    var $pk = $bundle.attr("bundle-test-section");
-    if (!$bundle.data("available")) {
-        return;
-    }
-    if ($bundle.data("selected")) {
-        $bundle.data("selected", false);
-    } else {
-        $bundle.data("selected", true);
-    }
-    this._post(false, $pk);
-}
-
 StudentBuyTestsPageModule.prototype._ajaxSuccess = function(type, pageview, data, status, $xhr) {
     if (pageview) {
         ga_report_pageview();
@@ -183,7 +161,7 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
         var $test_section_price = $test_section.find("[data-test-section-price]");
         var $test_section_progress_message = $test_section.find("[data-progress-message]");
         var section_data = data.sections[$test_section.data("test-section").toString()];
-        
+
         if (!section_data.enabled) {
             $test_section.addClass("disabled");
             $test_section.data("available", false);
@@ -209,48 +187,6 @@ StudentBuyTestsPageModule.prototype._apply = function(data) {
         $test_section_variant.text(section_data.variant);
         $test_section_price.text(section_data.price);
         $test_section_progress_message.addClass("hidden");
-    });
-
-    this._$bundle_section.each(function() {
-        var $bundle_section = $(this);
-        var $bundle_pk = $bundle_section.attr("bundle-test-section");
-        var $bundle_section_progress_message = $bundle_section.find("[bundle-progress-message]");
-        var bundle_data = data.bundles[$bundle_pk];
-
-        if (!bundle_data.enabled.some(x => x)){
-            $bundle_section.addClass("disabled");
-            $bundle_section.data("available", false);
-
-            $bundle_section.removeClass("active");
-            $bundle_section.data("selected", false);
-
-            $bundle_section_progress_message.removeClass("hidden");
-            return;
-        }
-
-        $bundle_section.attr("bundle-sections", "");
-        data.bundles[$bundle_pk].enabled.forEach((en, i) => {
-            if(en){
-                var sects = $bundle_section.attr("bundle-sections");
-                var sect_id = 9539 + i;
-                if (sects.length > 0){
-                    $bundle_section.attr("bundle-sections", `${sects}_${sect_id}`);
-                }else{
-                    $bundle_section.attr("bundle-sections", `${sect_id}`);
-                }
-            }
-        });
-
-        $bundle_section.removeClass("disabled");
-        $bundle_section.data("available", true);
-        if ($bundle_pk == data.selected_bundle_pk) {
-            $bundle_section.addClass("active");
-            $bundle_section.data("selected", true);
-        } else {
-            $bundle_section.removeClass("active");
-            $bundle_section.data("selected", false);
-        }
-        $bundle_section_progress_message.addClass("hidden");
     });
 
     var i;
@@ -320,13 +256,11 @@ StudentBuyTestsPageModule.prototype._curtainsUp = function() {
     this._$overlay_sections.addClass("hidden");
     this._$overlay_totals.addClass("hidden");
 }
-StudentBuyTestsPageModule.prototype._post = function(include_sections, bundle_id=-1) {
+StudentBuyTestsPageModule.prototype._post = function(include_sections) {
     this._curtainsDown();
     var data = {
         language: undefined,
-        sections: [],
-        selected_bundle_pk: -1,
-        selected_bundle_variant: []
+        sections: []
     };
     this._$test_language.each(function() {
         var $test_language = $(this);
@@ -340,23 +274,6 @@ StudentBuyTestsPageModule.prototype._post = function(include_sections, bundle_id
             var $test_section = $(this);
             if ($test_section.data("selected")) {
                 data.sections.push($test_section.data("test-section"));
-            }
-        });
-    }
-    if (bundle_id >= 0){
-        this._$bundle_section.each(function() {
-            var $bundle_section = $(this);
-            if ($bundle_section.data("selected") ) {
-                if($bundle_section.attr("bundle-test-section") == bundle_id){
-
-                    var sects = $bundle_section.attr("bundle-sections").split('_');
-
-                    sects.forEach((s, i) => {
-                        data.sections.push(parseInt(s));
-                    });
-
-                    data.selected_bundle_pk = bundle_id;
-                }
             }
         });
     }
