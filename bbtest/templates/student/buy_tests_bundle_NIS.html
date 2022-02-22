@@ -10,7 +10,7 @@
 {% block content %}
     <script>
         moduleDataStack.push({
-            module: "StudentBuyTestsPageModule",
+            module: "StudentBuyTestsPageBundleModule",
             data: {
                 cartUrl: "{% url 'bbtest:student_buy_tests_cart' test_domain.pk %}",
                 checkoutUrl: "{% url 'bbtest:student_buy_tests_checkout' %}"
@@ -89,8 +89,8 @@
                                         <span>{% trans bname.name %}</span><br>
                                         <small><span class="label label-default" bundle-test-section-variant="h5"></span></small>
                                     </h5>
-                                    <p class="list-group-item-text mt-15">{% blocktrans with count="~" %}Subject count: {{ count }}{% endblocktrans %}</p>
-                                    <p class="list-group-item-text">{% blocktrans with minutes="~" %}Duration: {{ minutes }} min.{% endblocktrans %}</p>
+                                    <p class="list-group-item-text mt-15">{% blocktrans with count=6 %}Subject count: {{ count }}{% endblocktrans %}</p>
+                                    <p class="list-group-item-text">{% blocktrans with minutes=240 %}Duration: {{ minutes }} min.{% endblocktrans %}</p>
                                 </div>
                                 <div class="col-xs-4 col-sm-3">
                                     <h4 class="list-group-item-heading text-right lead" 30></h4>
@@ -124,7 +124,6 @@
                                         <span>{% trans section.name %}</span><br>
                                         <small><span class="label label-default" data-test-section-variant="h5"></span></small>
                                     </h5>
-                                    <!-- <p class="list-group-item-text">Description</p> -->
                                     <p class="list-group-item-text mt-15">{% blocktrans with count=section.question_count %}Questions count: {{ count }}{% endblocktrans %}</p>
                                     <p class="list-group-item-text">{% blocktrans with minutes=section.minutes %}Duration: {{ minutes }} min.{% endblocktrans %}</p>
                                 </div>
