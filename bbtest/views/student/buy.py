@@ -50,13 +50,13 @@ from bbtest.payment_processors import CreditPaymentProcessor
 #            {9539: '',     9540: 'a7d8', 9541: '',     9542: '',     9543: 'b5ce', 9544: '6159'}]}
 
 bundles_manual = {
-    'kk': [{9539: '',     9540: '0a60', 9541: '3525', 9542: '69ed', 9543: 'ed26', 9544: 'bf79'}, 
+    'kk': [{9539: '',     9540: ''    , 9541: ''    , 9542: '',     9543: ''    , 9544: ''    }, 
            {9539: '',     9540: ''    , 9541: ''    , 9542: '',     9543: ''    , 9544: ''    },
            {9539: '',     9540: ''    , 9541: ''    , 9542: '',     9543: ''    , 9544: ''    },
            {9539: '',     9540: ''    , 9541: ''    , 9542: '',     9543: ''    , 9544: ''    },
            {9539: '',     9540: ''    , 9541: ''    , 9542: '',     9543: ''    , 9544: ''    }], 
     'ru': [{9539: '5ea0', 9540: '48be', 9541: '4c39', 9542: 'e518', 9543: 'ed26', 9544: 'c305'}, 
-           {9539: '',     9540: ''    , 9541: ''    , 9542: '',     9543: ''    , 9544: ''    },
+           {9539: 'cd50', 9540: 'c362', 9541: '2aa9', 9542: '2468', 9543: '5fe6', 9544: 'a2f4'},
            {9539: '',     9540: ''    , 9541: ''    , 9542: '',     9543: ''    , 9544: ''    },
            {9539: '',     9540: ''    , 9541: ''    , 9542: '',     9543: ''    , 9544: ''    },
            {9539: '',     9540: ''    , 9541: ''    , 9542: '',     9543: ''    , 9544: ''    }]
@@ -118,7 +118,7 @@ class BuyTestsViewNIS(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredM
             kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
 
         # kwargs["bundles_names_manual_list"] = [{"pk": 0, "name": "Bundle 1"}, {"pk": 1, "name": "Bundle 2"}] #["Bundle 1", "bundle 2"]
-        kwargs["bundles_names_manual_list"] = [{"pk": i, "name": "{} {}".format(pgettext("Bundle", "Bundle"), i)} for i in range(5)]
+        kwargs["bundles_names_manual_list"] = [{"pk": i, "name": "{} {}".format(pgettext("Bundle", "Bundle"), i+1)} for i in range(5)]
         return super().get_context_data(**kwargs)
 
 
