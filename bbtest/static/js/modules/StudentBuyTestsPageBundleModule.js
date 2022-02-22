@@ -234,9 +234,9 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
                 var sects = $bundle_section.attr("bundle-sections");
                 var sect_id = 9539 + i;
                 if (sects.length > 0){
-                    $bundle_section.attr("bundle-sections", `${sects}_${sect_id}`);
+                    $bundle_section.attr("bundle-sections", String(sects) + "_" + String(sect_id));
                 }else{
-                    $bundle_section.attr("bundle-sections", `${sect_id}`);
+                    $bundle_section.attr("bundle-sections", String(sect_id));
                 }
             }
         });
