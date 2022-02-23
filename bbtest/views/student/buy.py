@@ -30,8 +30,10 @@ from bbtest.payment_processors import CreditPaymentProcessor
 #                    {9539: '',     9544: '',     9541: '',     9543: '',     9540: '492d', 9542: ''},
 #                    {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''},
 #                    {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''}], 
-#             'kk': [{9539: '5655', 9544: '25e3', 9541: 'b2fe', 9543: '48c8', 9540: '8323', 9542: 'f654'}, 
-#                    {9539: '1f77', 9544: '4234', 9541: '3aa2', 9543: '5208', 9540: '0073', 9542: 'cf6f'}, 
+#             'kk': [{9539: '',     9544: '',     9541: '',     9543: '',     9540: '',     9542: ''},
+#                    {9539: '',     9544: '',     9541: '',     9543: '',     9540: '',     9542: ''},
+#                 #    {9539: '5655', 9544: '25e3', 9541: 'b2fe', 9543: '48c8', 9540: '8323', 9542: 'f654'}, 
+#                 #    {9539: '1f77', 9544: '4234', 9541: '3aa2', 9543: '5208', 9540: '0073', 9542: 'cf6f'}, 
 #                    {9539: '',     9544: '',     9541: '',     9543: '',     9540: '',     9542: ''},
 #                    {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''},
 #                    {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''}]}
@@ -117,7 +119,6 @@ class BuyTestsViewNIS(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredM
         if kwargs["test_domain"].pk != 7913:
             kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
 
-        # kwargs["bundles_names_manual_list"] = [{"pk": 0, "name": "Bundle 1"}, {"pk": 1, "name": "Bundle 2"}] #["Bundle 1", "bundle 2"]
         kwargs["bundles_names_manual_list"] = [{"pk": i, "name": "{} {}".format(pgettext("Bundle", "Bundle"), i+1)} for i in range(5)]
         return super().get_context_data(**kwargs)
 
@@ -203,7 +204,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
         else:
             available_tests = {test.code: test for test in self.cart_handle().buyer().remained_tests(test_domain, form.cleaned_data["data"]["language"])}
             bundle_pk = int(form.cleaned_data["data"]["selected_bundle_pk"])
-            if len(form.cleaned_data["data"]["sections"]):
+            if len(form.cleaned_data["data"]["sections"]) and bundle_pk >= 0:
                 for section_id, testcode in bundles_manual[form.cleaned_data["data"]["language"]][bundle_pk].items():
                     if testcode in available_tests.keys():
                         TEST_SECTION_MAP[str(section_id)](
@@ -239,7 +240,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
         bundle_pk = int(bundle_pk)
         available_tests = {test.code: test for test in self.cart_handle().buyer().remained_tests(domain, default_language)}
 
-        if sect_len:
+        if sect_len and bundle_pk >= 0:
             for section_id, testcode in bundles_manual[default_language][bundle_pk].items():
                 if testcode in available_tests.keys():
                     TEST_SECTION_MAP[str(section_id)](
@@ -299,41 +300,42 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
         
 
         # for test in available_tests:
-        for section_id, testcode in bundles_manual[default_language][bundle_pk].items():
-            section_id = str(section_id)
+        if bundle_pk >= 0:
+            for section_id, testcode in bundles_manual[default_language][bundle_pk].items():
+                section_id = str(section_id)
 
-            response["sections"][section_id]["variant"] = _("page:/student/buy-tests/xxxx/:test_variant:%(test_code)s") % { "test_code": testcode.upper() }
+                response["sections"][section_id]["variant"] = _("page:/student/buy-tests/xxxx/:test_variant:%(test_code)s") % { "test_code": testcode.upper() }
 
-            if len(testcode) == 0 or testcode not in available_tests.keys():
-                continue
-            # if section_id not in response["sections"]:
-            #     continue
-            # if testcode in available_tests.keys():
-            response["sections"][section_id]["enabled"] = True
+                if len(testcode) == 0 or testcode not in available_tests.keys():
+                    continue
+                # if section_id not in response["sections"]:
+                #     continue
+                # if testcode in available_tests.keys():
+                response["sections"][section_id]["enabled"] = True
 
-            if available_tests[testcode].is_free:
-                response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "Free")
-            else:
-                amount = Decimal("0.00")
-                try:
-                    if TEST_SECTION_MAP[section_id] in (
-                        KazakhLanguageNISItem,
-                        RussianLanguageNISItem,
-                        EnglishLanguageNISItem,
-                        NaturalScienceNISItem,
-                    ):
-                        amount = Decimal("600.00")
-                    elif TEST_SECTION_MAP[section_id] in (
-                        MathematicsNISItem,
-                    ):
-                        amount = Decimal("1000.00")
-                    elif TEST_SECTION_MAP[section_id] in (
-                        QuantitativeNISItem,
-                    ):
-                        amount = Decimal("1500.00")
-                except KeyError:
-                    pass
-                response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": amount }
+                if available_tests[testcode].is_free:
+                    response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "Free")
+                else:
+                    amount = Decimal("0.00")
+                    try:
+                        if TEST_SECTION_MAP[section_id] in (
+                            KazakhLanguageNISItem,
+                            RussianLanguageNISItem,
+                            EnglishLanguageNISItem,
+                            NaturalScienceNISItem,
+                        ):
+                            amount = Decimal("600.00")
+                        elif TEST_SECTION_MAP[section_id] in (
+                            MathematicsNISItem,
+                        ):
+                            amount = Decimal("1000.00")
+                        elif TEST_SECTION_MAP[section_id] in (
+                            QuantitativeNISItem,
+                        ):
+                            amount = Decimal("1500.00")
+                    except KeyError:
+                        pass
+                    response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": amount }
 
         response["affordable"] = False
         if self.cart_handle().buyer().balance_account().balance() >= self.cart_handle().total():
@@ -469,9 +471,6 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
         response["affordable"] = False
         if self.cart_handle().buyer().balance_account().balance() >= self.cart_handle().total():
             response["affordable"] = True
-
-        # if domain.pk == 7911:
-        #     response = self.__response_bunde(response, self.cart_handle().buyer().remained_tests(domain, default_language), default_language)
 
         return response
 
