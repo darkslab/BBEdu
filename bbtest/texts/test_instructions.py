@@ -237,8 +237,8 @@ def test_instructions_title(test):
 
 NIS_TEST_VIDEO_LINKS = {
     9539: {
-        Test.LANGUAGE_KK: "https://www.youtube.com/embed/7ZPcaY5tlSc",  ## TODO: Provide relevant link
-        Test.LANGUAGE_RU: "https://www.youtube.com/embed/gVw0dgXxFic",
+        Test.LANGUAGE_KK: "",  ## TODO: Provide relevant link
+        Test.LANGUAGE_RU: "",
     },
     9540: {
         Test.LANGUAGE_KK: "https://www.youtube.com/embed/QakiQUwFyqo",
