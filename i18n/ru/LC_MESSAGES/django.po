@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-22 01:00+0600\n"
+"POT-Creation-Date: 2022-02-25 00:53+0600\n"
 "PO-Revision-Date: 2020-08-31 22:02+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2321,9 +2321,19 @@ msgctxt "/student/buy-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr "Выбрать другой тест"
 
+msgctxt "/student/buy-tests/7911/"
+msgid "Bundles"
+msgstr "Варианты"
+
 #, python-format
 msgid "Subject count: %(count)s"
 msgstr "Количество предметов: %(count)s"
+
+msgid "page:/student/buy-tests/xxxx/:test_bundle_in_progress"
+msgstr "Новый вариант добавляется, зайдите позже."
+
+msgid "page:/student/buy-tests/xxxx/:test_bundle_complete"
+msgstr "Вариант выполнен"
 
 #, python-format
 msgid ""

@@ -30,7 +30,7 @@ class Command(BaseCommand):
             if i % 2:
                 count["ru"]["English Language"] = count["ru"].get("English Language", []) + [v]
             else:
-                count["kk"]["English Language"] = count["ru"].get("English Language", []) + [v]
+                count["kk"]["English Language"] = count["kk"].get("English Language", []) + [v]
             # print(i, v)
 
 

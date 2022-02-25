@@ -33,7 +33,7 @@ function StudentBuyTestsPageBundleModule(data) {
 
     this._boundCheckout = this._checkout.bind(this);
     this._boundSelectLanguage = this._selectLanguage.bind(this);
-    this._boundSelectSection = this._selectSection.bind(this);
+    // this._boundSelectSection = this._selectSection.bind(this);
     this._boundBundleSection = this._selectBundle.bind(this);
     this._boundWindowScroll = this._windowScroll.bind(this);
     this._boundWindowScrollDone = this._windowScrollDone.bind(this);
@@ -42,7 +42,7 @@ function StudentBuyTestsPageBundleModule(data) {
 
     this._$totals_buy_tests.on("click", this._boundCheckout);
     this._$test_language.on("click", this._boundSelectLanguage);
-    this._$test_section.on("click", this._boundSelectSection);
+    // this._$test_section.on("click", this._boundSelectSection);
     this._$bundle_section.on("click", this._boundBundleSection);
     $(window).on("scroll", this._boundWindowScroll);
     $(window).on("resize", this._boundWindowResize);
@@ -215,9 +215,11 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
         var $bundle_section = $(this);
         var $bundle_pk = $bundle_section.attr("bundle-test-section");
         var $bundle_section_progress_message = $bundle_section.find("[bundle-progress-message]");
+        var $bundle_section_complete_message = $bundle_section.find("[bundle-complete-message]");
         var bundle_data = data.bundles[$bundle_pk];
 
-        if (!bundle_data.enabled.some(function(e){return e;} )){
+        // if (!bundle_data.enabled.some(function(e){return e;} )){
+        if(bundle_data.state === 0){
             $bundle_section.addClass("disabled");
             $bundle_section.data("available", false);
 
@@ -225,6 +227,16 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
             $bundle_section.data("selected", false);
 
             $bundle_section_progress_message.removeClass("hidden");
+            return;
+        }
+        if(bundle_data.state === 2){
+            $bundle_section.addClass("disabled");
+            $bundle_section.data("available", false);
+
+            $bundle_section.removeClass("active");
+            $bundle_section.data("selected", false);
+
+            $bundle_section_complete_message.removeClass("hidden");
             return;
         }
 
@@ -251,6 +263,7 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
             $bundle_section.data("selected", false);
         }
         $bundle_section_progress_message.addClass("hidden");
+        $bundle_section_complete_message.addClass("hidden");
     });
 
     var i;

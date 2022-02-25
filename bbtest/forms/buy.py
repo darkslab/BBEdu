@@ -44,7 +44,7 @@ class BuyTestsCartForm(Form):
                 if section in clean_data["sections"]:
                     continue
                 clean_data["sections"].append(section)
-            clean_data["selected_bundle_pk"] = data["selected_bundle_pk"]
+            clean_data["selected_bundle_pk"] = data.get("selected_bundle_pk", -1)
 
         except (KeyError, ValueError):
             raise ValidationError(
