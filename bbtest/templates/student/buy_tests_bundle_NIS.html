@@ -101,7 +101,12 @@
                             </div>
                             <div class="row hidden" bundle-progress-message>
                                 <div class="col-xs-12">
-                                    <h6 class="text-danger text-center mt-10 mb-0">{% trans 'page:/student/buy-tests/xxxx/:test_variant_in_progress' %}</h6>
+                                    <h6 class="text-danger text-center mt-10 mb-0">{% trans 'page:/student/buy-tests/xxxx/:test_bundle_in_progress' %}</h6>
+                                </div>
+                            </div>
+                            <div class="row hidden" bundle-complete-message>
+                                <div class="col-xs-12">
+                                    <h6 class="text-success text-center mt-10 mb-0">{% trans 'page:/student/buy-tests/xxxx/:test_bundle_complete' %}</h6>
                                 </div>
                             </div>
                         </a>
@@ -109,7 +114,7 @@
                 </div>
             </div>
 
-            <div class="bb-rel" style="display: none;">
+            <div class="bb-rel" style="{{ hide_section_modifier }}">
                 <div class="bb-spinner-overlay" data-overlay-sections></div>
                 <div class="list-group">
                     {% for section in test_domain.sections.all %}
