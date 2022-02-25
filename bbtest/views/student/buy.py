@@ -120,6 +120,7 @@ class BuyTestsViewNIS(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredM
             kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
 
         kwargs["bundles_names_manual_list"] = [{"pk": i, "name": "{} {}".format(pgettext("Bundle", "Bundle"), i+1)} for i in range(5)]
+        kwargs["hide_section_modifier"] = "display: true;" if settings.DEBUG else "display: none;"
         return super().get_context_data(**kwargs)
 
 
@@ -240,17 +241,17 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
         bundle_pk = int(bundle_pk)
         available_tests = {test.code: test for test in self.cart_handle().buyer().remained_tests(domain, default_language)}
 
-        if sect_len and bundle_pk >= 0:
-            for section_id, testcode in bundles_manual[default_language][bundle_pk].items():
-                if testcode in available_tests.keys():
-                    TEST_SECTION_MAP[str(section_id)](
-                        self.cart_handle(),
-                        available_tests[testcode],
-                        self.cart_handle().buyer(),
-                        default_language,
-                    )
+        # if sect_len and bundle_pk >= 0:
+        #     for section_id, testcode in bundles_manual[default_language][bundle_pk].items():
+        #         if testcode in available_tests.keys():
+        #             TEST_SECTION_MAP[str(section_id)](
+        #                 self.cart_handle(),
+        #                 available_tests[testcode],
+        #                 self.cart_handle().buyer(),
+        #                 default_language,
+        #             )
 
-            self.cart_handle().save()
+        #     self.cart_handle().save()
 
         response = {
             "totals": {
@@ -350,6 +351,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
         for i, bund in enumerate(bundles_manual[default_language]):
             response["bundles"][str(i)] = {
                 "enabled": [],
+                "state": 0,     # 0: empty, 1: available, 2: complited
                 "variant": []
             }
             for sect in order:
@@ -361,6 +363,12 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                 else:
                     response["bundles"][str(i)]["enabled"].append(False)
                     response["bundles"][str(i)]["variant"].append("")
+            if all([v == "" for v in response["bundles"][str(i)]["variant"]]): 
+                response["bundles"][str(i)]["state"] = 0    # 0: empty
+            elif all([v == False for v in response["bundles"][str(i)]["enabled"]]): 
+                response["bundles"][str(i)]["state"] = 2    # 2: complited
+            else:
+                response["bundles"][str(i)]["state"] = 1    # 1: available
 
         return response
             
