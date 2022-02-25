@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-23 16:40+0600\n"
+"POT-Creation-Date: 2022-02-25 00:53+0600\n"
 "PO-Revision-Date: 2020-08-31 22:04+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -2313,6 +2313,12 @@ msgstr "Bundles"
 #, python-format
 msgid "Subject count: %(count)s"
 msgstr "Subject count: %(count)s"
+
+msgid "page:/student/buy-tests/xxxx/:test_bundle_in_progress"
+msgstr "New variants are being added. Please check back later."
+
+msgid "page:/student/buy-tests/xxxx/:test_bundle_complete"
+msgstr "Variant is completed"
 
 #, python-format
 msgid ""
