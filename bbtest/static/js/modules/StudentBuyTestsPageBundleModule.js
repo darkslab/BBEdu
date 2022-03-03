@@ -59,6 +59,7 @@ StudentBuyTestsPageBundleModule.prototype.unMount = function() {
     this._$totals_buy_tests.off("click", this._boundCheckout);
     this._$test_language.off("click", this._boundSelectLanguage);
     this._$test_section.off("click", this._boundSelectSection);
+    this._$bundle_section.off("click", this._boundBundleSection);
     $(window).off("scroll", this._boundWindowScroll);
     $(window).off("resize", this._boundWindowResize);
 
@@ -218,8 +219,7 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
         var $bundle_section_complete_message = $bundle_section.find("[bundle-complete-message]");
         var bundle_data = data.bundles[$bundle_pk];
 
-        // if (!bundle_data.enabled.some(function(e){return e;} )){
-        if(bundle_data.state === 0){
+        if(bundle_data.state === 0){    // 0: empty, 1: available, 2: complited
             $bundle_section.addClass("disabled");
             $bundle_section.data("available", false);
 
@@ -229,7 +229,7 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
             $bundle_section_progress_message.removeClass("hidden");
             return;
         }
-        if(bundle_data.state === 2){
+        if(bundle_data.state === 2){    // 0: empty, 1: available, 2: complited
             $bundle_section.addClass("disabled");
             $bundle_section.data("available", false);
 

@@ -30,7 +30,7 @@ if settings.DEBUG:
         'ru': [{9539: 'b1d8', 9540: 'c4dd', 9541: '477e', 9542: '425e', 9543: '48c8', 9544: 'cfd3'}, 
                {9539: '84b0', 9540: '596c', 9541: '88f3', 9542: '7912', 9543: 'c2ab', 9544: 'bc6f'}, 
                {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''}, 
-               {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''}, 
+               {9539: '1f77', 9540: '0073', 9541: '3aa2', 9542: 'cf6f', 9543: '5208', 9544: '4234'}, 
                {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''}], 
         'kk': [{9539: '5655', 9540: '8323', 9541: 'b2fe', 9542: 'f654', 9543: 'cf9e', 9544: '25e3'}, 
                {9539: '1f77', 9540: '0073', 9541: '3aa2', 9542: 'cf6f', 9543: '5208', 9544: '4234'},
@@ -128,9 +128,12 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
     def get(self, request, test_domain_id, *args, **kwargs):
         test_domain = get_test_domain_or_404(test_domain_id)
         cache_cart_type_key = "cart-type-%s" % request.user.pk
+        cache_cart_bundle_key = "cart-bundle-%s" % request.user.pk
+        cache_cart_bundle_lang_key = "cart-bundle-lang-%s" % request.user.pk
         cache_cart_old_items = "cart-old-items-%s" % request.user.pk
         cache_cart_timeout = 86400
 
+        print("cache.get(cache_cart_bundle_key)", cache_cart_bundle_key, cache.get(cache_cart_bundle_key))
         if cache.get(cache_cart_type_key) not in [ "test-domain-%s" % test_domain.pk ]:
             is_emptied = False
             is_restored = False
@@ -159,7 +162,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                 cache.delete(cache_cart_type_key)
 
         if test_domain.pk == 7911:
-            data = self.__response_bundle(test_domain)
+            data = self.__response_bundle(test_domain, bundle_pk=cache.get(cache_cart_bundle_key, -1), default_language=cache.get(cache_cart_bundle_lang_key, Test.LANGUAGE_KK))
         else:
             data = self.__response(test_domain)
         data.update({
@@ -214,7 +217,15 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                             self.cart_handle().buyer(),
                             form.cleaned_data["data"]["language"],
                         )
-
+            
+            cache_cart_bundle_key = "cart-bundle-%s" % request.user.pk
+            cache_cart_bundle_lang_key = "cart-bundle-lang-%s" % request.user.pk
+            if len(self.cart_handle()):
+                cache.set(cache_cart_bundle_key, bundle_pk, 86400)
+                cache.set(cache_cart_bundle_lang_key, form.cleaned_data["data"]["language"], 86400)
+            else:
+                cache.delete(cache_cart_bundle_key)
+            
         self.cart_handle().save()
 
         cache_cart_type_key = "cart-type-%s" % request.user.pk
