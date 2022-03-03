@@ -48,29 +48,22 @@ class Command(BaseCommand):
                         tests[map_to_code[k]] = ""
                 final_bundle[lang].append(tests)
 
-            for b in final_bundle[lang]:
-                print(b)
+            # for b in final_bundle[lang]:
+            #     print(b)
 
-        print(final_bundle)
-        # for i in range(2):
-        #     lang = "ru"
-        #     BundleNISItem.objects.create(
-        #         math =       count[lang]["Mathematics"][i],
-        #         quantative = count[lang]["Quantitative"][i],
-        #         rus =        count[lang]["Russian Language"][i],
-        #         kaz =        count[lang]["Kazakh Language"][i],
-        #         eng =        count["xx"]["English Language"][i],
-        #         natural =    count[lang]["Natural Science"][i],
-        #         language =   lang    
-        #     )
-        # for i in range(2):
-        #     lang = "kk"
-        #     BundleNISItem.objects.create(
-        #         math =       count[lang]["Mathematics"][i],
-        #         quantative = count[lang]["Quantitative"][i],
-        #         rus =        count[lang]["Russian Language"][i],
-        #         kaz =        count[lang]["Kazakh Language"][i],
-        #         eng =        count["xx"]["English Language"][i+2],
-        #         natural =    count[lang]["Natural Science"][i],
-        #         language =   lang    
-        #     )
+        to_print1 = []
+        for key in final_bundle.keys():
+            to_print = ""
+            to_print2 = []
+            for i, row in enumerate(final_bundle[key]):
+                if i == 0:
+                    to_print2.append( "'{}': [{}".format(key, row) )
+                else:
+                    to_print2.append( "       {}".format(row))
+
+            to_print = "\n".join(to_print2) + "]"
+            to_print = to_print.replace("''", "''    ")
+            to_print1.append(to_print)
+
+        to_print = ",\n".join(to_print1) 
+        print(to_print)
