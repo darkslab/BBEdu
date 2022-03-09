@@ -28,6 +28,8 @@ _common:
     nqt_full: ~
     law: ~
     law_full: ~
+    proftest: ~
+    proftest_full: ~
   sections:
     nufypet:
       section0: 'Mathematics'
@@ -37,6 +39,8 @@ _common:
     nqt:
       section00: ~
     law:
+      section0: ~
+    proftest:
       section0: ~
   topics:
     nufypet:
@@ -98,6 +102,9 @@ _common:
         topic7: ~
         topic8: ~
         topic9: ~
+    proftest:
+      section0: 
+        topic0: ~
   regions:
     select: ~
     names:
@@ -186,6 +193,7 @@ page:
       unt: ~
       nufypet: ~
       law: ~
+      proftest: ~
     accounting_error: ~
     last_cached: ~
   '/super/users/':

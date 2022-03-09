@@ -68,7 +68,7 @@ else:
 
 def get_test_domain_or_404(test_domain_id):
     return get_object_or_404(
-        TestDomain.objects.filter(pk__in=[ 7911, 7912, 7913, 7915 ]).prefetch_related("sections"),
+        TestDomain.objects.filter(pk__in=[ 7911, 7912, 7913, 7915, 7916 ]).prefetch_related("sections"),
         pk=test_domain_id,
     )
 
@@ -87,7 +87,8 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequir
         kwargs["nis"] = TestDomain.objects.get(pk=7911)
         kwargs["unt"] = TestDomain.objects.get(pk=7912)
         kwargs["nufypet"] = TestDomain.objects.get(pk=7913)
-        kwargs["law"] = TestDomain.objects.get(pk=7915)
+        # kwargs["law"] = TestDomain.objects.get(pk=7915)
+        kwargs["proftest"] = TestDomain.objects.get(pk=7916)
 
         return super().get_context_data(**kwargs)
 
@@ -481,6 +482,10 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                         amount = Decimal("480.00")
                     elif TEST_SECTION_MAP[section_id] in (
                         LawItem,
+                    ):
+                        amount = Decimal("200.00")
+                    elif TEST_SECTION_MAP[section_id] in (
+                        ProftestItem,
                     ):
                         amount = Decimal("200.00")
                 except KeyError:
