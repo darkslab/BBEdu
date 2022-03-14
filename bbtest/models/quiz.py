@@ -148,7 +148,7 @@ class Quiz(Model):
         else:
             return [None for _ in range(self.test.section.question_count)]
 
-    def count_answers(self):
+    def proftest_score(self):
         def dif_None(a, b):
             try:
                 return a - b
@@ -157,12 +157,30 @@ class Quiz(Model):
         answer_a_offsets = self.get_a_offset()
         user_answers = self.get_answers_ids()
         normalized_answers = [dif_None(ans, a_offset) for ans, a_offset in zip(user_answers, answer_a_offsets)]
-        
-        count = {k: 0 for k in range(4)}
-        count["no answer"] = 0
-        for ans in normalized_answers:
-            if ans is not None:
-                count[ans] += 1
-            else:
-                count["no answer"] += 1
-        return count
+
+
+        table_Holland_proftest = [[0, 0, 0, 0, 0, None, None, None, None, None, None, None, None, None, None, 0, 0, 0, 0, None, 0, None, None, None, None, None, None, None, None, None, 0, 0, 0, 0, None, None, None, None, None, None, None, None],
+                                  [1, None, None, None, None, 0, 0, 0, 0, None, None, None, None, None, None, 1, None, None, None, 0, None, 0, 0, 0, None, None, None, None, None, None, 1, None, None, None, 0, 0, 0, None, None, None, None, None],
+                                  [None, 1, None, None, None, 1, None, None, None, 0, 0, 0, None, None, None, None, 1, None, None, 1, None, None, None, None, 0, 0, 0, None, None, None, None, None, None, None, None, 1, None, 0, 0, None, 1, None], 
+                                  [None, None, 1, None, None, None, 1, None, None, 1, None, None, 0, 0, None, None, None, 1, None, None, None, 1, None, None, 1, None, None, 0, 0, None, None, 1, None, None, None, None, None, 1, None, 0, None, 0], 
+                                  [None, None, None, 1, None, None, None, 1, None, None, 1, None, 1, None, 0, None, None, None, None, None, None, None, 1, None, None, 1, None, 1, None, 0, None, None, 1, None, 1, None, 1, None, 1, 1, None, None], 
+                                  [None, None, None, None, 1, None, None, None, 1, None, None, 1, None, 1, 1, None, None, None, 1, None, 1, None, None, 1, None, None, 1, None, 1, 1, None, None, None, 1, None, None, None, None, None, None, 0, 1]]
+        prof_scores = []
+        for profession in table_Holland_proftest:
+            prof_score = sum(  [p==n for p, n in zip(profession, normalized_answers) if p is not None] )
+            prof_scores.append(prof_score)
+        print(prof_scores)
+        index = sorted(range(len(prof_scores)), key=prof_scores.__getitem__, reverse=True)
+        print(index)
+        results_interpret = {
+            0: '<b>Реалистичному типу</b> личности свойственна эмоциональная стабильность, ориентация на настоящее. Представители данного типа занимаются конкретными объектами и их практическим использованием: вещами, инструментами, машинами. Отдают предпочтение занятиям требующим моторных навыков, ловкости, конкретности. <br><i>Профессии</i> – механик, электрик, инженер, моряк, шофер и т. п.',
+            1: '<b>Интеллектуальный тип</b> ориентирован на умственный труд. Он аналитичен, рационален, независим, оригинален. Преобладают теоретические и в некоторой степени эстетические ценности. Размышления о проблеме он предпочитает занятиям по реализации связанных с ней решений. Ему нравится решать задачи, требующие абстрактного мышления.<br><i>Профессии</i> в первую очередь научные – математик, физик, астроном и т. д.',
+            2: '<b>Социальный тип</b> ставит перед собой такие цели и задачи, которые позволяют им установить тесный контакт с окружающей социальной средой. Обладает социальными умениями и нуждается в социальных контактах. Стремятся поучать, воспитывать. Гуманны. Способны приспособиться практически к любым условиям. Стараются держаться в стороне от интеллектуальных проблем. Они активны и решают проблемы, опираясь главным образом на эмоции, чувства и умение общаться. <br><i>Профессии</i> – врач, учитель, психолог, социальный работник и т. п.',
+            3: '<b>Конвенциональный тип</b> отдает предпочтение четко структурированной деятельности. Из окружающей его среды он выбирает цели, задачи и ценности, проистекающие из обычаев и обусловленные состоянием общества. Ему характерны серьезность настойчивость, консерватизм, исполнительность. В соответствии с этим его подход к проблемам носит стереотипичный, практический и конкретный характер.<br><i>Профессии</i> – машинопись, бухгалтерия, программирование и пр.',
+            4: '<b>Предприимчивый тип</b> избирает цели, ценности и задачи, позволяющие ему проявить энергию, энтузиазм, импульсивность, доминантность, реализовать любовь к приключенчеству. Ему не по душе занятия, связанные с ручным трудом, а также требующие усидчивости, большой концентрации внимания и интеллектуальных усилий. Предпочитает руководящие роли в которых может удовлетворять свои потребности в доминантности и признании. Активен, предприимчив.<br><i>Профессии</i> – директор, журналист, администратор, предприниматель и др.',
+            5: '<b>Артистичный тип</b> отстраняется от отчетливо структурированных проблем и видов деятельности, предполагающих большую физическую силу. В общении с окружающими опираются на свои непосредственные ощущения, эмоции, интуицию и воображение. Ему присущ сложный взгляд на жизнь, гибкость, независимость суждений. Свойственна несоциальность, оригинальность. <br><i>Профессии</i> – музицирование, занятие живописью, литературное творчество, фотография, театр и пр.'
+        }
+
+        prof_type = ["Реалистичному тип", "Интеллектуальный тип", "Социальный тип", "Конвенциональный тип", "Предприимчивый тип", "Артистичный тип" ]
+
+        return results_interpret[index[0]], prof_type[index[0]]
