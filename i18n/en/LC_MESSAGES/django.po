@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 00:53+0600\n"
+"POT-Creation-Date: 2022-03-14 06:48+0600\n"
 "PO-Revision-Date: 2020-08-31 22:04+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1224,6 +1224,12 @@ msgstr "Экология и устойчивое развитие"
 msgid "_common.topics.nis.9539.topic6"
 msgstr "Открытия, меняющие мир"
 
+msgid "_common.domains.proftest"
+msgstr "Профтест"
+
+msgid "_common.section.prof_test"
+msgstr "Определение профессиональной направленности личности"
+
 msgctxt "Account type"
 msgid "Asset"
 msgstr "Asset"
@@ -1474,6 +1480,10 @@ msgstr "Biology/Chemistry NUFYPET Test is required."
 msgctxt "Item error"
 msgid "Thinking skills NUFYPET Test is required."
 msgstr "Thinking skills NUFYPET Test is required."
+
+msgctxt "Item error"
+msgid "Prof Test is required."
+msgstr "Test is required."
 
 msgctxt "Item error"
 msgid "Test is required."
@@ -2131,6 +2141,9 @@ msgstr "Nazarbayev University Foundation Year Preparation Entrance Test"
 msgid "_common.domains.law_full"
 msgstr "Test for Lawyers"
 
+msgid "_common.domains.proftest_full"
+msgstr "Профессиональное Тестирование"
+
 msgctxt "Home page"
 msgid "We are working on other tests..."
 msgstr "We are working on other tests…"
@@ -2334,6 +2347,10 @@ msgctxt "Results page"
 msgid "Section"
 msgstr "Section"
 
+msgctxt "Results page, Prof test"
+msgid "Your profession type"
+msgstr "Your progress will be shown here."
+
 msgctxt "Results page"
 msgid "Your score"
 msgstr "Your score"
@@ -2513,6 +2530,10 @@ msgstr "View Transaction #%(transaction_id)s"
 msgctxt "Results page"
 msgid "Review correct answers"
 msgstr "Review correct answers"
+
+msgctxt "Results page"
+msgid "Review answers"
+msgstr "Review answers"
 
 #, python-format
 msgid "page:/student/results/:score:%(score)s"
@@ -3253,6 +3274,9 @@ msgstr "NUFYPET Tests [Revenue account]"
 
 msgid "page:/super/trial-balance/:account.law"
 msgstr "LAW Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.proftest"
+msgstr "PROF Tests [Revenue account]"
 
 #, python-format
 msgctxt "/super/users/"

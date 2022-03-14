@@ -20,3 +20,4 @@ Revenue accounts:
     Tests-UNT
     Tests-NUFYPET
     Tests-LAW
+    Tests-PROFTEST

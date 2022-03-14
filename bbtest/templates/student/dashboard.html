@@ -49,6 +49,17 @@
                         <div class="bb-accordion-panel-group" id="bb-results-0">
                             <div class="panel hidden-xs">
                                 <div class="bb-accordion-panel-heading bb-accordion-panel-heading-title">
+                                    {% if quiz_set.test_domain.id == 7916 %}
+                                    <!-- Special handling for prftest -->
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <strong>{% trans 'Section' context 'Results page' %}</strong>
+                                        </div>
+                                        <div class="col-xs-5 pr-6 pl-5 text-center">
+                                            <strong>{% trans 'Your profession type' context 'Results page, Prof test' %}</strong>
+                                        </div>
+                                    </div>
+                                    {% else %}
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <strong>{% trans 'Section' context 'Results page' %}</strong>
@@ -61,6 +72,7 @@
                                             <strong>{% blocktrans with question_icon_start='<i class="fa fa-question-circle text-help" data-toggle="popover" data-content="' question_icon_end='" data-placement="auto" data-container="body" data-trigger="hover"></i>' context 'Results page' %}Average score {{ question_icon_start }}{{ avg_msg }}{{ question_icon_end }}{% endblocktrans %}</strong>
                                         </div>
                                     </div>
+                                    {% endif %}
                                 </div>
                             </div>
                             {% for quiz in quiz_set.quizzes.all %}
