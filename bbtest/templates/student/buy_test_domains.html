@@ -26,6 +26,11 @@
                     {% trans nufypet.name as domain_abbr %}
                     <a href="{% url 'bbtest:student_buy_tests' nufypet.pk %}" class="btn btn-lg btn-primary btn-block btn-wrappable hidden-xs mt-15">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
                     <a href="{% url 'bbtest:student_buy_tests' nufypet.pk %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block mt-15">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
+                    {% trans '_common.domains.proftest_full' as domain_name %}
+                    {% trans proftest.name as domain_abbr %}
+                    <a href="{% url 'bbtest:student_buy_tests' proftest.pk %}" class="btn btn-lg btn-primary btn-block btn-wrappable hidden-xs mt-15">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
+                    <a href="{% url 'bbtest:student_buy_tests' proftest.pk %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block mt-15">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>
+                
                 </div>
             </div>
         </div>

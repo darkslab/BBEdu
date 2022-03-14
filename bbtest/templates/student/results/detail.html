@@ -57,6 +57,17 @@
                     </div>
                 </div>
             </div>
+        {% elif quiz.stats.detail.type == 'proftest' %}
+            <!-- Proftest result content (in collapsable field) -->
+            {{quiz.stats.detail.prof_recomendaton|safe}}
+            <div class="row">
+                <div class="col-xs-12 col-sm-7">
+                    {{ quiz.stats.detail.texts|safe }}
+                    <div class="text-center mt-23">
+                        <a href="{% url 'bbtest:student_result' quiz.test.code %}{% if quiz_sets.has_other_pages %}?{% pagination_qs quiz_sets.number %}{% endif %}" class="btn btn-primary">{% trans 'Review answers' context 'Results page' %}</a>
+                    </div>
+                </div>
+            </div> 
         {% elif quiz.stats.detail.type == 'branched' %}
             <div class="row">
                 <div class="col-xs-12 col-sm-5">
@@ -103,6 +114,8 @@
             </div>
         {% endif %}
         <div class="row">
+            <!-- Exlude proftest from numerical score monitoring -->
+            {% if quiz.stats.detail.type != 'proftest' %}
             <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                 <hr style="border-color: #ccc; width: 75%;">
                 <p class="text-center text-normal mb-10"><strong>{% trans 'Test progress monitoring' context 'Results page' %}</strong></p>
@@ -114,6 +127,7 @@
                     <em>{% if quiz.stats.detail.avg_texts %}{{ quiz.stats.detail.avg_texts }}{% else %}{% trans 'The red line is the average score of the current test subject on bbtest.kz website in comparison to your own results.' context 'Results page' %}{% endif %}</em>
                 </p>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

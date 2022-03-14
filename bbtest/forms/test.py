@@ -530,6 +530,10 @@ class TestForm(ModelForm):
             elif section.pk in (9565,):
                 if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
                     raise ValueError("Incorrect language")
+            # PROFTEST section
+            elif section.pk in (9566,):
+                if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
+                    raise ValueError("Incorrect language")
             else:
                 raise ValidationError(
                     pgettext("Validation error", "Unrecognized test section."),
@@ -887,6 +891,82 @@ class TestForm(ModelForm):
                 paragraph = TestParagraph.objects.create(
                     paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
                     meta_data={"text": ""},
+                )
+                TestParagraphQuestion.objects.create(
+                    question=question,
+                    paragraph=paragraph,
+                    order=0,
+                )
+        
+        # PROFTEST sections
+        elif test.section.is_proftest():
+            shared_paragraph = None
+            questions_text = [('Инженер-технолог', 'Инженер-конструктор'),
+                                ('Вязальщик', 'Санитарный врач'),
+                                ('Повар', 'Наборщик'),
+                                ('Фотограф', 'Заведующий магазином'),
+                                ('Чертежник', 'Дизайнер'),
+                                ('Философ', 'Психиатр'),
+                                ('Ученый-химик', 'Бухгалтер'),
+                                ('Редактор научного журнала', 'Адвокат'),
+                                ('Лингвист', 'Переводчик художественной литературы'),
+                                ('Врач-психиатр', 'Статистик'),
+                                ('Завуч', 'Председатель профкома'),
+                                ('Спортивный врач', 'Фельетонист'),
+                                ('Нотариус', 'Снабженец'),
+                                ('Перфоратор', 'Карикатурист'),
+                                ('Политический деятель', 'Писатель'),
+                                ('Садовник', 'Метеоролог'),
+                                ('Водитель троллейбуса', 'Медсестра'),
+                                ('Инженер-электронщик', 'Секретарь-машинистка'),
+                                ('Маляр', 'Художник по металлу'),
+                                ('Биолог', 'Глазной врач'),
+                                ('Телеоператор', 'Режиссер'),
+                                ('Гидролог', 'Ревизор'),
+                                ('Зоолог', 'Главный зоотехник'),
+                                ('Математик', 'Архитектор'),
+                                ('Работник детской комнаты милиции', 'Счетовод'),
+                                ('Учитель', 'Командир части'),
+                                ('Воспитатель', 'Художник по керамике'),
+                                ('Экономист', 'Заведующий отделом'),
+                                ('Корректор', 'Критик'),
+                                ('Завхоз', 'Дирижер'),
+                                ('Радиооператор', 'Специалист по ядерной физике'),
+                                ('Наладчик', 'Монтажник'),
+                                ('Агроном-семеновод', 'Председатель колхоза'),
+                                ('Закройщик-модельер', 'Декоратор'),
+                                ('Археолог', 'Эксперт'),
+                                ('Работник музея', 'Консультант'),
+                                ('Ученый', 'Актер'),
+                                ('Логопед', 'Стенографист'),
+                                ('Врач', 'Дипломат'),
+                                ('Главный бухгалтер', 'Директор'),
+                                ('Поэт', 'Психолог'),
+                                ('Архивариус', 'Скульптор')]
+            for i in range(test.section.question_count):
+                choice_id = randint(0x0000, 0xffff)
+
+                meta_data = {
+                    "choices": [
+                        { "id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": questions_text[i][0]} },
+                        { "id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": questions_text[i][1]} },
+                    ],
+                    "correct_id": None,
+                }
+
+                question = test.questions.create(
+                    answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
+                    meta_data=meta_data,
+                    weight=0,
+                    order=i,
+                    developer=test.developer,
+                )
+                question.weight = TestQuestion.calculate_weight(question, test.section)
+                question.save()
+
+                paragraph = TestParagraph.objects.create(
+                    paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+                    meta_data={"text": 'Выберите одну из двух предлагаемых профессий, но не с точки зрения престижности, а с точки зрения ее сути: "Могу ли я заниматься данным видом деятельности, хочу ли я этого?".'},
                 )
                 TestParagraphQuestion.objects.create(
                     question=question,

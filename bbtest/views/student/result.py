@@ -60,8 +60,23 @@ class ResultsView(StudentPermissionRequiredMixin, UserContextMixin, PaginationMi
 
                 if not quiz.is_finished:
                     continue
+                
+                if quiz.test.section.is_proftest():
 
-                if quiz.test.section.can_measure_topics():
+                    prof_recomendaton, prof_type = quiz.proftest_score()
+                    quiz.stats["detail"] = {
+                        "type": "proftest",
+                        "prof_recomendaton": prof_recomendaton,
+                        "prof_type": prof_type,
+
+                        "max": quiz.stats["row"]["max"],
+                        "colors": quiz.stats["row"]["colors"],
+                        "score": quiz.stats["row"]["score"],
+                        "avg": quiz.stats["row"]["avg"],
+                        "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
+                        "texts": result_main_description_text(quiz.test.section.pk),
+                    }
+                elif quiz.test.section.can_measure_topics():
                     # BranchedResultDetailModule
                     quiz.stats["detail"] = {
                         "type": "branched",
@@ -137,6 +152,7 @@ class ResultView(StudentPermissionRequiredMixin, UserContextMixin, TemplateView)
         kwargs["code"] = self.kwargs["code"]
         kwargs["section_name"] = _(quiz.test.section.name)
         kwargs["result_page"] = self.request.GET.get("page")
+        kwargs["is_proftest"] = quiz.test.section.is_proftest()
         return super().get_context_data(**kwargs)
 
 

@@ -15,19 +15,37 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
 
         if kwargs["quiz_set"]:
             kwargs["has_results"] = True
-            for quiz in kwargs["quiz_set"].quizzes.all():
-                quiz.stats = {
-                    "row": {
-                        "max": quiz.test.max_score(),
-                        "score": 0,
-                        "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
-                        "colors": tight_dumps([ quiz.test.section.fg_color(), quiz.test.section.bg_color() ]),
-                    },
-                }
-                if quiz.is_finished:
-                    quiz.stats["row"]["score"] = quiz.score()
 
-                quiz.stats["row"]["avg"] = average_score(quiz.test.section)
+            
+            
+            for quiz in kwargs["quiz_set"].quizzes.all():
+                if quiz.test.section.is_proftest():
+                    prof_recomendaton, prof_type = quiz.proftest_score()
+                    quiz.stats = {}
+                    quiz.stats["detail"] = {
+                        "type": "proftest",
+                        "prof_recomendaton": prof_recomendaton,
+                        "prof_type": prof_type,
+
+                        "max": quiz.test.max_score(),
+                        "colors": tight_dumps([ quiz.test.section.fg_color(), quiz.test.section.bg_color() ]),
+                        "score": 0,
+                        "avg": 0,
+                        "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
+                    }
+                else:
+                    quiz.stats = {
+                        "row": {
+                            "max": quiz.test.max_score(),
+                            "score": 0,
+                            "progress": tight_dumps(results_progress(quiz.test.section, self.request.user)),
+                            "colors": tight_dumps([ quiz.test.section.fg_color(), quiz.test.section.bg_color() ]),
+                        },
+                    }
+                    if quiz.is_finished:
+                        quiz.stats["row"]["score"] = quiz.score()
+
+                    quiz.stats["row"]["avg"] = average_score(quiz.test.section)
 
         else:
             kwargs["quiz_set"] = {

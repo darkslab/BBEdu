@@ -182,6 +182,14 @@ def test_instructions(test):
                 "Не забудьте перепроверить свои ответы.",
             ],
         ]
+    elif test.section.is_proftest():
+        return [
+            [
+                "TODO Данный предмет содержит 60 вопросов.",
+                "Для ответа на все вопросы выделено 60 минут.",
+                "Не забудьте перепроверить свои ответы.",
+            ],
+        ]
     return []
 
 
@@ -230,6 +238,11 @@ def test_instructions_title(test):
     elif test.section.is_law():
         return [
             "",
+            test.code.upper(),
+        ]
+    elif test.section.is_proftest():
+        return [
+            _(test.section.name),
             test.code.upper(),
         ]
     return []

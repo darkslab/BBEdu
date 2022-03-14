@@ -32,4 +32,5 @@ TEST_SECTION_MAP = {
     "9563": ThinkingSkillsNUFYPETItem,
 
     "9565": LawItem,
+    "9566": ProftestItem
 }
