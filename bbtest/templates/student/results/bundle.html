@@ -25,7 +25,17 @@
             <div class="bb-accordion-panel-group" id="bb-results-{{ index }}">
                 <div class="panel hidden-xs">
                     <div class="bb-accordion-panel-heading bb-accordion-panel-heading-title">
-                        {% if quiz_set.has_extra_column %}
+                        <!-- handles proftest case -->
+                        {% if quiz_set.test_domain.id == 7916 %}  
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong>{% trans 'Section' context 'Results page' %}</strong>
+                                </div>
+                                <div class="col-xs-5 pr-6 pl-5 text-center">
+                                    <strong>{% trans 'Your profession type' context 'Results page, Prof test' %}</strong>
+                                </div>
+                            </div>
+                        {% elif quiz_set.has_extra_column %}
                             <div class="row">
                                 <div class="col-sm-6">
                                     <strong>{% trans 'Section' context 'Results page' %}</strong>
