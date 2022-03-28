@@ -115,6 +115,9 @@ class User(AbstractBaseUser, PermissionsMixin):
             return self.first_name
         return self.username
 
+    def get_ID(self):
+        return "{:05}".format(self.id)
+
     def gravatar_url(self):
         gravatar_hash = ""
         if self.email:
@@ -173,6 +176,26 @@ class User(AbstractBaseUser, PermissionsMixin):
             self.__next_tests = query_sets[0].union(*query_sets[1:], all=True)
 
         return self.__next_tests
+    
+    def remained_tests(self, domain, language):
+        try:
+            self.__remained_tests
+        except AttributeError:
+            # DARK_COMM  Maybe we can invent a system to simplify this
+            Test = apps.get_model("bbtest", "Test")
+            query_sets = []
+            for section in domain.sections.all():
+                query_sets.append(Test.approved_tests.filter(
+                    Q(language=Test.LANGUAGE_XX) | Q(language=language),
+                    section=section,
+                ).exclude(
+                    pk__in=self.obtained_test_ids(),
+                ).order_by("-is_free", "sales_count"))
+            if not len(query_sets):
+                raise RuntimeError("Cannot query for next tests")
+            self.__remained_tests = query_sets[0].union(*query_sets[1:], all=True)
+
+        return self.__remained_tests
 
     def info(self, key, raw=False):
         # DARK_TODO  maybe only limit to students?
