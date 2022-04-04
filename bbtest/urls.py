@@ -61,6 +61,7 @@ from .views.super import (
     UserView                      as SuperUserView,
     ImpersonateUserView           as SuperImpersonateUserView,
     GiveCreditsUserView           as SuperGiveCreditsUserView,
+    ChangePassManualView          as SuperChangePassManualView,
     QuizzesView                   as SuperQuizzesView,
     TrialBalanceView              as SuperTrialBalanceView,
 )
@@ -128,15 +129,16 @@ urlpatterns = [
     url(r"^developer/offer/$",           DeveloperOfferView.as_view(),           name="developer_offer"          ),
 
     # SUPER URLS
-    url(r"^super/$",                                        SuperDashboardView.as_view(),                name="super_dashboard"                 ),
-    url(r"^super/tests/$",                                  SuperTestsView.as_view(),                    name="super_tests"                     ),
-    url(r"^super/download-subscription-list/$",             SuperDownloadSubscriptionListView.as_view(), name="super_download_subscription_list"),
-    url(r"^super/users/$",                                  SuperUsersView.as_view(),                    name="super_users"                     ),
-    url(r"^super/users/(?P<user_id>[0-9]+)/$",              SuperUserView.as_view(),                     name="super_user"                      ),
-    url(r"^super/users/(?P<user_id>[0-9]+)/impersonate/$",  SuperImpersonateUserView.as_view(),          name="super_impersonate_user"          ),
-    url(r"^super/users/(?P<user_id>[0-9]+)/give-credits/$", SuperGiveCreditsUserView.as_view(),          name="super_give_credits_user"         ),
-    url(r"^super/quizzes/$",                                SuperQuizzesView.as_view(),                  name="super_quizzes"                   ),
-    url(r"^super/trial-balance/$",                          SuperTrialBalanceView.as_view(),             name="super_trial_balance"             ),
+    url(r"^super/$",                                                SuperDashboardView.as_view(),                name="super_dashboard"                 ),
+    url(r"^super/tests/$",                                          SuperTestsView.as_view(),                    name="super_tests"                     ),
+    url(r"^super/download-subscription-list/$",                     SuperDownloadSubscriptionListView.as_view(), name="super_download_subscription_list"),
+    url(r"^super/users/$",                                          SuperUsersView.as_view(),                    name="super_users"                     ),
+    url(r"^super/users/(?P<user_id>[0-9]+)/$",                      SuperUserView.as_view(),                     name="super_user"                      ),
+    url(r"^super/users/(?P<user_id>[0-9]+)/impersonate/$",          SuperImpersonateUserView.as_view(),          name="super_impersonate_user"          ),
+    url(r"^super/users/(?P<user_id>[0-9]+)/give-credits/$",         SuperGiveCreditsUserView.as_view(),          name="super_give_credits_user"         ),
+    url(r"^super/users/(?P<user_id>[0-9]+)/change-pass-manual/$",   SuperChangePassManualView.as_view(),         name="super_change_pass_manual"        ),
+    url(r"^super/quizzes/$",                                        SuperQuizzesView.as_view(),                  name="super_quizzes"                   ),
+    url(r"^super/trial-balance/$",                                  SuperTrialBalanceView.as_view(),             name="super_trial_balance"             ),
 
     # SYSTEM URLS
     url(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),

@@ -21,3 +21,11 @@ class GiveCreditsForm(Form):
         "max_length": "Description cannot be more than %(limit_value)s characters long.",
         "min_length": "Description has to be at least %(limit_value)s characters long.",
     }, max_length=1000, min_length=5)
+
+class ChangeUserPassManualForm(Form):
+    pass1 = CharField(label="Password", 
+        error_messages={"required": "Reset password" }, 
+        max_length=30)
+    pass2 = CharField(label="Password Repeat", 
+        error_messages={"required": "Reset password." }, 
+        max_length=30)

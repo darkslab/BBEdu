@@ -10,7 +10,7 @@ from decimal import Decimal
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
-from bbtest.forms.super import GiveCreditsForm
+from bbtest.forms.super import GiveCreditsForm, ChangeUserPassManualForm
 from bbtest.models.accounting import Entry, Debit, Credit
 
 
@@ -77,6 +77,7 @@ class UserView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView):
         kwargs["account_entries"] = user.balance_account().entries.order_by("created_at").prefetch_related("amounts__account")
 
         kwargs["give_credits_form"] = GiveCreditsForm()
+        kwargs["change_pass_manual_form"] = ChangeUserPassManualForm()
         return super().get_context_data(**kwargs)
 
 
@@ -109,4 +110,28 @@ class GiveCreditsUserView(SuperPermissionRequiredMixin, View):
             success(request, "Added %s credits." % form.cleaned_data["amount"])
         else:
             error(request, "Could not add credits! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
+        return redirect("bbtest:super_user", user_id=user.pk)
+
+
+class ChangePassManualView(SuperPermissionRequiredMixin, View):
+    def post(self, request, user_id, *args, **kwargs):
+        is_found = False
+        user = get_object_or_404(User.active_users.filter(is_superuser=False), pk=user_id)
+        for permission in user.user_permissions.all():
+            if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in "student":
+                is_found = True
+                break
+        if not is_found:
+            raise Http404("Change pass only for students")
+
+        form = ChangeUserPassManualForm(data=request.POST)
+        is_valid = form.is_valid()
+        print("asd" ,form.cleaned_data.keys())
+        is_valid = form.cleaned_data["pass1"] == form.cleaned_data["pass2"] and len(form.cleaned_data["pass1"]) > 3
+        if is_valid:
+            user.set_password(form.cleaned_data["pass1"])
+            user.save()
+            success(request, "Password changed %s." % form.cleaned_data["pass1"])
+        else:
+            error(request, "Could not change password! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
         return redirect("bbtest:super_user", user_id=user.pk)
