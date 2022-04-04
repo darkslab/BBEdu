@@ -39,6 +39,7 @@
             </div>
         </div>
     </form>
+    <!-- confirm give credit window -->
     <div class="modal fade" data-give-credits-modal data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -52,6 +53,27 @@
                         </div>
                         <div class="col-xs-6 pl-5">
                             <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-give-credits-confirm="false">{% trans 'No' context '/super/users/' %}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- confirm change password window -->
+    <div class="modal fade" data-change-pass-manual-modal data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{% trans 'Are you sure?' context '/super/users/' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6 pr-5">
+                            <button type="button" class="btn btn-danger btn-block btn-lg" data-change-pass-manual-confirm="true">{% trans 'Yes' context '/super/users/' %}</button>
+                        </div>
+                        <div class="col-xs-6 pl-5">
+                            <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-change-pass-manual-confirm="false">{% trans 'No' context '/super/users/' %}</button>
                         </div>
                     </div>
                 </div>
@@ -177,6 +199,7 @@
             </div>
         </div>
         {% if user_object.role == 'student' %}
+            <!-- give credit form -->
             <div class="col-xs-12 col-sm-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -195,6 +218,30 @@
 
                             <div class="form-group">
                                 <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="[data-give-credits-modal]">Give Credits</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- password manual form-->
+            <div class="col-xs-12 col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Change Password Manually</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form method="post" action="{% url 'bbtest:super_change_pass_manual' user_object.pk %}" class="mt-15" data-bb-form data-change-pass-manual-form>
+                            {% csrf_token %}
+
+                            {% for field in change_pass_manual_form %}
+                                <div class="form-group has-error">
+                                    <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                    {{ field|add_class:'form-control' }}
+                                </div>
+                            {% endfor %}
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="[data-change-pass-manual-modal]">Change</button>
                             </div>
                         </form>
                     </div>
