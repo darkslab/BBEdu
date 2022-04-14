@@ -34,7 +34,7 @@ function SuperCreateStudentsModule() {
 }
 SuperCreateStudentsModule.prototype.unMount = function() {
     this._$createStudentConfirmButtons.off("click", this._boundUpdateFormAction);
-}
+};
 SuperCreateStudentsModule.prototype._updateFormAction = function(event) {
     var $button = $(event.currentTarget);
     console.log("print");
@@ -45,7 +45,7 @@ SuperCreateStudentsModule.prototype._updateFormAction = function(event) {
     this._$form.submit();
     $('#modal-asd').modal('toggle');
     // window.location.href = "/super/users/";
-}
+};
 SuperCreateStudentsModule.prototype.updatePreview = function(){
     var amount = this.form_amount.val();
     var prefix = this.form_prefix.val();
@@ -61,8 +61,8 @@ SuperCreateStudentsModule.prototype.updatePreview = function(){
     if(name == "") {
         name = "Student Iqanat";
     }
-
-    for (let i = 1; i <= amount; i++) {
+    var i;
+    for (i = 1; i <= amount; i++) {
         var rnd = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 10);
         var email = prefix + "_" + rnd;
         row_template = '<tr><td class="pl-15"><a>'+name+'</a><br><small class="text-info">' + email + '@iqanat.kz</small></td><td class="text-center"><span class="label label-success">Generated Student Preview</span></td><td class="text-center">Today</td><td class="text-center"><span class="label label-success">Yes</span></td></tr>';
@@ -74,7 +74,7 @@ SuperCreateStudentsModule.prototype.updatePreview = function(){
     $('#preview-dynamyc-table').append(preview);
     // $("#student-list-preview-text").text("");
     // $("#student-list-preview-text").append(text_preview);
-}
+};
 
 // SuperCreateStudentsModule.prototype._ajaxSuccess = function(type, pageview, data, status, $xhr) {
 //     if (pageview) {

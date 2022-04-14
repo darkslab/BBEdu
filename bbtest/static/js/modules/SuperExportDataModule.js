@@ -35,7 +35,7 @@ function SuperExportDataModule() {
 }
 SuperExportDataModule.prototype.unMount = function() {
     this._$createStudentConfirmButtons.off("click", this._boundUpdateFormAction);
-}
+};
 SuperExportDataModule.prototype._updateFormAction = function(event) {
     var $button = $(event.currentTarget);
     console.log("print");
@@ -47,7 +47,7 @@ SuperExportDataModule.prototype._updateFormAction = function(event) {
     // window.location.href = "/super/export-data/";
     // location.reload();
     $('#modal-asd').modal('toggle');
-}
+};
 
 // SuperCreateStudentsModule.prototype._ajaxSuccess = function(type, pageview, data, status, $xhr) {
 //     if (pageview) {
