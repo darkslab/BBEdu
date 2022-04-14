@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from bbtest.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
+from bbtest.models import Account
 
 User.objects.all()
 
@@ -32,5 +33,17 @@ def create_students():
 # joined_at = DateTimeField(pgettext_lazy("Model field", "joined at"), auto_now_add=True, db_index=True)
 # is_active = BooleanField(pgettext_lazy("Model field", "active?"), db_index=True, default=True)
 
+
+def create_developer():
+    user = User.objects.create_user(username="dev_02", email="dev_02@example.com", password="monkeymonkey")
+    user.first_name = "Dimon"
+    user.last_name = "Dev"
+    user.save()
+    content_type = ContentType.objects.get_for_model(type(user))
+    permissions = []
+    permissions.append(Permission.objects.get(codename="developer", content_type=content_type))
+    user.user_permissions.set(permissions)
+    Account.objects.create_liability_account("Developer-%s" % user.pk)
+    return user
 
 
