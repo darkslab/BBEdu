@@ -68,7 +68,7 @@
                                 <th class="text-center">{% trans 'Role' context '/super/users/' %}</th>
                                 <th class="text-center">{% trans 'Joined at' context '/super/users/' %}</th>
                                 <th class="text-center">{% trans 'Active?' context '/super/users/' %}</th>
-                                <th class="pr-15 text-center">{% trans 'Actions' context '/super/users/' %}</th>
+                                <!-- <th class="pr-15 text-center">{% trans 'Actions' context '/super/users/' %}</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -92,9 +92,9 @@
                                             <span class="label label-danger">{% trans 'No' context '/super/users/' %}</span>
                                         {% endif %}
                                     </td>
-                                    <td class="pr-15 text-center">
+                                    <!-- <td class="pr-15 text-center">
                                         <button type="button" class="btn btn-danger btn-xs mr-5 mb-5" data-impersonate-url="{% url 'bbtest:super_impersonate_user' user.pk %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Impersonate' context '/super/users/' %}</button>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             {% empty %}
                                 <tr>
