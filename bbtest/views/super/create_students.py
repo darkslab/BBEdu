@@ -15,11 +15,12 @@ from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.forms.super import CreateStudentsForm
 from bbtest.http import TightJsonResponse
 import uuid
+from random import randint
 import csv
 from bbtest.models import User
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
-
+from django.core.exceptions import ValidationError
 # User = get_user_model()
 
 class CreateStudentsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
@@ -71,25 +72,29 @@ class CreateStudentsFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowle
             writer = csv.writer(response)
 
             amount = int(form.cleaned_data["amount"])
+            order_of_magnitude = amount // 10 + 2
             name = form.cleaned_data["name"] 
-            prefix = form.cleaned_data["prefix"]
-            for i in range(amount):
-                username = name + uuid.uuid4().hex[:5]
+            # prefix = form.cleaned_data["prefix"]
+            prefix = "bb"
+            for i in range(1, amount+1):
+                username = "{}_{:0{}}".format(name, i, order_of_magnitude)
                 if len(prefix) > 0:
-                    login = "{}_{}@iqanat.bbtest.kz".format(prefix, uuid.uuid4().hex)
+                    login_email = "{}_{}@iqanat.bbtest.kz".format(prefix, uuid.uuid4().hex[:10])
                 else:
-                    login = "{}@iqanat.bbtest.kz".format(uuid.uuid4().hex)
-                gen_pass = uuid.uuid4().hex[:5]
-
-                self.create_students(username, login, gen_pass)
-
-                writer.writerow([login, gen_pass])
+                    login_email = "{}@iqanat.bbtest.kz".format(uuid.uuid4().hex)
+                gen_pass = "{:05}".format(randint(1, 99999))
+                
+                try:
+                    self.create_students(username, login_email, gen_pass)
+                    writer.writerow([username, login_email, gen_pass])
+                except ValidationError:
+                    writer.writerow([username, login_email, "already_exist"])
 
             # success(request, "Created %s students." % form.cleaned_data["amount"])
             return response
 
         else:
-            error(request, "Could not add credits! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
+            error(request, "Could not create students! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 
         return redirect("bbtest:super_create_students")
 

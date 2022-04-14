@@ -23,14 +23,16 @@ class GiveCreditsForm(Form):
         "min_length": "Description has to be at least %(limit_value)s characters long.",
     }, max_length=1000, min_length=5)
 
+
 class CreateStudentsForm(Form):
-    name =CharField(label="Generate Name", 
+    name =CharField(label="Login prefix", 
         error_messages={"required": "Student will be generated with this name." }, 
-        initial="Student Iqanat",
+        initial="iqnt22",
+        min_length=1,
         max_length=30)
-    prefix = CharField(label="Email Pefix", error_messages={
-        "required": "Student's email will be generated with this prefix."
-    }, max_length=30, initial="bb")
+    # prefix = CharField(label="Email Pefix", error_messages={
+    #     "required": "Student's email will be generated with this prefix."
+    # }, max_length=30, initial="bb")
     amount = IntegerField(label="Amount",
         initial=10, 
         error_messages={
