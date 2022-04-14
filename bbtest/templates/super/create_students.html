@@ -6,6 +6,7 @@
 {% block title %}{% trans 'All Users' context 'Page title' %}{% endblock %}
 
 {% block nav_super_create_students_class %}active{% endblock %}
+{% block nav_developer_create_students_class %}active{% endblock %}
 
 {% block content %}
     <script>
@@ -16,7 +17,7 @@
             module: "SuperCreateStudentsModule"
         });
     </script>
-    <div class="modal fade" data-create-students-modal data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" data-create-students-modal data-backdrop="static" data-keyboard="false" id="modal-asd">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">

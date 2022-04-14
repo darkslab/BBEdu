@@ -6,6 +6,7 @@
 {% block title %}{% trans 'All Users' context 'Page title' %}{% endblock %}
 
 {% block nav_super_export_data_class %}active{% endblock %}
+{% block nav_developer_export_data_class %}active{% endblock %}
 
 {% block content %}
     <script>
@@ -16,7 +17,7 @@
             module: "SuperExportDataModule"
         });
     </script>
-    <div class="modal fade" data-export-data-modal data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" data-export-data-modal data-backdrop="static" data-keyboard="false" id="modal-asd">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
