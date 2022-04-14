@@ -16,7 +16,7 @@ function SuperCreateStudentsModule() {
     });
 
     this._boundUpdateFormAction = this._updateFormAction.bind(this);
-    this._updatePreviewBind = this.updatePreview.bind(this)
+    this._updatePreviewBind = this.updatePreview.bind(this);
 
     this._$createStudentConfirmButtons.on("click", this._boundUpdateFormAction);
 
@@ -30,7 +30,7 @@ function SuperCreateStudentsModule() {
 
 
     Module.call(this);
-    this.updatePreview()
+    this.updatePreview();
 }
 SuperCreateStudentsModule.prototype.unMount = function() {
     this._$createStudentConfirmButtons.off("click", this._boundUpdateFormAction);
