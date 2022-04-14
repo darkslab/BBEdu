@@ -17,7 +17,7 @@ function SuperExportDataModule() {
     // });
 
     this._boundUpdateFormAction = this._updateFormAction.bind(this);
-    // this._updatePreviewBind = this.updatePreview.bind(this)
+    // this._updatePreviewBind = this.updatePreview.bind(this);
 
     this._$createStudentConfirmButtons.on("click", this._boundUpdateFormAction);
 
@@ -42,10 +42,36 @@ SuperExportDataModule.prototype._updateFormAction = function(event) {
     if (!$button.data("export-data-confirm")) {
         return;
     }
-    this._$createStudentConfirmButtons.attr("disabled", true);
+    // this._$createStudentConfirmButtons.attr("disabled", true);
     this._$form.submit();
-    // window.location.href = "http://127.0.0.1:8000/ru/super/users/";
+    // window.location.href = "/super/export-data/";
+    // location.reload();
+    $('#modal-asd').modal('toggle');
 }
+
+// SuperCreateStudentsModule.prototype._ajaxSuccess = function(type, pageview, data, status, $xhr) {
+//     if (pageview) {
+//         ga_report_pageview();
+//     }
+//     switch (type) {
+//         case "cart":
+//             this._$xhr = undefined;
+//             this._apply(data);
+//             this._curtainsUp();
+//             break;
+//         case "checkout":
+//             if (data.success) {
+//                 Turbolinks.visit(data.url);
+//             } else {
+//                 this._$xhr = undefined;
+//                 this._curtainsUp();
+//                 this._$errorModalBody.text(data.message);
+//                 this._$errorModal.modal("show");
+//             }
+//             break;
+//     }
+// }
+
 /*
 SuperExportDataModule.prototype.updatePreview = function(){
     var amount = this.form_amount.val();

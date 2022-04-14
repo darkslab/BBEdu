@@ -41,9 +41,10 @@ SuperCreateStudentsModule.prototype._updateFormAction = function(event) {
     if (!$button.data("create-students-confirm")) {
         return;
     }
-    this._$createStudentConfirmButtons.attr("disabled", true);
+    // this._$createStudentConfirmButtons.attr("disabled", true);
     this._$form.submit();
-    // window.location.href = "http://127.0.0.1:8000/ru/super/users/";
+    $('#modal-asd').modal('toggle');
+    // window.location.href = "/super/users/";
 }
 SuperCreateStudentsModule.prototype.updatePreview = function(){
     var amount = this.form_amount.val();
@@ -57,13 +58,14 @@ SuperCreateStudentsModule.prototype.updatePreview = function(){
     }else if(amount > 20){
         amount = 20;
     }
-    if(name == "") name = "Student Iqanat"
-    
+    if(name == "") {
+        name = "Student Iqanat";
+    }
 
     for (let i = 1; i <= amount; i++) {
         var rnd = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 10);
-        var email = prefix + "_" + rnd
-        row_template = '<tr><td class="pl-15"><a>'+name+'</a><br><small class="text-info">' + email + '@iqanat.kz</small></td><td class="text-center"><span class="label label-success">Generated Student Preview</span></td><td class="text-center">Today</td><td class="text-center"><span class="label label-success">Yes</span></td></tr>'
+        var email = prefix + "_" + rnd;
+        row_template = '<tr><td class="pl-15"><a>'+name+'</a><br><small class="text-info">' + email + '@iqanat.kz</small></td><td class="text-center"><span class="label label-success">Generated Student Preview</span></td><td class="text-center">Today</td><td class="text-center"><span class="label label-success">Yes</span></td></tr>';
         preview += row_template;
     }
 
