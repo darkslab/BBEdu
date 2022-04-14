@@ -44,10 +44,10 @@ class CreateStudentsForm(Form):
 
 
 class ExportDataForm(Form):
-    start_date = DateTimeField(label="Start Date", 
+    start_date = DateField(label="Start Date", 
                            error_messages={"required": "Specify start date." }, 
                            initial=datetime.datetime.now() - datetime.timedelta(days = 7))
 
-    end_date = DateTimeField(label="End Date", 
+    end_date = DateField(label="End Date", 
                          error_messages={"required": "Specify start date."}, 
                          initial=datetime.datetime.now())

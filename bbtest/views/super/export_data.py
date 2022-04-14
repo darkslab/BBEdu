@@ -22,7 +22,7 @@ import datetime
 
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
-
+from django.db.models import Q
 
 class ExportDataView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/export_data.html"
@@ -42,14 +42,24 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
         start_date = form.cleaned_data["start_date"]
         end_date = form.cleaned_data["end_date"] 
 
-        print(start_date, end_date)
+        # print(start_date, end_date)
 
-        if form.is_valid() and end_date > start_date:
-            quizes = Quiz.objects.filter(ended_at__lte=end_date).order_by("-ended_at") #.prefetch_related("user_permissions__content_type")
+        if form.is_valid() and end_date >= start_date:
+
+            quizes = Quiz.objects.filter(
+                                        Q(ended_at__lte=end_date) & Q(ended_at__gte=start_date)
+                                    ).order_by("-ended_at") #.prefetch_related("user_permissions__content_type")
             response = HttpResponse(content_type='text/csv')
             response['Content-Disposition'] = 'attachment; filename="export.csv"'
             writer = csv.writer(response)
-            writer.writerow(["student", "student_email", "ended", "test_name", "score", "max_score"])
+            def format(i):
+                if i%2 == 0:    # studet's answer
+                    return "s_{}".format(i//2+1)
+                else:           #correct answer
+                    return "c_{}".format(i//2+1)
+
+            answer_report_columns = [ format(i) for i in range(60*2)]
+            writer.writerow(["student", "student_email", "ended", "test_name", "score", "max_score"] + answer_report_columns)
             for quiz in quizes:
                 student = quiz.quiz_set.student.username
                 student_email = quiz.quiz_set.student.email
@@ -59,9 +69,14 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
                 max_score = quiz.test.max_score()
                 print(student, student_email, ended, test_name, score, max_score)
 
-
+                answer_report = ["" for _ in range(60*2)]
+                i = 0
+                for student_response, correct_answer in zip(quiz.get_student_answers(), quiz.get_correct_answers()):
+                    answer_report[i] = student_response
+                    answer_report[i+1] = correct_answer
+                    i += 2
                 
-                writer.writerow([student, student_email, ended, test_name, score, max_score])
+                writer.writerow([student, student_email, ended, test_name, score, max_score] + answer_report)
 
             success(request, "Export from {} to {}.".format(start_date, end_date))
             # return redirect("bbtest:super_export_data", response)
@@ -77,32 +92,4 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
         # }
         # return TightJsonResponse(data)
 
-    def proftest_score(self):
-        def dif_None(a, b):
-            try:
-                return a - b
-            except TypeError:
-                return None
-        answer_a_offsets = self.get_a_offset()
-        user_answers = self.get_answers_ids()
-        normalized_answers = [dif_None(ans, a_offset) for ans, a_offset in zip(user_answers, answer_a_offsets)]
-
-    def get_a_offset(self):
-        questions = self.test.questions.all()
-        a_id = []
-        for q in questions:
-            a_id.append(min([option["id"] for option in q.meta_data['choices']]))
-        return a_id
-    
-    def get_answers_ids(self):
-        if self.report is not None:
-            ret = []
-            for ans_meta in self.report["answers"]:
-                try:
-                    ret.append(ans_meta["answer"]["correct_id"])
-                except TypeError:
-                    ret.append(None)
-            return ret
-        else:
-            return [None for _ in range(self.test.section.question_count)]
 
