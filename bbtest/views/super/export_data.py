@@ -20,8 +20,11 @@ from bbtest.models import User, quiz
 from bbtest.models import Quiz
 import datetime
 
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
+from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 
-class ExportDataView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+
+class ExportDataView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/export_data.html"
 
     def get_context_data(self, **kwargs):
@@ -32,7 +35,7 @@ class ExportDataView(SuperPermissionRequiredMixin, UserContextMixin, PaginationM
 
 
 
-class ExportDataFormView(SuperPermissionRequiredMixin, View):
+class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         form = ExportDataForm(data=request.POST)
         valid = form.is_valid()
@@ -61,7 +64,9 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
                 writer.writerow([student, student_email, ended, test_name, score, max_score])
 
             success(request, "Export from {} to {}.".format(start_date, end_date))
+            # return redirect("bbtest:super_export_data", response)
             return response
+            # return HttpResponseRedirect(self.request.path_info)
         else:
             error(request, "Errors %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 

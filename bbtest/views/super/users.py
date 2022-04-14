@@ -13,10 +13,12 @@ from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.forms.super import GiveCreditsForm
 from bbtest.models.accounting import Entry, Debit, Credit
 
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
+from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 
 User = get_user_model()
 
-class UsersView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+class UsersView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):  # SuperPermissionRequiredMixin
     template_name = "super/users.html"
 
     def get_context_data(self, **kwargs):
@@ -52,7 +54,7 @@ class UsersView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin,
         return super().get_context_data(**kwargs)
 
 
-class UserView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView):
+class UserView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, TemplateView):
     template_name = "super/user.html"
 
     def get_context_data(self, **kwargs):

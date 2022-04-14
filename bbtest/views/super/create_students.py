@@ -17,10 +17,12 @@ from bbtest.http import TightJsonResponse
 import uuid
 import csv
 from bbtest.models import User
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
+from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 
 # User = get_user_model()
 
-class CreateStudentsView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+class CreateStudentsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/create_students.html"
 
     def get_context_data(self, **kwargs):
@@ -59,7 +61,7 @@ class CreateStudentsView(SuperPermissionRequiredMixin, UserContextMixin, Paginat
 
 
 
-class CreateStudentsFormView(SuperPermissionRequiredMixin, View):
+class CreateStudentsFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         form = CreateStudentsForm(data=request.POST)
 
