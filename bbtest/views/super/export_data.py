@@ -52,34 +52,44 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
             response = HttpResponse(content_type='text/csv')
             response['Content-Disposition'] = 'attachment; filename="export.csv"'
             writer = csv.writer(response)
-            def format(i):
-                if i%2 == 0:    # studet's answer
-                    return "s_{}".format(i//2+1)
-                else:           #correct answer
-                    return "c_{}".format(i//2+1)
 
-            answer_report_columns = [ format(i) for i in range(60*2)]
-            writer.writerow(["student", "student_email", "ended", "test_name", "score", "max_score"] + answer_report_columns)
+            answer_report_columns = [ "s_{}".format(i+1) for i in range(60)]  #+ [ "c_{}".format(i+1) for i in range(60)] 
+            # writer.writerow(["student", "student_email", "ended", "test_name", "score", "max_score"] + answer_report_columns)
+            table_tests_all = {}
+            test_names_and_count = {}
             for quiz in quizes:
                 student = quiz.quiz_set.student.username
-                student_email = quiz.quiz_set.student.email
+                # student_email = quiz.quiz_set.student.email
                 ended = quiz.ended_at
                 test_name = quiz.test.section.name
                 score = quiz.score()
                 max_score = quiz.test.max_score()
-                print(student, student_email, ended, test_name, score, max_score)
-
-                answer_report = ["" for _ in range(60*2)]
-                i = 0
-                for student_response, correct_answer in zip(quiz.get_student_answers(), quiz.get_correct_answers()):
-                    answer_report[i] = student_response
-                    answer_report[i+1] = correct_answer
-                    i += 2
                 
-                writer.writerow([student, student_email, ended, test_name, score, max_score] + answer_report)
+                # print(student, ended, test_name, score, max_score)
+                
+                if test_names_and_count.get(test_name, None) is None: test_names_and_count[test_name] = quiz.test.section.question_count
+                table_tests_all[student] = table_tests_all.get(student, {})
+                table_tests_all[student][test_name]  = [ended, score, max_score] + quiz.get_student_answers()
+
+            test_names_sorted = sorted(test_names_and_count.keys())  # fix sort order
+
+            # create table header
+            header = ["student"]
+            for k in test_names_sorted:
+                header += ["{}_ended".format(k), "{}_score".format(k), "{}_max_score".format(k)] + ["{}_{:03}".format(k, i+1) for i in range(test_names_and_count[k])]
+            writer.writerow(header)
+            # fill table
+            for student, tests in table_tests_all.items():
+                table_row = [student]
+                for test in test_names_sorted:
+                    test_report = tests.get(test, None)
+                    if test_report is not None:
+                        table_row += test_report
+                writer.writerow(table_row)
 
             success(request, "Export from {} to {}.".format(start_date, end_date))
-            # return redirect("bbtest:super_export_data", response)
+            # print("arra", test_names_and_count, header, table_tests_all)
+            # return redirect("bbtest:super_export_data")
             return response
             # return HttpResponseRedirect(self.request.path_info)
         else:
