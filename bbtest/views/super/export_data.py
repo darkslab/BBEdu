@@ -81,10 +81,12 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
             # fill table
             for student, tests in table_tests_all.items():
                 table_row = [student]
-                for test in test_names_sorted:
-                    test_report = tests.get(test, None)
-                    if test_report is not None:
+                for test_name in test_names_sorted:
+                    test_report = tests.get(test_name, None)
+                    if test_report is not None:     # if student attended this test
                         table_row += test_report
+                    else:                           # if not attended generate empty 
+                        table_row += [None for _ in range(test_names_and_count[test_name]+3)]
                 writer.writerow(table_row)
 
             success(request, "Export from {} to {}.".format(start_date, end_date))
