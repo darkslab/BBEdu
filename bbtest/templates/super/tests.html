@@ -115,6 +115,12 @@
                                             {% else %}
                                                 <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_toggle_free_test' test.code 'true' %}?r={{ test_page_redirect|urlencode }}" data-toggle="modal" data-target="[data-modal]">{% trans 'Change to Free' context 'Developer tools' %}</button>
                                             {% endif %}
+                                            
+                                        {% endif %}
+                                        {% if not test.is_draft %}
+                                            <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/developer/' %}</button>
+                                        {% else %}
+                                            <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_reapprove_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReApprove' context '/developer/' %}</button>
                                         {% endif %}
                                     </td>
                                 </tr>

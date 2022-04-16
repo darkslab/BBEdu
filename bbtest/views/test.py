@@ -245,6 +245,25 @@ class DeleteTestView(DeveloperPermissionRequiredMixin, View):
         return redirect("bbtest:build_tests")
 
 
+class ReDraftTestView(DeveloperPermissionRequiredMixin, View):
+    def post(self, request, code, *args, **kwargs):
+        print("sonic", code)
+        test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)
+        test.status = Test.STATUS_DRAFT
+        test.save()
+        success(request, pgettext("Success alert message", "Test is now draft again."))
+        return redirect("bbtest:build_tests")
+
+
+class ReApproveTestView(DeveloperPermissionRequiredMixin, View):
+    def post(self, request, code, *args, **kwargs):
+        test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)
+        test.status = Test.STATUS_APPROVED
+        test.save()
+        success(request, pgettext("Success alert message", "Test is now approved again."))
+        return redirect("bbtest:build_tests")
+
+
 class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
     def post(self, request, code, free, *args, **kwargs):
         test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)

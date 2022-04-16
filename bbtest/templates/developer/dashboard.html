@@ -1,5 +1,5 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n pagination %}
+{% load i18n permission pagination %}
 
 {% block extended_footer %}{% endblock %}
 
@@ -16,7 +16,7 @@
             module: "DeveloperDashboardPageModule"
         });
     </script>
-    <form method="post" action="{{ request.path }}" data-bb-form data-delete-test-form>
+    <form method="post" action="{{ request.path }}" data-bb-form data-form>
         {% csrf_token %}
         <div class="modal fade" data-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -69,19 +69,27 @@
                                         <span class="label {% if test.is_archived %}label-danger{% elif test.is_approved %}label-success{% elif test.is_pending %}label-info{% elif test.is_draft %}label-default{% endif %}">{{ test.get_status_display }}</span>
                                     </td>
                                     <td class="text-center">{{ test.sales_count }}/{{ test.completed_count }}</td>
-                                    {% if test.is_archived %}
-                                        <td class="pr-15 text-center"></td>
-                                    {% elif test.is_approved or test.is_pending %}
-                                        <td class="pr-15 text-center">
+                                    <td class="pr-15 text-center">
+                                        {% if test.is_archived or test.is_approved %}
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/tests/' %}</a>
+                                        {% elif test.is_pending %}
+                                            <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/super/tests/' %}</a>
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/tests/' %}</a>
+                                        {% elif test.is_draft %}
+                                            {% if test.developer|has_perm:'bbtest.super' %}
+                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/developer/' %}</a>
+                                            {% endif %}
                                             <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/developer/' %}</a>
-                                        </td>
-                                    {% elif test.is_draft %}
-                                        <td class="pr-15 text-center">
-                                            <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/developer/' %}</a>
-                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/developer/' %}</a>
-                                            <button class="btn btn-danger btn-xs mr-5 mb-5" data-delete-test-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
-                                        </td>
-                                    {% endif %}
+                                            {% if test.developer == user %}
+                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
+                                            {% endif %}
+                                        {% endif %}
+                                        {% if not test.is_draft %}
+                                            <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/developer/' %}</button>
+                                        {% else %}
+                                            <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_reapprove_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReApprove' context '/developer/' %}</button>
+                                        {% endif %}
+                                    </td>
                                 </tr>
                             {% empty %}
                                 <tr>
