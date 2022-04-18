@@ -50,11 +50,11 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
             table_tests_all = self.get_quizes_in_range(start_date, end_date)  # [student][(quiz.language, test_name)]
 
             # test_names_sorted = sorted(test_names_and_count.keys())  # fix sort order
-            # test_names_sorted = ["Critical Thinking", "Quantitative", "Spatial Thinking", "English Language"]  # hardcode order and subjects
-            test_names_sorted = [("ru", "Critical Thinking"), ("ru", "Quantitative"), ("ru", "Spatial Thinking"), 
-                                 ("kk", "Critical Thinking"), ("kk", "Quantitative"), ("kk", "Spatial Thinking"), 
-                                 ("xx", "English Language")]  # hardcode order and subjects
-            test_names_and_count = {section_name: TestSection.objects.get(name=section_name[1]).question_count for section_name in test_names_sorted}
+            test_names_sorted = ["Critical Thinking", "Quantitative", "Spatial Thinking", "English Language"]  # hardcode order and subjects
+            # test_names_sorted = [("ru", "Critical Thinking"), ("ru", "Quantitative"), ("ru", "Spatial Thinking"), 
+            #                      ("kk", "Critical Thinking"), ("kk", "Quantitative"), ("kk", "Spatial Thinking"), 
+            #                      ("xx", "English Language")]  # hardcode order and subjects
+            test_names_and_count = {section_name: TestSection.objects.get(name=section_name).question_count for section_name in test_names_sorted}
 
             # create table header
             header = self.create_table_header(test_names_sorted, test_names_and_count)
@@ -84,7 +84,7 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
                                 ).order_by("-started_at") #.prefetch_related("user_permissions__content_type")
         table_tests_all = {}
         for quiz in quizes:
-            student = quiz.quiz_set.student.username
+            student = (quiz.test.language, quiz.quiz_set.student.username)
             # student_email = quiz.quiz_set.student.email
             started = quiz.started_at
             test_name = quiz.test.section.name
@@ -92,25 +92,28 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
             max_score = quiz.test.max_score()
             
             # print(student, ended, test_name, score, max_score)
-            
-            table_tests_all[student] = table_tests_all.get(student, {})
-            table_tests_all[student][(quiz.test.language, test_name)]  = [started, score, max_score] + quiz.get_student_answers()
-            # table_tests_all[student]['lang'] = quiz.language
+            if student[0] != "xx":
+                table_tests_all[student] = table_tests_all.get(student, {})
+                table_tests_all[student][test_name]  = [started, score, max_score] + quiz.get_student_answers()
+            else:
+                for lang in ["ru", "kk"]:
+                    student = (lang, student[1])
+                    table_tests_all[student] = table_tests_all.get(student, {})
+                    table_tests_all[student][test_name]  = [started, score, max_score] + quiz.get_student_answers()
         return table_tests_all
 
     def create_table_header(self, test_names_sorted, test_names_and_count):
-        header = ["student"]
+        header = ["student", "lang"]
 
-        for lang, k in test_names_sorted:
-            header += ["{}_{}_started".format(lang, k), "{}_{}_score".format(lang,k), "{}_{}_max_score".format(lang, k)] + ["{}_{}_{:03}".format(lang, k, i+1) for i in range(test_names_and_count[(lang, k)])]
-        
+        for k in test_names_sorted:
+            header += ["{}_started".format(k), "{}_score".format(k), "{}_max_score".format(k)] + ["{}_{:03}".format(k, i+1) for i in range(test_names_and_count[k])]
         
         header.append("Total_score")
         return header
 
     def write_response_csv(self, writer, table_tests_all, test_names_sorted, test_names_and_count):
-        for student, tests in table_tests_all.items():  # [student][(quiz.language, test_name)]
-            table_row = [student]
+        for student, tests in table_tests_all.items():  # [(quiz.language, student)][test_name]
+            table_row = [student[1], student[0]]
             total_score = 0
             for test_name in test_names_sorted:
                 test_report = tests.get(test_name, None)
