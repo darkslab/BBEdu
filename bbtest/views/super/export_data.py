@@ -42,50 +42,26 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
         end_date = form.cleaned_data["end_date"] 
 
         if valid and end_date >= start_date:
-
-            quizes = Quiz.objects.filter(
-                                        Q(ended_at__lte=end_date) & Q(ended_at__gte=start_date)
-                                    ).order_by("-ended_at") #.prefetch_related("user_permissions__content_type")
             response = HttpResponse(content_type='text/csv')
             response['Content-Disposition'] = 'attachment; filename="export.csv"'
             writer = csv.writer(response)
 
-            table_tests_all = {}
-            for quiz in quizes:
-                student = quiz.quiz_set.student.username
-                # student_email = quiz.quiz_set.student.email
-                ended = quiz.ended_at
-                test_name = quiz.test.section.name
-                score = quiz.score()
-                max_score = quiz.test.max_score()
-                
-                # print(student, ended, test_name, score, max_score)
-                
-                table_tests_all[student] = table_tests_all.get(student, {})
-                table_tests_all[student][test_name]  = [ended, score, max_score] + quiz.get_student_answers()
+            # get all quizes
+            table_tests_all = self.get_quizes_in_range(start_date, end_date)  # [student][(quiz.language, test_name)]
 
             # test_names_sorted = sorted(test_names_and_count.keys())  # fix sort order
-            test_names_sorted = ["Critical Thinking", "Quantitative", "Spatial Thinking", "English Language"]  # hardcode order and subjects
-            test_names_and_count = {section_name: TestSection.objects.get(name=section_name).question_count for section_name in test_names_sorted}
+            # test_names_sorted = ["Critical Thinking", "Quantitative", "Spatial Thinking", "English Language"]  # hardcode order and subjects
+            test_names_sorted = [("ru", "Critical Thinking"), ("ru", "Quantitative"), ("ru", "Spatial Thinking"), 
+                                 ("kk", "Critical Thinking"), ("kk", "Quantitative"), ("kk", "Spatial Thinking"), 
+                                 ("xx", "English Language")]  # hardcode order and subjects
+            test_names_and_count = {section_name: TestSection.objects.get(name=section_name[1]).question_count for section_name in test_names_sorted}
 
             # create table header
-            header = ["student"]
-            for k in test_names_sorted:
-                header += ["{}_ended".format(k), "{}_score".format(k), "{}_max_score".format(k)] + ["{}_{:03}".format(k, i+1) for i in range(test_names_and_count[k])]
-            header.append("Total_score")
+            header = self.create_table_header(test_names_sorted, test_names_and_count)
+            
             writer.writerow(header)
             # fill table
-            for student, tests in table_tests_all.items():
-                table_row = [student]
-                total_score = 0
-                for test_name in test_names_sorted:
-                    test_report = tests.get(test_name, None)
-                    if test_report is not None:     # if student attended this test
-                        table_row += test_report
-                        total_score += test_report[1]  # [1] -> score
-                    else:                           # if not attended generate empty 
-                        table_row += [None for _ in range(test_names_and_count[test_name]+3)]
-                writer.writerow(table_row + [total_score])
+            self.write_response_csv(writer, table_tests_all, test_names_sorted, test_names_and_count)
 
             success(request, "Export from {} to {}.".format(start_date, end_date))
             # print("arra", test_names_and_count, header, table_tests_all)
@@ -102,4 +78,46 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
         # }
         # return TightJsonResponse(data)
 
+    def get_quizes_in_range(self, start_date, end_date):
+        quizes = Quiz.objects.filter(
+                                    Q(started_at__lte=end_date) & Q(started_at__gte=start_date)
+                                ).order_by("-started_at") #.prefetch_related("user_permissions__content_type")
+        table_tests_all = {}
+        for quiz in quizes:
+            student = quiz.quiz_set.student.username
+            # student_email = quiz.quiz_set.student.email
+            started = quiz.started_at
+            test_name = quiz.test.section.name
+            score = quiz.score()
+            max_score = quiz.test.max_score()
+            
+            # print(student, ended, test_name, score, max_score)
+            
+            table_tests_all[student] = table_tests_all.get(student, {})
+            table_tests_all[student][(quiz.test.language, test_name)]  = [started, score, max_score] + quiz.get_student_answers()
+            # table_tests_all[student]['lang'] = quiz.language
+        return table_tests_all
+
+    def create_table_header(self, test_names_sorted, test_names_and_count):
+        header = ["student"]
+
+        for lang, k in test_names_sorted:
+            header += ["{}_{}_started".format(lang, k), "{}_{}_score".format(lang,k), "{}_{}_max_score".format(lang, k)] + ["{}_{}_{:03}".format(lang, k, i+1) for i in range(test_names_and_count[(lang, k)])]
+        
+        
+        header.append("Total_score")
+        return header
+
+    def write_response_csv(self, writer, table_tests_all, test_names_sorted, test_names_and_count):
+        for student, tests in table_tests_all.items():  # [student][(quiz.language, test_name)]
+            table_row = [student]
+            total_score = 0
+            for test_name in test_names_sorted:
+                test_report = tests.get(test_name, None)
+                if test_report is not None:     # if student attended this test
+                    table_row += test_report
+                    total_score += test_report[1]  # [1] -> score
+                else:                           # if not attended generate empty 
+                    table_row += [None for _ in range(test_names_and_count[test_name]+3)]
+            writer.writerow(table_row + [total_score])
 
