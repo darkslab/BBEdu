@@ -132,7 +132,7 @@ class Quiz(Model):
     def get_student_answers(self):
         def dif_None(a, b):
             try:
-                return a - b
+                return a - b + 1
             except TypeError:
                 return None
         answer_a_offsets = self.get_a_offset()
@@ -164,7 +164,7 @@ class Quiz(Model):
             ret = []
             for ans_meta in self.report["answers"]:
                 try:
-                    ret.append(ans_meta["answer"]["correct_id"])
+                    ret.append(ans_meta["answer"]["correct_id"] + 1)
                 except TypeError:
                     ret.append(None)
             return ret
