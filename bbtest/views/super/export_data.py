@@ -58,6 +58,7 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
 
             # create table header
             header = self.create_table_header(test_names_sorted, test_names_and_count)
+            # print(positions) , positions 
             
             writer.writerow(header)
             # fill table
@@ -84,7 +85,7 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
                                 ).order_by("-started_at") #.prefetch_related("user_permissions__content_type")
         table_tests_all = {}
         for quiz in quizes:
-            student = (quiz.test.language, quiz.quiz_set.student.username)
+            student = (quiz.quiz_set.student.username, quiz.test.language)
             # student_email = quiz.quiz_set.student.email
             started = quiz.started_at
             test_name = quiz.test.section.name
@@ -92,28 +93,43 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
             max_score = quiz.test.max_score()
             
             # print(student, ended, test_name, score, max_score)
-            if student[0] != "xx":
+            if student[1] != "xx":
                 table_tests_all[student] = table_tests_all.get(student, {})
                 table_tests_all[student][test_name]  = [started, score, max_score] + quiz.get_student_answers()
             else:
                 for lang in ["ru", "kk"]:
-                    student = (lang, student[1])
+                    student = (student[0], lang)
                     table_tests_all[student] = table_tests_all.get(student, {})
                     table_tests_all[student][test_name]  = [started, score, max_score] + quiz.get_student_answers()
+        
+        students_all = {s[0] for s in table_tests_all.keys()}
+        for sname in students_all:
+            count_ru = len(table_tests_all.get((sname, "ru"), {}).keys())
+            count_kk = len(table_tests_all.get((sname, "kk"), {}).keys())
+            if count_ru == count_kk and count_ru == 1 and "English Language" in table_tests_all.get((sname, "ru"), {}).keys() and "English Language" in table_tests_all.get((sname, "kk"), {}).keys():
+                table_tests_all.pop((sname, "kk"), None)
+            elif count_ru > count_kk:
+                table_tests_all.pop((sname, "kk"), None)
+            elif count_ru < count_kk:
+                table_tests_all.pop((sname, "ru"), None)
         return table_tests_all
 
     def create_table_header(self, test_names_sorted, test_names_and_count):
         header = ["student", "lang"]
-
+        # positions = {name: None for name in test_names_sorted}
         for k in test_names_sorted:
+            # positions[k] = len(header) 
             header += ["{}_started".format(k), "{}_score".format(k), "{}_max_score".format(k)] + ["{}_{:03}".format(k, i+1) for i in range(test_names_and_count[k])]
+            # positions[k]["end"] = len(header)
+
         
         header.append("Total_score")
-        return header
+        return header #, positions
 
     def write_response_csv(self, writer, table_tests_all, test_names_sorted, test_names_and_count):
+        # table = []
         for student, tests in table_tests_all.items():  # [(quiz.language, student)][test_name]
-            table_row = [student[1], student[0]]
+            table_row = [student[0], student[1]]   # name, lang
             total_score = 0
             for test_name in test_names_sorted:
                 test_report = tests.get(test_name, None)
@@ -123,4 +139,8 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
                 else:                           # if not attended generate empty 
                     table_row += [None for _ in range(test_names_and_count[test_name]+3)]
             writer.writerow(table_row + [total_score])
+            # table.append(table_row + [total_score])
 
+        # table = sorted(table, key=lambda tup: (tup[0],tup[1]) )
+        # for row in table:
+        #     writer.writerow(row)
