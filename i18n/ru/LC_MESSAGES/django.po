@@ -2325,7 +2325,7 @@ msgstr "Пропустить тест"
 
 msgctxt "Exam"
 msgid "End the test"
-msgstr "Завершить тест"
+msgstr "Завершить раздел тест"
 
 msgctxt "Exam"
 msgid "Continue"

@@ -2318,7 +2318,7 @@ msgstr "Тестіні өткізу"
 
 msgctxt "Exam"
 msgid "End the test"
-msgstr "Тестіні аяқтау"
+msgstr "Тест бөлімі аяқтау"
 
 msgctxt "Exam"
 msgid "Continue"
