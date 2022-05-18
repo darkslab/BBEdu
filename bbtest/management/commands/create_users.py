@@ -24,6 +24,20 @@ def create_students():
     return user
 
 
+def create_developer():
+    user = User.objects.create_user(username="iqanatadmin", email=None, password="monkeymonkey")
+    user.first_name = "iqanatadmin"
+    user.last_name = ""
+    user.save()
+    content_type = ContentType.objects.get_for_model(type(user))
+    permissions = []
+    permissions.append(Permission.objects.get(codename="developer", content_type=content_type))
+    user.user_permissions.set(permissions)
+    Account.objects.create_liability_account("Developer-%s" % user.pk)
+    return user
+
+    # Account: Developer-3972 Iqanat
+
 # username = CharField(pgettext_lazy("Model field", "username"), max_length=100, unique=True)
 # email = EmailField(pgettext_lazy("Model field", "email"), max_length=100, null=True, blank=True, unique=True)
 # first_name = CharField(pgettext_lazy("Model field", "first name"), max_length=100, blank=True)
@@ -34,16 +48,6 @@ def create_students():
 # is_active = BooleanField(pgettext_lazy("Model field", "active?"), db_index=True, default=True)
 
 
-def create_developer():
-    user = User.objects.create_user(username="dev_02", email="dev_02@example.com", password="monkeymonkey")
-    user.first_name = "Dimon"
-    user.last_name = "Dev"
-    user.save()
-    content_type = ContentType.objects.get_for_model(type(user))
-    permissions = []
-    permissions.append(Permission.objects.get(codename="developer", content_type=content_type))
-    user.user_permissions.set(permissions)
-    Account.objects.create_liability_account("Developer-%s" % user.pk)
-    return user
+
 
 
