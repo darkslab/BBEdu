@@ -23,6 +23,8 @@ from .views.test import (
     ApproveTestView      as BuildApproveTestView,
     RefuseTestView       as BuildRefuseTestView,
     DeleteTestView       as BuildDeleteTestView,
+    ReDraftTestView      as BuildReDraftTestView,
+    ReApproveTestView    as BuildReApproveTestView,
     ToggleFreeTestView   as BuildToggleFreeTestView,
     CheckTestView        as BuildCheckTestView,
     TestPreviewView      as BuildTestPreviewView,
@@ -64,6 +66,8 @@ from .views.super import (
     ChangePassManualView          as SuperChangePassManualView,
     QuizzesView                   as SuperQuizzesView,
     TrialBalanceView              as SuperTrialBalanceView,
+    ExportDataView                as SuperExportDataView,
+    ExportDataFormView            as SuperExportDataFormView
 )
 
 
@@ -96,6 +100,8 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/questions/(?:(?P<question_id>\d+)/paragraphs/)?$", BuildTestParagraphsView.as_view(),     name="build_test_paragraphs"  ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/attributes/$",                                     BuildTestAttributesView.as_view(),     name="build_test_attributes"  ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/approve/$",                                        BuildApproveTestView.as_view(),        name="build_approve_test"     ),
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/redraft/$",                                        BuildReDraftTestView.as_view(),        name="build_redraft_test"     ), 
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/reapprove/$",                                      BuildReApproveTestView.as_view(),      name="build_reapprove_test"   ), 
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/refuse/$",                                         BuildRefuseTestView.as_view(),         name="build_refuse_test"      ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/delete/$",                                         BuildDeleteTestView.as_view(),         name="build_delete_test"      ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/toggle-free/(?P<free>true|false)/$",               BuildToggleFreeTestView.as_view(),     name="build_toggle_free_test" ),
@@ -139,6 +145,9 @@ urlpatterns = [
     url(r"^super/users/(?P<user_id>[0-9]+)/change-pass-manual/$",   SuperChangePassManualView.as_view(),         name="super_change_pass_manual"        ),
     url(r"^super/quizzes/$",                                        SuperQuizzesView.as_view(),                  name="super_quizzes"                   ),
     url(r"^super/trial-balance/$",                                  SuperTrialBalanceView.as_view(),             name="super_trial_balance"             ),
+    url(r"^super/export-data/$",                                    SuperExportDataView.as_view(),               name="super_export_data"               ),
+    url(r"^super/export-data/export-form/$",                        SuperExportDataFormView.as_view(),           name="super_export_data_form"          ),
+
 
     # SYSTEM URLS
     url(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),

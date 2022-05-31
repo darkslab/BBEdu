@@ -22,3 +22,15 @@ class Command(BaseCommand):
         print(out)
 
 
+    def handle_2(self, *args, **kwargs):
+
+        users = User.objects.all()
+        # 1 февраля 2022 года
+        from_date = datetime(2022, 1, 31, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
+        out = ""
+        for usr in users:
+            if usr.joined_at > from_date:
+                finished_some_tests = len(usr.obtained_test_ids()) > 0
+                out += "{:%Y-%m-%d},{},{},{}\n".format(usr.joined_at, usr.email, usr.phone, finished_some_tests)
+
+        print(out)
