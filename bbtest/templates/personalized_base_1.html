@@ -48,6 +48,7 @@
                             <li class="{% block nav_super_users_class %}{% endblock %}"><a href="{% url 'bbtest:super_users' %}"><i class="fa fa-fw fa-users"></i> {% trans 'All Users' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_quizzes_class %}{% endblock %}"><a href="{% url 'bbtest:super_quizzes' %}"><i class="fa fa-fw fa-check-square-o"></i> {% trans 'All Quizzes' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_super_export_data_class %}{% endblock %}"><a href="{% url 'bbtest:super_export_data' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Export Data' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_trial_balance_class %}{% endblock %}"><a href="{% url 'bbtest:super_trial_balance' %}"><i class="fa fa-fw fa-dollar"></i> {% trans '_common.nav.trial_balance' %}</a></li>
                         {% elif perms.admin %}
                         {% elif perms.bbtest.developer %}
