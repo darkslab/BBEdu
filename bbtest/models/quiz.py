@@ -129,6 +129,29 @@ class Quiz(Model):
                 bucket.append(question.pk)
         return score
 
+    def get_student_answers(self):
+        def dif_None(a, b):
+            try:
+                return a - b + 1
+            except TypeError:
+                return None
+        answer_a_offsets = self.get_a_offset()
+        user_answers = self.get_answers_ids()
+        normalized_answers = [dif_None(ans, a_offset) for ans, a_offset in zip(user_answers, answer_a_offsets)]
+        return normalized_answers
+
+    def get_correct_answers(self):
+        questions = self.test.questions.all()
+        ret = []
+        for q in questions:
+            a_offset = min([option["id"] for option in q.meta_data['choices']])
+            correct_id = q.meta_data["correct_id"]
+            if correct_id is not None:
+                ret.append(correct_id-a_offset)
+            else:
+                ret.append(None)
+        return ret
+
     def get_a_offset(self):
         questions = self.test.questions.all()
         a_id = []
@@ -141,7 +164,7 @@ class Quiz(Model):
             ret = []
             for ans_meta in self.report["answers"]:
                 try:
-                    ret.append(ans_meta["answer"]["correct_id"])
+                    ret.append(ans_meta["answer"]["correct_id"] + 1)
                 except TypeError:
                     ret.append(None)
             return ret

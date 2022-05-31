@@ -1,4 +1,5 @@
-from django.forms import Form, ChoiceField, IntegerField, CharField
+from django.forms import Form, ChoiceField, IntegerField, CharField, DateField
+import datetime
 
 
 class GiveCreditsForm(Form):
@@ -29,3 +30,12 @@ class ChangeUserPassManualForm(Form):
     pass2 = CharField(label="Password Repeat", 
         error_messages={"required": "Reset password." }, 
         max_length=30)
+
+class ExportDataForm(Form):
+    start_date = DateField(label="Start Date", 
+                           error_messages={"required": "Specify start date." }, 
+                           initial=datetime.datetime.now() - datetime.timedelta(days = 7))
+
+    end_date = DateField(label="End Date", 
+                         error_messages={"required": "Specify start date."}, 
+                         initial=datetime.datetime.now())
