@@ -15,9 +15,11 @@ from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.forms.super import ExportDataForm
 from bbtest.http import TightJsonResponse
 import uuid
-import csv
+# import csv
 from bbtest.models import Quiz, TestSection
 import datetime
+import io
+import xlsxwriter
 
 # from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
 # from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
@@ -42,28 +44,39 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
         end_date = form.cleaned_data["end_date"] 
 
         if valid and end_date >= start_date:
-            response = HttpResponse(content_type='text/csv')
-            response['Content-Disposition'] = 'attachment; filename="export.csv"'
-            writer = csv.writer(response)
+            # response = HttpResponse(content_type='text/csv')
+            # response['Content-Disposition'] = 'attachment; filename="export.csv"'
+            buffer = io.BytesIO()
+            workbook = xlsxwriter.Workbook(buffer, options={'remove_timezone': True})
 
             # get all quizes
             table_tests_all = self.get_quizes_in_range(start_date, end_date)  # [student][(quiz.language, test_name)]
 
-            test_names_and_count = {section.name: section.question_count for section in TestSection.objects.all()}
-            test_names_sorted = sorted(test_names_and_count.keys())  # fix sort order
-            # test_names_sorted = ["Quantitative", "English Language"]  # hardcode order and subjects
-            # test_names_sorted = [("ru", "Critical Thinking"), ("ru", "Quantitative"), ("ru", "Spatial Thinking"), 
-            #                      ("kk", "Critical Thinking"), ("kk", "Quantitative"), ("kk", "Spatial Thinking"), 
-            #                      ("xx", "English Language")]  # hardcode order and subjects
-            # test_names_and_count = {section_name: TestSection.objects.get(name=section_name).question_count for section_name in test_names_sorted}
+            test_names_and_count_domainID = {section.name: (section.question_count, section.domain_id) for section in TestSection.objects.all()}
 
-            # create table header
-            header = self.create_table_header(test_names_sorted, test_names_and_count)
-            # print(positions) , positions 
-            
-            writer.writerow(header)
-            # fill table
-            self.write_response_csv(writer, table_tests_all, test_names_sorted, test_names_and_count)
+            byDomain = {}
+            for section_name, (count, domainID) in test_names_and_count_domainID.items():
+                byDomain[domainID] = byDomain.get(domainID, {}) 
+                byDomain[domainID][section_name] = count
+
+
+            for domainID, test_names_and_count in byDomain.items():
+                worksheet = workbook.add_worksheet("{}".format(domainID))
+
+                test_names_sorted = sorted(test_names_and_count.keys())  # fix sort order
+                # create table header
+                header = self.create_table_header(test_names_sorted, test_names_and_count)
+                worksheet.write_row(0, 0, header)
+                # fill table
+                table = self.write_response_csv(worksheet, table_tests_all, test_names_sorted, test_names_and_count)
+
+                for i, row in enumerate(table):
+                    worksheet.write_row(i+1, 0, row)
+
+            workbook.close()
+            buffer.seek(0)
+            response = HttpResponse(buffer, content_type='application/vnd.ms-excel')
+            response['Content-Disposition'] = 'attachment; filename="foo.xlsx"'
 
             success(request, "Export from {} to {}.".format(start_date, end_date))
             # print("arra", test_names_and_count, header, table_tests_all)
@@ -127,8 +140,8 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
         header.append("Total_score")
         return header #, positions
 
-    def write_response_csv(self, writer, table_tests_all, test_names_sorted, test_names_and_count):
-        # table = []
+    def write_response_csv(self, worksheet, table_tests_all, test_names_sorted, test_names_and_count):
+        table = []
         for student, tests in table_tests_all.items():  # [(quiz.language, student)][test_name]
             table_row = [student[0], student[1]]   # name, lang
             total_score = 0
@@ -139,9 +152,8 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
                     total_score += test_report[1]  # [1] -> score
                 else:                           # if not attended generate empty 
                     table_row += [None for _ in range(test_names_and_count[test_name]+3)]
-            writer.writerow(table_row + [total_score])
-            # table.append(table_row + [total_score])
-
-        # table = sorted(table, key=lambda tup: (tup[0],tup[1]) )
-        # for row in table:
-        #     writer.writerow(row)
+            # writer.writerow(table_row + [total_score])
+            table.append(table_row + [total_score])
+        
+        table = sorted(table, key=lambda tup: (tup[0],tup[1]) )
+        return table
