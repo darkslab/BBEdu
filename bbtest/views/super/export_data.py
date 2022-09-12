@@ -21,6 +21,7 @@ import datetime
 import io
 import xlsxwriter
 from django.db import connection, reset_queries
+import time
 
 # from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
 # from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
@@ -53,8 +54,10 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
         buffer = io.BytesIO()
         workbook = xlsxwriter.Workbook(buffer, options={'remove_timezone': True})
 
-        reset_queries()
+        # reset_queries()
         start_queries = len(connection.queries)
+        start = time.perf_counter()
+        
 
         for domain_id in [7911, 7912, 7913, 7914, 7915, 7916]:  # [7911, 7912, 7913, 7914, 7915, 7916]
             quizes = Quiz.objects.filter(
@@ -76,7 +79,7 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
                 score = quiz.score()
                 max_score = quiz.test.max_score()
 
-                table_all.append([student, test_name, lang, code, started, score, max_score])
+                table_all.append([student, test_name, lang, code, started, score, max_score] + quiz.get_student_answers())
 
             for i, row in enumerate(table_all):
                 worksheet.write_row(i+1, 0, row)
@@ -87,8 +90,9 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
         response['Content-Disposition'] = 'attachment; filename="foo.xlsx"'
 
         end_queries = len(connection.queries)
+        end = time.perf_counter()
 
-        success(request, "Export from {} to {}. n_queries={}".format(start_date, end_date, end_queries-start_queries))
+        success(request, "Export from {} to {}. n_queries={}, t={:.2f}s".format(start_date, end_date, end_queries-start_queries, (end - start)))
         return response
 
     def post_old(self, request, *args, **kwargs):
