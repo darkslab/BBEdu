@@ -167,6 +167,8 @@ class Quiz(Model):
                     ret.append(ans_meta["answer"]["correct_id"] + 1)
                 except TypeError:
                     ret.append(None)
+                except KeyError:
+                    ret.append(None)
             return ret
         else:
             return [None for _ in range(self.test.section.question_count)]
