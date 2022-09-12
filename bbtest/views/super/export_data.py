@@ -96,7 +96,7 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
     def get_quizes_in_range(self, start_date, end_date):
         quizes = Quiz.objects.filter(
                                     Q(started_at__lte=end_date) & Q(started_at__gte=start_date)
-                                ).order_by("-started_at") #.prefetch_related("user_permissions__content_type")
+                                ).order_by("-started_at").iterator() #.prefetch_related("user_permissions__content_type")
         table_tests_all = {}
         for quiz in quizes:
             student = (quiz.quiz_set.student.username, quiz.test.language)
