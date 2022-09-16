@@ -21,3 +21,4 @@ Revenue accounts:
     Tests-NUFYPET
     Tests-LAW
     Tests-PROFTEST
+    Tests-NQT
