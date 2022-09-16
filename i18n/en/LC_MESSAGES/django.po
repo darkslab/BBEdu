@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-14 06:48+0600\n"
+"POT-Creation-Date: 2022-09-16 23:22+0600\n"
 "PO-Revision-Date: 2020-08-31 22:04+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1458,6 +1458,10 @@ msgid "Natural Science NIS Test is required."
 msgstr "Natural Science NIS Test is required."
 
 msgctxt "Item error"
+msgid "NQT is required."
+msgstr "NQT is required."
+
+msgctxt "Item error"
 msgid "NUFYPET Test is required."
 msgstr "NUFYPET Test is required."
 
@@ -2144,6 +2148,9 @@ msgstr "Test for Lawyers"
 msgid "_common.domains.proftest_full"
 msgstr "Профессиональное Тестирование"
 
+msgid "_common.domains.nqt_full"
+msgstr "National Qualification Testing"
+
 msgctxt "Home page"
 msgid "We are working on other tests..."
 msgstr "We are working on other tests…"
@@ -2223,6 +2230,10 @@ msgstr "All Quizzes"
 msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Create Test"
+
+msgctxt "Navigation link"
+msgid "Export Data"
+msgstr "Export Data"
 
 msgid "_common.nav.trial_balance"
 msgstr "Trial Balance"
@@ -2723,6 +2734,38 @@ msgid "Tests by Developers"
 msgstr "Tests by Developers"
 
 msgctxt "Page title"
+msgid "All Users"
+msgstr "All Users"
+
+msgctxt "/super/users/"
+msgid "Are you sure?"
+msgstr "Are you sure?"
+
+msgctxt "/super/users/"
+msgid "Yes"
+msgstr "Yes"
+
+msgctxt "/super/users/"
+msgid "No"
+msgstr "No"
+
+msgctxt "/super/users/"
+msgid "Name"
+msgstr "Name"
+
+msgctxt "/super/users/"
+msgid "Role"
+msgstr "Role"
+
+msgctxt "/super/users/"
+msgid "Joined at"
+msgstr "Joined at"
+
+msgctxt "/super/users/"
+msgid "Active?"
+msgstr "Active?"
+
+msgctxt "Page title"
 msgid "All Quizzes"
 msgstr "All Quizzes"
 
@@ -2864,6 +2907,14 @@ msgctxt "Developer tools"
 msgid "Change to Free"
 msgstr "Change to Free"
 
+msgctxt "/developer/"
+msgid "ReDraft"
+msgstr "ReDraft"
+
+msgctxt "/developer/"
+msgid "ReApprove"
+msgstr "ReApprove"
+
 msgctxt "/super/tests/"
 msgid "There are no tests yet"
 msgstr "There are no tests yet"
@@ -2886,40 +2937,8 @@ msgctxt "/super/users/"
 msgid "Student"
 msgstr "Student"
 
-msgctxt "/super/users/"
-msgid "Are you sure?"
-msgstr "Are you sure?"
-
-msgctxt "/super/users/"
-msgid "Yes"
-msgstr "Yes"
-
-msgctxt "/super/users/"
-msgid "No"
-msgstr "No"
-
-msgctxt "Page title"
-msgid "All Users"
-msgstr "All Users"
-
 msgid "page:/super/users/:query"
 msgstr "Seach by first name, last name or email"
-
-msgctxt "/super/users/"
-msgid "Name"
-msgstr "Name"
-
-msgctxt "/super/users/"
-msgid "Role"
-msgstr "Role"
-
-msgctxt "/super/users/"
-msgid "Joined at"
-msgstr "Joined at"
-
-msgctxt "/super/users/"
-msgid "Active?"
-msgstr "Active?"
 
 msgctxt "/super/users/"
 msgid "Actions"
@@ -3278,6 +3297,9 @@ msgstr "LAW Tests [Revenue account]"
 msgid "page:/super/trial-balance/:account.proftest"
 msgstr "PROF Tests [Revenue account]"
 
+msgid "page:/super/trial-balance/:account.nqt"
+msgstr "NQT Tests [Revenue account]"
+
 #, python-format
 msgctxt "/super/users/"
 msgid "Superuser, you are now logged in as %(name)s. PLEASE BE CAREFUL!"
@@ -3298,6 +3320,14 @@ msgstr "You have refused the Test."
 msgctxt "Success alert message"
 msgid "You have deleted the Test."
 msgstr "You have deleted the Test."
+
+msgctxt "Success alert message"
+msgid "Test is now draft again."
+msgstr "Test is now draft again."
+
+msgctxt "Success alert message"
+msgid "Test is now approved again."
+msgstr "Test is now approved again."
 
 msgctxt "Success alert message"
 msgid "Test is now free."
