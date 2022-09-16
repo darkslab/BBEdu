@@ -31,6 +31,8 @@ TEST_SECTION_MAP = {
     "9562": BiologyChemistryNUFYPETItem,
     "9563": ThinkingSkillsNUFYPETItem,
 
+    "9564": NQTItem,
+
     "9565": LawItem,
     "9566": ProftestItem
 }

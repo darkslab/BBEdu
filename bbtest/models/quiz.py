@@ -67,6 +67,8 @@ class Quiz(Model):
             score = self.__calculate_straightforward(question_ids, bucket)
         elif self.test.section.is_law():
             score = self.__calculate_straightforward(question_ids, bucket)
+        elif self.test.section.is_nqt_compulsory():
+            score = self.__calculate_straightforward(question_ids, bucket)
 
         return score
 

@@ -38,6 +38,8 @@ class HomeView(TemplateView):
                 kwargs["unt"] = domain
             elif domain.pk == 7913:
                 kwargs["nufypet"] = domain
+            elif domain.pk == 7914:
+                kwargs["nqt"] = domain
             elif domain.pk == 7915:
                 kwargs["law"] = domain
             elif domain.pk == 7916:

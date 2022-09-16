@@ -170,6 +170,7 @@ class TrialBalanceView(SuperPermissionRequiredMixin, UserContextMixin, TemplateV
             balances["balances_l"][ugettext("page:/super/trial-balance/:account.nufypet")]     = Account.objects.get(name="Tests-NUFYPET").balance()
             balances["balances_l"][ugettext("page:/super/trial-balance/:account.law")]         = Account.objects.get(name="Tests-LAW").balance()
             balances["balances_l"][ugettext("page:/super/trial-balance/:account.proftest")]    = Account.objects.get(name="Tests-PROFTEST").balance()
+            balances["balances_l"][ugettext("page:/super/trial-balance/:account.nqt")]         = Account.objects.get(name="Tests-NQT").balance()
             balances["balances_l_sum"] = sum(account_balance for account_name, account_balance in balances["balances_l"].items())
 
             balances["has_errors"] = Account.objects.has_errors()
