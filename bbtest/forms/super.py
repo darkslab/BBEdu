@@ -42,6 +42,6 @@ class ExportDataForm(Form):
     
     option = CharField(label="Option",
                     #    max_length=2,
-                       widget=Select(choices=(("SIMPLE", "Simple"), ("FORMAT", "Format")))
+                       widget=Select(choices=(("FORMAT", "Format"), ("SIMPLE", "Simple")))
                     #    initial="SIMPLE"
     )
