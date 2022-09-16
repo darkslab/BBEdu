@@ -20,6 +20,7 @@ from bbtest.models import Quiz, TestSection
 import datetime
 import io
 import xlsxwriter
+from xlsxwriter.utility import xl_rowcol_to_cell
 from django.db import connection, reset_queries
 import time
 from functools import lru_cache
@@ -87,7 +88,7 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
             start = end + 1
             end = end + section.question_count + 4
             offset[section.name] = (start, start+4, section.question_count)
-        return offset
+        return offset, end+1
 
 
     def formatted_export(self, start_date, end_date, workbook):
@@ -101,10 +102,11 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
             
             # create table header
             worksheet.write_row(0, 0, ["student", "lang"])
-            offsets = self.excel_offset_for_test(domain_id)
+            offsets, last_col = self.excel_offset_for_test(domain_id)
             for sect_name, (s, m, c) in offsets.items():
                 worksheet.write_row(0, s, ["{}_code".format(sect_name), "{}_started_at".format(sect_name), "{}_score".format(sect_name), "{}_max_score".format(sect_name)])
                 worksheet.write_row(0, m, ["{}_{}".format(i+1, sect_name) for i in range(c)])
+            if domain_id == 7911: worksheet.write(0, last_col, "Total")
             
 
             pointer = {sect_name: 1 for sect_name in offsets.keys()}  # stores row offset for subjects
@@ -133,6 +135,12 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
                 worksheet.write_row(row_offset, col_offset, row)
                 pointer[test_name] += 1
 
+            if domain_id == 7911:   # for NIS test compute Total column
+                n_rows_total = max(pointer.values())
+                score_cols = [s+2 for s, _, _ in offsets.values()]
+                for i in range(1, n_rows_total):
+                    formula = [xl_rowcol_to_cell(i, col) for col in score_cols]
+                    worksheet.write_formula(i, last_col, '=' + "+".join(formula))
                             
     def simple_export(self, start_date, end_date, workbook):
         for domain_id in [7911, 7912, 7913, 7914, 7915, 7916]:  # [7911, 7912, 7913, 7914, 7915, 7916]
@@ -145,7 +153,7 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
             if not quizes:  # empty response
                 continue
             
-            worksheet.write_row(0, 0, ["student", "test_name", "lang", "code", "started", "score", "max_score"])
+            worksheet.write_row(0, 0, ["student", "test_name", "lang", "code", "started", "score", "max_score"] + ["Q{}".format(i) for i in range(1,61)])
 
             for i, quiz in enumerate(quizes):
                 student = quiz.quiz_set.student.username
