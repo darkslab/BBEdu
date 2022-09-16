@@ -92,6 +92,7 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
 
 
     def formatted_export(self, start_date, end_date, workbook):
+        date_format = workbook.add_format({'num_format': 'dd-mm-yy hh:mm:ss', 'align': 'left'})
         for domain_id in [7911, 7912, 7913, 7914, 7915, 7916]:  # [7911, 7912, 7913, 7914, 7915, 7916]
             quizes = Quiz.objects.filter(
                                     Q(started_at__lte=end_date) & Q(started_at__gte=start_date) & Q(test__section__domain=domain_id)
@@ -133,6 +134,7 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
 
                 worksheet.write_row(row_offset, 0, [student, lang])  # will be overwritten several times, but it is OK, overhead is acceptable
                 worksheet.write_row(row_offset, col_offset, row)
+                worksheet.write_datetime(row_offset, col_offset+1, started, date_format)
                 pointer[test_name] += 1
 
             if domain_id == 7911:   # for NIS test compute Total column
