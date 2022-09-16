@@ -164,8 +164,10 @@ class Quiz(Model):
             ret = []
             for ans_meta in self.report["answers"]:
                 try:
-                    ret.append(ans_meta["answer"]["correct_id"] + 1)
+                    ret.append(ans_meta["answer"]["correct_id"])
                 except TypeError:
+                    ret.append(None)
+                except KeyError:
                     ret.append(None)
             return ret
         else:

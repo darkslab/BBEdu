@@ -1,4 +1,4 @@
-from django.forms import Form, ChoiceField, IntegerField, CharField, DateField
+from django.forms import Form, ChoiceField, IntegerField, CharField, DateField, Select
 import datetime
 
 
@@ -39,3 +39,9 @@ class ExportDataForm(Form):
     end_date = DateField(label="End Date", 
                          error_messages={"required": "Specify start date."}, 
                          initial=datetime.datetime.now())
+    
+    option = CharField(label="Option",
+                    #    max_length=2,
+                       widget=Select(choices=(("FORMAT", "Format"), ("SIMPLE", "Simple")))
+                    #    initial="SIMPLE"
+    )
