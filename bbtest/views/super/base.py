@@ -155,8 +155,13 @@ class TrialBalanceView(SuperPermissionRequiredMixin, UserContextMixin, TemplateV
         if not balances:
             balances = {}
         if not balances_cached:
-            subprocess.Popen(["python3.4", "./manage.py", "compute_accounting"])
-            cache.set("balances_cached", True, 500)
+            subprocess.Popen(["python3", "~/BBEdu/manage.py", "compute_accounting"])
+            cache.set("balances_cached", True, 3600*1)
+            cache.set("balances_started", now(), 3600*1)
+        
+        balances_started = cache.get("balances_started")
+        if balances_started:
+            balances["last_cached"] = balances_started
 
             # balances["balances_a"] = OrderedDict()
             # balances["balances_a"][ugettext("page:/super/trial-balance/:account.cash")]        = Account.objects.get(name="Cash").balance()
