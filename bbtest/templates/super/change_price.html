@@ -8,34 +8,6 @@
 {% block nav_super_change_price_class %}active{% endblock %}
 
 {% block content %}
-    <script>
-        moduleDataStack.push({
-            module: "SubmitModule"
-        });
-        moduleDataStack.push({
-            module: "SuperExportDataModule"
-        });
-    </script>
-    <div class="modal fade" data-export-data-modal data-backdrop="static" data-keyboard="false" id="modal-asd">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">{% trans 'Are you sure?' context '/super/users/' %}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xs-6 pr-5">
-                            <button type="button" class="btn btn-danger btn-block btn-lg" data-export-data-confirm="true" id="confirm-create">{% trans 'Yes' context '/super/users/' %}</button>
-                        </div>
-                        <div class="col-xs-6 pl-5">
-                            <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-export-data-confirm="false">{% trans 'No' context '/super/users/' %}</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer"></div>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-xs-14">
             <div class="panel panel-primary">
@@ -51,21 +23,32 @@
                                 <th class="text-center">{% trans 'question count' context '/super/change_price/' %}</th>
                                 <th class="text-center">{% trans 'question price' context '/super/change_price/' %}</th>
                                 <th class="text-center">{% trans 'total price' context '/super/change_price/' %}</th>
+                                <th class="text-center">{% trans 'change question price' context '/super/change_price/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for domain_name, section_query in domain_price_query.items %}
+                            {% for domain_item in domain_price_query %}
                                 <tr>
-                                    <td rowspan="{{ section_query|length|add:'1' }}">{% trans domain_name %}</td>
+                                    <td rowspan="{{ domain_item.sections|length|add:'1' }}">{% trans domain_item.name %}</td>
                                 </tr>
-                                {% for section in section_query %}
+                                {% for section in domain_item.sections %}
                                 <tr>
                                     <td>{% trans section.name %}</td>
                                     <td class="text-center">{{ section.question_count }}</td>
                                     <td class="text-center">{{ section.question_price }}</td>
                                     <td class="text-center">{{ section.total_price }}</td>
+                                    <td class="text-center"> 
+                                        <div>
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                <input type="number" name="price" value="{{ section.question_price }}" min="0" step="1" style="width:30%" required> 
+                                                <input type="hidden" name="sect" value="{{ section.id }}"> 
+                                                <input type="hidden" name="sect_name" value="{% trans section.name %}"> 
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
-                            
                                 {% endfor %}
                             {% endfor %}
                         </tbody>
