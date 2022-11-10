@@ -10,10 +10,10 @@ class MathematicsNUFYPETItem(NUFYPETItem):
         if test.section_id != 9560:
             raise ItemError(pgettext("Item error", "Mathematics NUFYPET Test is required."))
 
-    def price(self):
-        if self.test().is_free:
-            return Decimal("0.00")
-        return Decimal("16.00") * self.test().section.question_count
+    # def price(self):
+    #     if self.test().is_free:
+    #         return Decimal("0.00")
+    #     return Decimal("16.00") * self.test().section.question_count
 
 
 class PhysicsNUFYPETItem(NUFYPETItem):
@@ -22,10 +22,10 @@ class PhysicsNUFYPETItem(NUFYPETItem):
         if test.section_id != 9561:
             raise ItemError(pgettext("Item error", "Physics NUFYPET Test is required."))
 
-    def price(self):
-        if self.test().is_free:
-            return Decimal("0.00")
-        return Decimal("16.00") * self.test().section.question_count
+    # def price(self):
+    #     if self.test().is_free:
+    #         return Decimal("0.00")
+    #     return Decimal("16.00") * self.test().section.question_count
 
 
 class BiologyChemistryNUFYPETItem(NUFYPETItem):
@@ -34,10 +34,10 @@ class BiologyChemistryNUFYPETItem(NUFYPETItem):
         if test.section_id != 9562:
             raise ItemError(pgettext("Item error", "Biology/Chemistry NUFYPET Test is required."))
 
-    def price(self):
-        if self.test().is_free:
-            return Decimal("0.00")
-        return Decimal("16.00") * self.test().section.question_count
+    # def price(self):
+    #     if self.test().is_free:
+    #         return Decimal("0.00")
+    #     return Decimal("16.00") * self.test().section.question_count
 
 
 class ThinkingSkillsNUFYPETItem(NUFYPETItem):
@@ -46,7 +46,7 @@ class ThinkingSkillsNUFYPETItem(NUFYPETItem):
         if test.section_id != 9563:
             raise ItemError(pgettext("Item error", "Thinking skills NUFYPET Test is required."))
 
-    def price(self):
-        if self.test().is_free:
-            return Decimal("0.00")
-        return Decimal("16.00") * self.test().section.question_count
+    # def price(self):
+    #     if self.test().is_free:
+    #         return Decimal("0.00")
+    #     return Decimal("16.00") * self.test().section.question_count

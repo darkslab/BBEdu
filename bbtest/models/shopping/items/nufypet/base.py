@@ -1,4 +1,5 @@
 from django.utils.translation import pgettext
+from decimal import Decimal
 from ..test import TestItem
 from ...exceptions import ItemError
 from bbtest.models import Account, Test
@@ -29,3 +30,8 @@ class NUFYPETItem(TestItem):
         new_items.sort(key=lambda new_item: new_item.test().section.order)
         self.assert_price()
         return new_items
+
+    def price(self):
+        if self.test().is_free:
+            return Decimal("0.00")
+        return Decimal(self.test().section.question_price * self.test().section.question_count)
