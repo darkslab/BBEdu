@@ -10,7 +10,7 @@ from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin
 from .mixins import NonCurrentQuizSetRequiredMixin
-from bbtest.models import TestDomain, Test
+from bbtest.models import TestDomain, Test, TestSection
 from bbtest.http import TightJsonResponse
 from bbtest.models.shopping.handle import CartHandleAccessMixin
 from bbtest.forms.buy import BuyTestsCartForm
@@ -329,6 +329,9 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                 if available_tests[testcode].is_free:
                     response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "Free")
                 else:
+                    sect = TestSection.objects.get(id=section_id)
+                    amount = Decimal(sect.question_price * sect.question_count)
+                    """
                     amount = Decimal("0.00")
                     try:
                         if TEST_SECTION_MAP[section_id] in (
@@ -348,6 +351,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                             amount = Decimal("1500.00")
                     except KeyError:
                         pass
+                    """
                     response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": amount }
 
         response["affordable"] = False
@@ -435,6 +439,10 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
             if test.is_free:
                 response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "Free")
             else:
+                sect = TestSection.objects.get(id=section_id)
+                amount = Decimal(sect.question_price * sect.question_count)
+
+                """
                 amount = Decimal("0.00")
                 try:
                     if TEST_SECTION_MAP[section_id] in (
@@ -491,6 +499,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                         amount = Decimal("200.00")
                 except KeyError:
                     pass
+                """
                 response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": amount }
 
         response["affordable"] = False
