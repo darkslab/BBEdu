@@ -45,6 +45,10 @@ class NISItem(TestItem):
             return Decimal("1.00")
         return Decimal("0.00")
 
+    def price(self):
+        if self.test().is_free:
+            return Decimal("0.00")
+        return Decimal(self.test().section.question_price * self.test().section.question_count)
 
 class NonLanguageNISItem(NISItem):
     pass
