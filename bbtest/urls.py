@@ -67,7 +67,8 @@ from .views.super import (
     QuizzesView                   as SuperQuizzesView,
     TrialBalanceView              as SuperTrialBalanceView,
     ExportDataView                as SuperExportDataView,
-    ExportDataFormView            as SuperExportDataFormView
+    ExportDataFormView            as SuperExportDataFormView,
+    ChangePriceView               as SuperChangePriceView,
 )
 
 
@@ -147,6 +148,7 @@ urlpatterns = [
     url(r"^super/trial-balance/$",                                  SuperTrialBalanceView.as_view(),             name="super_trial_balance"             ),
     url(r"^super/export-data/$",                                    SuperExportDataView.as_view(),               name="super_export_data"               ),
     url(r"^super/export-data/export-form/$",                        SuperExportDataFormView.as_view(),           name="super_export_data_form"          ),
+    url(r"^super/change-price/$",                                   SuperChangePriceView.as_view(),              name="super_change_price"              ),
 
 
     # SYSTEM URLS

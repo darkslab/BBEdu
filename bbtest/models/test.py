@@ -40,6 +40,9 @@ class TestSection(Model):
     def __str__(self):
         return self.name
 
+    def total_price(self):
+        return self.question_count * self.question_price
+
     def is_nis(self):
         return self.pk in range(9539, 9545)
 
