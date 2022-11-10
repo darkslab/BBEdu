@@ -1,0 +1,61 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n pagination widget_tweaks%}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'All prices' context 'Page title' %}{% endblock %}
+
+{% block nav_super_change_price_class %}active{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-14">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">&nbsp;</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-pressed">
+                        <thead>
+                            <tr>
+                                <th class="pl-15">{% trans 'Domain' context '/super/change_price/' %}</th>
+                                <th class="pl-15">{% trans 'Section' context '/super/change_price/' %}</th>
+                                <th class="text-center">{% trans 'question count' context '/super/change_price/' %}</th>
+                                <th class="text-center">{% trans 'question price' context '/super/change_price/' %}</th>
+                                <th class="text-center">{% trans 'total price' context '/super/change_price/' %}</th>
+                                <th class="text-center">{% trans 'change question price' context '/super/change_price/' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for domain_item in domain_price_query %}
+                                <tr>
+                                    <td rowspan="{{ domain_item.sections|length|add:'1' }}">{% trans domain_item.name %}</td>
+                                </tr>
+                                {% for section in domain_item.sections %}
+                                <tr>
+                                    <td>{% trans section.name %}</td>
+                                    <td class="text-center">{{ section.question_count }}</td>
+                                    <td class="text-center">{{ section.question_price }}</td>
+                                    <td class="text-center">{{ section.total_price }}</td>
+                                    <td class="text-center"> 
+                                        <div>
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                <input type="number" name="price" value="{{ section.question_price }}" min="0" step="1" style="width:30%" required> 
+                                                <input type="hidden" name="sect" value="{{ section.id }}"> 
+                                                <input type="hidden" name="sect_name" value="{% trans section.name %}"> 
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

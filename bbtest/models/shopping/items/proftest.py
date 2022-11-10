@@ -29,7 +29,12 @@ class ProftestItem(TestItem):
         self.assert_price()
         return new_items
 
+    # def price(self):
+    #     if self.test().is_free:
+    #         return Decimal("0.00")
+    #     return Decimal("200.00")
+    
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("200.00")
+        return Decimal(self.test().section.question_price * self.test().section.question_count)
