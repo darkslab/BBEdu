@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand
 from django.core.cache import cache
 from collections import OrderedDict
-from django.utils.translation import ugettext
+from django.utils.translation import activate, deactivate
+from django.utils.translation import ugettext, pgettext_lazy
 from bbtest.models import Subscription, Test, TestSection, Account
 from django.utils.timezone import localtime, now
 
@@ -15,6 +16,7 @@ class Command(BaseCommand):
 
         if not balances:
             balances = {}
+            activate("en-us")
 
             balances["balances_a"] = OrderedDict()
             balances["balances_a"][ugettext("page:/super/trial-balance/:account.cash")]        = Account.objects.get(name="Cash").balance()
@@ -38,6 +40,7 @@ class Command(BaseCommand):
             balances["has_errors"] = Account.objects.has_errors()
             balances["last_cached"] = now()
 
+            deactivate()
             cache.set("balances", balances, 300)
 
         # print(balances)

@@ -150,10 +150,14 @@ class TrialBalanceView(SuperPermissionRequiredMixin, UserContextMixin, TemplateV
 
     def get_context_data(self, **kwargs):
         balances = cache.get("balances")
+        balances_cached = cache.get("balances_cached")
 
         if not balances:
             balances = {}
+        if not balances_cached:
             subprocess.Popen(["python3.4", "./manage.py", "compute_accounting"])
+            cache.set("balances_cached", True, 500)
+
             # balances["balances_a"] = OrderedDict()
             # balances["balances_a"][ugettext("page:/super/trial-balance/:account.cash")]        = Account.objects.get(name="Cash").balance()
             # balances["balances_a"][ugettext("page:/super/trial-balance/:account.qazkom")]      = Account.objects.get(name="MerchantFees-Qazkom").balance()
