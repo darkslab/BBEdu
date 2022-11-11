@@ -149,23 +149,12 @@ class TrialBalanceView(SuperPermissionRequiredMixin, UserContextMixin, TemplateV
     template_name = "super/trial_balance.html"
 
     def get_context_data(self, **kwargs):
-        import os, socket
         balances = cache.get("balances")
-        balances_cached = cache.get("balances_cached")
-        cache.set("cwd2", os.getcwd(), 60*1)
-        cache.set("host2", socket.gethostname(), 60*1)
+        # cache is updated externally every day by chrontab
 
         if not balances:
             balances = {}
-        if not balances_cached:
-            subprocess.Popen(["/usr/local/bin/python3", "~/BBEdu/manage.py", "compute_accounting"], shell=True, close_fds=True)
-            cache.set("balances_cached", True, 3600*1)
-            cache.set("balances_started", now(), 3600*1)
         
-        balances_started = cache.get("balances_started")
-        if balances_started:
-            balances["last_cached"] = balances_started
-
             # balances["balances_a"] = OrderedDict()
             # balances["balances_a"][ugettext("page:/super/trial-balance/:account.cash")]        = Account.objects.get(name="Cash").balance()
             # balances["balances_a"][ugettext("page:/super/trial-balance/:account.qazkom")]      = Account.objects.get(name="MerchantFees-Qazkom").balance()
