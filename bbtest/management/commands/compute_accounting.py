@@ -6,9 +6,9 @@ from django.utils.translation import ugettext, pgettext_lazy
 from bbtest.models import Account
 from django.utils.timezone import localtime, now
 
-# run script every 2 minutes
+# run script every day at 4 Am
 # crontab -e
-# */2 * * * * /usr/local/bin/python3 ~/BBEdu/manage.py compute_accounting
+# 0 4 * * * /usr/local/bin/python3 ~/BBEdu/manage.py compute_accounting
 class Command(BaseCommand):
     help = 'updates trial balance cache' 
 
