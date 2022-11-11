@@ -6,7 +6,7 @@ from django.utils.translation import ugettext, pgettext_lazy
 from bbtest.models import Subscription, Test, TestSection, Account
 from django.utils.timezone import localtime, now
 import time
-
+import os, socket
 
 class Command(BaseCommand):
     help = 'help TODO' 
@@ -14,6 +14,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         balances = cache.get("balances")
+        cache.set("cwd1", os.getcwd(), 60*1)
+        cache.set("host1", socket.gethostname(), 60*1)
+
         if not balances:
             balances = {}
             activate("en-us")

@@ -149,8 +149,11 @@ class TrialBalanceView(SuperPermissionRequiredMixin, UserContextMixin, TemplateV
     template_name = "super/trial_balance.html"
 
     def get_context_data(self, **kwargs):
+        import os, socket
         balances = cache.get("balances")
         balances_cached = cache.get("balances_cached")
+        cache.set("cwd2", os.getcwd(), 60*1)
+        cache.set("host2", socket.gethostname(), 60*1)
 
         if not balances:
             balances = {}
