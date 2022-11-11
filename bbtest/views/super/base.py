@@ -155,7 +155,7 @@ class TrialBalanceView(SuperPermissionRequiredMixin, UserContextMixin, TemplateV
         if not balances:
             balances = {}
         if not balances_cached:
-            subprocess.Popen(["python3", "~/BBEdu/manage.py", "compute_accounting"])
+            subprocess.Popen(["/usr/local/bin/python3", "~/BBEdu/manage.py", "compute_accounting"], shell=True, close_fds=True)
             cache.set("balances_cached", True, 3600*1)
             cache.set("balances_started", now(), 3600*1)
         
