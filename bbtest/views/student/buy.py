@@ -27,16 +27,17 @@ from django.conf import settings
 if settings.DEBUG:
     # test
     bundles_manual =  {
-        'ru': [{9539: 'b1d8', 9540: 'c4dd', 9541: '477e', 9542: '425e', 9543: '48c8', 9544: 'cfd3'}, 
-               {9539: '84b0', 9540: '596c', 9541: '88f3', 9542: '7912', 9543: 'c2ab', 9544: 'bc6f'}, 
-               {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''}, 
-               {9539: '1f77', 9540: '0073', 9541: '3aa2', 9542: 'cf6f', 9543: '5208', 9544: '4234'}, 
-               {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''}], 
-        'kk': [{9539: '5655', 9540: '8323', 9541: 'b2fe', 9542: 'f654', 9543: 'cf9e', 9544: '25e3'}, 
-               {9539: '1f77', 9540: '0073', 9541: '3aa2', 9542: 'cf6f', 9543: '5208', 9544: '4234'},
-               {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''}, 
-               {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''}, 
-               {9539: '',     9544: '',     9541: '',     9543: '',     9540: ''    , 9542: ''}]}
+        'ru': [{9539: 'f931', 9540: 'c4dd', 9541: '477e', 9542: '425e', 9543: '48c8', 9544: 'cfd3'},
+            {9539: '66f3', 9540: '', 9541: 'ea02', 9542: ''    , 9543: ''    , 9544: ''},
+            {9539: ''    , 9540: '42b0', 9541: ''    , 9542: ''    , 9543: ''    , 9544: ''    },
+            {9539: ''    , 9540: ''    , 9541: ''    , 9542: ''    , 9543: ''    , 9544: '27b6'    },
+            {9539: ''    , 9540: ''    , 9541: ''    , 9542: ''    , 9543: ''    , 9544: ''    }],
+        'kk': [{9539: ''    , 9540: '8323', 9541: 'b2fe', 9542: 'f654', 9543: 'cf9e', 9544: '25e3'},
+            {9539: ''    , 9540: ''    , 9541: ''    , 9542: '783f', 9543: '1490', 9544: ''    },
+            {9539: ''    , 9540: ''    , 9541: ''    , 9542: ''    , 9543: ''    , 9544: ''    },
+            {9539: ''    , 9540: ''    , 9541: ''    , 9542: ''    , 9543: ''    , 9544: ''    },
+            {9539: ''    , 9540: ''    , 9541: ''    , 9542: ''    , 9543: ''    , 9544: ''    }]
+    }
 else:
     # production
     # 'kk': [{9539: '2c08', 9540: '0a60', 9541: '3525', 9542: '69ed', 9543: '4e4f', 9544: 'bf79'}
@@ -180,19 +181,19 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                 "errors": loads(form.errors.as_json()),
             }, status=400)
 
-        for item in self.cart_handle():
-            if not isinstance(item, TestItem) or not len(form.cleaned_data["data"]["sections"]):
-                self.cart_handle().remove_item(item)
-                continue
-            try:
-                section_id_index = form.cleaned_data["data"]["sections"].index(item.test().section_id)
-                form.cleaned_data["data"]["sections"].pop(section_id_index)
-                continue
-            except ValueError:
-                pass
-            self.cart_handle().remove_item(item)
-
         if test_domain.pk != 7911:
+            for item in self.cart_handle():
+                if not isinstance(item, TestItem) or not len(form.cleaned_data["data"]["sections"]):
+                    self.cart_handle().remove_item(item)
+                    continue
+                try:
+                    section_id_index = form.cleaned_data["data"]["sections"].index(item.test().section_id)
+                    form.cleaned_data["data"]["sections"].pop(section_id_index)
+                    continue
+                except ValueError:
+                    pass
+                self.cart_handle().remove_item(item)
+
             if len(form.cleaned_data["data"]["sections"]):
                 available_tests = self.cart_handle().buyer().next_tests(test_domain, form.cleaned_data["data"]["language"])
                 for section_id in form.cleaned_data["data"]["sections"]:
@@ -207,6 +208,8 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                         pass
 
         else:
+            self.cart_handle().empty()
+
             available_tests = {test.code: test for test in self.cart_handle().buyer().remained_tests(test_domain, form.cleaned_data["data"]["language"])}
             bundle_pk = int(form.cleaned_data["data"]["selected_bundle_pk"])
             if len(form.cleaned_data["data"]["sections"]) and bundle_pk >= 0:
