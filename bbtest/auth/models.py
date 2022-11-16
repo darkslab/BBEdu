@@ -13,9 +13,9 @@ from bbtest.models.fields import JSONField
 
 REGIONS = (
     ( "",          ugettext_lazy("_common.regions.select")          ),
+    ( "almaty",    ugettext_lazy("_common.regions.names.almaty")    ),
     ( "akmola",    ugettext_lazy("_common.regions.names.akmola")    ),
     ( "aktobe",    ugettext_lazy("_common.regions.names.aktobe")    ),
-    ( "almaty",    ugettext_lazy("_common.regions.names.almaty")    ),
     ( "atyrau",    ugettext_lazy("_common.regions.names.atyrau")    ),
     ( "west_kz",   ugettext_lazy("_common.regions.names.west_kz")   ),
     ( "zhambyl",   ugettext_lazy("_common.regions.names.zhambyl")   ),
@@ -27,6 +27,9 @@ REGIONS = (
     ( "north_kz",  ugettext_lazy("_common.regions.names.north_kz")  ),
     ( "turkestan", ugettext_lazy("_common.regions.names.turkestan") ),
     ( "east_kz",   ugettext_lazy("_common.regions.names.east_kz")   ),
+    ( "abai",      ugettext_lazy("_common.regions.names.abai")      ),
+    ( "jetısu",    ugettext_lazy("_common.regions.names.jetısu")    ),
+    ( "ulytau",    ugettext_lazy("_common.regions.names.ulytau")    ),
 )
 
 

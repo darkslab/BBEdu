@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-17 03:46+0600\n"
+"POT-Creation-Date: 2022-11-17 04:33+0600\n"
 "PO-Revision-Date: 2020-08-31 22:01+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -70,14 +70,14 @@ msgstr "Жаңа құпиясөздің растауын енгізіңіз."
 msgid "_common.regions.select"
 msgstr "Облысты таңдаңыз"
 
+msgid "_common.regions.names.almaty"
+msgstr "Алматы облысы"
+
 msgid "_common.regions.names.akmola"
 msgstr "Ақмола облысы"
 
 msgid "_common.regions.names.aktobe"
 msgstr "Ақтөбе облысы"
-
-msgid "_common.regions.names.almaty"
-msgstr "Алматы облысы"
 
 msgid "_common.regions.names.atyrau"
 msgstr "Атырау облысы"
@@ -111,6 +111,19 @@ msgstr "Түркістан облысы"
 
 msgid "_common.regions.names.east_kz"
 msgstr "Шығыс Қазақстан облысы"
+
+#, fuzzy
+#| msgid "_common.regions.names.abay"
+msgid "_common.regions.names.abai"
+msgstr "Абай облысы"
+
+#, fuzzy
+#| msgid "_common.regions.names.zhetysu"
+msgid "_common.regions.names.jetısu"
+msgstr "Жетісу  облысы"
+
+msgid "_common.regions.names.ulytau"
+msgstr "Ұлытау облысы"
 
 msgctxt "Model field"
 msgid "username"
@@ -2254,12 +2267,14 @@ msgstr "Назарбаев Зияткерлік мектептеріне түс�
 
 msgid "page:/nkt/:html_title"
 msgstr ""
-"Пробное тестирование для прохождения НКТ (Национальное Квалифицированное Тестирование)"
+"Пробное тестирование для прохождения НКТ (Национальное Квалифицированное "
+"Тестирование)"
 
 msgid "page:/nkt/:html_description"
 msgstr ""
 "Удобная платформа онлайн тестирования с предоставлением подробного анализа "
-"результатов. Пробное тестирование для прохождения НКТ (Национальное Квалифицированное Тестирование)."
+"результатов. Пробное тестирование для прохождения НКТ (Национальное "
+"Квалифицированное Тестирование)."
 
 msgid "page:/nkt/:nkt_button"
 msgstr "Пробный тест НКТ"
