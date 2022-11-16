@@ -1267,6 +1267,28 @@ html {
     }
 }
 
+.bb-nkt-section-1 {
+    background-color: #94C67F;
+}
+
+.bb-nkt-section-3 {
+    background-color: #2A2D81;
+}
+
+.bb-home-section-0 .bb-nkt-section-0-info {
+    margin-top: 10px;
+    margin-bottom: 400px;
+    padding-bottom: 0px;
+}
+
+@media (min-width: 768px) {
+    .bb-home-section-0 .bb-nkt-section-0-info {
+        margin-top: 30px;
+        margin-bottom: 520px;
+        padding-bottom: 0px;
+    }
+}
+
 .bb-student-dashboard-results-overlay {
     position: absolute;
     top: 0px;
