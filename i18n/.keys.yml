@@ -132,6 +132,10 @@ page:
     html_title: ~
     html_description: ~
     nis_button: ~
+  '/nkt/':
+    html_title: ~
+    html_description: ~
+    nkt_button: ~
   '/student/':
     last_results_header: ~
   '/student/buy-tests/xxxx/':
@@ -194,6 +198,7 @@ page:
       nufypet: ~
       law: ~
       proftest: ~
+      nkt: ~
     accounting_error: ~
     last_cached: ~
   '/super/users/':

@@ -1,0 +1,195 @@
+{% extends './base_0.html' %}
+{% load static i18n permission i18nurl %}
+
+{% block window_title %}{% trans 'page:/nkt/:html_title' %}{% endblock %}
+
+{% block description %}{% trans 'page:/nkt/:html_description' %}{% endblock %}
+
+{% block _d0_body_class %}bb-body-public bb-body-public-extended{% endblock %}
+
+{% block _d0_content %}
+    <script>
+        moduleDataStack.push({
+            module: "HomePageModule",
+            data: {
+                detail_chart_selector: "[data-detail-chart]",
+                progress_chart_selector: "[data-progress-chart]"
+            }
+        });
+    </script>
+    <div class="container-fluid">
+
+        <div class="row bb-home-section-0" style="background-image: url('{% static 'img/nis_0.jpg' %}');">
+            <div class="col-xs-12">
+                <div class="row bb-bar bb-bar-public">
+                    <nav class="navbar navbar-default">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-10 col-lg-offset-1 pr-0 pl-0">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bb-navbar-collapse">
+                                            <span class="icon-bar bb-bar-button-first"></span>
+                                            <span class="icon-bar bb-bar-button-second"></span>
+                                            <span class="icon-bar bb-bar-button-third"></span>
+                                        </button>
+                                        <a class="navbar-brand ml-0 pt-10 pb-10" href="{% url 'bbtest:home' %}">
+                                            <img class="bb-bar-logo" src="{% static 'img/logo2.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" title="bbtest.kz">
+                                        </a>
+                                    </div>
+                                    <div class="navbar-collapse collapse" id="bb-navbar-collapse" style="height: 1px;">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            {% if user.is_authenticated %}
+                                                <li><a href="{% url 'bbtest:dashboard' %}">{% trans 'Dashboard' context 'Navigation link' %}</a></li>
+                                                <li class="bb-bar-gravatar-container hidden-xs"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="{{ user.gravatar_url|safe }}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}"></li>
+                                                <li class="dropdown">
+                                                    <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">{{ user.get_full_name }} <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li><a href="{% url 'bbtest:settings' %}"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
+                                                        <li><a href="{% url 'bbtest:faq' %}"><i class="fa fa-fw fa-info-circle"></i> {% trans '_common.nav.faq' %}</a></li>
+                                                        <li class="divider"></li>
+                                                        <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
+                                                    </ul>
+                                                </li>
+                                            {% else %}
+                                                <li><a href="{% url 'bbtest:login' %}">{% trans 'Login' context 'Navigation link' %}</a></li>
+                                                <li><a href="{% url 'bbtest:register' %}">{% trans 'Register' context 'Navigation link' %}</a></li>
+                                                <li><a href="{% url 'bbtest:faq' %}">{% trans '_common.nav.faq' %}</a></li>
+                                            {% endif %}
+                                            <li>
+                                                <a href="#corporate-modal" data-toggle="modal" data-corporate-link="true">{% trans '_common.nav.corporate' %}</a>
+                                                <div class="modal fade" id="corporate-modal">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">{% trans '_common.nav.corporate' %}</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-xs-12">
+                                                                        <img class="img-responsive" src="{% static 'img/corporate.png' %}" alt="{% trans '_common.nav.corporate' %}" title="{% trans '_common.nav.corporate' %}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="bb-lang-container container-fluid">
+                                                <div class="row">
+                                                    <div class="col-xs-2 col-xs-offset-3 col-sm-12 col-sm-offset-0 pr-5 pl-5">
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block text-right visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                    </div>
+                                                    <div class="col-xs-2 col-sm-12 pr-5 pl-5">
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block text-center visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                    </div>
+                                                    <div class="col-xs-2 col-sm-12 pr-5 pl-5">
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_EN %}" class="center-block text-left visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_EN %}active{% endif %}">Eng</a>
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_EN %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_EN %}active{% endif %}">Eng</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3 bb-home-section-0-info bb-nis-section-0-info">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nkt.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-warning btn-lg btn-block btn-wrappable visible-lg-block">
+                                        <h4 class="mt-0 mb-0 pt-5 pb-5">{% trans 'page:/nkt/:nkt_button' %}</h4>
+                                    </a>
+                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nkt.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-warning btn-block btn-wrappable hidden-lg hidden-xs">
+                                        <h5 class="mt-0 mb-0 pt-5 pb-5">{% trans 'page:/nkt/:nkt_button' %}</h5>
+                                    </a>
+                                    <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nkt.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-warning btn-xs btn-block btn-wrappable visible-xs-block">
+                                        <h6 class="mt-0 mb-0 pt-5 pb-5">{% trans 'page:/nkt/:nkt_button' %}</h6>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bb-home-section bb-home-section-1 bb-nis-section-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                        <img class="img-responsive center-block bb-home-section-1-logo" src="{% static 'img/logo2.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" title="bbtest.kz">
+                        <h4 class="text-center mt-23 mb-0">{% trans 'Online testing platform.' context 'Home page' %}</h4>
+                        <h4 class="text-center mt-0 mb-0">{% trans 'Thorough. Convenient. Effective.' context 'Home page' %}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bb-home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 mb-15 pr-0 pl-0 bb-chart-lg" data-detail-chart></div>
+                    <div class="col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1 mb-15 bb-chart-lg pt-45 pb-45" data-progress-chart></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                        <h4 class="mt-0 mb-0 text-center">{% trans 'Get a detailed test result analysis, find out your current skills and knowledge. Check out your progress and get better.' context 'Home page' %}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bb-home-section-narrow bb-home-section-3 bb-nkt-section-3">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                        <h3 class="text-center text-bright text-shadowed mt-0 mb-23">{% trans 'Connect with us' context 'Home page' %}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <h4 class="text-center mt-0 mb-0">
+                                            <a target="_blank" href="https://www.facebook.com/bbtest.kz" class="bb-home-social bb-home-social-facebook text-shadowed"><i class="fa fa-fw fa-facebook"></i></a>
+                                        </h4>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <h4 class="text-center mt-0 mb-0">
+                                            <a target="_blank" href="https://www.instagram.com/bbtest.kz/" class="bb-home-social bb-home-social-instagram text-shadowed"><i class="fa fa-fw fa-instagram"></i></a>
+                                        </h4>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <h4 class="text-center mt-0 mb-0">
+                                            <a target="_blank" href="https://vk.com/bbtestkz" class="bb-home-social bb-home-social-vk text-shadowed"><i class="fa fa-fw fa-vk"></i></a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="bb-footer text-center text-bold pr-15 pl-15">
+        <ul class="list-inline mb-0">
+            <li><strong><a href="{% url 'bbtest:terms' %}">{% trans 'Terms' context 'Footer navigation link' %}</a></strong></li>
+            <li><strong><a href="{% url 'bbtest:contact_us' %}">{% trans 'Contact Us' context 'Footer navigation link' %}</a></strong></li>
+        </ul>
+    </div>
+    <div class="bb-copyright text-center">{% blocktrans with copyright_code='&copy;' %}_common.copyright:{{ copyright_code }}{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
+{% endblock %}
+
+{% block popup %}{% include 'popups/whatsapp.html' %}{% endblock %}
