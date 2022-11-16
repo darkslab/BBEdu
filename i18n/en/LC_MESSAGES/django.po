@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-16 23:22+0600\n"
+"POT-Creation-Date: 2022-11-17 03:46+0600\n"
 "PO-Revision-Date: 2020-08-31 22:04+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -538,6 +538,45 @@ msgstr "Please enter old password."
 msgctxt "Validation error"
 msgid "Incorrect old password."
 msgstr "Incorrect old password."
+
+msgid "page:/super/trial-balance/:account.cash"
+msgstr "Cash [Asset account]"
+
+msgid "page:/super/trial-balance/:account.qazkom"
+msgstr "Qazkom Merchant Fees [Expense account]"
+
+msgid "page:/super/trial-balance/:account.beeline"
+msgstr "Beeline Merchant Fees [Expense account]"
+
+msgid "page:/super/trial-balance/:account.promo"
+msgstr "Promo-credits [Expense account]"
+
+msgid "page:/super/trial-balance/:account.correction"
+msgstr "Correction credits [Expense account]"
+
+msgid "page:/super/trial-balance/:account.developers"
+msgstr "Developer Accounts [Liability account]"
+
+msgid "page:/super/trial-balance/:account.student"
+msgstr "Student Accounts [Equity account]"
+
+msgid "page:/super/trial-balance/:account.nis"
+msgstr "NIS Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.unt"
+msgstr "UNT Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.nufypet"
+msgstr "NUFYPET Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.law"
+msgstr "LAW Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.proftest"
+msgstr "PROF Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.nqt"
+msgstr "NQT Tests [Revenue account]"
 
 msgid "Knowledge"
 msgstr "Knowledge"
@@ -1593,6 +1632,10 @@ msgctxt "Model field"
 msgid "question count"
 msgstr "question count"
 
+msgctxt "Model field"
+msgid "question price"
+msgstr "question price"
+
 msgctxt "Test language"
 msgid "N/A"
 msgstr "N/A"
@@ -2198,6 +2241,18 @@ msgstr ""
 msgid "page:/nis/:nis_button"
 msgstr "Practice test for NIS enrollment"
 
+msgid "page:/nkt/:html_title"
+msgstr ""
+"Practice tests for NQT (National Qualification Test)"
+
+msgid "page:/nkt/:html_description"
+msgstr ""
+"Easy to use online testing platform with detailed results analysis. Practice "
+"tests for NQT (National Qualification Test)."
+
+msgid "page:/nkt/:nkt_button"
+msgstr "Practice test for NQT"
+
 msgctxt "Badge label under avatar"
 msgid "Administrator"
 msgstr "Administrator"
@@ -2237,6 +2292,10 @@ msgstr "Export Data"
 
 msgid "_common.nav.trial_balance"
 msgstr "Trial Balance"
+
+msgctxt "Navigation link"
+msgid "Changes Price"
+msgstr "Change Price"
 
 msgctxt "Navigation link"
 msgid "Public Offer"
@@ -2665,6 +2724,35 @@ msgstr "₸%(total)s"
 msgctxt "/student/transactions/xxxx/"
 msgid "%(total)s cred."
 msgstr "%(total)s cred."
+
+msgctxt "Page title"
+msgid "All prices"
+msgstr "All prices"
+
+msgctxt "/super/change_price/"
+msgid "Domain"
+msgstr "Domain"
+
+msgctxt "/super/change_price/"
+msgid "Section"
+msgstr "Section"
+
+msgctxt "/super/change_price/"
+msgid "question count"
+msgstr "question count"
+
+msgctxt "/super/change_price/"
+msgid "question price"
+msgstr "question price"
+
+msgctxt "/super/change_price/"
+msgid "total price"
+msgstr "total price"
+
+
+msgctxt "/super/change_price/"
+msgid "change question price"
+msgstr "Change question price"
 
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
@@ -3260,45 +3348,6 @@ msgstr ""
 "The red line is the average score of the current test subject in comparison "
 "to your own results. The score represents an actual average result of NIS "
 "2018 students (data is taken from nis.edu.kz)."
-
-msgid "page:/super/trial-balance/:account.cash"
-msgstr "Cash [Asset account]"
-
-msgid "page:/super/trial-balance/:account.qazkom"
-msgstr "Qazkom Merchant Fees [Expense account]"
-
-msgid "page:/super/trial-balance/:account.beeline"
-msgstr "Beeline Merchant Fees [Expense account]"
-
-msgid "page:/super/trial-balance/:account.promo"
-msgstr "Promo-credits [Expense account]"
-
-msgid "page:/super/trial-balance/:account.correction"
-msgstr "Correction credits [Expense account]"
-
-msgid "page:/super/trial-balance/:account.developers"
-msgstr "Developer Accounts [Liability account]"
-
-msgid "page:/super/trial-balance/:account.student"
-msgstr "Student Accounts [Equity account]"
-
-msgid "page:/super/trial-balance/:account.nis"
-msgstr "NIS Tests [Revenue account]"
-
-msgid "page:/super/trial-balance/:account.unt"
-msgstr "UNT Tests [Revenue account]"
-
-msgid "page:/super/trial-balance/:account.nufypet"
-msgstr "NUFYPET Tests [Revenue account]"
-
-msgid "page:/super/trial-balance/:account.law"
-msgstr "LAW Tests [Revenue account]"
-
-msgid "page:/super/trial-balance/:account.proftest"
-msgstr "PROF Tests [Revenue account]"
-
-msgid "page:/super/trial-balance/:account.nqt"
-msgstr "NQT Tests [Revenue account]"
 
 #, python-format
 msgctxt "/super/users/"
