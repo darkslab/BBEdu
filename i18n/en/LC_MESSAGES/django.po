@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-17 03:46+0600\n"
+"POT-Creation-Date: 2022-11-17 05:54+0600\n"
 "PO-Revision-Date: 2020-08-31 22:04+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -68,14 +68,14 @@ msgstr "Please enter new password confirmation."
 msgid "_common.regions.select"
 msgstr "Select a region"
 
+msgid "_common.regions.names.almaty"
+msgstr "Almaty"
+
 msgid "_common.regions.names.akmola"
 msgstr "Akmola"
 
 msgid "_common.regions.names.aktobe"
 msgstr "Aktobe"
-
-msgid "_common.regions.names.almaty"
-msgstr "Almaty"
 
 msgid "_common.regions.names.atyrau"
 msgstr "Atyrau"
@@ -109,6 +109,15 @@ msgstr "Turkestan"
 
 msgid "_common.regions.names.east_kz"
 msgstr "East-Kazakhstan"
+
+msgid "_common.regions.names.abai"
+msgstr "Abai"
+
+msgid "_common.regions.names.jetısu"
+msgstr "Jetısu"
+
+msgid "_common.regions.names.ulytau"
+msgstr "Ūlytau"
 
 msgctxt "Model field"
 msgid "username"
@@ -1201,7 +1210,7 @@ msgid "_common.topics.nqt.section00.topic4"
 msgstr "Педагогическая психология"
 
 msgid "_common.domains.nqt"
-msgstr "НКТ"
+msgstr "NQT"
 
 msgid "_common.sections.nqt.section00"
 msgstr "Педагогика и методика обучения"
@@ -1268,6 +1277,30 @@ msgstr "Профтест"
 
 msgid "_common.section.prof_test"
 msgstr "Определение профессиональной направленности личности"
+
+msgid "_common.topics.nqt.section00.topic10"
+msgstr "Методика воспитания"
+
+msgid "_common.topics.nqt.section00.topic11"
+msgstr "Процесс обучения"
+
+msgid "_common.topics.nqt.section00.topic12"
+msgstr "Управление и организация учебного процесса"
+
+msgid "_common.topics.nqt.section00.topic13"
+msgstr "Новые подходы в преподавании и обучении"
+
+msgid "_common.topics.nqt.section00.topic14"
+msgstr "Обучение критическому мышлению"
+
+msgid "_common.topics.nqt.section00.topic15"
+msgstr "Оценивание учебных достижений"
+
+msgid "_common.topics.nqt.section00.topic16"
+msgstr "Обучение талантливых и одаренных детей"
+
+msgid "_common.topics.nqt.section00.topic17"
+msgstr "Исследование практики"
 
 msgctxt "Account type"
 msgid "Asset"
@@ -2242,8 +2275,7 @@ msgid "page:/nis/:nis_button"
 msgstr "Practice test for NIS enrollment"
 
 msgid "page:/nkt/:html_title"
-msgstr ""
-"Practice tests for NQT (National Qualification Test)"
+msgstr "Practice tests for NQT (National Qualification Test)"
 
 msgid "page:/nkt/:html_description"
 msgstr ""
@@ -2748,7 +2780,6 @@ msgstr "question price"
 msgctxt "/super/change_price/"
 msgid "total price"
 msgstr "total price"
-
 
 msgctxt "/super/change_price/"
 msgid "change question price"
