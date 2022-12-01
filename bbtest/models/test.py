@@ -181,6 +181,7 @@ class Test(Model):
     sales_count      = PositiveIntegerField       ( pgettext_lazy("Model field", "sales count"),                                                default=0,                           )
     completed_count  = PositiveIntegerField       ( pgettext_lazy("Model field", "completed count"),                                            default=0,                           )
     created_at       = DateTimeField              ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                         )
+    bundle           = CharField                  ( pgettext_lazy("Model field", "test bundle id"),       max_length=5,     blank=True,         default=None,null=True,db_index=True,)
 
     objects = Manager()
     draft_tests = DraftTestManager()
