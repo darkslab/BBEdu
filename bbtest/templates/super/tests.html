@@ -86,7 +86,9 @@
                                     <td>{% trans test.section.domain.name %}</td>
                                     <td>{% trans test.section.name %}</td>
                                     <td class="text-center">{{ test.display_language }}</td>
-                                    <td class="text-center">#{{ test.code|upper }} {{ test.bundle|default_if_none:"" }}</td>
+                                    <td class="text-center">#{{ test.code|upper }} 
+                                        <span class="label label-info">{{ test.bundle|default_if_none:"" }}</span>
+                                    </td>
                                     <td class="text-center">
                                         <span class="label {% if test.is_free %}label-danger{% else %}label-success{% endif %}">{% if test.is_free %}{% trans 'Yes' context '/super/tests/' %}{% else %}{% trans 'No' context '/super/tests/' %}{% endif %}</span>
                                     </td>
