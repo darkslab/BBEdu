@@ -131,7 +131,7 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
                 started = quiz.started_at
                 score = quiz.score()
                 max_score = quiz.test.max_score()
-                row = [code +"|" + bundle, started, score, max_score] + quiz.get_student_answers()
+                row = [bundle + "|" + code, started, score, max_score] + quiz.get_student_answers()
 
                 worksheet.write_row(row_offset, 0, [student, bundle[:2]])  # will be overwritten several times, but it is OK, overhead is acceptable
                 worksheet.write_row(row_offset, col_offset, row)
