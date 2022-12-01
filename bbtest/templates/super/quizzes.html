@@ -60,7 +60,10 @@
                                         <tr {% if not quiz_set.is_current %}class="success"{% endif %}>
                                             <td {% if not quiz.is_finished %}class="danger"{% endif %}>{% trans quiz.test.section.name %}</td>
                                             <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.test.display_language }}</td>
-                                            <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">#{{ quiz.test.code|upper }}</td>
+                                            <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">
+                                                #{{ quiz.test.code|upper }}  
+                                                <span class="label label-info">{{ quiz.test.bundle|default_if_none:"" }}</span>
+                                            </td>
                                             {% if quiz.is_finished %}
                                                 {% if quiz.ended_at is None %}
                                                     <td class="text-center"><span class="label label-primary">{% blocktrans count minutes=quiz.display_finish_minutes context '/super/quizzes/' %}Timed out in {{ minutes }} minute{% plural %}Timed out in {{ minutes }} minutes{% endblocktrans %}</span></td>
@@ -88,7 +91,10 @@
                                             <td>{{ quiz_set.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
                                             <td {% if not quiz.is_finished %}class="danger"{% endif %}>{% trans quiz.test.section.name %}</td>
                                             <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.test.display_language }}</td>
-                                            <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">#{{ quiz.test.code|upper }}</td>
+                                            <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">
+                                                #{{ quiz.test.code|upper }} 
+                                                <span class="label label-info">{{ quiz.test.bundle|default_if_none:"" }}</span>
+                                            </td>
                                             {% if quiz.is_finished %}
                                                 {% if quiz.ended_at is None %}
                                                     <td class="text-center"><span class="label label-primary">{% blocktrans count minutes=quiz.display_finish_minutes context '/super/quizzes/' %}Timed out in {{ minutes }} minute{% plural %}Timed out in {{ minutes }} minutes{% endblocktrans %}</span></td>
