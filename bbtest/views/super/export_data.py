@@ -118,7 +118,6 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
             for i, quiz in enumerate(quizes):
                 student = quiz.quiz_set.student.username
                 bundle = quiz.test.bundle
-                lang = quiz.test.language
                 if student != pr_student or bundle != pr_bundle:
                     pointer = {sect_name: max(pointer.values()) for sect_name in offsets.keys()} 
                     pr_student = student
@@ -134,7 +133,7 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
                 max_score = quiz.test.max_score()
                 row = [code +"|" + bundle, started, score, max_score] + quiz.get_student_answers()
 
-                worksheet.write_row(row_offset, 0, [student, lang])  # will be overwritten several times, but it is OK, overhead is acceptable
+                worksheet.write_row(row_offset, 0, [student, bundle[:2]])  # will be overwritten several times, but it is OK, overhead is acceptable
                 worksheet.write_row(row_offset, col_offset, row)
                 worksheet.write_datetime(row_offset, col_offset+1, started, date_format)
                 pointer[test_name] += 1
