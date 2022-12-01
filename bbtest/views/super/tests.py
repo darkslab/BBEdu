@@ -22,6 +22,8 @@ class TestsView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin,
                 Q(developer__email__icontains=self.request.GET["q"])
                 |
                 Q(code__iexact=self.request.GET["q"])
+                |
+                Q(bundle__iexact=self.request.GET["q"])
             )
             kwargs["q"] = self.request.GET["q"]
         except KeyError:
