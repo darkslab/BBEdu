@@ -96,3 +96,8 @@ BASE3_SOURCE_FILENAMES = (
     "js/react/components/DeveloperAttribute.js",
     "js/react/components/DeveloperSelectorModal.js",
 )
+
+BASE0_NKT_SOURCE_FILENAMES = (
+    "js/nkt-demo.js",
+    # "js/script.js",
+)
