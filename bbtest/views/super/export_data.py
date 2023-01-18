@@ -116,7 +116,7 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
             pr_bundle = None
 
             for i, quiz in enumerate(quizes):
-                student = quiz.quiz_set.student.username
+                student = quiz.quiz_set.student.username + " | " + quiz.quiz_set.student.email
                 bundle = quiz.test.bundle
                 if student != pr_student or bundle != pr_bundle:
                     pointer = {sect_name: max(pointer.values()) for sect_name in offsets.keys()} 
