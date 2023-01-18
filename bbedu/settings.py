@@ -172,6 +172,7 @@ else:
 from bbtest.pipeline_css import (
     BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_CSS,
     BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_CSS,
+    BASE0_NKT_SOURCE_FILENAMES as BASE0_NKT_SOURCE_FILENAMES_CSS
 )
 
 PIPELINE = {
@@ -215,6 +216,10 @@ PIPELINE = {
         },
         "base1": {
             "source_filenames": BASE1_SOURCE_FILENAMES_CSS,
+            "output_filename": "css/base1.css",
+        },
+        "base0_nkt": {
+            "source_filenames": BASE0_NKT_SOURCE_FILENAMES_CSS,
             "output_filename": "css/base1.css",
         },
     },

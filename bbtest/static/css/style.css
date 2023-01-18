@@ -145,7 +145,7 @@
  * Application classes
  */
 
-html {
+html, body {
     height: 100%;
 }
 
@@ -1458,3 +1458,24 @@ html {
     border-radius: 50%;
 }
 
+
+/* nkt welcome page style */
+
+.bb-nkt-welcome {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+.bb-nkt-welcome > div {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.bb-nkt-welcome .navbar {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.bb-body-nkt-override {
+    background-color: rgb(255, 255, 255) !important;
+}

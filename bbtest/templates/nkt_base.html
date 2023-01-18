@@ -1,0 +1,80 @@
+{% load i18n pipeline static %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta name="google-site-verification" content="whPZcmYLpl-2WGRRd-exwnC0vXHeep5Cbn5meXj5O18" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="{% static 'img/favicon/favicon_ico.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/favicon/favicon_32.png' %}" sizes="32x32">
+    <link rel="icon" href="{% static 'img/favicon/favicon_48.png' %}" sizes="48x48">
+    <link rel="icon" href="{% static 'img/favicon/favicon_96.png' %}" sizes="96x96">
+    <link rel="icon" href="{% static 'img/favicon/favicon_144.png' %}" sizes="144x144">
+
+    <title>{% block window_title %}{% block title %}{% endblock %}{% endblock %}{% block window_title_suffix %} | bbtest.kz{% endblock %}</title>
+
+    <meta name="description" content="{% block description %}{% trans '_common.html_description' %}{% endblock %}">
+
+    <meta name="turbolinks-cache-control" content="no-cache">
+
+    {% if ANALYTICS %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112252952-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+        </script>
+    {% endif %}
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext" rel="stylesheet">
+    {% stylesheet 'base0_nkt' %}
+    {% stylesheet 'base1' %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/nkt-demo.js' %}"></script>
+    <!-- {% javascript 'base0' %} -->
+    <!-- {% javascript 'base1' %} -->
+    <!-- {% if user.is_authenticated %} -->
+        <!-- {% javascript 'base2' %} -->
+        <!-- {% javascript 'base3' %} -->
+    <!-- {% endif %} -->
+    <script>
+        var moduleDataStack = [];
+    </script>
+</head>
+<body class="bb-body {% block _d0_body_class %}{% endblock %}">
+    <script>
+        moduleDataStack.push({
+            module: "GAModule",
+            data: {
+                events: [
+                    {% for ga_event_data in ga_events %}
+                        {{ ga_event_data|safe }}
+                        {% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                ]
+            }
+        });
+    </script>
+    {% block _d0_content %}{% endblock %}
+    {% block popup %}{% endblock %}
+</body>
+</html>
+
+{% comment %}
+
+    window_title
+      title
+    window_title_suffix
+    description
+
+    _d0_body_class
+    _d0_content
+
+{% endcomment %}
