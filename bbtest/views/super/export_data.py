@@ -207,10 +207,11 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
             if not quizes:  # empty response
                 continue
             
-            worksheet.write_row(0, 0, ["student", "test_name", "lang", "code", "started", "score", "max_score"] + ["Q{}".format(i) for i in range(1,61)])
+            worksheet.write_row(0, 0, ["student", "phone", "test_name", "lang", "code", "started", "score", "max_score"] + ["Q{}".format(i) for i in range(1,61)])
 
             for i, quiz in enumerate(quizes):
                 student = quiz.quiz_set.student.username
+                phone = quiz.quiz_set.student.phone
                 lang = quiz.test.language
                 code = quiz.test.code
                 started = quiz.started_at
@@ -218,7 +219,7 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
                 score = quiz.score()
                 max_score = quiz.test.max_score()
 
-                row = [student, test_name, lang, code, started, score, max_score] + quiz.get_student_answers()
+                row = [student, phone, test_name, lang, code, started, score, max_score] + quiz.get_student_answers()
                 worksheet.write_row(i+1, 0, row)
 
 
