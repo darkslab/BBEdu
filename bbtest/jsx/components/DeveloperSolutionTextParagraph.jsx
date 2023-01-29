@@ -1,4 +1,4 @@
-class DeveloperTextParagraph extends React.Component {
+class DeveloperSolutionTextParagraph extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +29,7 @@ class DeveloperTextParagraph extends React.Component {
         let sharedLabel = null;
         if (this.props.sharedQuestionIds.length > 0) {
             sharedLabel = (
-                <p className="text-danger pull-left mb-0">{this.props.texts.paragraphsSharedLabelTextParagraph}</p>
+                <p className="text-danger pull-left mb-0">{this.props.texts.paragraphsSharedLabelTextParagraph + "ssdd"}</p>
             );
             paragraphClassName += " bb-test-section-background-shared";
         } else {
@@ -51,7 +51,7 @@ class DeveloperTextParagraph extends React.Component {
                               complete={this._completeModal.bind(this)} />
             );
         }
-        console.log("dd0", this.props);
+        console.log("ans0", this.props);
         // console.log("dd1", this.props.data);
 
         return (
@@ -64,23 +64,12 @@ class DeveloperTextParagraph extends React.Component {
                         <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
                     </div>
                     <textarea className={textareaClassName}
-                              placeholder={this.props.texts.paragraphTextareaPlaceholder}
-                              value={this.props.data.text}
-                              onChange={this._handleChange.bind(this)} />
-                </div>
-                <div className={paragraphClassName} data-paragraph-id={this.props.paragraphId}>
-                    <div className="pt-5 pr-5 pb-5 pl-5 clearfix">
-                        {sharedLabel}
-                        {buttons}
-                        <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
-                    </div>
-                    <textarea className={textareaClassName}
                               placeholder={this.props.texts.paragraphSolutionTextareaPlaceholder}
                               value={this.props.data.text+"_test"}
                               onChange={this._handleChange.bind(this)}
                                />
                 </div>
-                <div><p>Dimas baras</p></div>
+                <div><p>Dimas answer</p></div>
             </React.Fragment>
         );
     }
