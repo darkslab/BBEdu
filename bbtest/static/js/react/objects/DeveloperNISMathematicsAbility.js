@@ -8,6 +8,7 @@ DeveloperNISMathematicsAbility.prototype.canDeleteParagraph = function(id) {
 }
 DeveloperNISMathematicsAbility.prototype.canChooseTextParagraph = function() { return false; }
 DeveloperNISMathematicsAbility.prototype.canChooseSplitTextParagraph = function() { return false; }
+DeveloperNISMathematicsAbility.prototype.canChooseSolutionTextParagraph = function() { return false; }
 
 DeveloperNISMathematicsAbility.prototype.canDeleteAnswer = function() { return false; }
 DeveloperNISMathematicsAbility.prototype.canAddAnswerChoice = function() { return false; }

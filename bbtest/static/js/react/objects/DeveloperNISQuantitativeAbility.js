@@ -17,6 +17,8 @@ DeveloperNISQuantitativeAbility.prototype.canChooseTextParagraph = function() {
     return true;
 }
 DeveloperNISQuantitativeAbility.prototype.canChooseSplitTextParagraph = function() { return false; }
+DeveloperNISQuantitativeAbility.prototype.canChooseSolutionTextParagraph = function() { return false; }
+
 
 DeveloperNISQuantitativeAbility.prototype.canDeleteAnswer = function() { return false; }
 DeveloperNISQuantitativeAbility.prototype.canAddAnswerChoice = function() { return false; }
