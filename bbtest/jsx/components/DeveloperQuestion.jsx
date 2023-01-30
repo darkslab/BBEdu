@@ -245,7 +245,7 @@ class DeveloperQuestion extends React.Component {
                                 </div>
                                 <hr className="bb-separator" />
                                 <div className="mb-15">
-                                    <h3>Solution</h3>
+                                    <h3>{this.props.texts.solution}</h3>
                                     {solutionParagraphs}
                                 </div>
                             </div>

@@ -33,10 +33,10 @@ class DeveloperSolutionTextParagraph extends React.Component {
             );
             paragraphClassName += " bb-test-section-background-shared";
         } else {
-            paragraphClassName += " bb-test-section-background";
+            paragraphClassName += " bb-test-section-background-solution";
         }
 
-        let textareaClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
+        let textareaClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea-solution";
         if (!this.props.data.text) {
             textareaClassName += " bb-test-paragraph-textarea-empty";
         }
@@ -59,7 +59,7 @@ class DeveloperSolutionTextParagraph extends React.Component {
                 {modal}
                 <div className={paragraphClassName} data-paragraph-id={this.props.paragraphId}>
                     <div className="pt-5 pr-5 pb-5 pl-5 clearfix">
-                        <span>Solution Field</span>
+                        <span>this.props.texts.solution</span>
                         {sharedLabel}
                         {buttons}
                         <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
