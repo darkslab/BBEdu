@@ -220,6 +220,8 @@ class TestParagraphForm(ModelForm):
             return self.__clean_image_paragraph_meta_data(meta_data)
         elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_SOLUTION_TEXT:
             return self.__clean_text_paragraph_meta_data(meta_data)
+        elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_SOLUTION_IMAGE:
+            return self.__clean_image_paragraph_meta_data(meta_data)
         raise ValidationError(
             self.error_messages["incorrect"],
             code="incorrect",
@@ -416,7 +418,7 @@ class TestParagraphsContainerForm(Form):
         try:
             while True:
                 paragraph = self._removed_paragraphs.pop()
-                if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+                if paragraph.paragraph_class in {TestParagraph.PARAGRAPH_CLASS_IMAGE, TestParagraph.PARAGRAPH_CLASS_SOLUTION_IMAGE}:
                     image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
                 paragraph.delete()
         except IndexError:

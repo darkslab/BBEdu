@@ -76,7 +76,7 @@ class DeveloperQuestion extends React.Component {
                                          texts={this.props.texts}
                                          testTexts={this.props.object.texts()} />
             );
-            if (paragraphData.paragraph_class != "SolutionTextParagraph"){
+            if (!paragraphData.paragraph_class.includes("Solution")){
                 paragraphs.push(
                     <ParagraphClass key={id}
                                     data={paragraphData.meta_data}
@@ -153,6 +153,12 @@ class DeveloperQuestion extends React.Component {
                 paragraphClassData.push({
                     class: "SolutionTextParagraph",
                     caption: this.props.texts.paragraphsModalButtonSolutionTextParagraph
+                });
+            }
+            if (this.props.ability.canChooseSolutionImageParagraph()) {
+                paragraphClassData.push({
+                    class: "SolutionImageParagraph",
+                    caption: this.props.texts.paragraphsModalButtonSolutionImageParagraph
                 });
             }
             modal = (

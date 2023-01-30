@@ -10,7 +10,7 @@ DeveloperNISQuantitativeAbility.prototype.canChooseTextParagraph = function() {
     var paragraphIds = this.question().paragraphIds();
     var i;
     for (i = 0; i < paragraphIds.length; i++) {
-        if (this.question().paragraph(paragraphIds[i]).paragraph_class === "TextParagraph") {
+        if (this.question().paragraph(paragraphIds[i]).paragraph_class.includes("TextParagraph")) {
             return false;
         }
     }
@@ -18,7 +18,7 @@ DeveloperNISQuantitativeAbility.prototype.canChooseTextParagraph = function() {
 }
 DeveloperNISQuantitativeAbility.prototype.canChooseSplitTextParagraph = function() { return false; }
 DeveloperNISQuantitativeAbility.prototype.canChooseSolutionTextParagraph = function() { return false; }
-
+DeveloperNISQuantitativeAbility.prototype.canChooseSolutionImageParagraph = function() { return true; }
 
 DeveloperNISQuantitativeAbility.prototype.canDeleteAnswer = function() { return false; }
 DeveloperNISQuantitativeAbility.prototype.canAddAnswerChoice = function() { return false; }
