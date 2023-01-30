@@ -50,14 +50,16 @@ var Question = function (_React$Component) {
             }
 
             if (show_solution || show_solution_dev) {
-                paragraphs.push(React.createElement("hr", { key: "sep_sol", className: "bb-separator" }));
-                paragraphs.push(React.createElement(
-                    "h3",
-                    { key: "sep_sol_h3" },
-                    "Solution"
-                ));
-                for (var _i = 0; _i < solutionParagraphs.length; _i++) {
-                    paragraphs.push(solutionParagraphs[_i]);
+                if (solutionParagraphs.length > 0) {
+                    paragraphs.push(React.createElement("hr", { key: "sep_sol", className: "bb-separator" }));
+                    paragraphs.push(React.createElement(
+                        "h3",
+                        { key: "sep_sol_h3" },
+                        this.props.texts.solution
+                    ));
+                    for (var _i = 0; _i < solutionParagraphs.length; _i++) {
+                        paragraphs.push(solutionParagraphs[_i]);
+                    }
                 }
             }
 

@@ -312,7 +312,7 @@ var DeveloperQuestion = function (_React$Component) {
                                     React.createElement(
                                         "h3",
                                         null,
-                                        "Solution"
+                                        this.props.texts.solution
                                     ),
                                     solutionParagraphs
                                 )

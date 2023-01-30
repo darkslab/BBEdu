@@ -91,7 +91,7 @@ var DeveloperTest = function (_React$Component) {
                 content = React.createElement("img", { className: "bb-spinner", src: this.props.spinnerLogo });
             }
 
-            // If number of question is more then 1 paginate questions
+            // If number of question is more then 1 pAginate questions
             var pagination = null;
             if (this.props.questionIds.length > 1 && !this.state.isErrored && !this.state.isTestLoading && !this._finalSave) {
                 var width = 6;

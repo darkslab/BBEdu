@@ -60,10 +60,10 @@ var DeveloperSolutionTextParagraph = function (_React$Component) {
                 );
                 paragraphClassName += " bb-test-section-background-shared";
             } else {
-                paragraphClassName += " bb-test-section-background";
+                paragraphClassName += " bb-test-section-background-solution";
             }
 
-            var textareaClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
+            var textareaClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea-solution";
             if (!this.props.data.text) {
                 textareaClassName += " bb-test-paragraph-textarea-empty";
             }
@@ -92,7 +92,7 @@ var DeveloperSolutionTextParagraph = function (_React$Component) {
                         React.createElement(
                             "span",
                             null,
-                            "Solution Field"
+                            this.props.texts.solution
                         ),
                         sharedLabel,
                         buttons,
