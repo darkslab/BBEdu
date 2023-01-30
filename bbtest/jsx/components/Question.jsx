@@ -37,10 +37,12 @@ class Question extends React.Component {
         }
 
         if(show_solution || show_solution_dev){
-            paragraphs.push(<hr key="sep_sol" className="bb-separator" />);
-            paragraphs.push(<h3 key="sep_sol_h3">Solution</h3>);
-            for (let i = 0; i < solutionParagraphs.length; i++){
-                paragraphs.push(solutionParagraphs[i]);
+            if (solutionParagraphs.length > 0){
+                paragraphs.push(<hr key="sep_sol" className="bb-separator" />);
+                paragraphs.push(<h3 key="sep_sol_h3">{this.props.texts.solution}</h3>);
+                for (let i = 0; i < solutionParagraphs.length; i++){
+                    paragraphs.push(solutionParagraphs[i]);
+                }
             }
         }
 
