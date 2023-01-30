@@ -103,7 +103,7 @@ var DeveloperQuestion = function (_React$Component) {
                     canDelete: _this2.props.ability.canDeleteParagraph(id),
                     texts: _this2.props.texts,
                     testTexts: _this2.props.object.texts() }));
-                if (paragraphData.paragraph_class != "SolutionTextParagraph") {
+                if (!paragraphData.paragraph_class.includes("Solution")) {
                     paragraphs.push(React.createElement(ParagraphClass, { key: id,
                         data: paragraphData.meta_data,
                         isShared: sharedQuestionIds.length > 0,
@@ -185,6 +185,12 @@ var DeveloperQuestion = function (_React$Component) {
                     paragraphClassData.push({
                         class: "SolutionTextParagraph",
                         caption: this.props.texts.paragraphsModalButtonSolutionTextParagraph
+                    });
+                }
+                if (this.props.ability.canChooseSolutionImageParagraph()) {
+                    paragraphClassData.push({
+                        class: "SolutionImageParagraph",
+                        caption: this.props.texts.paragraphsModalButtonSolutionImageParagraph
                     });
                 }
                 modal = React.createElement(DeveloperSelectorModal, { title: this.props.texts.paragraphsModalTitle,
