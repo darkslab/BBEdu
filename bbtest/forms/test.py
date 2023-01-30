@@ -218,7 +218,8 @@ class TestParagraphForm(ModelForm):
             return self.__clean_split_text_paragraph_meta_data(meta_data)
         elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
             return self.__clean_image_paragraph_meta_data(meta_data)
-
+        elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_SOLUTION_TEXT:
+            return self.__clean_text_paragraph_meta_data(meta_data)
         raise ValidationError(
             self.error_messages["incorrect"],
             code="incorrect",
