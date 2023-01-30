@@ -51,7 +51,7 @@ class DeveloperSolutionTextParagraph extends React.Component {
                               complete={this._completeModal.bind(this)} />
             );
         }
-        console.log("ans0", this.props);
+        // console.log("ans0", this.props);
         // console.log("dd1", this.props.data);
 
         return (
@@ -59,17 +59,17 @@ class DeveloperSolutionTextParagraph extends React.Component {
                 {modal}
                 <div className={paragraphClassName} data-paragraph-id={this.props.paragraphId}>
                     <div className="pt-5 pr-5 pb-5 pl-5 clearfix">
+                        <span>Solution Field</span>
                         {sharedLabel}
                         {buttons}
                         <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
                     </div>
                     <textarea className={textareaClassName}
                               placeholder={this.props.texts.paragraphSolutionTextareaPlaceholder}
-                              value={this.props.data.text+"_test"}
+                              value={this.props.data.text}
                               onChange={this._handleChange.bind(this)}
                                />
                 </div>
-                <div><p>Dimas answer</p></div>
             </React.Fragment>
         );
     }

@@ -4,16 +4,44 @@ class Question extends React.Component {
     }
     render() {
         let paragraphs = [];
+        let solutionParagraphs = [];
+        // show solutions only if student is in result page
+        const regex = new RegExp("^/(en|ru|kk)/student/results/([0-9A-Fa-f]{4,6})/$");
+        const regex_dev = new RegExp("^/(en|ru|kk)/build/tests/([0-9A-Fa-f]{4,6})/preview/$");
+        const show_solution = regex.test(window.location.pathname);
+        const show_solution_dev = regex_dev.test(window.location.pathname);
+
         for (let i = 0; i < this.props.object.paragraphs.length; i++) {
             let ParagraphClass = eval(this.props.object.paragraphs[i].paragraph_class);
-            paragraphs.push(
-                <ParagraphClass key={i}
-                                data={this.props.object.paragraphs[i].meta_data}
-                                isShared={this.props.object.paragraphs[i].is_shared}
-                                texts={this.props.texts}
-                                testTexts={this.props.testTexts}
-                                forDevelopers={false} />
-            );
+            // console.log("dd", this.props.object.paragraphs[i].paragraph_class, window.location.pathname)
+            
+            if ( !this.props.object.paragraphs[i].paragraph_class.includes("Solution")){
+                paragraphs.push(
+                    <ParagraphClass key={i}
+                                    data={this.props.object.paragraphs[i].meta_data}
+                                    isShared={this.props.object.paragraphs[i].is_shared}
+                                    texts={this.props.texts}
+                                    testTexts={this.props.testTexts}
+                                    forDevelopers={false} />
+                );
+            }else if(show_solution || show_solution_dev){
+                solutionParagraphs.push(
+                    <ParagraphClass key={i}
+                                    data={this.props.object.paragraphs[i].meta_data}
+                                    isShared={this.props.object.paragraphs[i].is_shared}
+                                    texts={this.props.texts}
+                                    testTexts={this.props.testTexts}
+                                    forDevelopers={false} />
+                );
+            }
+        }
+
+        if(show_solution || show_solution_dev){
+            paragraphs.push(<hr key="sep_sol" className="bb-separator" />);
+            paragraphs.push(<h3 key="sep_sol_h3">Solution</h3>);
+            for (let i = 0; i < solutionParagraphs.length; i++){
+                paragraphs.push(solutionParagraphs[i]);
+            }
         }
 
         let timer = null;
