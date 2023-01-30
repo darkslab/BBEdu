@@ -46,7 +46,7 @@ def inject_questions_and_report_into_started_response(response, test, hide_answe
         }
 
         for paragraph in question.paragraphs.all():
-            if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+            if paragraph.paragraph_class in {TestParagraph.PARAGRAPH_CLASS_IMAGE, TestParagraph.PARAGRAPH_CLASS_SOLUTION_IMAGE}:
                 paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"], expire_in=test.section.duration)
 
             _paragraph = {

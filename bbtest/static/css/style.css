@@ -868,6 +868,10 @@ html {
     background-color: rgba(229, 28, 35, 0.25) !important;
 }
 
+.bb-test-section-background-solution {
+    background-color: rgba(33, 243, 51, 0.25) !important;
+}
+
 .bb-test-section-movable {
     border-radius: 2px;
     cursor: ns-resize;
@@ -913,6 +917,19 @@ html {
 .form-control.bb-test-paragraph-textarea-empty,
 .form-control.bb-test-paragraph-textarea-empty[readonly] {
     border-color: #e51c23;
+}
+
+.bb-test-paragraph-textarea-solution,
+.bb-test-paragraph-textarea-solution[readonly],
+.form-control.bb-test-paragraph-textarea-solution,
+.form-control.bb-test-paragraph-textarea-solution[readonly] {
+    border-radius: 2px;
+    height: 170px;
+    border: 2px dashed #1ce51c;
+    background-color: rgb(245, 255, 245);
+    resize: none;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
 }
 
 .bb-test-paragraph-upload {
