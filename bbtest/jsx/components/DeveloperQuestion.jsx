@@ -55,13 +55,16 @@ class DeveloperQuestion extends React.Component {
     render() {
         let developerParagraphs = [];
         let paragraphs = [];
+        let solutionParagraphs = [];
+        // Populate paragraphs from django backend
+        // console.log("devq", this.props, this.props.object.paragraphIds());
         this.props.object.paragraphIds().map(id => {
             let paragraphData = this.props.object.paragraph(id);
             let sharedQuestionIds = this.props.object.paragraphSharedWith(id);
 
             let DeveloperParagraphClass = eval("Developer" + paragraphData.paragraph_class);
             let ParagraphClass = eval(paragraphData.paragraph_class);
-
+            // console.log("ParagraphClass", paragraphData.paragraph_class);
             developerParagraphs.push(
                 <DeveloperParagraphClass key={id}
                                          paragraphId={id}
@@ -73,16 +76,28 @@ class DeveloperQuestion extends React.Component {
                                          texts={this.props.texts}
                                          testTexts={this.props.object.texts()} />
             );
-            paragraphs.push(
-                <ParagraphClass key={id}
-                                data={paragraphData.meta_data}
-                                isShared={sharedQuestionIds.length > 0}
-                                texts={this.props.texts}
-                                testTexts={this.props.object.texts()}
-                                forDevelopers={true} />
-            );
+            if (!paragraphData.paragraph_class.includes("Solution")){
+                paragraphs.push(
+                    <ParagraphClass key={id}
+                                    data={paragraphData.meta_data}
+                                    isShared={sharedQuestionIds.length > 0}
+                                    texts={this.props.texts}
+                                    testTexts={this.props.object.texts()}
+                                    forDevelopers={true} />
+                    );
+            }else{
+                solutionParagraphs.push(
+                    <ParagraphClass key={id}
+                                    data={paragraphData.meta_data}
+                                    isShared={sharedQuestionIds.length > 0}
+                                    texts={this.props.texts}
+                                    testTexts={this.props.object.texts()}
+                                    forDevelopers={true} />
+                    );
+            }
+            
         });
-        if (!paragraphs.length) {
+        if (!paragraphs.length) {  // create empty placeholder paragraph
             paragraphs.push(
                 <div key="empty" className="bb-test-paragraph">
                     <p className="lead text-center mb-0">{this.props.texts.noParagraphs}</p>
@@ -101,7 +116,7 @@ class DeveloperQuestion extends React.Component {
                              ability={this.props.ability}
                              texts={this.props.texts} />
             );
-        } else {
+        } else {  // show add answer button if empty
             answerContent = (
                 <div className="row mb-23">
                     <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -132,6 +147,18 @@ class DeveloperQuestion extends React.Component {
                 paragraphClassData.push({
                     class: "ImageParagraph",
                     caption: this.props.texts.paragraphsModalButtonImageParagraph
+                });
+            }
+            if (this.props.ability.canChooseSolutionTextParagraph()) {
+                paragraphClassData.push({
+                    class: "SolutionTextParagraph",
+                    caption: this.props.texts.paragraphsModalButtonSolutionTextParagraph
+                });
+            }
+            if (this.props.ability.canChooseSolutionImageParagraph()) {
+                paragraphClassData.push({
+                    class: "SolutionImageParagraph",
+                    caption: this.props.texts.paragraphsModalButtonSolutionImageParagraph
                 });
             }
             modal = (
@@ -221,6 +248,11 @@ class DeveloperQuestion extends React.Component {
                                 <hr className="bb-separator" />
                                 <div className="mb-15">
                                     {paragraphs}
+                                </div>
+                                <hr className="bb-separator" />
+                                <div className="mb-15">
+                                    <h3>{this.props.texts.solution}</h3>
+                                    {solutionParagraphs}
                                 </div>
                             </div>
                         </div>

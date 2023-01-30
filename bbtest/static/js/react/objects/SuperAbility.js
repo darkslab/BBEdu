@@ -10,6 +10,8 @@ SuperAbility.prototype.canDeleteParagraph = function(id) { return true; }
 SuperAbility.prototype.canChooseTextParagraph = function() { return true; }
 SuperAbility.prototype.canChooseSplitTextParagraph = function() { return true; }
 SuperAbility.prototype.canChooseImageParagraph = function() { return true; }
+SuperAbility.prototype.canChooseSolutionTextParagraph = function() { return true; }
+SuperAbility.prototype.canChooseSolutionImageParagraph = function() { return true; }
 
 SuperAbility.prototype.canDeleteAnswer = function() { return true; }
 SuperAbility.prototype.canAddAnswerChoice = function() { return true; }

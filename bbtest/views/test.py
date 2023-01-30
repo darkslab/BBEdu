@@ -101,7 +101,7 @@ class TestQuestionView(DeveloperPermissionRequiredMixin, View):
             "paragraphs": [],
         }
         for paragraph in question.paragraphs.prefetch_related("through").order_by("through"):
-            if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+            if paragraph.paragraph_class in {TestParagraph.PARAGRAPH_CLASS_IMAGE, TestParagraph.PARAGRAPH_CLASS_SOLUTION_IMAGE}:
                 paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"])
 
             paragraph_data = {
@@ -145,8 +145,9 @@ class TestParagraphsView(DeveloperPermissionRequiredMixin, View):
     def post(self, request, code, question_id, *args, **kwargs):
         test = get_test_for_edit_or_404(request, code)
         question = get_object_or_404(test.questions, pk=question_id)
-
         form = TestParagraphsContainerForm(question, data=request.POST)
+        # print("d", form.errors.as_json())
+        # print(request.POST)
         if not form.is_valid():
             return TightJsonResponse({
                 "success": False,
@@ -235,7 +236,7 @@ class DeleteTestView(DeveloperPermissionRequiredMixin, View):
             for paragraph in question.paragraphs.all():
                 paragraph_ids.append(paragraph.id)
 
-                if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+                if paragraph.paragraph_class in {TestParagraph.PARAGRAPH_CLASS_IMAGE, TestParagraph.PARAGRAPH_CLASS_SOLUTION_IMAGE}:
                     image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
 
         TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
