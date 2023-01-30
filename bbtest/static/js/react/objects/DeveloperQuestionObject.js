@@ -188,6 +188,11 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
                 progress: 0
             };
             break;
+        case "SolutionTextParagraph":
+            newParagraph.data.meta_data = {
+                text: ""
+            };
+            break;
     }
     this._paragraphs.push(newParagraph);
     this._isParagraphsSaved = false;

@@ -84,13 +84,16 @@ var DeveloperQuestion = function (_React$Component) {
 
             var developerParagraphs = [];
             var paragraphs = [];
+            var solutionParagraphs = [];
+            // Populate paragraphs from django backend
+            // console.log("devq", this.props, this.props.object.paragraphIds());
             this.props.object.paragraphIds().map(function (id) {
                 var paragraphData = _this2.props.object.paragraph(id);
                 var sharedQuestionIds = _this2.props.object.paragraphSharedWith(id);
 
                 var DeveloperParagraphClass = eval("Developer" + paragraphData.paragraph_class);
                 var ParagraphClass = eval(paragraphData.paragraph_class);
-
+                // console.log("ParagraphClass", paragraphData.paragraph_class);
                 developerParagraphs.push(React.createElement(DeveloperParagraphClass, { key: id,
                     paragraphId: id,
                     data: paragraphData.meta_data,
@@ -100,14 +103,24 @@ var DeveloperQuestion = function (_React$Component) {
                     canDelete: _this2.props.ability.canDeleteParagraph(id),
                     texts: _this2.props.texts,
                     testTexts: _this2.props.object.texts() }));
-                paragraphs.push(React.createElement(ParagraphClass, { key: id,
-                    data: paragraphData.meta_data,
-                    isShared: sharedQuestionIds.length > 0,
-                    texts: _this2.props.texts,
-                    testTexts: _this2.props.object.texts(),
-                    forDevelopers: true }));
+                if (paragraphData.paragraph_class != "SolutionTextParagraph") {
+                    paragraphs.push(React.createElement(ParagraphClass, { key: id,
+                        data: paragraphData.meta_data,
+                        isShared: sharedQuestionIds.length > 0,
+                        texts: _this2.props.texts,
+                        testTexts: _this2.props.object.texts(),
+                        forDevelopers: true }));
+                } else {
+                    solutionParagraphs.push(React.createElement(ParagraphClass, { key: id,
+                        data: paragraphData.meta_data,
+                        isShared: sharedQuestionIds.length > 0,
+                        texts: _this2.props.texts,
+                        testTexts: _this2.props.object.texts(),
+                        forDevelopers: true }));
+                }
             });
             if (!paragraphs.length) {
+                // create empty placeholder paragraph
                 paragraphs.push(React.createElement(
                     "div",
                     { key: "empty", className: "bb-test-paragraph" },
@@ -129,6 +142,7 @@ var DeveloperQuestion = function (_React$Component) {
                     ability: this.props.ability,
                     texts: this.props.texts });
             } else {
+                // show add answer button if empty
                 answerContent = React.createElement(
                     "div",
                     { className: "row mb-23" },
@@ -165,6 +179,12 @@ var DeveloperQuestion = function (_React$Component) {
                     paragraphClassData.push({
                         class: "ImageParagraph",
                         caption: this.props.texts.paragraphsModalButtonImageParagraph
+                    });
+                }
+                if (this.props.ability.canChooseSolutionTextParagraph()) {
+                    paragraphClassData.push({
+                        class: "SolutionTextParagraph",
+                        caption: this.props.texts.paragraphsModalButtonSolutionTextParagraph
                     });
                 }
                 modal = React.createElement(DeveloperSelectorModal, { title: this.props.texts.paragraphsModalTitle,
@@ -284,6 +304,17 @@ var DeveloperQuestion = function (_React$Component) {
                                     "div",
                                     { className: "mb-15" },
                                     paragraphs
+                                ),
+                                React.createElement("hr", { className: "bb-separator" }),
+                                React.createElement(
+                                    "div",
+                                    { className: "mb-15" },
+                                    React.createElement(
+                                        "h3",
+                                        null,
+                                        "Solution"
+                                    ),
+                                    solutionParagraphs
                                 )
                             )
                         )

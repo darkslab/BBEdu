@@ -71,6 +71,9 @@ var DeveloperTest = function (_React$Component) {
         key: "render",
         value: function render() {
             var content = null;
+            // case 1: error:
+            // case 2: Loading is done
+            // case 3: Show Loading spinner
             if (this.state.isErrored) {
                 content = React.createElement(
                     "h4",
@@ -88,6 +91,7 @@ var DeveloperTest = function (_React$Component) {
                 content = React.createElement("img", { className: "bb-spinner", src: this.props.spinnerLogo });
             }
 
+            // If number of question is more then 1 paginate questions
             var pagination = null;
             if (this.props.questionIds.length > 1 && !this.state.isErrored && !this.state.isTestLoading && !this._finalSave) {
                 var width = 6;
