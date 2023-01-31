@@ -10,6 +10,7 @@ cryptography==2.8
 Django==1.11.5
 django-optimistic-lock==0.1
 django-pipeline==1.6.13
+django-recaptcha==3.0.0
 django-rq==0.9.6
 django-widget-tweaks==1.4.1
 docutils==0.14
