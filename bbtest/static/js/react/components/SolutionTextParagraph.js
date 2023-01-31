@@ -56,6 +56,10 @@ var SolutionTextParagraph = function (_React$Component) {
             var className = "bb-test-paragraph";
             var sharedAddon = null;
 
+            // let youtube_links = text.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=([a-zA-Z0-9_]+)|youtu\.be\/([a-zA-Z\d_]+))(?:&.*)?$/gm)
+
+            var regexp = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=([a-zA-Z0-9_]+)|youtu\.be\/([a-zA-Z\d_]+))(?:&.*)?/gm;
+
             if (this.props.isShared) {
                 className += " bb-test-paragraph-shared";
                 sharedAddon = React.createElement(
@@ -86,13 +90,57 @@ var SolutionTextParagraph = function (_React$Component) {
                     )
                 );
             } else if (this.props.data.has_formulas) {
-                content = React.createElement(
-                    React.Fragment,
-                    null,
-                    sharedAddon,
-                    React.createElement("div", { className: className,
-                        dangerouslySetInnerHTML: { __html: this.state.rawHtml } })
-                );
+                var youtube = [];
+                var matches = this.props.data.text.matchAll(regexp);
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = matches[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var match = _step.value;
+
+                        console.log(match);
+                        // this.props.data.text = this.props.data.text.replace(match[0], "");
+                        youtube.push(React.createElement(
+                            "div",
+                            { className: "embed-responsive embed-responsive-16by9", key: "you" + match.index },
+                            React.createElement("iframe", { src: "https://www.youtube.com/embed/" + match[1], frameBorder: "0", allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; allowfullscreen" })
+                        ));
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+
+                if (youtube.length == 0) {
+                    content = React.createElement(
+                        React.Fragment,
+                        null,
+                        sharedAddon,
+                        React.createElement("div", { className: className,
+                            dangerouslySetInnerHTML: { __html: this.state.rawHtml } })
+                    );
+                } else {
+                    content = React.createElement(
+                        React.Fragment,
+                        null,
+                        sharedAddon,
+                        React.createElement("div", { className: className,
+                            dangerouslySetInnerHTML: { __html: this.state.rawHtml } }),
+                        youtube
+                    );
+                }
             } else {
                 content = React.createElement(
                     React.Fragment,

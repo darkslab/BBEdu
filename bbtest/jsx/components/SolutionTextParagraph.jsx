@@ -31,6 +31,11 @@ class SolutionTextParagraph extends React.Component {
         let className = "bb-test-paragraph";
         let sharedAddon = null;
 
+        // let youtube_links = text.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=([a-zA-Z0-9_]+)|youtu\.be\/([a-zA-Z\d_]+))(?:&.*)?$/gm)
+        
+        const regexp = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=([a-zA-Z0-9_]+)|youtu\.be\/([a-zA-Z\d_]+))(?:&.*)?/gm;
+        
+
         if (this.props.isShared) {
             className += " bb-test-paragraph-shared";
             sharedAddon = (
@@ -51,13 +56,36 @@ class SolutionTextParagraph extends React.Component {
                 </React.Fragment>
             );
         } else if (this.props.data.has_formulas) {
-            content = (
-                <React.Fragment>
-                    {sharedAddon}
-                    <div className={className}
-                         dangerouslySetInnerHTML={{ __html: this.state.rawHtml }}></div>
-                </React.Fragment>
-            );
+            let youtube = [];
+            const matches = this.props.data.text.matchAll(regexp)
+            for (const match of matches) {
+                console.log(match);
+                // this.props.data.text = this.props.data.text.replace(match[0], "");
+                youtube.push(
+                    <div className="embed-responsive embed-responsive-16by9" key={"you"+match.index}>
+                        <iframe src={"https://www.youtube.com/embed/" + match[1]} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; allowfullscreen" ></iframe>
+                    </div>
+                )
+            }
+            if (youtube.length == 0){
+                content = (
+                    <React.Fragment>
+                        {sharedAddon}
+                        <div className={className}
+                             dangerouslySetInnerHTML={{ __html: this.state.rawHtml }}></div>
+                    </React.Fragment>
+                );
+            }else{
+                content = (
+                    <React.Fragment>
+                        {sharedAddon}
+                        <div className={className}
+                             dangerouslySetInnerHTML={{ __html: this.state.rawHtml }}></div>
+                        {youtube}
+                    </React.Fragment>
+                );
+            }
+            
         } else {
             content = (
                 <React.Fragment>
