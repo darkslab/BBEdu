@@ -5,3 +5,5 @@
 /secrets.json
 /node_modules
 bbtest/static/bootstrap-5.0.2-dist/*
+bbtest/templates/nkt-oldd.html
+

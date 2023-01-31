@@ -164,6 +164,7 @@ from bbtest.pipeline_js import (
     BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_JS,
     BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_JS,
     BASE3_SOURCE_FILENAMES as BASE3_SOURCE_FILENAMES_JS,
+    BASE0_NKT_SOURCE_FILENAMES as BASE0_NKT_SOURCE_FILENAMES_JS
 )
 if not DEBUG:
     from bbtest.pipeline_js import BASE2_PRODUCTION_SOURCE_FILENAMES as BASE2_SOURCE_FILENAMES_JS
@@ -172,6 +173,7 @@ else:
 from bbtest.pipeline_css import (
     BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_CSS,
     BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_CSS,
+    BASE0_NKT_SOURCE_FILENAMES as BASE0_NKT_SOURCE_FILENAMES_CSS
 )
 
 PIPELINE = {
@@ -207,6 +209,13 @@ PIPELINE = {
                 "defer": True,
             },
         },
+        "base0_nkt": {
+            "source_filenames": BASE0_NKT_SOURCE_FILENAMES_JS,
+            "output_filename": "js/base0-nkt.js",
+            "extra_context": {
+                "defer": True,
+            },
+        },
     },
     "STYLESHEETS": {
         "base0": {
@@ -216,6 +225,10 @@ PIPELINE = {
         "base1": {
             "source_filenames": BASE1_SOURCE_FILENAMES_CSS,
             "output_filename": "css/base1.css",
+        },
+        "base0_nkt": {
+            "source_filenames": BASE0_NKT_SOURCE_FILENAMES_CSS,
+            "output_filename": "css/base0-nkt.css",
         },
     },
 }

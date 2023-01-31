@@ -93,6 +93,58 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
 
     def formatted_export(self, start_date, end_date, workbook):
         date_format = workbook.add_format({'num_format': 'dd-mm-yy hh:mm:ss', 'align': 'left'})
+        for domain_id in [7911]:
+            quizes = Quiz.objects.filter(
+                                    Q(test__bundle__isnull=False) & Q(started_at__lte=end_date) & Q(started_at__gte=start_date) & Q(test__section__domain=domain_id)
+                                ).order_by("quiz_set__student", "test__bundle").prefetch_related("test", "test__questions", "test__section", "quiz_set", "quiz_set__student").iterator()
+            worksheet = workbook.add_worksheet("{}_bundle".format(domain_id))
+            if not quizes:  # empty response
+                continue
+            
+            # create table header
+            worksheet.write_row(0, 0, ["student", "lang"])
+            offsets, last_col = self.excel_offset_for_test(domain_id)
+            for sect_name, (s, m, c) in offsets.items():
+                worksheet.write_row(0, s, ["{}_code".format(sect_name), "{}_started_at".format(sect_name), "{}_score".format(sect_name), "{}_max_score".format(sect_name)])
+                worksheet.write_row(0, m, ["{}_{}".format(i+1, sect_name) for i in range(c)])
+            worksheet.write(0, last_col, "Total")
+            # worksheet.write(0, last_col+1, "Bundle")
+            
+
+            pointer = {sect_name: 1 for sect_name in offsets.keys()}  # stores row offset for subjects
+            pr_student = None
+            pr_bundle = None
+
+            for i, quiz in enumerate(quizes):
+                student = quiz.quiz_set.student.username + " | " + quiz.quiz_set.student.email
+                bundle = quiz.test.bundle
+                if student != pr_student or bundle != pr_bundle:
+                    pointer = {sect_name: max(pointer.values()) for sect_name in offsets.keys()} 
+                    pr_student = student
+                    pr_bundle = bundle
+                
+                test_name = quiz.test.section.name
+                col_offset = offsets[test_name][0]
+                row_offset = pointer[test_name]
+
+                code = quiz.test.code
+                started = quiz.started_at
+                score = quiz.score()
+                max_score = quiz.test.max_score()
+                row = [bundle + "|" + code, started, score, max_score] + quiz.get_student_answers()
+
+                worksheet.write_row(row_offset, 0, [student, bundle[:2]])  # will be overwritten several times, but it is OK, overhead is acceptable
+                worksheet.write_row(row_offset, col_offset, row)
+                worksheet.write_datetime(row_offset, col_offset+1, started, date_format)
+                pointer[test_name] += 1
+
+                # for NIS test compute Total column
+                n_rows_total = max(pointer.values())
+                score_cols = [s+2 for s, _, _ in offsets.values()]
+                for i in range(1, n_rows_total):
+                    formula = [xl_rowcol_to_cell(i, col) for col in score_cols]
+                    worksheet.write_formula(i, last_col, '=' + "+".join(formula))
+                    
         for domain_id in [7911, 7912, 7913, 7914, 7915, 7916]:  # [7911, 7912, 7913, 7914, 7915, 7916]
             quizes = Quiz.objects.filter(
                                     Q(started_at__lte=end_date) & Q(started_at__gte=start_date) & Q(test__section__domain=domain_id)
@@ -155,10 +207,12 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
             if not quizes:  # empty response
                 continue
             
-            worksheet.write_row(0, 0, ["student", "test_name", "lang", "code", "started", "score", "max_score"] + ["Q{}".format(i) for i in range(1,61)])
+            worksheet.write_row(0, 0, ["student", "phone", "email", "test_name", "lang", "code", "started", "score", "max_score"] + ["Q{}".format(i) for i in range(1,61)])
 
             for i, quiz in enumerate(quizes):
                 student = quiz.quiz_set.student.username
+                phone = quiz.quiz_set.student.phone
+                email = quiz.quiz_set.student.email
                 lang = quiz.test.language
                 code = quiz.test.code
                 started = quiz.started_at
@@ -166,65 +220,9 @@ class ExportDataFormView(SuperPermissionRequiredMixin, View):
                 score = quiz.score()
                 max_score = quiz.test.max_score()
 
-                row = [student, test_name, lang, code, started, score, max_score] + quiz.get_student_answers()
+                row = [student, phone, email, test_name, lang, code, started, score, max_score] + quiz.get_student_answers()
                 worksheet.write_row(i+1, 0, row)
 
-
-    def post_old(self, request, *args, **kwargs):
-        form = ExportDataForm(data=request.POST)
-        valid = form.is_valid()    # is_valid should be called before form.cleaned_data could be accessed
-        start_date = form.cleaned_data["start_date"]
-        end_date = form.cleaned_data["end_date"] 
-
-        if valid and end_date >= start_date:
-            # response = HttpResponse(content_type='text/csv')
-            # response['Content-Disposition'] = 'attachment; filename="export.csv"'
-            buffer = io.BytesIO()
-            workbook = xlsxwriter.Workbook(buffer, options={'remove_timezone': True})
-
-            # get all quizes
-            table_tests_all = self.get_quizes_in_range(start_date, end_date)  # [student][(quiz.language, test_name)]
-
-            test_names_and_count_domainID = {section.name: (section.question_count, section.domain_id) for section in TestSection.objects.all()}
-
-            byDomain = {}
-            for section_name, (count, domainID) in test_names_and_count_domainID.items():
-                byDomain[domainID] = byDomain.get(domainID, {}) 
-                byDomain[domainID][section_name] = count
-
-
-            for domainID, test_names_and_count in byDomain.items():
-                worksheet = workbook.add_worksheet("{}".format(domainID))
-
-                test_names_sorted = sorted(test_names_and_count.keys())  # fix sort order
-                # create table header
-                header = self.create_table_header(test_names_sorted, test_names_and_count)
-                worksheet.write_row(0, 0, header)
-                # fill table
-                table = self.write_response_csv(worksheet, table_tests_all, test_names_sorted, test_names_and_count)
-
-                for i, row in enumerate(table):
-                    worksheet.write_row(i+1, 0, row)
-
-            workbook.close()
-            buffer.seek(0)
-            response = HttpResponse(buffer, content_type='application/vnd.ms-excel')
-            response['Content-Disposition'] = 'attachment; filename="foo.xlsx"'
-
-            success(request, "Export from {} to {}.".format(start_date, end_date))
-            # print("arra", test_names_and_count, header, table_tests_all)
-            # return redirect("bbtest:super_export_data")
-            return response
-            # return HttpResponseRedirect(self.request.path_info)
-        else:
-            error(request, "Errors %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
-
-        return redirect("bbtest:super_export_data")
-
-        # data = {
-        #     "success": True,
-        # }
-        # return TightJsonResponse(data)
 
     def get_quizes_in_range(self, start_date, end_date):
         quizes = Quiz.objects.filter(
