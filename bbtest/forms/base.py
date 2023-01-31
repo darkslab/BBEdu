@@ -7,10 +7,8 @@ from bbtest.auth.password_validation import password_validators_help_text_html
 from bbtest.models.shopping.items.credit import MAX_CREDIT_AMOUNT, MIN_CREDIT_AMOUNT
 from bbtest.models import REGIONS
 from django.utils.translation import pgettext_lazy, pgettext, ugettext_lazy
-from django.conf import settings
-from requests.exceptions import RequestException
-from requests import post
-
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 User = get_user_model()
 
@@ -105,27 +103,11 @@ class ExtendedBaseUserForm(BaseUserForm):
     district = CharField(label=pgettext_lazy("Form label", "District"), error_messages={
         "max_length": pgettext_lazy("Validation error", "District is too long."),
     }, max_length=100, required=False)
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(attrs={
+            'data-size': 'compact',
+        }))
 
     def clean(self):
-        kwargs = {
-            "headers": {
-                "User-Agent": settings.BB_USER_AGENT,
-            },
-            "timeout": 8,
-        }
-        try:
-            response = post(settings.RECAPTCHA_URL, data={
-                "secret": settings.SECRETS["RECAPTCHA_SECRET_KEY"],
-                "response": self.data["g-recaptcha-response"],
-            }, **kwargs)
-            if response.status_code != 200 or not response.json()["success"]:
-                raise ValueError("Incorrect reCAPTCHA")
-        except (RequestException, ValueError, KeyError):
-            raise ValidationError(
-                self.error_messages["recaptcha"],
-                code="recaptcha",
-            )
-
         self._meta_data = {}
         if self.cleaned_data.get("identification"):
             self._meta_data["identification"] = self.cleaned_data["identification"]
