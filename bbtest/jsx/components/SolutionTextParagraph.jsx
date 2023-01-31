@@ -61,6 +61,7 @@ class SolutionTextParagraph extends React.Component {
             for (const match of matches) {
                 console.log(match);
                 // this.props.data.text = this.props.data.text.replace(match[0], "");
+                // let rep = '<div className="embed-responsive embed-responsive-16by9" key="you'+match.index+'"><iframe src="https://www.youtube.com/embed/' + match[1] +'" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; allowfullscreen" ></iframe></div>'
                 this.state.rawHtml = this.state.rawHtml.replace(match[0], "");
                 youtube.push(
                     <div className="embed-responsive embed-responsive-16by9" key={"you"+match.index}>
