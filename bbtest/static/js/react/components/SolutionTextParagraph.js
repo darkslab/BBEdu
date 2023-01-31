@@ -102,12 +102,14 @@ var SolutionTextParagraph = function (_React$Component) {
 
                         console.log(match);
                         // this.props.data.text = this.props.data.text.replace(match[0], "");
+                        this.state.rawHtml = this.state.rawHtml.replace(match[0], "");
                         youtube.push(React.createElement(
                             "div",
                             { className: "embed-responsive embed-responsive-16by9", key: "you" + match.index },
                             React.createElement("iframe", { src: "https://www.youtube.com/embed/" + match[1], frameBorder: "0", allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; allowfullscreen" })
                         ));
                     }
+                    // console.log(this.state.rawHtml);
                 } catch (err) {
                     _didIteratorError = true;
                     _iteratorError = err;
@@ -123,24 +125,14 @@ var SolutionTextParagraph = function (_React$Component) {
                     }
                 }
 
-                if (youtube.length == 0) {
-                    content = React.createElement(
-                        React.Fragment,
-                        null,
-                        sharedAddon,
-                        React.createElement("div", { className: className,
-                            dangerouslySetInnerHTML: { __html: this.state.rawHtml } })
-                    );
-                } else {
-                    content = React.createElement(
-                        React.Fragment,
-                        null,
-                        sharedAddon,
-                        React.createElement("div", { className: className,
-                            dangerouslySetInnerHTML: { __html: this.state.rawHtml } }),
-                        youtube
-                    );
-                }
+                content = React.createElement(
+                    React.Fragment,
+                    null,
+                    sharedAddon,
+                    React.createElement("div", { className: className,
+                        dangerouslySetInnerHTML: { __html: this.state.rawHtml } }),
+                    youtube.length > 0 && youtube
+                );
             } else {
                 content = React.createElement(
                     React.Fragment,
