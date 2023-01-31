@@ -6,6 +6,10 @@ from uuid import uuid4
 from bbtest.auth.password_validation import password_validators_help_text_html
 from bbtest.models.shopping.items.credit import MAX_CREDIT_AMOUNT, MIN_CREDIT_AMOUNT
 from bbtest.models import REGIONS
+from django.utils.translation import pgettext_lazy, pgettext, ugettext_lazy
+from django.conf import settings
+from requests.exceptions import RequestException
+from requests import post
 
 
 User = get_user_model()
@@ -86,8 +90,10 @@ class BaseUserForm(ModelForm):
             user.save()
         return user
 
-
 class ExtendedBaseUserForm(BaseUserForm):
+    error_messages = {
+        "recaptcha": ugettext_lazy("_common.validation.message_form.recaptcha"),
+    }
     identification = IntegerField(label=pgettext_lazy("Form label", "ID"), error_messages={
         "invalid": pgettext_lazy("Validation error", "Incorrect ID."),
         "max_value": pgettext_lazy("Validation error", "ID contains too many numbers."),
@@ -101,6 +107,25 @@ class ExtendedBaseUserForm(BaseUserForm):
     }, max_length=100, required=False)
 
     def clean(self):
+        kwargs = {
+            "headers": {
+                "User-Agent": settings.BB_USER_AGENT,
+            },
+            "timeout": 8,
+        }
+        try:
+            response = post(settings.RECAPTCHA_URL, data={
+                "secret": settings.SECRETS["RECAPTCHA_SECRET_KEY"],
+                "response": self.data["g-recaptcha-response"],
+            }, **kwargs)
+            if response.status_code != 200 or not response.json()["success"]:
+                raise ValueError("Incorrect reCAPTCHA")
+        except (RequestException, ValueError, KeyError):
+            raise ValidationError(
+                self.error_messages["recaptcha"],
+                code="recaptcha",
+            )
+
         self._meta_data = {}
         if self.cleaned_data.get("identification"):
             self._meta_data["identification"] = self.cleaned_data["identification"]
