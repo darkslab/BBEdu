@@ -4,6 +4,7 @@ from .views.base import (
     HomeView,
     NisView,
     NktView,
+    NktView2,
     DashboardView,
     SettingsView,
     BuyCreditsView,
@@ -78,7 +79,8 @@ urlpatterns = [
     # PUBLIC URLS
     url(r"^$",            HomeView.as_view(),      name="home"      ),
     url(r"^nis/$",        NisView.as_view(),       name="nis"       ),
-    url(r"^nkt/$",        NktView.as_view(),       name="nkt"       ),
+    url(r"^asd/$",        NktView.as_view(),       name="nkt"       ),
+    url(r"^nkt/$",       NktView2.as_view(),       name="nkt"      ),
     url(r"^terms/$",      TermsView.as_view(),     name="terms"     ),
     url(r"^contact-us/$", ContactUsView.as_view(), name="contact_us"),
     url(r"^faq/$",        FaqView.as_view(),       name="faq"       ),

@@ -73,7 +73,19 @@
     <div class="row align-items-center text-center" id="scroll_3" style="height: 100vh; background: linear-gradient(30deg, rgb(221, 221, 221) 5.5%, rgb(110, 136, 161) 90.2%);">
         <img class="rounded-3 mx-auto d-block w-75" src="{% static 'img/nkt_example.png' %}" alt="Card image cap">
     </div>
-
+    <div class="row bb-home-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 mb-15 pr-0 pl-0 bb-chart-lg" data-detail-chart></div>
+                <div class="col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1 mb-15 bb-chart-lg pt-45 pb-45" data-progress-chart></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    <h4 class="mt-0 mb-0 text-center">{% trans 'Get a detailed test result analysis, find out your current skills and knowledge. Check out your progress and get better.' context 'Home page' %}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row bg-secondary">
         <div class="bb-footer- text-center text-bold pr-15 pl-15">
@@ -84,6 +96,7 @@
         </div>
         <div class="bb-copyright- text-center">{% blocktrans with copyright_code='&copy;' %}_common.copyright:{{ copyright_code }}{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
     </div>
+
 </div>
 
 {% endblock %}
