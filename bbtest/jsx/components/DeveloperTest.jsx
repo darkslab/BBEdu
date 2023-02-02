@@ -48,6 +48,9 @@ class DeveloperTest extends React.Component {
     }
     render() {
         let content = null;
+        // case 1: error:
+        // case 2: Loading is done
+        // case 3: Show Loading spinner
         if (this.state.isErrored) {
             content = (
                 <h4 className="text-center text-danger mt-100 mb-0">{this.props.texts.error}</h4>
@@ -67,6 +70,7 @@ class DeveloperTest extends React.Component {
             );
         }
 
+        // If number of question is more then 1 pAginate questions
         let pagination = null;
         if (this.props.questionIds.length > 1 && !this.state.isErrored && !this.state.isTestLoading && !this._finalSave) {
             let width = 6;

@@ -21,14 +21,46 @@ var Question = function (_React$Component) {
         key: "render",
         value: function render() {
             var paragraphs = [];
+            var solutionParagraphs = [];
+            // show solutions only if student is in result page
+            var regex = new RegExp("^/(en|ru|kk)/student/results/([0-9A-Fa-f]{4,6})/$");
+            var regex_dev = new RegExp("^/(en|ru|kk)/build/tests/([0-9A-Fa-f]{4,6})/preview/$");
+            var show_solution = regex.test(window.location.pathname);
+            var show_solution_dev = regex_dev.test(window.location.pathname);
+
             for (var i = 0; i < this.props.object.paragraphs.length; i++) {
                 var ParagraphClass = eval(this.props.object.paragraphs[i].paragraph_class);
-                paragraphs.push(React.createElement(ParagraphClass, { key: i,
-                    data: this.props.object.paragraphs[i].meta_data,
-                    isShared: this.props.object.paragraphs[i].is_shared,
-                    texts: this.props.texts,
-                    testTexts: this.props.testTexts,
-                    forDevelopers: false }));
+                // console.log("dd", this.props.object.paragraphs[i].paragraph_class, window.location.pathname)
+
+                if (!this.props.object.paragraphs[i].paragraph_class.includes("Solution")) {
+                    paragraphs.push(React.createElement(ParagraphClass, { key: i,
+                        data: this.props.object.paragraphs[i].meta_data,
+                        isShared: this.props.object.paragraphs[i].is_shared,
+                        texts: this.props.texts,
+                        testTexts: this.props.testTexts,
+                        forDevelopers: false }));
+                } else if (show_solution || show_solution_dev) {
+                    solutionParagraphs.push(React.createElement(ParagraphClass, { key: i,
+                        data: this.props.object.paragraphs[i].meta_data,
+                        isShared: this.props.object.paragraphs[i].is_shared,
+                        texts: this.props.texts,
+                        testTexts: this.props.testTexts,
+                        forDevelopers: false }));
+                }
+            }
+
+            if (show_solution || show_solution_dev) {
+                if (solutionParagraphs.length > 0) {
+                    paragraphs.push(React.createElement("hr", { key: "sep_sol", className: "bb-separator" }));
+                    paragraphs.push(React.createElement(
+                        "h3",
+                        { key: "sep_sol_h3" },
+                        this.props.texts.solution
+                    ));
+                    for (var _i = 0; _i < solutionParagraphs.length; _i++) {
+                        paragraphs.push(solutionParagraphs[_i]);
+                    }
+                }
             }
 
             var timer = null;

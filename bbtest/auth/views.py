@@ -13,7 +13,7 @@ from django.contrib.auth import login
 from .forms import AuthenticationForm, UserCreationForm, ExtendedUserCreationForm, PasswordResetForm, SetPasswordForm
 from .mixins import LogoutRequiredMixin
 from bbtest.views.generic import FormView
-
+from bbtest.forms.message import MessageForm
 
 class LoginView(_LoginView):
     template_name = "base/login.html"
@@ -34,6 +34,7 @@ class LogoutView(_LogoutView):
 class RegisterView(LogoutRequiredMixin, FormView):
     form_class = ExtendedUserCreationForm
     success_url = reverse_lazy("bbtest:student_dashboard")
+    # form_class = MessageForm
     template_name = "base/register.html"
 
     def form_valid(self, form):
@@ -43,6 +44,8 @@ class RegisterView(LogoutRequiredMixin, FormView):
 
     def get_context_data(self, **kwargs):
         kwargs["group"] = self._group()
+        kwargs["recaptcha_site_key"] = settings.RECAPTCHA_SITE_KEY
+        kwargs["recaptcha_secret_key"] = settings.RECAPTCHA_SECRET_KEY
         return super().get_context_data(**kwargs)
 
     def _group(self):

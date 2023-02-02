@@ -6,7 +6,9 @@ from uuid import uuid4
 from bbtest.auth.password_validation import password_validators_help_text_html
 from bbtest.models.shopping.items.credit import MAX_CREDIT_AMOUNT, MIN_CREDIT_AMOUNT
 from bbtest.models import REGIONS
-
+from django.utils.translation import pgettext_lazy, pgettext, ugettext_lazy
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 User = get_user_model()
 
@@ -86,8 +88,10 @@ class BaseUserForm(ModelForm):
             user.save()
         return user
 
-
 class ExtendedBaseUserForm(BaseUserForm):
+    error_messages = {
+        "recaptcha": ugettext_lazy("_common.validation.message_form.recaptcha"),
+    }
     identification = IntegerField(label=pgettext_lazy("Form label", "ID"), error_messages={
         "invalid": pgettext_lazy("Validation error", "Incorrect ID."),
         "max_value": pgettext_lazy("Validation error", "ID contains too many numbers."),
@@ -99,6 +103,9 @@ class ExtendedBaseUserForm(BaseUserForm):
     district = CharField(label=pgettext_lazy("Form label", "District"), error_messages={
         "max_length": pgettext_lazy("Validation error", "District is too long."),
     }, max_length=100, required=False)
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(attrs={
+            'data-size': 'compact',
+        }))
 
     def clean(self):
         self._meta_data = {}

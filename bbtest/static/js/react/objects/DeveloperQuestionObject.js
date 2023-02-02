@@ -188,6 +188,21 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
                 progress: 0
             };
             break;
+        case "SolutionTextParagraph":
+            newParagraph.data.meta_data = {
+                text: ""
+            };
+            break;
+        case "SolutionImageParagraph":
+                newParagraph.data.meta_data = {
+                    asset_uuid: undefined,
+                    asset_url: undefined,
+                    upload_start_url: this._uploadStartUrl,
+                    spinner_logo_url: this._spinnerLogoUrl,
+                    status: "waiting",
+                    progress: 0
+                };
+                break;
     }
     this._paragraphs.push(newParagraph);
     this._isParagraphsSaved = false;
@@ -321,6 +336,19 @@ DeveloperQuestionObject.prototype._beforeLoadParagraphDataTransform = function(d
                 }
             };
             break;
+        case "SolutionImageParagraph":
+            return {
+                paragraph_class: data.paragraph_class,
+                meta_data: {
+                    asset_uuid: data.meta_data.asset_uuid,
+                    asset_url: data.meta_data.asset_url,
+                    upload_start_url: this._uploadStartUrl,
+                    spinner_logo_url: this._spinnerLogoUrl,
+                    status: "staring",
+                    progress: 100
+                }
+            };
+            break;
         default:
             return data;
             break;
@@ -329,6 +357,14 @@ DeveloperQuestionObject.prototype._beforeLoadParagraphDataTransform = function(d
 DeveloperQuestionObject.prototype._beforeSaveParagraphDataTransform = function(data) {
     switch (data.paragraph_class) {
         case "ImageParagraph":
+            return {
+                paragraph_class: data.paragraph_class,
+                meta_data: {
+                    asset_uuid: data.meta_data.asset_uuid
+                }
+            };
+            break;
+        case "SolutionImageParagraph":
             return {
                 paragraph_class: data.paragraph_class,
                 meta_data: {
@@ -348,6 +384,11 @@ DeveloperQuestionObject.prototype._shouldSkipParagraphSave = function(data) {
                 return true;
             }
             break;
+        case "SolutionImageParagraph":
+                if (data.meta_data.status !== "staring") {
+                    return true;
+                }
+                break;
         default:
             break;
     }
