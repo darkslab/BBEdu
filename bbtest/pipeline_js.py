@@ -33,6 +33,7 @@ BASE1_SOURCE_FILENAMES = (
     "js/modules/RegisterPageModule.js",
     "js/modules/BuyCreditsQazkomPageModule.js",
     "js/modules/HomePageModule.js",
+    "js/modules/NKTPageModule.js",
     "js/modules/BuyCreditsPageModule.js",
     "js/modules/BuyCreditsBeelinePageModule.js",
 
@@ -102,6 +103,13 @@ BASE3_SOURCE_FILENAMES = (
 )
 
 BASE0_NKT_SOURCE_FILENAMES = (
+    "js/jquery-ui.js",
+    "js/turbolinks.min.js",
+    "js/js.cookie.js",
+    "js/katex.min.js",
+    "js/auto-render.min.js",
+    "js/script.js",
+
     "js/nkt-demo.js",
     # "js/script.js",
 )

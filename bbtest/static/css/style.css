@@ -1496,3 +1496,74 @@ html {
 .bb-body-nkt-override {
     background-color: rgb(255, 255, 255) !important;
 }
+
+.vcenter {
+    /* display: inline-block;
+    vertical-align: middle;
+    float: none; */
+    display: flex;
+    align-items: center;
+}
+
+#intro > article{
+	/* font-size: 110%; */
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	color: #1A2164;
+}
+
+
+#intro.row div.h1{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: #1A2164;
+    /* font-size: 2.3rem; */
+    font-weight: 590;
+    margin: 0.5rem 0 0.4rem 0;
+}
+	
+#intro.row div.h3.subtitle{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: #1A2164;
+    /* font-size: 1.6rem; */
+    font-weight: 500;
+    margin: 0 0 2rem 0;
+}
+
+
+#intro > div > ul{
+    /* font-size: 110%; */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: #1A2164;
+    list-style-type: none;
+}
+
+.row div.h1{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: #1A2164;
+    font-weight: 590;
+    margin: 0.5rem 0 0.4rem 0;
+}
+
+
+.list-inline > li> strong > a:link {
+    color: rgb(244, 244, 244);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+/* .list-inline > li> strong > a:visited {
+    color: pink;
+    background-color: transparent;
+    text-decoration: none;
+} */
+
+.list-inline > li> strong > a:hover {
+    /* color: red; */
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.list-inline > li> strong > a:active {
+    color: cyan;
+    background-color: transparent;
+    text-decoration: underline;
+}
