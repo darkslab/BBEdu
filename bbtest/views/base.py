@@ -65,7 +65,14 @@ class NktView(TemplateView):
                 kwargs["nkt"] = domain
         return super().get_context_data(**kwargs)
 
+class NktView2(TemplateView):
+    template_name = "nkt2.html"
 
+    def get_context_data(self, **kwargs):
+        for domain in TestDomain.objects.all():
+            if domain.pk == 7914:
+                kwargs["nkt"] = domain
+        return super().get_context_data(**kwargs)
 class DashboardView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return resolve_url(self.request.user)

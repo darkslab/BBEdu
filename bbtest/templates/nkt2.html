@@ -1,0 +1,285 @@
+{% extends './base_0.html' %}
+{% load static i18n permission i18nurl %}
+
+{% block window_title %}{% trans 'page:/nkt/:html_title' %}{% endblock %}
+
+{% block description %}{% trans 'page:/nkt/:html_description' %}{% endblock %}
+
+{% block _d0_body_class %}bb-body-public bb-body-public-extended bb-body-nkt-override{% endblock %}
+
+{% block _d0_content %}
+    <script>
+        moduleDataStack.push({
+            module: "HomePageModule",
+            data: {
+                detail_chart_selector: "[data-detail-chart]",
+                progress_chart_selector: "[data-progress-chart]"
+            }
+        });
+    </script>
+    <div class="container-fluid">
+        <!-- bb-home-section-0 -->
+        <div class="row ">
+            <div class="col-xs-12">
+                <div class="row bb-bar bb-bar-public">
+                    <nav class="navbar navbar-default">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-10 col-lg-offset-1 pr-0 pl-0">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bb-navbar-collapse">
+                                            <span class="icon-bar bb-bar-button-first"></span>
+                                            <span class="icon-bar bb-bar-button-second"></span>
+                                            <span class="icon-bar bb-bar-button-third"></span>
+                                        </button>
+                                        <a class="navbar-brand ml-0 pt-10 pb-10" href="{% url 'bbtest:home' %}">
+                                            <img class="bb-bar-logo" src="{% static 'img/logo2.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" title="bbtest.kz">
+                                        </a>
+                                    </div>
+                                    <div class="navbar-collapse collapse" id="bb-navbar-collapse" style="height: 1px;">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            {% if user.is_authenticated %}
+                                                <li><a href="{% url 'bbtest:dashboard' %}">{% trans 'Dashboard' context 'Navigation link' %}</a></li>
+                                                <li class="bb-bar-gravatar-container hidden-xs"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="{{ user.gravatar_url|safe }}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}"></li>
+                                                <li class="dropdown">
+                                                    <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">{{ user.get_full_name }} <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li><a href="{% url 'bbtest:settings' %}"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
+                                                        <li><a href="{% url 'bbtest:faq' %}"><i class="fa fa-fw fa-info-circle"></i> {% trans '_common.nav.faq' %}</a></li>
+                                                        <li class="divider"></li>
+                                                        <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
+                                                    </ul>
+                                                </li>
+                                            {% else %}
+                                                <li><a href="{% url 'bbtest:login' %}">{% trans 'Login' context 'Navigation link' %}</a></li>
+                                                <li><a href="{% url 'bbtest:register' %}">{% trans 'Register' context 'Navigation link' %}</a></li>
+                                                <li><a href="{% url 'bbtest:faq' %}">{% trans '_common.nav.faq' %}</a></li>
+                                            {% endif %}
+                                            <li>
+                                                <a href="#corporate-modal" data-toggle="modal" data-corporate-link="true">{% trans '_common.nav.corporate' %}</a>
+                                                <div class="modal fade" id="corporate-modal">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">{% trans '_common.nav.corporate' %}</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-xs-12">
+                                                                        <img class="img-responsive" src="{% static 'img/corporate.png' %}" alt="{% trans '_common.nav.corporate' %}" title="{% trans '_common.nav.corporate' %}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="bb-lang-container container-fluid">
+                                                <div class="row">
+                                                    <div class="col-xs-2 col-xs-offset-3 col-sm-12 col-sm-offset-0 pr-5 pl-5">
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block text-right visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_KK %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}active{% endif %}">Қаз</a>
+                                                    </div>
+                                                    <div class="col-xs-2 col-sm-12 pr-5 pl-5">
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block text-center visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_RU %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_RU %}active{% endif %}">Рус</a>
+                                                    </div>
+                                                    <div class="col-xs-2 col-sm-12 pr-5 pl-5">
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_EN %}" class="center-block text-left visible-xs-block {% if LANGUAGE_CODE == LANGUAGE_CODE_EN %}active{% endif %}">Eng</a>
+                                                        <a href="{% current_url_for_lang LANGUAGE_CODE_EN %}" class="center-block hidden-xs {% if LANGUAGE_CODE == LANGUAGE_CODE_EN %}active{% endif %}">Eng</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="row " style="height:90vh;">
+            <div class="col-xs-6 px-5 text-center vcenter" id="intro" style="height:90vh;">
+                <article class="text-left">
+                    <h1>Онлайн тесты НКТ 2023</h1>
+                    <h1 class="subtitle">Платформа для подготовки к экзаменам</h1>
+                    <ul class="arrows">
+                        <li>Тесты, соответствующие экзаменам в СпецЦОН</li>
+                        <li>Первые в мире видео-тесты с объяснениями</li>
+                        <li>База из 1500+ вопросов на трёх языках</li>
+                    </ul>
+                </article>
+                <!-- <div class="row">
+                    <button type="button" class="btn btn-primary btn-lg shadow-lg" href="{% url 'bbtest:register' %}">
+                        <a href="{% url 'bbtest:register' %}" style="color:inherit; text-decoration: none;"><span class="fw-bold" > Пройти тест</span></a>
+                    </button> 
+                </div> -->
+            </div>
+            
+            
+            <div class="col-xs-6 text-center vcenter" style="height:90vh;">
+                <img class="img" src="{% static 'img/nkt_0.jpg' %}" alt="Card image cap" style="width: 99%">
+            </div>
+        </div>
+
+        <div class="row" id="scroll_2" style="height: 100vh; background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));">
+            <!-- <div class="position-absolute bottom-0 end-0">
+                <img class="px-5 pb-5" src="{% static 'img/scroll_down.svg' %}" class="w-25 float-left" alt="more details" onclick="scroll2three()"> 
+            </div> -->
+            <div class="row text-center align-items-center h-25">
+                <h1>Тесты составленые по научным методикам</h1>
+            </div>
+            <!-- <div class="row h-75 align-items-center">
+                <div class="col-xs-4">
+                    <img class="img" src="{% static 'img/nkt_q1.png' %}" alt="Card image cap" style="width: 95%">
+                </div>
+                <div class="col-xs-4">
+                    <img class="img" src="{% static 'img/nkt_q2.png' %}" alt="Card image cap" style="width: 95%">
+                </div>
+                <div class="col-xs-4">
+                    <img class="img" src="{% static 'img/nkt_q3.png' %}" alt="Card image cap" style="width: 95%">
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-xs-4 advantages__item ">
+                    <div class="row">
+                        <span class="col-xs-6 advantages__number text ">01</span> 
+                        <span class="col-xs-6 advantages__icon text-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="87" viewBox="0 0 80 87"><g><g><g><path fill="#2787f5" d="M47.5 62.787a1.6 1.6 0 0 0-1.1 1.52V67.2H33.6v-2.893a1.6 1.6 0 0 0-1.1-1.52A23.946 23.946 0 0 1 16 40c0-13.234 10.766-24 24-24s24 10.766 24 24a23.946 23.946 0 0 1-16.5 22.787zM44.8 78.4c-.885 0-1.6.715-1.6 1.6v3.2h-6.4V80c0-.885-.715-1.6-1.6-1.6h-1.6v-8h12.8v8zM40 12.8c-14.998 0-27.2 12.202-27.2 27.2 0 11.38 7.026 21.46 17.6 25.44V80c0 .885.715 1.6 1.6 1.6h1.6v3.2c0 .885.715 1.6 1.6 1.6h9.6c.885 0 1.6-.715 1.6-1.6v-3.2H48c.885 0 1.6-.715 1.6-1.6V65.44A27.137 27.137 0 0 0 67.2 40c0-14.998-12.202-27.2-27.2-27.2z"></path></g><g><path fill="#2787f5" d="M40 9.6c.885 0 1.6-.715 1.6-1.6V1.6C41.6.715 40.885 0 40 0c-.885 0-1.6.715-1.6 1.6V8c0 .885.715 1.6 1.6 1.6z"></path></g><g><path fill="#2787f5" d="M78.4 38.4H72c-.885 0-1.6.715-1.6 1.6 0 .885.715 1.6 1.6 1.6h6.4c.885 0 1.6-.715 1.6-1.6 0-.885-.715-1.6-1.6-1.6z"></path></g><g><path fill="#2787f5" d="M8 38.4H1.6c-.885 0-1.6.715-1.6 1.6 0 .885.715 1.6 1.6 1.6H8c.885 0 1.6-.715 1.6-1.6 0-.885-.715-1.6-1.6-1.6z"></path></g><g><path fill="#2787f5" d="M66.022 11.715l-4.524 4.525a1.598 1.598 0 0 0 1.13 2.731c.41 0 .82-.157 1.132-.469l4.525-4.524a1.6 1.6 0 1 0-2.262-2.262z"></path></g><g><path fill="#2787f5" d="M16.24 61.498l-4.525 4.524a1.598 1.598 0 0 0 1.131 2.732c.41 0 .82-.157 1.132-.47l4.524-4.524a1.598 1.598 0 0 0 0-2.262 1.598 1.598 0 0 0-2.262 0z"></path></g><g><path fill="#2787f5" d="M63.76 61.498a1.598 1.598 0 0 0-2.262 0 1.598 1.598 0 0 0 0 2.262l4.524 4.525a1.596 1.596 0 0 0 2.263 0 1.598 1.598 0 0 0 0-2.263z"></path></g><g><path fill="#2787f5" d="M16.24 18.502a1.596 1.596 0 0 0 2.262 0 1.598 1.598 0 0 0 0-2.262l-4.524-4.525a1.598 1.598 0 0 0-2.263 0 1.598 1.598 0 0 0 0 2.263z"></path></g><g><path fill="#2787f5" d="M40 20.8c-10.587 0-19.2 8.613-19.2 19.2 0 .885.715 1.6 1.6 1.6.885 0 1.6-.715 1.6-1.6 0-8.822 7.178-16 16-16 .885 0 1.6-.715 1.6-1.6 0-.885-.715-1.6-1.6-1.6z"></path></g></g></g></svg>
+                        </span> 
+                    </div>
+                    <h3 class="advantages__caption">Определение архетипа</h3>
+                    <p class="advantages__text text">Тестирование для определения архетипа, ценностей, навыков, интересов и талантов</p>
+                </div>
+                <div class="col-xs-4 advantages__item">
+                    <span class="advantages__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="74" viewBox="0 0 80 74"><g><g><g><path fill="#00bf54" d="M13.333 30.667h17.334a1.333 1.333 0 1 0 0-2.667H13.333a1.333 1.333 0 1 0 0 2.667z"></path></g><g><path fill="#00bf54" d="M48 36H13.333a1.333 1.333 0 1 0 0 2.667H48A1.333 1.333 0 1 0 48 36z"></path></g><g><path fill="#00bf54" d="M48 44H13.333a1.333 1.333 0 1 0 0 2.667H48A1.333 1.333 0 1 0 48 44z"></path></g><g><path fill="#00bf54" d="M77.333 36.188c0 2.89-2.35 5.239-5.24 5.239h-2.76c-.737 0-1.333.597-1.333 1.333v11.219l-6.667-7.334V22.573c0-4.36-3.546-7.906-7.909-7.906l-32.09.065V7.905c0-2.889 2.35-5.24 5.237-5.24l45.521.094h.003c2.889 0 5.24 2.35 5.24 5.24v28.189zM58.667 50.761c0 2.89-2.351 5.239-5.246 5.239l-22.76.093c-.373.002-.73.16-.981.436L18.667 68.645V57.427c0-.736-.596-1.334-1.334-1.334H7.907c-2.89 0-5.24-2.35-5.24-5.238V22.667c0-2.89 2.35-5.24 5.242-5.24L20 17.4h.003l33.424-.069c2.889 0 5.24 2.35 5.24 5.24V47.16zM72.096.093L26.573 0c-4.36 0-7.906 3.547-7.906 7.907v6.832l-10.76.022C3.547 14.761 0 18.308 0 22.668v28.188c0 4.36 3.547 7.905 7.907 7.905H16v13.334a1.334 1.334 0 0 0 2.32.897L31.259 58.76l22.168-.09c4.36 0 7.906-3.548 7.906-7.906v-.15l7.014 7.714a1.336 1.336 0 0 0 1.466.346c.515-.198.854-.693.854-1.244V44.096h1.426c4.36 0 7.907-3.547 7.907-7.905V8C80 3.64 76.455.094 72.096.092z"></path></g></g></g></svg>
+                    </span> 
+                    <span class="advantages__number text">02</span>
+                    <h3 class="advantages__caption">Подбор профессии</h3> 
+                    <p class="advantages__text text">Рекомендация из списка более 200 профессий 12 отраслей экономики Казахстана</p>
+                </div>
+                <div class="col-xs-4 advantages__item">
+                    <span class="advantages__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="72" viewBox="0 0 80 72"><g><g><g><g><path fill="#642cff" d="M77.333 65.333a4 4 0 0 1-4 4H6.667a4 4 0 0 1-4-4V20a6.64 6.64 0 0 1 2.038-4.781c.405.631.623 1.364.628 2.114v24a4 4 0 0 0 4 4h24.8c.348.847.529 1.752.534 2.667v.37a2.657 2.657 0 0 0-1.334 2.297v2.666a2.657 2.657 0 0 0 1.334 2.296v5.704a5.333 5.333 0 1 0 10.666 0V55.63a2.657 2.657 0 0 0 1.334-2.296v-2.666a2.657 2.657 0 0 0-1.334-2.296V48c.005-.915.186-1.82.534-2.667h24.8a4 4 0 0 0 4-4v-24c.005-.75.223-1.483.628-2.114A6.64 6.64 0 0 1 77.333 20zm-40-9.333h5.334v5.333a2.667 2.667 0 0 1-5.334 0zM44 50.667v2.666h-8v-2.666zM42.667 48h-5.334v-5.333c0-.737.597-1.334 1.334-1.334h2.666c.737 0 1.334.597 1.334 1.334zm-8-10.667a5.333 5.333 0 0 1 5.688-5.322 5.668 5.668 0 0 1 4.953 6.098 10.86 10.86 0 0 1-.473 2.667 3.988 3.988 0 0 0-3.502-2.11h-2.666a3.988 3.988 0 0 0-3.502 2.106 11.152 11.152 0 0 1-.498-3.439zm36-24a6.61 6.61 0 0 1 2.364.454A6.652 6.652 0 0 0 72 17.333v24c0 .737-.597 1.334-1.333 1.334H46.988a13.63 13.63 0 0 0 .984-4.4 8.267 8.267 0 0 0-7.439-8.918 7.93 7.93 0 0 0-6 2.143A8.035 8.035 0 0 0 32 37.333c-.022 1.827.32 3.64 1.008 5.334H9.333A1.333 1.333 0 0 1 8 41.333v-24a6.652 6.652 0 0 0-1.03-3.546 6.61 6.61 0 0 1 2.363-.454zM21.105 6.745C21.856 7.545 22.903 8 24 8h32a3.977 3.977 0 0 0 2.895-1.255l2.614 3.922H18.491zM24 2.667h32a1.333 1.333 0 1 1 0 2.666H24a1.333 1.333 0 1 1 0-2.666zm40.713 8l-4.761-7.143A3.992 3.992 0 0 0 56 0H24a3.992 3.992 0 0 0-3.952 3.524l-4.761 7.143H9.333A9.344 9.344 0 0 0 0 20v45.333A6.675 6.675 0 0 0 6.667 72h66.666A6.675 6.675 0 0 0 80 65.333V20a9.344 9.344 0 0 0-9.333-9.333z"></path></g><g><path fill="#642cff" d="M9.333 64H6.667a1.333 1.333 0 1 0 0 2.667h2.666a1.333 1.333 0 1 0 0-2.667z"></path></g><g><path fill="#642cff" d="M30.667 64h-16a1.333 1.333 0 1 0 0 2.667h16a1.333 1.333 0 1 0 0-2.667z"></path></g><g><path fill="#642cff" d="M73.333 64h-2.666a1.333 1.333 0 1 0 0 2.667h2.666a1.333 1.333 0 1 0 0-2.667z"></path></g><g><path fill="#642cff" d="M65.333 64h-16a1.333 1.333 0 1 0 0 2.667h16a1.333 1.333 0 1 0 0-2.667z"></path></g></g></g></g></svg>
+                    </span> 
+                    <span class="advantages__number text">03</span> 
+                    <h3 class="advantages__caption">Выбор программы обучения</h3>
+                    <p class="advantages__text text">Предложение образовательных программ в учебных заведениях Казахстана по выбранной профессии</p>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row bb-home-section bb-home-section-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                        <img class="img-responsive center-block bb-home-section-1-logo" src="{% static 'img/logo2_white.png' %}" alt="{% trans 'bbTest.kz Logo' context 'Logo img html tag alt parameter' %}" title="bbtest.kz">
+                        <h4 class="text-center mt-23 mb-0 text-bright">{% trans 'Online testing platform.' context 'Home page' %}</h4>
+                        <h4 class="text-center mt-0 mb-0 text-bright">{% trans 'Thorough. Convenient. Effective.' context 'Home page' %}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row bb-home-section bb-home-section-0a">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3 class="text-center text-shaddowed mt-0 mb-23">{% trans 'page:/:media_about_us' %}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 mb-15 bb-home-section-0a-cell">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe src="https://www.youtube.com/embed/QYfLntDbnjA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-15 bb-home-section-0a-cell">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe src="https://www.youtube.com/embed/svJNlFFm__o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-15 bb-home-section-0a-cell">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe src="https://www.youtube.com/embed/254WYrbzoB4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-15 bb-home-section-0a-cell">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe src="https://www.youtube.com/embed/qTs8gh_ugbA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-15 bb-home-section-0a-cell">
+                        <a href="https://forbes.kz/process/technologies/v_nur-sultane_vyibrali_luchshie_startapyi_tsentralnoy_azii/" target="_blank">
+                            <img src="{% static 'img/article_0.png' %}" class="img-responsive">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row bb-home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 mb-15 pr-0 pl-0 bb-chart-lg" data-detail-chart></div>
+                    <div class="col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-1 mb-15 bb-chart-lg pt-45 pb-45" data-progress-chart></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                        <h4 class="mt-0 mb-0 text-center">{% trans 'Get a detailed test result analysis, find out your current skills and knowledge. Check out your progress and get better.' context 'Home page' %}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row bb-home-section-narrow bb-home-section-3">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                        <h3 class="text-center text-bright text-shadowed mt-0 mb-23">{% trans 'Connect with us' context 'Home page' %}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <h4 class="text-center mt-0 mb-0">
+                                            <a target="_blank" href="https://www.facebook.com/bbtest.kz" class="bb-home-social bb-home-social-facebook text-shadowed"><i class="fa fa-fw fa-facebook"></i></a>
+                                        </h4>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <h4 class="text-center mt-0 mb-0">
+                                            <a target="_blank" href="https://www.instagram.com/bbtest.kz/" class="bb-home-social bb-home-social-instagram text-shadowed"><i class="fa fa-fw fa-instagram"></i></a>
+                                        </h4>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <h4 class="text-center mt-0 mb-0">
+                                            <a target="_blank" href="https://vk.com/bbtestkz" class="bb-home-social bb-home-social-vk text-shadowed"><i class="fa fa-fw fa-vk"></i></a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="bb-footer text-center text-bold pr-15 pl-15">
+        <ul class="list-inline mb-0">
+            <li><strong><a href="{% url 'bbtest:terms' %}">{% trans 'Terms' context 'Footer navigation link' %}</a></strong></li>
+            <li><strong><a href="{% url 'bbtest:contact_us' %}">{% trans 'Contact Us' context 'Footer navigation link' %}</a></strong></li>
+        </ul>
+    </div>
+    <div class="bb-copyright text-center">{% blocktrans with copyright_code='&copy;' %}_common.copyright:{{ copyright_code }}{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
+{% endblock %}
+
+{% block popup %}{% include 'popups/whatsapp.html' %}{% endblock %}
