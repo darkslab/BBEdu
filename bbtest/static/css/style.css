@@ -1544,25 +1544,25 @@ html {
 }
 
 
-.list-inline > li> strong > a:link {
+#nktfooter.list-inline > li> strong > a:link {
     color: rgb(244, 244, 244);
     background-color: transparent;
     text-decoration: none;
 }
 
-/* .list-inline > li> strong > a:visited {
+/* #nktfooter.list-inline > li> strong > a:visited {
     color: pink;
     background-color: transparent;
     text-decoration: none;
 } */
 
-.list-inline > li> strong > a:hover {
+#nktfooter.list-inline > li> strong > a:hover {
     /* color: red; */
     background-color: transparent;
     text-decoration: underline;
 }
 
-.list-inline > li> strong > a:active {
+#nktfooter.list-inline > li> strong > a:active {
     color: cyan;
     background-color: transparent;
     text-decoration: underline;
