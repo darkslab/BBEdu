@@ -9,7 +9,7 @@ BASE1_SOURCE_FILENAMES = (
 )
 BASE0_NKT_SOURCE_FILENAMES = (
     "css/font-awesome.css",
-    "css/jquery-ui.css",
+    "css/jquery-ui-1.13.2.css",
     # "css/bootstrap.css",
     # "css/katex.min.css",
 )
