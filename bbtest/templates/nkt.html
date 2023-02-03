@@ -180,14 +180,14 @@
         </div>
     </div>
 
-    <div class="row bg-secondary">
-        <div class="bb-footer- text-center text-bold pr-15 pl-15">
-            <ul class="list-inline mb-0">
+    <div class="row pb-3" style="background-color: #0a3c64;">
+        <div class="text-center text-white text-bold mt-3">
+            <ul class="list-inline">
                 <li><strong><a href="{% url 'bbtest:terms' %}">{% trans 'Terms' context 'Footer navigation link' %}</a></strong></li>
                 <li><strong><a href="{% url 'bbtest:contact_us' %}">{% trans 'Contact Us' context 'Footer navigation link' %}</a></strong></li>
             </ul>
         </div>
-        <div class="bb-copyright- text-center">{% blocktrans with copyright_code='&copy;' %}_common.copyright:{{ copyright_code }}{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
+        <div class="text-white text-center ">{% blocktrans with copyright_code='&copy;' %}_common.copyright:{{ copyright_code }}{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
     </div>
 
 </div>
