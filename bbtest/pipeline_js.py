@@ -111,5 +111,4 @@ BASE0_NKT_SOURCE_FILENAMES = (
     "js/script.js",
 
     "js/nkt-demo.js",
-    # "js/script.js",
 )
