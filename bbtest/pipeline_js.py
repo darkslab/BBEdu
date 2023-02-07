@@ -103,7 +103,7 @@ BASE3_SOURCE_FILENAMES = (
 )
 
 BASE0_NKT_SOURCE_FILENAMES = (
-    "js/jquery-ui.js",
+    # "js/jquery-ui.js",
     # "js/jquery-ui-1.13.2.js",
     "js/turbolinks.min.js",
     "js/js.cookie.js",
