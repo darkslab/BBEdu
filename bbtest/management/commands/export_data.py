@@ -13,12 +13,13 @@ from functools import lru_cache
 
 class Command(BaseCommand):
     help = '''export student data
-    scp darkhan@compact-102.bbtest.kz/BBEdu/export.xlsx ./export.xlsx
+    scp darkhan@compact-102.bbtest.kz:~/BBEdu/export.xlsx ./export.xlsx
     ''' 
 
     def add_arguments(self, parser):
         dt = timedelta(days=30)
-        option = ["SIMPLE", "FORMAT"]
+        option = ["SIMPLE", "FORMAT", "REGISTER"]
+        parser.add_argument('option', type=str, nargs='?', choices=option, default="FORMAT")
         parser.add_argument("start_date", nargs='?', 
                             default=datetime.now(tz=pytz.timezone('Asia/Almaty')) - dt, 
                             # type=datetime,
@@ -29,7 +30,7 @@ class Command(BaseCommand):
                             #  type=datetime
                              type=lambda d: datetime.strptime(d, '%Y-%m-%d')
                              )
-        parser.add_argument('option', type=str, nargs='?', choices=option, default="FORMAT")
+        
 
         # print(parser.parse_args(["-s", "2022-01-01"]))
 
@@ -65,6 +66,8 @@ class Command(BaseCommand):
                 self.simple_export(start_date, end_date, workbook)
             elif option == "FORMAT":
                 self.formatted_export(start_date, end_date, workbook)
+            elif option == "REGISTER":
+                self.register_export(start_date, end_date, workbook)
 
             workbook.close()
             end_queries = len(connection.queries)
@@ -286,3 +289,33 @@ class Command(BaseCommand):
         table = sorted(table, key=lambda tup: (tup[0],tup[1]) )
         return table
 
+
+    def register_export(self, start_date, end_date, workbook):
+        date_format = workbook.add_format({'num_format': 'dd-mm-yyyy hh:mm:ss', 'align': 'left'})
+        users = User.objects.filter(
+                                Q(joined_at__lte=end_date) & Q(joined_at__gte=start_date) & Q(is_superuser=False)
+                            ).iterator() 
+        
+        worksheet = workbook.add_worksheet("Users")
+        
+        if not users:  # empty response
+            return 
+        
+        worksheet.write_row(0, 0, ["username", "first_name", "last_name", "phone", "email", "joined_at", "last_login", "is_active", "meta_data"])
+
+        for i, user in enumerate(users):
+            username = user.username
+            first_name = user.first_name
+            last_name = user.last_name
+            phone = user.phone
+            email = user.email
+            joined_at = user.joined_at
+            last_login = user.last_login
+            is_active = user.is_active
+            meta_data = str(user.meta_data)
+
+
+            row = [username, first_name, last_name, phone, email, joined_at, last_login, is_active, meta_data]
+            worksheet.write_row(i+1, 0, row)
+            worksheet.write_datetime(i+1, 5, joined_at, date_format)
+            worksheet.write_datetime(i+1, 6, last_login, date_format)
