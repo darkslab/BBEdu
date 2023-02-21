@@ -2,7 +2,6 @@ import os
 import gzip
 from re import split
 from difflib import SequenceMatcher
-from django.utils._os import upath
 from django.utils.encoding import force_text
 from django.core.exceptions import FieldDoesNotExist, ValidationError
 from django.contrib.auth import password_validation
@@ -140,7 +139,7 @@ class UserAttributeSimilarityValidator:
 
 class CommonPasswordValidator:
     DEFAULT_PASSWORD_LIST_PATH = os.path.join(
-        os.path.dirname(os.path.realpath(upath(password_validation.__file__))),
+        os.path.dirname(os.path.realpath(password_validation.__file__)),
         "common-passwords.txt.gz",
     )
 
