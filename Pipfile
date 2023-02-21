@@ -11,6 +11,14 @@ django-pipeline = "*"
 django-recaptcha = "*"
 django-rq = "*"
 mysqlclient = "*"
+google-cloud = "*"
+google-api-python-client = "*"
+"google.cloud.storage" = "*"
+django-optimistic-lock = "*"
+pymemcache = "*"
+django-utils-six = "*"
+cryptography = "*"
+pillow = "*"
 
 [dev-packages]
 
