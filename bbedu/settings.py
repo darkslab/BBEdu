@@ -161,6 +161,8 @@ STATICFILES_FINDERS = [
     "pipeline.finders.PipelineFinder",
 ]
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 from bbtest.pipeline_js import (
     BASE0_SOURCE_FILENAMES as BASE0_SOURCE_FILENAMES_JS,
     BASE1_SOURCE_FILENAMES as BASE1_SOURCE_FILENAMES_JS,
