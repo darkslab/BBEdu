@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext as _, pgettext
+from django.utils.translation import gettext as _, pgettext
 from django.urls import reverse
 from django.core.cache import cache
 from json import loads
