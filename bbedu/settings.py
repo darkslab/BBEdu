@@ -372,7 +372,7 @@ BB_BASE_URL = SECRETS["BASE_URL"]
 
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.memcached.MemcachedCache",
+        "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
         "LOCATION": SECRETS["CACHES_DEFAULT_LOCATION"],
     }
 }
