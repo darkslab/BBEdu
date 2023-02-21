@@ -6,7 +6,7 @@ from uuid import uuid4
 from bbtest.auth.password_validation import password_validators_help_text_html
 from bbtest.models.shopping.items.credit import MAX_CREDIT_AMOUNT, MIN_CREDIT_AMOUNT
 from bbtest.models import REGIONS
-from django.utils.translation import pgettext_lazy, pgettext, ugettext_lazy
+from django.utils.translation import pgettext_lazy, pgettext, gettext_lazy
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
 
@@ -90,7 +90,7 @@ class BaseUserForm(ModelForm):
 
 class ExtendedBaseUserForm(BaseUserForm):
     error_messages = {
-        "recaptcha": ugettext_lazy("_common.validation.message_form.recaptcha"),
+        "recaptcha": gettext_lazy("_common.validation.message_form.recaptcha"),
     }
     identification = IntegerField(label=pgettext_lazy("Form label", "ID"), error_messages={
         "invalid": pgettext_lazy("Validation error", "Incorrect ID."),
