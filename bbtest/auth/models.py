@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db.models import CharField, EmailField, DateTimeField, BooleanField
 from django.core.exceptions import ValidationError
-from django.utils.translation import pgettext_lazy, ugettext_lazy
+from django.utils.translation import pgettext_lazy, gettext_lazy
 from django.urls import reverse
 from django.apps import apps
 from django.db.models import Q
@@ -12,21 +12,24 @@ from bbtest.models.fields import JSONField
 
 
 REGIONS = (
-    ( "",          ugettext_lazy("_common.regions.select")          ),
-    ( "akmola",    ugettext_lazy("_common.regions.names.akmola")    ),
-    ( "aktobe",    ugettext_lazy("_common.regions.names.aktobe")    ),
-    ( "almaty",    ugettext_lazy("_common.regions.names.almaty")    ),
-    ( "atyrau",    ugettext_lazy("_common.regions.names.atyrau")    ),
-    ( "west_kz",   ugettext_lazy("_common.regions.names.west_kz")   ),
-    ( "zhambyl",   ugettext_lazy("_common.regions.names.zhambyl")   ),
-    ( "karaganda", ugettext_lazy("_common.regions.names.karaganda") ),
-    ( "kostanai",  ugettext_lazy("_common.regions.names.kostanai")  ),
-    ( "kyzylorda", ugettext_lazy("_common.regions.names.kyzylorda") ),
-    ( "magistau",  ugettext_lazy("_common.regions.names.magistau")  ),
-    ( "pavlodar",  ugettext_lazy("_common.regions.names.pavlodar")  ),
-    ( "north_kz",  ugettext_lazy("_common.regions.names.north_kz")  ),
-    ( "turkestan", ugettext_lazy("_common.regions.names.turkestan") ),
-    ( "east_kz",   ugettext_lazy("_common.regions.names.east_kz")   ),
+    ( "",          gettext_lazy("_common.regions.select")          ),
+    ( "almaty",    gettext_lazy("_common.regions.names.almaty")    ),
+    ( "akmola",    gettext_lazy("_common.regions.names.akmola")    ),
+    ( "aktobe",    gettext_lazy("_common.regions.names.aktobe")    ),
+    ( "atyrau",    gettext_lazy("_common.regions.names.atyrau")    ),
+    ( "west_kz",   gettext_lazy("_common.regions.names.west_kz")   ),
+    ( "zhambyl",   gettext_lazy("_common.regions.names.zhambyl")   ),
+    ( "karaganda", gettext_lazy("_common.regions.names.karaganda") ),
+    ( "kostanai",  gettext_lazy("_common.regions.names.kostanai")  ),
+    ( "kyzylorda", gettext_lazy("_common.regions.names.kyzylorda") ),
+    ( "magistau",  gettext_lazy("_common.regions.names.magistau")  ),
+    ( "pavlodar",  gettext_lazy("_common.regions.names.pavlodar")  ),
+    ( "north_kz",  gettext_lazy("_common.regions.names.north_kz")  ),
+    ( "turkestan", gettext_lazy("_common.regions.names.turkestan") ),
+    ( "east_kz",   gettext_lazy("_common.regions.names.east_kz")   ),
+    ( "abai",      gettext_lazy("_common.regions.names.abai")      ),
+    ( "jetısu",    gettext_lazy("_common.regions.names.jetısu")    ),
+    ( "ulytau",    gettext_lazy("_common.regions.names.ulytau")    ),
 )
 
 

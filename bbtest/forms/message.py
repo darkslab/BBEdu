@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from django.utils.translation import pgettext_lazy, pgettext, ugettext_lazy
+from django.utils.translation import pgettext_lazy, pgettext, gettext_lazy
 from django.core.exceptions import ValidationError
 from django.conf import settings
 from requests import post
@@ -10,7 +10,7 @@ from bbtest.emails.message import send_mail
 
 class MessageForm(ModelForm):
     error_messages = {
-        "recaptcha": ugettext_lazy("_common.validation.message_form.recaptcha"),
+        "recaptcha": gettext_lazy("_common.validation.message_form.recaptcha"),
     }
 
     class Meta:
