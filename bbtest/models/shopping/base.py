@@ -1,6 +1,6 @@
 from django.db.models import (
     Model, ForeignKey, CASCADE,
-    DecimalField, DateTimeField, NullBooleanField, CharField, IntegerField, BooleanField,
+    DecimalField, DateTimeField, CharField, IntegerField, BooleanField,
 )
 from django.contrib.auth import get_user_model
 from django.utils.translation import pgettext_lazy
@@ -18,7 +18,7 @@ class Cart(VersionedMixin, Model):
     discount      = DecimalField      ( pgettext_lazy("Model field", "discount"),     max_digits=16, decimal_places=2,                                                  )
     created_at    = DateTimeField     ( pgettext_lazy("Model field", "created at"),   auto_now_add=True,                                      db_index=True,            )
     updated_at    = DateTimeField     ( pgettext_lazy("Model field", "updated at"),   auto_now=True,                                          db_index=True,            )
-    is_current    = NullBooleanField  ( pgettext_lazy("Model field", "is current?"),                                                          db_index=True,            )
+    is_current    = BooleanField      ( pgettext_lazy("Model field", "is current?"),                                                          db_index=True,            )
     completed_at  = DateTimeField     ( pgettext_lazy("Model field", "completed at"),                                  null=True, blank=True, db_index=True,            )
 
     transactions  = GenericRelation("Transaction", related_query_name="cart")
@@ -73,7 +73,7 @@ class Transaction(Model):
     payment_processor_class  = CharField          ( pgettext_lazy("Model field", "payment processor class"), max_length=100,                  db_index=True, )
     meta_data                = JSONField          ( pgettext_lazy("Model field", "meta data"),                                                               )
     amount                   = DecimalField       ( pgettext_lazy("Model field", "amount"),                  max_digits=16, decimal_places=2,                )
-    is_complete              = BooleanField       ( pgettext_lazy("Model field", "is complete?"),                                             db_index=True, )
+    is_complete              = BooleanField       ( pgettext_lazy("Model field", "is complete?"),            null=True,                       db_index=True, )
     created_at               = DateTimeField      ( pgettext_lazy("Model field", "created at"),              auto_now_add=True,               db_index=True, )
     updated_at               = DateTimeField      ( pgettext_lazy("Model field", "updated at"),              auto_now=True,                   db_index=True, )
 

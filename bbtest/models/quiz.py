@@ -1,6 +1,6 @@
 from django.db.models import (
     Model, ForeignKey, CASCADE,
-    NullBooleanField, DateTimeField, PositiveSmallIntegerField, BooleanField,
+    DateTimeField, PositiveSmallIntegerField, BooleanField,
 )
 from django.contrib.auth import get_user_model
 from django.utils.translation import pgettext_lazy
@@ -17,7 +17,7 @@ class QuizSet(VersionedMixin, Model):
     cart         = ForeignKey  ( Cart,             on_delete=CASCADE, related_name="quiz_sets", )
 
     lock_version  = VersionField      ( pgettext_lazy("Model field", "lock version"),                                                 default=0, )
-    is_current    = NullBooleanField  ( pgettext_lazy("Model field", "is current?"),                     default=True, db_index=True,            )
+    is_current    = BooleanField      ( pgettext_lazy("Model field", "is current?"),      default=True, db_index=True, null=True,                )
     created_at    = DateTimeField     ( pgettext_lazy("Model field", "created at"),   auto_now_add=True,                                         )
     updated_at    = DateTimeField     ( pgettext_lazy("Model field", "updated at"),   auto_now=True,                                             )
 
