@@ -3,58 +3,58 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 
 
 def add_unt_sections_taxonomies_topics(apps, schema_editor):
     domain = apps.get_model('bbtest', 'TestDomain').objects.get(id=7912)
     sections = {
-        ugettext_noop("Numeracy"): [
+        gettext_noop("Numeracy"): [
             2400,
             20,
             10,
-            [ugettext_noop("Application"),
-             ugettext_noop("Analysis"),
-             ugettext_noop("Synthesis"),
-             ugettext_noop("Mixed problems")],
-            [ugettext_noop("Quantitative"),
-             ugettext_noop("Indeterminancy"),
-             ugettext_noop("Changes and dependencies"),
-             ugettext_noop("Space and shape")],
+            [gettext_noop("Application"),
+             gettext_noop("Analysis"),
+             gettext_noop("Synthesis"),
+             gettext_noop("Mixed problems")],
+            [gettext_noop("Quantitative"),
+             gettext_noop("Indeterminancy"),
+             gettext_noop("Changes and dependencies"),
+             gettext_noop("Space and shape")],
             2
         ],
 
-        ugettext_noop("Literacy"): [
+        gettext_noop("Literacy"): [
             2400,
             20,
             10,
             [],
-            [ugettext_noop("Human and environment"),
-             ugettext_noop("Education and science"),
-             ugettext_noop("Cities and countries"),
-             ugettext_noop("Social relationships"),
-             ugettext_noop("Nature")],
+            [gettext_noop("Human and environment"),
+             gettext_noop("Education and science"),
+             gettext_noop("Cities and countries"),
+             gettext_noop("Social relationships"),
+             gettext_noop("Nature")],
             1
         ],
 
-        ugettext_noop("History of Kazakhstan"): [
+        gettext_noop("History of Kazakhstan"): [
             2400,
             20,
             10,
             [],
-            [ugettext_noop("Stone and bronze epoch"),
-             ugettext_noop("Kazakhstan in iron epoch"),
-             ugettext_noop("The states of the early and developed Middle Ages (VI-beg. XIII cc)"),
-             ugettext_noop("Culture (VI-XVII centuries)"),
-             ugettext_noop("Kazakhstan in the XIII-XVII centuries"),
-             ugettext_noop("Socio-economic position of Kazakhstan in the XIII-XVII centuries"),
-             ugettext_noop("Socio-economic development of Kazakhstan in the XVIII-XIX centuries"),
-             ugettext_noop("Socio-political development of Kazakhstan in the XVIII-XIX centuries"),
-             ugettext_noop("Kazakhstan in the first half of XX century"),
-             ugettext_noop("Culture of Kazakhstan XVIII-XX centuries"),
-             ugettext_noop("Kazakhstan in the 50-80-ies. XX century"),
-             ugettext_noop("Independent Kazakhstan"),
-             ugettext_noop("History in documents")],
+            [gettext_noop("Stone and bronze epoch"),
+             gettext_noop("Kazakhstan in iron epoch"),
+             gettext_noop("The states of the early and developed Middle Ages (VI-beg. XIII cc)"),
+             gettext_noop("Culture (VI-XVII centuries)"),
+             gettext_noop("Kazakhstan in the XIII-XVII centuries"),
+             gettext_noop("Socio-economic position of Kazakhstan in the XIII-XVII centuries"),
+             gettext_noop("Socio-economic development of Kazakhstan in the XVIII-XIX centuries"),
+             gettext_noop("Socio-political development of Kazakhstan in the XVIII-XIX centuries"),
+             gettext_noop("Kazakhstan in the first half of XX century"),
+             gettext_noop("Culture of Kazakhstan XVIII-XX centuries"),
+             gettext_noop("Kazakhstan in the 50-80-ies. XX century"),
+             gettext_noop("Independent Kazakhstan"),
+             gettext_noop("History in documents")],
             0
         ]
     }

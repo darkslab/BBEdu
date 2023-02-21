@@ -3,14 +3,14 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 
 
 def fix_core_sections_ordering(apps, schema_editor):
     sections = {
-        ugettext_noop("Numeracy"): 0,
-        ugettext_noop("Literacy"): 1,
-        ugettext_noop("History of Kazakhstan"): 2,
+        gettext_noop("Numeracy"): 0,
+        gettext_noop("Literacy"): 1,
+        gettext_noop("History of Kazakhstan"): 2,
     }
     for (section_name, section_order) in (sections.items()):
         section = apps.get_model('bbtest', 'TestSection').objects.get(name=section_name)

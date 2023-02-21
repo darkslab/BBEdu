@@ -3,18 +3,18 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 from bbtest.models import Account
 
 def add_proftest_test_domain(apps, schema_editor):
     domain = apps.get_model("bbtest", "TestDomain").objects.create(
         id=7916,
-        name=ugettext_noop("_common.domains.proftest"),
+        name=gettext_noop("_common.domains.proftest"),
         order=5,
     )
     section = apps.get_model("bbtest", "TestSection").objects.create(
         id=9566,
-        name=ugettext_noop("_common.section.prof_test"),
+        name=gettext_noop("_common.section.prof_test"),
         duration=3600,
         question_count=42,
         order=1,

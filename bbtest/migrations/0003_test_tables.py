@@ -7,7 +7,7 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 from django.db import connection
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 
 
 def set_auto_increment_values(apps, schema_editor):
@@ -33,59 +33,59 @@ def set_auto_increment_values(apps, schema_editor):
 def seed_initial_values(apps, schema_editor):
     taxonomies = []
     for taxonomy_name in (
-        ugettext_noop("Knowledge"),
-        ugettext_noop("Application"),
+        gettext_noop("Knowledge"),
+        gettext_noop("Application"),
 
-        ugettext_noop("Meaning"),
-        ugettext_noop("Communication"),
-        ugettext_noop("Structure"),
+        gettext_noop("Meaning"),
+        gettext_noop("Communication"),
+        gettext_noop("Structure"),
     ):
         taxonomies.append(apps.get_model("bbtest", "TestTaxonomy").objects.create(name=taxonomy_name))
 
     topics = []
     for topic_name in (
-        ugettext_noop("Ratios and Proportions"),
-        ugettext_noop("Rational Numbers"),
-        ugettext_noop("Modulus"),
-        ugettext_noop("Linear Equations and Inequalities"),
-        ugettext_noop("Factorization"),
-        ugettext_noop("Division"),
-        ugettext_noop("Percents"),
-        ugettext_noop("Geometry"),
+        gettext_noop("Ratios and Proportions"),
+        gettext_noop("Rational Numbers"),
+        gettext_noop("Modulus"),
+        gettext_noop("Linear Equations and Inequalities"),
+        gettext_noop("Factorization"),
+        gettext_noop("Division"),
+        gettext_noop("Percents"),
+        gettext_noop("Geometry"),
 
-        ugettext_noop("Algebraic Operations and Analysis"),
-        ugettext_noop("Numbers and Decimal Arithmetic Operations"),
-        ugettext_noop("Numbers and Fractional Arithmetic Operations"),
-        ugettext_noop("Measurement Units and Data"),
-        # ugettext_noop("Geometry"),
-        # ugettext_noop("Ratios and Proportions"),
-        ugettext_noop("Notation"),
-        ugettext_noop("Expressions and Equations"),
-        ugettext_noop("Functions"),
-        ugettext_noop("Modeling"),
-        ugettext_noop("Scores"),
-        ugettext_noop("Sequence Rules"),
-        ugettext_noop("Statistics"),
-        ugettext_noop("Combinatorics"),
+        gettext_noop("Algebraic Operations and Analysis"),
+        gettext_noop("Numbers and Decimal Arithmetic Operations"),
+        gettext_noop("Numbers and Fractional Arithmetic Operations"),
+        gettext_noop("Measurement Units and Data"),
+        # gettext_noop("Geometry"),
+        # gettext_noop("Ratios and Proportions"),
+        gettext_noop("Notation"),
+        gettext_noop("Expressions and Equations"),
+        gettext_noop("Functions"),
+        gettext_noop("Modeling"),
+        gettext_noop("Scores"),
+        gettext_noop("Sequence Rules"),
+        gettext_noop("Statistics"),
+        gettext_noop("Combinatorics"),
 
-        ugettext_noop("People"),
-        ugettext_noop("Animals"),
-        ugettext_noop("Nature"),
-        ugettext_noop("Weather"),
-        ugettext_noop("Food"),
-        ugettext_noop("Science"),
-        ugettext_noop("Education"),
-        ugettext_noop("History"),
-        ugettext_noop("Ethics"),
-        ugettext_noop("Sports"),
-        ugettext_noop("Art"),
-        ugettext_noop("Health"),
-        ugettext_noop("Traditions"),
-        ugettext_noop("Upbringing"),
-        ugettext_noop("Culture"),
-        ugettext_noop("Hobby"),
-        ugettext_noop("Ecology"),
-        ugettext_noop("Fables and Fairy Tales"),
+        gettext_noop("People"),
+        gettext_noop("Animals"),
+        gettext_noop("Nature"),
+        gettext_noop("Weather"),
+        gettext_noop("Food"),
+        gettext_noop("Science"),
+        gettext_noop("Education"),
+        gettext_noop("History"),
+        gettext_noop("Ethics"),
+        gettext_noop("Sports"),
+        gettext_noop("Art"),
+        gettext_noop("Health"),
+        gettext_noop("Traditions"),
+        gettext_noop("Upbringing"),
+        gettext_noop("Culture"),
+        gettext_noop("Hobby"),
+        gettext_noop("Ecology"),
+        gettext_noop("Fables and Fairy Tales"),
     ):
         topics.append(apps.get_model("bbtest", "TestTopic").objects.create(name=topic_name))
 
@@ -94,7 +94,7 @@ def seed_initial_values(apps, schema_editor):
     section_order = 0
 
     section = apps.get_model("bbtest", "TestSection").objects.create(
-        name=ugettext_noop("Mathematics"),
+        name=gettext_noop("Mathematics"),
         duration=3600,
         question_count=40,
         question_weight=10,
@@ -108,9 +108,9 @@ def seed_initial_values(apps, schema_editor):
     section_order += 1
 
     for section_name in (
-        ugettext_noop("Kazakh Language"),
-        ugettext_noop("Russian Language"),
-        ugettext_noop("English Language"),
+        gettext_noop("Kazakh Language"),
+        gettext_noop("Russian Language"),
+        gettext_noop("English Language"),
     ):
         section = apps.get_model("bbtest", "TestSection").objects.create(
             name=section_name,
@@ -127,7 +127,7 @@ def seed_initial_values(apps, schema_editor):
         section_order += 1
 
     section = apps.get_model("bbtest", "TestSection").objects.create(
-        name=ugettext_noop("Quantitative"),
+        name=gettext_noop("Quantitative"),
         duration=1800,
         question_count=60,
         question_weight=10,

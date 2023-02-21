@@ -3,29 +3,29 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 
 
 def seed_law_data(apps, schema_editor):
     topics = []
     for topic_name in (
-        ugettext_noop("_common.topics.law.section0.topic0"),
-        ugettext_noop("_common.topics.law.section0.topic1"),
-        ugettext_noop("_common.topics.law.section0.topic2"),
-        ugettext_noop("_common.topics.law.section0.topic3"),
-        ugettext_noop("_common.topics.law.section0.topic4"),
-        ugettext_noop("_common.topics.law.section0.topic5"),
-        ugettext_noop("_common.topics.law.section0.topic6"),
-        ugettext_noop("_common.topics.law.section0.topic7"),
-        ugettext_noop("_common.topics.law.section0.topic8"),
-        ugettext_noop("_common.topics.law.section0.topic9"),
+        gettext_noop("_common.topics.law.section0.topic0"),
+        gettext_noop("_common.topics.law.section0.topic1"),
+        gettext_noop("_common.topics.law.section0.topic2"),
+        gettext_noop("_common.topics.law.section0.topic3"),
+        gettext_noop("_common.topics.law.section0.topic4"),
+        gettext_noop("_common.topics.law.section0.topic5"),
+        gettext_noop("_common.topics.law.section0.topic6"),
+        gettext_noop("_common.topics.law.section0.topic7"),
+        gettext_noop("_common.topics.law.section0.topic8"),
+        gettext_noop("_common.topics.law.section0.topic9"),
     ):
         topics.append(apps.get_model("bbtest", "TestTopic").objects.create(name=topic_name))
 
-    domain = apps.get_model("bbtest", "TestDomain").objects.create(name=ugettext_noop("_common.domains.law"), order=4)
+    domain = apps.get_model("bbtest", "TestDomain").objects.create(name=gettext_noop("_common.domains.law"), order=4)
     section_order = 0
     for section_name in (
-        ugettext_noop("_common.sections.law.section0"),
+        gettext_noop("_common.sections.law.section0"),
     ):
         section = apps.get_model("bbtest", "TestSection").objects.create(
             name=section_name,

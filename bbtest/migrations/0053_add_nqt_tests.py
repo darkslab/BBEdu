@@ -3,24 +3,24 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 
 
 def seed_nqt_data(apps, schema_editor):
     topics = []
     for topic_name in (
-        ugettext_noop("_common.topics.nqt.section00.topic0"),
-        ugettext_noop("_common.topics.nqt.section00.topic1"),
-        ugettext_noop("_common.topics.nqt.section00.topic2"),
-        ugettext_noop("_common.topics.nqt.section00.topic3"),
-        ugettext_noop("_common.topics.nqt.section00.topic4"),
+        gettext_noop("_common.topics.nqt.section00.topic0"),
+        gettext_noop("_common.topics.nqt.section00.topic1"),
+        gettext_noop("_common.topics.nqt.section00.topic2"),
+        gettext_noop("_common.topics.nqt.section00.topic3"),
+        gettext_noop("_common.topics.nqt.section00.topic4"),
     ):
         topics.append(apps.get_model("bbtest", "TestTopic").objects.create(name=topic_name))
 
-    domain = apps.get_model("bbtest", "TestDomain").objects.create(name=ugettext_noop("_common.domains.nqt"), order=3)
+    domain = apps.get_model("bbtest", "TestDomain").objects.create(name=gettext_noop("_common.domains.nqt"), order=3)
     section_order = 0
     for section_name in (
-        ugettext_noop("_common.sections.nqt.section00"),
+        gettext_noop("_common.sections.nqt.section00"),
     ):
         section = apps.get_model("bbtest", "TestSection").objects.create(
             name=section_name,

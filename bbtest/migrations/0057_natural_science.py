@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 from bbtest.models import TestSection, TestDomain, TestTopic
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 
 
 def add_natural_science_section(apps, schema_editor):
@@ -12,7 +12,7 @@ def add_natural_science_section(apps, schema_editor):
     domain = apps.get_model("bbtest", "TestDomain").objects.get(id=7911)  # NIS
     section = apps.get_model("bbtest", "TestSection").objects.create(
         id=9539,
-        name=ugettext_noop("Natural Science"),
+        name=gettext_noop("Natural Science"),
         duration=1800,
         question_count=20,
         order=5,
@@ -21,13 +21,13 @@ def add_natural_science_section(apps, schema_editor):
 
 
     for topic_order, topic_name in enumerate([
-        ugettext_noop("_common.topics.nis.9539.topic0"),
-        ugettext_noop("_common.topics.nis.9539.topic1"),
-        ugettext_noop("_common.topics.nis.9539.topic2"),
-        ugettext_noop("_common.topics.nis.9539.topic3"),
-        ugettext_noop("_common.topics.nis.9539.topic4"),
-        ugettext_noop("_common.topics.nis.9539.topic5"),
-        ugettext_noop("_common.topics.nis.9539.topic6")]
+        gettext_noop("_common.topics.nis.9539.topic0"),
+        gettext_noop("_common.topics.nis.9539.topic1"),
+        gettext_noop("_common.topics.nis.9539.topic2"),
+        gettext_noop("_common.topics.nis.9539.topic3"),
+        gettext_noop("_common.topics.nis.9539.topic4"),
+        gettext_noop("_common.topics.nis.9539.topic5"),
+        gettext_noop("_common.topics.nis.9539.topic6")]
     ):
         topic = apps.get_model("bbtest", "TestTopic").objects.create(name=topic_name)
         apps.get_model("bbtest", "TestTopicSection").objects.create(section=section, topic=topic, order=topic_order)

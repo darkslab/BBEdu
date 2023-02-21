@@ -3,12 +3,12 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 
 
 def i18nize_keys(apps, schema_editor):
-    apps.get_model("bbtest", "TestDomain").objects.filter(pk=7911).update(name=ugettext_noop("_common.domains.nis"))
-    apps.get_model("bbtest", "TestDomain").objects.filter(pk=7912).update(name=ugettext_noop("_common.domains.unt"))
+    apps.get_model("bbtest", "TestDomain").objects.filter(pk=7911).update(name=gettext_noop("_common.domains.nis"))
+    apps.get_model("bbtest", "TestDomain").objects.filter(pk=7912).update(name=gettext_noop("_common.domains.unt"))
 
 
 class Migration(migrations.Migration):

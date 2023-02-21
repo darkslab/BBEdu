@@ -3,19 +3,19 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 
 def add_nqt_topics(apps, schema_editor):
     topics = []
     for topic_name in (
-        ugettext_noop("_common.topics.nqt.section00.topic10"),
-        ugettext_noop("_common.topics.nqt.section00.topic11"),
-        ugettext_noop("_common.topics.nqt.section00.topic12"),
-        ugettext_noop("_common.topics.nqt.section00.topic13"),
-        ugettext_noop("_common.topics.nqt.section00.topic14"),
-        ugettext_noop("_common.topics.nqt.section00.topic15"),
-        ugettext_noop("_common.topics.nqt.section00.topic16"),
-        ugettext_noop("_common.topics.nqt.section00.topic17"),
+        gettext_noop("_common.topics.nqt.section00.topic10"),
+        gettext_noop("_common.topics.nqt.section00.topic11"),
+        gettext_noop("_common.topics.nqt.section00.topic12"),
+        gettext_noop("_common.topics.nqt.section00.topic13"),
+        gettext_noop("_common.topics.nqt.section00.topic14"),
+        gettext_noop("_common.topics.nqt.section00.topic15"),
+        gettext_noop("_common.topics.nqt.section00.topic16"),
+        gettext_noop("_common.topics.nqt.section00.topic17"),
     ):
         topics.append(apps.get_model("bbtest", "TestTopic").objects.update_or_create(name=topic_name))
 

@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 from django.conf import settings
 from bbtest.models import Test
 
@@ -50,54 +50,54 @@ def seed_nufypet_data(apps, schema_editor):
 
     topics = []
     for topic_name in (
-        ugettext_noop("_common.topics.nufypet.section0.topic0"),
-        ugettext_noop("_common.topics.nufypet.section0.topic1"),
-        ugettext_noop("_common.topics.nufypet.section0.topic2"),
-        ugettext_noop("_common.topics.nufypet.section0.topic3"),
+        gettext_noop("_common.topics.nufypet.section0.topic0"),
+        gettext_noop("_common.topics.nufypet.section0.topic1"),
+        gettext_noop("_common.topics.nufypet.section0.topic2"),
+        gettext_noop("_common.topics.nufypet.section0.topic3"),
 
-        ugettext_noop("_common.topics.nufypet.section1.topic0"),
-        ugettext_noop("_common.topics.nufypet.section1.topic1"),
-        ugettext_noop("_common.topics.nufypet.section1.topic2"),
-        ugettext_noop("_common.topics.nufypet.section1.topic3"),
-        ugettext_noop("_common.topics.nufypet.section1.topic4"),
-        ugettext_noop("_common.topics.nufypet.section1.topic5"),
+        gettext_noop("_common.topics.nufypet.section1.topic0"),
+        gettext_noop("_common.topics.nufypet.section1.topic1"),
+        gettext_noop("_common.topics.nufypet.section1.topic2"),
+        gettext_noop("_common.topics.nufypet.section1.topic3"),
+        gettext_noop("_common.topics.nufypet.section1.topic4"),
+        gettext_noop("_common.topics.nufypet.section1.topic5"),
 
-        ugettext_noop("_common.topics.nufypet.section2.topic00"),
-        ugettext_noop("_common.topics.nufypet.section2.topic01"),
-        ugettext_noop("_common.topics.nufypet.section2.topic02"),
-        ugettext_noop("_common.topics.nufypet.section2.topic03"),
-        ugettext_noop("_common.topics.nufypet.section2.topic04"),
-        ugettext_noop("_common.topics.nufypet.section2.topic05"),
-        ugettext_noop("_common.topics.nufypet.section2.topic06"),
-        ugettext_noop("_common.topics.nufypet.section2.topic07"),
-        ugettext_noop("_common.topics.nufypet.section2.topic08"),
-        ugettext_noop("_common.topics.nufypet.section2.topic09"),
-        ugettext_noop("_common.topics.nufypet.section2.topic10"),
-        ugettext_noop("_common.topics.nufypet.section2.topic11"),
-        ugettext_noop("_common.topics.nufypet.section2.topic12"),
-        ugettext_noop("_common.topics.nufypet.section2.topic13"),
-        ugettext_noop("_common.topics.nufypet.section2.topic14"),
-        ugettext_noop("_common.topics.nufypet.section2.topic15"),
-        ugettext_noop("_common.topics.nufypet.section2.topic16"),
-        ugettext_noop("_common.topics.nufypet.section2.topic17"),
-        ugettext_noop("_common.topics.nufypet.section2.topic18"),
-        ugettext_noop("_common.topics.nufypet.section2.topic19"),
-        ugettext_noop("_common.topics.nufypet.section2.topic20"),
-        ugettext_noop("_common.topics.nufypet.section2.topic21"),
-        ugettext_noop("_common.topics.nufypet.section2.topic22"),
+        gettext_noop("_common.topics.nufypet.section2.topic00"),
+        gettext_noop("_common.topics.nufypet.section2.topic01"),
+        gettext_noop("_common.topics.nufypet.section2.topic02"),
+        gettext_noop("_common.topics.nufypet.section2.topic03"),
+        gettext_noop("_common.topics.nufypet.section2.topic04"),
+        gettext_noop("_common.topics.nufypet.section2.topic05"),
+        gettext_noop("_common.topics.nufypet.section2.topic06"),
+        gettext_noop("_common.topics.nufypet.section2.topic07"),
+        gettext_noop("_common.topics.nufypet.section2.topic08"),
+        gettext_noop("_common.topics.nufypet.section2.topic09"),
+        gettext_noop("_common.topics.nufypet.section2.topic10"),
+        gettext_noop("_common.topics.nufypet.section2.topic11"),
+        gettext_noop("_common.topics.nufypet.section2.topic12"),
+        gettext_noop("_common.topics.nufypet.section2.topic13"),
+        gettext_noop("_common.topics.nufypet.section2.topic14"),
+        gettext_noop("_common.topics.nufypet.section2.topic15"),
+        gettext_noop("_common.topics.nufypet.section2.topic16"),
+        gettext_noop("_common.topics.nufypet.section2.topic17"),
+        gettext_noop("_common.topics.nufypet.section2.topic18"),
+        gettext_noop("_common.topics.nufypet.section2.topic19"),
+        gettext_noop("_common.topics.nufypet.section2.topic20"),
+        gettext_noop("_common.topics.nufypet.section2.topic21"),
+        gettext_noop("_common.topics.nufypet.section2.topic22"),
 
-        ugettext_noop("_common.topics.nufypet.section3.topic0"),
-        ugettext_noop("_common.topics.nufypet.section3.topic1"),
+        gettext_noop("_common.topics.nufypet.section3.topic0"),
+        gettext_noop("_common.topics.nufypet.section3.topic1"),
     ):
         topics.append(apps.get_model("bbtest", "TestTopic").objects.create(name=topic_name))
 
-    domain = apps.get_model("bbtest", "TestDomain").objects.create(name=ugettext_noop("_common.domains.nufypet"), order=2)
+    domain = apps.get_model("bbtest", "TestDomain").objects.create(name=gettext_noop("_common.domains.nufypet"), order=2)
     section_order = 0
     for section_name in (
-        ugettext_noop("_common.sections.nufypet.section0"),
-        ugettext_noop("_common.sections.nufypet.section1"),
-        ugettext_noop("_common.sections.nufypet.section2"),
-        ugettext_noop("_common.sections.nufypet.section3"),
+        gettext_noop("_common.sections.nufypet.section0"),
+        gettext_noop("_common.sections.nufypet.section1"),
+        gettext_noop("_common.sections.nufypet.section2"),
+        gettext_noop("_common.sections.nufypet.section3"),
     ):
         section = apps.get_model("bbtest", "TestSection").objects.create(
             name=section_name,

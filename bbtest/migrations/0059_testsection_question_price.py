@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 # from bbtest.models import TestSection
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 
 
 def set_section_default_price(apps, schema_editor):
