@@ -18,7 +18,7 @@ class Cart(VersionedMixin, Model):
     discount      = DecimalField      ( pgettext_lazy("Model field", "discount"),     max_digits=16, decimal_places=2,                                                  )
     created_at    = DateTimeField     ( pgettext_lazy("Model field", "created at"),   auto_now_add=True,                                      db_index=True,            )
     updated_at    = DateTimeField     ( pgettext_lazy("Model field", "updated at"),   auto_now=True,                                          db_index=True,            )
-    is_current    = BooleanField      ( pgettext_lazy("Model field", "is current?"),                                                          db_index=True,            )
+    is_current    = BooleanField      ( pgettext_lazy("Model field", "is current?"),  null=True,                                              db_index=True,            )
     completed_at  = DateTimeField     ( pgettext_lazy("Model field", "completed at"),                                  null=True, blank=True, db_index=True,            )
 
     transactions  = GenericRelation("Transaction", related_query_name="cart")
