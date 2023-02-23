@@ -148,7 +148,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+USE_DEPRECATED_PYTZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -377,7 +377,7 @@ BB_BASE_URL = SECRETS["BASE_URL"]
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
-        "LOCATION": SECRETS["CACHES_DEFAULT_LOCATION"],
+        "LOCATION": os.environ['CACHES_DEFAULT_LOCATION'], # SECRETS["CACHES_DEFAULT_LOCATION"],
     }
 }
 
