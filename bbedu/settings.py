@@ -16,7 +16,8 @@ from json import load
 from re import match
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR_PATH = Path(BASE_DIR).resolve()
 
 SECRETS = {}
@@ -41,7 +42,7 @@ DEBUG = SECRETS["DEBUG"]
 STAGING = SECRETS["STAGING"]
 
 ALLOWED_HOSTS = SECRETS["ALLOWED_HOSTS"]
-
+LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -75,7 +76,7 @@ ROOT_URLCONF = 'bbedu.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,10 +99,11 @@ WSGI_APPLICATION = 'bbedu.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.mysql",
-        "HOST": SECRETS["DATABASES_DEFAULT_HOST"],
-        "NAME": SECRETS["DATABASES_DEFAULT_NAME"],
-        "USER": SECRETS["DATABASES_DEFAULT_USER"],
-        "PASSWORD": SECRETS["DATABASES_DEFAULT_PASSWORD"],
+        "HOST": os.environ['DATABASES_DEFAULT_HOST'],  #SECRETS["DATABASES_DEFAULT_HOST"],
+        "PORT": 3306,
+        "NAME": os.environ['DATABASES_DEFAULT_NAME'],  # SECRETS["DATABASES_DEFAULT_NAME"],
+        "USER": os.environ['DATABASES_DEFAULT_USER'],  # SECRETS["DATABASES_DEFAULT_USER"],
+        "PASSWORD": os.environ['DATABASES_DEFAULT_PASSWORD'],  # SECRETS["DATABASES_DEFAULT_PASSWORD"],
     }
 }
 
