@@ -4,11 +4,70 @@ services:
     build:
       context: .
       dockerfile: ./dockerfile.django.dev
-    command: python # manage.py runserver localhost:8000
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: tail -f /dev/null
+    environment:
+      DATABASES_DEFAULT_PASSWORD: -
+      DATABASES_DEFAULT_USER: root
+      DATABASES_DEFAULT_HOST: db
+      DATABASES_DEFAULT_NAME: bbtest
+
+      CACHES_DEFAULT_LOCATION: memcached:11211
     ports:
         - 8000:8000
     volumes:
       - .:/home/ubuntu/BBEdu
+    depends_on:
+      db:
+        condition: service_healthy  # service_started
+      memcached:
+        condition: service_started 
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    # restart: always
+    environment:
+      MYSQL_DATABASE: bbtest
+      MYSQL_USER: ubuntu
+      MYSQL_PASSWORD: -
+      MYSQL_ROOT_PASSWORD: -
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - ../db:/var/lib/mysql
+      # - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    # entrypoint: ["tail", "-f", "/dev/null"]
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+
+  memcached:
+    image: 'memcached:latest'
+    expose:
+      - 11211
+
+
+  # redis_cache:
+  #   image: redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - 6379:6379
+  #   command: redis-server   # --save 20 1 --loglevel warning
+  #   volumes: 
+  #     - redis_cache:/data
+
+volumes:
+  web:
+  db:
+  # redis_cache:
+  #   driver: local
+    
+
 
 # volumes:
 #   # Just specify a path and let the Engine create a volume

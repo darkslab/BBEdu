@@ -17,17 +17,18 @@ RUN apt-get update
 # Set as default user
 ENV DEBIAN_FRONTEND teletype
 ENV PATH "$PATH:/home/ubuntu/.local/bin"
-# RUN pip install pipenv
+RUN pip install pipenv
 # set work directory
 WORKDIR /home/ubuntu/BBEdu
 # copy project
-# COPY ./Pipfile.lock ./Pipfile.lock
-# COPY ./Pipfile ./Pipfile
+COPY ./Pipfile.lock ./Pipfile.lock
+COPY ./Pipfile ./Pipfile
 
 # install dependencies --ignore-pipfile --deploy --system  
-# RUN pipenv install --deploy --system  
-# COPY ./entrypoint.sh ./entrypoint.sh
+RUN pipenv install --deploy --system --ignore-pipfile 
+# RUN pipenv install 
+COPY ./entrypoint_django.sh ./entrypoint.sh
 COPY . .
 
-# ENTRYPOINT ["bash", "/usr/src/app/entrypoint.sh"]
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["bash", "./entrypoint_django.sh"]
+# ENTRYPOINT ["tail", "-f", "/dev/null"]
