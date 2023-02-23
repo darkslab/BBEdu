@@ -20,6 +20,7 @@ django-utils-six = "*"
 cryptography = "*"
 pillow = "*"
 pytz = "*"
+django-split-settings = "*"
 
 [dev-packages]
 

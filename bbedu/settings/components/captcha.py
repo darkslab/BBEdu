@@ -1,0 +1,10 @@
+from bbedu.settings.components.common import SECRETS
+
+RECAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify"
+RECAPTCHA_SITE_KEY = SECRETS["RECAPTCHA_SITE_KEY"]
+RECAPTCHA_SECRET_KEY = SECRETS["RECAPTCHA_SECRET_KEY"]
+
+RECAPTCHA_PUBLIC_KEY = SECRETS["RECAPTCHA_SITE_KEY"]
+RECAPTCHA_PRIVATE_KEY = SECRETS["RECAPTCHA_SECRET_KEY"]
+# RECAPTCHA_DOMAIN = 'www.bbtest.kz'
+# SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
