@@ -40,9 +40,9 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequir
 
     def get_context_data(self, **kwargs):
         kwargs["nis"] = TestDomain.objects.get(pk=7911)
-        kwargs["unt"] = TestDomain.objects.get(pk=7912)
-        kwargs["nufypet"] = TestDomain.objects.get(pk=7913)
-        kwargs["law"] = TestDomain.objects.get(pk=7915)
+        # kwargs["unt"] = TestDomain.objects.get(pk=7912)
+        # kwargs["nufypet"] = TestDomain.objects.get(pk=7913)
+        # kwargs["law"] = TestDomain.objects.get(pk=7915)
 
         return super().get_context_data(**kwargs)
 
@@ -52,13 +52,12 @@ class BuyTestsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequiredMixi
 
     def get_context_data(self, **kwargs):
         kwargs["test_domain"] = get_test_domain_or_404(self.kwargs["test_domain_id"])
-        kwargs["test_domain_sections"] = kwargs["test_domain"].sections.filter(pk__in=(9543, 9544, 9566, 9567)).all()
+        kwargs["test_domain_sections"] = kwargs["test_domain"].sections.all()
         for section in kwargs["test_domain_sections"]:
             section.minutes = section.duration // 60
 
         kwargs["test_langs"] = None
-        if kwargs["test_domain"].pk != 7913:
-            kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
+        kwargs["test_langs"] = [ test_lang for test_lang in Test.LANGUAGES if test_lang[0] != Test.LANGUAGE_XX ]
 
         return super().get_context_data(**kwargs)
 
