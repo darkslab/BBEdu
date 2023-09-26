@@ -6,10 +6,10 @@
         "build": "./node_modules/.bin/babel bbtest/jsx -d bbtest/static/js/react"
     },
     "devDependencies": {
-        "babel-cli": "=6.26.0",
-        "babel-plugin-transform-object-rest-spread": "=6.26.0",
-        "babel-polyfill": "=6.26.0",
-        "babel-preset-env": "=1.6.1",
-        "babel-preset-react": "=6.24.1"
+        "@babel/cli": "^7.23.0",
+        "@babel/core": "^7.23.0",
+        "@babel/plugin-transform-object-rest-spread": "^7.22.15",
+        "@babel/preset-env": "^7.22.20",
+        "@babel/preset-react": "^7.22.15"
     }
 }
