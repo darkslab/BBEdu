@@ -14,6 +14,7 @@ def add_iac_test_domain(apps, schema_editor):
     )
 
     section = apps.get_model("bbtest", "TestSection").objects.create(
+        id = 9540,
         name = "Generic Test",
         duration = 120,
         question_count = 30,
