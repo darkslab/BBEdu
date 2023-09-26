@@ -226,6 +226,18 @@ html {
     min-height: 780px;  /* increase this if need more space */
 }
 
+.bb-grid {
+    background-color: #e5e5f7;
+    /* --grid-blue: rgba(68, 76, 247, 0.1); */
+    --grid-blue: rgba(10, 58, 16, 0.03);
+    background-image:  linear-gradient(var(--grid-blue) 2px, transparent 2px), 
+        linear-gradient(90deg, var(--grid-blue)2px, transparent 2px), 
+        linear-gradient(var(--grid-blue) 1px, transparent 1px), 
+        linear-gradient(90deg, var(--grid-blue) 1px, #e5e5f7 1px);
+    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
 .bb-min-220 {
     min-height: 220px;
 }
@@ -242,15 +254,22 @@ html {
 }
 
 .bb-container-student {
-    background-color: rgba(10, 60, 100, 1);
+    /* background-color: rgba(40, 100, 90, 1);  */
+    background-color: #103b00;
+    background-image: url("https://www.transparenttextures.com/patterns/project-paper.png");
 }
 
+
 .bb-container-developer {
-    background-color: rgba(40, 100, 90, 1);
+    /* background-color: rgba(40, 100, 90, 1); */
+    background-color: #103b00;
+    background-image: url("https://www.transparenttextures.com/patterns/wave-grid.png");
 }
 
 .bb-container-super {
-    background-color: #175676;
+    /* background-color: rgba(40, 100, 90, 1); */
+    background-color: #103b00;
+    background-image: url("https://www.transparenttextures.com/patterns/wave-grid.png");
 }
 
 .bb-overlay {
@@ -1427,3 +1446,5 @@ html {
     width: 40px;
     border-radius: 50%;
 }
+
+
