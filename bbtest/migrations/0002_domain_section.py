@@ -7,11 +7,20 @@ from django.utils.translation import ugettext_noop
 
 
 def add_iac_test_domain(apps, schema_editor):
-    apps.get_model("bbtest", "TestDomain").objects.create(
-        id=9610,
+    domain = apps.get_model("bbtest", "TestDomain").objects.create(
+        id=7911,
         name="IAC",
         order=1,
     )
+
+    section = apps.get_model("bbtest", "TestSection").objects.create(
+        name = "Generic Test",
+        duration = 120,
+        question_count = 30,
+        order = 1,
+        domain = domain
+    )
+
 
 
 class Migration(migrations.Migration):
