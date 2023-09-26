@@ -49,7 +49,6 @@
                             <li class="{% block nav_super_export_data_class %}{% endblock %}"><a href="{% url 'bbtest:super_export_data' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Export Data' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_quizzes_class %}{% endblock %}"><a href="{% url 'bbtest:super_quizzes' %}"><i class="fa fa-fw fa-check-square-o"></i> {% trans 'All Quizzes' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
-                            <li class="{% block nav_super_trial_balance_class %}{% endblock %}"><a href="{% url 'bbtest:super_trial_balance' %}"><i class="fa fa-fw fa-dollar"></i> {% trans '_common.nav.trial_balance' %}</a></li>
                         {% elif perms.admin %}
                         {% elif perms.bbtest.developer %}
                             <li class="{% block nav_developer_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:developer_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
@@ -88,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="bb-main" data-bb-main>
+        <div class="bb-main  bb-grid" data-bb-main>
             <div class="bb-min container-fluid">
                 <div class="row bb-bar bb-bar-personalized">
                     <nav class="navbar navbar-inverse">
