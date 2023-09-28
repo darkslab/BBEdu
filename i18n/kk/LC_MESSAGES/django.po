@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-07 21:16+0600\n"
+"POT-Creation-Date: 2023-09-28 20:55+0600\n"
 "PO-Revision-Date: 2021-05-07 08:13-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -573,672 +573,6 @@ msgstr "Ескі құпиясөзді енгізіңіз."
 msgctxt "Validation error"
 msgid "Incorrect old password."
 msgstr "Ескі құпиясөз дұрыс емес."
-
-msgid "Knowledge"
-msgstr "Білім"
-
-msgid "Application"
-msgstr "Қолдану"
-
-msgid "Meaning"
-msgstr "Мағына"
-
-msgid "Communication"
-msgstr "Коммуникация"
-
-msgid "Structure"
-msgstr "Құрылым"
-
-msgid "Ratios and Proportions"
-msgstr "Қатынас және пропорция"
-
-msgid "Rational Numbers"
-msgstr "Рационалды сандар"
-
-msgid "Modulus"
-msgstr "Сан модулі"
-
-msgid "Linear Equations and Inequalities"
-msgstr "Сызықтық теңдеулер мен теңсіздіктер"
-
-msgid "Factorization"
-msgstr "Өрнектерді түрлендіру"
-
-msgid "Division"
-msgstr "Сандардың бөлінгіштігі"
-
-msgid "Percents"
-msgstr "Пайыз"
-
-msgid "Geometry"
-msgstr "Геометрия"
-
-msgid "Algebraic Operations and Analysis"
-msgstr "Алгебралық операциялар мен ойлау"
-
-msgid "Numbers and Decimal Arithmetic Operations"
-msgstr "Сандар және ондық санақ жүйесіндегі арифметикалық операциялар"
-
-msgid "Numbers and Fractional Arithmetic Operations"
-msgstr "Сандар және бөлшектермен арифметикалық операциялар"
-
-msgid "Measurement Units and Data"
-msgstr "Өлшеу бірліктері мен деректер"
-
-msgid "Notation"
-msgstr "Сандар жүйесі"
-
-msgid "Expressions and Equations"
-msgstr "Өрнек және теңдеулер"
-
-msgid "Functions"
-msgstr "Функциялар"
-
-msgid "Modeling"
-msgstr "Модельдеу"
-
-msgid "Scores"
-msgstr "Жиын"
-
-msgid "Sequence Rules"
-msgstr "Тізбектер заңдылығы"
-
-msgid "Statistics"
-msgstr "Статистика"
-
-msgid "Combinatorics"
-msgstr "Комбинаторика"
-
-msgid "People"
-msgstr "Адамдар"
-
-msgid "Animals"
-msgstr "Жануарлар"
-
-msgid "Nature"
-msgstr "Табиғат"
-
-msgid "Weather"
-msgstr "Ауа райы"
-
-msgid "Food"
-msgstr "Тамақ"
-
-msgid "Science"
-msgstr "Ғылым"
-
-msgid "Education"
-msgstr "Білім"
-
-msgid "History"
-msgstr "Тарих"
-
-msgid "Ethics"
-msgstr "Этика"
-
-msgid "Sports"
-msgstr "Спорт"
-
-msgid "Art"
-msgstr "Өнер"
-
-msgid "Health"
-msgstr "Денсаулық"
-
-msgid "Traditions"
-msgstr "Салт-дәстүр"
-
-msgid "Upbringing"
-msgstr "Тәрбие"
-
-msgid "Culture"
-msgstr "Мәдениет"
-
-msgid "Hobby"
-msgstr "Хобби"
-
-msgid "Ecology"
-msgstr "Экология"
-
-msgid "Fables and Fairy Tales"
-msgstr "Ертегілер"
-
-msgid "Mathematics"
-msgstr "Математика"
-
-msgid "Kazakh Language"
-msgstr "Қазақ тілі"
-
-msgid "Russian Language"
-msgstr "Орыс тілі"
-
-msgid "English Language"
-msgstr "Ағылшын тілі"
-
-msgid "Quantitative"
-msgstr "Сандық сипаттамалар"
-
-msgid "Numeracy"
-msgstr "Математикалық сауаттылық"
-
-msgid "Analysis"
-msgstr "Талдау"
-
-msgid "Synthesis"
-msgstr "Синтез"
-
-msgid "Mixed problems"
-msgstr "Қосылған сұрақтар"
-
-msgid "Indeterminancy"
-msgstr "Анықсыздық"
-
-msgid "Changes and dependencies"
-msgstr "Өзгерістер мен тәуелділіктер"
-
-msgid "Space and shape"
-msgstr "Кеңістік пен форма"
-
-msgid "Literacy"
-msgstr "Оқу сауаттылығы"
-
-msgid "Human and environment"
-msgstr "Адам және оның қоршаған ортасы"
-
-msgid "Education and science"
-msgstr "Білім және ғылым"
-
-msgid "Cities and countries"
-msgstr "Мемлекеттер мен қалалар"
-
-msgid "Social relationships"
-msgstr "Әлеуметтік қарым қатынас"
-
-msgid "History of Kazakhstan"
-msgstr "Қазақстан тарихы"
-
-msgid "Stone and bronze epoch"
-msgstr "Тас және қола дәуірі"
-
-msgid "Kazakhstan in iron epoch"
-msgstr "Темір дәуіріндегі Қазақстан"
-
-msgid "The states of the early and developed Middle Ages (VI-beg. XIII cc)"
-msgstr "Ерте және дамыған ортағасырдағы (VI-XIII ғғ.) Қазақстан"
-
-msgid "Culture (VI-XVII centuries)"
-msgstr "VI-XVII ғғ. мәдениеті"
-
-msgid "Kazakhstan in the XIII-XVII centuries"
-msgstr "XIII-XVII ғғ. Қазақстан"
-
-msgid "Socio-economic position of Kazakhstan in the XIII-XVII centuries"
-msgstr "XIII-XVII ғғ. Қазақстанның әлеуметтік-экономикалық дамуы"
-
-msgid "Socio-economic development of Kazakhstan in the XVIII-XIX centuries"
-msgstr "XVIII-XIX ғғ. Қазақстанның әлеуметтік-экономикалық дамуы"
-
-msgid "Socio-political development of Kazakhstan in the XVIII-XIX centuries"
-msgstr "XVIII-XIX ғғ. Қазақстанның қоғамдық-саяси дамуы"
-
-msgid "Kazakhstan in the first half of XX century"
-msgstr "XX ғ. бірінші жартығасырдағы Қазақстан"
-
-msgid "Culture of Kazakhstan XVIII-XX centuries"
-msgstr "XVIII-XX ғғ. Қазақстан мәдениеті"
-
-msgid "Kazakhstan in the 50-80-ies. XX century"
-msgstr "XX ғ. 50-80 жж. Қазақстан"
-
-msgid "Independent Kazakhstan"
-msgstr "Тәуелсіз Қазақстан"
-
-msgid "History in documents"
-msgstr "Құжаттардағы тарих"
-
-msgid "Arithmetic calculations. Transformations of expressions"
-msgstr "Арифметикалық есептеулер. Өрнектерді түрлендіру"
-
-msgid "Equations. Systems of equations. Formulation of equations"
-msgstr "Теңдеулер. Теңдеулер жүйесі. Теңдеулер құруға берілген мәселе есептер"
-
-msgid "Inequalities. Systems of inequalities"
-msgstr "Теңсіздіктер. Теңсіздіктер жүйесі"
-
-msgid "Functions. Derivatives. Integral"
-msgstr "Функция. Туынды. Интеграл"
-
-msgid "Planimetry"
-msgstr "Планиметрия"
-
-msgid "Stereometry"
-msgstr "Стереометрия"
-
-msgid "Sequences. Progression"
-msgstr "Тізбектер. Прогрессиялар"
-
-msgid "Physics"
-msgstr "Физика"
-
-msgid "Mechanics"
-msgstr "Механика"
-
-msgid "Molecular physics. Fundamentals of thermodynamics"
-msgstr "Молекулалық физика. Термодинамика негіздері"
-
-msgid "Electrodynamics"
-msgstr "Электродинамика"
-
-msgid "Optics"
-msgstr "Оптика"
-
-msgid "Quantum and Atomic Physics"
-msgstr "Кванттық және атомдық физика"
-
-msgid "Qualitative objectives"
-msgstr "Сапалық есептер"
-
-msgid "Chemistry"
-msgstr "Химия"
-
-msgid "General chemistry"
-msgstr "Жалпы химия"
-
-msgid "Inorganic chemistry"
-msgstr "Бейорганикалық химия"
-
-msgid "Organic chemistry"
-msgstr "Органикалық химия"
-
-msgid "Calculation problems: General chemistry"
-msgstr "Химия курсы бойынша есептер: Жалпы химия"
-
-msgid "Calculation problems: Inorganic chemistry"
-msgstr "Химия курсы бойынша есептер: Бейорганикалық химия"
-
-msgid "Calculation problems: Organic chemistry"
-msgstr "Химия курсы бойынша есептер: Органикалық химия"
-
-msgid "Biology"
-msgstr "Биология"
-
-msgid "Plants"
-msgstr "Өсімдіктер"
-
-msgid "Human Anatomy and Physiology"
-msgstr "Адам анатомиясы мен физиологиясы"
-
-msgid "Cytology, genetics, ecology"
-msgstr "Цитология, генетика, экология"
-
-msgid "Geography"
-msgstr "География"
-
-msgid "Physical Geography of the World"
-msgstr "Дүниежүзінің физикалық географиясы"
-
-msgid "Geography of Kazakhstan"
-msgstr "Қазақстан географиясы"
-
-msgid "Economic and social geography of the world"
-msgstr "Дүниежүзінің экономикалық және әлеуметтік географиясы"
-
-msgid "Geography course tasks"
-msgstr "География курсы бойынша тапсырмалар"
-
-msgid "Age of stone and bronze"
-msgstr "Тас және қола дәуірі"
-
-msgid "Kazakhstan in the Iron Age"
-msgstr "Темір дәуіріндегі Қазақстан"
-
-msgid "The states of the Ancient East. Ancient civilization"
-msgstr "Ежелгі Шығыс елдері. Антикалық өркениет"
-
-msgid ""
-"The Middle Ages (early V-X centuries, the flowering of the XI-XV centuries, "
-"later the XV-XVII centuries)"
-msgstr "Орта ғасырлар (ерте V-X ғғ., дамыған XI-XV ғғ., кейінгі XV-XVII ғғ.)"
-
-msgid ""
-"Culture of the ancient world (before the V century), medieval culture of "
-"peace (V - XVII centuries)"
-msgstr ""
-"Ежелгі дүние мәдениеті (V ғ. дейін), Орта ғасырлардағы дүние жүзі мәдениеті"
-
-msgid ""
-"Europe and North America, Countries of Asia and Africa (XVII - early XX "
-"centuries)"
-msgstr ""
-"Еуропа және Солтүстік Америка, Азия және Африка елдері (XVII ғ. - XX ғ. басы)"
-
-msgid ""
-"Culture of Europe, North America, Asia and Africa (XVIII century - the "
-"beginning of the XXI century)"
-msgstr ""
-"Еуропа және Солтүстік Америка, Азия және Африка елдерінің мәдениеті (XVIII "
-"ғ. - XXI ғ. басы)"
-
-msgid "International relations (XVII - beginning of the XXI centuries)"
-msgstr "Халықаралық қатынастар (XVII ғ. - XXI ғ. басы)"
-
-msgid "World Wars and Their Consequences"
-msgstr "Дүниежүзілік соғыстар және олардың салдары"
-
-msgid "The countries of Europe and America, Asia and Africa (1918-2014)"
-msgstr "Еуропа және Америка елдері, Азия және Африка елдері (1918-2014 жж.)"
-
-msgid "English"
-msgstr "Ағылшын тілі"
-
-msgid "Vocabulary and translation"
-msgstr "Лексика мен аударма"
-
-msgid "Spelling"
-msgstr "Орфография"
-
-msgid "Morphology"
-msgstr "Морфология"
-
-msgid "Syntax"
-msgstr "Синтаксис"
-
-msgid "Work with text"
-msgstr "Мәтінмен жұмыс"
-
-msgid "Country studies"
-msgstr "Елтану"
-
-msgid "French"
-msgstr "Француз тілі"
-
-msgid "Phonetics"
-msgstr "Фонетика"
-
-msgid "German"
-msgstr "Неміс тілі"
-
-msgid "Kazakh and literature"
-msgstr "Қазақ тілі және әдебиеті"
-
-msgid "Vocabulary"
-msgstr "Лексика"
-
-msgid "Word formation"
-msgstr "Сөзжасам"
-
-msgid "Punctuation. Stylistics. Culture of speech"
-msgstr "Пунктуация. Стилистика. Сөз мәдениеті"
-
-msgid "Ancient World Literature"
-msgstr "Ежелгі дүние әдебиеті"
-
-msgid "Oral literature"
-msgstr "Ауыз әдебиеті"
-
-msgid "Poetry of epos"
-msgstr "Жыраулар поэзиясы"
-
-msgid "XIX century literature"
-msgstr "ХІХ ғ. әдебиет"
-
-msgid "Literature in the first half of 20th century "
-msgstr "ХХ ғ. І жартысындағы әдебиет "
-
-msgid "Literature in the Great Patriotic War and later"
-msgstr "Ұлы Отан соғысындағы және одан кейінгі әдебиет"
-
-msgid "The theory of literature"
-msgstr "Әдебиет теориясы"
-
-msgid "Literature in II half of 20th century"
-msgstr "ХХ ғ. ІІ жартысындағы әдебиет"
-
-msgid "Russian and literature"
-msgstr "Орыс тілі және әдебиеті"
-
-msgid "Phonetics and spelling"
-msgstr "Фонетика мен орфография"
-
-msgid "Lexicology"
-msgstr "Лексика"
-
-msgid "Morphemistry and word formation"
-msgstr "Морфемика мен сөзжасам"
-
-msgid "Syntax and punctuation"
-msgstr "Синтаксис және пунктуация"
-
-msgid "Theory of Literature"
-msgstr "Әдебиет теориясы"
-
-msgid "Biography"
-msgstr "Биография"
-
-msgid "Literary criticism"
-msgstr "Literary criticism"
-
-msgid "The role of episodes"
-msgstr "The role of episodes"
-
-msgid "Cross-cutting themes"
-msgstr "Cross-cutting themes"
-
-msgid "Content of works"
-msgstr "Content of works"
-
-msgid "Human. Society. Law"
-msgstr "Адам. Қоғам. Құқық"
-
-msgid "Human in the world"
-msgstr "Адам әлемі"
-
-msgid "Social sphere of society"
-msgstr "Әлеуметтік сала"
-
-msgid "The economic sphere of society"
-msgstr "Экономикалық сала"
-
-msgid "Spiritual sphere of society"
-msgstr "Рухани өмір"
-
-msgid "Political Science and Politics"
-msgstr "Саясаттану негіздері"
-
-msgid "Constitutional law"
-msgstr "Конституциялық құқық"
-
-msgid "Introduction to Jurisprudence"
-msgstr "Заңға кіріспе"
-
-msgid "_common.topics.nufypet.section0.topic0"
-msgstr "Number"
-
-msgid "_common.topics.nufypet.section0.topic1"
-msgstr "Algebra"
-
-msgid "_common.topics.nufypet.section0.topic2"
-msgstr "Geometry"
-
-msgid "_common.topics.nufypet.section0.topic3"
-msgstr "Measures"
-
-msgid "_common.topics.nufypet.section1.topic0"
-msgstr "Electricity"
-
-msgid "_common.topics.nufypet.section1.topic1"
-msgstr "Motion and Energy"
-
-msgid "_common.topics.nufypet.section1.topic2"
-msgstr "Thermal Physics"
-
-msgid "_common.topics.nufypet.section1.topic3"
-msgstr "Waves"
-
-msgid "_common.topics.nufypet.section1.topic4"
-msgstr "Electromagnetic Spectrum"
-
-msgid "_common.topics.nufypet.section1.topic5"
-msgstr "Radioactivity"
-
-msgid "_common.topics.nufypet.section2.topic00"
-msgstr "Cells"
-
-msgid "_common.topics.nufypet.section2.topic01"
-msgstr "Movement across membranes"
-
-msgid "_common.topics.nufypet.section2.topic02"
-msgstr "Cell division and sex determination"
-
-msgid "_common.topics.nufypet.section2.topic03"
-msgstr "Inheritance"
-
-msgid "_common.topics.nufypet.section2.topic04"
-msgstr "DNA and protein synthesis"
-
-msgid "_common.topics.nufypet.section2.topic05"
-msgstr "Variation"
-
-msgid "_common.topics.nufypet.section2.topic06"
-msgstr "Enzymes"
-
-msgid "_common.topics.nufypet.section2.topic07"
-msgstr "Animal physiology"
-
-msgid "_common.topics.nufypet.section2.topic08"
-msgstr "Environment"
-
-msgid "_common.topics.nufypet.section2.topic09"
-msgstr "Plant physiology"
-
-msgid "_common.topics.nufypet.section2.topic10"
-msgstr "Sexual reproduction in humans"
-
-msgid "_common.topics.nufypet.section2.topic11"
-msgstr "Atomic structure"
-
-msgid "_common.topics.nufypet.section2.topic12"
-msgstr "The Periodic Table (IUPAC)"
-
-msgid "_common.topics.nufypet.section2.topic13"
-msgstr "Chemical reactions and equations"
-
-msgid "_common.topics.nufypet.section2.topic14"
-msgstr "Quantitative Chemistry"
-
-msgid "_common.topics.nufypet.section2.topic15"
-msgstr "Chemical bonding, structure and properties"
-
-msgid "_common.topics.nufypet.section2.topic16"
-msgstr "Group Chemistry"
-
-msgid "_common.topics.nufypet.section2.topic17"
-msgstr "Separation techniques"
-
-msgid "_common.topics.nufypet.section2.topic18"
-msgstr "Acids, bases and salts"
-
-msgid "_common.topics.nufypet.section2.topic19"
-msgstr "Rates of reaction"
-
-msgid "_common.topics.nufypet.section2.topic20"
-msgstr "Energetics"
-
-msgid "_common.topics.nufypet.section2.topic21"
-msgstr "Electrolysis"
-
-msgid "_common.topics.nufypet.section2.topic22"
-msgstr "Carbon/Organic Chemistry"
-
-msgid "_common.topics.nufypet.section3.topic0"
-msgstr "Problem Solving"
-
-msgid "_common.topics.nufypet.section3.topic1"
-msgstr "Critical Thinking"
-
-msgid "_common.domains.nufypet"
-msgstr "NUFYPET"
-
-msgid "_common.sections.nufypet.section0"
-msgstr "Mathematics"
-
-msgid "_common.sections.nufypet.section1"
-msgstr "Physics"
-
-msgid "_common.sections.nufypet.section2"
-msgstr "Biology/Chemistry"
-
-msgid "_common.sections.nufypet.section3"
-msgstr "Thinking skills"
-
-msgid "_common.domains.nis"
-msgstr "iQanat"
-
-msgid "_common.domains.unt"
-msgstr "ҰБТ"
-
-msgid "_common.topics.nqt.section00.topic0"
-msgstr "Тәрбие теориясы және әдістемесі "
-
-msgid "_common.topics.nqt.section00.topic1"
-msgstr "Дидактика"
-
-msgid "_common.topics.nqt.section00.topic2"
-msgstr "Оқыту процесін ұйымдастыру және басқару"
-
-msgid "_common.topics.nqt.section00.topic3"
-msgstr "Жалпы психология"
-
-msgid "_common.topics.nqt.section00.topic4"
-msgstr "Педагогикалық психология"
-
-msgid "_common.domains.nqt"
-msgstr "ҰБТ"
-
-msgid "_common.sections.nqt.section00"
-msgstr "Педагогика и методика обучения"
-
-msgid "_common.topics.law.section0.topic0"
-msgstr "ҚР Конституциясы"
-
-msgid "_common.topics.law.section0.topic1"
-msgstr "ҚР Азаматтық кодексі"
-
-msgid "_common.topics.law.section0.topic2"
-msgstr "ҚР Азаматтық іс-жүргізу кодексі"
-
-msgid "_common.topics.law.section0.topic3"
-msgstr "ҚР Еңбек кодексі"
-
-msgid "_common.topics.law.section0.topic4"
-msgstr "ҚР Қылмыстық кодексі"
-
-msgid "_common.topics.law.section0.topic5"
-msgstr "ҚР Кәсіпкерлік кодексі"
-
-msgid "_common.topics.law.section0.topic6"
-msgstr "ҚР Жер кодексі"
-
-msgid "_common.topics.law.section0.topic7"
-msgstr "«Сыбайлас жемқорлыққа қарсы іс-қимыл туралы» ҚР Заңы"
-
-msgid "_common.topics.law.section0.topic8"
-msgstr "ҚР Қылмыстық-процестік кодексі"
-
-msgid "_common.topics.law.section0.topic9"
-msgstr "«Адвокаттық қызмет және заң көмегі туралы» ҚР Заңы"
-
-msgid "_common.domains.law"
-msgstr "Заңгерлерге арналған тестілеу"
-
-msgid "_common.sections.law.section0"
-msgstr "Заңгерлер тестілеуі"
-
-msgid "Critical Thinking"
-msgstr "Критикалық ойлау"
-
-msgid "Spatial Thinking"
-msgstr "Кеңістікте ойлау"
 
 msgctxt "Account type"
 msgid "Asset"
@@ -2023,17 +1357,39 @@ msgctxt "/developer/"
 msgid "Actions"
 msgstr "Әрекеттер"
 
-msgctxt "/developer/"
+msgctxt "/super/tests/"
 msgid "Preview"
-msgstr "Алдын ала көру"
+msgstr "Көру"
+
+msgctxt "/super/tests/"
+msgid "Edit"
+msgstr "Өзгерту"
 
 msgctxt "/developer/"
 msgid "Edit"
 msgstr "Өзгерту"
 
 msgctxt "/developer/"
+msgid "Preview"
+msgstr "Алдын ала көру"
+
+msgctxt "/developer/"
 msgid "Delete"
 msgstr "Жою"
+
+#, fuzzy
+#| msgctxt "Test status"
+#| msgid "Draft"
+msgctxt "/developer/"
+msgid "ReDraft"
+msgstr "Шимай нұсқасы"
+
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "Approve"
+msgctxt "/developer/"
+msgid "ReApprove"
+msgstr "Келісу"
 
 msgctxt "/developer/"
 msgid "You have not created tests yet"
@@ -2063,12 +1419,6 @@ msgstr "Тест спецификациясы"
 msgctxt "/developer/tests/"
 msgid "Create Test"
 msgstr "Тест жүктеу"
-
-msgid "Core subjects"
-msgstr "Негізгі пәндер"
-
-msgid "Spec subjects"
-msgstr "Бейінді пәндер"
 
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"
@@ -2122,7 +1472,7 @@ msgid "Start practicing to the test right now!"
 msgstr "Тестілеуге бүгіннен бастап дайындал!"
 
 msgid "_common.domains.nis_full"
-msgstr "iQanat тестілеуі"
+msgstr "ИАЦ тестілеуі"
 
 #, python-format
 msgid ""
@@ -2209,6 +1559,17 @@ msgctxt "Navigation link"
 msgid "All Users"
 msgstr "Барлық қолданушылар"
 
+#, fuzzy
+#| msgctxt "/super/"
+#| msgid "Students"
+msgctxt "Navigation link"
+msgid "Create Students"
+msgstr "Тестілеуге қатысушы"
+
+msgctxt "Navigation link"
+msgid "Export Data"
+msgstr ""
+
 msgctxt "Navigation link"
 msgid "All Quizzes"
 msgstr "Барлық байқау тестілері"
@@ -2216,9 +1577,6 @@ msgstr "Барлық байқау тестілері"
 msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Тестіні жүктеу"
-
-msgid "_common.nav.trial_balance"
-msgstr "Trial Balance"
 
 msgctxt "Navigation link"
 msgid "Public Offer"
@@ -2593,6 +1951,38 @@ msgctxt "/student/transactions/xxxx/"
 msgid "%(total)s cred."
 msgstr "%(total)s бірлік"
 
+msgctxt "Page title"
+msgid "All Users"
+msgstr "Барлық қолданушылар"
+
+msgctxt "/super/users/"
+msgid "Are you sure?"
+msgstr "Сенімдісіз бе?"
+
+msgctxt "/super/users/"
+msgid "Yes"
+msgstr "Иә"
+
+msgctxt "/super/users/"
+msgid "No"
+msgstr "Жоқ"
+
+msgctxt "/super/users/"
+msgid "Name"
+msgstr "Аты-жөні"
+
+msgctxt "/super/users/"
+msgid "Role"
+msgstr "Лауазымы"
+
+msgctxt "/super/users/"
+msgid "Joined at"
+msgstr "Тіркелген уақыты"
+
+msgctxt "/super/users/"
+msgid "Active?"
+msgstr "Активті?"
+
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
 msgstr "НЗМ тестілеріне сұраныс"
@@ -2786,14 +2176,6 @@ msgctxt "/super/tests/"
 msgid "No"
 msgstr "Жоқ"
 
-msgctxt "/super/tests/"
-msgid "Preview"
-msgstr "Көру"
-
-msgctxt "/super/tests/"
-msgid "Edit"
-msgstr "Өзгерту"
-
 msgctxt "Developer tools"
 msgid "Change to Paid"
 msgstr "Ақылыға өзгерту"
@@ -2824,40 +2206,8 @@ msgctxt "/super/users/"
 msgid "Student"
 msgstr "Тестілеуге қатысушы"
 
-msgctxt "/super/users/"
-msgid "Are you sure?"
-msgstr "Сенімдісіз бе?"
-
-msgctxt "/super/users/"
-msgid "Yes"
-msgstr "Иә"
-
-msgctxt "/super/users/"
-msgid "No"
-msgstr "Жоқ"
-
-msgctxt "Page title"
-msgid "All Users"
-msgstr "Барлық қолданушылар"
-
 msgid "page:/super/users/:query"
 msgstr "Seach by first name, last name or email"
-
-msgctxt "/super/users/"
-msgid "Name"
-msgstr "Аты-жөні"
-
-msgctxt "/super/users/"
-msgid "Role"
-msgstr "Лауазымы"
-
-msgctxt "/super/users/"
-msgid "Joined at"
-msgstr "Тіркелген уақыты"
-
-msgctxt "/super/users/"
-msgid "Active?"
-msgstr "Активті?"
 
 msgctxt "/super/users/"
 msgid "Actions"
@@ -3229,6 +2579,20 @@ msgstr "Тест қайтарылып жіберілді."
 msgctxt "Success alert message"
 msgid "You have deleted the Test."
 msgstr "Тест алып тасталды."
+
+#, fuzzy
+#| msgctxt "Success alert message"
+#| msgid "Test is now paid."
+msgctxt "Success alert message"
+msgid "Test is now draft again."
+msgstr "Тест ақылы болып өзгертілді."
+
+#, fuzzy
+#| msgctxt "Success alert message"
+#| msgid "Test is now paid."
+msgctxt "Success alert message"
+msgid "Test is now approved again."
+msgstr "Тест ақылы болып өзгертілді."
 
 msgctxt "Success alert message"
 msgid "Test is now free."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-07 21:16+0600\n"
+"POT-Creation-Date: 2023-09-28 20:55+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -571,676 +571,6 @@ msgstr "Please enter old password."
 msgctxt "Validation error"
 msgid "Incorrect old password."
 msgstr "Incorrect old password."
-
-msgid "Knowledge"
-msgstr "Knowledge"
-
-msgid "Application"
-msgstr "Application"
-
-msgid "Meaning"
-msgstr "Meaning"
-
-msgid "Communication"
-msgstr "Communication"
-
-msgid "Structure"
-msgstr "Structure"
-
-msgid "Ratios and Proportions"
-msgstr "Ratios and Proportions"
-
-msgid "Rational Numbers"
-msgstr "Rational Numbers"
-
-msgid "Modulus"
-msgstr "Modulus"
-
-msgid "Linear Equations and Inequalities"
-msgstr "Linear Equations and Inequalities"
-
-msgid "Factorization"
-msgstr "Factorization"
-
-msgid "Division"
-msgstr "Division"
-
-msgid "Percents"
-msgstr "Percents"
-
-msgid "Geometry"
-msgstr "Geometry"
-
-msgid "Algebraic Operations and Analysis"
-msgstr "Algebraic Operations and Analysis"
-
-msgid "Numbers and Decimal Arithmetic Operations"
-msgstr "Numbers and Decimal Arithmetic Operations"
-
-msgid "Numbers and Fractional Arithmetic Operations"
-msgstr "Numbers and Fractional Arithmetic Operations"
-
-msgid "Measurement Units and Data"
-msgstr "Measurement Units and Data"
-
-msgid "Notation"
-msgstr "Notation"
-
-msgid "Expressions and Equations"
-msgstr "Expressions and Equations"
-
-msgid "Functions"
-msgstr "Functions"
-
-msgid "Modeling"
-msgstr "Modeling"
-
-msgid "Scores"
-msgstr "Scores"
-
-msgid "Sequence Rules"
-msgstr "Sequence Rules"
-
-msgid "Statistics"
-msgstr "Statistics"
-
-msgid "Combinatorics"
-msgstr "Combinatorics"
-
-msgid "People"
-msgstr "People"
-
-msgid "Animals"
-msgstr "Animals"
-
-msgid "Nature"
-msgstr "Nature"
-
-msgid "Weather"
-msgstr "Weather"
-
-msgid "Food"
-msgstr "Food"
-
-msgid "Science"
-msgstr "Science"
-
-msgid "Education"
-msgstr "Education"
-
-msgid "History"
-msgstr "History"
-
-msgid "Ethics"
-msgstr "Ethics"
-
-msgid "Sports"
-msgstr "Sports"
-
-msgid "Art"
-msgstr "Art"
-
-msgid "Health"
-msgstr "Health"
-
-msgid "Traditions"
-msgstr "Traditions"
-
-msgid "Upbringing"
-msgstr "Upbringing"
-
-msgid "Culture"
-msgstr "Culture"
-
-msgid "Hobby"
-msgstr "Hobby"
-
-msgid "Ecology"
-msgstr "Ecology"
-
-msgid "Fables and Fairy Tales"
-msgstr "Fables and Fairy Tales"
-
-msgid "Mathematics"
-msgstr "Mathematics"
-
-msgid "Kazakh Language"
-msgstr "Kazakh Language"
-
-msgid "Russian Language"
-msgstr "Russian Language"
-
-msgid "English Language"
-msgstr "English Language"
-
-msgid "Quantitative"
-msgstr "Quantitative"
-
-msgid "Numeracy"
-msgstr "Numeracy"
-
-msgid "Analysis"
-msgstr "Analysis"
-
-msgid "Synthesis"
-msgstr "Synthesis"
-
-msgid "Mixed problems"
-msgstr "Mixed problems"
-
-msgid "Indeterminancy"
-msgstr "Indeterminancy"
-
-msgid "Changes and dependencies"
-msgstr "Changes and dependencies"
-
-msgid "Space and shape"
-msgstr "Space and shape"
-
-msgid "Literacy"
-msgstr "Literacy"
-
-msgid "Human and environment"
-msgstr "Human and environment"
-
-msgid "Education and science"
-msgstr "Education and science"
-
-msgid "Cities and countries"
-msgstr "Cities and countries"
-
-msgid "Social relationships"
-msgstr "Social relationships"
-
-msgid "History of Kazakhstan"
-msgstr "History of Kazakhstan"
-
-msgid "Stone and bronze epoch"
-msgstr "Stone and bronze epoch"
-
-msgid "Kazakhstan in iron epoch"
-msgstr "Kazakhstan in iron epoch"
-
-msgid "The states of the early and developed Middle Ages (VI-beg. XIII cc)"
-msgstr "The states of the early and developed Middle Ages (VI-beg. XIII cc)"
-
-msgid "Culture (VI-XVII centuries)"
-msgstr "Culture (VI-XVII centuries)"
-
-msgid "Kazakhstan in the XIII-XVII centuries"
-msgstr "Kazakhstan in the XIII-XVII centuries"
-
-msgid "Socio-economic position of Kazakhstan in the XIII-XVII centuries"
-msgstr "Socio-economic position of Kazakhstan in the XIII-XVII centuries"
-
-msgid "Socio-economic development of Kazakhstan in the XVIII-XIX centuries"
-msgstr "Socio-economic development of Kazakhstan in the XVIII-XIX centuries"
-
-msgid "Socio-political development of Kazakhstan in the XVIII-XIX centuries"
-msgstr "Socio-political development of Kazakhstan in the XVIII-XIX centuries"
-
-msgid "Kazakhstan in the first half of XX century"
-msgstr "Kazakhstan in the first half of XX century"
-
-msgid "Culture of Kazakhstan XVIII-XX centuries"
-msgstr "Culture of Kazakhstan XVIII-XX centuries"
-
-msgid "Kazakhstan in the 50-80-ies. XX century"
-msgstr "Kazakhstan in the 50-80-ies. XX century"
-
-msgid "Independent Kazakhstan"
-msgstr "Independent Kazakhstan"
-
-msgid "History in documents"
-msgstr "History in documents"
-
-msgid "Arithmetic calculations. Transformations of expressions"
-msgstr "Arithmetic calculations. Transformations of expressions"
-
-msgid "Equations. Systems of equations. Formulation of equations"
-msgstr "Equations. Systems of equations. Formulation of equations"
-
-msgid "Inequalities. Systems of inequalities"
-msgstr "Inequalities. Systems of inequalities"
-
-msgid "Functions. Derivatives. Integral"
-msgstr "Functions. Derivatives. Integral"
-
-msgid "Planimetry"
-msgstr "Planimetry"
-
-msgid "Stereometry"
-msgstr "Stereometry"
-
-msgid "Sequences. Progression"
-msgstr "Sequences. Progression"
-
-msgid "Physics"
-msgstr "Physics"
-
-msgid "Mechanics"
-msgstr "Mechanics"
-
-msgid "Molecular physics. Fundamentals of thermodynamics"
-msgstr "Molecular physics. Fundamentals of thermodynamics"
-
-msgid "Electrodynamics"
-msgstr "Electrodynamics"
-
-msgid "Optics"
-msgstr "Optics"
-
-msgid "Quantum and Atomic Physics"
-msgstr "Quantum and Atomic Physics"
-
-msgid "Qualitative objectives"
-msgstr "Qualitative objectives"
-
-msgid "Chemistry"
-msgstr "Chemistry"
-
-msgid "General chemistry"
-msgstr "General chemistry"
-
-msgid "Inorganic chemistry"
-msgstr "Inorganic chemistry"
-
-msgid "Organic chemistry"
-msgstr "Organic chemistry"
-
-msgid "Calculation problems: General chemistry"
-msgstr "Calculation problems: General chemistry"
-
-msgid "Calculation problems: Inorganic chemistry"
-msgstr "Calculation problems: Inorganic chemistry"
-
-msgid "Calculation problems: Organic chemistry"
-msgstr "Calculation problems: Organic chemistry"
-
-msgid "Biology"
-msgstr "Biology"
-
-msgid "Plants"
-msgstr "Plants"
-
-msgid "Human Anatomy and Physiology"
-msgstr "Human Anatomy and Physiology"
-
-msgid "Cytology, genetics, ecology"
-msgstr "Cytology, genetics, ecology"
-
-msgid "Geography"
-msgstr "Geography"
-
-msgid "Physical Geography of the World"
-msgstr "Physical Geography of the World"
-
-msgid "Geography of Kazakhstan"
-msgstr "Geography of Kazakhstan"
-
-msgid "Economic and social geography of the world"
-msgstr "Economic and social geography of the world"
-
-msgid "Geography course tasks"
-msgstr "Geography course tasks"
-
-msgid "Age of stone and bronze"
-msgstr "Age of stone and bronze"
-
-msgid "Kazakhstan in the Iron Age"
-msgstr "Kazakhstan in the Iron Age"
-
-msgid "The states of the Ancient East. Ancient civilization"
-msgstr "The states of the Ancient East. Ancient civilization"
-
-msgid ""
-"The Middle Ages (early V-X centuries, the flowering of the XI-XV centuries, "
-"later the XV-XVII centuries)"
-msgstr ""
-"The Middle Ages (early V-X centuries, the flowering of the XI-XV centuries, "
-"later the XV-XVII centuries)"
-
-msgid ""
-"Culture of the ancient world (before the V century), medieval culture of "
-"peace (V - XVII centuries)"
-msgstr ""
-"Culture of the ancient world (before the V century), medieval culture of "
-"peace (V - XVII centuries)"
-
-msgid ""
-"Europe and North America, Countries of Asia and Africa (XVII - early XX "
-"centuries)"
-msgstr ""
-"Europe and North America, Countries of Asia and Africa (XVII - early XX "
-"centuries)"
-
-msgid ""
-"Culture of Europe, North America, Asia and Africa (XVIII century - the "
-"beginning of the XXI century)"
-msgstr ""
-"Culture of Europe, North America, Asia and Africa (XVIII century - the "
-"beginning of the XXI century)"
-
-msgid "International relations (XVII - beginning of the XXI centuries)"
-msgstr "International relations (XVII - beginning of the XXI centuries)"
-
-msgid "World Wars and Their Consequences"
-msgstr "World Wars and Their Consequences"
-
-msgid "The countries of Europe and America, Asia and Africa (1918-2014)"
-msgstr "The countries of Europe and America, Asia and Africa (1918-2014)"
-
-msgid "English"
-msgstr "English"
-
-msgid "Vocabulary and translation"
-msgstr "Vocabulary and translation"
-
-msgid "Spelling"
-msgstr "Spelling"
-
-msgid "Morphology"
-msgstr "Morphology"
-
-msgid "Syntax"
-msgstr "Syntax"
-
-msgid "Work with text"
-msgstr "Work with text"
-
-msgid "Country studies"
-msgstr "Country studies"
-
-msgid "French"
-msgstr "French"
-
-msgid "Phonetics"
-msgstr "Phonetics"
-
-msgid "German"
-msgstr "German"
-
-msgid "Kazakh and literature"
-msgstr "Kazakh and literature"
-
-msgid "Vocabulary"
-msgstr "Vocabulary"
-
-msgid "Word formation"
-msgstr "Word formation"
-
-msgid "Punctuation. Stylistics. Culture of speech"
-msgstr "Punctuation. Stylistics. Culture of speech"
-
-msgid "Ancient World Literature"
-msgstr "Ancient World Literature"
-
-msgid "Oral literature"
-msgstr "Oral literature"
-
-msgid "Poetry of epos"
-msgstr "Poetry of epos"
-
-msgid "XIX century literature"
-msgstr "XIX century literature"
-
-msgid "Literature in the first half of 20th century "
-msgstr "Literature in the first half of 20th century "
-
-msgid "Literature in the Great Patriotic War and later"
-msgstr "Literature in the Great Patriotic War and later"
-
-msgid "The theory of literature"
-msgstr "The theory of literature"
-
-msgid "Literature in II half of 20th century"
-msgstr "Literature in II half of 20th century"
-
-msgid "Russian and literature"
-msgstr "Russian and literature"
-
-msgid "Phonetics and spelling"
-msgstr "Phonetics and spelling"
-
-msgid "Lexicology"
-msgstr "Lexicology"
-
-msgid "Morphemistry and word formation"
-msgstr "Morphemistry and word formation"
-
-msgid "Syntax and punctuation"
-msgstr "Syntax and punctuation"
-
-msgid "Theory of Literature"
-msgstr "Theory of Literature"
-
-msgid "Biography"
-msgstr "Biography"
-
-msgid "Literary criticism"
-msgstr "Literary criticism"
-
-msgid "The role of episodes"
-msgstr "The role of episodes"
-
-msgid "Cross-cutting themes"
-msgstr "Cross-cutting themes"
-
-msgid "Content of works"
-msgstr "Content of works"
-
-msgid "Human. Society. Law"
-msgstr "Human. Society. Law"
-
-msgid "Human in the world"
-msgstr "Human in the world"
-
-msgid "Social sphere of society"
-msgstr "Social sphere of society"
-
-msgid "The economic sphere of society"
-msgstr "The economic sphere of society"
-
-msgid "Spiritual sphere of society"
-msgstr "Spiritual sphere of society"
-
-msgid "Political Science and Politics"
-msgstr "Political Science and Politics"
-
-msgid "Constitutional law"
-msgstr "Constitutional law"
-
-msgid "Introduction to Jurisprudence"
-msgstr "Introduction to Jurisprudence"
-
-msgid "_common.topics.nufypet.section0.topic0"
-msgstr "Number"
-
-msgid "_common.topics.nufypet.section0.topic1"
-msgstr "Algebra"
-
-msgid "_common.topics.nufypet.section0.topic2"
-msgstr "Geometry"
-
-msgid "_common.topics.nufypet.section0.topic3"
-msgstr "Measures"
-
-msgid "_common.topics.nufypet.section1.topic0"
-msgstr "Electricity"
-
-msgid "_common.topics.nufypet.section1.topic1"
-msgstr "Motion and Energy"
-
-msgid "_common.topics.nufypet.section1.topic2"
-msgstr "Thermal Physics"
-
-msgid "_common.topics.nufypet.section1.topic3"
-msgstr "Waves"
-
-msgid "_common.topics.nufypet.section1.topic4"
-msgstr "Electromagnetic Spectrum"
-
-msgid "_common.topics.nufypet.section1.topic5"
-msgstr "Radioactivity"
-
-msgid "_common.topics.nufypet.section2.topic00"
-msgstr "Cells"
-
-msgid "_common.topics.nufypet.section2.topic01"
-msgstr "Movement across membranes"
-
-msgid "_common.topics.nufypet.section2.topic02"
-msgstr "Cell division and sex determination"
-
-msgid "_common.topics.nufypet.section2.topic03"
-msgstr "Inheritance"
-
-msgid "_common.topics.nufypet.section2.topic04"
-msgstr "DNA and protein synthesis"
-
-msgid "_common.topics.nufypet.section2.topic05"
-msgstr "Variation"
-
-msgid "_common.topics.nufypet.section2.topic06"
-msgstr "Enzymes"
-
-msgid "_common.topics.nufypet.section2.topic07"
-msgstr "Animal physiology"
-
-msgid "_common.topics.nufypet.section2.topic08"
-msgstr "Environment"
-
-msgid "_common.topics.nufypet.section2.topic09"
-msgstr "Plant physiology"
-
-msgid "_common.topics.nufypet.section2.topic10"
-msgstr "Sexual reproduction in humans"
-
-msgid "_common.topics.nufypet.section2.topic11"
-msgstr "Atomic structure"
-
-msgid "_common.topics.nufypet.section2.topic12"
-msgstr "The Periodic Table (IUPAC)"
-
-msgid "_common.topics.nufypet.section2.topic13"
-msgstr "Chemical reactions and equations"
-
-msgid "_common.topics.nufypet.section2.topic14"
-msgstr "Quantitative Chemistry"
-
-msgid "_common.topics.nufypet.section2.topic15"
-msgstr "Chemical bonding, structure and properties"
-
-msgid "_common.topics.nufypet.section2.topic16"
-msgstr "Group Chemistry"
-
-msgid "_common.topics.nufypet.section2.topic17"
-msgstr "Separation techniques"
-
-msgid "_common.topics.nufypet.section2.topic18"
-msgstr "Acids, bases and salts"
-
-msgid "_common.topics.nufypet.section2.topic19"
-msgstr "Rates of reaction"
-
-msgid "_common.topics.nufypet.section2.topic20"
-msgstr "Energetics"
-
-msgid "_common.topics.nufypet.section2.topic21"
-msgstr "Electrolysis"
-
-msgid "_common.topics.nufypet.section2.topic22"
-msgstr "Carbon/Organic Chemistry"
-
-msgid "_common.topics.nufypet.section3.topic0"
-msgstr "Problem Solving"
-
-msgid "_common.topics.nufypet.section3.topic1"
-msgstr "Critical Thinking"
-
-msgid "_common.domains.nufypet"
-msgstr "NUFYPET"
-
-msgid "_common.sections.nufypet.section0"
-msgstr "Mathematics"
-
-msgid "_common.sections.nufypet.section1"
-msgstr "Physics"
-
-msgid "_common.sections.nufypet.section2"
-msgstr "Biology/Chemistry"
-
-msgid "_common.sections.nufypet.section3"
-msgstr "Thinking skills"
-
-msgid "_common.domains.nis"
-msgstr "NIS"
-
-msgid "_common.domains.unt"
-msgstr "UNT"
-
-msgid "_common.topics.nqt.section00.topic0"
-msgstr "Теория и методика воспитания"
-
-msgid "_common.topics.nqt.section00.topic1"
-msgstr "Дидактика"
-
-msgid "_common.topics.nqt.section00.topic2"
-msgstr "Управление и организация учебного процесса"
-
-msgid "_common.topics.nqt.section00.topic3"
-msgstr "Общая психология"
-
-msgid "_common.topics.nqt.section00.topic4"
-msgstr "Педагогическая психология"
-
-msgid "_common.domains.nqt"
-msgstr "НКТ"
-
-msgid "_common.sections.nqt.section00"
-msgstr "Педагогика и методика обучения"
-
-msgid "_common.topics.law.section0.topic0"
-msgstr "Constitution of the Republic of Kazakhstan"
-
-msgid "_common.topics.law.section0.topic1"
-msgstr "Civil code of the Republic of Kazakhstan"
-
-msgid "_common.topics.law.section0.topic2"
-msgstr "Civil procedure code of the Republic of Kazakhstan"
-
-msgid "_common.topics.law.section0.topic3"
-msgstr "Labor code of the Republic of Kazakhstan"
-
-msgid "_common.topics.law.section0.topic4"
-msgstr "Criminal code of the Republic of Kazakhstan"
-
-msgid "_common.topics.law.section0.topic5"
-msgstr "Business code of the Republic of Kazakhstan"
-
-msgid "_common.topics.law.section0.topic6"
-msgstr "Land code of the Republic of Kazakhstan"
-
-msgid "_common.topics.law.section0.topic7"
-msgstr "Law of the Republic of Kazakhstan “on combating corruption”"
-
-msgid "_common.topics.law.section0.topic8"
-msgstr "Criminal procedure code of Kazakhstan"
-
-msgid "_common.topics.law.section0.topic9"
-msgstr "Law of the Republic of Kazakhstan “on advocacy and legal assistance”"
-
-msgid "_common.domains.law"
-msgstr "Test for Lawyers"
-
-msgid "_common.sections.law.section0"
-msgstr "Тестирование юристов"
-
-msgid "Critical Thinking"
-msgstr "Critical Thinking"
-
-msgid "Spatial Thinking"
-msgstr "Spatial Thinking"
 
 msgctxt "Account type"
 msgid "Asset"
@@ -2015,17 +1345,33 @@ msgctxt "/developer/"
 msgid "Actions"
 msgstr "Actions"
 
-msgctxt "/developer/"
+msgctxt "/super/tests/"
 msgid "Preview"
 msgstr "Preview"
+
+msgctxt "/super/tests/"
+msgid "Edit"
+msgstr "Edit"
 
 msgctxt "/developer/"
 msgid "Edit"
 msgstr "Edit"
 
 msgctxt "/developer/"
+msgid "Preview"
+msgstr "Preview"
+
+msgctxt "/developer/"
 msgid "Delete"
 msgstr "Delete"
+
+msgctxt "/developer/"
+msgid "ReDraft"
+msgstr "ReDraft"
+
+msgctxt "/developer/"
+msgid "ReApprove"
+msgstr "ReApprove"
 
 msgctxt "/developer/"
 msgid "You have not created tests yet"
@@ -2055,12 +1401,6 @@ msgstr "Test Specification"
 msgctxt "/developer/tests/"
 msgid "Create Test"
 msgstr "Create Test"
-
-msgid "Core subjects"
-msgstr "Core subjects"
-
-msgid "Spec subjects"
-msgstr "Spec subjects"
 
 msgctxt "Logo img html tag alt parameter"
 msgid "bbTest.kz Logo"
@@ -2199,6 +1539,17 @@ msgctxt "Navigation link"
 msgid "All Users"
 msgstr "All Users"
 
+#, fuzzy
+#| msgctxt "/super/"
+#| msgid "Students"
+msgctxt "Navigation link"
+msgid "Create Students"
+msgstr "Students"
+
+msgctxt "Navigation link"
+msgid "Export Data"
+msgstr ""
+
 msgctxt "Navigation link"
 msgid "All Quizzes"
 msgstr "All Quizzes"
@@ -2206,9 +1557,6 @@ msgstr "All Quizzes"
 msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Create Test"
-
-msgid "_common.nav.trial_balance"
-msgstr "Trial Balance"
 
 msgctxt "Navigation link"
 msgid "Public Offer"
@@ -2584,6 +1932,38 @@ msgctxt "/student/transactions/xxxx/"
 msgid "%(total)s cred."
 msgstr "%(total)s cred."
 
+msgctxt "Page title"
+msgid "All Users"
+msgstr "All Users"
+
+msgctxt "/super/users/"
+msgid "Are you sure?"
+msgstr "Are you sure?"
+
+msgctxt "/super/users/"
+msgid "Yes"
+msgstr "Yes"
+
+msgctxt "/super/users/"
+msgid "No"
+msgstr "No"
+
+msgctxt "/super/users/"
+msgid "Name"
+msgstr "Name"
+
+msgctxt "/super/users/"
+msgid "Role"
+msgstr "Role"
+
+msgctxt "/super/users/"
+msgid "Joined at"
+msgstr "Joined at"
+
+msgctxt "/super/users/"
+msgid "Active?"
+msgstr "Active?"
+
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
 msgstr "Demand for NIS Tests"
@@ -2777,14 +2157,6 @@ msgctxt "/super/tests/"
 msgid "No"
 msgstr "No"
 
-msgctxt "/super/tests/"
-msgid "Preview"
-msgstr "Preview"
-
-msgctxt "/super/tests/"
-msgid "Edit"
-msgstr "Edit"
-
 msgctxt "Developer tools"
 msgid "Change to Paid"
 msgstr "Change to Paid"
@@ -2815,40 +2187,8 @@ msgctxt "/super/users/"
 msgid "Student"
 msgstr "Student"
 
-msgctxt "/super/users/"
-msgid "Are you sure?"
-msgstr "Are you sure?"
-
-msgctxt "/super/users/"
-msgid "Yes"
-msgstr "Yes"
-
-msgctxt "/super/users/"
-msgid "No"
-msgstr "No"
-
-msgctxt "Page title"
-msgid "All Users"
-msgstr "All Users"
-
 msgid "page:/super/users/:query"
 msgstr "Seach by first name, last name or email"
-
-msgctxt "/super/users/"
-msgid "Name"
-msgstr "Name"
-
-msgctxt "/super/users/"
-msgid "Role"
-msgstr "Role"
-
-msgctxt "/super/users/"
-msgid "Joined at"
-msgstr "Joined at"
-
-msgctxt "/super/users/"
-msgid "Active?"
-msgstr "Active?"
 
 msgctxt "/super/users/"
 msgid "Actions"
@@ -3220,6 +2560,14 @@ msgstr "You have refused the Test."
 msgctxt "Success alert message"
 msgid "You have deleted the Test."
 msgstr "You have deleted the Test."
+
+msgctxt "Success alert message"
+msgid "Test is now draft again."
+msgstr "Test is now draft again."
+
+msgctxt "Success alert message"
+msgid "Test is now approved again."
+msgstr "Test is now approved again."
 
 msgctxt "Success alert message"
 msgid "Test is now free."
