@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.messages import success
 from django.urls import reverse
 from django.utils.translation import pgettext, get_language
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin
 from .mixins import DeveloperAcknowledgementRequiredMixin
 from bbtest.views.generic import FormView
 from bbtest.views.common import UserContextMixin
@@ -11,7 +11,7 @@ from bbtest.models import TestDomain, Test
 from bbtest.texts import test_specification
 
 
-class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, FormView):
+class TestsView(StaffPermissionRequiredMixin, UserContextMixin, FormView):
     template_name = "developer/tests.html"
     form_class = TestForm
 

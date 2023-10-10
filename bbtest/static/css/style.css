@@ -272,6 +272,19 @@ html {
     background-image: url("https://www.transparenttextures.com/patterns/wave-grid.png");
 }
 
+.bb-container-expert {
+    /* background-color: rgba(40, 100, 90, 1); */
+    background-color: #103b00;
+    background-image: url("https://www.transparenttextures.com/patterns/wave-grid.png");
+}
+
+.bb-container-admin {
+    /* background-color: rgba(40, 100, 90, 1); */
+    background-color: #103b00;
+    background-image: url("https://www.transparenttextures.com/patterns/wave-grid.png");
+}
+
+
 .bb-container-super {
     /* background-color: rgba(40, 100, 90, 1); */
     background-color: #103b00;

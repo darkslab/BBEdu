@@ -4,7 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 from bbtest.models import Account
 
-User.objects.all()
+# User.objects.all()
 
 # User.objects.create(username="student_01",
 #                     email="student_01@example.com",
@@ -25,8 +25,8 @@ def create_students():
 
 
 def create_developer():
-    user = User.objects.create_user(username="iqanatadmin", email=None, password="monkeymonkey")
-    user.first_name = "iqanatadmin"
+    user = User.objects.create_user(username="Dev", email=None, password="monkeymonkey")
+    user.first_name = "Dev"
     user.last_name = ""
     user.save()
     content_type = ContentType.objects.get_for_model(type(user))
@@ -37,6 +37,45 @@ def create_developer():
     return user
 
     # Account: Developer-3972 Iqanat
+
+def create_admin():
+    user = User.objects.create_user(username="Admin", email=None, password="monkeymonkey")
+    user.first_name = "Admin"
+    user.last_name = ""
+    user.save()
+    content_type = ContentType.objects.get_for_model(type(user))
+    permissions = []
+    permissions.append(Permission.objects.get(codename="admin", content_type=content_type))
+    user.user_permissions.set(permissions)
+    Account.objects.create_liability_account("Admin-%s" % user.pk)
+    return user
+
+def create_expert():
+    user = User.objects.create_user(username="Expert", email=None, password="monkeymonkey")
+    user.first_name = "Expert"
+    user.last_name = ""
+    user.save()
+    content_type = ContentType.objects.get_for_model(type(user))
+    permissions = []
+    permissions.append(Permission.objects.get(codename="expert", content_type=content_type))
+    user.user_permissions.set(permissions)
+    Account.objects.create_liability_account("Expert-%s" % user.pk)
+    return user
+
+
+class Command(BaseCommand):
+    help = 'generate NIS bundles from existing tests' 
+
+
+    def handle(self, *args, **kwargs):
+        user = create_students()
+        print(user)
+        user = create_developer()
+        print(user)
+        user = create_admin()
+        print(user)
+        user = create_expert()
+        print(user)
 
 # username = CharField(pgettext_lazy("Model field", "username"), max_length=100, unique=True)
 # email = EmailField(pgettext_lazy("Model field", "email"), max_length=100, null=True, blank=True, unique=True)

@@ -49,8 +49,9 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
             # get all quizes
             table_tests_all = self.get_quizes_in_range(start_date, end_date)  # [student][(quiz.language, test_name)]
 
-            # test_names_sorted = sorted(test_names_and_count.keys())  # fix sort order
-            test_names_sorted = ["Critical Thinking", "Quantitative", "Spatial Thinking", "English Language"]  # hardcode order and subjects
+            test_names_sorted = sorted(test_names_and_count.keys())  # fix sort order
+            # test_names_sorted = ["Critical Thinking", "Quantitative", "Spatial Thinking", "English Language"]  # hardcode order and subjects
+            
             # test_names_sorted = [("ru", "Critical Thinking"), ("ru", "Quantitative"), ("ru", "Spatial Thinking"), 
             #                      ("kk", "Critical Thinking"), ("kk", "Quantitative"), ("kk", "Spatial Thinking"), 
             #                      ("xx", "English Language")]  # hardcode order and subjects

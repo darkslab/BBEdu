@@ -9,7 +9,7 @@
             module: "PersonalizedTemplateModule"
         });
     </script>
-    <div class="bb-container {% if perms.bbtest.super %}bb-container-super{% elif perms.admin %}bb-container-admin{% elif perms.bbtest.developer %}bb-container-developer{% elif perms.bbtest.student %}bb-container-student{% endif %}" data-bb-container>
+    <div class="bb-container {% if perms.bbtest.super %}bb-container-super{% elif perms.bbtest.admin %}bb-container-admin{% elif perms.bbtest.developer %}bb-container-developer{% elif perms.bbtest.expert %}bb-container-expert{% elif perms.bbtest.student %}bb-container-student{% endif %}" data-bb-container>
         <div class="bb-menu bb-min text-bright text-shadowed">
             <div class="container-fluid">
                 <div class="row bb-menu-section bb-menu-section-first pt-15 pb-15">
@@ -28,13 +28,17 @@
                         <h5 class="col-xs-12 text-center text-bright mt-5 mb-5">
                             <span class="label label-primary">Superuser</span>
                         </h5>
-                    {% elif perms.admin %}
+                    {% elif perms.bbtest.admin %}
                         <h5 class="col-xs-12 text-center text-bright mt-5 mb-5">
                             <span class="label label-danger">{% trans 'Administrator' context 'Badge label under avatar' %}</span>
                         </h5>
                     {% elif perms.bbtest.developer %}
                         <h5 class="col-xs-12 text-center text-bright mt-5 mb-5">
                             <span class="label label-danger">{% trans 'Developer' context 'Badge label under avatar' %}</span>
+                        </h5>
+                    {% elif perms.bbtest.expert %}
+                        <h5 class="col-xs-12 text-center text-bright mt-5 mb-5">
+                            <span class="label label-danger">{% trans 'Expert' context 'Badge label under avatar' %}</span>
                         </h5>
                     {% elif perms.bbtest.student %}
                     {% endif %}
@@ -49,16 +53,23 @@
                             <li class="{% block nav_super_export_data_class %}{% endblock %}"><a href="{% url 'bbtest:super_export_data' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Export Data' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_quizzes_class %}{% endblock %}"><a href="{% url 'bbtest:super_quizzes' %}"><i class="fa fa-fw fa-check-square-o"></i> {% trans 'All Quizzes' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
-                        {% elif perms.admin %}
+                        {% elif perms.bbtest.admin %}
+                            
+                            <li class="{% block nav_admin_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:admin_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_admin_users_class %}{% endblock %}"><a href="{% url 'bbtest:admin_users' %}"><i class="fa fa-fw fa-users"></i> {% trans 'All Users' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_admin_export_data_class %}{% endblock %}"><a href="{% url 'bbtest:admin_create_students' %}"><i class="fa fa-fw fa-users"></i> {% trans 'Create Students' context 'Navigation link' %}</a></li>
+                        {% elif perms.bbtest.expert %}
+                            <li class="{% block nav_expert_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:expert_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_expert_users_class %}{% endblock %}"><a href="{% url 'bbtest:expert_users' %}"><i class="fa fa-fw fa-users"></i> {% trans 'All Users' context 'Navigation link' %}</a></li>
+                            <!-- <li class="{% block nav_expert_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:expert_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li> -->
+
                         {% elif perms.bbtest.developer %}
                             <li class="{% block nav_developer_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:developer_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_developer_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
-                            <li class="{% block nav_developer_export_data_class %}{% endblock %}"><a href="{% url 'bbtest:super_export_data' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Export Data' context 'Navigation link' %}</a></li>
-                            <li class="{% block nav_developer_users_class %}{% endblock %}"><a href="{% url 'bbtest:super_users' %}"><i class="fa fa-fw fa-users"></i> {% trans 'All Users' context 'Navigation link' %}</a></li>
-                            <li class="{% block nav_developer_create_students_class %}{% endblock %}"><a href="{% url 'bbtest:super_create_students' %}"><i class="fa fa-fw fa-users"></i> {% trans 'Create Students' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_developer_users_class %}{% endblock %}"><a href="{% url 'bbtest:developer_users' %}"><i class="fa fa-fw fa-users"></i> {% trans 'All Users' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_developer_offer_class %}{% endblock %}"><a href="{% url 'bbtest:developer_offer' %}"><i class="fa fa-fw fa-handshake-o"></i> {% trans 'Public Offer' context 'Navigation link' %}</a></li>
                         {% elif perms.bbtest.student %}
-                            <li class="{% block nav_student_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:student_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
+                            <!-- <li class="{% block nav_student_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:student_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li> -->
                             {% if has_exam %}
                                 <li class="bb-highlighted {% block nav_student_exam_class %}{% endblock %}"><a href="{% url 'bbtest:student_exam' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Testing' context 'Navigation link' %}</a></li>
                             {% else %}

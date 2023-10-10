@@ -32,12 +32,16 @@ class UserCreationFormMixin(ModelForm):
 
         content_type = ContentType.objects.get_for_model(type(user))
         permissions = []
-        if group in ("developer", "student"):
+        if group in ("developer", "expert", "admin", "student"):
             permissions.append(Permission.objects.get(codename=group, content_type=content_type))
         user.user_permissions.set(permissions)
 
         if group == "developer":
             Account.objects.create_liability_account("Developer-%s" % user.pk)
+        if group == "expert":
+            Account.objects.create_liability_account("Expert-%s" % user.pk)
+        if group == "admin":
+            Account.objects.create_liability_account("Admin-%s" % user.pk)
 
         return user
 

@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.translation import get_language
 from django.shortcuts import get_object_or_404
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.texts import DEVELOPER_AGREEMENT_TEXTS
@@ -9,7 +9,7 @@ from bbtest.models import DeveloperAcknowledgement, Test
 from .mixins import DeveloperAcknowledgementRequiredMixin
 
 
-class DashboardView(DeveloperPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+class DashboardView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "developer/dashboard.html"
 
     def get_context_data(self, **kwargs):

@@ -5,7 +5,7 @@ from django.contrib.messages import success, error
 from django.db.models import Prefetch
 from django.http import Http404
 from json import loads
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin
 from .generic import View, TemplateView, FormView, RedirectView
 from .common import UserContextMixin, inject_questions_and_report_into_started_response
 from bbtest.utils.json import tight_dumps
@@ -56,14 +56,14 @@ def get_test_for_check_or_404(request, code):
     return get_object_or_404(tests, code=code)
 
 
-class TestsView(DeveloperPermissionRequiredMixin, UserContextMixin, RedirectView):
+class TestsView(DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, UserContextMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         if self.request.user.is_superuser:
             return reverse("bbtest:super_tests")
         return reverse("bbtest:developer_dashboard")
 
 
-class TestView(DeveloperPermissionRequiredMixin, UserContextMixin, TemplateView):
+class TestView(DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, UserContextMixin, TemplateView):
     template_name = "test/test.html"
 
     def get_context_data(self, **kwargs):
@@ -84,7 +84,7 @@ class TestView(DeveloperPermissionRequiredMixin, UserContextMixin, TemplateView)
         return super().get_context_data(**kwargs)
 
 
-class TestQuestionView(DeveloperPermissionRequiredMixin, View):
+class TestQuestionView(DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, View):
     def get(self, request, code, question_id, *args, **kwargs):
         test = get_test_for_edit_or_404(request, code)
         question = get_object_or_404(test.questions, pk=question_id)
@@ -141,7 +141,7 @@ class TestQuestionView(DeveloperPermissionRequiredMixin, View):
         return TightJsonResponse({"success": True})
 
 
-class TestParagraphsView(DeveloperPermissionRequiredMixin, View):
+class TestParagraphsView(DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, View):
     def post(self, request, code, question_id, *args, **kwargs):
         test = get_test_for_edit_or_404(request, code)
         question = get_object_or_404(test.questions, pk=question_id)
@@ -160,7 +160,7 @@ class TestParagraphsView(DeveloperPermissionRequiredMixin, View):
         })
 
 
-class TestAttributesView(DeveloperPermissionRequiredMixin, View):
+class TestAttributesView(DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
         test = get_test_for_edit_or_404(request, code, include_section=True)
         attributes_data = {
@@ -189,7 +189,7 @@ class TestAttributesView(DeveloperPermissionRequiredMixin, View):
         return TightJsonResponse(attributes_data)
 
 
-class ApproveTestView(SuperPermissionRequiredMixin, View):
+class ApproveTestView(SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
         test = get_object_or_404(Test.worked_tests.select_related("developer"), code=code)
         if not test.developer.has_perm("bbtest.super") and test.is_draft():
@@ -223,7 +223,7 @@ class RefuseTestView(SuperPermissionRequiredMixin, View):
         return redirect("bbtest:super_tests")
 
 
-class DeleteTestView(DeveloperPermissionRequiredMixin, View):
+class DeleteTestView(DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
         test = get_test_for_edit_or_404(request, code, include_paragraphs=True)
         if request.user.has_perm("bbtest.super"):
@@ -245,19 +245,19 @@ class DeleteTestView(DeveloperPermissionRequiredMixin, View):
         return redirect("bbtest:build_tests")
 
 
-class ReDraftTestView(DeveloperPermissionRequiredMixin, View):
+class ReDraftTestView(ExpertPermissionRequiredMixin, View):  # DeveloperPermissionRequiredMixin, 
     def post(self, request, code, *args, **kwargs):
         print("sonic", code)
-        test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)
+        test = get_object_or_404(Test.active_tests.select_related("expert"), code=code)
         test.status = Test.STATUS_DRAFT
         test.save()
         success(request, pgettext("Success alert message", "Test is now draft again."))
         return redirect("bbtest:build_tests")
 
 
-class ReApproveTestView(DeveloperPermissionRequiredMixin, View):
+class ReApproveTestView(ExpertPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
     def post(self, request, code, *args, **kwargs):
-        test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)
+        test = get_object_or_404(Test.active_tests.select_related("expert"), code=code)
         test.status = Test.STATUS_APPROVED
         test.save()
         success(request, pgettext("Success alert message", "Test is now approved again."))
@@ -288,7 +288,7 @@ class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
         return redirect("bbtest:build_test_preview", code=test.code)
 
 
-class CheckTestView(DeveloperPermissionRequiredMixin, View):
+class CheckTestView(DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
         test = get_test_for_check_or_404(request, code)
         response = {
@@ -301,7 +301,7 @@ class CheckTestView(DeveloperPermissionRequiredMixin, View):
         return TightJsonResponse(response)
 
 
-class TestPreviewView(DeveloperPermissionRequiredMixin, UserContextMixin, FormView):
+class TestPreviewView(DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, UserContextMixin, FormView):
     template_name = "test/test_preview.html"
     form_class = TestSendForm
     success_url = reverse_lazy("bbtest:build_tests")
@@ -336,7 +336,7 @@ class TestPreviewView(DeveloperPermissionRequiredMixin, UserContextMixin, FormVi
         return super().form_valid(form)
 
 
-class TestPreviewDataView(DeveloperPermissionRequiredMixin, View):
+class TestPreviewDataView(DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
         test = get_test_for_preview_or_404(request, code)
         response = {
