@@ -201,40 +201,74 @@ def test_instructions(test):
     return []
 
 
-NIS_TEST_INSTRUCTION_TITLE_TEXTS = {
+# 9541	Math_4	60	0	2	7911
+# 9542	Kazakh_4	60	10	3	7911
+# 9543	Russian_4	60	10	4	7911
+# 9544	Natural_Science_4	60	20	5	7911
+# 9545	Math_9	60	20	6	7911
+# 9546	Biology_9	60	7	7	7911
+# 9547	Geography_9	60	7	8	7911
+# 9548	Kazakh_9	60	15	9	7911
+# 9549	Russian_9	60	15	10	7911
+# 9550	Physics_9	60	8	11	7911
+# 9551	Chemistry_9	60	8	12	7911
+
+
+PSEUDO_NIS_TEST_INSTRUCTION_TITLE_TEXTS = {
     9540: {
-        Test.LANGUAGE_KK: "Математика",
-        Test.LANGUAGE_RU: "Математика",
+        Test.LANGUAGE_KK: "Generic",
+        Test.LANGUAGE_RU: "Generic",
     },
     9541: {
-        Test.LANGUAGE_KK: "Қазақ тілі",
-        Test.LANGUAGE_RU: "Қазақ тілі",
+        Test.LANGUAGE_KK: "Математика 4 Класс",
+        Test.LANGUAGE_RU: "Математика 4 Класс",
     },
     9542: {
-        Test.LANGUAGE_KK: "Русский язык",
-        Test.LANGUAGE_RU: "Русский язык",
+        Test.LANGUAGE_KK: "Казахский язык 4 Класс",
+        Test.LANGUAGE_RU: "Казахский язык 4 Класс",
     },
     9543: {
-        Test.LANGUAGE_XX: "English language",
+        Test.LANGUAGE_KK: "Русский язык 4 Класс",
+        Test.LANGUAGE_RU: "Русский язык 4 Класс",
     },
     9544: {
-        Test.LANGUAGE_KK: "Сандық сипаттамалар",
-        Test.LANGUAGE_RU: "Количественные характеристики",
+        Test.LANGUAGE_KK: "Естествознание 4 Класс",
+        Test.LANGUAGE_RU: "Естествознание 4 Класс",
     },
-    9566: {
-        Test.LANGUAGE_KK: "Критикалық ойлау",
-        Test.LANGUAGE_RU: "Критическое мышление",
+    9545: {
+        Test.LANGUAGE_KK: "Математика 9 Класс",
+        Test.LANGUAGE_RU: "Математика 9 Класс",
     },
-    9567: {
-        Test.LANGUAGE_KK: "Кеңістікте ойлау",
-        Test.LANGUAGE_RU: "Пространственное мышление",
+    9546: {
+        Test.LANGUAGE_KK: "Биология 9 Класс",
+        Test.LANGUAGE_RU: "Биология 9 Класс",
+    },
+    9547: {
+        Test.LANGUAGE_KK: "География 9 Класс",
+        Test.LANGUAGE_RU: "География 9 Класс",
+    },
+    9548: {
+        Test.LANGUAGE_KK: "Казахский язык 9 Класс",
+        Test.LANGUAGE_RU: "Казахский язык 9 Класс",
+    },
+    9549: {
+        Test.LANGUAGE_KK: "Русский язык 9 Класс",
+        Test.LANGUAGE_RU: "Русский язык 9 Класс",
+    },
+    9550: {
+        Test.LANGUAGE_KK: "Физика 9 Класс",
+        Test.LANGUAGE_RU: "Физика 9 Класс",
+    },
+    9551: {
+        Test.LANGUAGE_KK: "Химия 9 Класс",
+        Test.LANGUAGE_RU: "Химия 9 Класс",
     },
 }
 
 def test_instructions_title(test):
     if test.section.is_nis():
         return [
-            NIS_TEST_INSTRUCTION_TITLE_TEXTS[test.section.pk][test.language],
+            PSEUDO_NIS_TEST_INSTRUCTION_TITLE_TEXTS[test.section.pk][test.language],
             test.code.upper(),
         ]
     elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
