@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 20:55+0600\n"
+"POT-Creation-Date: 2023-10-12 04:46+0600\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -580,6 +580,156 @@ msgctxt "Validation error"
 msgid "Incorrect old password."
 msgstr "Старый пароль указан неверно."
 
+msgid "IAC"
+msgstr "ИАЦ"
+
+msgid "Generic Test"
+msgstr "Generic тест"
+
+msgid "Math_4"
+msgstr "Математика 4 Класс"
+
+msgid "Kazakh_4"
+msgstr "Казахский 4 Класс"
+
+msgid "Russian_4"
+msgstr "Русский 4 Класс"
+
+msgid "Natural_Science_4"
+msgstr "Естествознание 4 Класс"
+
+msgid "Math_9"
+msgstr "Математика 9 Класс"
+
+msgid "Biology_9"
+msgstr "Биология 9 Класс"
+
+msgid "Geography_9"
+msgstr "География"
+
+msgid "Kazakh_9"
+msgstr "Казахский 9 Класс"
+
+msgid "Russian_9"
+msgstr "Русский 9 Класс"
+
+msgid "Physics_9"
+msgstr "Физика 9 Класс"
+
+msgid "Chemistry_9"
+msgstr "Химия 9 Класс"
+
+msgid "Knowledge and understanding"
+msgstr "Знание и понимание"
+
+msgid "Application"
+msgstr "Применение"
+
+msgid "High level skills"
+msgstr "НВП"
+
+msgid "Числа и величины"
+msgstr ""
+
+msgid "Элементы геометрии"
+msgstr ""
+
+msgid "Множества, Элементы логики"
+msgstr ""
+
+msgid "Математическое моделирование"
+msgstr ""
+
+msgid "Оқылым"
+msgstr ""
+
+msgid "Чтение"
+msgstr ""
+
+msgid "Раздел 1: Я - исследователь"
+msgstr ""
+
+msgid "Раздел 2: Живая природа"
+msgstr ""
+
+msgid "Раздел 3: Вещества и их свойства"
+msgstr ""
+
+msgid "Раздел 4: Земля и Космос"
+msgstr ""
+
+msgid "Раздел 5: Физика природы"
+msgstr ""
+
+msgid "Числа"
+msgstr ""
+
+msgid "Геометрия"
+msgstr ""
+
+msgid "Математическое моделирование и анализ"
+msgstr ""
+
+msgid "Алгебра"
+msgstr ""
+
+msgid "Статистика и теория вероятностей"
+msgstr ""
+
+msgid "Многообразие, структура и функции живых организмов"
+msgstr ""
+
+msgid "Прикладные интегрированные науки"
+msgstr ""
+
+msgid "Организмы и окружающая среда"
+msgstr ""
+
+msgid "Размножение, наследственность, изменчивость, эволюционное развитие"
+msgstr ""
+
+msgid "Методы географических исследований"
+msgstr ""
+
+msgid "Картография и географические базы данных"
+msgstr ""
+
+msgid "Физическая география"
+msgstr ""
+
+msgid "Экономическая география"
+msgstr ""
+
+msgid "Основы кинематики"
+msgstr ""
+
+msgid "Основы динамики"
+msgstr ""
+
+msgid "Законы сохранения"
+msgstr ""
+
+msgid "Основы термодинамики"
+msgstr ""
+
+msgid "Атомы, ионы и молекулы"
+msgstr ""
+
+msgid "Периодический закон и Периодическая таблица химических элементов "
+msgstr ""
+
+msgid "Классификация химических реакций"
+msgstr ""
+
+msgid "Закон сохранения массы веществ"
+msgstr ""
+
+msgid "Горение топлива и выделение энергии"
+msgstr ""
+
+msgid "Биохимия"
+msgstr ""
+
 msgctxt "Account type"
 msgid "Asset"
 msgstr "Актив"
@@ -782,6 +932,10 @@ msgstr "Требуется тест по Тестированию юристов
 msgctxt "Item error"
 msgid "NIS Test is required."
 msgstr "Требуется тест НИШ."
+
+msgctxt "Item error"
+msgid "GenericPseudoNISItem Test is required."
+msgstr "Требуется тест псевдо НИШ."
 
 msgctxt "Item error"
 msgid "Mathematics NIS Test is required."
@@ -1002,6 +1156,10 @@ msgstr "Средний"
 msgctxt "Question difficulty"
 msgid "Low"
 msgstr "Низкий"
+
+msgctxt "Question difficulty"
+msgid "Unspecified"
+msgstr "Не указано"
 
 msgctxt "Model field"
 msgid "answer class"
@@ -1557,6 +1715,10 @@ msgstr "Администратор"
 msgctxt "Badge label under avatar"
 msgid "Developer"
 msgstr "Разработчик"
+
+msgctxt "Badge label under avatar"
+msgid "Expert"
+msgstr "Эксперт"
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -2231,6 +2393,10 @@ msgid "Administrator"
 msgstr "Администратор"
 
 msgctxt "/super/users/"
+msgid "Expert"
+msgstr "Эксперт"
+
+msgctxt "/super/users/"
 msgid "Impersonate"
 msgstr "Войти как пользователь"
 
@@ -2460,26 +2626,6 @@ msgstr "Спасибо. Мы получили ваше сообщение, и м
 msgctxt "/developer/tests/"
 msgid "Choose test language"
 msgstr "Выберите язык теста"
-
-msgctxt "/developer/tests/"
-msgid "Choose type"
-msgstr "Выберите тип"
-
-msgctxt "Test language"
-msgid "Kazakh 1"
-msgstr "Казахский язык как родной"
-
-msgctxt "Test language"
-msgid "Kazakh 2"
-msgstr "Казахский язык как второй"
-
-msgctxt "Test language"
-msgid "Russian 1"
-msgstr "Русский язык как родной"
-
-msgctxt "Test language"
-msgid "Russian 2"
-msgstr "Русский язык как второй"
 
 msgctxt "Success alert message"
 msgid "You have created a new Test."

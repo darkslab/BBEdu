@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 20:55+0600\n"
+"POT-Creation-Date: 2023-10-12 04:46+0600\n"
 "PO-Revision-Date: 2021-05-07 08:13-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -574,6 +574,156 @@ msgctxt "Validation error"
 msgid "Incorrect old password."
 msgstr "Ескі құпиясөз дұрыс емес."
 
+msgid "IAC"
+msgstr "ИАЦ"
+
+msgid "Generic Test"
+msgstr "Generic тестілері"
+
+msgid "Math_4"
+msgstr "Математика 4 Сынып"
+
+msgid "Kazakh_4"
+msgstr "Қазақ тілі 4 Сынып"
+
+msgid "Russian_4"
+msgstr "Орыс тілі 4 Сынып"
+
+msgid "Natural_Science_4"
+msgstr "Жаратылыстану 4 Сынып"
+
+msgid "Math_9"
+msgstr "Математика 4 Сынып"
+
+msgid "Biology_9"
+msgstr "Биология 9 Сынып"
+
+msgid "Geography_9"
+msgstr "География 9 Сынып"
+
+msgid "Kazakh_9"
+msgstr "Қазақ тілі 9 Сынып"
+
+msgid "Russian_9"
+msgstr "Орыс тілі 9 Сынып"
+
+msgid "Physics_9"
+msgstr "Физика 9 Сынып"
+
+msgid "Chemistry_9"
+msgstr "Химия 9 Сынып"
+
+msgid "Knowledge and understanding"
+msgstr "Білу және түсіну"
+
+msgid "Application"
+msgstr "Қолдану"
+
+msgid "High level skills"
+msgstr "ЖДД"
+
+msgid "Числа и величины"
+msgstr "Сандар мен шамалар"
+
+msgid "Элементы геометрии"
+msgstr "Геометрия элементтері"
+
+msgid "Множества, Элементы логики"
+msgstr "Жиындар. Логика элементтері"
+
+msgid "Математическое моделирование"
+msgstr "Математикалық модельдеу"
+
+msgid "Оқылым"
+msgstr "Оқылым"
+
+msgid "Чтение"
+msgstr "Чтение"
+
+msgid "Раздел 1: Я - исследователь"
+msgstr "Бөлім 1: Мен-зерттеушімін"
+
+msgid "Раздел 2: Живая природа"
+msgstr "Бөлім 2: Тірі табиғат"
+
+msgid "Раздел 3: Вещества и их свойства"
+msgstr "Бөлім 3: Заттар және олардың қасиеттері"
+
+msgid "Раздел 4: Земля и Космос"
+msgstr "Бөлім 4: Жер және ғарыш"
+
+msgid "Раздел 5: Физика природы"
+msgstr "Бөлім5: Табиғат физикасы"
+
+msgid "Числа"
+msgstr "Сандар"
+
+msgid "Геометрия"
+msgstr "Геометрия"
+
+msgid "Математическое моделирование и анализ"
+msgstr "Математикалық модельдеу мен талдауы"
+
+msgid "Алгебра"
+msgstr "Алгебра"
+
+msgid "Статистика и теория вероятностей"
+msgstr "Статистика және ықтималдықтар теориясы"
+
+msgid "Многообразие, структура и функции живых организмов"
+msgstr "Тірі организмдердің көп түрлілігі, құрылымы мен қызметтері"
+
+msgid "Прикладные интегрированные науки"
+msgstr "Қолданбалы кіріктірілген ғылымдар"
+
+msgid "Организмы и окружающая среда"
+msgstr "Ағза мен қоршаған орта"
+
+msgid "Размножение, наследственность, изменчивость, эволюционное развитие"
+msgstr "Көбею, тұқым қуалаушылық, өзгергіштік, эволюциялық даму"
+
+msgid "Методы географических исследований"
+msgstr "Географияны зерттеу әдістері"
+
+msgid "Картография и географические базы данных"
+msgstr "Картогр афия және географ иялық деректер базасы"
+
+msgid "Физическая география"
+msgstr "Физикалық география"
+
+msgid "Экономическая география"
+msgstr "Әлеуметтік география"
+
+msgid "Основы кинематики"
+msgstr "Кинематика негіздері"
+
+msgid "Основы динамики"
+msgstr "Динамика негіздері"
+
+msgid "Законы сохранения"
+msgstr "Сақталу заңдары"
+
+msgid "Основы термодинамики"
+msgstr "Термодинамика негіздері"
+
+msgid "Атомы, ионы и молекулы"
+msgstr "Атомдар, иондар және молекулалар"
+
+msgid "Периодический закон и Периодическая таблица химических элементов "
+msgstr "Периодтық заң және химиялық элементтердің периодтық жүйесі"
+
+msgid "Классификация химических реакций"
+msgstr "Химиялық реакциялардың жіктелуі"
+
+msgid "Закон сохранения массы веществ"
+msgstr "Зат массасының сақталу заңы"
+
+msgid "Горение топлива и выделение энергии"
+msgstr "Отынның жануы және энергияның бөлінуі"
+
+msgid "Биохимия"
+msgstr "Биохимия"
+
 msgctxt "Account type"
 msgid "Asset"
 msgstr "Актив"
@@ -776,6 +926,10 @@ msgstr "Заңгерлер тестілері қажет."
 msgctxt "Item error"
 msgid "NIS Test is required."
 msgstr "НЗМ тестілері қажет."
+
+msgctxt "Item error"
+msgid "GenericPseudoNISItem Test is required."
+msgstr "Псевдо НЗМ тестілері қажет."
 
 msgctxt "Item error"
 msgid "Mathematics NIS Test is required."
@@ -996,6 +1150,10 @@ msgstr "Орта"
 msgctxt "Question difficulty"
 msgid "Low"
 msgstr "Төмен"
+
+msgctxt "Question difficulty"
+msgid "Unspecified"
+msgstr "Анықталмаған"
 
 msgctxt "Model field"
 msgid "answer class"
@@ -1550,6 +1708,10 @@ msgstr "Администратор"
 msgctxt "Badge label under avatar"
 msgid "Developer"
 msgstr "Құрастырушы"
+
+msgctxt "Badge label under avatar"
+msgid "Expert"
+msgstr "Эксперт"
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -2218,6 +2380,10 @@ msgid "Administrator"
 msgstr "Администратор"
 
 msgctxt "/super/users/"
+msgid "Expert"
+msgstr "Эксперт"
+
+msgctxt "/super/users/"
 msgid "Impersonate"
 msgstr "Қатысушы ретінде кіру"
 
@@ -2448,26 +2614,6 @@ msgstr ""
 msgctxt "/developer/tests/"
 msgid "Choose test language"
 msgstr "Тесттің тілін таңдаңыз"
-
-msgctxt "/developer/tests/"
-msgid "Choose type"
-msgstr "Пәннің түрін таңдаңыз"
-
-msgctxt "Test language"
-msgid "Kazakh 1"
-msgstr "Бірінші тіл ретінде Қазақ тілі"
-
-msgctxt "Test language"
-msgid "Kazakh 2"
-msgstr "Екінші тіл ретінде Қазақ тілі"
-
-msgctxt "Test language"
-msgid "Russian 1"
-msgstr "Бірінші тіл ретінде Орыс тілі"
-
-msgctxt "Test language"
-msgid "Russian 2"
-msgstr "Екінші тіл ретінде Орыс тілі"
 
 msgctxt "Success alert message"
 msgid "You have created a new Test."

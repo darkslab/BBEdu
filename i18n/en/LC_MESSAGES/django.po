@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 20:55+0600\n"
+"POT-Creation-Date: 2023-10-12 04:46+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -572,6 +572,174 @@ msgctxt "Validation error"
 msgid "Incorrect old password."
 msgstr "Incorrect old password."
 
+msgid "IAC"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/developer/tests/"
+#| msgid "Entrance Tests"
+msgid "Generic Test"
+msgstr "Entrance Tests"
+
+msgid "Math_4"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Test language"
+#| msgid "Kazakh"
+msgid "Kazakh_4"
+msgstr "Kazakh"
+
+#, fuzzy
+#| msgctxt "Test language"
+#| msgid "Russian"
+msgid "Russian_4"
+msgstr "Russian"
+
+msgid "Natural_Science_4"
+msgstr ""
+
+msgid "Math_9"
+msgstr ""
+
+msgid "Biology_9"
+msgstr ""
+
+msgid "Geography_9"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Test language"
+#| msgid "Kazakh"
+msgid "Kazakh_9"
+msgstr "Kazakh"
+
+#, fuzzy
+#| msgctxt "Test language"
+#| msgid "Russian"
+msgid "Russian_9"
+msgstr "Russian"
+
+msgid "Physics_9"
+msgstr ""
+
+msgid "Chemistry_9"
+msgstr ""
+
+msgid "Knowledge and understanding"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Actions"
+msgid "Application"
+msgstr "Actions"
+
+msgid "High level skills"
+msgstr ""
+
+msgid "Числа и величины"
+msgstr ""
+
+msgid "Элементы геометрии"
+msgstr ""
+
+msgid "Множества, Элементы логики"
+msgstr ""
+
+msgid "Математическое моделирование"
+msgstr ""
+
+msgid "Оқылым"
+msgstr ""
+
+msgid "Чтение"
+msgstr ""
+
+msgid "Раздел 1: Я - исследователь"
+msgstr ""
+
+msgid "Раздел 2: Живая природа"
+msgstr ""
+
+msgid "Раздел 3: Вещества и их свойства"
+msgstr ""
+
+msgid "Раздел 4: Земля и Космос"
+msgstr ""
+
+msgid "Раздел 5: Физика природы"
+msgstr ""
+
+msgid "Числа"
+msgstr ""
+
+msgid "Геометрия"
+msgstr ""
+
+msgid "Математическое моделирование и анализ"
+msgstr ""
+
+msgid "Алгебра"
+msgstr ""
+
+msgid "Статистика и теория вероятностей"
+msgstr ""
+
+msgid "Многообразие, структура и функции живых организмов"
+msgstr ""
+
+msgid "Прикладные интегрированные науки"
+msgstr ""
+
+msgid "Организмы и окружающая среда"
+msgstr ""
+
+msgid "Размножение, наследственность, изменчивость, эволюционное развитие"
+msgstr ""
+
+msgid "Методы географических исследований"
+msgstr ""
+
+msgid "Картография и географические базы данных"
+msgstr ""
+
+msgid "Физическая география"
+msgstr ""
+
+msgid "Экономическая география"
+msgstr ""
+
+msgid "Основы кинематики"
+msgstr ""
+
+msgid "Основы динамики"
+msgstr ""
+
+msgid "Законы сохранения"
+msgstr ""
+
+msgid "Основы термодинамики"
+msgstr ""
+
+msgid "Атомы, ионы и молекулы"
+msgstr ""
+
+msgid "Периодический закон и Периодическая таблица химических элементов "
+msgstr ""
+
+msgid "Классификация химических реакций"
+msgstr ""
+
+msgid "Закон сохранения массы веществ"
+msgstr ""
+
+msgid "Горение топлива и выделение энергии"
+msgstr ""
+
+msgid "Биохимия"
+msgstr ""
+
 msgctxt "Account type"
 msgid "Asset"
 msgstr "Asset"
@@ -773,6 +941,13 @@ msgstr "Law Test is required."
 
 msgctxt "Item error"
 msgid "NIS Test is required."
+msgstr "NIS Test is required."
+
+#, fuzzy
+#| msgctxt "Item error"
+#| msgid "NIS Test is required."
+msgctxt "Item error"
+msgid "GenericPseudoNISItem Test is required."
 msgstr "NIS Test is required."
 
 msgctxt "Item error"
@@ -994,6 +1169,10 @@ msgstr "Normal"
 msgctxt "Question difficulty"
 msgid "Low"
 msgstr "Low"
+
+msgctxt "Question difficulty"
+msgid "Unspecified"
+msgstr ""
 
 msgctxt "Model field"
 msgid "answer class"
@@ -1530,6 +1709,13 @@ msgstr "Administrator"
 msgctxt "Badge label under avatar"
 msgid "Developer"
 msgstr "Developer"
+
+#, fuzzy
+#| msgctxt "Account type"
+#| msgid "Expense"
+msgctxt "Badge label under avatar"
+msgid "Expert"
+msgstr "Expense"
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -2198,6 +2384,13 @@ msgctxt "/super/users/"
 msgid "Administrator"
 msgstr "Administrator"
 
+#, fuzzy
+#| msgctxt "Account type"
+#| msgid "Expense"
+msgctxt "/super/users/"
+msgid "Expert"
+msgstr "Expense"
+
 msgctxt "/super/users/"
 msgid "Impersonate"
 msgstr "Impersonate"
@@ -2430,26 +2623,6 @@ msgstr ""
 msgctxt "/developer/tests/"
 msgid "Choose test language"
 msgstr "Choose test language"
-
-msgctxt "/developer/tests/"
-msgid "Choose type"
-msgstr "Choose type"
-
-msgctxt "Test language"
-msgid "Kazakh 1"
-msgstr "Kazakh 1"
-
-msgctxt "Test language"
-msgid "Kazakh 2"
-msgstr "Kazakh 2"
-
-msgctxt "Test language"
-msgid "Russian 1"
-msgstr "Russian 1"
-
-msgctxt "Test language"
-msgid "Russian 2"
-msgstr "Russian 2"
 
 msgctxt "Success alert message"
 msgid "You have created a new Test."
