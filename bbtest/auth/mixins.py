@@ -37,6 +37,9 @@ class AdminPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     permission_denied_message = "Admin access required"
     permission_required = "bbtest.admin"
 
+class ExpertPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
+    permission_denied_message = "Expert access required"
+    permission_required = "bbtest.expert"
 
 class DeveloperPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     permission_denied_message = "Developer access required"
@@ -46,3 +49,27 @@ class DeveloperPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMix
 class StudentPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     permission_denied_message = "Student access required"
     permission_required = "bbtest.student"
+
+
+class StaffPermissionRequiredMixin(LoginRequiredMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if (request.user.has_perm("bbtest.super") or 
+                request.user.has_perm("bbtest.expert") or 
+                request.user.has_perm("bbtest.admin") or 
+                request.user.has_perm("bbtest.developer")):
+            return super().dispatch(request, *args, **kwargs)
+        if request.is_ajax():
+            raise PermissionDenied("Permission denied for AJAX call")
+        # return redirect("bbtest:home")
+        # return super().handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+    
+
+class CreateStudentRequiredMixin(LoginRequiredMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if (request.user.has_perm("bbtest.super") or
+                request.user.has_perm("bbtest.admin")):
+            return super().dispatch(request, *args, **kwargs)
+        if request.is_ajax():
+            raise PermissionDenied("Permission denied for AJAX call")
+        return super().dispatch(request, *args, **kwargs)
