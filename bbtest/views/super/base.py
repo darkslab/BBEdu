@@ -21,6 +21,7 @@ class DashboardView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView
         kwargs["student_count"] = User.active_users.filter(user_permissions__codename="student").count()
         kwargs["developer_count"] = User.active_users.filter(user_permissions__codename="developer").count()
         kwargs["admin_count"] = User.active_users.filter(user_permissions__codename="admin").count()
+        kwargs["expert_count"] = User.active_users.filter(user_permissions__codename="expert").count()
         kwargs["super_count"] = User.active_users.filter(is_superuser=True).count()
 
         kwargs["developer_tests_stats"] = User.active_users.filter(user_permissions__codename="developer").order_by("last_name").all()
