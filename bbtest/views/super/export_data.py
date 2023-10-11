@@ -19,11 +19,11 @@ import csv
 from bbtest.models import Quiz, TestSection
 import datetime
 
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, AdminPermissionRequiredMixin
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 from django.db.models import Q
 
-class ExportDataView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+class ExportDataView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/export_data.html"
 
     def get_context_data(self, **kwargs):
@@ -34,7 +34,7 @@ class ExportDataView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementR
 
 
 
-class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, View):
+class ExportDataFormView(AdminPermissionRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         form = ExportDataForm(data=request.POST)
         valid = form.is_valid()    # is_valid should be called before form.cleaned_data could be accessed
@@ -49,8 +49,9 @@ class ExportDataFormView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgem
             # get all quizes
             table_tests_all = self.get_quizes_in_range(start_date, end_date)  # [student][(quiz.language, test_name)]
 
-            # test_names_sorted = sorted(test_names_and_count.keys())  # fix sort order
-            test_names_sorted = ["Critical Thinking", "Quantitative", "Spatial Thinking", "English Language"]  # hardcode order and subjects
+            test_names_sorted = sorted(test_names_and_count.keys())  # fix sort order
+            # test_names_sorted = ["Critical Thinking", "Quantitative", "Spatial Thinking", "English Language"]  # hardcode order and subjects
+            
             # test_names_sorted = [("ru", "Critical Thinking"), ("ru", "Quantitative"), ("ru", "Spatial Thinking"), 
             #                      ("kk", "Critical Thinking"), ("kk", "Quantitative"), ("kk", "Spatial Thinking"), 
             #                      ("xx", "English Language")]  # hardcode order and subjects
