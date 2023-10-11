@@ -77,6 +77,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         permissions = (
             ("super", "Can act as a Super"),
             ("admin", "Can act as an Admin"),
+            ("expert", "Can act as an Expert"),
             ("developer", "Can act as a Developer"),
             ("student", "Can act as a Student"),
         )
@@ -96,6 +97,8 @@ class User(AbstractBaseUser, PermissionsMixin):
             return reverse("bbtest:admin_dashboard")
         if self.has_perm("bbtest.developer"):
             return reverse("bbtest:developer_dashboard")
+        if self.has_perm("bbtest.expert"):
+            return reverse("bbtest:expert_dashboard")
         if self.has_perm("bbtest.student"):
             return reverse("bbtest:student_dashboard")
         return reverse("home")

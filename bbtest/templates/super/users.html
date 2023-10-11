@@ -7,6 +7,8 @@
 
 {% block nav_super_users_class %}active{% endblock %}
 {% block nav_developer_users_class %}active{% endblock %}
+{% block nav_admin_users_class %}active{% endblock %}
+{% block nav_expert_users_class %}active{% endblock %}
 
 {% block content %}
     <script>
@@ -81,6 +83,8 @@
                                             <span class="label label-info">{% trans 'Administrator' context '/super/users/' %}</span>
                                         {% elif user.role == 'developer' %}
                                             <span class="label label-danger">{% trans 'Developer' context '/super/users/' %}</span>
+                                        {% elif user.role == 'expert' %}
+                                            <span class="label label-danger">{% trans 'Expert' context '/super/users/' %}</span>
                                         {% elif user.role == 'student' %}
                                             <span class="label label-success">{% trans 'Student' context '/super/users/' %}</span>
                                         {% endif %}
