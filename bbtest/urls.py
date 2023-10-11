@@ -120,6 +120,23 @@ urlpatterns = [
     url(r"^developer/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="developer_acknowledgement"),
     url(r"^developer/tests/$",           DeveloperTestsView.as_view(),           name="developer_tests"          ),
     url(r"^developer/offer/$",           DeveloperOfferView.as_view(),           name="developer_offer"          ),
+    url(r"^developer/users/$",           SuperUsersView.as_view(),               name="developer_users"          ),
+
+    # EXPERT URLS
+    url(r"^expert/$",                 DeveloperDashboardView.as_view(),       name="expert_dashboard"      ),
+    url(r"^expert/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="expert_acknowledgement"),
+    url(r"^expert/tests/$",           DeveloperTestsView.as_view(),           name="expert_tests"          ),
+    url(r"^expert/users/$",           SuperUsersView.as_view(),               name="expert_users"          ),
+    # url(r"^expert/offer/$",           DeveloperOfferView.as_view(),           name="expert_offer"          ),
+
+    # ADMIN URLS
+    url(r"^admin/$",                 DeveloperDashboardView.as_view(),       name="admin_dashboard"      ),
+    url(r"^admin/create-students/$", SuperCreateStudentsView.as_view(),      name="admin_create_students"),
+    url(r"^admin/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="admin_acknowledgement"),
+    url(r"^admin/tests/$",           DeveloperTestsView.as_view(),           name="admin_tests"          ),
+    # url(r"^admin/offer/$",           DeveloperOfferView.as_view(),           name="admin_offer"          ),
+    url(r"^admin/users/$",           SuperUsersView.as_view(),                name="admin_users"         ),
+    
 
     # SUPER URLS
     url(r"^super/$",                                        SuperDashboardView.as_view(),                name="super_dashboard"                 ),
