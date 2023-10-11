@@ -9,13 +9,13 @@ from django.utils.translation import ugettext_noop
 def add_iac_test_domain(apps, schema_editor):
     domain = apps.get_model("bbtest", "TestDomain").objects.create(
         id=7911,
-        name="IAC",
+        name=ugettext_noop("IAC"),
         order=1,
     )
 
     section = apps.get_model("bbtest", "TestSection").objects.create(
         id = 9540,
-        name = "Generic Test",
+        name = ugettext_noop("Generic Test"),
         duration = 120,
         question_count = 30,
         order = 1,

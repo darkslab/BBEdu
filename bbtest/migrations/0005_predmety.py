@@ -10,17 +10,17 @@ def add_iac_test_domain(apps, schema_editor):
     domain = apps.get_model("bbtest", "TestDomain").objects.get(id=7911)
 
     sections = [
-        ["Math_4", 0, 60], 
-        ["Kazakh_4", 10, 60],
-        ["Russian_4", 10, 60],
-        ["Natural_Science_4", 20, 60], 
-        ["Math_9", 20, 60], 
-        ["Biology_9", 7, 60], 
-        ["Geography_9", 7, 60], 
-        ["Kazakh_9", 15, 60],
-        ["Russian_9", 15, 60],
-        ["Physics_9", 8, 60],
-        ["Chemistry_9", 8, 60],
+        [ugettext_noop("Math_4"), 0, 60], 
+        [ugettext_noop("Kazakh_4"), 10, 60],
+        [ugettext_noop("Russian_4"), 10, 60],
+        [ugettext_noop("Natural_Science_4"), 20, 60], 
+        [ugettext_noop("Math_9"), 20, 60], 
+        [ugettext_noop("Biology_9"), 7, 60], 
+        [ugettext_noop("Geography_9"), 7, 60], 
+        [ugettext_noop("Kazakh_9"), 15, 60],
+        [ugettext_noop("Russian_9"), 15, 60],
+        [ugettext_noop("Physics_9"), 8, 60],
+        [ugettext_noop("Chemistry_9"), 8, 60],
     ]
 
     start_id = 9541
