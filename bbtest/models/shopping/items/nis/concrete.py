@@ -4,6 +4,18 @@ from .base import NonLanguageNISItem, LanguageNISItem
 from ...exceptions import ItemError
 
 
+class GenericPseudoNISItem(NonLanguageNISItem):
+
+    def assert_init_args(self, test, student, language):
+        super().assert_init_args(test, student, language)
+        if test.section_id not in range(9540, 9552):
+            raise ItemError(pgettext("Item error", "GenericPseudoNISItem Test is required."))
+
+    def price(self):
+        return Decimal("0.00")
+
+
+
 class MathematicsNISItem(NonLanguageNISItem):
     def assert_init_args(self, test, student, language):
         super().assert_init_args(test, student, language)
