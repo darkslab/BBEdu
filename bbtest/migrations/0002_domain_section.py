@@ -4,23 +4,19 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 from django.utils.translation import ugettext_noop
-
+from bbtest.models.test import TestDomain, TestSection
 
 def add_iac_test_domain(apps, schema_editor):
-    domain = apps.get_model("bbtest", "TestDomain").objects.create(
-        id=7911,
-        name=ugettext_noop("IAC"),
-        order=1,
-    )
+    pass
 
-    section = apps.get_model("bbtest", "TestSection").objects.create(
-        id = 9540,
-        name = ugettext_noop("Generic Test"),
-        duration = 120,
-        question_count = 30,
-        order = 1,
-        domain = domain
-    )
+    # section = apps.get_model("bbtest", "TestSection").objects.create(
+    #     id = 9540,
+    #     name = ugettext_noop("Generic Test"),
+    #     duration = 120,
+    #     question_count = 30,
+    #     order = 1,
+    #     domain = domain
+    # )
 
 
 
