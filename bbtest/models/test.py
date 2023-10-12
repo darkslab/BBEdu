@@ -126,6 +126,29 @@ class TestSubTopicSection(Model):
         unique_together = ("section", "subtopic")
 
 
+class TestEducationGoal(Model):
+    sections  = ManyToManyField  ( TestSection, through="TestEducationGoalSection", related_name="goal", )
+
+    name  = CharField  ( pgettext_lazy("Model field", "name"),  max_length=1000, unique=False, )
+
+    class Meta:
+        default_permissions = ()
+
+    def __str__(self):
+        return self.name
+
+class TestEducationGoalSection(Model):
+    section  = ForeignKey  ( TestSection, on_delete=CASCADE,                         )
+    goal    = ForeignKey  ( TestEducationGoal,   on_delete=CASCADE, related_name="through", )
+
+    order  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"), db_index=True, )
+
+    class Meta:
+        default_permissions = ()
+        ordering = ("order",)
+        unique_together = ("section", "goal")
+
+
 class DraftTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status=Test.STATUS_DRAFT)
