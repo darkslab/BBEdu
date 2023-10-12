@@ -204,6 +204,24 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
           onChange: this._attributeChange.bind(this, "topic")
         });
       }
+      var subtopicContent = null;
+      if (this.props.attributes.subtopics.length > 0) {
+        subtopicContent = /*#__PURE__*/React.createElement(DeveloperAttribute, {
+          label: this.props.texts.subtopic,
+          value: this.props.object.subtopic(),
+          data: this.props.attributes.subtopics,
+          onChange: this._attributeChange.bind(this, "subtopic")
+        });
+      }
+      var goalContent = null;
+      if (this.props.attributes.goals.length > 0) {
+        goalContent = /*#__PURE__*/React.createElement(DeveloperAttribute, {
+          label: this.props.texts.goal,
+          value: this.props.object.goal(),
+          data: this.props.attributes.goals,
+          onChange: this._attributeChange.bind(this, "goal")
+        });
+      }
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
         className: "modal bb-quick-modal fade",
         "data-quick-modal": true
@@ -236,7 +254,7 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
         value: this.props.object.difficulty(),
         data: this.props.attributes.difficulties,
         onChange: this._attributeChange.bind(this, "difficulty")
-      }), taxonomyContent, topicContent), /*#__PURE__*/React.createElement("div", {
+      }), taxonomyContent, topicContent, subtopicContent, goalContent), /*#__PURE__*/React.createElement("div", {
         "data-paragraphs": true
       }, developerParagraphs), addParagaphButton, /*#__PURE__*/React.createElement("hr", {
         className: "bb-separator"
@@ -265,6 +283,12 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
           break;
         case "topic":
           this.props.object.setTopic(value);
+          break;
+        case "subtopic":
+          this.props.object.setSubtopic(value);
+          break;
+        case "goal":
+          this.props.object.setGoal(value);
           break;
       }
       this._pokeComponent();

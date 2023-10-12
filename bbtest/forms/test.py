@@ -18,7 +18,7 @@ class TestQuestionForm(ModelForm):
 
     class Meta:
         model = TestQuestion
-        fields = ("difficulty", "taxonomy", "topic", "answer_class", "meta_data")
+        fields = ("difficulty", "taxonomy", "topic", "subtopic", "goal", "answer_class", "meta_data")
         error_messages = {
             "difficulty": {
                 "required": pgettext_lazy("Validation error", "Please select difficulty."),
@@ -29,6 +29,12 @@ class TestQuestionForm(ModelForm):
             },
             "topic": {
                 "invalid_choice": pgettext_lazy("Validation error", "Incorrect topic value."),
+            },
+            "subtopic": {
+                "invalid_choice": pgettext_lazy("Validation error", "Incorrect subtopic value."),
+            },
+            "goal": {
+                "invalid_choice": pgettext_lazy("Validation error", "Incorrect goal value."),
             },
             "answer_class": {
                 "invalid_choice": pgettext_lazy("Validation error", "Incorrect answer class."),
@@ -495,7 +501,7 @@ class TestForm(ModelForm):
 
         try:
             # NIS sections
-            if section.pk in range(9540, 9552):
+            if section.pk in range(9540, 9559):
                 if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
                     raise ValueError("Incorrect language")
             # # UNT sections
@@ -749,117 +755,6 @@ class TestForm(ModelForm):
                     order=0,
                 )
 
-        # # NUFYPET sections
-        # elif test.section.is_nufypet():
-        #     shared_paragraph = None
-        #     for i in range(test.section.question_count):
-        #         choice_id = randint(0x0000, 0xffff)
-        #         meta_data = {
-        #             "choices": [
-        #                 { "id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 4, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #             ],
-        #             "correct_id": None,
-        #         }
-
-        #         question = test.questions.create(
-        #             answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
-        #             meta_data=meta_data,
-        #             weight=0,
-        #             order=i,
-        #             developer=test.developer,
-        #         )
-        #         question.weight = TestQuestion.calculate_weight(question, test.section)
-        #         question.save()
-
-        #         paragraph = TestParagraph.objects.create(
-        #             paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-        #             meta_data={"text": ""},
-        #         )
-        #         TestParagraphQuestion.objects.create(
-        #             question=question,
-        #             paragraph=paragraph,
-        #             order=0,
-        #         )
-
-        # # NQT core sections
-        # elif test.section.is_nqt_compulsory():
-        #     shared_paragraph = None
-        #     for i in range(test.section.question_count):
-        #         choice_id = randint(0x0000, 0xffff)
-        #         meta_data = {
-        #             "choices": [
-        #                 { "id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 4, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #             ],
-        #             "correct_id": None,
-        #         }
-
-        #         question = test.questions.create(
-        #             answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
-        #             meta_data=meta_data,
-        #             weight=0,
-        #             order=i,
-        #             developer=test.developer,
-        #         )
-        #         question.weight = TestQuestion.calculate_weight(question, test.section)
-        #         question.save()
-
-        #         paragraph = TestParagraph.objects.create(
-        #             paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-        #             meta_data={"text": ""},
-        #         )
-        #         TestParagraphQuestion.objects.create(
-        #             question=question,
-        #             paragraph=paragraph,
-        #             order=0,
-        #         )
-
-        # # NQT spec sections
-        # elif test.section.is_nqt_profile():
-        #     pass
-
-        # # LAW sections
-        # elif test.section.is_law():
-        #     shared_paragraph = None
-        #     for i in range(test.section.question_count):
-        #         choice_id = randint(0x0000, 0xffff)
-        #         meta_data = {
-        #             "choices": [
-        #                 { "id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #                 { "id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""} },
-        #             ],
-        #             "correct_id": None,
-        #         }
-
-        #         question = test.questions.create(
-        #             answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
-        #             meta_data=meta_data,
-        #             weight=0,
-        #             order=i,
-        #             developer=test.developer,
-        #         )
-        #         question.weight = TestQuestion.calculate_weight(question, test.section)
-        #         question.save()
-
-        #         paragraph = TestParagraph.objects.create(
-        #             paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-        #             meta_data={"text": ""},
-        #         )
-        #         TestParagraphQuestion.objects.create(
-        #             question=question,
-        #             paragraph=paragraph,
-        #             order=0,
-        #         )
-
         return test
 
     def save(self, developer, commit=True):
@@ -902,6 +797,12 @@ class TestCheckForm(ModelForm):
                                             "count",
                                         ),
         "topic":                        npgettext_lazy(
+                                            "Validation error",
+                                            "There has to be %(count)s question in topic: %(topic)s.",
+                                            "There has to be %(count)s questions in topic: %(topic)s.",
+                                            "count",
+                                        ),
+        "subtopic":                     npgettext_lazy(
                                             "Validation error",
                                             "There has to be %(count)s question in topic: %(topic)s.",
                                             "There has to be %(count)s questions in topic: %(topic)s.",
@@ -1107,84 +1008,3 @@ class TestCheckForm(ModelForm):
                     params={ "count": stats["required"] },
                 ))
 
-    # def __clean_unt_compulsory(self, questions_queryset):
-    #     questions_queryset = questions_queryset.all()
-
-    #     for question in questions_queryset:
-    #         if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
-    #             self.add_error(None, ValidationError(
-    #                 self.error_messages["unt_compulsory_answer_class"],
-    #                 code="incomplete",
-    #             ))
-    #             break
-
-    #     difficulty_counts = {
-    #         TestQuestion.DIFFICULTY_HIGH:    { "required": 5, "count": 0 },
-    #         TestQuestion.DIFFICULTY_NORMAL:  { "required": 5, "count": 0 },
-    #         TestQuestion.DIFFICULTY_LOW:     { "required": 10, "count": 0 },
-    #     }
-    #     for question in questions_queryset:
-    #         if question.difficulty in difficulty_counts:
-    #             difficulty_counts[question.difficulty]["count"] += 1
-    #     for difficulty, stats in difficulty_counts.items():
-    #         if stats["required"] != stats["count"]:
-    #             self.add_error(None, ValidationError(
-    #                 self.error_messages["difficulty"][difficulty],
-    #                 code="incomplete",
-    #                 params={ "count": stats["required"] },
-    #             ))
-
-    # def __clean_unt_profile(self, questions_queryset):
-    #     questions_queryset = questions_queryset.all()
-
-    #     multichoice_one = 20
-    #     multichoice_multi = 10
-    #     for question in questions_queryset:
-    #         is_found = False
-    #         if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
-    #             is_found = True
-    #             multichoice_one -= 1
-    #         elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
-    #             is_found = True
-    #             multichoice_multi -= 1
-    #         if not is_found or multichoice_one < 0 or multichoice_multi < 0:
-    #             self.add_error(None, ValidationError(
-    #                 self.error_messages["unt_profile_answer_class"],
-    #                 code="incomplete",
-    #             ))
-    #             break
-
-    #     difficulty_counts = {
-    #         TestQuestion.DIFFICULTY_HIGH:    { "required": 7, "count": 0 },
-    #         TestQuestion.DIFFICULTY_NORMAL:  { "required": 8, "count": 0 },
-    #         TestQuestion.DIFFICULTY_LOW:     { "required": 15, "count": 0 },
-    #     }
-    #     for question in questions_queryset:
-    #         if question.difficulty in difficulty_counts:
-    #             difficulty_counts[question.difficulty]["count"] += 1
-    #     for difficulty, stats in difficulty_counts.items():
-    #         if stats["required"] != stats["count"]:
-    #             self.add_error(None, ValidationError(
-    #                 self.error_messages["difficulty"][difficulty],
-    #                 code="incomplete",
-    #                 params={ "count": stats["required"] },
-    #             ))
-
-    # def __clean_nufypet(self, questions_queryset):
-    #     questions_queryset = questions_queryset.all()
-
-    #     for question in questions_queryset:
-    #         if question.answer_class != TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
-    #             self.add_error(None, ValidationError(
-    #                 self.error_messages["nufypet_answer_class"],
-    #                 code="incomplete",
-    #             ))
-    #             break
-
-    #     for question in questions_queryset:
-    #         if question.topic is None:
-    #             self.add_error(None, ValidationError(
-    #                 self.error_messages["nufypet_missing_topic"],
-    #                 code="incomplete",
-    #             ))
-    #             break

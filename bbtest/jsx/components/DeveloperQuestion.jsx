@@ -185,6 +185,24 @@ class DeveloperQuestion extends React.Component {
                                     onChange={this._attributeChange.bind(this, "topic")} />
             );
         }
+        let subtopicContent = null;
+        if (this.props.attributes.subtopics.length > 0) {
+            subtopicContent = (
+                <DeveloperAttribute label={this.props.texts.subtopic}
+                                    value={this.props.object.subtopic()}
+                                    data={this.props.attributes.subtopics}
+                                    onChange={this._attributeChange.bind(this, "subtopic")} />
+            );
+        }
+        let goalContent = null;
+        if (this.props.attributes.goals.length > 0) {
+            goalContent = (
+                <DeveloperAttribute label={this.props.texts.goal}
+                                    value={this.props.object.goal()}
+                                    data={this.props.attributes.goals}
+                                    onChange={this._attributeChange.bind(this, "goal")} />
+            );
+        }
 
         return (
             <React.Fragment>
@@ -213,6 +231,8 @@ class DeveloperQuestion extends React.Component {
                                                         onChange={this._attributeChange.bind(this, "difficulty")} />
                                     {taxonomyContent}
                                     {topicContent}
+                                    {subtopicContent}
+                                    {goalContent}
                                 </div>
                                 <div data-paragraphs>
                                     {developerParagraphs}
@@ -245,6 +265,12 @@ class DeveloperQuestion extends React.Component {
                 break;
             case "topic":
                 this.props.object.setTopic(value);
+                break;
+            case "subtopic":
+                this.props.object.setSubtopic(value);
+                break;
+            case "goal":
+                this.props.object.setGoal(value);
                 break;
         }
         this._pokeComponent();
