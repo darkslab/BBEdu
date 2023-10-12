@@ -13,7 +13,7 @@ from bbtest.models import Account
 
 
 def create_students():
-    user = User.objects.create_user(username="student_02", email="student_02@example.com", password="monkeymonkey")
+    user = User.objects.create_user(username="student_02", email="student_02@example.com", password="m")
     user.first_name = "Dimon"
     user.last_name = "Electric"
     user.save()
@@ -25,7 +25,7 @@ def create_students():
 
 
 def create_developer():
-    user = User.objects.create_user(username="Dev", email=None, password="monkeymonkey")
+    user = User.objects.create_user(username="Dev", email=None, password="m")
     user.first_name = "Dev"
     user.last_name = ""
     user.save()
@@ -39,7 +39,7 @@ def create_developer():
     # Account: Developer-3972 Iqanat
 
 def create_admin():
-    user = User.objects.create_user(username="Admin", email=None, password="monkeymonkey")
+    user = User.objects.create_user(username="Admin", email=None, password="m")
     user.first_name = "Admin"
     user.last_name = ""
     user.save()
@@ -51,7 +51,7 @@ def create_admin():
     return user
 
 def create_expert():
-    user = User.objects.create_user(username="Expert", email=None, password="monkeymonkey")
+    user = User.objects.create_user(username="Expert", email=None, password="m")
     user.first_name = "Expert"
     user.last_name = ""
     user.save()
