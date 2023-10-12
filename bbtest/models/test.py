@@ -324,8 +324,8 @@ class TestQuestion(Model):
 
     @classmethod
     def calculate_weight(cls, test_question, test_section):
-        if test_section.is_nis():
-            return 1
+        # if test_section.is_nis():
+        #     return 1
         return 1
 
 
