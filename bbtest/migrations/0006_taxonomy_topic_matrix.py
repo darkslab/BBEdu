@@ -4,101 +4,9 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 from django.utils.translation import ugettext_noop
-from bbtest.models.test import TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, TestSection, TestDomain
+from bbtest.models.test import TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, TestSection, TestDomain, TestSubTopic, TestSubTopicSection, TestEducationGoal, TestEducationGoalSection
 import os
 from openpyxl import load_workbook
-
-
-def add_iac_test_domain(apps, schema_editor):
-    knowledge, _ = TestTaxonomy.objects.update_or_create(
-        pk = 1000,
-        name = ugettext_noop("Knowledge and understanding"),
-    )
-    application, _ = TestTaxonomy.objects.update_or_create (
-        pk = 1001,
-        name = ugettext_noop("Application"),
-    )
-    high_level_skills, _ = TestTaxonomy.objects.update_or_create (
-        pk = 1002,
-        name = ugettext_noop("High level skills")
-    )
-
-    for pk in range(9540, 9552):
-        section = TestSection.objects.get(pk = pk)
-
-        for i, taxonomy in enumerate([knowledge, application, high_level_skills]):
-            TestTaxonomySection.objects.create(
-                section = section,
-                taxonomy = taxonomy,
-                order = i,
-            )
-
-    topic_dict = {
-        ugettext_noop("Math_4") : [
-            ugettext_noop("Числа и величины"),
-            ugettext_noop("Элементы геометрии"),
-            ugettext_noop("Множества, Элементы логики"),
-            ugettext_noop("Математическое моделирование"),
-        ],
-        ugettext_noop("Kazakh_4") : [
-            ugettext_noop("Оқылым"),
-        ],
-        ugettext_noop("Russian_4") : [
-            ugettext_noop("Чтение"),
-        ],
-        ugettext_noop("Natural_Science_4") : [
-            ugettext_noop("Раздел 1: Я - исследователь"),
-            ugettext_noop("Раздел 2: Живая природа"),
-            ugettext_noop("Раздел 3: Вещества и их свойства"),
-            ugettext_noop("Раздел 4: Земля и Космос"),
-            ugettext_noop("Раздел 5: Физика природы"),
-        ],
-        ugettext_noop("Math_9") : [
-            ugettext_noop("Числа"),
-            ugettext_noop("Геометрия"),
-            ugettext_noop("Математическое моделирование и анализ"),
-            ugettext_noop("Алгебра"),
-            ugettext_noop("Статистика и теория вероятностей"),
-        ],
-        ugettext_noop("Biology_9") : [
-            ugettext_noop("Многообразие, структура и функции живых организмов"),
-            ugettext_noop("Прикладные интегрированные науки"),
-            ugettext_noop("Организмы и окружающая среда"),
-            ugettext_noop("Размножение, наследственность, изменчивость, эволюционное развитие"),
-        ],
-        ugettext_noop("Geography_9") : [
-            ugettext_noop("Методы географических исследований"),
-            ugettext_noop("Картография и географические базы данных"),
-            ugettext_noop("Физическая география"),
-            ugettext_noop("Экономическая география"),
-        ],
-        ugettext_noop("Kazakh_9") : [
-            ugettext_noop("Оқылым"),
-        ],
-        ugettext_noop("Russian_9") : [
-            ugettext_noop("Чтение"),
-        ],
-        ugettext_noop("Physics_9") : [
-            ugettext_noop("Основы кинематики"),
-            ugettext_noop("Основы динамики"),
-            ugettext_noop("Законы сохранения"),
-            ugettext_noop("Основы термодинамики"),
-        ],
-        ugettext_noop("Chemistry_9") : [
-            ugettext_noop("Атомы, ионы и молекулы"),
-            ugettext_noop("Периодический закон и Периодическая таблица химических элементов "),
-            ugettext_noop("Классификация химических реакций"),
-            ugettext_noop("Закон сохранения массы веществ"),
-            ugettext_noop("Горение топлива и выделение энергии"),
-            ugettext_noop("Биохимия"),
-        ],
-    }
-
-    for i, (section_name, topic_list) in enumerate(topic_dict.items()):
-        section = TestSection.objects.get(name=section_name)
-        for index, topic_name in enumerate(topic_list):
-            topic, _ = TestTopic.objects.get_or_create(name=topic_name)
-            TestTopicSection.objects.create(section=section, topic=topic, order=index)
 
 
 def add_migration(apps, schema_editor):
@@ -199,6 +107,12 @@ def add_migration(apps, schema_editor):
                     edu_goal_values = edu_goal_value.strip().replace("\u200b", "").split("\n")
                     edu_goal.update(map(str.strip, edu_goal_values))
 
+            # Convert sets to sorted lists
+            topic_list = sorted(topic_list)
+            subtopic_list = sorted(subtopic_list)
+            edu_goal = sorted(edu_goal)
+
+            
             print(subject_name, klass, lang)
             print(topic_list)
             print(subtopic_list)
@@ -235,7 +149,15 @@ def add_migration(apps, schema_editor):
                 topic, _ = TestTopic.objects.get_or_create(name=topic_name)
                 TestTopicSection.objects.create(section=section, topic=topic, order=index)
 
+            # ----------------- Add SubTopics -----------------
+            for index, subtopic_name in enumerate(subtopic_list):
+                subtopic, _ = TestSubTopic.objects.get_or_create(name=subtopic_name)
+                TestSubTopicSection.objects.create(section=section, subtopic=subtopic, order=index)
 
+            # ----------------- Add Educational goals -----------------
+            for index, edu_goal_name in enumerate(edu_goal):
+                goal, _ = TestEducationGoal.objects.get_or_create(name=edu_goal_name)
+                TestEducationGoalSection.objects.create(section=section, goal=goal, order=index)
 
 class Migration(migrations.Migration):
 
