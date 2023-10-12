@@ -127,7 +127,7 @@ class TestSubTopicSection(Model):
 
 
 class TestEducationGoal(Model):
-    sections  = ManyToManyField  ( TestSection, through="TestEducationGoalSection", related_name="goal", )
+    sections  = ManyToManyField  ( TestSection, through="TestEducationGoalSection", related_name="goals", )
 
     name  = CharField  ( pgettext_lazy("Model field", "name"),  max_length=1000, unique=False, )
 
@@ -301,6 +301,8 @@ class TestQuestion(Model):
     test       = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )
     taxonomy   = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     topic      = ForeignKey  ( TestTopic,    on_delete=CASCADE, related_name="questions", null=True, blank=True, )
+    subtopic   = ForeignKey  ( TestSubTopic,        on_delete=CASCADE, related_name="questions", null=True, blank=True, )
+    goal       = ForeignKey  ( TestEducationGoal,   on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     developer  = ForeignKey  ( User,         on_delete=CASCADE, related_name="questions",                        )
 
     answer_class  = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
@@ -323,15 +325,8 @@ class TestQuestion(Model):
     @classmethod
     def calculate_weight(cls, test_question, test_section):
         if test_section.is_nis():
-            return 10
-        elif test_section.is_unt_compulsory() or test_section.is_nufypet() or test_section.is_nqt_compulsory() or test_section.is_law():
             return 1
-        elif test_section.is_unt_profile():
-            if test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_ONE:
-                return 1
-            elif test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_MULTI:
-                return 2
-        return None
+        return 1
 
 
 class TestParagraph(Model):
