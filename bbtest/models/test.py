@@ -40,16 +40,16 @@ class TestSection(Model):
         return self.name
 
     def is_nis(self):
-        return self.pk in range(9540, 9545) or self.pk in (9566, 9567)
+        return self.pk in range(9540, 9552)
 
     def is_unt_compulsory(self):
-        return self.pk in range(9545, 9548)
+        return self.pk in range(0)
 
     def is_unt_profile(self):
-        return self.pk in range(9548, 9560)
+        return self.pk in range(0)
 
     def is_nufypet(self):
-        return self.pk in range(9560, 9564)
+        return self.pk in range(0)
 
     def is_nqt_compulsory(self):
         return self.pk == 9564
@@ -58,7 +58,7 @@ class TestSection(Model):
         return False
 
     def is_law(self):
-        return self.pk == 9565
+        return self.pk == 0
 
     def fg_color(self):
         return GOOGLE_COLORS[(self.pk - 9540) % len(GOOGLE_COLORS)]
@@ -251,10 +251,12 @@ class TestQuestion(Model):
     DIFFICULTY_HIGH    = 0x0d
     DIFFICULTY_NORMAL  = 0x08
     DIFFICULTY_LOW     = 0x03
+    DIFFICULTY_NONE    = 0x00
     DIFFICULTIES = (
         ( DIFFICULTY_HIGH,   pgettext_lazy("Question difficulty", "High")   ),
         ( DIFFICULTY_NORMAL, pgettext_lazy("Question difficulty", "Normal") ),
         ( DIFFICULTY_LOW,    pgettext_lazy("Question difficulty", "Low")    ),
+        ( DIFFICULTY_NONE,   pgettext_lazy("Question difficulty", "Unspecified")),
     )
 
     ANSWER_CLASS_MULTICHOICE_ONE    = "MultichoiceOneAnswer"
@@ -272,7 +274,7 @@ class TestQuestion(Model):
 
     answer_class  = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
     meta_data     = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
-    difficulty    = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NORMAL, db_index=True, )
+    difficulty    = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NONE  , db_index=True, )
     weight        = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "weight of question"),                                                                       db_index=True, )
     order         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                                                                    db_index=True, )
     created_at    = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                   )
