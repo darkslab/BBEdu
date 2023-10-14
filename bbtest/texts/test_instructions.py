@@ -161,6 +161,7 @@ UNT_TEST_INSTRUCTION_TEXTS = {
 }
 
 def test_instructions(test):
+    return NIS_TEST_INSTRUCTION_TEXTS[9540][test.language]
     if test.section.is_nis():
         return NIS_TEST_INSTRUCTION_TEXTS[test.section.pk][test.language]
     elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
@@ -266,27 +267,31 @@ PSEUDO_NIS_TEST_INSTRUCTION_TITLE_TEXTS = {
 }
 
 def test_instructions_title(test):
-    if test.section.is_nis():
-        return [
-            PSEUDO_NIS_TEST_INSTRUCTION_TITLE_TEXTS[test.section.pk][test.language],
+    return [
+            PSEUDO_NIS_TEST_INSTRUCTION_TITLE_TEXTS[9540][test.language],
             test.code.upper(),
         ]
-    elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
-        return [
-            _(test.section.name),
-            test.code.upper(),
-        ]
-    elif test.section.is_nufypet():
-        return [
-            _(test.section.name),
-            test.code.upper(),
-        ]
-    elif test.section.is_law():
-        return [
-            "",
-            test.code.upper(),
-        ]
-    return []
+    # if test.section.is_nis():
+    #     return [
+    #         PSEUDO_NIS_TEST_INSTRUCTION_TITLE_TEXTS[test.section.pk][test.language],
+    #         test.code.upper(),
+    #     ]
+    # elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
+    #     return [
+    #         _(test.section.name),
+    #         test.code.upper(),
+    #     ]
+    # elif test.section.is_nufypet():
+    #     return [
+    #         _(test.section.name),
+    #         test.code.upper(),
+    #     ]
+    # elif test.section.is_law():
+    #     return [
+    #         "",
+    #         test.code.upper(),
+    #     ]
+    # return []
 
 
 NIS_TEST_VIDEO_LINKS = {
