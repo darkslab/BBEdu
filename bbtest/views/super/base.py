@@ -42,78 +42,26 @@ class DashboardView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView
 
         kwargs["tests_demand"] = {
             "nis_sections": TestSection.objects.filter(domain=7911).only("name").all(),
-            "unt_sections": TestSection.objects.filter(domain=7912).only("name").all(),
+            # "unt_sections": TestSection.objects.filter(domain=7912).only("name").all(),
         }
         for section in kwargs["tests_demand"]["nis_sections"]:
-            if section.pk in (9540, 9541, 9542, 9544, 9566, 9567):
-                section.tests_info = []
-                counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_KK).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
-                section.tests_info.append({
-                    "language": Test.LANGUAGE_KK,
-                    "requires_development": not len(counts),
-                    "sales_count": counts[0]["sales_count_sum"] if len(counts) else 0,
-                    "completed_count": counts[0]["completed_count_sum"] if len(counts) else 0,
-                })
-                counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_RU).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
-                section.tests_info.append({
-                    "language": Test.LANGUAGE_RU,
-                    "requires_development": not len(counts),
-                    "sales_count": counts[0]["sales_count_sum"] if len(counts) else 0,
-                    "completed_count": counts[0]["completed_count_sum"] if len(counts) else 0,
-                })
-            elif section.pk == 9543:
-                section.tests_info = []
-                counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_XX).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
-                section.tests_info.append({
-                    "language": Test.LANGUAGE_XX,
-                    "requires_development": not len(counts),
-                    "sales_count": counts[0]["sales_count_sum"] if len(counts) else 0,
-                    "completed_count": counts[0]["completed_count_sum"] if len(counts) else 0,
-                })
-        for section in kwargs["tests_demand"]["unt_sections"]:
-            if section.pk in (9545, 9546, 9547, 9548, 9549, 9550, 9551, 9552, 9553, 9559):
-                section.tests_info = []
-                counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_KK).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
-                section.tests_info.append({
-                    "language": Test.LANGUAGE_KK,
-                    "requires_development": not len(counts),
-                    "sales_count": counts[0]["sales_count_sum"] if len(counts) else 0,
-                    "completed_count": counts[0]["completed_count_sum"] if len(counts) else 0,
-                })
-                counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_RU).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
-                section.tests_info.append({
-                    "language": Test.LANGUAGE_RU,
-                    "requires_development": not len(counts),
-                    "sales_count": counts[0]["sales_count_sum"] if len(counts) else 0,
-                    "completed_count": counts[0]["completed_count_sum"] if len(counts) else 0,
-                })
-            elif section.pk in (9554, 9555, 9556):
-                section.tests_info = []
-                counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_XX).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
-                section.tests_info.append({
-                    "language": Test.LANGUAGE_XX,
-                    "requires_development": not len(counts),
-                    "sales_count": counts[0]["sales_count_sum"] if len(counts) else 0,
-                    "completed_count": counts[0]["completed_count_sum"] if len(counts) else 0,
-                })
-            elif section.pk == 9557:
-                section.tests_info = []
-                counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_KK).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
-                section.tests_info.append({
-                    "language": Test.LANGUAGE_KK,
-                    "requires_development": not len(counts),
-                    "sales_count": counts[0]["sales_count_sum"] if len(counts) else 0,
-                    "completed_count": counts[0]["completed_count_sum"] if len(counts) else 0,
-                })
-            elif section.pk == 9558:
-                section.tests_info = []
-                counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_RU).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
-                section.tests_info.append({
-                    "language": Test.LANGUAGE_RU,
-                    "requires_development": not len(counts),
-                    "sales_count": counts[0]["sales_count_sum"] if len(counts) else 0,
-                    "completed_count": counts[0]["completed_count_sum"] if len(counts) else 0,
-                })
+            # if section.pk in (9540, 9541, 9542, 9544, 9566, 9567):
+            section.tests_info = []
+            counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_KK).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
+            section.tests_info.append({
+                "language": Test.LANGUAGE_KK,
+                "requires_development": not len(counts),
+                "sales_count": counts[0]["sales_count_sum"] if len(counts) else 0,
+                "completed_count": counts[0]["completed_count_sum"] if len(counts) else 0,
+            })
+            counts = section.tests(manager="approved_tests").filter(language=Test.LANGUAGE_RU).values("section").annotate(sales_count_sum=Sum("sales_count"), completed_count_sum=Sum("completed_count")).order_by().all()
+            section.tests_info.append({
+                "language": Test.LANGUAGE_RU,
+                "requires_development": not len(counts),
+                "sales_count": counts[0]["sales_count_sum"] if len(counts) else 0,
+                "completed_count": counts[0]["completed_count_sum"] if len(counts) else 0,
+            })
+
         sections_with_pending_tests = Test.approved_tests.filter(quizzes__isnull=True).values("section", "language").annotate(count=Count("*")).order_by().all()
         for index, domain_sections in kwargs["tests_demand"].items():
             for section in domain_sections:
