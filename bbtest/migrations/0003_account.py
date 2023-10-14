@@ -14,7 +14,7 @@ def create_accounts(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bbtest', '0002_domain_section'),
+        ('bbtest', '0002_question_subtopic'),
     ]
 
     operations = [

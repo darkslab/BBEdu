@@ -38,7 +38,7 @@ def get_test_for_edit_or_404(request, code, include_section=False, include_parag
     return test
 
 def get_test_for_preview_or_404(request, code):
-    if request.user.has_perm("bbtest.super"):
+    if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
         tests = Test.objects
     else:
         tests = request.user.tests(manager="active_tests")
@@ -97,6 +97,8 @@ class TestQuestionView(StaffPermissionRequiredMixin, View):
                 "difficulty": question.difficulty,
                 "taxonomy": question.taxonomy_id,
                 "topic": question.topic_id,
+                "subtopic": question.subtopic_id,
+                "goal": question.goal_id,
             },
             "paragraphs": [],
         }
@@ -167,6 +169,8 @@ class TestAttributesView(StaffPermissionRequiredMixin, View):
             "difficulties": [],
             "taxonomies": [],
             "topics": [],
+            "subtopics": [],
+            "goals": [],
         }
 
         for difficulty in TestQuestion.DIFFICULTIES:
@@ -184,7 +188,17 @@ class TestAttributesView(StaffPermissionRequiredMixin, View):
                 "value": topic.id,
                 "caption": str(_(str(topic))),
             })
-
+        for subtopic in test.section.subtopics.order_by("through"):
+            attributes_data["subtopics"].append({
+                "value": subtopic.id,
+                "caption": str(_(str(subtopic))),
+            })
+        
+        for goal in test.section.goals.order_by("through"):
+            attributes_data["goals"].append({
+                "value": goal.id,
+                "caption": str(_(str(goal))),
+            })
         # DARK_TODO  add "success" to response
         return TightJsonResponse(attributes_data)
 

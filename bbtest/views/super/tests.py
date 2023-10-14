@@ -3,11 +3,11 @@ from django.db.models import Q
 from django.urls import reverse
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
-from bbtest.auth.mixins import SuperPermissionRequiredMixin
+from bbtest.auth.mixins import SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin
 from bbtest.models import Test
 
 
-class TestsView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+class TestsView(ExpertPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/tests.html"
 
     def get_context_data(self, **kwargs):
@@ -38,7 +38,10 @@ class TestsView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixin,
 
         kwargs["test_page_redirect"] = reverse("bbtest:super_tests")
         if self.request.GET.get("page"):
-            kwargs["test_page_redirect"] = "%s?page=%s" % (reverse("bbtest:super_tests"), self.request.GET.get("page"))
+            if self.request.user.has_perm("bbtest.super"):
+                kwargs["test_page_redirect"] = "%s?page=%s" % (reverse("bbtest:super_tests"), self.request.GET.get("page"))
+            elif self.request.user.has_perm("bbtest.expert"):
+                kwargs["test_page_redirect"] = "%s?page=%s" % (reverse("bbtest:expert_dashboard"), self.request.GET.get("page"))
 
         for test in kwargs["tests"]:
             test.display_language = ""

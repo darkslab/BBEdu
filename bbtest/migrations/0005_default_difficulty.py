@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bbtest', '0006_taxonomy_topic_matrix'),
+        ('bbtest', '0004_change_meta_options_on_user'),
     ]
 
     operations = [

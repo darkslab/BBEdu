@@ -40,25 +40,9 @@ class TestSection(Model):
         return self.name
 
     def is_nis(self):
-        return self.pk in range(9540, 9552)
-
-    def is_unt_compulsory(self):
-        return self.pk in range(0)
-
-    def is_unt_profile(self):
-        return self.pk in range(0)
-
-    def is_nufypet(self):
-        return self.pk in range(0)
-
-    def is_nqt_compulsory(self):
-        return self.pk == 9564
-
-    def is_nqt_profile(self):
-        return False
-
-    def is_law(self):
-        return self.pk == 0
+        # return self.pk in range(9540, 9559)
+        return self.domain.pk in (7911, 7912, 7913, 7914)
+        # return True
 
     def fg_color(self):
         return GOOGLE_COLORS[(self.pk - 9540) % len(GOOGLE_COLORS)]
@@ -67,7 +51,8 @@ class TestSection(Model):
         return GOOGLE_COLORS_BLEACHED[(self.pk - 9540) % len(GOOGLE_COLORS_BLEACHED)]
 
     def can_measure_topics(self):
-        return self.pk in (9540, 9544, 9547, 9545) or self.pk in range(9548, 9560) or self.pk in range(9560, 9564) or self.pk == 9565
+        return False
+        # return self.pk in (9540, 9544, 9547, 9545) or self.pk in range(9548, 9560) or self.pk in range(9560, 9564) or self.pk == 9565
 
 
 class TestTaxonomy(Model):
@@ -116,6 +101,52 @@ class TestTopicSection(Model):
         default_permissions = ()
         ordering = ("order",)
         unique_together = ("section", "topic")
+
+
+class TestSubTopic(Model):
+    sections  = ManyToManyField  ( TestSection, through="TestSubTopicSection", related_name="subtopics", )
+
+    name  = CharField  ( pgettext_lazy("Model field", "name"),  max_length=200, unique=True, )
+
+    class Meta:
+        default_permissions = ()
+
+    def __str__(self):
+        return self.name
+
+class TestSubTopicSection(Model):
+    section  = ForeignKey  ( TestSection, on_delete=CASCADE,                         )
+    subtopic    = ForeignKey  ( TestSubTopic,   on_delete=CASCADE, related_name="through", )
+
+    order  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"), db_index=True, )
+
+    class Meta:
+        default_permissions = ()
+        ordering = ("order",)
+        unique_together = ("section", "subtopic")
+
+
+class TestEducationGoal(Model):
+    sections  = ManyToManyField  ( TestSection, through="TestEducationGoalSection", related_name="goals", )
+
+    name  = CharField  ( pgettext_lazy("Model field", "name"),  max_length=1000, unique=False, )
+
+    class Meta:
+        default_permissions = ()
+
+    def __str__(self):
+        return self.name
+
+class TestEducationGoalSection(Model):
+    section  = ForeignKey  ( TestSection, on_delete=CASCADE,                         )
+    goal    = ForeignKey  ( TestEducationGoal,   on_delete=CASCADE, related_name="through", )
+
+    order  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"), db_index=True, )
+
+    class Meta:
+        default_permissions = ()
+        ordering = ("order",)
+        unique_together = ("section", "goal")
 
 
 class DraftTestManager(Manager):
@@ -270,6 +301,8 @@ class TestQuestion(Model):
     test       = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )
     taxonomy   = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     topic      = ForeignKey  ( TestTopic,    on_delete=CASCADE, related_name="questions", null=True, blank=True, )
+    subtopic   = ForeignKey  ( TestSubTopic,        on_delete=CASCADE, related_name="questions", null=True, blank=True, )
+    goal       = ForeignKey  ( TestEducationGoal,   on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     developer  = ForeignKey  ( User,         on_delete=CASCADE, related_name="questions",                        )
 
     answer_class  = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
@@ -291,16 +324,9 @@ class TestQuestion(Model):
 
     @classmethod
     def calculate_weight(cls, test_question, test_section):
-        if test_section.is_nis():
-            return 10
-        elif test_section.is_unt_compulsory() or test_section.is_nufypet() or test_section.is_nqt_compulsory() or test_section.is_law():
-            return 1
-        elif test_section.is_unt_profile():
-            if test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_ONE:
-                return 1
-            elif test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_MULTI:
-                return 2
-        return None
+        # if test_section.is_nis():
+        #     return 1
+        return 1
 
 
 class TestParagraph(Model):

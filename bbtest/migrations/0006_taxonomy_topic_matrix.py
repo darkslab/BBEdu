@@ -4,10 +4,13 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 from django.utils.translation import ugettext_noop
-from bbtest.models.test import TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, TestSection
+from bbtest.models.test import TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, TestSection, TestDomain, TestSubTopic, TestSubTopicSection, TestEducationGoal, TestEducationGoalSection
+import os
+from openpyxl import load_workbook
 
 
-def add_iac_test_domain(apps, schema_editor):
+def add_migration(apps, schema_editor):
+
     knowledge, _ = TestTaxonomy.objects.update_or_create(
         pk = 1000,
         name = ugettext_noop("Knowledge and understanding"),
@@ -21,90 +24,147 @@ def add_iac_test_domain(apps, schema_editor):
         name = ugettext_noop("High level skills")
     )
 
-    for pk in range(9540, 9552):
-        section = TestSection.objects.get(pk = pk)
-
-        for i, taxonomy in enumerate([knowledge, application, high_level_skills]):
-            TestTaxonomySection.objects.create(
-                section = section,
-                taxonomy = taxonomy,
-                order = i,
-            )
-
-    topic_dict = {
-        ugettext_noop("Math_4") : [
-            ugettext_noop("Числа и величины"),
-            ugettext_noop("Элементы геометрии"),
-            ugettext_noop("Множества, Элементы логики"),
-            ugettext_noop("Математическое моделирование"),
-        ],
-        ugettext_noop("Kazakh_4") : [
-            ugettext_noop("Оқылым"),
-        ],
-        ugettext_noop("Russian_4") : [
-            ugettext_noop("Чтение"),
-        ],
-        ugettext_noop("Natural_Science_4") : [
-            ugettext_noop("Раздел 1: Я - исследователь"),
-            ugettext_noop("Раздел 2: Живая природа"),
-            ugettext_noop("Раздел 3: Вещества и их свойства"),
-            ugettext_noop("Раздел 4: Земля и Космос"),
-            ugettext_noop("Раздел 5: Физика природы"),
-        ],
-        ugettext_noop("Math_9") : [
-            ugettext_noop("Числа"),
-            ugettext_noop("Геометрия"),
-            ugettext_noop("Математическое моделирование и анализ"),
-            ugettext_noop("Алгебра"),
-            ugettext_noop("Статистика и теория вероятностей"),
-        ],
-        ugettext_noop("Biology_9") : [
-            ugettext_noop("Многообразие, структура и функции живых организмов"),
-            ugettext_noop("Прикладные интегрированные науки"),
-            ugettext_noop("Организмы и окружающая среда"),
-            ugettext_noop("Размножение, наследственность, изменчивость, эволюционное развитие"),
-        ],
-        ugettext_noop("Geography_9") : [
-            ugettext_noop("Методы географических исследований"),
-            ugettext_noop("Картография и географические базы данных"),
-            ugettext_noop("Физическая география"),
-            ugettext_noop("Экономическая география"),
-        ],
-        ugettext_noop("Kazakh_9") : [
-            ugettext_noop("Оқылым"),
-        ],
-        ugettext_noop("Russian_9") : [
-            ugettext_noop("Чтение"),
-        ],
-        ugettext_noop("Physics_9") : [
-            ugettext_noop("Основы кинематики"),
-            ugettext_noop("Основы динамики"),
-            ugettext_noop("Законы сохранения"),
-            ugettext_noop("Основы термодинамики"),
-        ],
-        ugettext_noop("Chemistry_9") : [
-            ugettext_noop("Атомы, ионы и молекулы"),
-            ugettext_noop("Периодический закон и Периодическая таблица химических элементов "),
-            ugettext_noop("Классификация химических реакций"),
-            ugettext_noop("Закон сохранения массы веществ"),
-            ugettext_noop("Горение топлива и выделение энергии"),
-            ugettext_noop("Биохимия"),
-        ],
+    # for filename in os.listdir("./"):
+    #     if filename.endswith('.xlsx') and filename[0] not in ".~":
+    #         filename = filename.replace('.xlsx', "")
+    #         print(f'ugettext_noop("{filename}")')
+    
+    section_question_count = {
+        ugettext_noop("Biology_9_kz"): 7,
+        ugettext_noop("Biology_9_ru"): 7,
+        ugettext_noop("Chemistry_9_kz"): 8,
+        ugettext_noop("Chemistry_9_ru"): 8,
+        ugettext_noop("Geography_9_kz"): 7,
+        ugettext_noop("Geography_9_ru"): 7,
+        ugettext_noop("Kazakh_4_kz"): 10,
+        ugettext_noop("Kazakh_9_kz"): 15,
+        ugettext_noop("Math_4_kz"): 20,
+        ugettext_noop("Math_4_ru"): 20,
+        ugettext_noop("Math_9_kz"): 20,
+        ugettext_noop("Math_9_ru"): 20,
+        ugettext_noop("NaturalScience_4_kz"): 20,
+        ugettext_noop("NaturalScience_4_ru"): 20,
+        ugettext_noop("Physics_9_kz"): 8,
+        ugettext_noop("Physics_9_ru"): 8,
+        ugettext_noop("Russian_4_ru"): 10,
+        ugettext_noop("Russian_9_ru"): 15,
     }
 
-    for i, (section_name, topic_list) in enumerate(topic_dict.items()):
-        section = TestSection.objects.get(name=section_name)
-        for index, topic_name in enumerate(topic_list):
-            topic, _ = TestTopic.objects.get_or_create(name=topic_name)
-            TestTopicSection.objects.create(section=section, topic=topic, order=index)
 
+    domain_dict = {
+        domain_name: TestDomain.objects.create(
+            id=7911 + i,
+            name=ugettext_noop(domain_name),
+            order=1 + i,
+        ) for i, domain_name in enumerate([
+            ugettext_noop("Klass_4_ru"),
+            ugettext_noop("Klass_9_ru"),
+            ugettext_noop("Klass_4_kz"),
+            ugettext_noop("Klass_9_kz"),
+        ])}
+    
+
+    domain_section_order = {
+        domain_name: 0 for domain_name in [
+            ugettext_noop("Klass_4_ru"),
+            ugettext_noop("Klass_9_ru"),
+            ugettext_noop("Klass_4_kz"),
+            ugettext_noop("Klass_9_kz"),
+        ]}
+
+    section_start_id = 9541
+
+    for filename in os.listdir("./bbtest/migrations/excel"):
+        if filename.endswith('.xlsx') and filename[0] not in ".~":
+            section_name = filename.replace('.xlsx', "")
+            subject_name, klass, lang = section_name.split("_")
+            
+            # Load the Excel file
+            workbook = load_workbook("./bbtest/migrations/excel/{}".format(filename))
+            sheet = workbook.active
+
+            topic_list = set()
+            subtopic_list = set()
+            edu_goal = set()
+
+            # Assuming the relevant columns are in the following indices (0-based)
+            topic_column = 4
+            subtopic_column = 5
+            edu_goal_column = 6
+
+            # Iterate through rows and collect unique values
+            for row in sheet.iter_rows(min_row=2):
+                topic_value = row[topic_column].value
+                if topic_value is not None:
+                    topic_list.add(str(topic_value).strip())
+
+                subtopic_value = row[subtopic_column].value
+                if subtopic_value is not None and subtopic_value.strip():
+                    subtopic_list.add(subtopic_value.strip())
+
+                edu_goal_value = row[edu_goal_column].value
+                if edu_goal_value is not None and edu_goal_value.strip():
+                    edu_goal_values = edu_goal_value.strip().replace("\u200b", "").split("\n")
+                    edu_goal.update(map(str.strip, edu_goal_values))
+
+            # Convert sets to sorted lists
+            topic_list = sorted(topic_list)
+            subtopic_list = sorted(subtopic_list)
+            edu_goal = sorted(edu_goal)
+
+            
+            print(subject_name, klass, lang)
+            print(topic_list)
+            print(subtopic_list)
+            print(edu_goal)
+            print()
+            
+            # ----------------- Create Section -----------------
+            key_domain = "Klass_{}_{}".format(klass, lang)
+            domain = domain_dict[key_domain]
+            order = domain_section_order[key_domain]
+            domain_section_order[key_domain] += 1
+            question_count = section_question_count[section_name]
+
+            section = TestSection.objects.create(
+                id = section_start_id,
+                order = order,
+                name = section_name,
+                duration = question_count * 2,
+                question_count = question_count,
+                domain = domain
+            )
+            section_start_id += 1
+            
+            # ----------------- Add Taxonomy -----------------
+            for i, taxonomy in enumerate([knowledge, application, high_level_skills]):
+                TestTaxonomySection.objects.create(
+                    section = section,
+                    taxonomy = taxonomy,
+                    order = i,
+                )
+            
+            # ----------------- Add Topics -----------------
+            for index, topic_name in enumerate(topic_list):
+                topic, _ = TestTopic.objects.get_or_create(name=topic_name)
+                TestTopicSection.objects.create(section=section, topic=topic, order=index)
+
+            # ----------------- Add SubTopics -----------------
+            for index, subtopic_name in enumerate(subtopic_list):
+                subtopic, _ = TestSubTopic.objects.get_or_create(name=subtopic_name)
+                TestSubTopicSection.objects.create(section=section, subtopic=subtopic, order=index)
+
+            # ----------------- Add Educational goals -----------------
+            for index, edu_goal_name in enumerate(edu_goal):
+                goal, _ = TestEducationGoal.objects.get_or_create(name=edu_goal_name)
+                TestEducationGoalSection.objects.create(section=section, goal=goal, order=index)
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bbtest', '0005_predmety'),
+        ('bbtest', '0005_default_difficulty'),
     ]
 
     operations = [
-        migrations.RunPython(add_iac_test_domain, migrations.RunPython.noop),
+        migrations.RunPython(add_migration, migrations.RunPython.noop),
     ]

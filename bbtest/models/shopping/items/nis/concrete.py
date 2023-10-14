@@ -8,7 +8,7 @@ class GenericPseudoNISItem(NonLanguageNISItem):
 
     def assert_init_args(self, test, student, language):
         super().assert_init_args(test, student, language)
-        if test.section_id not in range(9540, 9552):
+        if test.section_id not in range(9540, 9999):
             raise ItemError(pgettext("Item error", "GenericPseudoNISItem Test is required."))
 
     def price(self):

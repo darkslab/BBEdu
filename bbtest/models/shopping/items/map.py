@@ -1,7 +1,7 @@
 from . import *
 
 
-TEST_SECTION_MAP = {str(pk): GenericPseudoNISItem for pk in range(9540, 9552)}
+TEST_SECTION_MAP = {str(pk): GenericPseudoNISItem for pk in range(9540, 9999)}
 
 
 # TEST_SECTION_MAP = {

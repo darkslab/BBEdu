@@ -45,6 +45,20 @@ DeveloperQuestionObject.prototype.setTopic = function(value) {
     this._data.topic = value;
     this._isQuestionSaved = false;
 }
+DeveloperQuestionObject.prototype.subtopic = function() {
+    return this._data.subtopic;
+}
+DeveloperQuestionObject.prototype.setSubtopic = function(value) {
+    this._data.subtopic = value;
+    this._isQuestionSaved = false;
+}
+DeveloperQuestionObject.prototype.goal = function() {
+    return this._data.goal;
+}
+DeveloperQuestionObject.prototype.setGoal = function(value) {
+    this._data.goal = value;
+    this._isQuestionSaved = false;
+}
 DeveloperQuestionObject.prototype.save = function(context, callback) {
     if (!this._contextData.hasOwnProperty(context)) {
         this._contextData[context] = {
@@ -73,6 +87,8 @@ DeveloperQuestionObject.prototype.save = function(context, callback) {
                 difficulty: this.difficulty(),
                 taxonomy: this.taxonomy(),
                 topic: this.topic(),
+                subtopic: this.subtopic(),
+                goal: this.goal(),
                 answer_class: this.answer().answer_class,
                 meta_data: JSON.stringify(this.answer().meta_data)
             },

@@ -123,7 +123,7 @@ urlpatterns = [
     url(r"^developer/users/$",           SuperUsersView.as_view(),               name="developer_users"          ),
 
     # EXPERT URLS
-    url(r"^expert/$",                 DeveloperDashboardView.as_view(),       name="expert_dashboard"      ),
+    url(r"^expert/$",                 SuperTestsView.as_view(),               name="expert_dashboard"      ),
     url(r"^expert/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="expert_acknowledgement"),
     url(r"^expert/tests/$",           DeveloperTestsView.as_view(),           name="expert_tests"          ),
     url(r"^expert/users/$",           SuperUsersView.as_view(),               name="expert_users"          ),
