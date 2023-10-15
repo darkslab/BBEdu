@@ -631,7 +631,7 @@ msgid "NaturalScience_4_kz"
 msgstr "Жаратылыстану 4 Сынып"
 
 msgid "NaturalScience_4_ru"
-msgstr "Естествознание 4 Сынып"
+msgstr "Естествознание 4 Класс"
 
 msgid "Physics_9_kz"
 msgstr "Физика 9 Сынып"
