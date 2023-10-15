@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-12 04:46+0600\n"
+"POT-Creation-Date: 2023-10-15 20:26+0600\n"
 "PO-Revision-Date: 2021-05-07 08:13-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -440,6 +440,14 @@ msgid "Incorrect topic value."
 msgstr "Тарау дұрыс белгіленбеген."
 
 msgctxt "Validation error"
+msgid "Incorrect subtopic value."
+msgstr "Iшкі тақырып дұрыс белгіленбеген."
+
+msgctxt "Validation error"
+msgid "Incorrect goal value."
+msgstr "Таңдалған оқу мақсатты дұрыс емес."
+
+msgctxt "Validation error"
 msgid "Incorrect answer class."
 msgstr "Жауап дұрыс белгіленбеген."
 
@@ -574,45 +582,6 @@ msgctxt "Validation error"
 msgid "Incorrect old password."
 msgstr "Ескі құпиясөз дұрыс емес."
 
-msgid "IAC"
-msgstr "ИАЦ"
-
-msgid "Generic Test"
-msgstr "Generic тестілері"
-
-msgid "Math_4"
-msgstr "Математика 4 Сынып"
-
-msgid "Kazakh_4"
-msgstr "Қазақ тілі 4 Сынып"
-
-msgid "Russian_4"
-msgstr "Орыс тілі 4 Сынып"
-
-msgid "Natural_Science_4"
-msgstr "Жаратылыстану 4 Сынып"
-
-msgid "Math_9"
-msgstr "Математика 4 Сынып"
-
-msgid "Biology_9"
-msgstr "Биология 9 Сынып"
-
-msgid "Geography_9"
-msgstr "География 9 Сынып"
-
-msgid "Kazakh_9"
-msgstr "Қазақ тілі 9 Сынып"
-
-msgid "Russian_9"
-msgstr "Орыс тілі 9 Сынып"
-
-msgid "Physics_9"
-msgstr "Физика 9 Сынып"
-
-msgid "Chemistry_9"
-msgstr "Химия 9 Сынып"
-
 msgid "Knowledge and understanding"
 msgstr "Білу және түсіну"
 
@@ -622,107 +591,71 @@ msgstr "Қолдану"
 msgid "High level skills"
 msgstr "ЖДД"
 
-msgid "Числа и величины"
-msgstr "Сандар мен шамалар"
+msgid "Biology_9_kz"
+msgstr "Биология 9 Сынып"
 
-msgid "Элементы геометрии"
-msgstr "Геометрия элементтері"
+msgid "Biology_9_ru"
+msgstr "Биология 9 Класс"
 
-msgid "Множества, Элементы логики"
-msgstr "Жиындар. Логика элементтері"
+msgid "Chemistry_9_kz"
+msgstr "Химия 9 Сынып"
 
-msgid "Математическое моделирование"
-msgstr "Математикалық модельдеу"
+msgid "Chemistry_9_ru"
+msgstr "Химия 9 Класс"
 
-msgid "Оқылым"
-msgstr "Оқылым"
+msgid "Geography_9_kz"
+msgstr "География 9 Сынып"
 
-msgid "Чтение"
-msgstr "Чтение"
+msgid "Geography_9_ru"
+msgstr "География 9 Класс"
 
-msgid "Раздел 1: Я - исследователь"
-msgstr "Бөлім 1: Мен-зерттеушімін"
+msgid "Kazakh_4_kz"
+msgstr "Қазақ тілі 4 Сынып"
 
-msgid "Раздел 2: Живая природа"
-msgstr "Бөлім 2: Тірі табиғат"
+msgid "Kazakh_9_kz"
+msgstr "Қазақ тілі 9 Сынып"
 
-msgid "Раздел 3: Вещества и их свойства"
-msgstr "Бөлім 3: Заттар және олардың қасиеттері"
+msgid "Math_4_kz"
+msgstr "Математика 4 Сынып"
 
-msgid "Раздел 4: Земля и Космос"
-msgstr "Бөлім 4: Жер және ғарыш"
+msgid "Math_4_ru"
+msgstr "Математика 4 Класс"
 
-msgid "Раздел 5: Физика природы"
-msgstr "Бөлім5: Табиғат физикасы"
+msgid "Math_9_kz"
+msgstr "Математика 4 Сынып"
 
-msgid "Числа"
-msgstr "Сандар"
+msgid "Math_9_ru"
+msgstr "Математика 4 Класс"
 
-msgid "Геометрия"
-msgstr "Геометрия"
+msgid "NaturalScience_4_kz"
+msgstr "Жаратылыстану 4 Сынып"
 
-msgid "Математическое моделирование и анализ"
-msgstr "Математикалық модельдеу мен талдауы"
+msgid "NaturalScience_4_ru"
+msgstr "Естествознание 4 Сынып"
 
-msgid "Алгебра"
-msgstr "Алгебра"
+msgid "Physics_9_kz"
+msgstr "Физика 9 Сынып"
 
-msgid "Статистика и теория вероятностей"
-msgstr "Статистика және ықтималдықтар теориясы"
+msgid "Physics_9_ru"
+msgstr "Физика 9 Класс"
 
-msgid "Многообразие, структура и функции живых организмов"
-msgstr "Тірі организмдердің көп түрлілігі, құрылымы мен қызметтері"
+msgid "Russian_4_ru"
+msgstr "Русский Язык 4 Класс"
 
-msgid "Прикладные интегрированные науки"
-msgstr "Қолданбалы кіріктірілген ғылымдар"
+msgid "Russian_9_ru"
+msgstr "Русский Язык 9 Класс"
 
-msgid "Организмы и окружающая среда"
-msgstr "Ағза мен қоршаған орта"
+msgid "Klass_4_ru"
+msgstr "4 Сынып Орыс бөліми"
 
-msgid "Размножение, наследственность, изменчивость, эволюционное развитие"
-msgstr "Көбею, тұқым қуалаушылық, өзгергіштік, эволюциялық даму"
+msgid "Klass_9_ru"
+msgstr "9 Сынып Орыс бөліми"
 
-msgid "Методы географических исследований"
-msgstr "Географияны зерттеу әдістері"
+msgid "Klass_4_kz"
+msgstr "4 Сынып Қазақ бөліми"
 
-msgid "Картография и географические базы данных"
-msgstr "Картогр афия және географ иялық деректер базасы"
-
-msgid "Физическая география"
-msgstr "Физикалық география"
-
-msgid "Экономическая география"
-msgstr "Әлеуметтік география"
-
-msgid "Основы кинематики"
-msgstr "Кинематика негіздері"
-
-msgid "Основы динамики"
-msgstr "Динамика негіздері"
-
-msgid "Законы сохранения"
-msgstr "Сақталу заңдары"
-
-msgid "Основы термодинамики"
-msgstr "Термодинамика негіздері"
-
-msgid "Атомы, ионы и молекулы"
-msgstr "Атомдар, иондар және молекулалар"
-
-msgid "Периодический закон и Периодическая таблица химических элементов "
-msgstr "Периодтық заң және химиялық элементтердің периодтық жүйесі"
-
-msgid "Классификация химических реакций"
-msgstr "Химиялық реакциялардың жіктелуі"
-
-msgid "Закон сохранения массы веществ"
-msgstr "Зат массасының сақталу заңы"
-
-msgid "Горение топлива и выделение энергии"
-msgstr "Отынның жануы және энергияның бөлінуі"
-
-msgid "Биохимия"
-msgstr "Биохимия"
+msgid "Klass_9_kz"
+msgstr "9 Сынып Қазақ бөліми"
 
 msgctxt "Account type"
 msgid "Asset"
@@ -920,10 +853,6 @@ msgid "Credits"
 msgstr "Бірлік"
 
 msgctxt "Item error"
-msgid "Law Test is required."
-msgstr "Заңгерлер тестілері қажет."
-
-msgctxt "Item error"
 msgid "NIS Test is required."
 msgstr "НЗМ тестілері қажет."
 
@@ -960,30 +889,6 @@ msgid "Spatial Thinking NIS Test is required."
 msgstr "НЗМ Кеңістікте ойлау тестілері қажет."
 
 msgctxt "Item error"
-msgid "NUFYPET Test is required."
-msgstr "NUFYPET тесті қажет."
-
-msgctxt "Item error"
-msgid "NUFYPET Test does not have test language."
-msgstr "NUFYPET тестінің тест тілі жоқ."
-
-msgctxt "Item error"
-msgid "Mathematics NUFYPET Test is required."
-msgstr "NUFYPET Mathematics тесті қажет."
-
-msgctxt "Item error"
-msgid "Physics NUFYPET Test is required."
-msgstr "NUFYPET Physics тесті қажет."
-
-msgctxt "Item error"
-msgid "Biology/Chemistry NUFYPET Test is required."
-msgstr "NUFYPET Biology/Chemistry тесті қажет."
-
-msgctxt "Item error"
-msgid "Thinking skills NUFYPET Test is required."
-msgstr "NUFYPET Thinking skills тесті қажет."
-
-msgctxt "Item error"
 msgid "Test is required."
 msgstr "Тестілер қажет."
 
@@ -1014,70 +919,6 @@ msgstr "Тест жоқ."
 msgctxt "Item error"
 msgid "Could not checkout. Please try again."
 msgstr "Сатып алу мүмкін емес. Қайтадан көріңіз."
-
-msgctxt "Item error"
-msgid "UNT Test is required."
-msgstr "ҰБТ тесті қажет."
-
-msgctxt "Item error"
-msgid "Mathematical Literacy Compulsory UNT Test is required."
-msgstr "ҰБТ Математикалық сауаттылық тесті қажет."
-
-msgctxt "Item error"
-msgid "Reading Literacy Compulsory UNT Test is required."
-msgstr "ҰБТ Оқу сауаттылығы тесті қажет."
-
-msgctxt "Item error"
-msgid "History of Kazakhstan Compulsory UNT Test is required."
-msgstr "ҰБТ Қазақстан тарихы тесті қажет."
-
-msgctxt "Item error"
-msgid "Mathematics Profile UNT Test is required."
-msgstr "ҰБТ Математика тесті қажет."
-
-msgctxt "Item error"
-msgid "Physics Profile UNT Test is required."
-msgstr "ҰБТ Физика тесті қажет."
-
-msgctxt "Item error"
-msgid "Chemistry Profile UNT Test is required."
-msgstr "ҰБТ Химия тесті қажет."
-
-msgctxt "Item error"
-msgid "Biology Profile UNT Test is required."
-msgstr "ҰБТ Биология тесті қажет."
-
-msgctxt "Item error"
-msgid "Geography Profile UNT Test is required."
-msgstr "ҰБТ География тесті қажет."
-
-msgctxt "Item error"
-msgid "History Profile UNT Test is required."
-msgstr "ҰБТ Тарихы тесті қажет."
-
-msgctxt "Item error"
-msgid "English Language Profile UNT Test is required."
-msgstr "ҰБТ Ағылшын тілі тесті қажет."
-
-msgctxt "Item error"
-msgid "French Language Profile UNT Test is required."
-msgstr "ҰБТ Француз тілі тесті қажет."
-
-msgctxt "Item error"
-msgid "German Language Profile UNT Test is required."
-msgstr "ҰБТ Неміс тілі тесті қажет."
-
-msgctxt "Item error"
-msgid "Kazakh Language and Literature Profile UNT Test is required."
-msgstr "ҰБТ Қазақ тілі және әдебиет тесті қажет."
-
-msgctxt "Item error"
-msgid "Russian Language and Literature Profile UNT Test is required."
-msgstr "ҰБТ Орыс тілі және әдебиет тесті қажет."
-
-msgctxt "Item error"
-msgid "Human. Society. Right Profile UNT Test is required."
-msgstr "ҰБТ Адам. Қоғам. Құқық. тесті қажет."
 
 msgctxt "Model field"
 msgid "duration in seconds"
@@ -1519,10 +1360,6 @@ msgctxt "/super/tests/"
 msgid "Preview"
 msgstr "Көру"
 
-msgctxt "/super/tests/"
-msgid "Edit"
-msgstr "Өзгерту"
-
 msgctxt "/developer/"
 msgid "Edit"
 msgstr "Өзгерту"
@@ -1601,6 +1438,10 @@ msgstr ""
 "Құпиясөзді өзгерту үшін келесі сілтемеге өтіңіз %(link_tag)s.%(line_break)s"
 "%(line_break)s немесе төмендегі сілтемені көшіріп салыңыз:%(line_break)s "
 "%(link_tag_url)s"
+
+msgctxt "Logo img html tag alt parameter"
+msgid "modo.edu.kz Logo"
+msgstr "modo.edu.kz логотипі"
 
 #, python-format
 msgid "_common.copyright:%(copyright_code)s"
@@ -2338,6 +2179,10 @@ msgctxt "/super/tests/"
 msgid "No"
 msgstr "Жоқ"
 
+msgctxt "/super/tests/"
+msgid "Edit"
+msgstr "Өзгерту"
+
 msgctxt "Developer tools"
 msgid "Change to Paid"
 msgstr "Ақылыға өзгерту"
@@ -2419,6 +2264,14 @@ msgstr "Блум таксономиясы"
 msgctxt "Developer tools"
 msgid "Topic"
 msgstr "Тақырып"
+
+msgctxt "Developer tools"
+msgid "Subtopic"
+msgstr "Iшкі тақырып"
+
+msgctxt "Developer tools"
+msgid "Goal"
+msgstr "Оқу мақсатты"
 
 msgctxt "Developer tools"
 msgid "Add Section"
