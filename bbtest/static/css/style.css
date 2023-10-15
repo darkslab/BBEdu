@@ -1099,6 +1099,10 @@ html {
     margin-top: 23px;
 }
 
+.bb-create-test .nav-pills > li {
+    width: 100%;
+}
+
 @media (min-width: 768px) {
     .bb-create-test {
         margin-right: 23px;
@@ -1108,11 +1112,13 @@ html {
     .bb-create-test .nav-pills > li {
         font-size: 24px;
         font-weight: bold;
+        /* margin-left: 23px; */
+        width: 100%;
     }
 
-    .bb-create-test .nav-pills > li + li {
+    /* .bb-create-test .nav-pills > li + li {
         margin-left: 23px;
-    }
+    } */
 
     .bb-create-test .nav > li > a {
         min-width: 240px;
