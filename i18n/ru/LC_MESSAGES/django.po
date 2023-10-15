@@ -1369,7 +1369,7 @@ msgstr "Просмотреть"
 
 msgctxt "/developer/"
 msgid "Edit"
-msgstr "Редактировать"
+msgstr "Изменить"
 
 msgctxt "/developer/"
 msgid "Preview"
@@ -2194,7 +2194,7 @@ msgstr "Нет"
 
 msgctxt "/super/tests/"
 msgid "Edit"
-msgstr "Редактировать"
+msgstr "Изменить"
 
 msgctxt "Developer tools"
 msgid "Change to Paid"
