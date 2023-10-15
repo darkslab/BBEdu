@@ -12,10 +12,10 @@ from bbtest.models import Account
 #                     last_name="Electric")
 
 
-def create_students():
-    user = User.objects.create_user(username="student_02", email="student_02@example.com", password="m")
-    user.first_name = "Dimon"
-    user.last_name = "Electric"
+def create_students(first_name = "Саке", username="student_01", email="student_01@example.com", password="monkey"):
+    user = User.objects.create_user(username=username, email=email, password=password)
+    user.first_name = first_name
+    user.last_name = ""
     user.save()
     content_type = ContentType.objects.get_for_model(type(user))
     permissions = []
@@ -24,9 +24,9 @@ def create_students():
     return user
 
 
-def create_developer():
-    user = User.objects.create_user(username="Dev", email=None, password="m")
-    user.first_name = "Dev"
+def create_developer(first_name = "Dev", username="Dev", email=None, password="monkey"):
+    user = User.objects.create_user(username=username, email=email, password=password)
+    user.first_name = first_name
     user.last_name = ""
     user.save()
     content_type = ContentType.objects.get_for_model(type(user))
@@ -38,9 +38,9 @@ def create_developer():
 
     # Account: Developer-3972 Iqanat
 
-def create_admin():
-    user = User.objects.create_user(username="Admin", email=None, password="m")
-    user.first_name = "Admin"
+def create_admin(first_name = "Admin", username="Admin", email=None, password="monkey"):
+    user = User.objects.create_user(username=username, email=email, password=password)
+    user.first_name = first_name
     user.last_name = ""
     user.save()
     content_type = ContentType.objects.get_for_model(type(user))
@@ -50,9 +50,9 @@ def create_admin():
     Account.objects.create_liability_account("Admin-%s" % user.pk)
     return user
 
-def create_expert():
-    user = User.objects.create_user(username="Expert", email=None, password="m")
-    user.first_name = "Expert"
+def create_expert(first_name = "Expert", username="Expert", email=None, password="monkey"):
+    user = User.objects.create_user(username=username, email=email, password=password)
+    user.first_name = first_name
     user.last_name = ""
     user.save()
     content_type = ContentType.objects.get_for_model(type(user))
@@ -68,14 +68,17 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **kwargs):
-        user = create_students()
-        print(user)
-        user = create_developer()
-        print(user)
-        user = create_admin()
-        print(user)
-        user = create_expert()
-        print(user)
+        user = create_students(first_name = "Саке", username="student_01", email="student_01@example.com")
+        user = create_students(first_name = "Баке", username="student_02", email="student_02@example.com")
+
+        user = create_developer(first_name = "Dev-01", username="Dev-01")
+        user = create_developer(first_name = "Dev-02", username="Dev-02")
+
+        user = create_admin(first_name = "Admin-01", username="Admin-01")
+        user = create_admin(first_name = "Admin-02", username="Admin-02")
+
+        user = create_expert(first_name = "Expert-01", username="Expert-01")
+        user = create_expert(first_name = "Expert-02", username="Expert-02")
 
 # username = CharField(pgettext_lazy("Model field", "username"), max_length=100, unique=True)
 # email = EmailField(pgettext_lazy("Model field", "email"), max_length=100, null=True, blank=True, unique=True)
