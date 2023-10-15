@@ -79,9 +79,9 @@ class CreateStudentsFormView(CreateStudentRequiredMixin, View):
             for i in range(1, amount+1):
                 username = "{}_{:0{}}".format(name, i, order_of_magnitude)
                 if len(prefix) > 0:
-                    login_email = "{}_{}@iqanat.bbtest.kz".format(prefix, uuid.uuid4().hex[:10])
+                    login_email = "{}_{}@modo.edu.kz".format(prefix, uuid.uuid4().hex[:10])
                 else:
-                    login_email = "{}@iqanat.bbtest.kz".format(uuid.uuid4().hex)
+                    login_email = "{}@modo.edu.kz".format(uuid.uuid4().hex)
                 gen_pass = "{:05}".format(randint(1, 99999))
                 
                 try:

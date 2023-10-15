@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-12 04:46+0600\n"
+"POT-Creation-Date: 2023-10-15 20:26+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -437,6 +437,20 @@ msgctxt "Validation error"
 msgid "Incorrect topic value."
 msgstr "Incorrect topic value."
 
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Incorrect topic value."
+msgctxt "Validation error"
+msgid "Incorrect subtopic value."
+msgstr "Incorrect topic value."
+
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Incorrect plan value."
+msgctxt "Validation error"
+msgid "Incorrect goal value."
+msgstr "Incorrect plan value."
+
 msgctxt "Validation error"
 msgid "Incorrect answer class."
 msgstr "Incorrect answer class."
@@ -572,60 +586,6 @@ msgctxt "Validation error"
 msgid "Incorrect old password."
 msgstr "Incorrect old password."
 
-msgid "IAC"
-msgstr ""
-
-#, fuzzy
-#| msgctxt "/developer/tests/"
-#| msgid "Entrance Tests"
-msgid "Generic Test"
-msgstr "Entrance Tests"
-
-msgid "Math_4"
-msgstr ""
-
-#, fuzzy
-#| msgctxt "Test language"
-#| msgid "Kazakh"
-msgid "Kazakh_4"
-msgstr "Kazakh"
-
-#, fuzzy
-#| msgctxt "Test language"
-#| msgid "Russian"
-msgid "Russian_4"
-msgstr "Russian"
-
-msgid "Natural_Science_4"
-msgstr ""
-
-msgid "Math_9"
-msgstr ""
-
-msgid "Biology_9"
-msgstr ""
-
-msgid "Geography_9"
-msgstr ""
-
-#, fuzzy
-#| msgctxt "Test language"
-#| msgid "Kazakh"
-msgid "Kazakh_9"
-msgstr "Kazakh"
-
-#, fuzzy
-#| msgctxt "Test language"
-#| msgid "Russian"
-msgid "Russian_9"
-msgstr "Russian"
-
-msgid "Physics_9"
-msgstr ""
-
-msgid "Chemistry_9"
-msgstr ""
-
 msgid "Knowledge and understanding"
 msgstr ""
 
@@ -638,106 +598,82 @@ msgstr "Actions"
 msgid "High level skills"
 msgstr ""
 
-msgid "Числа и величины"
+msgid "Biology_9_kz"
 msgstr ""
 
-msgid "Элементы геометрии"
+msgid "Biology_9_ru"
 msgstr ""
 
-msgid "Множества, Элементы логики"
+msgid "Chemistry_9_kz"
 msgstr ""
 
-msgid "Математическое моделирование"
+msgid "Chemistry_9_ru"
 msgstr ""
 
-msgid "Оқылым"
+msgid "Geography_9_kz"
 msgstr ""
 
-msgid "Чтение"
+msgid "Geography_9_ru"
 msgstr ""
 
-msgid "Раздел 1: Я - исследователь"
+#, fuzzy
+#| msgctxt "Test language"
+#| msgid "Kazakh"
+msgid "Kazakh_4_kz"
+msgstr "Kazakh"
+
+#, fuzzy
+#| msgctxt "Test language"
+#| msgid "Kazakh"
+msgid "Kazakh_9_kz"
+msgstr "Kazakh"
+
+msgid "Math_4_kz"
 msgstr ""
 
-msgid "Раздел 2: Живая природа"
+msgid "Math_4_ru"
 msgstr ""
 
-msgid "Раздел 3: Вещества и их свойства"
+msgid "Math_9_kz"
 msgstr ""
 
-msgid "Раздел 4: Земля и Космос"
+msgid "Math_9_ru"
 msgstr ""
 
-msgid "Раздел 5: Физика природы"
+msgid "NaturalScience_4_kz"
 msgstr ""
 
-msgid "Числа"
+msgid "NaturalScience_4_ru"
 msgstr ""
 
-msgid "Геометрия"
+msgid "Physics_9_kz"
 msgstr ""
 
-msgid "Математическое моделирование и анализ"
+msgid "Physics_9_ru"
 msgstr ""
 
-msgid "Алгебра"
+#, fuzzy
+#| msgctxt "Test language"
+#| msgid "Russian"
+msgid "Russian_4_ru"
+msgstr "Russian"
+
+#, fuzzy
+#| msgctxt "Test language"
+#| msgid "Russian"
+msgid "Russian_9_ru"
+msgstr "Russian"
+
+msgid "Klass_4_ru"
 msgstr ""
 
-msgid "Статистика и теория вероятностей"
+msgid "Klass_9_ru"
 msgstr ""
 
-msgid "Многообразие, структура и функции живых организмов"
+msgid "Klass_4_kz"
 msgstr ""
 
-msgid "Прикладные интегрированные науки"
-msgstr ""
-
-msgid "Организмы и окружающая среда"
-msgstr ""
-
-msgid "Размножение, наследственность, изменчивость, эволюционное развитие"
-msgstr ""
-
-msgid "Методы географических исследований"
-msgstr ""
-
-msgid "Картография и географические базы данных"
-msgstr ""
-
-msgid "Физическая география"
-msgstr ""
-
-msgid "Экономическая география"
-msgstr ""
-
-msgid "Основы кинематики"
-msgstr ""
-
-msgid "Основы динамики"
-msgstr ""
-
-msgid "Законы сохранения"
-msgstr ""
-
-msgid "Основы термодинамики"
-msgstr ""
-
-msgid "Атомы, ионы и молекулы"
-msgstr ""
-
-msgid "Периодический закон и Периодическая таблица химических элементов "
-msgstr ""
-
-msgid "Классификация химических реакций"
-msgstr ""
-
-msgid "Закон сохранения массы веществ"
-msgstr ""
-
-msgid "Горение топлива и выделение энергии"
-msgstr ""
-
-msgid "Биохимия"
+msgid "Klass_9_kz"
 msgstr ""
 
 msgctxt "Account type"
@@ -936,10 +872,6 @@ msgid "Credits"
 msgstr "Credits"
 
 msgctxt "Item error"
-msgid "Law Test is required."
-msgstr "Law Test is required."
-
-msgctxt "Item error"
 msgid "NIS Test is required."
 msgstr "NIS Test is required."
 
@@ -979,30 +911,6 @@ msgid "Spatial Thinking NIS Test is required."
 msgstr "Spatial Thinking NIS Test is required."
 
 msgctxt "Item error"
-msgid "NUFYPET Test is required."
-msgstr "NUFYPET Test is required."
-
-msgctxt "Item error"
-msgid "NUFYPET Test does not have test language."
-msgstr "NUFYPET Test does not have test language."
-
-msgctxt "Item error"
-msgid "Mathematics NUFYPET Test is required."
-msgstr "Mathematics NUFYPET Test is required."
-
-msgctxt "Item error"
-msgid "Physics NUFYPET Test is required."
-msgstr "Physics NUFYPET Test is required."
-
-msgctxt "Item error"
-msgid "Biology/Chemistry NUFYPET Test is required."
-msgstr "Biology/Chemistry NUFYPET Test is required."
-
-msgctxt "Item error"
-msgid "Thinking skills NUFYPET Test is required."
-msgstr "Thinking skills NUFYPET Test is required."
-
-msgctxt "Item error"
 msgid "Test is required."
 msgstr "Test is required."
 
@@ -1033,70 +941,6 @@ msgstr "Test no longer exists."
 msgctxt "Item error"
 msgid "Could not checkout. Please try again."
 msgstr "Could not checkout. Please try again."
-
-msgctxt "Item error"
-msgid "UNT Test is required."
-msgstr "UNT Test is required."
-
-msgctxt "Item error"
-msgid "Mathematical Literacy Compulsory UNT Test is required."
-msgstr "Mathematical Literacy Compulsory UNT Test is required."
-
-msgctxt "Item error"
-msgid "Reading Literacy Compulsory UNT Test is required."
-msgstr "Reading Literacy Compulsory UNT Test is required."
-
-msgctxt "Item error"
-msgid "History of Kazakhstan Compulsory UNT Test is required."
-msgstr "History of Kazakhstan Compulsory UNT Test is required."
-
-msgctxt "Item error"
-msgid "Mathematics Profile UNT Test is required."
-msgstr "Mathematics Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "Physics Profile UNT Test is required."
-msgstr "Physics Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "Chemistry Profile UNT Test is required."
-msgstr "Chemistry Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "Biology Profile UNT Test is required."
-msgstr "Biology Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "Geography Profile UNT Test is required."
-msgstr "Geography Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "History Profile UNT Test is required."
-msgstr "History Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "English Language Profile UNT Test is required."
-msgstr "English Language Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "French Language Profile UNT Test is required."
-msgstr "French Language Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "German Language Profile UNT Test is required."
-msgstr "German Language Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "Kazakh Language and Literature Profile UNT Test is required."
-msgstr "Kazakh Language and Literature Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "Russian Language and Literature Profile UNT Test is required."
-msgstr "Russian Language and Literature Profile UNT Test is required."
-
-msgctxt "Item error"
-msgid "Human. Society. Right Profile UNT Test is required."
-msgstr "Human. Society. Right Profile UNT Test is required."
 
 msgctxt "Model field"
 msgid "duration in seconds"
@@ -1528,10 +1372,6 @@ msgctxt "/super/tests/"
 msgid "Preview"
 msgstr "Preview"
 
-msgctxt "/super/tests/"
-msgid "Edit"
-msgstr "Edit"
-
 msgctxt "/developer/"
 msgid "Edit"
 msgstr "Edit"
@@ -1603,6 +1443,13 @@ msgstr ""
 "email.%(line_break)s%(line_break)s To reset your password please follow this "
 "%(link_tag)s.%(line_break)s%(line_break)s Or copy and paste the link below:"
 "%(line_break)s %(link_tag_url)s"
+
+#, fuzzy
+#| msgctxt "Logo img html tag alt parameter"
+#| msgid "bbTest.kz Logo"
+msgctxt "Logo img html tag alt parameter"
+msgid "modo.edu.kz Logo"
+msgstr "bbTest.kz Logo"
 
 #, python-format
 msgid "_common.copyright:%(copyright_code)s"
@@ -2343,6 +2190,10 @@ msgctxt "/super/tests/"
 msgid "No"
 msgstr "No"
 
+msgctxt "/super/tests/"
+msgid "Edit"
+msgstr "Edit"
+
 msgctxt "Developer tools"
 msgid "Change to Paid"
 msgstr "Change to Paid"
@@ -2427,6 +2278,17 @@ msgstr "Taxonomy"
 msgctxt "Developer tools"
 msgid "Topic"
 msgstr "Topic"
+
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "Topic"
+msgctxt "Developer tools"
+msgid "Subtopic"
+msgstr "Topic"
+
+msgctxt "Developer tools"
+msgid "Goal"
+msgstr ""
 
 msgctxt "Developer tools"
 msgid "Add Section"

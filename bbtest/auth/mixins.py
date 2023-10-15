@@ -33,9 +33,17 @@ class SuperPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     permission_required = "bbtest.super"
 
 
-class AdminPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
-    permission_denied_message = "Admin access required"
-    permission_required = "bbtest.admin"
+class AdminPermissionRequiredMixin(LoginRequiredMixin):  # PermissionRequiredMixin
+    # permission_denied_message = "Admin access required"
+    # permission_required = "bbtest.admin"
+    
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.admin"):
+            return super().dispatch(request, *args, **kwargs)
+        if request.is_ajax():
+            raise PermissionDenied("Permission denied for AJAX call")
+        return super().dispatch(request, *args, **kwargs)
+
 
 class ExpertPermissionRequiredMixin(LoginRequiredMixin):
     # permission_denied_message = "Expert access required"
