@@ -18,7 +18,7 @@ from bbtest.texts import inject_texts_into_response, test_specification
 
 
 def get_test_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
-    if request.user.has_perm("bbtest.super"):
+    if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
         tests = Test.worked_tests.select_related("developer")
     else:
         tests = request.user.tests(manager="draft_tests")
@@ -35,6 +35,12 @@ def get_test_for_edit_or_404(request, code, include_section=False, include_parag
             raise Http404("Superusers can only edit tests of other developers that are in pending status")
         if test.developer.has_perm("bbtest.super") and not test.is_draft():
             raise Http404("Superusers can only edit tests of other superusers (and their own) that are in draft status")
+        
+    if request.user.has_perm("bbtest.expert"):
+        if not test.developer.has_perm("bbtest.expert") and not test.is_pending():
+            raise Http404("Experts can only edit tests of other developers that are in pending status")
+        if test.developer.has_perm("bbtest.super") and not test.is_draft():
+            raise Http404("Experts can only edit tests of other experts (and their own) that are in draft status")
     return test
 
 def get_test_for_preview_or_404(request, code):
@@ -262,20 +268,20 @@ class DeleteTestView(StaffPermissionRequiredMixin, View):
 class ReDraftTestView(ExpertPermissionRequiredMixin, View):  # DeveloperPermissionRequiredMixin, 
     def post(self, request, code, *args, **kwargs):
         print("sonic", code)
-        test = get_object_or_404(Test.active_tests.select_related("expert"), code=code)
+        test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)
         test.status = Test.STATUS_DRAFT
         test.save()
         success(request, pgettext("Success alert message", "Test is now draft again."))
-        return redirect("bbtest:build_tests")
+        return redirect("bbtest:home")
 
 
 class ReApproveTestView(ExpertPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
     def post(self, request, code, *args, **kwargs):
-        test = get_object_or_404(Test.active_tests.select_related("expert"), code=code)
+        test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)
         test.status = Test.STATUS_APPROVED
         test.save()
         success(request, pgettext("Success alert message", "Test is now approved again."))
-        return redirect("bbtest:build_tests")
+        return redirect("bbtest:home")
 
 
 class ToggleFreeTestView(SuperPermissionRequiredMixin, View):

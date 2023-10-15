@@ -1379,16 +1379,10 @@ msgctxt "/developer/"
 msgid "Delete"
 msgstr "Удалить"
 
-#, fuzzy
-#| msgctxt "Test status"
-#| msgid "Draft"
 msgctxt "/developer/"
 msgid "ReDraft"
-msgstr "Черновая версия"
+msgstr "На доработку"
 
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "Approve"
 msgctxt "/developer/"
 msgid "ReApprove"
 msgstr "Одобрить"

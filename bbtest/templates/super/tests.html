@@ -61,76 +61,133 @@
                     <h4 class="panel-title">&nbsp;</h4>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover table-pressed">
-                        <thead>
-                            <tr>
-                                <th class="pl-15">{% trans 'Developer' context '/super/tests/' %}</th>
-                                <th>{% trans 'Domain' context '/super/tests/' %}</th>
-                                <th>{% trans 'Section' context '/super/tests/' %}</th>
-                                <th class="text-center">{% trans 'Language' context '/super/tests/' %}</th>
-                                <th class="text-center">{% trans 'Variant' context '/super/tests/' %}</th>
-                                <th class="text-center">{% trans 'Free?' context '/super/tests/' %}</th>
-                                <th class="text-center">{% trans 'Status' context '/super/tests/' %}</th>
-                                <th class="text-center">{% trans 'Sold/Completed' context '/super/tests/' %}</th>
-                                <th class="pr-15 text-center">{% trans 'Actions' context '/super/tests/' %}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for test in tests %}
-                                <tr {% if test.developer == user %}class="success"{% endif %}>
-                                    {% if test.developer|has_perm:'bbtest.super' %}
-                                        <td class="pl-15">{{ test.developer.get_full_name }}</td>
-                                    {% else %}
-                                        <td class="pl-15"><a href="{% url 'bbtest:super_user' test.developer.pk %}">{{ test.developer.get_full_name }}</a><br><small class="text-info">{{ test.developer.email }}</small></td>
-                                    {% endif %}
-                                    <td>{% trans test.section.domain.name %}</td>
-                                    <td>{% trans test.section.name %}</td>
-                                    <td class="text-center">{{ test.display_language }}</td>
-                                    <td class="text-center">#{{ test.code|upper }}</td>
-                                    <td class="text-center">
-                                        <span class="label {% if test.is_free %}label-danger{% else %}label-success{% endif %}">{% if test.is_free %}{% trans 'Yes' context '/super/tests/' %}{% else %}{% trans 'No' context '/super/tests/' %}{% endif %}</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <span class="label {% if test.is_archived %}label-danger{% elif test.is_approved %}label-success{% elif test.is_pending %}label-info{% elif test.is_draft %}label-default{% endif %}">{{ test.get_status_display }}</span>
-                                    </td>
-                                    <td class="text-center">{{ test.sales_count }}/{{ test.completed_count }}</td>
-                                    <td class="pr-15 text-center">
-                                        {% if test.is_archived or test.is_approved %}
-                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/tests/' %}</a>
-                                        {% elif test.is_pending %}
-                                            <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/super/tests/' %}</a>
-                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/tests/' %}</a>
-                                        {% elif test.is_draft %}
-                                            {% if test.developer|has_perm:'bbtest.super' %}
-                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/developer/' %}</a>
-                                            {% endif %}
-                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/developer/' %}</a>
-                                            {% if test.developer == user %}
-                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
-                                            {% endif %}
-                                        {% endif %}
-                                        {% if not test.is_archived %}
-                                            {% if test.is_free %}
-                                                <button class="btn btn-success btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_toggle_free_test' test.code 'false' %}?r={{ test_page_redirect|urlencode }}" data-toggle="modal" data-target="[data-modal]">{% trans 'Change to Paid' context 'Developer tools' %}</button>
-                                            {% else %}
-                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_toggle_free_test' test.code 'true' %}?r={{ test_page_redirect|urlencode }}" data-toggle="modal" data-target="[data-modal]">{% trans 'Change to Free' context 'Developer tools' %}</button>
-                                            {% endif %}
-                                            
-                                        {% endif %}
-                                        {% if not test.is_draft %}
-                                            <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/developer/' %}</button>
-                                        {% else %}
-                                            <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_reapprove_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReApprove' context '/developer/' %}</button>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% empty %}
+                    {% if perms.bbtest.super %}
+                        <table class="table table-striped table-hover table-pressed">
+                            <thead>
                                 <tr>
-                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/super/tests/' %}</td>
+                                    <th class="pl-15">{% trans 'Developer' context '/super/tests/' %}</th>
+                                    <th>{% trans 'Domain' context '/super/tests/' %}</th>
+                                    <th>{% trans 'Section' context '/super/tests/' %}</th>
+                                    <th class="text-center">{% trans 'Language' context '/super/tests/' %}</th>
+                                    <th class="text-center">{% trans 'Variant' context '/super/tests/' %}</th>
+                                    <th class="text-center">{% trans 'Free?' context '/super/tests/' %}</th>
+                                    <th class="text-center">{% trans 'Status' context '/super/tests/' %}</th>
+                                    <th class="text-center">{% trans 'Sold/Completed' context '/super/tests/' %}</th>
+                                    <th class="pr-15 text-center">{% trans 'Actions' context '/super/tests/' %}</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {% for test in tests %}
+                                    <tr {% if test.developer == user %}class="success"{% endif %}>
+                                        {% if test.developer|has_perm:'bbtest.super' %}
+                                            <td class="pl-15">{{ test.developer.get_full_name }}</td>
+                                        {% else %}
+                                            <td class="pl-15"><a href="{% url 'bbtest:super_user' test.developer.pk %}">{{ test.developer.get_full_name }}</a><br><small class="text-info">{{ test.developer.email }}</small></td>
+                                        {% endif %}
+                                        <td>{% trans test.section.domain.name %}</td>
+                                        <td>{% trans test.section.name %}</td>
+                                        <td class="text-center">{{ test.display_language }}</td>
+                                        <td class="text-center">#{{ test.code|upper }}</td>
+                                        <td class="text-center">
+                                            <span class="label {% if test.is_free %}label-danger{% else %}label-success{% endif %}">{% if test.is_free %}{% trans 'Yes' context '/super/tests/' %}{% else %}{% trans 'No' context '/super/tests/' %}{% endif %}</span>
+                                        </td> 
+                                        <td class="text-center">
+                                            <span class="label {% if test.is_archived %}label-danger{% elif test.is_approved %}label-success{% elif test.is_pending %}label-info{% elif test.is_draft %}label-default{% endif %}">{{ test.get_status_display }}</span>
+                                        </td>
+                                        <td class="text-center">{{ test.sales_count }}/{{ test.completed_count }}</td>
+                                        <td class="pr-15 text-center">
+                                            {% if test.is_archived or test.is_approved %}
+                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/tests/' %}</a>
+                                            {% elif test.is_pending %}
+                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/super/tests/' %}</a>
+                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/tests/' %}</a>
+                                            {% elif test.is_draft %}
+                                                {% if test.developer|has_perm:'bbtest.super' %}
+                                                    <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/developer/' %}</a>
+                                                {% endif %}
+                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/developer/' %}</a>
+                                                {% if test.developer == user %}
+                                                    <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
+                                                {% endif %}
+                                            {% endif %}
+                                            {% comment %} {% if not test.is_archived %}
+                                                {% if test.is_free %}
+                                                    <button class="btn btn-success btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_toggle_free_test' test.code 'false' %}?r={{ test_page_redirect|urlencode }}" data-toggle="modal" data-target="[data-modal]">{% trans 'Change to Paid' context 'Developer tools' %}</button>
+                                                {% else %}
+                                                    <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_toggle_free_test' test.code 'true' %}?r={{ test_page_redirect|urlencode }}" data-toggle="modal" data-target="[data-modal]">{% trans 'Change to Free' context 'Developer tools' %}</button>
+                                                {% endif %}
+                                            {% endif %} {% endcomment %}
+                                            {% if not test.is_draft %}
+                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/developer/' %}</button>
+                                            {% else %}
+                                                <button class="btn btn-success btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_reapprove_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReApprove' context '/developer/' %}</button>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/super/tests/' %}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% elif perms.bbtest.expert %}
+                        <table class="table table-striped table-hover table-pressed">
+                            <thead>
+                                <tr>
+                                    <th class="pl-15">{% trans 'Developer' context '/expert/dashboard/' %}</th>
+                                    <th>{% trans 'Domain' context '/expert/dashboard/' %}</th>
+                                    <th>{% trans 'Section' context '/expert/dashboard/' %}</th>
+                                    <th class="text-center">{% trans 'Language' context '/expert/dashboard/' %}</th>
+                                    <th class="text-center">{% trans 'Variant' context '/expert/dashboard/' %}</th>
+                                    {% comment %} <th class="text-center">{% trans 'Free?' context '/expert/dashboard/' %}</th> {% endcomment %}
+                                    <th class="text-center">{% trans 'Status' context '/expert/dashboard/' %}</th>
+                                    {% comment %} <th class="text-center">{% trans 'Sold/Completed' context '/expert/dashboard/' %}</th> {% endcomment %}
+                                    <th class="pr-15 text-center">{% trans 'Actions' context '/expert/dashboard/' %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for test in tests %}
+                                    <tr {% if test.developer == user %}class="success"{% endif %}>
+                                        {% if test.developer|has_perm:'bbtest.super' %}
+                                            <td class="pl-15">{{ test.developer.get_full_name }}</td>
+                                        {% else %}
+                                            <td class="pl-15"><a href="{% url 'bbtest:super_user' test.developer.pk %}">{{ test.developer.get_full_name }}</a><br><small class="text-info">{{ test.developer.email }}</small></td>
+                                        {% endif %}
+                                        <td>{% trans test.section.domain.name %}</td>
+                                        <td>{% trans test.section.name %}</td>
+                                        <td class="text-center">{{ test.display_language }}</td>
+                                        <td class="text-center">#{{ test.code|upper }}</td>
+                                        <td class="text-center">
+                                            <span class="label {% if test.is_archived %}label-danger{% elif test.is_approved %}label-success{% elif test.is_pending %}label-info{% elif test.is_draft %}label-default{% endif %}">{{ test.get_status_display }}</span>
+                                        </td>
+                                        <td class="pr-15 text-center">
+                                            {% if not test.is_draft %}
+                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/expert/dashboard/' %}</a>
+                                            {% endif %}
+                                            {% if test.is_pending %}
+                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn btn-default btn-xs mr-5 mb-5">{% trans 'Edit' context '/expert/dashboard/' %}</a>
+                                                <button class="btn btn-success btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_reapprove_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReApprove' context '/developer/' %}</button>
+                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/developer/' %}</button>
+                                            {% endif %}
+                                            {% if test.is_draft %}
+                                                {% if test.developer == user %}
+                                                    <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if test.is_approved %}
+                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/developer/' %}</button>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/expert/dashboard/' %}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
                 </div>
             </div>
         </div>
