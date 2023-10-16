@@ -6717,16 +6717,16 @@ SPECIFICATION_XX_TEST_TEXTS[9567][settings.BB_LANGUAGE_CODE_KK] = SPECIFICATION_
 SPECIFICATION_XX_TEST_TEXTS[9567][settings.BB_LANGUAGE_CODE_EN] = SPECIFICATION_XX_TEST_TEXTS[9567][settings.BB_LANGUAGE_CODE_RU]
 
 def test_specification(test_section, test_language, language):
-    try:
-        container = None
-        if test_section.pk in SPECIFICATION_XX_TEST_TEXTS.keys():
-            container = SPECIFICATION_XX_TEST_TEXTS
-        else:
-            if test_language == Test.LANGUAGE_KK:
-                container = SPECIFICATION_KK_TEST_TEXTS
-            else:
-                container = SPECIFICATION_RU_TEST_TEXTS
-        return container[test_section.pk][language]
-    except KeyError:
-        pass
+    # try:
+    #     container = None
+    #     if test_section.pk in SPECIFICATION_XX_TEST_TEXTS.keys():
+    #         container = SPECIFICATION_XX_TEST_TEXTS
+    #     else:
+    #         if test_language == Test.LANGUAGE_KK:
+    #             container = SPECIFICATION_KK_TEST_TEXTS
+    #         else:
+    #             container = SPECIFICATION_RU_TEST_TEXTS
+    #     return container[test_section.pk][language]
+    # except KeyError:
+    #     pass
     return ""
