@@ -2,7 +2,6 @@ from django.conf.urls import url
 from .auth.views import LoginView, LogoutView, RegisterView, RegisterDeveloperView, PasswordResetView, PasswordResetConfirmView
 from .views.base import (
     HomeView,
-    NisView,
     DashboardView,
     SettingsView,
     BuyCreditsView,
