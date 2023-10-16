@@ -225,10 +225,10 @@ class DeveloperQuestion extends React.Component {
                             </div>
                             <div className="panel-body">
                                 <div className="form-horizontal">
-                                    <DeveloperAttribute label={this.props.texts.difficulty}
+                                    {/* <DeveloperAttribute label={this.props.texts.difficulty}
                                                         value={this.props.object.difficulty()}
                                                         data={this.props.attributes.difficulties}
-                                                        onChange={this._attributeChange.bind(this, "difficulty")} />
+                                                        onChange={this._attributeChange.bind(this, "difficulty")} /> */}
                                     {taxonomyContent}
                                     {topicContent}
                                     {subtopicContent}

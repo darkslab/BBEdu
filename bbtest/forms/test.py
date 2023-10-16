@@ -21,7 +21,7 @@ class TestQuestionForm(ModelForm):
         fields = ("difficulty", "taxonomy", "topic", "subtopic", "goal", "answer_class", "meta_data")
         error_messages = {
             "difficulty": {
-                "required": pgettext_lazy("Validation error", "Please select difficulty."),
+                # "required": pgettext_lazy("Validation error", "Please select difficulty."),
                 "invalid_choice": pgettext_lazy("Validation error", "Incorrect difficulty value."),
             },
             "taxonomy": {
