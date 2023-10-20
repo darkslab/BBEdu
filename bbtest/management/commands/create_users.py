@@ -4,18 +4,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 from bbtest.models import Account
 
-# User.objects.all()
 
-# User.objects.create(username="student_01",
-#                     email="student_01@example.com",
-#                     first_name="Dimon",
-#                     last_name="Electric")
-
-
-def create_students():
-    user = User.objects.create_user(username="student_02", email="student_02@example.com", password="m")
-    user.first_name = "Dimon"
-    user.last_name = "Electric"
+def create_students(password, first_name = "Саке", username="student_01", email="student_01@example.com"):
+    user = User.objects.create_user(username=username, email=email, password=password)
+    user.first_name = first_name
+    user.last_name = ""
     user.save()
     content_type = ContentType.objects.get_for_model(type(user))
     permissions = []
@@ -24,10 +17,10 @@ def create_students():
     return user
 
 
-def create_developer():
-    user = User.objects.create_user(username="Dev", email=None, password="m")
-    user.first_name = "Dev"
-    user.last_name = ""
+def create_developer(password, username="Dev", email=None, first_name = "Dev", last_name = ""):
+    user = User.objects.create_user(username=username, email=email, password=password)
+    user.first_name = first_name
+    user.last_name = last_name
     user.save()
     content_type = ContentType.objects.get_for_model(type(user))
     permissions = []
@@ -38,9 +31,9 @@ def create_developer():
 
     # Account: Developer-3972 Iqanat
 
-def create_admin():
-    user = User.objects.create_user(username="Admin", email=None, password="m")
-    user.first_name = "Admin"
+def create_admin(password, first_name = "Admin", username="Admin", email=None):
+    user = User.objects.create_user(username=username, email=email, password=password)
+    user.first_name = first_name
     user.last_name = ""
     user.save()
     content_type = ContentType.objects.get_for_model(type(user))
@@ -50,10 +43,10 @@ def create_admin():
     Account.objects.create_liability_account("Admin-%s" % user.pk)
     return user
 
-def create_expert():
-    user = User.objects.create_user(username="Expert", email=None, password="m")
-    user.first_name = "Expert"
-    user.last_name = ""
+def create_expert(password, username="Expert", email=None, first_name = "Ethernal", last_name = "Secret Expert"):
+    user = User.objects.create_user(username=username, email=email, password=password)
+    user.first_name = first_name
+    user.last_name = last_name
     user.save()
     content_type = ContentType.objects.get_for_model(type(user))
     permissions = []
@@ -68,13 +61,13 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **kwargs):
-        user = create_students()
+        # user = create_students()
+        # print(user)
+        user = create_developer("shmonkey_dev", username="Dev-007", first_name = "Ethernal", last_name = "Secret Expert")
         print(user)
-        user = create_developer()
-        print(user)
-        user = create_admin()
-        print(user)
-        user = create_expert()
+        # user = create_admin()
+        # print(user)
+        user = create_expert("shmonkey_expert", username="Expert-007", first_name = "Ethernal", last_name = "Secret Expert")
         print(user)
 
 # username = CharField(pgettext_lazy("Model field", "username"), max_length=100, unique=True)
