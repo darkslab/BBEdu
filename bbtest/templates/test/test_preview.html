@@ -246,7 +246,7 @@
                     {% endif %}
                 {% endif %}
                 {% if test.is_pending or test.is_draft %}
-                    <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button>
+                    {% comment %} <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button> {% endcomment %}
                 {% endif %}
                 <a href="{% url 'bbtest:build_tests' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% else %}
@@ -254,7 +254,7 @@
                     <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
                     <a href="{% url 'bbtest:build_test' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
-                    <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button>
+                    {% comment %} <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button> {% endcomment %}
                 {% endif %}
                 <a href="{% url 'bbtest:build_tests' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% endif %}
