@@ -5,7 +5,7 @@ from django.contrib.messages import success, error
 from django.db.models import Prefetch
 from django.http import Http404
 from json import loads
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin, AdminPermissionRequiredMixin
 from .generic import View, TemplateView, FormView, RedirectView
 from .common import UserContextMixin, inject_questions_and_report_into_started_response
 from bbtest.utils.json import tight_dumps
@@ -20,8 +20,11 @@ from bbtest.texts import inject_texts_into_response, test_specification
 def get_test_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
     if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
         tests = Test.worked_tests.select_related("developer")
-    else: #  or request.user.has_perm("bbtest.developer")
+    elif request.user.has_perm("bbtest.developer"): 
         tests = request.user.tests(manager="in_development_tests") 
+    else:
+        raise Http404("You do not have permission to edit tests")
+    
     if include_section:
         tests = tests.select_related("section")
     if include_paragraphs:
@@ -46,8 +49,10 @@ def get_test_for_edit_or_404(request, code, include_section=False, include_parag
 def get_test_for_preview_or_404(request, code):
     if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert") or request.user.has_perm("bbtest.admin"):
         tests = Test.objects
-    else:  #  or request.user.has_perm("bbtest.developer"):
+    elif request.user.has_perm("bbtest.developer"):
         tests = request.user.tests(manager="production_tests")
+    else:
+        raise Http404("You do not have permission to preview tests")
     tests = tests.select_related("section")
     return get_object_or_404(
         tests,
@@ -283,6 +288,21 @@ class ReApproveTestView(ExpertPermissionRequiredMixin, View): # DeveloperPermiss
         success(request, pgettext("Success alert message", "Test is now approved again."))
         return redirect("bbtest:home")
 
+class ActivateTestView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
+    def post(self, request, code, *args, **kwargs):
+        test = get_object_or_404(Test.production_tests.select_related("developer"), code=code)
+        test.status = Test.STATUS_ACTIVE
+        test.save()
+        success(request, pgettext("Success alert message", "Test is active now."))
+        return redirect("bbtest:home")
+
+class DeactivateTestView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
+    def post(self, request, code, *args, **kwargs):
+        test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)
+        test.status = Test.STATUS_APPROVED
+        test.save()
+        success(request, pgettext("Success alert message", "Test is deactivated."))
+        return redirect("bbtest:home")
 
 class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
     def post(self, request, code, free, *args, **kwargs):

@@ -24,6 +24,8 @@ from .views.test import (
     DeleteTestView       as BuildDeleteTestView,
     ReDraftTestView      as BuildReDraftTestView,
     ReApproveTestView    as BuildReApproveTestView,
+    ActivateTestView     as BuildActivateTestView,
+    DeactivateTestView   as BuildDeactivateTestView,
     ToggleFreeTestView   as BuildToggleFreeTestView,
     CheckTestView        as BuildCheckTestView,
     TestPreviewView      as BuildTestPreviewView,
@@ -94,6 +96,8 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/approve/$",                                        BuildApproveTestView.as_view(),        name="build_approve_test"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/redraft/$",                                        BuildReDraftTestView.as_view(),        name="build_redraft_test"     ), 
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/reapprove/$",                                      BuildReApproveTestView.as_view(),      name="build_reapprove_test"   ), 
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/activate/$",                                       BuildActivateTestView.as_view(),       name="build_activate_test"    ), 
+    url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/deactivate/$",                                     BuildDeactivateTestView.as_view(),     name="build_deactivate_test"  ), 
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/refuse/$",                                         BuildRefuseTestView.as_view(),         name="build_refuse_test"      ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/delete/$",                                         BuildDeleteTestView.as_view(),         name="build_delete_test"      ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/toggle-free/(?P<free>true|false)/$",               BuildToggleFreeTestView.as_view(),     name="build_toggle_free_test" ),
@@ -123,10 +127,8 @@ urlpatterns = [
 
     # EXPERT URLS
     url(r"^expert/$",                 SuperTestsView.as_view(),               name="expert_dashboard"      ),
-    # url(r"^expert/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="expert_acknowledgement"),
     url(r"^expert/tests/$",           DeveloperTestsView.as_view(),           name="expert_tests"          ),
     url(r"^expert/users/$",           SuperUsersView.as_view(),               name="expert_users"          ),
-    # url(r"^expert/offer/$",           DeveloperOfferView.as_view(),           name="expert_offer"          ),
 
     # ADMIN URLS
     url(r"^admin/$",                 SuperTestsView.as_view(),               name="admin_dashboard"      ),

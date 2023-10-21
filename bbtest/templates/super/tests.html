@@ -113,6 +113,7 @@
                                             {% elif test.is_pending  %}<span class="label label-info"   >{{ test.get_status_display }}</span>
                                             {% elif test.is_draft    %}<span class="label label-default">{{ test.get_status_display }}</span>
                                             {% elif test.is_redo     %}<span class="label label-warning">{{ test.get_status_display }}</span>
+                                            {% elif test.is_active   %}<span class="label label-primary">{{ test.get_status_display }}</span>
                                             {% endif %}
                                         </td>
                                         {% comment %} column 8 {% endcomment %}
@@ -198,6 +199,7 @@
                                             {% elif test.is_pending  %}<span class="label label-info"   >{{ test.get_status_display }}</span>
                                             {% elif test.is_draft    %}<span class="label label-default">{{ test.get_status_display }}</span>
                                             {% elif test.is_redo     %}<span class="label label-warning">{{ test.get_status_display }}</span>
+                                            {% elif test.is_active   %}<span class="label label-primary">{{ test.get_status_display }}</span>
                                             {% endif %}
                                         </td>
                                         {% comment %} column 7 {% endcomment %}
@@ -266,6 +268,7 @@
                                             {% elif test.is_pending  %}<span class="label label-info"   >{{ test.get_status_display }}</span>
                                             {% elif test.is_draft    %}<span class="label label-default">{{ test.get_status_display }}</span>
                                             {% elif test.is_redo     %}<span class="label label-warning">{{ test.get_status_display }}</span>
+                                            {% elif test.is_active   %}<span class="label label-primary">{{ test.get_status_display }}</span>
                                             {% endif %}
                                         </td>
                                         {% comment %} column 7 {% endcomment %}
@@ -274,7 +277,10 @@
                                                 <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/expert/dashboard/' %}</a>
                                             {% endif %}
                                             {% if test.is_approved %}
-                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/admin/' %}</button>
+                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/admin/dashboard/' %}</button>
+                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_activate_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Activate' context '/admin/dashboard/' %}</button>
+                                            {% elif test.is_active %}
+                                                <button class="btn btn-danger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_deactivate_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Deactivate' context '/admin/dashboard/' %}</button>
                                             {% endif %}
                                         </td>
                                     </tr>
