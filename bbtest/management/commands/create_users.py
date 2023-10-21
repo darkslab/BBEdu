@@ -17,7 +17,7 @@ def create_students(password, first_name = "Саке", username="student_01", em
     return user
 
 
-def create_developer(password, username="Dev", email=None, first_name = "Dev", last_name = ""):
+def create_developer(password, username="Dev", email=None, first_name = "Dev", last_name = "Secret Dev"):
     user = User.objects.create_user(username=username, email=email, password=password)
     user.first_name = first_name
     user.last_name = last_name
@@ -31,7 +31,7 @@ def create_developer(password, username="Dev", email=None, first_name = "Dev", l
 
     # Account: Developer-3972 Iqanat
 
-def create_admin(password, first_name = "Admin", username="Admin", email=None):
+def create_admin(password, username="Admin", email=None, first_name = "Ethernal", last_name = "Secret Admin"):
     user = User.objects.create_user(username=username, email=email, password=password)
     user.first_name = first_name
     user.last_name = ""
@@ -61,12 +61,12 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **kwargs):
-        # user = create_students()
-        # print(user)
-        user = create_developer("shmonkey_dev", username="Dev-007", first_name = "Ethernal", last_name = "Secret Expert")
+        user = create_students("monkey")
         print(user)
-        # user = create_admin()
-        # print(user)
+        user = create_developer("shmonkey_dev", username="Dev-007", first_name = "Ethernal", last_name = "Secret Dev")
+        print(user)
+        user = create_admin("shmonkey_admin", username="Admin-007", first_name = "Ethernal", last_name = "Secret Admin")
+        print(user)
         user = create_expert("shmonkey_expert", username="Expert-007", first_name = "Ethernal", last_name = "Secret Expert")
         print(user)
 
