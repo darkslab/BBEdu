@@ -3,17 +3,17 @@ from django.db.models import Q
 from django.urls import reverse
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
-from bbtest.auth.mixins import SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin
+from bbtest.auth.mixins import SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin
 from bbtest.models import Test
 
 
-class TestsView(ExpertPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+class TestsView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/tests.html"
 
     def get_context_data(self, **kwargs):
         tests = Test.objects.select_related("section__domain", "developer").order_by("-created_at")
         kwargs["q"] = ""
-        try:
+        try:    
             tests = tests.filter(
                 Q(developer__first_name__icontains=self.request.GET["q"])
                 |
@@ -42,6 +42,8 @@ class TestsView(ExpertPermissionRequiredMixin, UserContextMixin, PaginationMixin
                 kwargs["test_page_redirect"] = "%s?page=%s" % (reverse("bbtest:super_tests"), self.request.GET.get("page"))
             elif self.request.user.has_perm("bbtest.expert"):
                 kwargs["test_page_redirect"] = "%s?page=%s" % (reverse("bbtest:expert_dashboard"), self.request.GET.get("page"))
+            elif self.request.user.has_perm("bbtest.admin"):
+                kwargs["test_page_redirect"] = "%s?page=%s" % (reverse("bbtest:admin_dashboard"), self.request.GET.get("page"))
 
         for test in kwargs["tests"]:
             test.display_language = ""
