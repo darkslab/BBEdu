@@ -194,8 +194,9 @@ class Test(Model):
     STATUS_DRAFT     = 0x00
     STATUS_PENDING   = 0x01
     STATUS_APPROVED  = 0x02
-    STATUS_ARCHIVED  = 0x03
     STATUS_REDO      = 0x04
+    STATUS_ARCHIVED  = 0xFF
+    
     STATUSES = (
         ( STATUS_DRAFT,    pgettext_lazy("Test status", "Draft")    ),
         ( STATUS_PENDING,  pgettext_lazy("Test status", "Pending")  ),
