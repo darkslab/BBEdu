@@ -165,9 +165,17 @@ class ApprovedTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status=Test.STATUS_APPROVED)
 
-class ActiveTestManager(Manager):
+class PreProductionTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__lte=Test.STATUS_APPROVED)
+    
+class ProductionTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status__lt=Test.STATUS_ARCHIVED)
+
+class ActiveTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=Test.STATUS_ACTIVE)
 
 class ArchivedTestManager(Manager):
     def get_queryset(self):
@@ -177,9 +185,9 @@ class RedoTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status=Test.STATUS_REDO)
 
-class DevelopertTodoTestManager(Manager):
+class InDevelopmentTestManager(Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(Q(status=Test.STATUS_REDO) | Q(status=Test.STATUS_DRAFT))
+        return super().get_queryset().filter(status__lt=Test.STATUS_REDO)
 
 class Test(Model):
     LANGUAGE_XX  = "xx"
@@ -192,17 +200,20 @@ class Test(Model):
     )
 
     STATUS_DRAFT     = 0x00
-    STATUS_PENDING   = 0x01
-    STATUS_APPROVED  = 0x02
-    STATUS_REDO      = 0x04
-    STATUS_ARCHIVED  = 0xFF
+    STATUS_REDO      = 0x01
+    STATUS_PENDING   = 0x10
+    STATUS_APPROVED  = 0x20
+    STATUS_ACTIVE    = 0x30
     
+    STATUS_ARCHIVED  = 0xFF
+
     STATUSES = (
         ( STATUS_DRAFT,    pgettext_lazy("Test status", "Draft")    ),
         ( STATUS_PENDING,  pgettext_lazy("Test status", "Pending")  ),
         ( STATUS_APPROVED, pgettext_lazy("Test status", "Approved") ),
-        ( STATUS_ARCHIVED, pgettext_lazy("Test status", "Archived") ),
+        ( STATUS_ACTIVE,   pgettext_lazy("Test status", "Active")   ),
         ( STATUS_REDO,     pgettext_lazy("Test status", "Redo")     ),
+        ( STATUS_ARCHIVED, pgettext_lazy("Test status", "Archived") ),
     )
 
     section    = ForeignKey  ( TestSection, on_delete=CASCADE, related_name="tests", )
@@ -211,7 +222,7 @@ class Test(Model):
     code             = CharField                  ( pgettext_lazy("Model field", "code of the test"),     max_length=6,                                               unique=True,   )
     language         = CharField                  ( pgettext_lazy("Model field", "language of the test"), max_length=2,      choices=LANGUAGES,                       db_index=True, )
     status           = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "status"),                                  choices=STATUSES,  default=STATUS_DRAFT, db_index=True, )
-    is_free          = BooleanField               ( pgettext_lazy("Model field", "is free?"),                                                   default=True,        db_index=True, )
+    is_free          = BooleanField               ( pgettext_lazy("Model field", "is free?"),                                                   default=True,         db_index=True, )
     sales_count      = PositiveIntegerField       ( pgettext_lazy("Model field", "sales count"),                                                default=0,                           )
     completed_count  = PositiveIntegerField       ( pgettext_lazy("Model field", "completed count"),                                            default=0,                           )
     created_at       = DateTimeField              ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                         )
@@ -221,10 +232,12 @@ class Test(Model):
     pending_tests = PendingTestManager()
     worked_tests = WorkedTestManager()
     approved_tests = ApprovedTestManager()
+    preproduction_tests = PreProductionTestManager()
+    production_tests = ProductionTestManager()
     active_tests = ActiveTestManager()
     archived_tests = ArchivedTestManager()
     redo_tests = RedoTestManager()
-    dev_todo_tests = DevelopertTodoTestManager()
+    in_development_tests = InDevelopmentTestManager()
 
     class Meta:
         default_permissions = ()
