@@ -13,7 +13,7 @@ from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.forms.super import GiveCreditsForm
 from bbtest.models.accounting import Entry, Debit, Credit
 
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin, SuperPermissionRequiredMixin
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin, SuperPermissionRequiredMixin, AdminPermissionRequiredMixin
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 
 User = get_user_model()
@@ -54,7 +54,7 @@ class UsersView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin,
         return super().get_context_data(**kwargs)
 
 
-class UserView(StaffPermissionRequiredMixin, UserContextMixin, TemplateView):
+class UserView(AdminPermissionRequiredMixin, UserContextMixin, TemplateView):
     template_name = "super/user.html"
 
     def get_context_data(self, **kwargs):
@@ -62,7 +62,7 @@ class UserView(StaffPermissionRequiredMixin, UserContextMixin, TemplateView):
 
         user = get_object_or_404(User.objects.filter(is_superuser=False), pk=self.kwargs["user_id"])
         for permission in user.user_permissions.all():
-            if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "developer", "student"):
+            if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "developer", "expert", "admin", "student"):
                 user.role = permission.codename
                 break
         kwargs["user_object"] = user
