@@ -187,11 +187,13 @@ class Test(Model):
     STATUS_PENDING   = 0x01
     STATUS_APPROVED  = 0x02
     STATUS_ARCHIVED  = 0x03
+    STATUS_REDO      = 0x04
     STATUSES = (
         ( STATUS_DRAFT,    pgettext_lazy("Test status", "Draft")    ),
         ( STATUS_PENDING,  pgettext_lazy("Test status", "Pending")  ),
         ( STATUS_APPROVED, pgettext_lazy("Test status", "Approved") ),
         ( STATUS_ARCHIVED, pgettext_lazy("Test status", "Archived") ),
+        ( STATUS_REDO,     pgettext_lazy("Test status", "Redo")     ),
     )
 
     section    = ForeignKey  ( TestSection, on_delete=CASCADE, related_name="tests", )
