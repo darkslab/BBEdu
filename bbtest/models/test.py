@@ -1,5 +1,5 @@
 from django.db.models import (
-    Manager,
+    Manager, Q,
     Model, ForeignKey, CASCADE, ManyToManyField,
     CharField, PositiveSmallIntegerField, BooleanField, DateTimeField, PositiveIntegerField,
 )
@@ -172,6 +172,14 @@ class ActiveTestManager(Manager):
 class ArchivedTestManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status=Test.STATUS_ARCHIVED)
+    
+class RedoTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=Test.STATUS_REDO)
+
+class DevelopertTodoTestManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(Q(status=Test.STATUS_REDO) | Q(status=Test.STATUS_DRAFT))
 
 class Test(Model):
     LANGUAGE_XX  = "xx"
@@ -214,6 +222,8 @@ class Test(Model):
     approved_tests = ApprovedTestManager()
     active_tests = ActiveTestManager()
     archived_tests = ArchivedTestManager()
+    redo_tests = RedoTestManager()
+    dev_todo_tests = DevelopertTodoTestManager()
 
     class Meta:
         default_permissions = ()
@@ -232,6 +242,9 @@ class Test(Model):
 
     def is_archived(self):
         return self.status == self.STATUS_ARCHIVED
+    
+    def is_redo(self):
+        return self.status == self.STATUS_REDO
 
     def max_score(self, question_ids=None):
         score = 0
