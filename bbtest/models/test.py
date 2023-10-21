@@ -187,7 +187,7 @@ class RedoTestManager(Manager):
 
 class InDevelopmentTestManager(Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(status__lt=Test.STATUS_REDO)
+        return super().get_queryset().filter(status__lte=Test.STATUS_REDO)
 
 class Test(Model):
     LANGUAGE_XX  = "xx"
@@ -259,6 +259,9 @@ class Test(Model):
     
     def is_redo(self):
         return self.status == self.STATUS_REDO
+    
+    def is_active(self):
+        return self.status == self.STATUS_ACTIVE
 
     def max_score(self, question_ids=None):
         score = 0
