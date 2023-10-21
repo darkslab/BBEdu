@@ -14,15 +14,25 @@
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {% trans '_common.domains.nis_full' as domain_name %}
-                    {% trans nis.name as domain_abbr %}
-                    <a href="{% url 'bbtest:student_buy_tests' nis.pk %}" class="btn btn-lg btn-primary btn-block btn-wrappable hidden-xs">{% blocktrans %}page:/:test_domain_full_name:{{ domain_name }}{% endblocktrans %}</a>
-                    <a href="{% url 'bbtest:student_buy_tests' nis.pk %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block">{% blocktrans %}page:/:test_domain_full_name:{{ domain_name }}{% endblocktrans %}</a>
-                    {% trans '_common.domains.unt_full' as domain_name %}
-                    {% trans unt.name as domain_abbr %}
-                    {% trans '_common.domains.nufypet_full' as domain_name %}
-                    {% trans nufypet.name as domain_abbr %}
-                    {% trans '_common.domains.law_full' as domain_name %}
+                    {% trans 'klass_4_ru' as domain_name %}
+                    {% trans klass_4_ru.name as domain_abbr %}
+                    <a href="{% url 'bbtest:student_buy_tests' klass_4_ru.pk %}" class="btn btn-lg btn-primary btn-block btn-wrappable hidden-xs">{% blocktrans %}page:/:test_domain_full_name:{{ domain_name }}{% endblocktrans %}</a>
+                    <a href="{% url 'bbtest:student_buy_tests' klass_4_ru.pk %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block">{% blocktrans %}page:/:test_domain_full_name:{{ domain_name }}{% endblocktrans %}</a>
+                    
+                    {% trans 'klass_9_ru' as domain_name %}
+                    {% trans klass_9_ru.name as domain_abbr %}
+                    <a href="{% url 'bbtest:student_buy_tests' klass_9_ru.pk %}" class="btn btn-lg btn-primary btn-block btn-wrappable hidden-xs">{% blocktrans %}page:/:test_domain_full_name:{{ domain_name }}{% endblocktrans %}</a>
+                    <a href="{% url 'bbtest:student_buy_tests' klass_9_ru.pk %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block">{% blocktrans %}page:/:test_domain_full_name:{{ domain_name }}{% endblocktrans %}</a>
+
+                    {% trans 'klass_4_kz' as domain_name %}
+                    {% trans klass_4_kz.name as domain_abbr %}
+                    <a href="{% url 'bbtest:student_buy_tests' klass_4_kz.pk %}" class="btn btn-lg btn-primary btn-block btn-wrappable hidden-xs">{% blocktrans %}page:/:test_domain_full_name:{{ domain_name }}{% endblocktrans %}</a>
+                    <a href="{% url 'bbtest:student_buy_tests' klass_4_kz.pk %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block">{% blocktrans %}page:/:test_domain_full_name:{{ domain_name }}{% endblocktrans %}</a>
+                    
+                    {% trans 'klass_9_kz' as domain_name %}
+                    {% trans klass_9_kz.name as domain_abbr %}
+                    <a href="{% url 'bbtest:student_buy_tests' klass_9_kz.pk %}" class="btn btn-lg btn-primary btn-block btn-wrappable hidden-xs">{% blocktrans %}page:/:test_domain_full_name:{{ domain_name }}{% endblocktrans %}</a>
+                    <a href="{% url 'bbtest:student_buy_tests' klass_9_kz.pk %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block">{% blocktrans %}page:/:test_domain_full_name:{{ domain_name }}{% endblocktrans %}</a>
                 </div>
             </div>
         </div>

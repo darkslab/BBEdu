@@ -39,8 +39,12 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequir
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        kwargs["nis"] = TestDomain.objects.get(pk=7911)
-        kwargs["unt"] = TestDomain.objects.get(pk=7912)
+        kwargs["klass_4_ru"] = TestDomain.objects.get(pk=7911)
+        kwargs["klass_9_ru"] = TestDomain.objects.get(pk=7912)
+        kwargs["klass_4_kz"] = TestDomain.objects.get(pk=7913)
+        kwargs["klass_9_kz"] = TestDomain.objects.get(pk=7914)
+        # kwargs["nis"] = TestDomain.objects.get(pk=7911)
+        # kwargs["unt"] = TestDomain.objects.get(pk=7912)
         # kwargs["nufypet"] = TestDomain.objects.get(pk=7913)
         # kwargs["law"] = TestDomain.objects.get(pk=7915)
 
