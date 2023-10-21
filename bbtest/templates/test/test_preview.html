@@ -225,7 +225,7 @@
     </form>
     <div class="row">
         <div class="col-xs-12 mb-23">
-            {% if perms.bbtest.super %}
+            {% if perms.bbtest.super or perms.bbtest.expert %}
                 {% if test.is_pending or test.is_draft and test.developer|has_perm:'bbtest.super' %}
                     <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-approve-modal]">{% trans 'Approve' context 'Developer tools' %}</button>
                 {% endif %}
@@ -238,19 +238,19 @@
                 {% if test.is_draft and test.developer == user %}
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
                 {% endif %}
-                {% if not test.is_archived %}
+                {% comment %} {% if not test.is_archived %}
                     {% if test.is_free %}
                         <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-toggle-free-modal]">{% trans 'Change to Paid' context 'Developer tools' %}</button>
                     {% else %}
                         <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-toggle-free-modal]">{% trans 'Change to Free' context 'Developer tools' %}</button>
                     {% endif %}
-                {% endif %}
+                {% endif %} {% endcomment %}
                 {% if test.is_pending or test.is_draft %}
                     {% comment %} <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button> {% endcomment %}
                 {% endif %}
-                <a href="{% url 'bbtest:build_tests' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
+                <a href="{% url 'bbtest:home' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% else %}
-                {% if test.is_draft %}
+                {% if test.is_draft or test.is_redo %}
                     <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
                     <a href="{% url 'bbtest:build_test' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>

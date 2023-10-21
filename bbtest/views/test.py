@@ -20,8 +20,9 @@ from bbtest.texts import inject_texts_into_response, test_specification
 def get_test_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
     if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
         tests = Test.worked_tests.select_related("developer")
-    else:
-        tests = request.user.tests(manager="draft_tests")
+    else: #  or request.user.has_perm("bbtest.developer")
+        # tests = request.user.tests(manager="draft_tests")
+        tests = request.user.tests(manager="dev_todo_tests") 
     if include_section:
         tests = tests.select_related("section")
     if include_paragraphs:
@@ -44,9 +45,9 @@ def get_test_for_edit_or_404(request, code, include_section=False, include_parag
     return test
 
 def get_test_for_preview_or_404(request, code):
-    if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
+    if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert") or request.user.has_perm("bbtest.admin"):
         tests = Test.objects
-    else:
+    else:  #  or request.user.has_perm("bbtest.developer"):
         tests = request.user.tests(manager="active_tests")
     tests = tests.select_related("section")
     return get_object_or_404(
@@ -209,7 +210,7 @@ class TestAttributesView(StaffPermissionRequiredMixin, View):
         return TightJsonResponse(attributes_data)
 
 
-class ApproveTestView(SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin, View):
+class ApproveTestView(ExpertPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
         test = get_object_or_404(Test.worked_tests.select_related("developer"), code=code)
         if not test.developer.has_perm("bbtest.super") and test.is_draft():
@@ -230,13 +231,13 @@ class ApproveTestView(SuperPermissionRequiredMixin, ExpertPermissionRequiredMixi
         return redirect("bbtest:super_tests")
 
 
-class RefuseTestView(SuperPermissionRequiredMixin, View):
+class RefuseTestView(ExpertPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
         test = get_object_or_404(Test.pending_tests.select_related("developer"), code=code)
         if test.developer.has_perm("bbtest.super"):
             raise Http404("Superusers can only refuse tests of other developers")
 
-        test.status = Test.STATUS_DRAFT
+        test.status = Test.STATUS_REDO
         test.save()
 
         success(request, pgettext("Success alert message", "You have refused the Test."))
@@ -269,7 +270,7 @@ class ReDraftTestView(ExpertPermissionRequiredMixin, View):  # DeveloperPermissi
     def post(self, request, code, *args, **kwargs):
         print("sonic", code)
         test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)
-        test.status = Test.STATUS_DRAFT
+        test.status = Test.STATUS_REDO
         test.save()
         success(request, pgettext("Success alert message", "Test is now draft again."))
         return redirect("bbtest:home")
