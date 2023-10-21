@@ -169,6 +169,52 @@
             </div>
         </div>
     </form>
+    <form method="post" action="{% url 'bbtest:build_activate_test' code %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-activate-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Admin tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-danger btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Admin tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Admin tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="{% url 'bbtest:build_deactivate_test' code %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-deactivate-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Admin tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-danger btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Admin tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Admin tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
     <div class="modal fade" data-check-modal data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -238,25 +284,25 @@
                 {% if test.is_draft and test.developer == user %}
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
                 {% endif %}
-                {% comment %} {% if not test.is_archived %}
-                    {% if test.is_free %}
-                        <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-toggle-free-modal]">{% trans 'Change to Paid' context 'Developer tools' %}</button>
-                    {% else %}
-                        <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-toggle-free-modal]">{% trans 'Change to Free' context 'Developer tools' %}</button>
-                    {% endif %}
-                {% endif %} {% endcomment %}
                 {% if test.is_pending or test.is_draft %}
                     {% comment %} <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button> {% endcomment %}
                 {% endif %}
-                <a href="{% url 'bbtest:home' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
-            {% else %}
+                <a href="{% url 'bbtest:dashboard' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
+            {% elif perms.bbtest.developer %}
                 {% if test.is_draft or test.is_redo %}
                     <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
                     <a href="{% url 'bbtest:build_test' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
                     {% comment %} <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button> {% endcomment %}
                 {% endif %}
-                <a href="{% url 'bbtest:build_tests' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
+                <a href="{% url 'bbtest:dashboard' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
+            {% elif perms.bbtest.admin %}
+                {% if test.is_active %} 
+                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-deactivate-modal]">{% trans 'Deactivate' context 'Admin tools' %}</button>
+                {% elif test.is_approved %} 
+                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-activate-modal]">{% trans 'Activate' context 'Admin tools' %}</button>
+                {% endif %}
+                <a href="{% url 'bbtest:dashboard' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% endif %}
         </div>
     </div>
