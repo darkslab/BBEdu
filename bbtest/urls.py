@@ -106,17 +106,17 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
 
     # STUDENT URLS
-    url(r"^student/$",                                         StudentDashboardView.as_view(),        name="student_dashboard"         ),
+    url(r"^student/$",                                            StudentDashboardView.as_view(),        name="student_dashboard"         ),
     url(r"^student/select-tests/$",                               StudentBuyTestDomainsView.as_view(),   name="student_buy_test_domains"  ),
     url(r"^student/select-tests/(?P<test_domain_id>\d+)/$",       StudentBuyTestsView.as_view(),         name="student_buy_tests"         ),
     url(r"^student/select-tests/(?P<test_domain_id>\d+)/cart/$",  StudentBuyTestsCartView.as_view(),     name="student_buy_tests_cart"    ),
     url(r"^student/select-tests/checkout/$",                      StudentBuyTestsCheckoutView.as_view(), name="student_buy_tests_checkout"),
-    url(r"^student/exam/$",                                    StudentExamView.as_view(),             name="student_exam"              ),
-    url(r"^student/exam/continue/$",                           StudentExamContinueView.as_view(),     name="student_exam_continue"     ),
-    url(r"^student/exam/start/$",                              StudentExamStartView.as_view(),        name="student_exam_start"        ),
-    url(r"^student/exam/skip/$",                               StudentExamSkipView.as_view(),         name="student_exam_skip"         ),
-    url(r"^student/exam/end/$",                                StudentExamEndView.as_view(),          name="student_exam_end"          ),
-    url(r"^student/exam/report/$",                             StudentExamReportView.as_view(),       name="student_exam_report"       ),
+    url(r"^student/exam/$",                                       StudentExamView.as_view(),             name="student_exam"              ),
+    url(r"^student/exam/continue/$",                              StudentExamContinueView.as_view(),     name="student_exam_continue"     ),
+    url(r"^student/exam/start/$",                                 StudentExamStartView.as_view(),        name="student_exam_start"        ),
+    url(r"^student/exam/skip/$",                                  StudentExamSkipView.as_view(),         name="student_exam_skip"         ),
+    url(r"^student/exam/end/$",                                   StudentExamEndView.as_view(),          name="student_exam_end"          ),
+    url(r"^student/exam/report/$",                                StudentExamReportView.as_view(),       name="student_exam_report"       ),
 
     # DEVELOPER URLS
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
