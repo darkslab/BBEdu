@@ -21,11 +21,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p class="lead mt-15 mb-0 text-center">{% trans 'Something went wrong. Please refresh the page.' context '/student/buy-tests/xxxx/' %}</p>
+                    <p class="lead mt-15 mb-0 text-center">{% trans 'Something went wrong. Please refresh the page.' context '/student/select-tests/xxxx/' %}</p>
                 </div>
                 <div class="modal-footer">
                     <div class="text-center">
-                        <a href="{% url 'bbtest:student_buy_tests' test_domain.pk %}" class="btn btn-primary">{% trans 'Refresh the page' context '/student/buy-tests/xxxx/' %}</a>
+                        <a href="{% url 'bbtest:student_buy_tests' test_domain.pk %}" class="btn btn-primary">{% trans 'Refresh the page' context '/student/select-tests/xxxx/' %}</a>
                     </div>
                 </div>
             </div>
@@ -36,13 +36,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{% trans 'Could not checkout' context '/student/buy-tests/xxxx/' %}</h4>
+                    <h4 class="modal-title">{% trans 'Could not checkout' context '/student/select-tests/xxxx/' %}</h4>
                 </div>
                 <div class="modal-body">
                     <p class="lead mt-0 mb-0" data-error-modal-body></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' context '/student/buy-tests/xxxx/' %}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' context '/student/select-tests/xxxx/' %}</button>
                 </div>
             </div>
         </div>
@@ -51,12 +51,12 @@
     <div class="row">
         <div class="col-sm-8">
             {% if test_langs %}
-                <h4 class="mt-0 mb-10 text-center">{% trans 'Test language' context '/student/buy-tests/xxxx/' %}</h4>
+                <h4 class="mt-0 mb-10 text-center">{% trans 'Test language' context '/student/select-tests/xxxx/' %}</h4>
                 <div class="bb-rel">
                     <div class="bb-spinner-overlay" data-overlay-language></div>
                     <div class="list-group">
                         {% for test_lang in test_langs %}
-                            <a href="javascript:void(0);" class="list-group-item" data-test-language="{{ test_lang.0 }}" data-test-language-explanation="{% blocktrans with test_language=test_lang.1 %}page:/student/buy-tests/xxxx/:test_language_explanation:{{ test_language }}{% endblocktrans %}" data-selected="false">
+                            <a href="javascript:void(0);" class="list-group-item" data-test-language="{{ test_lang.0 }}" data-test-language-explanation="{% blocktrans with test_language=test_lang.1 %}page:/student/select-tests/xxxx/:test_language_explanation:{{ test_language }}{% endblocktrans %}" data-selected="false">
                                 <div class="row">
                                     <div class="col-xs-8 col-sm-9">
                                         <h4 class="list-group-item-heading mb-0">{{ test_lang.1 }}</h4>
@@ -73,7 +73,7 @@
                 </div>
             {% endif %}
 
-            <h4 class="mt-0 mb-10 text-center">{% trans 'Subjects' context '/student/buy-tests/xxxx/' %}</h4>
+            <h4 class="mt-0 mb-10 text-center">{% trans 'Subjects' context '/student/select-tests/xxxx/' %}</h4>
             <div class="bb-rel">
                 <div class="bb-spinner-overlay" data-overlay-sections></div>
                 <div class="list-group">
@@ -102,7 +102,7 @@
                             </div>
                             <div class="row hidden" data-progress-message>
                                 <div class="col-xs-12">
-                                    <h6 class="text-danger text-center mt-10 mb-0">{% trans 'page:/student/buy-tests/xxxx/:test_variant_in_progress' %}</h6>
+                                    <h6 class="text-danger text-center mt-10 mb-0">{% trans 'page:/student/select-tests/xxxx/:test_variant_in_progress' %}</h6>
                                 </div>
                             </div>
                         </a>
@@ -115,7 +115,7 @@
                 <div class="bb-rel">
                     <div class="bb-spinner-overlay" data-overlay-totals></div>
                     <div class="panel-body">
-                        <h5 class="mt-10 mb-10">{% trans 'Total:' context '/student/buy-tests/xxxx/' %}</h5>
+                        <h5 class="mt-10 mb-10">{% trans 'Total:' context '/student/select-tests/xxxx/' %}</h5>
                         <div>
                             <div data-totals-line-items>
                                 <div class="row" data-totals-row>
@@ -147,10 +147,10 @@
                         </div>
                         <h4 class="text-right mt-15 mb-15" data-totals-total></h4>
                         <h6 class="text-center mt-15 mb-15" data-totals-test-language></h4>
-                        <button type="button" class="btn btn-success btn-lg btn-block" data-totals-buy-tests>{% trans 'Buy tests' context '/student/buy-tests/xxxx/' %}</button>
-                        <a href="javascript:void(0);" class="btn btn-primary btn-lg btn-block" data-totals-buy-credits>{% trans 'Buy credits' context '/student/buy-tests/xxxx/' %}</a>
+                        <button type="button" class="btn btn-success btn-lg btn-block" data-totals-select-tests>{% trans 'Buy tests' context '/student/select-tests/xxxx/' %}</button>
+                        <a href="javascript:void(0);" class="btn btn-primary btn-lg btn-block" data-totals-buy-credits>{% trans 'Buy credits' context '/student/select-tests/xxxx/' %}</a>
                         <p class="text-center mt-15 mb-0">
-                            <a href="{% url 'bbtest:student_buy_test_domains' %}">{% trans 'Choose different test domain' context '/student/buy-tests/xxxx/' %}</a>
+                            <a href="{% url 'bbtest:student_buy_test_domains' %}">{% trans 'Choose different test domain' context '/student/select-tests/xxxx/' %}</a>
                         </p>
                     </div>
                 </div>

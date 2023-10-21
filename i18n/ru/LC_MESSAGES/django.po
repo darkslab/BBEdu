@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-15 20:26+0600\n"
+"POT-Creation-Date: 2023-10-21 16:22+0600\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -421,10 +421,6 @@ msgstr "Введите сообщение."
 msgctxt "/contact_us/"
 msgid "Hello..."
 msgstr "Здравствуйте..."
-
-msgctxt "Validation error"
-msgid "Please select difficulty."
-msgstr "Укажите сложность."
 
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
@@ -961,6 +957,10 @@ msgstr "Одобрен"
 msgctxt "Test status"
 msgid "Archived"
 msgstr "В архиве"
+
+msgctxt "Test status"
+msgid "Redo"
+msgstr "На доработку"
 
 msgctxt "Model field"
 msgid "code of the test"
@@ -1511,38 +1511,6 @@ msgctxt "Home page"
 msgid "Connect with us"
 msgstr "Мы в социальных  сетях"
 
-msgid "page:/nis/:html_title"
-msgstr ""
-"Пробное тестирование для поступления в 7 классы Назарбаев Интеллектуальных "
-"школ"
-
-msgid "page:/nis/:html_description"
-msgstr ""
-"Удобная платформа онлайн тестирования с предоставлением подробного анализа "
-"результатов. Пробное тестирование для поступления в 7 классы Назарбаев "
-"Интеллектуальных школ."
-
-msgctxt "Navigation link"
-msgid "Settings"
-msgstr "Настройки"
-
-msgid "_common.nav.faq"
-msgstr "Вопрос-ответ"
-
-msgid "_common.nav.corporate"
-msgstr "Корпоративным клиентам"
-
-msgid "page:/nis/:nis_button"
-msgstr "Пробный тест для поступающих в НИШ"
-
-msgctxt "Footer navigation link"
-msgid "Terms"
-msgstr "Пользовательское соглашение"
-
-msgctxt "Footer navigation link"
-msgid "Contact Us"
-msgstr "Написать письмо"
-
 msgctxt "Badge label under avatar"
 msgid "Administrator"
 msgstr "Администратор"
@@ -1594,7 +1562,11 @@ msgctxt "Navigation link"
 msgid "Start testing"
 msgstr "Начать тестирование"
 
-msgid "page:/student/buy-tests/xxxx/:checkout_shortcut"
+msgctxt "Navigation link"
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "page:/student/select-tests/xxxx/:checkout_shortcut"
 msgstr "Начать"
 
 msgctxt "Page title"
@@ -1610,32 +1582,32 @@ msgctxt "Page title"
 msgid "Select tests for %(domain_name)s"
 msgstr "Выберите предметы теста %(domain_name)s"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Something went wrong. Please refresh the page."
 msgstr "Что-то пошло не так, обновите страницу."
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Refresh the page"
 msgstr "Обновите страницу"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Could not checkout"
 msgstr "Покупка невозможна"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Close"
 msgstr "Закрыть"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Test language"
 msgstr "Язык теста"
 
 #, python-format
 msgid ""
-"page:/student/buy-tests/xxxx/:test_language_explanation:%(test_language)s"
+"page:/student/select-tests/xxxx/:test_language_explanation:%(test_language)s"
 msgstr "Язык теста: %(test_language)s"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Subjects"
 msgstr "Предметы"
 
@@ -1647,22 +1619,22 @@ msgstr "Количество вопросов: %(count)s"
 msgid "Duration: %(minutes)s min."
 msgstr "Продолжительность: %(minutes)s минут."
 
-msgid "page:/student/buy-tests/xxxx/:test_variant_in_progress"
+msgid "page:/student/select-tests/xxxx/:test_variant_in_progress"
 msgstr "Новый вариант добавляется, зайдите позже."
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Total:"
 msgstr "Итого:"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Buy tests"
 msgstr "Начать тест"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Buy credits"
 msgstr "Приобрести единицы"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr "Выбрать другой тест"
 
@@ -2190,15 +2162,47 @@ msgctxt "/super/tests/"
 msgid "Edit"
 msgstr "Изменить"
 
-msgctxt "Developer tools"
-msgid "Change to Paid"
-msgstr "Изменить на платный"
-
-msgctxt "Developer tools"
-msgid "Change to Free"
-msgstr "Изменить на бесплатный"
-
 msgctxt "/super/tests/"
+msgid "There are no tests yet"
+msgstr "Нет загруженных тестов"
+
+msgctxt "/expert/dashboard/"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "/expert/dashboard/"
+msgid "Domain"
+msgstr "Тестирование"
+
+msgctxt "/expert/dashboard/"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "/expert/dashboard/"
+msgid "Language"
+msgstr "Язык"
+
+msgctxt "/expert/dashboard/"
+msgid "Variant"
+msgstr "Код теста"
+
+msgctxt "/expert/dashboard/"
+msgid "Status"
+msgstr "Статус"
+
+msgctxt "/expert/dashboard/"
+msgid "Actions"
+msgstr "Действия"
+
+msgctxt "/expert/dashboard/"
+msgid "Preview"
+msgstr "Просмотреть"
+
+msgctxt "/expert/dashboard/"
+msgid "Edit"
+msgstr "Изменить"
+
+msgctxt "/expert/dashboard/"
 msgid "There are no tests yet"
 msgstr "Нет загруженных тестов"
 
@@ -2442,7 +2446,7 @@ msgstr "Одобрить"
 
 msgctxt "Developer tools"
 msgid "Refuse"
-msgstr "Отправить назад"
+msgstr "На доработку"
 
 msgctxt "Developer tools"
 msgid "Edit"
@@ -2451,10 +2455,6 @@ msgstr "Редактировать"
 msgctxt "Developer tools"
 msgid "Delete"
 msgstr "Удалить"
-
-msgctxt "Developer tools"
-msgid "Check"
-msgstr "Проверить"
 
 msgctxt "Developer tools"
 msgid "Exit"
@@ -2499,24 +2499,24 @@ msgid "Section 4"
 msgstr "Предмет 4"
 
 #, python-format
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
 msgstr "%(amount).0f ед."
 
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "Discount"
 msgstr "Скидка"
 
 #, python-format
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
 msgstr "-%(amount).0f ед."
 
 #, python-format
-msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
+msgid "page:/student/select-tests/xxxx/:test_variant:%(test_code)s"
 msgstr "Вариант %(test_code)s"
 
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "Free"
 msgstr "Бесплатно"
 

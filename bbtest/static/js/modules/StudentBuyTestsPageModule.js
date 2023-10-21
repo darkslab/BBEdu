@@ -23,7 +23,7 @@ function StudentBuyTestsPageModule(data) {
     this._$totals_subtotals_row.remove();
     this._$totals_total = this._$totals.find("[data-totals-total]");
     this._$totals_test_language = this._$totals.find("[data-totals-test-language]");
-    this._$totals_buy_tests = this._$totals.find("[data-totals-buy-tests]");
+    this._$totals_buy_tests = this._$totals.find("[data-totals-select-tests]");
     this._$totals_buy_credits = this._$totals.find("[data-totals-buy-credits]");
 
     this._totalsTop;
