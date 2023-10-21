@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-15 20:26+0600\n"
+"POT-Creation-Date: 2023-10-21 16:22+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -420,10 +420,6 @@ msgstr "Please enter the message."
 msgctxt "/contact_us/"
 msgid "Hello..."
 msgstr "Hello…"
-
-msgctxt "Validation error"
-msgid "Please select difficulty."
-msgstr "Please select difficulty."
 
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
@@ -978,6 +974,10 @@ msgctxt "Test status"
 msgid "Archived"
 msgstr "Archived"
 
+msgctxt "Test status"
+msgid "Redo"
+msgstr ""
+
 msgctxt "Model field"
 msgid "code of the test"
 msgstr "code of the test"
@@ -1519,36 +1519,6 @@ msgctxt "Home page"
 msgid "Connect with us"
 msgstr "Connect with us"
 
-msgid "page:/nis/:html_title"
-msgstr ""
-"Practice tests for 7th grade enrollment to Nazarbayev Intellectual Schools"
-
-msgid "page:/nis/:html_description"
-msgstr ""
-"Easy to use online testing platform with detailed results analysis. Practice "
-"tests for students enrolling into 7th grade Nazarbayev Intellectual Schools."
-
-msgctxt "Navigation link"
-msgid "Settings"
-msgstr "Settings"
-
-msgid "_common.nav.faq"
-msgstr "FAQ"
-
-msgid "_common.nav.corporate"
-msgstr "For Corporate clients"
-
-msgid "page:/nis/:nis_button"
-msgstr "Practice test for NIS enrollment"
-
-msgctxt "Footer navigation link"
-msgid "Terms"
-msgstr "Terms"
-
-msgctxt "Footer navigation link"
-msgid "Contact Us"
-msgstr "Contact Us"
-
 msgctxt "Badge label under avatar"
 msgid "Administrator"
 msgstr "Administrator"
@@ -1602,6 +1572,10 @@ msgstr "Testing"
 msgctxt "Navigation link"
 msgid "Start testing"
 msgstr "Start the test"
+
+msgctxt "Navigation link"
+msgid "Settings"
+msgstr "Settings"
 
 msgid "page:/student/buy-tests/xxxx/:checkout_shortcut"
 msgstr "Start"
@@ -2194,15 +2168,77 @@ msgctxt "/super/tests/"
 msgid "Edit"
 msgstr "Edit"
 
-msgctxt "Developer tools"
-msgid "Change to Paid"
-msgstr "Change to Paid"
-
-msgctxt "Developer tools"
-msgid "Change to Free"
-msgstr "Change to Free"
-
 msgctxt "/super/tests/"
+msgid "There are no tests yet"
+msgstr "There are no tests yet"
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Developer"
+msgctxt "/expert/dashboard/"
+msgid "Developer"
+msgstr "Developer"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Domain"
+msgctxt "/expert/dashboard/"
+msgid "Domain"
+msgstr "Domain"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Section"
+msgctxt "/expert/dashboard/"
+msgid "Section"
+msgstr "Section"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Language"
+msgctxt "/expert/dashboard/"
+msgid "Language"
+msgstr "Language"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Variant"
+msgctxt "/expert/dashboard/"
+msgid "Variant"
+msgstr "Variant"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Status"
+msgctxt "/expert/dashboard/"
+msgid "Status"
+msgstr "Status"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Actions"
+msgctxt "/expert/dashboard/"
+msgid "Actions"
+msgstr "Actions"
+
+#, fuzzy
+#| msgctxt "/super/tests/"
+#| msgid "Preview"
+msgctxt "/expert/dashboard/"
+msgid "Preview"
+msgstr "Preview"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Edit"
+msgctxt "/expert/dashboard/"
+msgid "Edit"
+msgstr "Edit"
+
+#, fuzzy
+#| msgctxt "/super/tests/"
+#| msgid "There are no tests yet"
+msgctxt "/expert/dashboard/"
 msgid "There are no tests yet"
 msgstr "There are no tests yet"
 
@@ -2461,10 +2497,6 @@ msgstr "Edit"
 msgctxt "Developer tools"
 msgid "Delete"
 msgstr "Delete"
-
-msgctxt "Developer tools"
-msgid "Check"
-msgstr "Check"
 
 msgctxt "Developer tools"
 msgid "Exit"
