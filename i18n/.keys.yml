@@ -127,7 +127,7 @@ page:
   '/student/':
     last_results_header: ~
     iqanat_intro: ~
-  '/student/buy-tests/xxxx/':
+  '/student/select-tests/xxxx/':
     test_variant: ~
     test_variant_in_progress: ~
     checkout_shortcut: ~

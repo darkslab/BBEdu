@@ -1566,7 +1566,7 @@ msgctxt "Navigation link"
 msgid "Settings"
 msgstr "Құрылғылар"
 
-msgid "page:/student/buy-tests/xxxx/:checkout_shortcut"
+msgid "page:/student/select-tests/xxxx/:checkout_shortcut"
 msgstr "Бастау"
 
 msgctxt "Page title"
@@ -1582,32 +1582,32 @@ msgctxt "Page title"
 msgid "Select tests for %(domain_name)s"
 msgstr "%(domain_name)s тестілеуінің пәндерін таңдаңыз"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Something went wrong. Please refresh the page."
 msgstr "Бірдеңе дұрыс болмады."
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Refresh the page"
 msgstr "Бетті жаңартыңыз"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Could not checkout"
 msgstr "Сатып алу мүмкін емес"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Close"
 msgstr "Жабу"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Test language"
 msgstr "Тестілеу тілі"
 
 #, python-format
 msgid ""
-"page:/student/buy-tests/xxxx/:test_language_explanation:%(test_language)s"
+"page:/student/select-tests/xxxx/:test_language_explanation:%(test_language)s"
 msgstr "Тестілеу тілі: %(test_language)s"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Subjects"
 msgstr "Пәндер"
 
@@ -1619,22 +1619,22 @@ msgstr "Сұрақтар саны: %(count)s"
 msgid "Duration: %(minutes)s min."
 msgstr "Ұзақтығы: %(minutes)s минут."
 
-msgid "page:/student/buy-tests/xxxx/:test_variant_in_progress"
+msgid "page:/student/select-tests/xxxx/:test_variant_in_progress"
 msgstr "Жаңа нұсқа қосылуда, кейінірек кіріңіз."
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Total:"
 msgstr "Бағасы:"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Buy tests"
 msgstr "Тестіні бастау"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Buy credits"
 msgstr "Бірлік сатып алу"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr "Басқа тестіні таңдау"
 
@@ -2497,24 +2497,24 @@ msgid "Section 4"
 msgstr "4-Секция"
 
 #, python-format
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
 msgstr "%(amount).0f бірлік"
 
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "Discount"
 msgstr "Жеңілдік"
 
 #, python-format
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
 msgstr "-%(amount).0f бірлік"
 
 #, python-format
-msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
+msgid "page:/student/select-tests/xxxx/:test_variant:%(test_code)s"
 msgstr "%(test_code)s нұсқасы"
 
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "Free"
 msgstr "Ақысыз"
 

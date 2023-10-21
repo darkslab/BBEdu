@@ -107,10 +107,10 @@ urlpatterns = [
 
     # STUDENT URLS
     url(r"^student/$",                                         StudentDashboardView.as_view(),        name="student_dashboard"         ),
-    url(r"^student/buy-tests/$",                               StudentBuyTestDomainsView.as_view(),   name="student_buy_test_domains"  ),
-    url(r"^student/buy-tests/(?P<test_domain_id>\d+)/$",       StudentBuyTestsView.as_view(),         name="student_buy_tests"         ),
-    url(r"^student/buy-tests/(?P<test_domain_id>\d+)/cart/$",  StudentBuyTestsCartView.as_view(),     name="student_buy_tests_cart"    ),
-    url(r"^student/buy-tests/checkout/$",                      StudentBuyTestsCheckoutView.as_view(), name="student_buy_tests_checkout"),
+    url(r"^student/select-tests/$",                               StudentBuyTestDomainsView.as_view(),   name="student_buy_test_domains"  ),
+    url(r"^student/select-tests/(?P<test_domain_id>\d+)/$",       StudentBuyTestsView.as_view(),         name="student_buy_tests"         ),
+    url(r"^student/select-tests/(?P<test_domain_id>\d+)/cart/$",  StudentBuyTestsCartView.as_view(),     name="student_buy_tests_cart"    ),
+    url(r"^student/select-tests/checkout/$",                      StudentBuyTestsCheckoutView.as_view(), name="student_buy_tests_checkout"),
     url(r"^student/exam/$",                                    StudentExamView.as_view(),             name="student_exam"              ),
     url(r"^student/exam/continue/$",                           StudentExamContinueView.as_view(),     name="student_exam_continue"     ),
     url(r"^student/exam/start/$",                              StudentExamStartView.as_view(),        name="student_exam_start"        ),

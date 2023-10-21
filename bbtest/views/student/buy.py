@@ -177,27 +177,27 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
             response["data"]["sections"].append(item.test().section.pk)
             response["totals"]["line_items"].append({
                 "description": _(item.description()),
-                "amount": pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": item.price() },
+                "amount": pgettext("/student/select-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": item.price() },
             })
             discount += item.discount()
         if response["data"].get("language") is None:
             response["data"]["language"] = default_language
         if discount > 0:
             response["totals"]["subtotals"].append({
-                "description": pgettext("/student/buy-tests/xxxx/cart/", "Discount"),
-                "amount": pgettext("/student/buy-tests/xxxx/cart/", "-%(amount).0f cred.") % { "amount": discount },
+                "description": pgettext("/student/select-tests/xxxx/cart/", "Discount"),
+                "amount": pgettext("/student/select-tests/xxxx/cart/", "-%(amount).0f cred.") % { "amount": discount },
             })
-        response["totals"]["total"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": self.cart_handle().total() }
+        response["totals"]["total"] = pgettext("/student/select-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": self.cart_handle().total() }
 
         available_tests = self.cart_handle().buyer().next_tests(domain, response["data"]["language"])
         for test in available_tests:
             section_id = str(test.section_id)
-            response["sections"][section_id]["variant"] = _("page:/student/buy-tests/xxxx/:test_variant:%(test_code)s") % { "test_code": test.code.upper() }
+            response["sections"][section_id]["variant"] = _("page:/student/select-tests/xxxx/:test_variant:%(test_code)s") % { "test_code": test.code.upper() }
             if section_id not in response["sections"]:
                 continue
             response["sections"][section_id]["enabled"] = True
             if test.is_free:
-                response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "Free")
+                response["sections"][section_id]["price"] = pgettext("/student/select-tests/xxxx/cart/", "Free")
             else:
                 amount = Decimal("0.00")
                 try:
@@ -254,7 +254,7 @@ class BuyTestsCartView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequired
                         amount = Decimal("50.00")
                 except KeyError:
                     pass
-                response["sections"][section_id]["price"] = pgettext("/student/buy-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": amount }
+                response["sections"][section_id]["price"] = pgettext("/student/select-tests/xxxx/cart/", "%(amount).0f cred.") % { "amount": amount }
 
         response["affordable"] = False
         if self.cart_handle().buyer().balance_account().balance() >= self.cart_handle().total():

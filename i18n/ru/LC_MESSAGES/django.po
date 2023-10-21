@@ -1566,7 +1566,7 @@ msgctxt "Navigation link"
 msgid "Settings"
 msgstr "Настройки"
 
-msgid "page:/student/buy-tests/xxxx/:checkout_shortcut"
+msgid "page:/student/select-tests/xxxx/:checkout_shortcut"
 msgstr "Начать"
 
 msgctxt "Page title"
@@ -1582,32 +1582,32 @@ msgctxt "Page title"
 msgid "Select tests for %(domain_name)s"
 msgstr "Выберите предметы теста %(domain_name)s"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Something went wrong. Please refresh the page."
 msgstr "Что-то пошло не так, обновите страницу."
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Refresh the page"
 msgstr "Обновите страницу"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Could not checkout"
 msgstr "Покупка невозможна"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Close"
 msgstr "Закрыть"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Test language"
 msgstr "Язык теста"
 
 #, python-format
 msgid ""
-"page:/student/buy-tests/xxxx/:test_language_explanation:%(test_language)s"
+"page:/student/select-tests/xxxx/:test_language_explanation:%(test_language)s"
 msgstr "Язык теста: %(test_language)s"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Subjects"
 msgstr "Предметы"
 
@@ -1619,22 +1619,22 @@ msgstr "Количество вопросов: %(count)s"
 msgid "Duration: %(minutes)s min."
 msgstr "Продолжительность: %(minutes)s минут."
 
-msgid "page:/student/buy-tests/xxxx/:test_variant_in_progress"
+msgid "page:/student/select-tests/xxxx/:test_variant_in_progress"
 msgstr "Новый вариант добавляется, зайдите позже."
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Total:"
 msgstr "Итого:"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Buy tests"
 msgstr "Начать тест"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Buy credits"
 msgstr "Приобрести единицы"
 
-msgctxt "/student/buy-tests/xxxx/"
+msgctxt "/student/select-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr "Выбрать другой тест"
 
@@ -2499,24 +2499,24 @@ msgid "Section 4"
 msgstr "Предмет 4"
 
 #, python-format
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "%(amount).0f cred."
 msgstr "%(amount).0f ед."
 
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "Discount"
 msgstr "Скидка"
 
 #, python-format
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "-%(amount).0f cred."
 msgstr "-%(amount).0f ед."
 
 #, python-format
-msgid "page:/student/buy-tests/xxxx/:test_variant:%(test_code)s"
+msgid "page:/student/select-tests/xxxx/:test_variant:%(test_code)s"
 msgstr "Вариант %(test_code)s"
 
-msgctxt "/student/buy-tests/xxxx/cart/"
+msgctxt "/student/select-tests/xxxx/cart/"
 msgid "Free"
 msgstr "Бесплатно"
 

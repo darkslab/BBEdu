@@ -173,7 +173,7 @@
 
 
 /**
- * GET /student/buy-tests/xxxx/cart/
+ * GET /student/select-tests/xxxx/cart/
  * 
  * response object
  */
@@ -238,7 +238,7 @@
 
 
 /**
- * POST /student/buy-tests/xxxx/cart/
+ * POST /student/select-tests/xxxx/cart/
  * 
  * request object
  */
@@ -253,9 +253,9 @@
 }
 
 /**
- * POST /student/buy-tests/xxxx/cart/
+ * POST /student/select-tests/xxxx/cart/
  * 
- * response object is the same as in the example above (GET /student/buy-tests/xxxx/cart/)
+ * response object is the same as in the example above (GET /student/select-tests/xxxx/cart/)
  */
 
 
