@@ -61,6 +61,18 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **kwargs):
+        # user = create_students(first_name = "Саке", username="student_01", email="student_01@example.com")
+        # user = create_students(first_name = "Баке", username="student_02", email="student_02@example.com")
+
+        # user = create_developer(first_name = "Dev-01", username="Dev-01")
+        # user = create_developer(first_name = "Dev-02", username="Dev-02")
+
+        # user = create_admin(first_name = "Admin-01", username="Admin-01")
+        # user = create_admin(first_name = "Admin-02", username="Admin-02")
+
+        # user = create_expert(first_name = "Expert-01", username="Expert-01")
+        # user = create_expert(first_name = "Expert-02", username="Expert-02")
+
         user = create_students("monkey")
         print(user)
         user = create_developer("shmonkey_dev", username="Dev-007", first_name = "Ethernal", last_name = "Secret Dev")
