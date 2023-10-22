@@ -7,7 +7,7 @@ class CurrentQuizSetRequiredMixin:
         if self.quiz_set() is None:
             if request.is_ajax():
                 raise PermissionDenied("Permission denied for AJAX call")
-            return redirect("bbtest:student_buy_test_domains")
+            return redirect("bbtest:student_dashboard")
         return super().dispatch(request, *args, **kwargs)
 
     def quiz_set(self):
