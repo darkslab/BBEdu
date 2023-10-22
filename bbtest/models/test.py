@@ -1,6 +1,6 @@
 from django.db.models import (
     Manager, Q,
-    Model, ForeignKey, CASCADE, ManyToManyField,
+    Model, ForeignKey, CASCADE, ManyToManyField, OneToOneField,
     CharField, PositiveSmallIntegerField, BooleanField, DateTimeField, PositiveIntegerField,
 )
 from django.utils.translation import pgettext_lazy
@@ -437,3 +437,15 @@ class BundleForStudent(Model):
         return self.bundle + " " + self.student.get_short_name()
         
 """
+
+
+class DomainForStudent(Model):
+    student     = OneToOneField ( User,         on_delete=CASCADE, related_name="student_domain", db_index=True)
+    domain      = ForeignKey    ( TestDomain,   on_delete=CASCADE, related_name="domains"   )
+
+    class Meta:
+        default_permissions = ()
+
+    def __str__(self):
+        # self.domain.name
+        return "{} | {}".format(self.domain.name, self.student.get_short_name())
