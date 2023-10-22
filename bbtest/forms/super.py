@@ -27,7 +27,7 @@ class GiveCreditsForm(Form):
 
 
 class CreateStudentsForm(Form):
-    name =CharField(label = pgettext("CreateStudentsForm", "Login prefix"), 
+    name = CharField(label = pgettext("CreateStudentsForm", "Login prefix"), 
         error_messages = {"required": "Student will be generated with this name." }, 
         initial = "IAC_2023",
         min_length = 1,
@@ -72,6 +72,31 @@ class CreateStudentsForm(Form):
     # )
 
     # section = ChoiceField(choices=CATEGORY_CHOICES, required=False)
+
+
+class CreatePackageForm(Form):
+    name =CharField(label = pgettext("CreateStudentsForm", "Login prefix"), 
+        error_messages = {"required": "Student will be generated with this name." }, 
+        initial = "IAC_2023",
+        min_length = 1,
+        max_length = 30)
+    # prefix = CharField(label="Email Pefix", error_messages={
+    #     "required": "Student's email will be generated with this prefix."
+    # }, max_length=30, initial="bb")
+    domain = ModelChoiceField(
+        queryset = TestDomain.objects.all(),
+        empty_label = pgettext("CreateStudentsForm", "Select Test Domain")
+    )
+
+    amount = IntegerField(label=pgettext("CreateStudentsForm", "Amount"),
+        initial=10, 
+        error_messages={
+            "required": "Please provide an amount.",
+            "invalid": "Amount is invalid.",
+            "max_value": "Amount cannot be more than %(limit_value)s.",
+            "min_value": "Amount has to be at least %(limit_value)s.",
+        }, max_value=1000, min_value=1)
+    
 
 
 class ExportDataForm(Form):
