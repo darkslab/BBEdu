@@ -70,11 +70,12 @@
                             <!-- <li class="{% block nav_developer_offer_class %}{% endblock %}"><a href="{% url 'bbtest:developer_offer' %}"><i class="fa fa-fw fa-handshake-o"></i> {% trans 'Public Offer' context 'Navigation link' %}</a></li> -->
                         {% elif perms.bbtest.student %}
                             <!-- <li class="{% block nav_student_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:student_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li> -->
-                            {% if has_exam %}
+                            {% comment %} <li class="bb-highlighted {% block nav_student_exam_class %}{% endblock %}"><a href="{% url 'bbtest:student_exam' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Testing' context 'Navigation link' %}</a></li> {% endcomment %}
+                            {% comment %} {% if has_exam %}
                                 <li class="bb-highlighted {% block nav_student_exam_class %}{% endblock %}"><a href="{% url 'bbtest:student_exam' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Testing' context 'Navigation link' %}</a></li>
                             {% else %}
                                 <li class="{% block nav_student_buy_tests_class %}{% endblock %}"><a href="{% url 'bbtest:student_buy_test_domains' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Start testing' context 'Navigation link' %}</a></li>
-                            {% endif %}
+                            {% endif %} {% endcomment %}
                         {% endif %}
                     </ul>
                 </div>
