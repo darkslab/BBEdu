@@ -20,6 +20,7 @@ class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, User
 
     def get_context_data(self, **kwargs):
         kwargs["test_domain"] = self.quiz_set().test_domain
+        kwargs["is_current"] = self.quiz_set().is_current
         return super().get_context_data(**kwargs)
 
 

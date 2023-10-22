@@ -1,4 +1,6 @@
-from django.forms import Form, ChoiceField, IntegerField, CharField, DateField, DateTimeField
+from django.forms import Form, ChoiceField, IntegerField, CharField, DateField, DateTimeField, ModelChoiceField
+from django.utils.translation import pgettext_lazy, pgettext
+from bbtest.models import TestDomain, TestSection
 import datetime
 
 
@@ -25,15 +27,20 @@ class GiveCreditsForm(Form):
 
 
 class CreateStudentsForm(Form):
-    name =CharField(label="Login prefix", 
-        error_messages={"required": "Student will be generated with this name." }, 
-        initial="iqnt22",
-        min_length=1,
-        max_length=30)
+    name =CharField(label = pgettext("CreateStudentsForm", "Login prefix"), 
+        error_messages = {"required": "Student will be generated with this name." }, 
+        initial = "IAC_2023",
+        min_length = 1,
+        max_length = 30)
     # prefix = CharField(label="Email Pefix", error_messages={
     #     "required": "Student's email will be generated with this prefix."
     # }, max_length=30, initial="bb")
-    amount = IntegerField(label="Amount",
+    domain = ModelChoiceField(
+        queryset = TestDomain.objects.all(),
+        empty_label = pgettext("CreateStudentsForm", "Select Test Domain")
+    )
+
+    amount = IntegerField(label=pgettext("CreateStudentsForm", "Amount"),
         initial=10, 
         error_messages={
             "required": "Please provide an amount.",
@@ -41,6 +48,30 @@ class CreateStudentsForm(Form):
             "max_value": "Amount cannot be more than %(limit_value)s.",
             "min_value": "Amount has to be at least %(limit_value)s.",
         }, max_value=1000, min_value=1)
+    
+
+    # def __init__(self, *args, **kwargs):
+    #     super(CreateStudentsForm, self).__init__(*args, **kwargs)
+    #     self.fields['section'].choices = [(1,1),(2,2),(3,3)]
+    #     print("asd", self.data)
+
+    # CATEGORY_CHOICES = (
+    #     ('Debt', (
+    #         (11, 'Credit Card'),
+    #         (12, 'Student Loans'),
+    #         (13, 'Taxes'),
+    #     )),
+    #     ('Entertainment', (
+    #         (21, 'Books'),
+    #         (22, 'Games'),
+    #     )),
+    #     ('Everyday', (
+    #         (31, 'Groceries'),
+    #         (32, 'Restaurants'),
+    #     )),
+    # )
+
+    # section = ChoiceField(choices=CATEGORY_CHOICES, required=False)
 
 
 class ExportDataForm(Form):

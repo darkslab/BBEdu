@@ -5,7 +5,7 @@ from django.contrib.messages import warning, success, error
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 from django.utils.translation import pgettext
-from django.db.models import Q
+from django.db.models import Q, F
 from django.utils.timezone import now
 from django.http import Http404
 from django.http import HttpResponse
@@ -13,6 +13,7 @@ from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.forms.super import CreateStudentsForm
+from bbtest.models.test import DomainForStudent, TestDomain, Test
 from bbtest.http import TightJsonResponse
 import uuid
 from random import randint
@@ -23,7 +24,7 @@ from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 from django.core.exceptions import ValidationError
 # User = get_user_model()
 
-class CreateStudentsView(CreateStudentRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+class CreateStudentsView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/create_students.html"
 
     def get_context_data(self, **kwargs):
@@ -78,14 +79,28 @@ class CreateStudentsFormView(CreateStudentRequiredMixin, View):
             prefix = "bb"
             for i in range(1, amount+1):
                 username = "{}_{:0{}}".format(name, i, order_of_magnitude)
-                if len(prefix) > 0:
-                    login_email = "{}_{}@modo.edu.kz".format(prefix, uuid.uuid4().hex[:10])
-                else:
-                    login_email = "{}@modo.edu.kz".format(uuid.uuid4().hex)
+                login_email =  None
+                # if len(prefix) > 0:
+                #     login_email = "{}_{}@modo.edu.kz".format(prefix, uuid.uuid4().hex[:10])
+                # else:
+                #     login_email = "{}@modo.edu.kz".format(uuid.uuid4().hex)
                 gen_pass = "{:05}".format(randint(1, 99999))
                 
+                domain = form.cleaned_data["domain"]
                 try:
-                    self.create_students(username, login_email, gen_pass)
+                    student = self.create_students(username, login_email, gen_pass)
+                    domain_for_student_obj = DomainForStudent.objects.create(student = student, domain = domain)
+
+                    quiz_set = student.quiz_sets.create(test_domain=domain, cart=None)
+                    for quiz_order, test in enumerate(
+                        Test.objects.filter(
+                            Q(section__domain=domain) & 
+                            Q(status=Test.STATUS_ACTIVE)
+                        ).order_by('section__order')):
+                        
+                        quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
+                        # test.update(sales_count=(F("sales_count") + 1))
+
                     writer.writerow([username, login_email, gen_pass])
                 except ValidationError:
                     writer.writerow([username, login_email, "already_exist"])

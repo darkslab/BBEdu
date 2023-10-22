@@ -1,6 +1,6 @@
 from django.db.models import (
     Manager, Q,
-    Model, ForeignKey, CASCADE, ManyToManyField,
+    Model, ForeignKey, CASCADE, ManyToManyField, OneToOneField,
     CharField, PositiveSmallIntegerField, BooleanField, DateTimeField, PositiveIntegerField,
 )
 from django.utils.translation import pgettext_lazy
@@ -398,3 +398,54 @@ class TestParagraphQuestion(Model):
         default_permissions = ()
         ordering = ("order",)
         unique_together = ("question", "paragraph")
+
+
+
+####### 
+"""
+class TestBundle(Model):
+    tests       = ManyToManyField  ( Test, through="TestsForStudentsRelation", related_name="tests", )
+    code        = CharField  ( pgettext_lazy("Model field", "bundle code"), max_length=10, unique=True, )
+
+    class Meta:
+        default_permissions = ()
+
+    def __str__(self):
+        return self.code
+
+
+class TestBundleRelation(Model):
+    test        = ForeignKey  ( Test,       on_delete=CASCADE,                         )
+    bundle      = ForeignKey  ( TestBundle, on_delete=CASCADE, related_name="through", )
+
+    order  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"), db_index=True, )
+
+    class Meta:
+        default_permissions = ()
+        ordering = ("order",)
+        unique_together = ("bundle", "test")
+
+
+class BundleForStudent(Model):
+    student     = ForeignKey ( User,        on_delete=CASCADE, related_name="users", )
+    bundle      = ForeignKey ( TestBundle,  on_delete=CASCADE,                       )
+
+    class Meta:
+        default_permissions = ()
+
+    def __str__(self):
+        return self.bundle + " " + self.student.get_short_name()
+        
+"""
+
+
+class DomainForStudent(Model):
+    student     = OneToOneField ( User,         on_delete=CASCADE, related_name="student_domain", db_index=True)
+    domain      = ForeignKey    ( TestDomain,   on_delete=CASCADE, related_name="domains"   )
+
+    class Meta:
+        default_permissions = ()
+
+    def __str__(self):
+        # self.domain.name
+        return "{} | {}".format(self.domain.name, self.student.get_short_name())
