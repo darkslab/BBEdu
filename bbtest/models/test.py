@@ -403,9 +403,10 @@ class TestParagraphQuestion(Model):
 
 ####### 
 """
-class TestBundle(Model):
-    tests       = ManyToManyField  ( Test, through="TestsForStudentsRelation", related_name="tests", )
-    code        = CharField  ( pgettext_lazy("Model field", "bundle code"), max_length=10, unique=True, )
+class TestPackage(Model):
+    code        = CharField   ( pgettext_lazy("Model field", "package code"), max_length=10, unique=True, )
+    tests       = ManyToManyField  ( Test, through="TestPackageRelation", related_name="tests", )
+    assessible  = BooleanField( pgettext_lazy("Model field", "is assessible?"), default=False, db_index=True,)
 
     class Meta:
         default_permissions = ()
@@ -414,28 +415,27 @@ class TestBundle(Model):
         return self.code
 
 
-class TestBundleRelation(Model):
+class TestPackageRelation(Model):
     test        = ForeignKey  ( Test,       on_delete=CASCADE,                         )
-    bundle      = ForeignKey  ( TestBundle, on_delete=CASCADE, related_name="through", )
+    package      = ForeignKey  ( TestPackage, on_delete=CASCADE, related_name="through", )
 
     order  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"), db_index=True, )
 
     class Meta:
         default_permissions = ()
         ordering = ("order",)
-        unique_together = ("bundle", "test")
+        unique_together = ("package", "test")
 
 
-class BundleForStudent(Model):
-    student     = ForeignKey ( User,        on_delete=CASCADE, related_name="users", )
-    bundle      = ForeignKey ( TestBundle,  on_delete=CASCADE,                       )
+class PackageForStudent(Model):
+    student      = OneToOneField ( User,         on_delete=CASCADE, related_name="package_field", )
+    package      = ForeignKey    ( TestPackage,  on_delete=CASCADE,                       )
 
     class Meta:
         default_permissions = ()
 
     def __str__(self):
-        return self.bundle + " " + self.student.get_short_name()
-        
+        return self.package + " " + self.student.get_short_name()
 """
 
 

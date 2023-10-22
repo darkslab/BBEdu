@@ -57,7 +57,9 @@
                             
                             <li class="{% block nav_admin_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:admin_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_admin_users_class %}{% endblock %}"><a href="{% url 'bbtest:admin_users' %}"><i class="fa fa-fw fa-users"></i> {% trans 'All Users' context 'Navigation link' %}</a></li>
-                            <li class="{% block nav_admin_export_data_class %}{% endblock %}"><a href="{% url 'bbtest:admin_create_students' %}"><i class="fa fa-fw fa-users"></i> {% trans 'Create Students' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_admin_create_students_class %}{% endblock %}"><a href="{% url 'bbtest:admin_create_students' %}"><i class="fa fa-fw fa-users"></i> {% trans 'Create Students' context 'Navigation link' %}</a></li>
+                            {% comment %} <li class="{% block nav_admin_create_package_class %}{% endblock %}"><a href="{% url 'bbtest:admin_create_package' %}"><i class="fa fa-fw fa-users"></i> {% trans 'Create Package' context 'Navigation link' %}</a></li> {% endcomment %}
+                            {% comment %} <li class="{% block nav_admin_export_data_class %}{% endblock %}"><a href="{% url 'bbtest:super_export_data' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Export Data' context 'Navigation link' %}</a></li> {% endcomment %}
                         {% elif perms.bbtest.expert %}
                             <li class="{% block nav_expert_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:expert_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
                             {% comment %} <li class="{% block nav_expert_users_class %}{% endblock %}"><a href="{% url 'bbtest:expert_users' %}"><i class="fa fa-fw fa-users"></i> {% trans 'All Users' context 'Navigation link' %}</a></li> {% endcomment %}

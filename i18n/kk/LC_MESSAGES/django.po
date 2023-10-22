@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-21 16:22+0600\n"
+"POT-Creation-Date: 2023-10-22 22:52+0600\n"
 "PO-Revision-Date: 2021-05-07 08:13-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -422,6 +422,24 @@ msgstr "Хабарламаңызды енгізіңіз."
 msgctxt "/contact_us/"
 msgid "Hello..."
 msgstr "Сәлеметсіз бе…"
+
+msgctxt "CreateStudentsForm"
+msgid "Login prefix"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/student/"
+#| msgid "Test Domain 1"
+msgctxt "CreateStudentsForm"
+msgid "Select Test Domain"
+msgstr "Тест 1"
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Amount"
+msgctxt "CreateStudentsForm"
+msgid "Amount"
+msgstr "Сома"
 
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
@@ -948,13 +966,20 @@ msgctxt "Test status"
 msgid "Approved"
 msgstr "Келісілді"
 
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Active?"
 msgctxt "Test status"
-msgid "Archived"
-msgstr "Мұрағатталды"
+msgid "Active"
+msgstr "Активті?"
 
 msgctxt "Test status"
 msgid "Redo"
 msgstr "Қайта Жасау"
+
+msgctxt "Test status"
+msgid "Archived"
+msgstr "Мұрағатталды"
 
 msgctxt "Model field"
 msgid "code of the test"
@@ -1349,10 +1374,6 @@ msgid "Status"
 msgstr "Статус"
 
 msgctxt "/developer/"
-msgid "Sold/Completed"
-msgstr "Сатылды/аяқталды"
-
-msgctxt "/developer/"
 msgid "Actions"
 msgstr "Әрекеттер"
 
@@ -1365,26 +1386,8 @@ msgid "Edit"
 msgstr "Өзгерту"
 
 msgctxt "/developer/"
-msgid "Preview"
-msgstr "Алдын ала көру"
-
-msgctxt "/developer/"
 msgid "Delete"
 msgstr "Жою"
-
-#, fuzzy
-#| msgctxt "Test status"
-#| msgid "Draft"
-msgctxt "/developer/"
-msgid "ReDraft"
-msgstr "Шимай нұсқасы"
-
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "Approve"
-msgctxt "/developer/"
-msgid "ReApprove"
-msgstr "Келісу"
 
 msgctxt "/developer/"
 msgid "You have not created tests yet"
@@ -1550,17 +1553,16 @@ msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Тестіні жүктеу"
 
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Create Test"
+msgctxt "Navigation link"
+msgid "Create Package"
+msgstr "Тестіні жүктеу"
+
 msgctxt "Navigation link"
 msgid "Public Offer"
 msgstr "Жария офертасы"
-
-msgctxt "Navigation link"
-msgid "Testing"
-msgstr "Тестілеу"
-
-msgctxt "Navigation link"
-msgid "Start testing"
-msgstr "Тестілеуді бастау"
 
 msgctxt "Navigation link"
 msgid "Settings"
@@ -1573,9 +1575,29 @@ msgctxt "Page title"
 msgid "Choose the test domain"
 msgstr "Тестіні таңдаңыз"
 
+#, fuzzy
+#| msgid "Klass_4_ru"
+msgid "klass_4_ru"
+msgstr "4 Сынып Орыс бөліми"
+
 #, python-format
 msgid "page:/:test_domain_full_name:%(domain_name)s"
 msgstr "%(domain_name)s"
+
+#, fuzzy
+#| msgid "Klass_9_ru"
+msgid "klass_9_ru"
+msgstr "9 Сынып Орыс бөліми"
+
+#, fuzzy
+#| msgid "Klass_4_kz"
+msgid "klass_4_kz"
+msgstr "4 Сынып Қазақ бөліми"
+
+#, fuzzy
+#| msgid "Klass_9_kz"
+msgid "klass_9_kz"
+msgstr "9 Сынып Қазақ бөліми"
 
 #, python-format
 msgctxt "Page title"
@@ -2156,6 +2178,24 @@ msgctxt "/super/tests/"
 msgid "Edit"
 msgstr "Өзгерту"
 
+msgctxt "/developer/"
+msgid "Preview"
+msgstr "Алдын ала көру"
+
+#, fuzzy
+#| msgctxt "Test status"
+#| msgid "Draft"
+msgctxt "/developer/"
+msgid "ReDraft"
+msgstr "Шимай нұсқасы"
+
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "Approve"
+msgctxt "/developer/"
+msgid "ReApprove"
+msgstr "Келісу"
+
 msgctxt "/super/tests/"
 msgid "There are no tests yet"
 msgstr "Тестілер жоқ"
@@ -2199,7 +2239,98 @@ msgctxt "/expert/dashboard/"
 msgid "Edit"
 msgstr "Өзгерту"
 
+#, fuzzy
+#| msgctxt "Developer tools"
+#| msgid "Approve"
+msgctxt "/expert/"
+msgid "ReApprove"
+msgstr "Келісу"
+
+#, fuzzy
+#| msgctxt "Test status"
+#| msgid "Draft"
+msgctxt "/expert/"
+msgid "ReDraft"
+msgstr "Шимай нұсқасы"
+
 msgctxt "/expert/dashboard/"
+msgid "There are no tests yet"
+msgstr "Тестілер жоқ"
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Developer"
+msgctxt "/admin/dashboard/"
+msgid "Developer"
+msgstr "Құрастырушы"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Domain"
+msgctxt "/admin/dashboard/"
+msgid "Domain"
+msgstr "Тестілеу"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Section"
+msgctxt "/admin/dashboard/"
+msgid "Section"
+msgstr "Пән"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Language"
+msgctxt "/admin/dashboard/"
+msgid "Language"
+msgstr "Тіл"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Variant"
+msgctxt "/admin/dashboard/"
+msgid "Variant"
+msgstr "Нұсқа"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Status"
+msgctxt "/admin/dashboard/"
+msgid "Status"
+msgstr "Статус"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Actions"
+msgctxt "/admin/dashboard/"
+msgid "Actions"
+msgstr "Әрекеттер"
+
+#, fuzzy
+#| msgctxt "Test status"
+#| msgid "Draft"
+msgctxt "/admin/dashboard/"
+msgid "ReDraft"
+msgstr "Шимай нұсқасы"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Active?"
+msgctxt "/admin/dashboard/"
+msgid "Activate"
+msgstr "Активті?"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "active?"
+msgctxt "/admin/dashboard/"
+msgid "Deactivate"
+msgstr "активті?"
+
+#, fuzzy
+#| msgctxt "/super/tests/"
+#| msgid "There are no tests yet"
+msgctxt "/admin/dashboard/"
 msgid "There are no tests yet"
 msgstr "Тестілер жоқ"
 
@@ -2421,6 +2552,27 @@ msgctxt "Developer tools"
 msgid "Skip test checks!"
 msgstr "Тест тексерісін ескермеу!"
 
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Are you sure?"
+msgctxt "Admin tools"
+msgid "Are you sure?"
+msgstr "Сенімдісіз бе?"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Yes"
+msgctxt "Admin tools"
+msgid "Yes"
+msgstr "Иә"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "No"
+msgctxt "Admin tools"
+msgid "No"
+msgstr "Жоқ"
+
 msgctxt "Developer tools"
 msgid "Please wait for the feedback..."
 msgstr "Кері байланысты күтуіңізді сұраймыз…"
@@ -2460,6 +2612,20 @@ msgstr "Шығу"
 msgctxt "Developer tools"
 msgid "Send for Approval"
 msgstr "Келісуге жіберу"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "active?"
+msgctxt "Admin tools"
+msgid "Deactivate"
+msgstr "активті?"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Active?"
+msgctxt "Admin tools"
+msgid "Activate"
+msgstr "Активті?"
 
 msgctxt "Success alert message"
 msgid ""
@@ -2596,6 +2762,20 @@ msgstr "Тест ақылы болып өзгертілді."
 msgctxt "Success alert message"
 msgid "Test is now approved again."
 msgstr "Тест ақылы болып өзгертілді."
+
+#, fuzzy
+#| msgctxt "Success alert message"
+#| msgid "Test is now free."
+msgctxt "Success alert message"
+msgid "Test is active now."
+msgstr "Тест ақысыз болып өзгертілді."
+
+#, fuzzy
+#| msgctxt "Item error"
+#| msgid "Test is required."
+msgctxt "Success alert message"
+msgid "Test is deactivated."
+msgstr "Тестілер қажет."
 
 msgctxt "Success alert message"
 msgid "Test is now free."

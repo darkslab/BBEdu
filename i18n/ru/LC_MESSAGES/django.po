@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-21 16:22+0600\n"
+"POT-Creation-Date: 2023-10-22 22:52+0600\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -421,6 +421,18 @@ msgstr "Введите сообщение."
 msgctxt "/contact_us/"
 msgid "Hello..."
 msgstr "Здравствуйте..."
+
+msgctxt "CreateStudentsForm"
+msgid "Login prefix"
+msgstr "Логин префикс"
+
+msgctxt "CreateStudentsForm"
+msgid "Select Test Domain"
+msgstr "Выберите параллель"
+
+msgctxt "CreateStudentsForm"
+msgid "Amount"
+msgstr "количество"
 
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
@@ -955,12 +967,16 @@ msgid "Approved"
 msgstr "Одобрен"
 
 msgctxt "Test status"
-msgid "Archived"
-msgstr "В архиве"
+msgid "Active"
+msgstr "Доступен"
 
 msgctxt "Test status"
 msgid "Redo"
 msgstr "На доработку"
+
+msgctxt "Test status"
+msgid "Archived"
+msgstr "В архиве"
 
 msgctxt "Model field"
 msgid "code of the test"
@@ -1356,10 +1372,6 @@ msgid "Status"
 msgstr "Статус"
 
 msgctxt "/developer/"
-msgid "Sold/Completed"
-msgstr "Продано/Пройдено"
-
-msgctxt "/developer/"
 msgid "Actions"
 msgstr "Действия"
 
@@ -1372,20 +1384,8 @@ msgid "Edit"
 msgstr "Изменить"
 
 msgctxt "/developer/"
-msgid "Preview"
-msgstr "Просмотреть"
-
-msgctxt "/developer/"
 msgid "Delete"
 msgstr "Удалить"
-
-msgctxt "/developer/"
-msgid "ReDraft"
-msgstr "На доработку"
-
-msgctxt "/developer/"
-msgid "ReApprove"
-msgstr "Одобрить"
 
 msgctxt "/developer/"
 msgid "You have not created tests yet"
@@ -1551,16 +1551,12 @@ msgid "Create Test"
 msgstr "Загрузить тест"
 
 msgctxt "Navigation link"
+msgid "Create Package"
+msgstr "Создать Пекет"
+
+msgctxt "Navigation link"
 msgid "Public Offer"
 msgstr "Публичная оферта"
-
-msgctxt "Navigation link"
-msgid "Testing"
-msgstr "Тестирование"
-
-msgctxt "Navigation link"
-msgid "Start testing"
-msgstr "Начать тестирование"
 
 msgctxt "Navigation link"
 msgid "Settings"
@@ -1573,9 +1569,21 @@ msgctxt "Page title"
 msgid "Choose the test domain"
 msgstr "Выберите тест"
 
+msgid "klass_4_ru"
+msgstr "4 Класс на Русском языке обучения"
+
 #, python-format
 msgid "page:/:test_domain_full_name:%(domain_name)s"
 msgstr "%(domain_name)s"
+
+msgid "klass_9_ru"
+msgstr "9 Класс на Русском языке обучения"
+
+msgid "klass_4_kz"
+msgstr "4 Класс на Казахском языке обучения"
+
+msgid "klass_9_kz"
+msgstr "9 Класс на Казахском языке обучения"
 
 #, python-format
 msgctxt "Page title"
@@ -2162,6 +2170,18 @@ msgctxt "/super/tests/"
 msgid "Edit"
 msgstr "Изменить"
 
+msgctxt "/developer/"
+msgid "Preview"
+msgstr "Просмотреть"
+
+msgctxt "/developer/"
+msgid "ReDraft"
+msgstr "На доработку"
+
+msgctxt "/developer/"
+msgid "ReApprove"
+msgstr "Одобрить"
+
 msgctxt "/super/tests/"
 msgid "There are no tests yet"
 msgstr "Нет загруженных тестов"
@@ -2202,7 +2222,59 @@ msgctxt "/expert/dashboard/"
 msgid "Edit"
 msgstr "Изменить"
 
+msgctxt "/expert/"
+msgid "ReApprove"
+msgstr "Одобрить"
+
+msgctxt "/expert/"
+msgid "ReDraft"
+msgstr "На доработку"
+
 msgctxt "/expert/dashboard/"
+msgid "There are no tests yet"
+msgstr "Нет загруженных тестов"
+
+msgctxt "/admin/dashboard/"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "/admin/dashboard/"
+msgid "Domain"
+msgstr "Тестирование"
+
+msgctxt "/admin/dashboard/"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "/admin/dashboard/"
+msgid "Language"
+msgstr "Язык"
+
+msgctxt "/admin/dashboard/"
+msgid "Variant"
+msgstr "Код теста"
+
+msgctxt "/admin/dashboard/"
+msgid "Status"
+msgstr "Статус"
+
+msgctxt "/admin/dashboard/"
+msgid "Actions"
+msgstr "Действия"
+
+msgctxt "/admin/dashboard/"
+msgid "ReDraft"
+msgstr "На доработке"
+
+msgctxt "/admin/dashboard/"
+msgid "Activate"
+msgstr "Доступ"
+
+msgctxt "/admin/dashboard/"
+msgid "Deactivate"
+msgstr "ДеДоступ"
+
+msgctxt "/admin/dashboard/"
 msgid "There are no tests yet"
 msgstr "Нет загруженных тестов"
 
@@ -2424,6 +2496,18 @@ msgctxt "Developer tools"
 msgid "Skip test checks!"
 msgstr "Пропустить проверку теста!"
 
+msgctxt "Admin tools"
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+msgctxt "Admin tools"
+msgid "Yes"
+msgstr "Да"
+
+msgctxt "Admin tools"
+msgid "No"
+msgstr "Нет"
+
 msgctxt "Developer tools"
 msgid "Please wait for the feedback..."
 msgstr "Дождитесь результата..."
@@ -2463,6 +2547,14 @@ msgstr "Выйти"
 msgctxt "Developer tools"
 msgid "Send for Approval"
 msgstr "Отправить на oдобрение"
+
+msgctxt "Admin tools"
+msgid "Deactivate"
+msgstr "ДеДоступ"
+
+msgctxt "Admin tools"
+msgid "Activate"
+msgstr "Доступ"
 
 msgctxt "Success alert message"
 msgid ""
@@ -2591,6 +2683,14 @@ msgstr "Тест изменен на черновик."
 msgctxt "Success alert message"
 msgid "Test is now approved again."
 msgstr "Тест переодобрен."
+
+msgctxt "Success alert message"
+msgid "Test is active now."
+msgstr "Тест изменен на доступный."
+
+msgctxt "Success alert message"
+msgid "Test is deactivated."
+msgstr "Тест изменен на не доступный."
 
 msgctxt "Success alert message"
 msgid "Test is now free."

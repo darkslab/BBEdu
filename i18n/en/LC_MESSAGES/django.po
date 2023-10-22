@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-21 16:22+0600\n"
+"POT-Creation-Date: 2023-10-22 22:52+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -420,6 +420,24 @@ msgstr "Please enter the message."
 msgctxt "/contact_us/"
 msgid "Hello..."
 msgstr "Hello…"
+
+msgctxt "CreateStudentsForm"
+msgid "Login prefix"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/student/"
+#| msgid "Test Domain 1"
+msgctxt "CreateStudentsForm"
+msgid "Select Test Domain"
+msgstr "Test Domain 1"
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Amount"
+msgctxt "CreateStudentsForm"
+msgid "Amount"
+msgstr "Amount"
 
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
@@ -970,13 +988,20 @@ msgctxt "Test status"
 msgid "Approved"
 msgstr "Approved"
 
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Active?"
 msgctxt "Test status"
-msgid "Archived"
-msgstr "Archived"
+msgid "Active"
+msgstr "Active?"
 
 msgctxt "Test status"
 msgid "Redo"
 msgstr ""
+
+msgctxt "Test status"
+msgid "Archived"
+msgstr "Archived"
 
 msgctxt "Model field"
 msgid "code of the test"
@@ -1361,10 +1386,6 @@ msgid "Status"
 msgstr "Status"
 
 msgctxt "/developer/"
-msgid "Sold/Completed"
-msgstr "Sold/Completed"
-
-msgctxt "/developer/"
 msgid "Actions"
 msgstr "Actions"
 
@@ -1377,20 +1398,8 @@ msgid "Edit"
 msgstr "Edit"
 
 msgctxt "/developer/"
-msgid "Preview"
-msgstr "Preview"
-
-msgctxt "/developer/"
 msgid "Delete"
 msgstr "Delete"
-
-msgctxt "/developer/"
-msgid "ReDraft"
-msgstr "ReDraft"
-
-msgctxt "/developer/"
-msgid "ReApprove"
-msgstr "ReApprove"
 
 msgctxt "/developer/"
 msgid "You have not created tests yet"
@@ -1561,17 +1570,16 @@ msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Create Test"
 
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Create Test"
+msgctxt "Navigation link"
+msgid "Create Package"
+msgstr "Create Test"
+
 msgctxt "Navigation link"
 msgid "Public Offer"
 msgstr "Public Offer"
-
-msgctxt "Navigation link"
-msgid "Testing"
-msgstr "Testing"
-
-msgctxt "Navigation link"
-msgid "Start testing"
-msgstr "Start the test"
 
 msgctxt "Navigation link"
 msgid "Settings"
@@ -1584,12 +1592,30 @@ msgctxt "Page title"
 msgid "Choose the test domain"
 msgstr "Choose the test domain"
 
+#, fuzzy
+#| msgctxt "Test language"
+#| msgid "Russian"
+msgid "klass_4_ru"
+msgstr "Russian"
+
 #, fuzzy, python-format
 #| msgid ""
 #| "page:/:test_domain_full_name:%(domain_name)s;%(domain_abbr)s;"
 #| "%(break_code)s"
 msgid "page:/:test_domain_full_name:%(domain_name)s"
 msgstr "%(domain_name)s%(break_code)s(%(domain_abbr)s)"
+
+#, fuzzy
+#| msgctxt "Test language"
+#| msgid "Russian"
+msgid "klass_9_ru"
+msgstr "Russian"
+
+msgid "klass_4_kz"
+msgstr ""
+
+msgid "klass_9_kz"
+msgstr ""
 
 #, python-format
 msgctxt "Page title"
@@ -2168,6 +2194,18 @@ msgctxt "/super/tests/"
 msgid "Edit"
 msgstr "Edit"
 
+msgctxt "/developer/"
+msgid "Preview"
+msgstr "Preview"
+
+msgctxt "/developer/"
+msgid "ReDraft"
+msgstr "ReDraft"
+
+msgctxt "/developer/"
+msgid "ReApprove"
+msgstr "ReApprove"
+
 msgctxt "/super/tests/"
 msgid "There are no tests yet"
 msgstr "There are no tests yet"
@@ -2236,9 +2274,100 @@ msgid "Edit"
 msgstr "Edit"
 
 #, fuzzy
+#| msgctxt "/developer/"
+#| msgid "ReApprove"
+msgctxt "/expert/"
+msgid "ReApprove"
+msgstr "ReApprove"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "ReDraft"
+msgctxt "/expert/"
+msgid "ReDraft"
+msgstr "ReDraft"
+
+#, fuzzy
 #| msgctxt "/super/tests/"
 #| msgid "There are no tests yet"
 msgctxt "/expert/dashboard/"
+msgid "There are no tests yet"
+msgstr "There are no tests yet"
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Developer"
+msgctxt "/admin/dashboard/"
+msgid "Developer"
+msgstr "Developer"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Domain"
+msgctxt "/admin/dashboard/"
+msgid "Domain"
+msgstr "Domain"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Section"
+msgctxt "/admin/dashboard/"
+msgid "Section"
+msgstr "Section"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Language"
+msgctxt "/admin/dashboard/"
+msgid "Language"
+msgstr "Language"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Variant"
+msgctxt "/admin/dashboard/"
+msgid "Variant"
+msgstr "Variant"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Status"
+msgctxt "/admin/dashboard/"
+msgid "Status"
+msgstr "Status"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Actions"
+msgctxt "/admin/dashboard/"
+msgid "Actions"
+msgstr "Actions"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "ReDraft"
+msgctxt "/admin/dashboard/"
+msgid "ReDraft"
+msgstr "ReDraft"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Active?"
+msgctxt "/admin/dashboard/"
+msgid "Activate"
+msgstr "Active?"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "active?"
+msgctxt "/admin/dashboard/"
+msgid "Deactivate"
+msgstr "active?"
+
+#, fuzzy
+#| msgctxt "/super/tests/"
+#| msgid "There are no tests yet"
+msgctxt "/admin/dashboard/"
 msgid "There are no tests yet"
 msgstr "There are no tests yet"
 
@@ -2466,6 +2595,27 @@ msgctxt "Developer tools"
 msgid "Skip test checks!"
 msgstr "Skip test checks!"
 
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Are you sure?"
+msgctxt "Admin tools"
+msgid "Are you sure?"
+msgstr "Are you sure?"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Yes"
+msgctxt "Admin tools"
+msgid "Yes"
+msgstr "Yes"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "No"
+msgctxt "Admin tools"
+msgid "No"
+msgstr "No"
+
 msgctxt "Developer tools"
 msgid "Please wait for the feedback..."
 msgstr "Please wait for the feedback…"
@@ -2505,6 +2655,20 @@ msgstr "Exit"
 msgctxt "Developer tools"
 msgid "Send for Approval"
 msgstr "Send for Approval"
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "active?"
+msgctxt "Admin tools"
+msgid "Deactivate"
+msgstr "active?"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Active?"
+msgctxt "Admin tools"
+msgid "Activate"
+msgstr "Active?"
 
 msgctxt "Success alert message"
 msgid ""
@@ -2635,6 +2799,20 @@ msgstr "Test is now draft again."
 msgctxt "Success alert message"
 msgid "Test is now approved again."
 msgstr "Test is now approved again."
+
+#, fuzzy
+#| msgctxt "Success alert message"
+#| msgid "Test is now free."
+msgctxt "Success alert message"
+msgid "Test is active now."
+msgstr "Test is now free."
+
+#, fuzzy
+#| msgctxt "Item error"
+#| msgid "Test is required."
+msgctxt "Success alert message"
+msgid "Test is deactivated."
+msgstr "Test is required."
 
 msgctxt "Success alert message"
 msgid "Test is now free."
