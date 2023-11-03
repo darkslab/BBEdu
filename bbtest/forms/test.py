@@ -501,17 +501,10 @@ class TestForm(ModelForm):
 
         try:
             # NIS sections
-            if section.pk in range(9540, 9559):
+            if section.domain.pk in (7911, 7912, 7913, 7914):
                 if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
                     raise ValueError("Incorrect language")
-            # # UNT sections
-            # elif section.pk in (9547, 9546, 9545, 9548, 9549, 9550, 9551, 9552, 9553, 9559):
-            #     if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
-            #         raise ValueError("Incorrect language")
-            # # UNT sections
-            # elif section.pk in (9554, 9555, 9556):
-            #     if language not in (Test.LANGUAGE_XX,):
-            #         raise ValueError("Incorrect language")
+ 
             else:
                 raise ValidationError(
                     pgettext("Validation error", "Unrecognized test section."),
