@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-22 22:52+0600\n"
+"POT-Creation-Date: 2023-11-04 01:25+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -688,6 +688,42 @@ msgid "Klass_4_kz"
 msgstr ""
 
 msgid "Klass_9_kz"
+msgstr ""
+
+msgid "Questionnaire-A_4_kz"
+msgstr ""
+
+msgid "Questionnaire-A_4_ru"
+msgstr ""
+
+msgid "Questionnaire-B_4_kz"
+msgstr ""
+
+msgid "Questionnaire-B_4_ru"
+msgstr ""
+
+msgid "Questionnaire-C_4_kz"
+msgstr ""
+
+msgid "Questionnaire-C_4_ru"
+msgstr ""
+
+msgid "Questionnaire-A_9_kz"
+msgstr ""
+
+msgid "Questionnaire-A_9_ru"
+msgstr ""
+
+msgid "Questionnaire-B_9_kz"
+msgstr ""
+
+msgid "Questionnaire-B_9_ru"
+msgstr ""
+
+msgid "Questionnaire-C_9_kz"
+msgstr ""
+
+msgid "Questionnaire-C_9_ru"
 msgstr ""
 
 msgctxt "Account type"
@@ -1570,13 +1606,6 @@ msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Create Test"
 
-#, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Create Test"
-msgctxt "Navigation link"
-msgid "Create Package"
-msgstr "Create Test"
-
 msgctxt "Navigation link"
 msgid "Public Offer"
 msgstr "Public Offer"
@@ -1965,9 +1994,12 @@ msgctxt "/student/transactions/xxxx/"
 msgid "%(total)s cred."
 msgstr "%(total)s cred."
 
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Create Test"
 msgctxt "Page title"
-msgid "All Users"
-msgstr "All Users"
+msgid "Create Package"
+msgstr "Create Test"
 
 msgctxt "/super/users/"
 msgid "Are you sure?"
@@ -1996,6 +2028,13 @@ msgstr "Joined at"
 msgctxt "/super/users/"
 msgid "Active?"
 msgstr "Active?"
+
+#, fuzzy
+#| msgctxt "/super/"
+#| msgid "Students"
+msgctxt "Page title"
+msgid "Create Students"
+msgstr "Students"
 
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
@@ -2063,6 +2102,10 @@ msgstr "All Users"
 msgctxt "/super/"
 msgid "Tests by Developers"
 msgstr "Tests by Developers"
+
+msgctxt "Page title"
+msgid "All Users"
+msgstr "All Users"
 
 msgctxt "Page title"
 msgid "All Quizzes"
