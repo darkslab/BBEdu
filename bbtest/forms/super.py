@@ -110,11 +110,13 @@ class ManagePackageStudentsForm(Form):
 
 
 class ManagePackageTestForm(Form):
-    # domain = ModelChoiceField(queryset=TestDomain.objects.none())
-
     # This form field options are created later in runtime
-    test = ChoiceField()  # queryset=Test.objects.none()
+    test = ChoiceField(label="Select Test",  choices=[("56fa", "56fa")])  # queryset=Test.objects.none()
 
+    def __init__(self, *args, **kwargs):
+         choices = kwargs.pop('choices', [])
+         super(Form, self).__init__(*args, **kwargs)
+         self.fields['test'].choices = choices
 
 
 class ExportDataForm(Form):

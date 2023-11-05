@@ -105,7 +105,7 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
         package_obj = get_object_or_404(TestPackage.objects, code=code)
         kwargs["package"] = package_obj
 
-        form_add_test = ManagePackageTestForm()
+        # form_add_test = ManagePackageTestForm()
         # form.fields['domain'].queryset = TestSection.objects.filter(domain=package_obj.domain)
         section_set = TestSection.objects.filter(domain=package_obj.domain)
 
@@ -114,38 +114,41 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
             options = []
             tests = section_obj.tests.all()
             for test_obj in tests:
-                options.append((test_obj, test_obj.code))
-            CATEGORY_CHOICES.append((section_obj.name, options))
-        form_add_test.fields['test'].choices = CATEGORY_CHOICES
-
+                options.append((str(test_obj.code), test_obj.code))
+            if len(tests) > 0:
+                CATEGORY_CHOICES.append((section_obj.name, tuple(options)))
+                
+        # form_add_test.fields['test'].choices = tuple(CATEGORY_CHOICES)
+        # form_add_test.fields['test'].initial = CATEGORY_CHOICES[0][1]
+        form_add_test = ManagePackageTestForm(choices = CATEGORY_CHOICES)
         kwargs["add_tests_form"] = form_add_test
+        
+        # print(form_add_test)
 
         form_add_students = ManagePackageStudentsForm()
         kwargs["add_students_form"] = form_add_students
+        # print(form_add_students)
 
         return self.render_to_response(super().get_context_data(**kwargs))
     
 
 class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
+        # print("ManagePackageTestFormView", request.POST)
         form = ManagePackageTestForm(data=request.POST)
+        # print("ManagePackageTestFormView", form)
+        test_code = request.POST.get('test')
+        test_obj = Test.objects.get(code=test_code)
+        if not test_obj:
+            error(request, "not valid test code %s" % test_code)
+
+        form.fields['test'].choices = [(test_code, test_code)]
         print("ManagePackageTestFormView", form.is_valid())
-        print("ManagePackageTestFormView", form)
+        # print("ManagePackageTestFormView", form)
         if form.is_valid():
-
             test = form.cleaned_data["test"]
-            print(test, type(test))
+            print(test_obj, test, type(test_obj))
             # name = form.cleaned_data["name"]
-
-            # obj = TestPackage.objects.create(
-            #     name = name,
-            #     code = "{}{}".format(datetime.now().strftime("%y%m%d"), "%04x" % randint(0x0000, 0xffff) ),
-            #     assessible = False,
-            #     # tests 
-            #     # students
-            #     domain = domain,
-            # )
-            # print("CreatePackageFormView", obj)
 
         else:
             error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
