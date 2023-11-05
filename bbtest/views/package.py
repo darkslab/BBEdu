@@ -12,8 +12,8 @@ from django.http import HttpResponse
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
-from bbtest.forms.super import  CreatePackageForm
-from bbtest.models.test import TestDomain, Test, TestPackage
+from bbtest.forms.super import  CreatePackageForm, ManagePackageStudentsForm, ManagePackageTestForm
+from bbtest.models.test import TestDomain, Test, TestPackage, TestSection
 from bbtest.http import TightJsonResponse
 import uuid
 from random import randint
@@ -24,6 +24,7 @@ from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 from django.core.exceptions import ValidationError
 # User = get_user_model()
 from datetime import datetime
+from django.views.generic.base import TemplateResponseMixin, ContextMixin, View
 
 
 class BuildPackagesView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
@@ -88,3 +89,43 @@ class CreatePackageFormView(CreateStudentRequiredMixin, View):
             error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 
         return redirect("bbtest:build_packages")
+    
+
+class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateResponseMixin, ContextMixin, View):
+    template_name = "package/manage_package.html"
+    # form_class = ManagePackageTestForm
+    
+    def get(self, request, code, *args, **kwargs):
+        # print("BuildPackageView", args, kwargs, self.get_context_data())
+        # print("BuildPackageView", self.request)
+        print("BuildPackageView", kwargs, code)
+
+
+        # obj = TestPackage.objects.get(code=code)
+        package_obj = get_object_or_404(TestPackage.objects, code=code)
+
+        form_add_test = ManagePackageTestForm()
+        # form.fields['domain'].queryset = TestSection.objects.filter(domain=package_obj.domain)
+        section_set = TestSection.objects.filter(domain=package_obj.domain)
+
+        CATEGORY_CHOICES = []
+        for section_obj in section_set:
+            options = []
+            tests = section_obj.tests.all()
+            for test_obj in tests:
+                options.append((test_obj, test_obj.code))
+            CATEGORY_CHOICES.append((section_obj.name, options))
+        form_add_test.fields['test'].choices = CATEGORY_CHOICES
+
+        kwargs["add_tests_form"] = form_add_test
+
+        form_add_students = ManagePackageStudentsForm()
+        kwargs["add_students_form"] = form_add_students
+
+        return self.render_to_response(super().get_context_data(**kwargs))
+    
+
+    # def get_context_data(self, **kwargs):
+        
+
+    #     return super().get_context_data(**kwargs)
