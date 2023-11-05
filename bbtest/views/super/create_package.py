@@ -13,7 +13,7 @@ from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.forms.super import  CreatePackageForm
-from bbtest.models.test import TestDomain, Test
+from bbtest.models.test import TestDomain, Test, TestPackage
 from bbtest.http import TightJsonResponse
 import uuid
 from random import randint
@@ -23,40 +23,41 @@ from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, AdminPermission
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 from django.core.exceptions import ValidationError
 # User = get_user_model()
+from datetime import datetime
 
 
 class CreatePackageView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/create_package.html"
 
     def get_context_data(self, **kwargs):
-        users = User.objects.filter(is_superuser=False).order_by("-joined_at").prefetch_related("user_permissions__content_type")
+        packages = TestPackage.objects.all().order_by("-created_at") # .prefetch_related("domain_name")
         kwargs["q"] = ""
         try:
-            users = users.filter(
-                Q(first_name__icontains=self.request.GET["q"])
+            packages = packages.filter(
+                Q(name__icontains=self.request.GET["q"])
                 |
-                Q(last_name__icontains=self.request.GET["q"])
-                |
-                Q(email__icontains=self.request.GET["q"])
+                Q(code__icontains=self.request.GET["q"])
+                # |
+                # Q(domain_name__icontains=self.request.GET["q"])
             )
             kwargs["q"] = self.request.GET["q"]
         except KeyError:
             pass
 
-        paginator = Paginator(users, 25)
+        paginator = Paginator(packages, 25)
         try:
-            kwargs["users"] = paginator.page(self.request.GET.get("page"))
+            kwargs["packages"] = paginator.page(self.request.GET.get("page"))
         except PageNotAnInteger:
-            kwargs["users"] = paginator.page(1)
+            kwargs["packages"] = paginator.page(1)
         except EmptyPage:
-            kwargs["users"] = paginator.page(paginator.num_pages)
-        paginator.page_indexes = self.page_indexes(kwargs["users"], 5)
+            kwargs["packages"] = paginator.page(paginator.num_pages)
+        paginator.page_indexes = self.page_indexes(kwargs["packages"], 5)
 
-        for user in kwargs["users"]:
-            for permission in user.user_permissions.all():
-                if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "expert", "developer", "student"):
-                    user.role = permission.codename
-                    break
+        # for user in kwargs["packages"]:
+        #     for permission in user.user_permissions.all():
+        #         if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "expert", "developer", "student"):
+        #             user.role = permission.codename
+        #             break
 
         kwargs["create_package_form"] = CreatePackageForm()
 
@@ -67,49 +68,23 @@ class CreatePackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginati
 class CreatePackageFormView(CreateStudentRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         form = CreatePackageForm(data=request.POST)
-
+        print("CreatePackageFormView", form.is_valid())
         if form.is_valid():
-            response = HttpResponse(content_type='text/csv')
-            response['Content-Disposition'] = 'attachment; filename="export.csv"'
-            writer = csv.writer(response)
 
-            amount = int(form.cleaned_data["amount"])
-            order_of_magnitude = amount // 10 + 2
-            name = form.cleaned_data["name"] 
-            # prefix = form.cleaned_data["prefix"]
-            prefix = "bb"
-            for i in range(1, amount+1):
-                username = "{}_{:0{}}".format(name, i, order_of_magnitude)
-                login_email =  None
-                # if len(prefix) > 0:
-                #     login_email = "{}_{}@modo.edu.kz".format(prefix, uuid.uuid4().hex[:10])
-                # else:
-                #     login_email = "{}@modo.edu.kz".format(uuid.uuid4().hex)
-                gen_pass = "{:05}".format(randint(1, 99999))
-                
-                domain = form.cleaned_data["domain"]
-                try:
-                    student = self.create_students(username, login_email, gen_pass)
-                    domain_for_student_obj = DomainForStudent.objects.create(student = student, domain = domain)
+            domain = form.cleaned_data["domain"]
+            name = form.cleaned_data["name"]
 
-                    quiz_set = student.quiz_sets.create(test_domain=domain, cart=None)
-                    for quiz_order, test in enumerate(
-                        Test.objects.filter(
-                            Q(section__domain=domain) & 
-                            Q(status=Test.STATUS_ACTIVE)
-                        ).order_by('section__order')):
-                        
-                        quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
-                        # test.update(sales_count=(F("sales_count") + 1))
-
-                    writer.writerow([username, login_email, gen_pass])
-                except ValidationError:
-                    writer.writerow([username, login_email, "already_exist"])
-
-            # success(request, "Created %s students." % form.cleaned_data["amount"])
-            return response
+            obj = TestPackage.objects.create(
+                name = name,
+                code = "{}{}".format(datetime.now().strftime("%y%m%d"), "%04x" % randint(0x0000, 0xffff) ),
+                assessible = False,
+                # tests 
+                # students
+                domain = domain,
+            )
+            print("CreatePackageFormView", obj)
 
         else:
-            error(request, "Could not create students! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
+            error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 
-        return redirect("bbtest:super_create_students")
+        return redirect("bbtest:super_create_package")
