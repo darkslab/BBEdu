@@ -193,3 +193,16 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
             error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 
         return redirect("bbtest:build_package", code)
+
+
+class RemoveTestFromPackageView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
+    def post(self, request, package_code, test_code, *args, **kwargs):
+        print("RemoveTestFromPackageView", package_code, test_code)
+        package_obj = get_object_or_404(TestPackage.objects, code=package_code)
+        test_obj = get_object_or_404(Test.objects, code=test_code)
+        
+        obj = TestPackageRelation.objects.get(test = test_obj, package = package_obj)
+        obj.delete()
+
+        success(request, pgettext("Success alert message", "Test is removed from package."))
+        return redirect("bbtest:build_package", package_code)
