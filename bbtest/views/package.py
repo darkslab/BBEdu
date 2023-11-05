@@ -13,7 +13,7 @@ from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.forms.super import  CreatePackageForm, ManagePackageStudentsForm, ManagePackageTestForm
-from bbtest.models.test import TestDomain, Test, TestPackage, TestSection
+from bbtest.models.test import TestDomain, Test, TestPackage, TestSection, TestPackageRelation
 from bbtest.http import TightJsonResponse
 import uuid
 from random import randint
@@ -122,7 +122,9 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
         # form_add_test.fields['test'].initial = CATEGORY_CHOICES[0][1]
         form_add_test = ManagePackageTestForm(choices = CATEGORY_CHOICES)
         kwargs["add_tests_form"] = form_add_test
-        
+
+        kwargs["tests"] = package_obj.tests.all()
+        print("BuildPackageView", kwargs["tests"])
         # print(form_add_test)
 
         form_add_students = ManagePackageStudentsForm()
@@ -134,6 +136,7 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
 
 class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
+        package_code = code
         # print("ManagePackageTestFormView", request.POST)
         form = ManagePackageTestForm(data=request.POST)
         # print("ManagePackageTestFormView", form)
@@ -146,8 +149,20 @@ class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
         print("ManagePackageTestFormView", form.is_valid())
         # print("ManagePackageTestFormView", form)
         if form.is_valid():
-            test = form.cleaned_data["test"]
-            print(test_obj, test, type(test_obj))
+            # test = form.cleaned_data["test"]
+            package_obj = TestPackage.objects.get(code = package_code)
+
+            TestPackageRelation.objects.create(
+                test = test_obj,
+                package = package_obj,
+                order = 0
+            )
+
+            # print(test_obj, type(test_obj))
+            # package_obj.tests.add(test_obj)
+            # print(package_obj, package_obj.tests)
+
+            
             # name = form.cleaned_data["name"]
 
         else:
