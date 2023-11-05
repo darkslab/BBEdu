@@ -27,7 +27,7 @@ from datetime import datetime
 
 
 class BuildPackagesView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
-    template_name = "super/create_package.html"
+    template_name = "package/create_package.html"
 
     def get_context_data(self, **kwargs):
         packages = TestPackage.objects.all().order_by("-created_at") # .prefetch_related("domain_name")
