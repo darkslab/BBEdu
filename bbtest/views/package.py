@@ -26,7 +26,7 @@ from django.core.exceptions import ValidationError
 from datetime import datetime
 
 
-class CreatePackageView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+class BuildPackagesView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/create_package.html"
 
     def get_context_data(self, **kwargs):
@@ -87,4 +87,4 @@ class CreatePackageFormView(CreateStudentRequiredMixin, View):
         else:
             error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 
-        return redirect("bbtest:super_create_package")
+        return redirect("bbtest:build_packages")

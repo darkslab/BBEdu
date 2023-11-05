@@ -31,6 +31,11 @@ from .views.test import (
     TestPreviewView      as BuildTestPreviewView,
     TestPreviewDataView  as BuildTestPreviewDataView,
 )
+from .views.package import (
+    BuildPackagesView             as BuildPackagesView,
+    CreatePackageFormView         as BuildCreatePackageFormView,
+)
+
 from .views.student import (
     DashboardView         as StudentDashboardView,
     BuyTestDomainsView    as StudentBuyTestDomainsView,
@@ -67,10 +72,10 @@ from .views.super import (
     TrialBalanceView              as SuperTrialBalanceView,
     CreateStudentsView            as SuperCreateStudentsView,
     CreateStudentsFormView        as SuperCreateStudentsFormView,
-    CreatePackageView             as SuperCreatePackageView,
-    CreatePackageFormView         as SuperCreatePackageFormView,
     ExportDataView                as SuperExportDataView,
-    ExportDataFormView            as SuperExportDataFormView
+    ExportDataFormView            as SuperExportDataFormView,
+
+    
 )
 
 
@@ -107,6 +112,10 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
 
+    url(r"^build/packages/$",                                                                        BuildPackagesView.as_view(),           name="build_packages" ),
+    url(r"^build/packages/(?P<code>[0-9A-Fa-f]{6,10})/$",                                            BuildPackagesView.as_view(),           name="build_package" ),
+    url(r"^build/create-package/create-form/$",                                                      BuildCreatePackageFormView.as_view(),  name="build_create_package_form"),
+
     # STUDENT URLS
     url(r"^student/$",                                            StudentDashboardView.as_view(),        name="student_dashboard"         ),
     url(r"^student/select-tests/$",                               StudentBuyTestDomainsView.as_view(),   name="student_buy_test_domains"  ),
@@ -135,7 +144,6 @@ urlpatterns = [
     # ADMIN URLS
     url(r"^admin/$",                 SuperTestsView.as_view(),               name="admin_dashboard"      ),
     url(r"^admin/create-students/$", SuperCreateStudentsView.as_view(),      name="admin_create_students"),
-    url(r"^admin/create-package/$",  SuperCreatePackageView.as_view(),       name="admin_create_package" ),
     url(r"^admin/tests/$",           DeveloperTestsView.as_view(),           name="admin_tests"          ),
     url(r"^admin/users/$",           SuperUsersView.as_view(),               name="admin_users"          ),
     
@@ -152,8 +160,6 @@ urlpatterns = [
     url(r"^super/trial-balance/$",                          SuperTrialBalanceView.as_view(),             name="super_trial_balance"             ),
     url(r"^super/create-students/$",                        SuperCreateStudentsView.as_view(),           name="super_create_students"           ),
     url(r"^super/create-students/create-form/$",            SuperCreateStudentsFormView.as_view(),       name="super_create_students_form"      ),
-    url(r"^super/create-package/$",                         SuperCreatePackageView.as_view(),            name="super_create_package"            ),
-    url(r"^super/create-package/create-form/$",             SuperCreatePackageFormView.as_view(),        name="super_create_package_form"       ),
     url(r"^super/export-data/$",                            SuperExportDataView.as_view(),               name="super_export_data"               ),
     url(r"^super/export-data/export-form/$",                SuperExportDataFormView.as_view(),           name="super_export_data_form"          ),
     

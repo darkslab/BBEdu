@@ -46,7 +46,7 @@
                     <h4 class="panel-title">Create Packages</h4>
                 </div>
                 <div class="panel-body">
-                    <form method="post" action="{% url 'bbtest:super_create_package_form' %}" class="mt-15" data-bb-form data-create-package-form>
+                    <form method="post" action="{% url 'bbtest:build_create_package_form' %}" class="mt-15" data-bb-form data-create-package-form>
                         {% csrf_token %}
 
                         {% for field in create_package_form %}
@@ -94,8 +94,7 @@
                         <tbody>
                             {% for package in packages %}
                                 <tr>
-                                {% comment %} "{% url 'bbtest:admin_create_package' package.pk %}" {% endcomment %}
-                                    <td class="pl-15"><a href="">{{ package.name }}</a><br><small class="text-info">{{ package.email }}</small></td>
+                                    <td class="pl-15"><a href="{% url 'bbtest:build_package' package.code %}">{{ package.name }}</a><br><small class="text-info">{{ package.email }}</small></td>
                                     <td class="text-center">{{ package.domain.name }}</td>
                                     <td class="text-center"><span class="label label-info">{{ package.code  }}</span></td>
                                     <td class="text-center">{{ package.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
