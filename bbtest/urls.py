@@ -35,6 +35,8 @@ from .views.package import (
     BuildPackagesView             as BuildPackagesView,
     CreatePackageFormView         as BuildCreatePackageFormView,
     BuildPackageView              as BuildPackageView,
+    ManagePackageStudentsFormView,
+    ManagePackageTestFormView,
 )
 
 from .views.student import (
@@ -116,6 +118,8 @@ urlpatterns = [
     url(r"^build/packages/$",                                                                        BuildPackagesView.as_view(),           name="build_packages" ),
     url(r"^build/packages/(?P<code>[0-9A-Fa-f]{6,10})/$",                                            BuildPackageView.as_view(),            name="build_package" ),
     url(r"^build/create-package/create-form/$",                                                      BuildCreatePackageFormView.as_view(),  name="build_create_package_form"),
+    url(r"^build/packages/(?P<code>[0-9A-Fa-f]{6,10})/add-test$",                                    ManagePackageTestFormView.as_view(),   name="build_package_add_test" ),
+    url(r"^build/packages/(?P<code>[0-9A-Fa-f]{6,10})/add-students$",                                ManagePackageStudentsFormView.as_view(),name="build_package_add_students" ),
 
     # STUDENT URLS
     url(r"^student/$",                                            StudentDashboardView.as_view(),        name="student_dashboard"         ),

@@ -89,7 +89,7 @@ class CreatePackageFormView(CreateStudentRequiredMixin, View):
             error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 
         return redirect("bbtest:build_packages")
-    
+
 
 class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateResponseMixin, ContextMixin, View):
     template_name = "package/manage_package.html"
@@ -103,6 +103,7 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
 
         # obj = TestPackage.objects.get(code=code)
         package_obj = get_object_or_404(TestPackage.objects, code=code)
+        kwargs["package"] = package_obj
 
         form_add_test = ManagePackageTestForm()
         # form.fields['domain'].queryset = TestSection.objects.filter(domain=package_obj.domain)
@@ -125,7 +126,52 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
         return self.render_to_response(super().get_context_data(**kwargs))
     
 
-    # def get_context_data(self, **kwargs):
-        
+class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
+    def post(self, request, code, *args, **kwargs):
+        form = ManagePackageTestForm(data=request.POST)
+        print("ManagePackageTestFormView", form.is_valid())
+        print("ManagePackageTestFormView", form)
+        if form.is_valid():
 
-    #     return super().get_context_data(**kwargs)
+            test = form.cleaned_data["test"]
+            print(test, type(test))
+            # name = form.cleaned_data["name"]
+
+            # obj = TestPackage.objects.create(
+            #     name = name,
+            #     code = "{}{}".format(datetime.now().strftime("%y%m%d"), "%04x" % randint(0x0000, 0xffff) ),
+            #     assessible = False,
+            #     # tests 
+            #     # students
+            #     domain = domain,
+            # )
+            # print("CreatePackageFormView", obj)
+
+        else:
+            error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
+
+        return redirect("bbtest:build_package", code)
+
+class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
+    def post(self, request, code, *args, **kwargs):
+        form = ManagePackageStudentsForm(data=request.POST)
+        print("ManagePackageStudentsForm", form.is_valid())
+        if form.is_valid():
+
+            domain = form.cleaned_data["domain"]
+            name = form.cleaned_data["name"]
+
+            # obj = TestPackage.objects.create(
+            #     name = name,
+            #     code = "{}{}".format(datetime.now().strftime("%y%m%d"), "%04x" % randint(0x0000, 0xffff) ),
+            #     assessible = False,
+            #     # tests 
+            #     # students
+            #     domain = domain,
+            # )
+            # print("CreatePackageFormView", obj)
+
+        else:
+            error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
+
+        return redirect("bbtest:build_package", code)
