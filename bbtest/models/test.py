@@ -404,12 +404,15 @@ class TestParagraphQuestion(Model):
 ####### 
 
 class TestPackage(Model):
-    name        = CharField   ( pgettext_lazy("Model field", "package name"),  max_length=100, unique=False, )
-    code        = CharField   ( pgettext_lazy("Model field", "package code"),  max_length=10, unique=True, db_index=True, )
-    assessible  = BooleanField( pgettext_lazy("Model field", "is assessible?"), default=False)
+    name        = CharField        ( pgettext_lazy("Model field", "package name"),  max_length=100, unique=False, )
+    code        = CharField        ( pgettext_lazy("Model field", "package code"),  max_length=10, unique=True, db_index=True, )
+    assessible  = BooleanField     ( pgettext_lazy("Model field", "is assessible?"), default=False)
+    created_at  = DateTimeField    ( pgettext_lazy("Model field", "created at"), auto_now_add=True, )
 
     tests       = ManyToManyField  ( Test, through="TestPackageRelation", related_name="tests", )
     students    = ManyToManyField  ( User,                                related_name="package_students", db_index=True)
+    domain      = ForeignKey       ( TestDomain,   on_delete=CASCADE,     related_name="domains"   )
+
 
     class Meta:
         default_permissions = ()
@@ -442,13 +445,13 @@ class TestPackageRelation(Model):
 
 
 
-class DomainForStudent(Model):
-    student     = OneToOneField ( User,         on_delete=CASCADE, related_name="student_domain", db_index=True)
-    domain      = ForeignKey    ( TestDomain,   on_delete=CASCADE, related_name="domains"   )
+# class DomainForStudent(Model):
+#     student     = OneToOneField ( User,         on_delete=CASCADE, related_name="student_domain", db_index=True)
+#     domain      = ForeignKey    ( TestDomain,   on_delete=CASCADE, related_name="domains"   )
 
-    class Meta:
-        default_permissions = ()
+#     class Meta:
+#         default_permissions = ()
 
-    def __str__(self):
-        # self.domain.name
-        return "{} | {}".format(self.domain.name, self.student.get_short_name())
+#     def __str__(self):
+#         # self.domain.name
+#         return "{} | {}".format(self.domain.name, self.student.get_short_name())
