@@ -1,6 +1,6 @@
-from django.forms import Form, ChoiceField, IntegerField, CharField, DateField, DateTimeField, ModelChoiceField
+from django.forms import Form, ChoiceField, IntegerField, CharField, DateField, DateTimeField, ModelChoiceField, MultipleChoiceField
 from django.utils.translation import pgettext_lazy, pgettext
-from bbtest.models import TestDomain, TestSection
+from bbtest.models import TestDomain, TestSection, Test
 import datetime
 
 
@@ -75,18 +75,29 @@ class CreateStudentsForm(Form):
 
 
 class CreatePackageForm(Form):
-    name =CharField(label = pgettext("CreateStudentsForm", "Login prefix"), 
-        error_messages = {"required": "Student will be generated with this name." }, 
+    name = CharField(label = pgettext("CreatePackageForm", "Login prefix"), 
+        error_messages = {"required": "Package will be generated with this name." }, 
         initial = "IAC_2023",
         min_length = 1,
-        max_length = 30)
-    # prefix = CharField(label="Email Pefix", error_messages={
-    #     "required": "Student's email will be generated with this prefix."
-    # }, max_length=30, initial="bb")
+        max_length = 100)
+
     domain = ModelChoiceField(
         queryset = TestDomain.objects.all(),
         empty_label = pgettext("CreateStudentsForm", "Select Test Domain")
     )
+
+    # amount = IntegerField(label=pgettext("CreateStudentsForm", "Amount"),
+    #     initial=10, 
+    #     error_messages={
+    #         "required": "Please provide an amount.",
+    #         "invalid": "Amount is invalid.",
+    #         "max_value": "Amount cannot be more than %(limit_value)s.",
+    #         "min_value": "Amount has to be at least %(limit_value)s.",
+    #     }, max_value=1000, min_value=1)
+    
+
+
+class ManagePackageStudentsForm(Form):
 
     amount = IntegerField(label=pgettext("CreateStudentsForm", "Amount"),
         initial=10, 
@@ -96,7 +107,16 @@ class CreatePackageForm(Form):
             "max_value": "Amount cannot be more than %(limit_value)s.",
             "min_value": "Amount has to be at least %(limit_value)s.",
         }, max_value=1000, min_value=1)
-    
+
+
+class ManagePackageTestForm(Form):
+    # This form field options are created later in runtime
+    test = ChoiceField(label="Select Test",  choices=[("56fa", "56fa")])  # queryset=Test.objects.none()
+
+    def __init__(self, *args, **kwargs):
+         choices = kwargs.pop('choices', [])
+         super(Form, self).__init__(*args, **kwargs)
+         self.fields['test'].choices = choices
 
 
 class ExportDataForm(Form):

@@ -1,0 +1,144 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n pagination widget_tweaks%}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'Create Package' context 'Page title' %}{% endblock %}
+
+{% block nav_super_create_package_class %}active{% endblock %}
+{% block nav_developer_create_package_class %}active{% endblock %}
+{% block nav_admin_create_package_class %}active{% endblock %}
+{% block nav_expert_create_package_class %}active{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "SuperCreatePackageModule"
+        });
+    </script>
+    <div class="modal fade" data-create-package-modal data-backdrop="static" data-keyboard="false" id="modal-asd">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{% trans 'Are you sure?' context '/admin/create_package/' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6 pr-5">
+                            <button type="button" class="btn btn-danger btn-block btn-lg" data-create-package-confirm="true" id="confirm-create">{% trans 'Yes' context '/admin/create_package/' %}</button>
+                        </div>
+                        <div class="col-xs-6 pl-5">
+                            <button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" data-create-package-confirm="false">{% trans 'No' context '/admin/create_package/' %}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Create Packages</h4>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="{% url 'bbtest:build_create_package_form' %}" class="mt-15" data-bb-form data-create-package-form>
+                        {% csrf_token %}
+
+                        {% for field in create_package_form %}
+                            <div class="form-group has-error">
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                {{field|add_class:'form-control' }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="[data-create-package-modal]">Generate</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class col-xs-12 col-sm-4>
+            <h3>Preview</h3>
+            <div class="student-list-preview" id=student-list-preview-text>
+            </div>
+        </div>
+    </div> -->
+
+    {% comment %} Table with Existing Packages {% endcomment %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">&nbsp;</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-pressed">
+                        <thead>
+                            <tr>
+                                <th class="pl-15">{% trans 'Name' context '/admin/create_package/' %}</th>
+                                <th class="text-center">{% trans 'Domain' context '/admin/create_package/' %}</th>
+                                <th class="text-center">{% trans 'Code' context '/admin/create_package/' %}</th>
+                                <th class="text-center">{% trans 'Created at' context '/admin/create_package/' %}</th>
+                                <th class="text-center">{% trans 'Active?' context '/admin/create_package/' %}</th>
+                                <!-- <th class="pr-15 text-center">{% trans 'Actions' context '/admin/create_package/' %}</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for package in packages %}
+                                <tr>
+                                    <td class="pl-15"><a href="{% url 'bbtest:build_package' package.code %}">{{ package.name }}</a><br><small class="text-info">{{ package.email }}</small></td>
+                                    <td class="text-center">{{ package.domain.name }}</td>
+                                    <td class="text-center"><span class="label label-info">{{ package.code  }}</span></td>
+                                    <td class="text-center">{{ package.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
+                                    <td class="text-center">
+                                        {% if package.is_active %}
+                                            <span class="label label-success">{% trans 'Yes' context '/admin/create_package/' %}</span>
+                                        {% else %}
+                                            <span class="label label-danger">{% trans 'No' context '/admin/create_package/' %}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="5">{% trans 'There are no packages yet' context '/admin/create_package/' %}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% if packages.has_other_pages %}
+            <div class="col-xs-12 text-center">
+                <ul class="pagination mt-0 mb-0">
+                    {% if packages.has_previous %}
+                        <li><a href="{{ request.path }}?{% pagination_qs packages.previous_page_number %}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
+                    {% endif %}
+                    {% for page_index in packages.paginator.page_indexes %}
+                        {% if page_index == packages.number %}
+                            <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
+                        {% else %}
+                            <li><a href="{{ request.path }}?{% pagination_qs page_index %}">{{ page_index }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if packages.has_next %}
+                        <li><a href="{{ request.path }}?{% pagination_qs packages.next_page_number %}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+    
+{% endblock %}

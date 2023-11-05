@@ -402,11 +402,17 @@ class TestParagraphQuestion(Model):
 
 
 ####### 
-"""
+
 class TestPackage(Model):
-    code        = CharField   ( pgettext_lazy("Model field", "package code"), max_length=10, unique=True, )
+    name        = CharField        ( pgettext_lazy("Model field", "package name"),  max_length=100, unique=False, )
+    code        = CharField        ( pgettext_lazy("Model field", "package code"),  max_length=10, unique=True, db_index=True, )
+    assessible  = BooleanField     ( pgettext_lazy("Model field", "is assessible?"), default=False)
+    created_at  = DateTimeField    ( pgettext_lazy("Model field", "created at"), auto_now_add=True, )
+
     tests       = ManyToManyField  ( Test, through="TestPackageRelation", related_name="tests", )
-    assessible  = BooleanField( pgettext_lazy("Model field", "is assessible?"), default=False, db_index=True,)
+    students    = ManyToManyField  ( User,                                related_name="package_students", db_index=True)
+    domain      = ForeignKey       ( TestDomain,   on_delete=CASCADE,     related_name="domains"   )
+
 
     class Meta:
         default_permissions = ()
@@ -416,8 +422,8 @@ class TestPackage(Model):
 
 
 class TestPackageRelation(Model):
-    test        = ForeignKey  ( Test,       on_delete=CASCADE,                         )
-    package      = ForeignKey  ( TestPackage, on_delete=CASCADE, related_name="through", )
+    test        = ForeignKey  ( Test,        on_delete=CASCADE,                         )
+    package     = ForeignKey  ( TestPackage, on_delete=CASCADE, related_name="through", )
 
     order  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"), db_index=True, )
 
@@ -427,25 +433,25 @@ class TestPackageRelation(Model):
         unique_together = ("package", "test")
 
 
-class PackageForStudent(Model):
-    student      = OneToOneField ( User,         on_delete=CASCADE, related_name="package_field", )
-    package      = ForeignKey    ( TestPackage,  on_delete=CASCADE,                       )
+# class PackageForStudent(Model):
+#     student      = OneToOneField ( User,         on_delete=CASCADE, related_name="package_field", )
+#     package      = ForeignKey    ( TestPackage,  on_delete=CASCADE,                       )
 
-    class Meta:
-        default_permissions = ()
+#     class Meta:
+#         default_permissions = ()
 
-    def __str__(self):
-        return self.package + " " + self.student.get_short_name()
-"""
+#     def __str__(self):
+#         return self.package + " " + self.student.get_short_name()
 
 
-class DomainForStudent(Model):
-    student     = OneToOneField ( User,         on_delete=CASCADE, related_name="student_domain", db_index=True)
-    domain      = ForeignKey    ( TestDomain,   on_delete=CASCADE, related_name="domains"   )
 
-    class Meta:
-        default_permissions = ()
+# class DomainForStudent(Model):
+#     student     = OneToOneField ( User,         on_delete=CASCADE, related_name="student_domain", db_index=True)
+#     domain      = ForeignKey    ( TestDomain,   on_delete=CASCADE, related_name="domains"   )
 
-    def __str__(self):
-        # self.domain.name
-        return "{} | {}".format(self.domain.name, self.student.get_short_name())
+#     class Meta:
+#         default_permissions = ()
+
+#     def __str__(self):
+#         # self.domain.name
+#         return "{} | {}".format(self.domain.name, self.student.get_short_name())
