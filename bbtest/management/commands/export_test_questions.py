@@ -14,43 +14,48 @@ class Command(BaseCommand):
         test_set = Test.objects.order_by("section").all()
         table = []
         for test_obj in test_set:
-            row =[ 
-                test_obj.section.name,
+            row = [ 
                 test_obj.developer.username,
-                test_obj.code,
+                test_obj.section.domain.name,
+                test_obj.section.name,
                 test_obj.language,
-                Test.STATUSES_DICT[test_obj.status],
-                test_obj.created_at.strftime("%Y-%m-%d, %H:%M:%S"),
+                test_obj.code,
+                str(Test.STATUSES_DICT[test_obj.status]),
+                test_obj.created_at.strftime("%Y-%m-%d %H:%M:%S"),
             ]
             table.append(row)
 
             question_set = test_obj.questions.order_by("order").all()
             for question_obj in question_set:
+
                 row_q = [
-                    question_obj.order,
+                    str(question_obj.order),
                     question_obj.taxonomy.name if question_obj.taxonomy else "",
                     question_obj.topic.name if question_obj.topic else "",
                     question_obj.subtopic.name if question_obj.subtopic else "",
                     question_obj.goal.name if question_obj.goal else "",
-                    question_obj.answer_class,
-                    question_obj.meta_data.get("correct_id", None)
+                    str(question_obj.answer_class),
+                    str(question_obj.meta_data.get("correct_id", None))
                 ] 
-                table.append(row_q)
+                
                 paragraph_set = question_obj.paragraphs.prefetch_related("through").order_by("through")  # .order_by("order")
-                for paragraph in paragraph_set:
-                    row_p = [
-                        paragraph.paragraph_class,
-                        paragraph.meta_data #.get("text", "no text")
-                    ]
-                    table.append(row_p)
 
+                question_text = []
+                for paragraph in paragraph_set:
+                    # paragraph.meta_data #.get("text", "no text")
+                    # row_q.append(paragraph.paragraph_class)
+                    # row_q.append(paragraph.meta_data)
+                    question_text.append(paragraph.meta_data.get("text", ""))
+                row_q.append("\\n".join(question_text))
+                table.append(row_q)
 
             # print(question_set)
             
         
         # pprint(table)
         for row in table:
-            print(row)
+            # print(row)
+            print(",".join(row))
 
 
 # {
