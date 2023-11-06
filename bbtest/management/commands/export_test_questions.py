@@ -23,7 +23,7 @@ class Command(BaseCommand):
                 str(Test.STATUSES_DICT[test_obj.status]),
                 test_obj.created_at.strftime("%Y-%m-%d %H:%M:%S"),
             ]
-            table.append(row)
+            # table.append(row)
 
             question_set = test_obj.questions.order_by("order").all()
             for question_obj in question_set:
@@ -35,7 +35,7 @@ class Command(BaseCommand):
                     question_obj.subtopic.name if question_obj.subtopic else "",
                     question_obj.goal.name if question_obj.goal else "",
                     str(question_obj.answer_class),
-                    str(question_obj.meta_data.get("correct_id", None))
+                    str(question_obj.meta_data.get("correct_id", None)),
                 ] 
                 
                 paragraph_set = question_obj.paragraphs.prefetch_related("through").order_by("through")  # .order_by("order")
@@ -46,16 +46,39 @@ class Command(BaseCommand):
                     # row_q.append(paragraph.paragraph_class)
                     # row_q.append(paragraph.meta_data)
                     question_text.append(paragraph.meta_data.get("text", ""))
-                row_q.append("\\n".join(question_text))
-                table.append(row_q)
+                row_q.append(repr("\\n".join(question_text)))
+
+                table.append(row + row_q)
 
             # print(question_set)
             
         
         # pprint(table)
+        out = "|".join([
+            "developer",
+            "domain",
+            "section",
+            "language",
+            "code",
+            "status",
+            "created_at",
+            "#",
+            "taxonomy",
+            "topic",
+            "subtopic",
+            "goal",
+            "answer_class",
+            "correct_id",
+            "question_text",
+        ]) + "\n"
         for row in table:
             # print(row)
-            print(",".join(row))
+            row = "|".join(row)
+            print(row)
+            out += row + "\n"
+
+        with open("test_questions.csv", "w") as f:
+            f.write(out)
 
 
 # {
