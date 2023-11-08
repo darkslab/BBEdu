@@ -23,7 +23,7 @@ from bbtest.payment_processors import CreditPaymentProcessor
 
 def get_test_domain_or_404(test_domain_id):
     return get_object_or_404(
-        TestDomain.objects.filter(pk__in=[ 7911, 7912, 7913, 7914 ]).prefetch_related("sections"),
+        TestDomain.objects.filter(pk__in=[ 7911, 7912, 7913, 7914, 7915, 7916]).prefetch_related("sections"),
         pk=test_domain_id,
     )
 
@@ -43,6 +43,8 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequir
         kwargs["klass_9_ru"] = TestDomain.objects.get(pk=7912)
         kwargs["klass_4_kz"] = TestDomain.objects.get(pk=7913)
         kwargs["klass_9_kz"] = TestDomain.objects.get(pk=7914)
+        kwargs["Teacher_ru"] = TestDomain.objects.get(pk=7915)
+        kwargs["Teacher_kz"] = TestDomain.objects.get(pk=7916)
         # kwargs["nis"] = TestDomain.objects.get(pk=7911)
         # kwargs["unt"] = TestDomain.objects.get(pk=7912)
         # kwargs["nufypet"] = TestDomain.objects.get(pk=7913)

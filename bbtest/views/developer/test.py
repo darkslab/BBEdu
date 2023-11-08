@@ -87,6 +87,40 @@ class TestsView(StaffPermissionRequiredMixin, UserContextMixin, FormView):
             data["specification"][Test.LANGUAGE_KK] = test_specification(section, Test.LANGUAGE_KK, get_language())
             kwargs["Klass_9_kz_data"].append(data)
 
+
+        kwargs["Teacher_ru"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7915)
+        kwargs["Teacher_ru_data"] = []
+        for section in kwargs["Teacher_ru"].sections.all():
+            data = {
+                "section": section,
+                "language": None,
+                "specification": {},
+            }
+            data["language"] = {
+                "title": pgettext("/developer/tests/", "Choose test language"),
+                "choices": [],
+            }
+            data["language"]["choices"].append(Test.LANGUAGES[2])
+            data["specification"][Test.LANGUAGE_RU] = test_specification(section, Test.LANGUAGE_RU, get_language())
+            kwargs["Teacher_ru_data"].append(data)
+
+
+        kwargs["Teacher_kz"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7916)
+        kwargs["Teacher_kz_data"] = []
+        for section in kwargs["Teacher_kz"].sections.all():
+            data = {
+                "section": section,
+                "language": None,
+                "specification": {},
+            }
+            data["language"] = {
+                "title": pgettext("/developer/tests/", "Choose test language"),
+                "choices": [],
+            }
+            data["language"]["choices"].append(Test.LANGUAGES[1])
+            data["specification"][Test.LANGUAGE_KK] = test_specification(section, Test.LANGUAGE_KK, get_language())
+            kwargs["Teacher_kz_data"].append(data)
+        
         print(kwargs.keys())
         return super().get_context_data(**kwargs)
 
