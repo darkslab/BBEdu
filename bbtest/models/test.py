@@ -28,7 +28,7 @@ class TestSection(Model):
     domain  = ForeignKey  ( TestDomain, on_delete=CASCADE, related_name="sections", )
 
     name             = CharField                  ( pgettext_lazy("Model field", "name"),                max_length=100,                )
-    duration         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "duration in seconds"),                                )
+    duration         = PositiveIntegerField       ( pgettext_lazy("Model field", "duration in seconds"),                                )
     question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                     )
     order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                               db_index=True, )
 
@@ -41,7 +41,7 @@ class TestSection(Model):
 
     def is_nis(self):
         # return self.pk in range(9540, 9559)
-        return self.domain.pk in (7911, 7912, 7913, 7914)
+        return self.domain.pk in (7911, 7912, 7913, 7914, 7915, 7916)
         # return True
 
     def fg_color(self):

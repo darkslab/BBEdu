@@ -501,7 +501,7 @@ class TestForm(ModelForm):
 
         try:
             # NIS sections
-            if section.domain.pk in (7911, 7912, 7913, 7914):
+            if section.domain.pk in (7911, 7912, 7913, 7914, 7915, 7916):
                 if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
                     raise ValueError("Incorrect language")
  
