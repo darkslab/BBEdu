@@ -105,6 +105,7 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
         package_obj = get_object_or_404(TestPackage.objects, code=code)
         kwargs["package"] = package_obj
         kwargs["tests"] = package_obj.tests.all()
+        kwargs["users"] = package_obj.students.all()
 
         section_set = TestSection.objects.filter(domain=package_obj.domain).prefetch_related("tests")
 
@@ -140,7 +141,7 @@ class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
         if not test_obj:
             error(request, "not valid test code %s" % test_code)
 
-        form.fields['test'].choices = [(test_code, test_code)]
+        form.fields['test'].choices = [(test_code, test_code)]  # this hack is needed because choices are generated dynamically
         print("ManagePackageTestFormView", form.is_valid())
         # print("ManagePackageTestFormView", form)
         if form.is_valid():
@@ -167,27 +168,59 @@ class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
 
 class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
+        package_code = code
         form = ManagePackageStudentsForm(data=request.POST)
         print("ManagePackageStudentsForm", form.is_valid())
         if form.is_valid():
+            # initialize csv table response
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="export.csv"'
+            writer = csv.writer(response)
 
-            domain = form.cleaned_data["domain"]
-            name = form.cleaned_data["name"]
+            amount = int(form.cleaned_data["amount"])
+            package_obj = TestPackage.objects.get(code = package_code)
+            student_count = package_obj.students.count()  # package_students
 
-            # obj = TestPackage.objects.create(
-            #     name = name,
-            #     code = "{}{}".format(datetime.now().strftime("%y%m%d"), "%04x" % randint(0x0000, 0xffff) ),
-            #     assessible = False,
-            #     # tests 
-            #     # students
-            #     domain = domain,
-            # )
-            # print("CreatePackageFormView", obj)
+            package_name = package_obj.name
+            print("ManagePackageStudentsFormView", package_name, student_count)
+            
+            order_of_magnitude = amount // 10 + 2
+            
+            for i in range(student_count + 1, student_count + amount + 1):
+                username = "{}_{:0{}}".format(package_name, i, order_of_magnitude)
+                login_email =  None
+                # if len(prefix) > 0:
+                #     login_email = "{}_{}@modo.edu.kz".format(prefix, uuid.uuid4().hex[:10])
+                # else:
+                #     login_email = "{}@modo.edu.kz".format(uuid.uuid4().hex)
+                gen_pass = "{:05}".format(randint(1, 99999))
+                
+                try:
+                    student = self.create_students(username, login_email, gen_pass)
+                    
+                    package_obj.students.add(student)
 
+                    writer.writerow([username, login_email, gen_pass])
+                except ValidationError:
+                    writer.writerow([username, login_email, "already_exist"])
+
+            # success(request, "Created %s students." % form.cleaned_data["amount"])
+            return response
         else:
             error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 
         return redirect("bbtest:build_package", code)
+
+    def create_students(self, username, email, password):
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.first_name = username
+        # user.last_name = "Electric"
+        user.save()
+        content_type = ContentType.objects.get_for_model(type(user))
+        permissions = []
+        permissions.append(Permission.objects.get(codename="student", content_type=content_type))
+        user.user_permissions.set(permissions)
+        return user
 
 
 class RemoveTestFromPackageView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
