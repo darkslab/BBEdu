@@ -42,6 +42,11 @@
     </div> 
     {% endcomment %}
     <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <h4>Package&nbsp;"{{ package.name }}"&nbsp;{{ package.domain.name }}&nbsp;<span class="label label-info">{{ package.code }}</span></h4>
+        </div>
+    </div>
+    <div class="row">
         {% comment %} Add Tests form {% endcomment %}
         <div class="col-xs-6">
             <div class="panel panel-primary">
@@ -91,13 +96,7 @@
             </div>
         </div>
     </div>
-    <!-- <div class="row">
-        <div class col-xs-12 col-sm-4>
-            <h3>Preview</h3>
-            <div class="student-list-preview" id=student-list-preview-text>
-            </div>
-        </div>
-    </div> -->
+
 
     {% comment %} Table with already added tests {% endcomment %}
     <div class="row">
