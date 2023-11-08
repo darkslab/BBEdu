@@ -98,38 +98,33 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
     def get(self, request, code, *args, **kwargs):
         # print("BuildPackageView", args, kwargs, self.get_context_data())
         # print("BuildPackageView", self.request)
-        print("BuildPackageView", kwargs, code)
+        # print("BuildPackageView", kwargs, code)
 
 
         # obj = TestPackage.objects.get(code=code)
         package_obj = get_object_or_404(TestPackage.objects, code=code)
         kwargs["package"] = package_obj
+        kwargs["tests"] = package_obj.tests.all()
 
-        # form_add_test = ManagePackageTestForm()
-        # form.fields['domain'].queryset = TestSection.objects.filter(domain=package_obj.domain)
-        section_set = TestSection.objects.filter(domain=package_obj.domain)
+        section_set = TestSection.objects.filter(domain=package_obj.domain).prefetch_related("tests")
 
-        CATEGORY_CHOICES = []
+        CATEGORY_CHOICES = [(None, "-----")]
         for section_obj in section_set:
             options = []
-            tests = section_obj.tests.all()
+            tests = section_obj.tests.filter(status=Test.STATUS_ACTIVE).all()
             for test_obj in tests:
-                options.append((str(test_obj.code), test_obj.code))
-            if len(tests) > 0:
+                if test_obj not in kwargs["tests"]:
+                    options.append((str(test_obj.code), test_obj.code))
+
+            if len(options) > 0:
                 CATEGORY_CHOICES.append((section_obj.name, tuple(options)))
-                
-        # form_add_test.fields['test'].choices = tuple(CATEGORY_CHOICES)
-        # form_add_test.fields['test'].initial = CATEGORY_CHOICES[0][1]
-        form_add_test = ManagePackageTestForm(choices = CATEGORY_CHOICES)
-        kwargs["add_tests_form"] = form_add_test
+        
+        kwargs["add_tests_form"] = ManagePackageTestForm(choices = CATEGORY_CHOICES)
 
-        kwargs["tests"] = package_obj.tests.all()
-        print("BuildPackageView", kwargs["tests"])
-        # print(form_add_test)
+        
+        # print("BuildPackageView", kwargs["tests"])
 
-        form_add_students = ManagePackageStudentsForm()
-        kwargs["add_students_form"] = form_add_students
-        # print(form_add_students)
+        kwargs["add_students_form"] = ManagePackageStudentsForm()
 
         return self.render_to_response(super().get_context_data(**kwargs))
     
