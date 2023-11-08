@@ -196,7 +196,7 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
                 gen_pass = "{:05}".format(randint(1, 99999))
                 
                 try:
-                    student = self.create_students(username, login_email, gen_pass)
+                    student = self.create_students(username, login_email, gen_pass, package_obj.assessible)
                     
                     package_obj.students.add(student)
 
@@ -211,9 +211,10 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
 
         return redirect("bbtest:build_package", code)
 
-    def create_students(self, username, email, password):
+    def create_students(self, username, email, password, is_active):
         user = User.objects.create_user(username=username, email=email, password=password)
         user.first_name = username
+        user.is_active = is_active
         # user.last_name = "Electric"
         user.save()
         content_type = ContentType.objects.get_for_model(type(user))
