@@ -216,6 +216,8 @@ class Test(Model):
         ( STATUS_ARCHIVED, pgettext_lazy("Test status", "Archived") ),
     )
 
+    STATUSES_DICT = {s[0]: s[1] for s in STATUSES}
+
     section    = ForeignKey  ( TestSection, on_delete=CASCADE, related_name="tests", )
     developer  = ForeignKey  ( User,        on_delete=CASCADE, related_name="tests", )
 

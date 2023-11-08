@@ -16,6 +16,7 @@ class Command(BaseCommand):
         for test_obj in test_set:
             row = [ 
                 test_obj.developer.username,
+                test_obj.developer.email if test_obj.developer.email else "",
                 test_obj.section.domain.name,
                 test_obj.section.name,
                 test_obj.language,
@@ -30,15 +31,31 @@ class Command(BaseCommand):
 
                 row_q = [
                     str(question_obj.order),
-                    question_obj.taxonomy.name if question_obj.taxonomy else "",
-                    question_obj.topic.name if question_obj.topic else "",
-                    question_obj.subtopic.name if question_obj.subtopic else "",
-                    question_obj.goal.name if question_obj.goal else "",
+                    repr(question_obj.taxonomy.name) if question_obj.taxonomy else "",
+                    repr(question_obj.topic.name) if question_obj.topic else "",
+                    repr(question_obj.subtopic.name) if question_obj.subtopic else "",
+                    repr(question_obj.goal.name) if question_obj.goal else "",
                     str(question_obj.answer_class),
                     str(question_obj.meta_data.get("correct_id", None)),
+                    str(question_obj.meta_data.get("choices", None)),
                 ] 
+
+                answers = [""] * 5
+                choices = question_obj.meta_data.get("choices", None)
+                if choices:
+                    for i in range(min(5, len(choices))):
+                        qid = choices[i].get('id', None)
+                        if not qid or qid <= 0:
+                            continue
+                        meta = choices[i].get('meta_data', {})
+                        text = meta.get("text")
+                        answers[i] = repr(text)
                 
+                row_q += answers
+
+                # print(question_obj.meta_data)
                 paragraph_set = question_obj.paragraphs.prefetch_related("through").order_by("through")  # .order_by("order")
+
 
                 question_text = []
                 for paragraph in paragraph_set:
@@ -54,8 +71,9 @@ class Command(BaseCommand):
             
         
         # pprint(table)
-        out = "|".join([
+        out = "*|*".join([
             "developer",
+            "email",
             "domain",
             "section",
             "language",
@@ -69,12 +87,18 @@ class Command(BaseCommand):
             "goal",
             "answer_class",
             "correct_id",
+            "choices_metadata",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
             "question_text",
         ]) + "\n"
         for row in table:
             # print(row)
-            row = "|".join(row)
-            print(row)
+            row = "*|*".join(row)
+            # print(row)
             out += row + "\n"
 
         with open("test_questions.csv", "w") as f:
