@@ -46,7 +46,7 @@
         <div class="col-xs-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Add Tests</h4>
+                    <h4 class="panel-title">Add Tests to package</h4>
                 </div>
                 <div class="panel-body">
                     <form method="post" action="{% url 'bbtest:build_package_add_test' package.code %}" class="mt-15">
@@ -104,7 +104,7 @@
         <div class="col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 class="panel-title">&nbsp;</h4>
+                    <h4 class="panel-title">Package&nbsp;</h4>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-pressed">
@@ -175,4 +175,55 @@
     
     </div>
     
+    {% comment %} Table with students{% endcomment %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Students&nbsp;</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-pressed">
+                        <thead>
+                            <tr>
+                                <th class="pl-15">{% trans 'Name' context '/package-manage/users/' %}</th>
+                                <th class="text-center">{% trans 'Role' context '/package-manage/users/' %}</th>
+                                <th class="text-center">{% trans 'Joined at' context '/package-manage/users/' %}</th>
+                                <th class="text-center">{% trans 'Active?' context '/package-manage/users/' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td class="pl-15"><a href="{% url 'bbtest:super_user' user.pk %}">{{ user.get_full_name }}</a><br><small class="text-info">{{ user.email }}</small></td>
+                                    <td class="text-center">
+                                        {% if user.role == 'admin' %}
+                                            <span class="label label-info">{% trans 'Administrator' context '/package-manage/users/' %}</span>
+                                        {% elif user.role == 'developer' %}
+                                            <span class="label label-danger">{% trans 'Developer' context '/package-manage/users/' %}</span>
+                                        {% elif user.role == 'expert' %}
+                                            <span class="label label-danger">{% trans 'Expert' context '/package-manage/users/' %}</span>
+                                        {% elif user.role == 'student' %}
+                                            <span class="label label-success">{% trans 'Student' context '/package-manage/users/' %}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">{{ user.joined_at|date:'SHORT_DATETIME_FORMAT' }}</td>
+                                    <td class="text-center">
+                                        {% if user.is_active %}
+                                            <span class="label label-success">{% trans 'Yes' context '/package-manage/users/' %}</span>
+                                        {% else %}
+                                            <span class="label label-danger">{% trans 'No' context '/package-manage/users/' %}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="5">{% trans 'There are no students yet' context '/package-manage/users/' %}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 {% endblock %}
