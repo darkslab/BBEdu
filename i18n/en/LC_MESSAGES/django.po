@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 01:25+0600\n"
+"POT-Creation-Date: 2023-11-09 18:12+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -439,6 +439,10 @@ msgctxt "CreateStudentsForm"
 msgid "Amount"
 msgstr "Amount"
 
+msgctxt "CreatePackageForm"
+msgid "Login prefix"
+msgstr ""
+
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
 msgstr "Incorrect difficulty value."
@@ -724,6 +728,42 @@ msgid "Questionnaire-C_9_kz"
 msgstr ""
 
 msgid "Questionnaire-C_9_ru"
+msgstr ""
+
+msgid "Questionnaire-Director_Teacher_kz"
+msgstr ""
+
+msgid "Questionnaire-Director_Teacher_ru"
+msgstr ""
+
+msgid "Questionnaire-klass-4_Teacher_ru"
+msgstr ""
+
+msgid "Questionnaire-klass-4_Teacher_kz"
+msgstr ""
+
+msgid "Questionnaire-klass-9-lang_Teacher_kz"
+msgstr ""
+
+msgid "Questionnaire-klass-9-lang_Teacher_ru"
+msgstr ""
+
+msgid "Questionnaire-klass-9-math_Teacher_kz"
+msgstr ""
+
+msgid "Questionnaire-klass-9-math_Teacher_ru"
+msgstr ""
+
+msgid "Questionnaire-klass-9-sci_Teacher_kz"
+msgstr ""
+
+msgid "Questionnaire-klass-9-sci_Teacher_ru"
+msgstr ""
+
+msgid "Teacher_ru"
+msgstr ""
+
+msgid "Teacher_kz"
 msgstr ""
 
 msgctxt "Account type"
@@ -1094,6 +1134,21 @@ msgstr "weight of question"
 msgctxt "Model field"
 msgid "paragraph class"
 msgstr "paragraph class"
+
+msgctxt "Model field"
+msgid "package name"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "agreement code"
+msgctxt "Model field"
+msgid "package code"
+msgstr "agreement code"
+
+msgctxt "Model field"
+msgid "is assessible?"
+msgstr ""
 
 msgctxt "Model field"
 msgid "uuid"
@@ -1564,6 +1619,199 @@ msgctxt "Home page"
 msgid "Connect with us"
 msgstr "Connect with us"
 
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Create Test"
+msgctxt "Page title"
+msgid "Create Package"
+msgstr "Create Test"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Are you sure?"
+msgctxt "/admin/create_package/"
+msgid "Are you sure?"
+msgstr "Are you sure?"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Yes"
+msgctxt "/admin/create_package/"
+msgid "Yes"
+msgstr "Yes"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "No"
+msgctxt "/admin/create_package/"
+msgid "No"
+msgstr "No"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Name"
+msgctxt "/admin/create_package/"
+msgid "Name"
+msgstr "Name"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Domain"
+msgctxt "/admin/create_package/"
+msgid "Domain"
+msgstr "Domain"
+
+msgctxt "/admin/create_package/"
+msgid "Code"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "created at"
+msgctxt "/admin/create_package/"
+msgid "Created at"
+msgstr "created at"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Active?"
+msgctxt "/admin/create_package/"
+msgid "Active?"
+msgstr "Active?"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Actions"
+msgctxt "/admin/create_package/"
+msgid "Actions"
+msgstr "Actions"
+
+#, fuzzy
+#| msgctxt "/super/tests/"
+#| msgid "There are no tests yet"
+msgctxt "/admin/create_package/"
+msgid "There are no packages yet"
+msgstr "There are no tests yet"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Variant"
+msgctxt "/package-manage/"
+msgid "Variant"
+msgstr "Variant"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Domain"
+msgctxt "/package-manage/"
+msgid "Domain"
+msgstr "Domain"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Section"
+msgctxt "/package-manage/"
+msgid "Section"
+msgstr "Section"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Status"
+msgctxt "/package-manage/"
+msgid "Status"
+msgstr "Status"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Actions"
+msgctxt "/package-manage/"
+msgid "Actions"
+msgstr "Actions"
+
+#, fuzzy
+#| msgctxt "/super/tests/"
+#| msgid "There are no tests yet"
+msgctxt "/package-manage/"
+msgid "There are no tests yet"
+msgstr "There are no tests yet"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Name"
+msgctxt "/package-manage/users/"
+msgid "Name"
+msgstr "Name"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Role"
+msgctxt "/package-manage/users/"
+msgid "Role"
+msgstr "Role"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Joined at"
+msgctxt "/package-manage/users/"
+msgid "Joined at"
+msgstr "Joined at"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Active?"
+msgctxt "/package-manage/users/"
+msgid "Active?"
+msgstr "Active?"
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Administrator"
+msgctxt "/package-manage/users/"
+msgid "Administrator"
+msgstr "Administrator"
+
+#, fuzzy
+#| msgctxt "Badge label under avatar"
+#| msgid "Developer"
+msgctxt "/package-manage/users/"
+msgid "Developer"
+msgstr "Developer"
+
+#, fuzzy
+#| msgctxt "Account type"
+#| msgid "Expense"
+msgctxt "/package-manage/users/"
+msgid "Expert"
+msgstr "Expense"
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Student"
+msgctxt "/package-manage/users/"
+msgid "Student"
+msgstr "Student"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Yes"
+msgctxt "/package-manage/users/"
+msgid "Yes"
+msgstr "Yes"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "No"
+msgctxt "/package-manage/users/"
+msgid "No"
+msgstr "No"
+
+#, fuzzy
+#| msgctxt "/super/tests/"
+#| msgid "There are no tests yet"
+msgctxt "/package-manage/users/"
+msgid "There are no students yet"
+msgstr "There are no tests yet"
+
 msgctxt "Badge label under avatar"
 msgid "Administrator"
 msgstr "Administrator"
@@ -1604,6 +1852,13 @@ msgstr "All Quizzes"
 
 msgctxt "Navigation link"
 msgid "Create Test"
+msgstr "Create Test"
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Create Test"
+msgctxt "Navigation link"
+msgid "Create Package"
 msgstr "Create Test"
 
 msgctxt "Navigation link"
@@ -1995,11 +2250,11 @@ msgid "%(total)s cred."
 msgstr "%(total)s cred."
 
 #, fuzzy
-#| msgctxt "Navigation link"
-#| msgid "Create Test"
+#| msgctxt "/super/"
+#| msgid "Students"
 msgctxt "Page title"
-msgid "Create Package"
-msgstr "Create Test"
+msgid "Create Students"
+msgstr "Students"
 
 msgctxt "/super/users/"
 msgid "Are you sure?"
@@ -2028,13 +2283,6 @@ msgstr "Joined at"
 msgctxt "/super/users/"
 msgid "Active?"
 msgstr "Active?"
-
-#, fuzzy
-#| msgctxt "/super/"
-#| msgid "Students"
-msgctxt "Page title"
-msgid "Create Students"
-msgstr "Students"
 
 msgctxt "/super/"
 msgid "Demand for NIS Tests"
@@ -2728,6 +2976,13 @@ msgstr "Choose test language"
 msgctxt "Success alert message"
 msgid "You have created a new Test."
 msgstr "You have created a new Test."
+
+#, fuzzy
+#| msgctxt "Success alert message"
+#| msgid "Test is now free."
+msgctxt "Success alert message"
+msgid "Test is removed from package."
+msgstr "Test is now free."
 
 msgctxt "/student/"
 msgid "Test Domain 1"
