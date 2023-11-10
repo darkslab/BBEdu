@@ -14,6 +14,7 @@ from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.forms.super import  CreatePackageForm, ManagePackageStudentsForm, ManagePackageTestForm
 from bbtest.models.test import TestDomain, Test, TestPackage, TestSection, TestPackageRelation
+from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.http import TightJsonResponse
 import uuid
 from random import randint
@@ -95,14 +96,14 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
     template_name = "package/manage_package.html"
     # form_class = ManagePackageTestForm
     
-    def get(self, request, code, *args, **kwargs):
+    def get(self, request, package_code, *args, **kwargs):
         # print("BuildPackageView", args, kwargs, self.get_context_data())
         # print("BuildPackageView", self.request)
         # print("BuildPackageView", kwargs, code)
 
 
         # obj = TestPackage.objects.get(code=code)
-        package_obj = get_object_or_404(TestPackage.objects, code=code)
+        package_obj = get_object_or_404(TestPackage.objects, code=package_code)
         kwargs["package"] = package_obj
         kwargs["tests"] = package_obj.tests.all()
         kwargs["users"] = package_obj.students.all()
@@ -131,8 +132,7 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
     
 
 class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
-    def post(self, request, code, *args, **kwargs):
-        package_code = code
+    def post(self, request, package_code, *args, **kwargs):
         # print("ManagePackageTestFormView", request.POST)
         form = ManagePackageTestForm(data=request.POST)
         # print("ManagePackageTestFormView", form)
@@ -164,11 +164,10 @@ class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
         else:
             error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 
-        return redirect("bbtest:build_package", code)
+        return redirect("bbtest:build_package", package_code)
 
 class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
-    def post(self, request, code, *args, **kwargs):
-        package_code = code
+    def post(self, request, package_code, *args, **kwargs):
         form = ManagePackageStudentsForm(data=request.POST)
         print("ManagePackageStudentsForm", form.is_valid())
         if form.is_valid():
@@ -235,3 +234,30 @@ class RemoveTestFromPackageView(AdminPermissionRequiredMixin, View): # Developer
 
         success(request, pgettext("Success alert message", "Test is removed from package."))
         return redirect("bbtest:build_package", package_code)
+    
+
+class ActivatePackageView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
+    def post(self, request, package_code,  *args, **kwargs):
+        print("ActivatePackageView", package_code)
+        package_obj = get_object_or_404(TestPackage.objects, code=package_code)
+        package_obj.assessible = True
+
+        test_set = package_obj.tests.order_by('section__order').all()
+        student_set = package_obj.students.all()
+        domain = package_obj.domain
+        # print(test_set)
+        # print(student_set)
+
+        for student in student_set:
+            # Quiz
+            quiz_set = student.quiz_sets.create(test_domain=domain, cart=None)
+            for quiz_order, test in enumerate(test_set):
+                quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
+                # test.update(sales_count=(F("sales_count") + 1))
+            student.is_active = True
+            student.save()
+        
+        package_obj.save()
+
+        success(request, pgettext("Success alert message", "Package is made available."))
+        return redirect("bbtest:build_packages")

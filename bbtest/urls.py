@@ -38,6 +38,7 @@ from .views.package import (
     ManagePackageStudentsFormView,
     ManagePackageTestFormView,
     RemoveTestFromPackageView,
+    ActivatePackageView,
 )
 
 from .views.student import (
@@ -116,12 +117,14 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
 
-    url(r"^build/packages/$",                                                                        BuildPackagesView.as_view(),           name="build_packages" ),
-    url(r"^build/packages/(?P<code>[0-9A-Fa-f]{6,10})/$",                                            BuildPackageView.as_view(),            name="build_package" ),
-    url(r"^build/create-package/create-form/$",                                                      BuildCreatePackageFormView.as_view(),  name="build_create_package_form"),
-    url(r"^build/packages/(?P<code>[0-9A-Fa-f]{6,10})/add-test/$",                                   ManagePackageTestFormView.as_view(),   name="build_package_add_test" ),
-    url(r"^build/packages/(?P<code>[0-9A-Fa-f]{6,10})/add-students/$",                               ManagePackageStudentsFormView.as_view(),name="build_package_add_students" ),
-    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<test_code>[0-9A-Fa-f]{4,6})/remove-test/$", RemoveTestFromPackageView.as_view(),   name="build_remove_test_from_package" ),
+    url(r"^build/packages/$",                                                                                   BuildPackagesView.as_view(),                name="build_packages" ),
+    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/$",                                               BuildPackageView.as_view(),                 name="build_package" ),
+    url(r"^build/create-package/create-form/$",                                                                 BuildCreatePackageFormView.as_view(),       name="build_create_package_form"),
+    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/add-test/$",                                      ManagePackageTestFormView.as_view(),        name="build_package_add_test" ),
+    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/add-students/$",                                  ManagePackageStudentsFormView.as_view(),    name="build_package_add_students" ),
+    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/activate-package/$",                              ActivatePackageView.as_view(),              name="build_activate_package" ),
+    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/deactivate-package/$",                            ActivatePackageView.as_view(),              name="build_deactivate_package"),
+    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<test_code>[0-9A-Fa-f]{4,6})/remove-test/$",   RemoveTestFromPackageView.as_view(),        name="build_remove_test_from_package" ),
 
     # STUDENT URLS
     url(r"^student/$",                                            StudentDashboardView.as_view(),        name="student_dashboard"         ),
