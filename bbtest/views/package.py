@@ -179,6 +179,7 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
             amount = int(form.cleaned_data["amount"])
             package_obj = TestPackage.objects.get(code = package_code)
             student_count = package_obj.students.count()  # package_students
+            student_list = []
 
             package_name = package_obj.name
             print("ManagePackageStudentsFormView", package_name, student_count)
@@ -196,19 +197,30 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
                 
                 try:
                     student = self.create_students(username, login_email, gen_pass, package_obj.assessible)
-                    
+                    student_list.append(student)
                     package_obj.students.add(student)
 
                     writer.writerow([username, login_email, gen_pass])
                 except ValidationError:
                     writer.writerow([username, login_email, "already_exist"])
 
-            # success(request, "Created %s students." % form.cleaned_data["amount"])
+            if package_obj.assessible:
+                test_set = package_obj.tests.order_by('section__order').all()
+                domain = package_obj.domain
+
+                for student in student_list:
+                    quiz_set = student.quiz_sets.create(test_domain=domain, cart=None)
+                    for quiz_order, test in enumerate(test_set):
+                        quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
+                        # test.update(sales_count=(F("sales_count") + 1))
+
+
+            success(request, "Created %s students." % form.cleaned_data["amount"])
             return response
         else:
             error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 
-        return redirect("bbtest:build_package", code)
+        return redirect("bbtest:build_package", package_code)
 
     def create_students(self, username, email, password, is_active):
         user = User.objects.create_user(username=username, email=email, password=password)

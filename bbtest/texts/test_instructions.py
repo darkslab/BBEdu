@@ -268,7 +268,7 @@ PSEUDO_NIS_TEST_INSTRUCTION_TITLE_TEXTS = {
 
 def test_instructions_title(test):
     return [
-            PSEUDO_NIS_TEST_INSTRUCTION_TITLE_TEXTS[9540][test.language],
+            _(test.section.name), #PSEUDO_NIS_TEST_INSTRUCTION_TITLE_TEXTS[9540][test.language],
             test.code.upper(),
         ]
     # if test.section.is_nis():

@@ -1,7 +1,8 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n static %}
 
-{% block title %}{% with full_test_domain_name=test_domain.name|add:'_full' %}{% trans full_test_domain_name %}{% endwith %}{% endblock %}
+{% comment %} {% block title %}{% with full_test_domain_name=test_domain.name|add:'_full' %}{% trans full_test_domain_name %}{% endwith %}{% endblock %} {% endcomment %}
+{% block title %}{% trans test_domain.name %}{% endblock %}
 
 {% block nav_student_exam_class %}active{% endblock %}
 

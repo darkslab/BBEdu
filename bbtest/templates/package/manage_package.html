@@ -78,7 +78,7 @@
                     <h4 class="panel-title">Add Students</h4>
                 </div>
                 <div class="panel-body">
-                    <form method="post" action="{% url 'bbtest:build_package_add_students' package.code %}" class="mt-15" data-bb-form data-create-package-form>
+                    <form method="post" action="{% url 'bbtest:build_package_add_students' package.code %}" class="mt-15" data-bb-form data-create-package-form >
                         {% csrf_token %}
 
                         {% for field in add_students_form %}
@@ -89,7 +89,7 @@
                         {% endfor %}
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-danger btn-block" {% if package.assessible %}disabled{%endif%}>Create students</button>
+                            <button type="submit" class="btn btn-sm btn-danger btn-block">Create students (Перезагрузите страницу после)</button>
                         </div>
                     </form>
                 </div>
