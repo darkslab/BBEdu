@@ -338,6 +338,11 @@ var Test = /*#__PURE__*/function (_React$Component) {
           this._currentQuestionIndex = 0;
           break;
         case "started":
+          if (data.reload) {
+            // location.href = location.href;
+            // console.log("reload", data)
+            location.reload();
+          }
           var seconds = Math.max(data.seconds - Math.round(msecs / 1000), 0);
           if (seconds <= 1) {
             data.status = undefined;

@@ -10,9 +10,11 @@ from bbtest.views.common import UserContextMixin, inject_questions_and_report_in
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
 from .mixins import CurrentQuizSetRequiredMixin
 from bbtest.http import TightJsonResponse
-from bbtest.models import Test
+from bbtest.models import Test, Quiz
 from bbtest.forms.exam import ExamReportForm
 from bbtest.texts import test_instructions, test_video, test_instructions_title, inject_texts_into_response
+from django.contrib.messages import success, warning
+from django.utils.translation import pgettext_lazy, pgettext
 
 
 class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
@@ -36,12 +38,13 @@ class ExamMixin:
         #     data["video"] = test_video(self.current_quiz().test)
         return data
 
-    def started_response(self, now_at):
+    def started_response(self, now_at, reload=False):
         response = {
             "success": True,
             "status": "started",
             "section": test_instructions_title(self.current_quiz().test),
             "seconds": (self.current_quiz().due_at - now_at).seconds,
+            "reload": reload,
         }
         inject_questions_and_report_into_started_response(response, self.current_quiz().test)
         inject_texts_into_response(response, self.current_quiz().test)
@@ -157,6 +160,14 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
             })
 
         try:
+            answer_list = self.current_quiz().get_answers_ids()
+            if None in answer_list:
+                now_at = now()
+                indices_of_none = [str(index + 1) for index, value in enumerate(answer_list) if value is None]
+
+                warning(request, pgettext("Student finish exam", "Вы не ответили на все вопрос: ") + ", ".join(indices_of_none) )
+                return TightJsonResponse(self.started_response(now_at, reload=True))
+
             with atomic(savepoint=False):
                 self.quiz_set().save()
                 self.current_quiz().is_finished = True
