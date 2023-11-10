@@ -65,7 +65,7 @@
                         {% endfor %}
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-danger btn-block">Add test to package</button>
+                            <button type="submit" class="btn btn-sm btn-danger btn-block" {% if package.assessible %}disabled{%endif%}>Add test to package</button>
                         </div>
                     </form>
                 </div>
@@ -89,7 +89,7 @@
                         {% endfor %}
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-danger btn-block">Create students</button>
+                            <button type="submit" class="btn btn-sm btn-danger btn-block" {% if package.assessible %}disabled{%endif%}>Create students</button>
                         </div>
                     </form>
                 </div>
@@ -152,13 +152,12 @@
                                     </td>
                                     {% comment %} column 7 {% endcomment %}
                                     <td class="pr-15 text-center">
-                                        {% comment %} {% if not test.is_draft %}
-                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">{% trans 'Preview' context '/expert/dashboard/' %}</a>
-                                        {% endif %} {% endcomment %}
-                                        <form action="{% url 'bbtest:build_remove_test_from_package' package_code=package.code test_code=test.code %}" method="post">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">X</button>
-                                        </form>
+                                        {% if not package.assessible %}
+                                            <form action="{% url 'bbtest:build_remove_test_from_package' package_code=package.code test_code=test.code %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">X</button>
+                                            </form>
+                                        {%endif%}
                                     </td>
                                 </tr>
                             {% empty %}
