@@ -71,17 +71,17 @@
                 </div>
             </div>
         </div>
-        {% comment %} Add students form {% endcomment %}
+        {% comment %} Add student group form {% endcomment %}
         <div class="col-xs-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Add Students</h4>
+                    <h4 class="panel-title">Create Student Group</h4>
                 </div>
                 <div class="panel-body">
-                    <form method="post" action="{% url 'bbtest:build_package_add_students' package.code %}" class="mt-15" data-bb-form data-create-package-form >
+                    <form method="post" action="{% url 'bbtest:build_package_create_student_group' package.code %}" class="mt-15" data-bb-form data-create-package-form >
                         {% csrf_token %}
 
-                        {% for field in add_students_form %}
+                        {% for field in create_student_group_form %}
                             <div class="form-group has-error">
                                 <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
                                 {{field|add_class:'form-control' }}
@@ -89,7 +89,7 @@
                         {% endfor %}
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-danger btn-block">Create students (Перезагрузите страницу после)</button>
+                            <button type="submit" class="btn btn-sm btn-danger btn-block">Create student group (Перезагрузите страницу после)</button>
                         </div>
                     </form>
                 </div>
@@ -117,7 +117,7 @@
                                 {% comment %} column 3 {% endcomment %}
                                 <th>{% trans 'Section' context '/package-manage/' %}</th>
                                 {% comment %} column 4 {% endcomment %}
-                                {% comment %} <th class="text-center">{% trans 'Language' context '/package-manage/' %}</th> {% endcomment %}
+                                <th class="text-center">{% trans 'Order' context '/package-manage/' %}</th>
                                 {% comment %} column 5 {% endcomment %}
                                 {% comment %} column 6 {% endcomment %}
                                 <th class="text-center">{% trans 'Status' context '/package-manage/' %}</th>
@@ -138,7 +138,7 @@
                                     {% comment %} column 3 {% endcomment %}
                                     <td>{% trans test.section.name %}</td>
                                     {% comment %} column 4 {% endcomment %}
-                                    {% comment %} <td class="text-center">{{ test.display_language }}</td> {% endcomment %}
+                                    <td class="text-center">{{ test.section.order }}</td>
                                     {% comment %} column 5 {% endcomment %}
                                     {% comment %} column 6 {% endcomment %}
                                     <td class="text-center">
@@ -178,45 +178,39 @@
         <div class="col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Students&nbsp;</h4>
+                    <h4 class="panel-title">Student&nbsp;Groups</h4>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-pressed">
                         <thead>
                             <tr>
-                                <th class="pl-15">{% trans 'Name' context '/package-manage/users/' %}</th>
-                                {% comment %} <th class="text-center">{% trans 'Role' context '/package-manage/users/' %}</th> {% endcomment %}
-                                <th class="text-center">{% trans 'Joined at' context '/package-manage/users/' %}</th>
-                                <th class="text-center">{% trans 'Active?' context '/package-manage/users/' %}</th>
+                                <th class="pl-15">{% trans 'Name' context '/package-manage/student-group/' %}</th>
+                                <th class="text-center">{% trans 'Count' context '/package-manage/student-group/' %}</th>
+                                <th class="pr-15 text-center">{% trans 'Actions' context '/package-manage/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for user in users %}
+                            {% for student_group in student_group_list %}
                                 <tr>
-                                    <td class="pl-15"><a href="{% url 'bbtest:super_user' user.pk %}">{{ user.get_full_name }}</a><br><small class="text-info">{{ user.email }}</small></td>
+                                    <td class="pl-15"><a href="{% url 'bbtest:build_student_group' package.code student_group.pk %}">{{ student_group.name }}</a></td>
+                                    <td class="text-center">{{ student_group.student_count }}</td>
                                     {% comment %} <td class="text-center">
-                                        {% if user.role == 'admin' %}
-                                            <span class="label label-info">{% trans 'Administrator' context '/package-manage/users/' %}</span>
-                                        {% elif user.role == 'developer' %}
-                                            <span class="label label-danger">{% trans 'Developer' context '/package-manage/users/' %}</span>
-                                        {% elif user.role == 'expert' %}
-                                            <span class="label label-danger">{% trans 'Expert' context '/package-manage/users/' %}</span>
-                                        {% elif user.role == 'student' %}
-                                            <span class="label label-success">{% trans 'Student' context '/package-manage/users/' %}</span>
+                                        {% if user.is_active %}
+                                            <span class="label label-success">{% trans 'Yes' context '/package-manage/student-group/' %}</span>
+                                        {% else %}
+                                            <span class="label label-danger">{% trans 'No' context '/package-manage/student-group/' %}</span>
                                         {% endif %}
                                     </td> {% endcomment %}
-                                    <td class="text-center">{{ user.joined_at|date:'SHORT_DATETIME_FORMAT' }}</td>
-                                    <td class="text-center">
-                                        {% if user.is_active %}
-                                            <span class="label label-success">{% trans 'Yes' context '/package-manage/users/' %}</span>
-                                        {% else %}
-                                            <span class="label label-danger">{% trans 'No' context '/package-manage/users/' %}</span>
-                                        {% endif %}
+                                    <td class="pr-15 text-center">
+                                        <form action="{% url 'bbtest:build_toggle_student_group' package.code student_group.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-info btn-xs mr-5 mb-5">Toggle</button>
+                                        </form>
                                     </td>
                                 </tr>
                             {% empty %}
                                 <tr>
-                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="5">{% trans 'There are no students yet' context '/package-manage/users/' %}</td>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="5">{% trans 'There are no student groups yet' context '/package-manage/student-group/' %}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
