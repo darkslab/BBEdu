@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-09 18:12+0600\n"
+"POT-Creation-Date: 2023-11-11 15:47+0600\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -734,7 +734,6 @@ msgstr "Анкетирование Учитель 9 Математика"
 
 msgid "Questionnaire-klass-9-math_Teacher_ru"
 msgstr "Анкетирование Учитель 9 Математика"
-
 
 msgid "Questionnaire-klass-9-sci_Teacher_kz"
 msgstr "Анкетирование Учитель 9 Науки"
@@ -1731,13 +1730,6 @@ msgstr "Все Тесты"
 msgctxt "Navigation link"
 msgid "All Users"
 msgstr "Все Пользователи"
-
-#, fuzzy
-#| msgctxt "/super/"
-#| msgid "Students"
-msgctxt "Navigation link"
-msgid "Create Students"
-msgstr "Участники тестирования"
 
 msgctxt "Navigation link"
 msgid "Export Data"
@@ -2779,6 +2771,10 @@ msgctxt "Success alert message"
 msgid "Test is removed from package."
 msgstr "Тест убран из пакета."
 
+msgctxt "Success alert message"
+msgid "Package is made available."
+msgstr "Пакет доступен"
+
 msgctxt "/student/"
 msgid "Test Domain 1"
 msgstr "Тест 1"
@@ -2820,6 +2816,10 @@ msgstr "Вариант %(test_code)s"
 msgctxt "/student/select-tests/xxxx/cart/"
 msgid "Free"
 msgstr "Бесплатно"
+
+msgctxt "Student finish exam"
+msgid "Вы не ответили на вопрос: "
+msgstr "Вы не ответили на вопрос: "
 
 msgctxt "/student/results/"
 msgid ""

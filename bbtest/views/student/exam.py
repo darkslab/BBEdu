@@ -165,7 +165,7 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
                 now_at = now()
                 indices_of_none = [str(index + 1) for index, value in enumerate(answer_list) if value is None]
 
-                warning(request, pgettext("Student finish exam", "Вы не ответили на все вопрос: ") + ", ".join(indices_of_none) )
+                warning(request, pgettext("Student finish exam", "Вы не ответили на вопрос: ") + ", ".join(indices_of_none) )
                 return TightJsonResponse(self.started_response(now_at, reload=True))
 
             with atomic(savepoint=False):
