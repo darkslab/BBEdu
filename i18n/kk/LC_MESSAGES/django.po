@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 15:47+0600\n"
+"POT-Creation-Date: 2023-11-11 23:23+0600\n"
 "PO-Revision-Date: 2021-05-07 08:13-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -17,13 +17,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.3\n"
 
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "username"
 msgctxt "Form label"
-msgid "Email"
-msgstr "Электрондық пошта"
+msgid "Username"
+msgstr "аты-жөні"
 
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Please enter last name."
 msgctxt "Validation error"
-msgid "Please enter email."
-msgstr "Электрондық поштаңызды енгізіңіз."
+msgid "Please enter Username."
+msgstr "Тегіңізді енгізіңіз."
 
 msgctxt "Form label"
 msgid "Password"
@@ -34,8 +40,16 @@ msgid "Please enter password."
 msgstr "Құпиясөзді енгізіңіз."
 
 msgctxt "Validation error"
-msgid "Please enter a correct email and password."
-msgstr "Дұрыс электрондық поштаңызды және құпиясөзді енгізіңіз."
+msgid "Test has not started yet. Or you entered a wrong username or password."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Email"
+msgstr "Электрондық пошта"
+
+msgctxt "Validation error"
+msgid "Please enter email."
+msgstr "Электрондық поштаңызды енгізіңіз."
 
 msgctxt "Validation error"
 msgid "Incorrect email."
@@ -443,6 +457,24 @@ msgstr "Сома"
 
 msgctxt "CreatePackageForm"
 msgid "Login prefix"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/student/"
+#| msgid "Test Domain 1"
+msgctxt "CreatePackageForm"
+msgid "Select Test Domain"
+msgstr "Тест 1"
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Amount"
+msgctxt "ManagePackageStudentsForm"
+msgid "Amount"
+msgstr "Сома"
+
+msgctxt "ManagePackageStudentsForm"
+msgid "Optional Prefix"
 msgstr ""
 
 msgctxt "Validation error"
@@ -1747,13 +1779,6 @@ msgstr "Аты-жөні"
 
 #, fuzzy
 #| msgctxt "/super/users/"
-#| msgid "Role"
-msgctxt "/package-manage/users/"
-msgid "Role"
-msgstr "Лауазымы"
-
-#, fuzzy
-#| msgctxt "/super/users/"
 #| msgid "Joined at"
 msgctxt "/package-manage/users/"
 msgid "Joined at"
@@ -1765,34 +1790,6 @@ msgstr "Тіркелген уақыты"
 msgctxt "/package-manage/users/"
 msgid "Active?"
 msgstr "Активті?"
-
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Administrator"
-msgctxt "/package-manage/users/"
-msgid "Administrator"
-msgstr "Администратор"
-
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Developer"
-msgctxt "/package-manage/users/"
-msgid "Developer"
-msgstr "Құрастырушы"
-
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Expert"
-msgctxt "/package-manage/users/"
-msgid "Expert"
-msgstr "Эксперт"
-
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Student"
-msgctxt "/package-manage/users/"
-msgid "Student"
-msgstr "Тестілеуге қатысушы"
 
 #, fuzzy
 #| msgctxt "/developer/"

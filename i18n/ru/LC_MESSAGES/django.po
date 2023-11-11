@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 15:47+0600\n"
+"POT-Creation-Date: 2023-11-11 23:23+0600\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -19,12 +19,12 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 msgctxt "Form label"
-msgid "Email"
-msgstr "Адрес электронной почты"
+msgid "Username"
+msgstr "Логин пользователя"
 
 msgctxt "Validation error"
-msgid "Please enter email."
-msgstr "Введите адрес электронной почты."
+msgid "Please enter Username."
+msgstr "Введите ваш логин."
 
 msgctxt "Form label"
 msgid "Password"
@@ -35,8 +35,16 @@ msgid "Please enter password."
 msgstr "Введите пароль."
 
 msgctxt "Validation error"
-msgid "Please enter a correct email and password."
-msgstr "Введите верный адрес электронной почты и пароль."
+msgid "Test has not started yet. Or you entered a wrong username or password."
+msgstr "Тестирорвание ещё не началось. Либо вы ввели неверный логин или пароль"
+
+msgctxt "Form label"
+msgid "Email"
+msgstr "Адрес электронной почты"
+
+msgctxt "Validation error"
+msgid "Please enter email."
+msgstr "Введите адрес электронной почты."
 
 msgctxt "Validation error"
 msgid "Incorrect email."
@@ -437,6 +445,18 @@ msgstr "количество"
 msgctxt "CreatePackageForm"
 msgid "Login prefix"
 msgstr "Уникальное название пакета"
+
+msgctxt "CreatePackageForm"
+msgid "Select Test Domain"
+msgstr "Выберите параллель"
+
+msgctxt "ManagePackageStudentsForm"
+msgid "Amount"
+msgstr "Количество"
+
+msgctxt "ManagePackageStudentsForm"
+msgid "Optional Prefix"
+msgstr "Опциональный префикс"
 
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
@@ -1672,32 +1692,12 @@ msgid "Name"
 msgstr "Имя"
 
 msgctxt "/package-manage/users/"
-msgid "Role"
-msgstr "Тип пользователя"
-
-msgctxt "/package-manage/users/"
 msgid "Joined at"
 msgstr "Зарегистрирован"
 
 msgctxt "/package-manage/users/"
 msgid "Active?"
 msgstr "Активный?"
-
-msgctxt "/package-manage/users/"
-msgid "Administrator"
-msgstr "Администратор"
-
-msgctxt "/package-manage/users/"
-msgid "Developer"
-msgstr "Разработчик"
-
-msgctxt "/package-manage/users/"
-msgid "Expert"
-msgstr "Эксперт"
-
-msgctxt "/package-manage/users/"
-msgid "Student"
-msgstr "Участник тестирования"
 
 msgctxt "/package-manage/users/"
 msgid "Yes"
