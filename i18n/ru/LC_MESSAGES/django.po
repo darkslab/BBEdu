@@ -1709,7 +1709,7 @@ msgstr "Нет"
 
 msgctxt "/package-manage/users/"
 msgid "There are no students yet"
-msgstr "Нет загруженных тестов"
+msgstr "Нет студентов"
 
 msgctxt "Badge label under avatar"
 msgid "Administrator"

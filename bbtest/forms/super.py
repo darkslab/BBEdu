@@ -103,7 +103,7 @@ class CreateStudentGroupForm(Form):
 class ManagePackageStudentsForm(Form):
 
     amount = IntegerField(label=pgettext("ManagePackageStudentsForm", "Amount"),
-        initial=10, 
+        initial=1, 
         error_messages={
             "required": "Please provide an amount.",
             "invalid": "Amount is invalid.",
