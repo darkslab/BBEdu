@@ -428,6 +428,7 @@ class StudentGroup(Model):
     name         = CharField     ( pgettext_lazy("Model field", "student group name"),  max_length=100, unique=False, )
     # student      = ForeignKey    ( User,         on_delete=CASCADE, related_name="student_groups", )
     package      = ForeignKey    ( TestPackage,   on_delete=CASCADE,     related_name="student_groups"   )
+    student_count = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "student count"), default=0)
 
     class Meta:
         default_permissions = ()
