@@ -86,6 +86,19 @@ class CreatePackageForm(Form):
         empty_label = pgettext("CreatePackageForm", "Select Test Domain")
     )
 
+class CreateStudentGroupForm(Form):
+    name = CharField(label = pgettext("CreateStudentGroupForm", "Student Group name"), 
+        error_messages = {"required": "Student Group will be created with this name." }, 
+        # initial = "Test day n",
+        empty_value = pgettext("CreateStudentGroupForm", "Test day 001"),
+        min_length = 1,
+        max_length = 100)
+
+    # domain = ModelChoiceField(
+    #     queryset = TestDomain.objects.all(),
+    #     empty_label = pgettext("CreatePackageForm", "Select Test Domain")
+    # )
+
 
 class ManagePackageStudentsForm(Form):
 

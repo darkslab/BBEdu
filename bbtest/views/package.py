@@ -12,8 +12,8 @@ from django.http import HttpResponse
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
-from bbtest.forms.super import  CreatePackageForm, ManagePackageStudentsForm, ManagePackageTestForm
-from bbtest.models.test import TestDomain, Test, TestPackage, TestSection, TestPackageRelation
+from bbtest.forms.super import  CreatePackageForm, ManagePackageStudentsForm, ManagePackageTestForm, CreateStudentGroupForm
+from bbtest.models.test import TestDomain, Test, TestPackage, TestSection, TestPackageRelation, StudentGroup, UserTestPackageProfile
 from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.http import TightJsonResponse
 import uuid
@@ -106,7 +106,7 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
         package_obj = get_object_or_404(TestPackage.objects, code=package_code)
         kwargs["package"] = package_obj
         kwargs["tests"] = package_obj.tests.all()
-        kwargs["users"] = package_obj.students.all()
+        kwargs["student_group_list"] = package_obj.student_groups.all()
 
         section_set = TestSection.objects.filter(domain=package_obj.domain).prefetch_related("tests")
 
@@ -126,7 +126,8 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
         
         # print("BuildPackageView", kwargs["tests"])
 
-        kwargs["add_students_form"] = ManagePackageStudentsForm()
+        # kwargs["add_students_form"] = ManagePackageStudentsForm()
+        kwargs["create_student_group_form"] = CreateStudentGroupForm()
 
         return self.render_to_response(super().get_context_data(**kwargs))
     
@@ -165,6 +166,27 @@ class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
             error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
 
         return redirect("bbtest:build_package", package_code)
+
+
+class ManagePackageCreateStudentGroupView(CreateStudentRequiredMixin, View):
+    def post(self, request, package_code, *args, **kwargs):
+        form = CreateStudentGroupForm(data=request.POST)
+
+        UserTestPackageProfile, StudentGroup
+
+        if form.is_valid():
+            package_obj = TestPackage.objects.get(code = package_code)
+
+            group_obj = StudentGroup.objects.create(
+                name = form.cleaned_data["name"],
+                package = package_obj,
+            )
+            print(group_obj)
+        else:
+            error(request, "Could not create StudentGroup! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
+
+        return redirect("bbtest:build_package", package_code)
+
 
 class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
     def post(self, request, package_code, *args, **kwargs):
