@@ -177,6 +177,7 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
             writer = csv.writer(response)
 
             amount = int(form.cleaned_data["amount"])
+            prefix = form.cleaned_data["prefix"]
             package_obj = TestPackage.objects.get(code = package_code)
             student_count = package_obj.students.count()  # package_students
             student_list = []
@@ -189,10 +190,10 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
             for i in range(student_count + 1, student_count + amount + 1):
                 username = "{}_{:0{}}".format(package_name, i, order_of_magnitude)
                 login_email =  None
-                # if len(prefix) > 0:
-                #     login_email = "{}_{}@modo.edu.kz".format(prefix, uuid.uuid4().hex[:10])
-                # else:
-                #     login_email = "{}@modo.edu.kz".format(uuid.uuid4().hex)
+                if len(prefix) > 0:
+                    login_email = "{}_{}@not.real.email.kz".format(prefix, uuid.uuid4().hex[:10])
+                else:
+                    login_email = "{}@not.real.email.kz".format(uuid.uuid4().hex[:15])
                 gen_pass = "{:05}".format(randint(1, 99999))
                 
                 try:
