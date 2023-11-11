@@ -185,7 +185,7 @@
                         <thead>
                             <tr>
                                 <th class="pl-15">{% trans 'Name' context '/package-manage/users/' %}</th>
-                                <th class="text-center">{% trans 'Role' context '/package-manage/users/' %}</th>
+                                {% comment %} <th class="text-center">{% trans 'Role' context '/package-manage/users/' %}</th> {% endcomment %}
                                 <th class="text-center">{% trans 'Joined at' context '/package-manage/users/' %}</th>
                                 <th class="text-center">{% trans 'Active?' context '/package-manage/users/' %}</th>
                             </tr>
@@ -194,7 +194,7 @@
                             {% for user in users %}
                                 <tr>
                                     <td class="pl-15"><a href="{% url 'bbtest:super_user' user.pk %}">{{ user.get_full_name }}</a><br><small class="text-info">{{ user.email }}</small></td>
-                                    <td class="text-center">
+                                    {% comment %} <td class="text-center">
                                         {% if user.role == 'admin' %}
                                             <span class="label label-info">{% trans 'Administrator' context '/package-manage/users/' %}</span>
                                         {% elif user.role == 'developer' %}
@@ -204,7 +204,7 @@
                                         {% elif user.role == 'student' %}
                                             <span class="label label-success">{% trans 'Student' context '/package-manage/users/' %}</span>
                                         {% endif %}
-                                    </td>
+                                    </td> {% endcomment %}
                                     <td class="text-center">{{ user.joined_at|date:'SHORT_DATETIME_FORMAT' }}</td>
                                     <td class="text-center">
                                         {% if user.is_active %}
