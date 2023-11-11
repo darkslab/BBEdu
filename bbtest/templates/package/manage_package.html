@@ -138,7 +138,7 @@
                                     {% comment %} column 3 {% endcomment %}
                                     <td>{% trans test.section.name %}</td>
                                     {% comment %} column 4 {% endcomment %}
-                                    <td class="text-center">{{ test.display_language }}</td>
+                                    <td class="text-center">{{ test.section.order }}</td>
                                     {% comment %} column 5 {% endcomment %}
                                     {% comment %} column 6 {% endcomment %}
                                     <td class="text-center">
@@ -194,12 +194,18 @@
                                 <tr>
                                     <td class="pl-15"><a href="{% url 'bbtest:build_student_group' package.code student_group.pk %}">{{ student_group.name }}</a></td>
                                     <td class="text-center">{{ student_group.student_count }}</td>
-                                    <td class="text-center">
+                                    {% comment %} <td class="text-center">
                                         {% if user.is_active %}
                                             <span class="label label-success">{% trans 'Yes' context '/package-manage/student-group/' %}</span>
                                         {% else %}
                                             <span class="label label-danger">{% trans 'No' context '/package-manage/student-group/' %}</span>
                                         {% endif %}
+                                    </td> {% endcomment %}
+                                    <td class="pr-15 text-center">
+                                        <form action="{% url 'bbtest:build_toggle_student_group' package.code student_group.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-info btn-xs mr-5 mb-5">Toggle</button>
+                                        </form>
                                     </td>
                                 </tr>
                             {% empty %}

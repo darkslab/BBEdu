@@ -40,7 +40,8 @@ from .views.package import (
     ManagePackageCreateStudentGroupFormView,
     ManagePackageTestFormView,
     RemoveTestFromPackageView,
-    ActivatePackageView,
+    FinalizePackageView,
+    ActivateStudentGroupToggleView,
 )
 
 from .views.student import (
@@ -120,15 +121,16 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
 
     url(r"^build/packages/$",                                                                                   BuildPackagesView.as_view(),                name="build_packages" ),
+    url(r"^build/create-package/create-form/$",                                                                 BuildCreatePackageFormView.as_view(),       name="build_create_package_form"),
+
     url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/$",                                               BuildPackageView.as_view(),                 name="build_package" ),
     url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<student_group_id>\d+)?$",                     BuildStudentGroupView.as_view(),            name="build_student_group" ),
-
-    url(r"^build/create-package/create-form/$",                                                                 BuildCreatePackageFormView.as_view(),       name="build_create_package_form"),
-    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/add-test/$",                                      ManagePackageTestFormView.as_view(),        name="build_package_add_test" ),
     url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<student_group_id>\d+)?/add-students/$",       ManagePackageStudentsFormView.as_view(),    name="build_package_add_students" ),
+    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<student_group_id>\d+)?/toggle-group/$",       ActivateStudentGroupToggleView.as_view(),   name="build_toggle_student_group"),
+
+    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/add-test/$",                                      ManagePackageTestFormView.as_view(),        name="build_package_add_test" ),
     url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/create-student-group/$",                          ManagePackageCreateStudentGroupFormView.as_view(),    name="build_package_create_student_group" ),
-    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/activate-package/$",                              ActivatePackageView.as_view(),              name="build_activate_package" ),
-    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/deactivate-package/$",                            ActivatePackageView.as_view(),              name="build_deactivate_package"),
+    url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/activate-package/$",                              FinalizePackageView.as_view(),              name="build_activate_package" ),
     url(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<test_code>[0-9A-Fa-f]{4,6})/remove-test/$",   RemoveTestFromPackageView.as_view(),        name="build_remove_test_from_package" ),
 
     # STUDENT URLS
