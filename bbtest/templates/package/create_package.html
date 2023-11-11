@@ -87,7 +87,7 @@
                                 <th class="text-center">{% trans 'Domain' context '/admin/create_package/' %}</th>
                                 <th class="text-center">{% trans 'Code' context '/admin/create_package/' %}</th>
                                 <th class="text-center">{% trans 'Created at' context '/admin/create_package/' %}</th>
-                                <th class="text-center">{% trans 'Active?' context '/admin/create_package/' %}</th>
+                                <th class="text-center">{% trans 'Finalized?' context '/admin/create_package/' %}</th>
                                 <th class="pr-15 text-center">{% trans 'Actions' context '/admin/create_package/' %}</th>
                             </tr>
                         </thead>
@@ -95,23 +95,23 @@
                             {% for package in packages %}
                                 <tr>
                                     <td class="pl-15"><a href="{% url 'bbtest:build_package' package.code %}">{{ package.name }}</a><br><small class="text-info">{{ package.email }}</small></td>
-                                    <td class="text-center">{{ package.domain.name }}</td>
+                                    <td class="text-center">{% trans package.domain.name %}</td>
                                     <td class="text-center"><span class="label label-info">{{ package.code  }}</span></td>
                                     <td class="text-center">{{ package.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
                                     <td class="text-center">
-                                        {% if package.assessible %}
+                                        {% if package.finalized %}
                                             <span class="label label-success">{% trans 'Yes' context '/admin/create_package/' %}</span>
                                         {% else %}
                                             <span class="label label-danger">{% trans 'No' context '/admin/create_package/' %}</span>
                                         {% endif %}
                                     </td>
                                     <td class="text-center">
-                                        {% if package.assessible %}
+                                        {% if package.finalized %}
                                             
                                         {% else %}
                                             <form action="{% url 'bbtest:build_activate_package' package_code=package.code %}" method="post">
                                                 {% csrf_token %}
-                                                <button type="submit" class="btn btn-success btn-xs mr-5 mb-5">Начать тестирование (Отменить нельзя)</button>
+                                                <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">Финализировать пакет<br>(Отменить нельзя)</button>
                                             </form>
                                         {% endif %}
                                     </td>

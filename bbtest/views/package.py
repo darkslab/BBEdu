@@ -305,10 +305,17 @@ class ActivatePackageView(AdminPermissionRequiredMixin, View): # DeveloperPermis
     def post(self, request, package_code,  *args, **kwargs):
         print("ActivatePackageView", package_code)
         package_obj = get_object_or_404(TestPackage.objects, code=package_code)
-        package_obj.assessible = True
-
+        package_obj.finalized = True
+        
+        student_set = []
+        student_groups = package_obj.student_groups.all()
+        for group in student_groups:
+            for student_test_profile_obj in group.students.all():
+                student_set.append(student_test_profile_obj.student)
+        
         test_set = package_obj.tests.order_by('section__order').all()
-        student_set = package_obj.students.all()
+
+        # student_set = package_obj.students.all()
         domain = package_obj.domain
         # print(test_set)
         # print(student_set)
@@ -319,10 +326,10 @@ class ActivatePackageView(AdminPermissionRequiredMixin, View): # DeveloperPermis
             for quiz_order, test in enumerate(test_set):
                 quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
                 # test.update(sales_count=(F("sales_count") + 1))
-            student.is_active = True
-            student.save()
+            # student.is_active = True
+            # student.save()
         
         package_obj.save()
 
-        success(request, pgettext("Success alert message", "Package is made available."))
+        success(request, pgettext("Success alert message", "Package is finalized."))
         return redirect("bbtest:build_packages")
