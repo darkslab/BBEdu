@@ -15,14 +15,14 @@ from bbtest.models import Account
 
 
 class AuthenticationForm(_AuthenticationForm):
-    username = CharField(label=pgettext_lazy("Form label", "Email"), error_messages={
-        "required": pgettext_lazy("Validation error", "Please enter email."),
+    username = CharField(label=pgettext_lazy("Form label", "Username"), error_messages={
+        "required": pgettext_lazy("Validation error", "Please enter Username."),
     })
     password = CharField(label=pgettext_lazy("Form label", "Password"), error_messages={
         "required": pgettext_lazy("Validation error", "Please enter password."),
     }, widget=PasswordInput, strip=False)
     error_messages = {
-        "invalid_login": pgettext_lazy("Validation error", "Please enter a correct email and password."),
+        "invalid_login": pgettext_lazy("Validation error", "Test has not started yet. Or you entered a wrong username or password."),
     }
 
 

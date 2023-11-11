@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-09 18:12+0600\n"
+"POT-Creation-Date: 2023-11-11 23:23+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -17,13 +17,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.3\n"
 
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "username"
 msgctxt "Form label"
-msgid "Email"
-msgstr "Email"
+msgid "Username"
+msgstr "username"
 
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Please enter last name."
 msgctxt "Validation error"
-msgid "Please enter email."
-msgstr "Please enter email."
+msgid "Please enter Username."
+msgstr "Please enter last name."
 
 msgctxt "Form label"
 msgid "Password"
@@ -34,8 +40,16 @@ msgid "Please enter password."
 msgstr "Please enter password."
 
 msgctxt "Validation error"
-msgid "Please enter a correct email and password."
-msgstr "Please enter a correct email and password."
+msgid "Test has not started yet. Or you entered a wrong username or password."
+msgstr ""
+
+msgctxt "Form label"
+msgid "Email"
+msgstr "Email"
+
+msgctxt "Validation error"
+msgid "Please enter email."
+msgstr "Please enter email."
 
 msgctxt "Validation error"
 msgid "Incorrect email."
@@ -441,6 +455,24 @@ msgstr "Amount"
 
 msgctxt "CreatePackageForm"
 msgid "Login prefix"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/student/"
+#| msgid "Test Domain 1"
+msgctxt "CreatePackageForm"
+msgid "Select Test Domain"
+msgstr "Test Domain 1"
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Amount"
+msgctxt "ManagePackageStudentsForm"
+msgid "Amount"
+msgstr "Amount"
+
+msgctxt "ManagePackageStudentsForm"
+msgid "Optional Prefix"
 msgstr ""
 
 msgctxt "Validation error"
@@ -1744,13 +1776,6 @@ msgstr "Name"
 
 #, fuzzy
 #| msgctxt "/super/users/"
-#| msgid "Role"
-msgctxt "/package-manage/users/"
-msgid "Role"
-msgstr "Role"
-
-#, fuzzy
-#| msgctxt "/super/users/"
 #| msgid "Joined at"
 msgctxt "/package-manage/users/"
 msgid "Joined at"
@@ -1762,34 +1787,6 @@ msgstr "Joined at"
 msgctxt "/package-manage/users/"
 msgid "Active?"
 msgstr "Active?"
-
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Administrator"
-msgctxt "/package-manage/users/"
-msgid "Administrator"
-msgstr "Administrator"
-
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Developer"
-msgctxt "/package-manage/users/"
-msgid "Developer"
-msgstr "Developer"
-
-#, fuzzy
-#| msgctxt "Account type"
-#| msgid "Expense"
-msgctxt "/package-manage/users/"
-msgid "Expert"
-msgstr "Expense"
-
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Student"
-msgctxt "/package-manage/users/"
-msgid "Student"
-msgstr "Student"
 
 #, fuzzy
 #| msgctxt "/developer/"
@@ -1834,13 +1831,6 @@ msgstr "All Tests"
 msgctxt "Navigation link"
 msgid "All Users"
 msgstr "All Users"
-
-#, fuzzy
-#| msgctxt "/super/"
-#| msgid "Students"
-msgctxt "Navigation link"
-msgid "Create Students"
-msgstr "Students"
 
 msgctxt "Navigation link"
 msgid "Export Data"
@@ -2984,6 +2974,10 @@ msgctxt "Success alert message"
 msgid "Test is removed from package."
 msgstr "Test is now free."
 
+msgctxt "Success alert message"
+msgid "Package is made available."
+msgstr ""
+
 msgctxt "/student/"
 msgid "Test Domain 1"
 msgstr "Test Domain 1"
@@ -3025,6 +3019,10 @@ msgstr "Variant %(test_code)s"
 msgctxt "/student/select-tests/xxxx/cart/"
 msgid "Free"
 msgstr "Free"
+
+msgctxt "Student finish exam"
+msgid "Вы не ответили на вопрос: "
+msgstr ""
 
 msgctxt "/student/results/"
 msgid ""

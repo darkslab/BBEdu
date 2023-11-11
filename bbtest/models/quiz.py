@@ -161,12 +161,21 @@ class Quiz(Model):
         
     def get_answers_ids(self):
         if self.report is not None:
+            # print("get_answers_ids", self.report)
             ret = []
             for ans_meta in self.report["answers"]:
                 try:
-                    ret.append(ans_meta["answer"]["correct_id"] + 1)
+                    ans = ans_meta.get("answer", {})
+                    if "correct_id" in ans:
+                        ret.append(ans["correct_id"] + 1)
+                    elif "correct_ids" in ans:
+                        ret.append(ans["correct_ids"])
+                    else:
+                        ret.append(None)
+                
                 except TypeError:
                     ret.append(None)
+                    
             return ret
         else:
             return [None for _ in range(self.test.section.question_count)]
