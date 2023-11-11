@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 23:23+0600\n"
+"POT-Creation-Date: 2023-11-12 03:36+0600\n"
 "PO-Revision-Date: 2021-05-07 08:13-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -464,6 +464,17 @@ msgstr ""
 #| msgid "Test Domain 1"
 msgctxt "CreatePackageForm"
 msgid "Select Test Domain"
+msgstr "Тест 1"
+
+msgctxt "CreateStudentGroupForm"
+msgid "Student Group name"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/student/"
+#| msgid "Test Domain 1"
+msgctxt "CreateStudentGroupForm"
+msgid "Test day 001"
 msgstr "Тест 1"
 
 #, fuzzy
@@ -1176,9 +1187,23 @@ msgctxt "Model field"
 msgid "package code"
 msgstr "келісім коды"
 
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "is finished?"
 msgctxt "Model field"
-msgid "is assessible?"
+msgid "is finalized"
+msgstr "аяқталған ба?"
+
+msgctxt "Model field"
+msgid "student group name"
 msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "question count"
+msgctxt "Model field"
+msgid "student count"
+msgstr "сұрақ нөмірі"
 
 msgctxt "Model field"
 msgid "uuid"
@@ -1707,12 +1732,9 @@ msgctxt "/admin/create_package/"
 msgid "Created at"
 msgstr "жасалған уақыты"
 
-#, fuzzy
-#| msgctxt "/super/users/"
-#| msgid "Active?"
 msgctxt "/admin/create_package/"
-msgid "Active?"
-msgstr "Активті?"
+msgid "Finalized?"
+msgstr ""
 
 #, fuzzy
 #| msgctxt "/developer/"
@@ -1750,6 +1772,13 @@ msgid "Section"
 msgstr "Пән"
 
 #, fuzzy
+#| msgctxt "Model field"
+#| msgid "order"
+msgctxt "/package-manage/"
+msgid "Order"
+msgstr "реті"
+
+#, fuzzy
 #| msgctxt "/developer/"
 #| msgid "Status"
 msgctxt "/package-manage/"
@@ -1769,6 +1798,45 @@ msgstr "Әрекеттер"
 msgctxt "/package-manage/"
 msgid "There are no tests yet"
 msgstr "Тестілер жоқ"
+
+#, fuzzy
+#| msgctxt "/super/users/"
+#| msgid "Name"
+msgctxt "/package-manage/student-group/"
+msgid "Name"
+msgstr "Аты-жөні"
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Amount"
+msgctxt "/package-manage/student-group/"
+msgid "Count"
+msgstr "Сома"
+
+#, fuzzy
+#| msgctxt "/super/tests/"
+#| msgid "There are no tests yet"
+msgctxt "/package-manage/student-group/"
+msgid "There are no student groups yet"
+msgstr "Тестілер жоқ"
+
+msgctxt "Page title"
+msgid "Manage Student Group"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Page title"
+#| msgid "Create Package"
+msgctxt "/package-manage/student-group/"
+msgid "Package"
+msgstr "Пакет жасау"
+
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Student"
+msgctxt "/package-manage/student-group/"
+msgid "Student Group"
+msgstr "Тестілеуге қатысушы"
 
 #, fuzzy
 #| msgctxt "/super/users/"
@@ -1848,7 +1916,14 @@ msgstr "Тестіні жүктеу"
 #| msgctxt "Page title"
 #| msgid "Create Package"
 msgctxt "Navigation link"
-msgid "Create Package"
+msgid "Manage Package"
+msgstr "Пакет жасау"
+
+#, fuzzy
+#| msgctxt "Page title"
+#| msgid "Create Package"
+msgctxt "Navigation link"
+msgid "Manage Packages"
 msgstr "Пакет жасау"
 
 msgctxt "Navigation link"
@@ -2944,9 +3019,12 @@ msgctxt "Success alert message"
 msgid "Test is removed from package."
 msgstr "Тест ақысыз болып өзгертілді."
 
+#, fuzzy
+#| msgctxt "Validation error"
+#| msgid "Payment type is invalid."
 msgctxt "Success alert message"
-msgid "Package is made available."
-msgstr ""
+msgid "Package is finalized."
+msgstr "Төлем түрі дұрыс емес."
 
 msgctxt "/student/"
 msgid "Test Domain 1"

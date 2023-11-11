@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-11 23:23+0600\n"
+"POT-Creation-Date: 2023-11-12 03:36+0600\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -449,6 +449,17 @@ msgstr "Уникальное название пакета"
 msgctxt "CreatePackageForm"
 msgid "Select Test Domain"
 msgstr "Выберите параллель"
+
+msgctxt "CreateStudentGroupForm"
+msgid "Student Group name"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/student/"
+#| msgid "Test Domain 1"
+msgctxt "CreateStudentGroupForm"
+msgid "Test day 001"
+msgstr "Тест 1"
 
 msgctxt "ManagePackageStudentsForm"
 msgid "Amount"
@@ -1138,9 +1149,23 @@ msgctxt "Model field"
 msgid "package code"
 msgstr "код пакета"
 
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "is finished?"
 msgctxt "Model field"
-msgid "is assessible?"
-msgstr "Доступен?"
+msgid "is finalized"
+msgstr "законченный?"
+
+msgctxt "Model field"
+msgid "student group name"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "question count"
+msgctxt "Model field"
+msgid "student count"
+msgstr "номер вопроса"
 
 msgctxt "Model field"
 msgid "uuid"
@@ -1652,8 +1677,8 @@ msgid "Created at"
 msgstr "Создано"
 
 msgctxt "/admin/create_package/"
-msgid "Active?"
-msgstr "Активный?"
+msgid "Finalized?"
+msgstr ""
 
 msgctxt "/admin/create_package/"
 msgid "Actions"
@@ -1676,6 +1701,10 @@ msgid "Section"
 msgstr "Предмет"
 
 msgctxt "/package-manage/"
+msgid "Order"
+msgstr "Порядок"
+
+msgctxt "/package-manage/"
 msgid "Status"
 msgstr "Статус"
 
@@ -1686,6 +1715,30 @@ msgstr "Действия"
 msgctxt "/package-manage/"
 msgid "There are no tests yet"
 msgstr "Нет загруженных тестов"
+
+msgctxt "/package-manage/student-group/"
+msgid "Name"
+msgstr "Имя"
+
+msgctxt "/package-manage/student-group/"
+msgid "Count"
+msgstr "Количество"
+
+msgctxt "/package-manage/student-group/"
+msgid "There are no student groups yet"
+msgstr "Нет студентов"
+
+msgctxt "Page title"
+msgid "Manage Student Group"
+msgstr "Управления Группами"
+
+msgctxt "/package-manage/student-group/"
+msgid "Package"
+msgstr "Создать Пакет"
+
+msgctxt "/package-manage/student-group/"
+msgid "Student Group"
+msgstr "Группа учеников"
 
 msgctxt "/package-manage/users/"
 msgid "Name"
@@ -1744,8 +1797,12 @@ msgid "Create Test"
 msgstr "Загрузить тест"
 
 msgctxt "Navigation link"
-msgid "Create Package"
-msgstr "Создать Пакет"
+msgid "Manage Package"
+msgstr "Управление Пакетами"
+
+msgctxt "Navigation link"
+msgid "Manage Packages"
+msgstr "Управление Пакетами"
 
 msgctxt "Navigation link"
 msgid "Public Offer"
@@ -2772,8 +2829,8 @@ msgid "Test is removed from package."
 msgstr "Тест убран из пакета."
 
 msgctxt "Success alert message"
-msgid "Package is made available."
-msgstr "Пакет доступен"
+msgid "Package is finalized."
+msgstr "Пакет финализирован"
 
 msgctxt "/student/"
 msgid "Test Domain 1"
