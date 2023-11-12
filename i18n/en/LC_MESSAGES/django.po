@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 03:36+0600\n"
+"POT-Creation-Date: 2023-11-12 11:59+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1207,6 +1207,13 @@ msgctxt "Model field"
 msgid "student count"
 msgstr "question count"
 
+#, fuzzy
+#| msgctxt "Model field"
+#| msgid "active?"
+msgctxt "Model field"
+msgid "is active?"
+msgstr "active?"
+
 msgctxt "Model field"
 msgid "uuid"
 msgstr "uuid"
@@ -1748,18 +1755,18 @@ msgid "There are no packages yet"
 msgstr "There are no tests yet"
 
 #, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Create Test"
+msgctxt "/package-manage/manage-package/"
+msgid "Package"
+msgstr "Create Test"
+
+#, fuzzy
 #| msgctxt "/developer/"
 #| msgid "Variant"
 msgctxt "/package-manage/"
 msgid "Variant"
 msgstr "Variant"
-
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Domain"
-msgctxt "/package-manage/"
-msgid "Domain"
-msgstr "Domain"
 
 #, fuzzy
 #| msgctxt "/developer/"
@@ -1809,6 +1816,31 @@ msgstr "Name"
 msgctxt "/package-manage/student-group/"
 msgid "Count"
 msgstr "Amount"
+
+msgctxt "/package-manage/student-group/"
+msgid "Available?"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Actions"
+msgctxt "/package-manage/student-group/"
+msgid "Actions"
+msgstr "Actions"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Yes"
+msgctxt "/package-manage/student-group/"
+msgid "Yes"
+msgstr "Yes"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "No"
+msgctxt "/package-manage/student-group/"
+msgid "No"
+msgstr "No"
 
 #, fuzzy
 #| msgctxt "/super/tests/"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 03:36+0600\n"
+"POT-Creation-Date: 2023-11-12 11:59+0600\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1168,6 +1168,10 @@ msgid "student count"
 msgstr "номер вопроса"
 
 msgctxt "Model field"
+msgid "is active?"
+msgstr "активный?"
+
+msgctxt "Model field"
 msgid "uuid"
 msgstr "универсальный уникальный идентификатор"
 
@@ -1688,13 +1692,13 @@ msgctxt "/admin/create_package/"
 msgid "There are no packages yet"
 msgstr "Нет загруженных пакетов"
 
+msgctxt "/package-manage/manage-package/"
+msgid "Package"
+msgstr "Пакет"
+
 msgctxt "/package-manage/"
 msgid "Variant"
 msgstr "Код теста"
-
-msgctxt "/package-manage/"
-msgid "Domain"
-msgstr "Тестирование"
 
 msgctxt "/package-manage/"
 msgid "Section"
@@ -1725,6 +1729,31 @@ msgid "Count"
 msgstr "Количество"
 
 msgctxt "/package-manage/student-group/"
+msgid "Available?"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Actions"
+msgctxt "/package-manage/student-group/"
+msgid "Actions"
+msgstr "Действия"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "Yes"
+msgctxt "/package-manage/student-group/"
+msgid "Yes"
+msgstr "Да"
+
+#, fuzzy
+#| msgctxt "/developer/"
+#| msgid "No"
+msgctxt "/package-manage/student-group/"
+msgid "No"
+msgstr "Нет"
+
+msgctxt "/package-manage/student-group/"
 msgid "There are no student groups yet"
 msgstr "Нет студентов"
 
@@ -1734,7 +1763,7 @@ msgstr "Управления Группами"
 
 msgctxt "/package-manage/student-group/"
 msgid "Package"
-msgstr "Создать Пакет"
+msgstr "Пакет"
 
 msgctxt "/package-manage/student-group/"
 msgid "Student Group"
