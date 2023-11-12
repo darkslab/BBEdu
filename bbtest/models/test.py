@@ -425,14 +425,14 @@ class TestPackage(Model):
         return self.code
 
 class StudentGroup(Model):
-    name          = CharField                  ( pgettext_lazy("Model field", "student group name"),  max_length=100, unique=False, )
+    name          = CharField                  ( pgettext_lazy("Model field", "student group name"),  max_length=100, unique=True, )
     package       = ForeignKey                 ( TestPackage,   on_delete=CASCADE,     related_name="student_groups"   )
     student_count = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "student count"), default=0)
     is_active     =     BooleanField           ( pgettext_lazy("Model field", "is active?"),  default=False)
 
     class Meta:
         default_permissions = ()
-        unique_together = ('name', 'package')
+        # unique_together = ('name', 'package')
 
 
 class TestPackageRelation(Model):
