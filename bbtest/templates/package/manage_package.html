@@ -65,7 +65,7 @@
                         {% endfor %}
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-danger btn-block" {% if package.assessible %}disabled{%endif%}>Add test to package</button>
+                            <button type="submit" class="btn btn-sm btn-danger btn-block" {% if package.finalized %}disabled{%endif%}>Add test to package</button>
                         </div>
                     </form>
                 </div>
@@ -89,7 +89,7 @@
                         {% endfor %}
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-danger btn-block">Create student group (Перезагрузите страницу после)</button>
+                            <button type="submit" class="btn btn-sm btn-danger btn-block">Create student group</button>
                         </div>
                     </form>
                 </div>
@@ -152,7 +152,7 @@
                                     </td>
                                     {% comment %} column 7 {% endcomment %}
                                     <td class="pr-15 text-center">
-                                        {% if not package.assessible %}
+                                        {% if not package.finalized %}
                                             <form action="{% url 'bbtest:build_remove_test_from_package' package_code=package.code test_code=test.code %}" method="post">
                                                 {% csrf_token %}
                                                 <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">X</button>
