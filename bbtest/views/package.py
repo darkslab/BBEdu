@@ -102,7 +102,7 @@ class BuildPackageView(AdminPermissionRequiredMixin, UserContextMixin, Paginatio
         # obj = TestPackage.objects.get(code=code)
         package_obj = get_object_or_404(TestPackage.objects, code=package_code)
         kwargs["package"] = package_obj
-        kwargs["tests"] = package_obj.tests.all()
+        kwargs["tests"] = package_obj.tests.order_by('section__order').all()
         kwargs["student_group_list"] = package_obj.student_groups.all()
 
         section_set = TestSection.objects.filter(domain=package_obj.domain).prefetch_related("tests")
@@ -141,7 +141,7 @@ class CreatePackageFormView(CreateStudentRequiredMixin, View):
             obj = TestPackage.objects.create(
                 name = name,
                 code = "{}{}".format(datetime.now().strftime("%y%m%d"), "%04x" % randint(0x0000, 0xffff) ),
-                assessible = False,
+                finalized = False,
                 # tests 
                 # students
                 domain = domain,
