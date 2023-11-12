@@ -339,12 +339,15 @@ class ActivateStudentGroupToggleView(AdminPermissionRequiredMixin, View):
 
     def post(self, request, package_code, student_group_id,  *args, **kwargs):
         print("ActivateStudentGroupView", package_code)
-        package_obj = get_object_or_404(TestPackage.objects, code=package_code)
+        # package_obj = get_object_or_404(TestPackage.objects, code=package_code)
         group_obj = get_object_or_404(StudentGroup.objects, pk=student_group_id)
+        is_active = group_obj.is_active
 
         for student_test_profile_obj in group_obj.students.all():
-            is_active = student_test_profile_obj.student.is_active
             student_test_profile_obj.student.is_active = not is_active
             student_test_profile_obj.student.save()
+
+        group_obj.is_active = not is_active
+        group_obj.save()
         
         return redirect("bbtest:build_package", package_code)
