@@ -242,8 +242,8 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
             login_email =  None
             if len(prefix) > 0:
                 login_email = "{}_{}@not.real.email.kz".format(prefix, uuid.uuid4().hex[:12])
-            else:
-                login_email = "{}@not.real.email.kz".format(uuid.uuid4().hex[:12])
+            # else:
+            #     login_email = "{}@not.real.email.kz".format(uuid.uuid4().hex[:12])
             gen_pass = "{:05}".format(randint(1, 99999))
             
             try:
