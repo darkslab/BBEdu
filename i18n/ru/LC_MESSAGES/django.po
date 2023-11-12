@@ -452,14 +452,11 @@ msgstr "Выберите параллель"
 
 msgctxt "CreateStudentGroupForm"
 msgid "Student Group name"
-msgstr ""
+msgstr "Название Группы учеников"
 
-#, fuzzy
-#| msgctxt "/student/"
-#| msgid "Test Domain 1"
 msgctxt "CreateStudentGroupForm"
 msgid "Test day 001"
-msgstr "Тест 1"
+msgstr "День тестирования 001"
 
 msgctxt "ManagePackageStudentsForm"
 msgid "Amount"
@@ -1149,23 +1146,17 @@ msgctxt "Model field"
 msgid "package code"
 msgstr "код пакета"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "is finished?"
 msgctxt "Model field"
 msgid "is finalized"
-msgstr "законченный?"
+msgstr "финализирован"
 
 msgctxt "Model field"
 msgid "student group name"
-msgstr ""
+msgstr "название группы учеников"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "question count"
 msgctxt "Model field"
 msgid "student count"
-msgstr "номер вопроса"
+msgstr "Количество учеников"
 
 msgctxt "Model field"
 msgid "is active?"
@@ -1682,7 +1673,7 @@ msgstr "Создано"
 
 msgctxt "/admin/create_package/"
 msgid "Finalized?"
-msgstr ""
+msgstr "финализирован"
 
 msgctxt "/admin/create_package/"
 msgid "Actions"
@@ -1730,25 +1721,16 @@ msgstr "Количество"
 
 msgctxt "/package-manage/student-group/"
 msgid "Available?"
-msgstr ""
+msgstr "Доступен"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Actions"
 msgctxt "/package-manage/student-group/"
 msgid "Actions"
 msgstr "Действия"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Yes"
 msgctxt "/package-manage/student-group/"
 msgid "Yes"
 msgstr "Да"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "No"
 msgctxt "/package-manage/student-group/"
 msgid "No"
 msgstr "Нет"
@@ -1815,7 +1797,7 @@ msgstr "Все Пользователи"
 
 msgctxt "Navigation link"
 msgid "Export Data"
-msgstr ""
+msgstr "Выгрузка данных"
 
 msgctxt "Navigation link"
 msgid "All Quizzes"
