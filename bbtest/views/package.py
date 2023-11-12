@@ -237,12 +237,13 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
         
         
         for i in range(student_count + 1, student_count + amount + 1):
-            username = "{}_{}_{}".format(package_name, group_obj.pk, i)
+            # username = "{}{}{:03}".format(package_name, group_obj.name, i)
+            username = "{}{:03}".format(group_obj.name, i)
             login_email =  None
             if len(prefix) > 0:
-                login_email = "{}_{}@not.real.email.kz".format(prefix, uuid.uuid4().hex[:10])
+                login_email = "{}_{}@not.real.email.kz".format(prefix, uuid.uuid4().hex[:12])
             else:
-                login_email = "{}@not.real.email.kz".format(uuid.uuid4().hex[:10])
+                login_email = "{}@not.real.email.kz".format(uuid.uuid4().hex[:12])
             gen_pass = "{:05}".format(randint(1, 99999))
             
             try:

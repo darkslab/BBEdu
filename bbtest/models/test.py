@@ -432,6 +432,7 @@ class StudentGroup(Model):
 
     class Meta:
         default_permissions = ()
+        unique_together = ('name', 'package')
 
 
 class TestPackageRelation(Model):
