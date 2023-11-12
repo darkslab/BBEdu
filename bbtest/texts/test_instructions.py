@@ -159,9 +159,28 @@ UNT_TEST_INSTRUCTION_TEXTS = {
     9558: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
     9559: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
 }
-
+Test
 def test_instructions(test):
+    if test.language == Test.LANGUAGE_RU:
+        return  [
+            [
+                "Данный предмет содержит {} вопросов.".format(test.section.question_count),
+                "Для ответа на все вопросы выделено {} минут.".format(test.section.duration // 60),
+                "Не забудьте перепроверить свои ответы.",
+            ]
+        ]
+    else:
+        return  [
+            [
+                "Бұл пән {} сұрақтан тұрады.".format(test.section.question_count),
+                "Барлық сұрақтарға жауап беруге {} минут беріледі.".format(test.section.duration // 60),
+                "Жауаптарыңызды екі рет тексеруді ұмытпаңыз.",
+            ]
+        ]
+ 
+
     return NIS_TEST_INSTRUCTION_TEXTS[9540][test.language]
+
     if test.section.is_nis():
         return NIS_TEST_INSTRUCTION_TEXTS[test.section.pk][test.language]
     elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
