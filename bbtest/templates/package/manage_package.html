@@ -116,7 +116,7 @@
                                 <th class="text-center">{% trans 'Variant' context '/package-manage/' %}</th>
                                 {% comment %} <th class="pl-15">{% trans 'Developer' context '/package-manage/' %}</th> {% endcomment %}
                                 {% comment %} column 2 {% endcomment %}
-                                <th>{% trans 'Domain' context '/package-manage/' %}</th>
+                                {% comment %} <th>{% trans 'Domain' context '/package-manage/' %}</th> {% endcomment %}
                                 {% comment %} column 3 {% endcomment %}
                                 <th>{% trans 'Section' context '/package-manage/' %}</th>
                                 {% comment %} column 4 {% endcomment %}
@@ -132,12 +132,12 @@
                             {% for test in tests %}
                                 <tr {% if test.developer == user %}class="success"{% endif %}>
                                     {% comment %} column 1 {% endcomment %}
-                                    <td class="text-center">
-                                        <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn btn-primary btn-xs mr-5 mb-5">#{{ test.code|upper }}</a>
+                                    <td class="pl-15 text-center">
+                                        <a href="{% url 'bbtest:build_test_preview' test.code  %}">#{{ test.code|upper }}</a>
                                     </td>
                                     {% comment %} <td class="pl-15">{{ test.developer.get_full_name }}</td> {% endcomment %}
                                     {% comment %} column 2 {% endcomment %}
-                                    <td>{% trans test.section.domain.name %}</td>
+                                    {% comment %} <td>{% trans test.section.domain.name %}</td> {% endcomment %}
                                     {% comment %} column 3 {% endcomment %}
                                     <td>{% trans test.section.name %}</td>
                                     {% comment %} column 4 {% endcomment %}
