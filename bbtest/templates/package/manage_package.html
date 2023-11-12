@@ -42,8 +42,11 @@
     </div> 
     {% endcomment %}
     <div class="row">
-        <div class="col-xs-12 col-sm-4">
-            <h4>Package&nbsp;"{{ package.name }}"&nbsp;{{ package.domain.name }}&nbsp;<span class="label label-info">{{ package.code }}</span></h4>
+        <div class="col-xs-12">
+            {% comment %} <h4>Package&nbsp;"{{ package.name }}"&nbsp;{{ package.domain.name }}&nbsp;<span class="label label-info">{{ package.code }}</span></h4> {% endcomment %}
+            <h5>{% trans 'Package' context '/package-manage/manage-package/' %} "{{ package.name }}" <span class="label label-info">{{ package.code }}</span></h5>
+            {% comment %} <h5>{% trans 'Student Group' context '/package-manage/student-group/' %} №{{ student_group.pk }}: "{{ student_group.name }}"</h5> {% endcomment %}
+            <h5>{% trans package.domain.name %}</h5>
         </div>
     </div>
     <div class="row">
@@ -173,7 +176,7 @@
     
     </div>
     
-    {% comment %} Table with students{% endcomment %}
+    {% comment %} Table with student groups {% endcomment %}
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
@@ -186,7 +189,8 @@
                             <tr>
                                 <th class="pl-15">{% trans 'Name' context '/package-manage/student-group/' %}</th>
                                 <th class="text-center">{% trans 'Count' context '/package-manage/student-group/' %}</th>
-                                <th class="pr-15 text-center">{% trans 'Actions' context '/package-manage/' %}</th>
+                                <th class="text-center">{% trans 'Available?' context '/package-manage/student-group/' %}</th>
+                                <th class="pr-15 text-center">{% trans 'Actions' context '/package-manage/student-group/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -194,17 +198,17 @@
                                 <tr>
                                     <td class="pl-15"><a href="{% url 'bbtest:build_student_group' package.code student_group.pk %}">{{ student_group.name }}</a></td>
                                     <td class="text-center">{{ student_group.student_count }}</td>
-                                    {% comment %} <td class="text-center">
-                                        {% if user.is_active %}
+                                    <td class="text-center">
+                                        {% if student_group.is_active %}
                                             <span class="label label-success">{% trans 'Yes' context '/package-manage/student-group/' %}</span>
                                         {% else %}
                                             <span class="label label-danger">{% trans 'No' context '/package-manage/student-group/' %}</span>
                                         {% endif %}
-                                    </td> {% endcomment %}
+                                    </td>
                                     <td class="pr-15 text-center">
                                         <form action="{% url 'bbtest:build_toggle_student_group' package.code student_group.pk %}" method="post">
                                             {% csrf_token %}
-                                            <button type="submit" class="btn btn-info btn-xs mr-5 mb-5">Toggle</button>
+                                            <button type="submit" class="btn btn-primary btn-xs mr-5 mb-5">Toggle</button>
                                         </form>
                                     </td>
                                 </tr>
