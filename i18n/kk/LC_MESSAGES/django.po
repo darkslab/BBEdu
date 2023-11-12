@@ -439,32 +439,23 @@ msgstr "Сәлеметсіз бе…"
 
 msgctxt "CreateStudentsForm"
 msgid "Login prefix"
-msgstr ""
+msgstr "Логин префикс"
 
-#, fuzzy
-#| msgctxt "/student/"
-#| msgid "Test Domain 1"
 msgctxt "CreateStudentsForm"
 msgid "Select Test Domain"
-msgstr "Тест 1"
+msgstr "Выберите параллель"
 
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Amount"
 msgctxt "CreateStudentsForm"
 msgid "Amount"
-msgstr "Сома"
+msgstr "Саны"
 
 msgctxt "CreatePackageForm"
 msgid "Login prefix"
-msgstr ""
+msgstr "Уникальное название пакета"
 
-#, fuzzy
-#| msgctxt "/student/"
-#| msgid "Test Domain 1"
 msgctxt "CreatePackageForm"
 msgid "Select Test Domain"
-msgstr "Тест 1"
+msgstr "Выберите параллель"
 
 msgctxt "CreateStudentGroupForm"
 msgid "Student Group name"
@@ -477,12 +468,9 @@ msgctxt "CreateStudentGroupForm"
 msgid "Test day 001"
 msgstr "Тест 1"
 
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Amount"
 msgctxt "ManagePackageStudentsForm"
 msgid "Amount"
-msgstr "Сома"
+msgstr "Саны"
 
 msgctxt "ManagePackageStudentsForm"
 msgid "Optional Prefix"
@@ -683,10 +671,10 @@ msgid "Math_4_ru"
 msgstr "Математика 4 Класс"
 
 msgid "Math_9_kz"
-msgstr "Математика 4 Сынып"
+msgstr "Математика 9 Сынып"
 
 msgid "Math_9_ru"
-msgstr "Математика 4 Класс"
+msgstr "Математика 9 Класс"
 
 msgid "NaturalScience_4_kz"
 msgstr "Жаратылыстану 4 Сынып"
@@ -754,61 +742,41 @@ msgstr "Анкетирование C"
 msgid "Questionnaire-C_9_ru"
 msgstr "Анкетирование C"
 
-#, fuzzy
-#| msgid "Questionnaire-A_4_kz"
 msgid "Questionnaire-Director_Teacher_kz"
-msgstr "Анкетирование А"
+msgstr "Анкетирование Директор"
 
-#, fuzzy
-#| msgid "Questionnaire-A_4_ru"
 msgid "Questionnaire-Director_Teacher_ru"
-msgstr "Анкетирование А"
+msgstr "Анкетирование Директор"
 
-#, fuzzy
-#| msgid "Questionnaire-A_4_ru"
 msgid "Questionnaire-klass-4_Teacher_ru"
-msgstr "Анкетирование А"
+msgstr "Анкетирование Учитель 4"
 
-#, fuzzy
-#| msgid "Questionnaire-A_4_kz"
 msgid "Questionnaire-klass-4_Teacher_kz"
-msgstr "Анкетирование А"
+msgstr "Анкетирование Сынып 4"
 
-#, fuzzy
-#| msgid "Questionnaire-A_4_kz"
 msgid "Questionnaire-klass-9-lang_Teacher_kz"
-msgstr "Анкетирование А"
+msgstr "Анкетирование Учитель 9 Языки"
 
-#, fuzzy
-#| msgid "Questionnaire-A_4_ru"
 msgid "Questionnaire-klass-9-lang_Teacher_ru"
-msgstr "Анкетирование А"
+msgstr "Анкетирование Учитель 9 Языки"
 
-#, fuzzy
-#| msgid "Questionnaire-A_4_kz"
 msgid "Questionnaire-klass-9-math_Teacher_kz"
-msgstr "Анкетирование А"
+msgstr "Анкетирование Учитель 9 Математика"
 
-#, fuzzy
-#| msgid "Questionnaire-A_4_ru"
 msgid "Questionnaire-klass-9-math_Teacher_ru"
-msgstr "Анкетирование А"
+msgstr "Анкетирование Учитель 9 Математика"
 
-#, fuzzy
-#| msgid "Questionnaire-A_4_kz"
 msgid "Questionnaire-klass-9-sci_Teacher_kz"
-msgstr "Анкетирование А"
+msgstr "Анкетирование Учитель 9 Науки"
 
-#, fuzzy
-#| msgid "Questionnaire-A_4_ru"
 msgid "Questionnaire-klass-9-sci_Teacher_ru"
-msgstr "Анкетирование А"
+msgstr "Анкетирование Учитель 9 Науки"
 
 msgid "Teacher_ru"
-msgstr ""
+msgstr "Анкетирование учителей RU"
 
 msgid "Teacher_kz"
-msgstr ""
+msgstr "Анкетирование учителей KZ"
 
 msgctxt "Account type"
 msgid "Asset"
@@ -1105,12 +1073,9 @@ msgctxt "Test status"
 msgid "Approved"
 msgstr "Келісілді"
 
-#, fuzzy
-#| msgctxt "/super/users/"
-#| msgid "Active?"
 msgctxt "Test status"
 msgid "Active"
-msgstr "Активті?"
+msgstr ""
 
 msgctxt "Test status"
 msgid "Redo"
@@ -1185,29 +1150,20 @@ msgstr ""
 #| msgid "agreement code"
 msgctxt "Model field"
 msgid "package code"
-msgstr "келісім коды"
+msgstr ""
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "is finished?"
 msgctxt "Model field"
 msgid "is finalized"
-msgstr "аяқталған ба?"
+msgstr ""
 
 msgctxt "Model field"
 msgid "student group name"
 msgstr ""
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "question count"
 msgctxt "Model field"
 msgid "student count"
-msgstr "сұрақ нөмірі"
+msgstr "Оқушылар саны"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "active?"
 msgctxt "Model field"
 msgid "is active?"
 msgstr "активті?"
@@ -1693,37 +1649,22 @@ msgctxt "Page title"
 msgid "Create Package"
 msgstr "Пакет жасау"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Are you sure?"
 msgctxt "/admin/create_package/"
 msgid "Are you sure?"
 msgstr "Сенімдісіз бе?"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Yes"
 msgctxt "/admin/create_package/"
 msgid "Yes"
 msgstr "Иә"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "No"
 msgctxt "/admin/create_package/"
 msgid "No"
 msgstr "Жоқ"
 
-#, fuzzy
-#| msgctxt "/super/users/"
-#| msgid "Name"
 msgctxt "/admin/create_package/"
 msgid "Name"
 msgstr "Аты-жөні"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Domain"
 msgctxt "/admin/create_package/"
 msgid "Domain"
 msgstr "Тестілеу"
@@ -1732,9 +1673,6 @@ msgctxt "/admin/create_package/"
 msgid "Code"
 msgstr ""
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "created at"
 msgctxt "/admin/create_package/"
 msgid "Created at"
 msgstr "жасалған уақыты"
@@ -1743,174 +1681,105 @@ msgctxt "/admin/create_package/"
 msgid "Finalized?"
 msgstr ""
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Actions"
 msgctxt "/admin/create_package/"
 msgid "Actions"
 msgstr "Әрекеттер"
 
-#, fuzzy
-#| msgctxt "/super/tests/"
-#| msgid "There are no tests yet"
 msgctxt "/admin/create_package/"
 msgid "There are no packages yet"
-msgstr "Тестілер жоқ"
+msgstr "Тест пакеттері жоқ"
 
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Create Package"
 msgctxt "/package-manage/manage-package/"
 msgid "Package"
-msgstr "Пакет жасау"
+msgstr "Пакет"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Variant"
 msgctxt "/package-manage/"
 msgid "Variant"
-msgstr "Нұсқа"
+msgstr "Пакет Нұсқасы"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Section"
 msgctxt "/package-manage/"
 msgid "Section"
 msgstr "Пән"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "order"
 msgctxt "/package-manage/"
 msgid "Order"
 msgstr "реті"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Status"
 msgctxt "/package-manage/"
 msgid "Status"
 msgstr "Статус"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Actions"
 msgctxt "/package-manage/"
 msgid "Actions"
 msgstr "Әрекеттер"
 
-#, fuzzy
-#| msgctxt "/super/tests/"
-#| msgid "There are no tests yet"
 msgctxt "/package-manage/"
 msgid "There are no tests yet"
 msgstr "Тестілер жоқ"
 
-#, fuzzy
-#| msgctxt "/super/users/"
-#| msgid "Name"
 msgctxt "/package-manage/student-group/"
 msgid "Name"
 msgstr "Аты-жөні"
 
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Amount"
 msgctxt "/package-manage/student-group/"
 msgid "Count"
-msgstr "Сома"
+msgstr "Саны"
 
 msgctxt "/package-manage/student-group/"
 msgid "Available?"
 msgstr ""
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Actions"
 msgctxt "/package-manage/student-group/"
 msgid "Actions"
 msgstr "Әрекеттер"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Yes"
 msgctxt "/package-manage/student-group/"
 msgid "Yes"
 msgstr "Иә"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "No"
 msgctxt "/package-manage/student-group/"
 msgid "No"
 msgstr "Жоқ"
 
-#, fuzzy
-#| msgctxt "/super/tests/"
-#| msgid "There are no tests yet"
 msgctxt "/package-manage/student-group/"
 msgid "There are no student groups yet"
-msgstr "Тестілер жоқ"
+msgstr "тобы жоқ"
 
 msgctxt "Page title"
 msgid "Manage Student Group"
 msgstr ""
 
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Create Package"
 msgctxt "/package-manage/student-group/"
 msgid "Package"
-msgstr "Пакет жасау"
+msgstr "Пакет"
 
-#, fuzzy
-#| msgctxt "Form label"
-#| msgid "Student"
 msgctxt "/package-manage/student-group/"
 msgid "Student Group"
-msgstr "Тестілеуге қатысушы"
+msgstr "қатысушулар тобы"
 
-#, fuzzy
-#| msgctxt "/super/users/"
-#| msgid "Name"
 msgctxt "/package-manage/users/"
 msgid "Name"
 msgstr "Аты-жөні"
 
-#, fuzzy
-#| msgctxt "/super/users/"
-#| msgid "Joined at"
 msgctxt "/package-manage/users/"
 msgid "Joined at"
 msgstr "Тіркелген уақыты"
 
-#, fuzzy
-#| msgctxt "/super/users/"
-#| msgid "Active?"
 msgctxt "/package-manage/users/"
 msgid "Active?"
 msgstr "Активті?"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Yes"
 msgctxt "/package-manage/users/"
 msgid "Yes"
 msgstr "Иә"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "No"
 msgctxt "/package-manage/users/"
 msgid "No"
 msgstr "Жоқ"
 
-#, fuzzy
-#| msgctxt "/super/tests/"
-#| msgid "There are no tests yet"
 msgctxt "/package-manage/users/"
 msgid "There are no students yet"
-msgstr "Тестілер жоқ"
+msgstr "қатысушулар жоқ"
 
 msgctxt "Badge label under avatar"
 msgid "Administrator"
@@ -1944,19 +1813,13 @@ msgctxt "Navigation link"
 msgid "Create Test"
 msgstr "Тестіні жүктеу"
 
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Create Package"
 msgctxt "Navigation link"
 msgid "Manage Package"
-msgstr "Пакет жасау"
+msgstr ""
 
-#, fuzzy
-#| msgctxt "Page title"
-#| msgid "Create Package"
 msgctxt "Navigation link"
 msgid "Manage Packages"
-msgstr "Пакет жасау"
+msgstr ""
 
 msgctxt "Navigation link"
 msgid "Public Offer"
@@ -1973,8 +1836,6 @@ msgctxt "Page title"
 msgid "Choose the test domain"
 msgstr "Тестіні таңдаңыз"
 
-#, fuzzy
-#| msgid "Klass_4_ru"
 msgid "klass_4_ru"
 msgstr "4 Сынып Орыс бөліми"
 
@@ -1982,18 +1843,12 @@ msgstr "4 Сынып Орыс бөліми"
 msgid "page:/:test_domain_full_name:%(domain_name)s"
 msgstr "%(domain_name)s"
 
-#, fuzzy
-#| msgid "Klass_9_ru"
 msgid "klass_9_ru"
 msgstr "9 Сынып Орыс бөліми"
 
-#, fuzzy
-#| msgid "Klass_4_kz"
 msgid "klass_4_kz"
 msgstr "4 Сынып Қазақ бөліми"
 
-#, fuzzy
-#| msgid "Klass_9_kz"
 msgid "klass_9_kz"
 msgstr "9 Сынып Қазақ бөліми"
 
@@ -2584,16 +2439,10 @@ msgctxt "/developer/"
 msgid "Preview"
 msgstr "Алдын ала көру"
 
-#, fuzzy
-#| msgctxt "Test status"
-#| msgid "Draft"
 msgctxt "/developer/"
 msgid "ReDraft"
-msgstr "Шимай нұсқасы"
+msgstr "На доработку"
 
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "Approve"
 msgctxt "/developer/"
 msgid "ReApprove"
 msgstr "Келісу"
@@ -2622,9 +2471,6 @@ msgctxt "/expert/dashboard/"
 msgid "Variant"
 msgstr "Нұсқа"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Status"
 msgctxt "/expert/dashboard/"
 msgid "Status"
 msgstr "Статус"
@@ -2641,97 +2487,58 @@ msgctxt "/expert/dashboard/"
 msgid "Edit"
 msgstr "Өзгерту"
 
-#, fuzzy
-#| msgctxt "Developer tools"
-#| msgid "Approve"
 msgctxt "/expert/"
 msgid "ReApprove"
 msgstr "Келісу"
 
-#, fuzzy
-#| msgctxt "Test status"
-#| msgid "Draft"
 msgctxt "/expert/"
 msgid "ReDraft"
-msgstr "Шимай нұсқасы"
+msgstr "На доработку"
 
 msgctxt "/expert/dashboard/"
 msgid "There are no tests yet"
 msgstr "Тестілер жоқ"
 
-#, fuzzy
-#| msgctxt "Badge label under avatar"
-#| msgid "Developer"
 msgctxt "/admin/dashboard/"
 msgid "Developer"
 msgstr "Құрастырушы"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Domain"
 msgctxt "/admin/dashboard/"
 msgid "Domain"
 msgstr "Тестілеу"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Section"
 msgctxt "/admin/dashboard/"
 msgid "Section"
 msgstr "Пән"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Language"
 msgctxt "/admin/dashboard/"
 msgid "Language"
 msgstr "Тіл"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Variant"
 msgctxt "/admin/dashboard/"
 msgid "Variant"
 msgstr "Нұсқа"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Status"
 msgctxt "/admin/dashboard/"
 msgid "Status"
 msgstr "Статус"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Actions"
 msgctxt "/admin/dashboard/"
 msgid "Actions"
 msgstr "Әрекеттер"
 
-#, fuzzy
-#| msgctxt "Test status"
-#| msgid "Draft"
 msgctxt "/admin/dashboard/"
 msgid "ReDraft"
 msgstr "Шимай нұсқасы"
 
-#, fuzzy
-#| msgctxt "/super/users/"
-#| msgid "Active?"
 msgctxt "/admin/dashboard/"
 msgid "Activate"
 msgstr "Активті?"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "active?"
 msgctxt "/admin/dashboard/"
 msgid "Deactivate"
 msgstr "активті?"
 
-#, fuzzy
-#| msgctxt "/super/tests/"
-#| msgid "There are no tests yet"
 msgctxt "/admin/dashboard/"
 msgid "There are no tests yet"
 msgstr "Тестілер жоқ"
@@ -2954,23 +2761,14 @@ msgctxt "Developer tools"
 msgid "Skip test checks!"
 msgstr "Тест тексерісін ескермеу!"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Are you sure?"
 msgctxt "Admin tools"
 msgid "Are you sure?"
 msgstr "Сенімдісіз бе?"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "Yes"
 msgctxt "Admin tools"
 msgid "Yes"
 msgstr "Иә"
 
-#, fuzzy
-#| msgctxt "/developer/"
-#| msgid "No"
 msgctxt "Admin tools"
 msgid "No"
 msgstr "Жоқ"
@@ -3015,19 +2813,13 @@ msgctxt "Developer tools"
 msgid "Send for Approval"
 msgstr "Келісуге жіберу"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "active?"
 msgctxt "Admin tools"
 msgid "Deactivate"
-msgstr "активті?"
+msgstr "деактивтеу"
 
-#, fuzzy
-#| msgctxt "/super/users/"
-#| msgid "Active?"
 msgctxt "Admin tools"
 msgid "Activate"
-msgstr "Активті?"
+msgstr "активтеу"
 
 msgctxt "Success alert message"
 msgid ""
@@ -3044,19 +2836,13 @@ msgctxt "Success alert message"
 msgid "You have created a new Test."
 msgstr "Сіз жаңа тест жасадыңыз."
 
-#, fuzzy
-#| msgctxt "Success alert message"
-#| msgid "Test is now free."
 msgctxt "Success alert message"
 msgid "Test is removed from package."
 msgstr "Тест ақысыз болып өзгертілді."
 
-#, fuzzy
-#| msgctxt "Validation error"
-#| msgid "Payment type is invalid."
 msgctxt "Success alert message"
 msgid "Package is finalized."
-msgstr "Төлем түрі дұрыс емес."
+msgstr "Пакет Біткен."
 
 msgctxt "/student/"
 msgid "Test Domain 1"
@@ -3169,33 +2955,21 @@ msgctxt "Success alert message"
 msgid "You have deleted the Test."
 msgstr "Тест алып тасталды."
 
-#, fuzzy
-#| msgctxt "Success alert message"
-#| msgid "Test is now paid."
 msgctxt "Success alert message"
 msgid "Test is now draft again."
-msgstr "Тест ақылы болып өзгертілді."
+msgstr ""
 
-#, fuzzy
-#| msgctxt "Success alert message"
-#| msgid "Test is now paid."
 msgctxt "Success alert message"
 msgid "Test is now approved again."
-msgstr "Тест ақылы болып өзгертілді."
+msgstr ""
 
-#, fuzzy
-#| msgctxt "Success alert message"
-#| msgid "Test is now free."
 msgctxt "Success alert message"
 msgid "Test is active now."
-msgstr "Тест ақысыз болып өзгертілді."
+msgstr ""
 
-#, fuzzy
-#| msgctxt "Item error"
-#| msgid "Test is required."
 msgctxt "Success alert message"
 msgid "Test is deactivated."
-msgstr "Тестілер қажет."
+msgstr ""
 
 msgctxt "Success alert message"
 msgid "Test is now free."
