@@ -671,10 +671,10 @@ msgid "Geography_9_ru"
 msgstr "География 9 Класс"
 
 msgid "Kazakh_4_kz"
-msgstr "Қазақ тілі 4 Сынып"
+msgstr "Оқылым 4 Сынып"
 
 msgid "Kazakh_9_kz"
-msgstr "Қазақ тілі 9 Сынып"
+msgstr "Оқылым 9 Сынып"
 
 msgid "Math_4_kz"
 msgstr "Математика 4 Сынып"
@@ -701,10 +701,10 @@ msgid "Physics_9_ru"
 msgstr "Физика 9 Класс"
 
 msgid "Russian_4_ru"
-msgstr "Русский Язык 4 Класс"
+msgstr "Чтение 4 Класс"
 
 msgid "Russian_9_ru"
-msgstr "Русский Язык 9 Класс"
+msgstr "Чтение 9 Класс"
 
 msgid "Klass_4_ru"
 msgstr "4 Сынып Орыс бөліми"
