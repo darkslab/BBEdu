@@ -208,7 +208,7 @@
                                     <td class="pr-15 text-center">
                                         <form action="{% url 'bbtest:build_toggle_student_group' package.code student_group.pk %}" method="post">
                                             {% csrf_token %}
-                                            <button type="submit" class="btn btn-primary btn-xs mr-5 mb-5">Toggle</button>
+                                            <button type="submit" class="btn btn-primary btn-xs mr-5 mb-5" {% if not package.finalized %}disabled{%endif%}>Toggle</button>
                                         </form>
                                     </td>
                                 </tr>
