@@ -247,7 +247,7 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
             gen_pass = "{:05}".format(randint(1, 99999))
             
             try:
-                student_obj = self.create_students(username, login_email, gen_pass, False)
+                student_obj = self.create_students(username, login_email, gen_pass, group_obj.is_active)
                 UserTestPackageProfile.objects.create(
                     student = student_obj,
                     student_group = group_obj,
