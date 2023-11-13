@@ -16,16 +16,17 @@ class Command(BaseCommand):
 
         result = []
 
-        for group_obj in group_set_obj:
+        for i, group_obj in enumerate(group_set_obj):
 
 
-            for student_test_profile in group_obj.students.all():
+            for j, student_test_profile in enumerate(group_obj.students.all()):
+                print(i, j, " "*20, end="\r")
                 student = student_test_profile.student
                 quiz_set_list = student.quiz_sets.all()
 
                 if len(quiz_set_list) != 1:
                     continue
-                print(quiz_set_list)
+                # print(quiz_set_list)
                 for quiz in quiz_set_list[0].quizzes.all():
                     test = quiz.test
 
@@ -38,8 +39,11 @@ class Command(BaseCommand):
 
 
                     row = [student.username, group_obj.name, test.section.name] + answers
-                    result.append(",".join(row))
+                    result.append(";".join(row))
 
-            
-        pprint(result)
+
+        with open("answers.csv", "w") as f:
+            f.write("\n".join(result)) 
+
+        # print(result)
         
