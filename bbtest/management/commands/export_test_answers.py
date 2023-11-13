@@ -37,13 +37,13 @@ class Command(BaseCommand):
                         else:
                             answers.append(str(ans))
 
-
-                    row = [student.username, group_obj.name, test.section.name] + answers
+                    started_at = str(quiz.started_at.strftime("%Y.%m.%d %H:%M:%S")) if quiz.started_at else ""
+                    row = [student.username, group_obj.name, test.section.name, started_at] + answers
                     result.append(";".join(row))
 
-
+        res = "\n".join(result)
         with open("answers.csv", "w") as f:
-            f.write("\n".join(result)) 
+            f.write(res) 
 
-        # print(result)
+        # print(res)
         
