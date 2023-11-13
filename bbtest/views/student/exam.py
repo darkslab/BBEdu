@@ -160,13 +160,13 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
             })
 
         try:
-            answer_list = self.current_quiz().get_answers_ids()
-            if None in answer_list:
-                now_at = now()
-                indices_of_none = [str(index + 1) for index, value in enumerate(answer_list) if value is None]
+            # answer_list = self.current_quiz().get_answers_ids()
+            # if None in answer_list:
+            #     now_at = now()
+            #     indices_of_none = [str(index + 1) for index, value in enumerate(answer_list) if value is None]
 
-                warning(request, pgettext("Student finish exam", "Вы не ответили на вопрос: ") + ", ".join(indices_of_none) )
-                return TightJsonResponse(self.started_response(now_at, reload=True))
+            #     warning(request, pgettext("Student finish exam", "Вы не ответили на вопрос: ") + ", ".join(indices_of_none) )
+            #     return TightJsonResponse(self.started_response(now_at, reload=True))
 
             with atomic(savepoint=False):
                 self.quiz_set().save()
