@@ -433,6 +433,9 @@ class StudentGroup(Model):
     class Meta:
         default_permissions = ()
         # unique_together = ('name', 'package')
+    
+    def __str__(self):
+        return "{}|{}|{}|{}".format(self.package.pk, self.name, self.student_count, self.is_active)
 
 
 class TestPackageRelation(Model):

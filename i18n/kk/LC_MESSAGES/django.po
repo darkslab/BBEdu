@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 11:59+0600\n"
+"POT-Creation-Date: 2023-11-14 23:25+0600\n"
 "PO-Revision-Date: 2021-05-07 08:13-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1145,9 +1145,6 @@ msgctxt "Model field"
 msgid "package name"
 msgstr ""
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "agreement code"
 msgctxt "Model field"
 msgid "package code"
 msgstr ""
@@ -1903,7 +1900,7 @@ msgstr "Бағасы:"
 
 msgctxt "/student/select-tests/xxxx/"
 msgid "Buy tests"
-msgstr "Тестіні бастау"
+msgstr "Бөлімі бастау"
 
 msgctxt "/student/select-tests/xxxx/"
 msgid "Buy credits"
@@ -1913,13 +1910,25 @@ msgctxt "/student/select-tests/xxxx/"
 msgid "Choose different test domain"
 msgstr "Басқа тестіні таңдау"
 
+msgctxt "Exam page"
+msgid "Начните Тестирование"
+msgstr "Тестілеуді бастаңыз"
+
+msgctxt "Exam page"
+msgid "Перейти к экзамену"
+msgstr "Емтиханға өту"
+
+msgctxt "Exam page"
+msgid "Тестирование закончено"
+msgstr "Тестілеу аяқталды"
+
 msgctxt "Exam"
 msgid "There was an error, please reload the page."
 msgstr "Қате! Бетті жаңартыңыз."
 
 msgctxt "Exam"
 msgid "Start the test"
-msgstr "Тестіні бастау"
+msgstr "Бөлімі бастау"
 
 msgctxt "Exam"
 msgid "Skip the test"
@@ -1927,7 +1936,7 @@ msgstr "Тестіні өткізу"
 
 msgctxt "Exam"
 msgid "End the test"
-msgstr "Тест бөлімі аяқтау"
+msgstr "Тест бөлімін аяқтау"
 
 msgctxt "Exam"
 msgid "Continue"
