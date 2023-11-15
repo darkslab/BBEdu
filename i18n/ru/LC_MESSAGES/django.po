@@ -1917,7 +1917,7 @@ msgstr "Перейти к экзамену"
 
 msgctxt "Exam page"
 msgid "Тестирование закончено"
-msgstr "Начните Тестирование"
+msgstr "Тестирование закончено"
 
 msgctxt "Exam"
 msgid "There was an error, please reload the page."
