@@ -695,16 +695,16 @@ msgid "Russian_9_ru"
 msgstr "Чтение 9 Класс"
 
 msgid "Klass_4_ru"
-msgstr "4 Сынып Орыс бөліми"
+msgstr "4 Сынып Орыс бөлімі"
 
 msgid "Klass_9_ru"
-msgstr "9 Сынып Орыс бөліми"
+msgstr "9 Сынып Орыс бөлімі"
 
 msgid "Klass_4_kz"
-msgstr "4 Сынып Қазақ бөліми"
+msgstr "4 Сынып Қазақ бөлімі"
 
 msgid "Klass_9_kz"
-msgstr "9 Сынып Қазақ бөліми"
+msgstr "9 Сынып Қазақ бөлімі"
 
 msgid "Questionnaire-A_4_kz"
 msgstr "Анкетирование А"
@@ -1834,20 +1834,20 @@ msgid "Choose the test domain"
 msgstr "Тестіні таңдаңыз"
 
 msgid "klass_4_ru"
-msgstr "4 Сынып Орыс бөліми"
+msgstr "4 Сынып Орыс бөлімі"
 
 #, python-format
 msgid "page:/:test_domain_full_name:%(domain_name)s"
 msgstr "%(domain_name)s"
 
 msgid "klass_9_ru"
-msgstr "9 Сынып Орыс бөліми"
+msgstr "9 Сынып Орыс бөлімі"
 
 msgid "klass_4_kz"
-msgstr "4 Сынып Қазақ бөліми"
+msgstr "4 Сынып Қазақ бөлімі"
 
 msgid "klass_9_kz"
-msgstr "9 Сынып Қазақ бөліми"
+msgstr "9 Сынып Қазақ бөлімі"
 
 #, python-format
 msgctxt "Page title"
