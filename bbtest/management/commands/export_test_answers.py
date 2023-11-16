@@ -17,7 +17,13 @@ class Command(BaseCommand):
         result = []
 
         for i, group_obj in enumerate(group_set_obj):
-            # domain_obj = group_obj.package.domain
+            domain_obj = group_obj.package.domain
+
+            # if domain_obj.name not in ["Klass_4_ru", "Klass_4_kz"]:
+            #     continue
+
+            if domain_obj.name not in ["Klass_9_ru", "Klass_9_kz"]:
+                continue
 
             for j, student_test_profile in enumerate(group_obj.students.order_by("student__username").all()):
                 print(i, j, " "*20, end="\r")
@@ -44,8 +50,8 @@ class Command(BaseCommand):
                 result.append(";".join(row))
 
         res = "\n".join(result)
-        # with open("answers.csv", "w") as f:
-        #     f.write(res) 
+        with open("answers.csv", "w") as f:
+            f.write(res) 
 
-        print(res)
+        # print(res)
         
