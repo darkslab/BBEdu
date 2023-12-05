@@ -167,7 +167,7 @@ class Quiz(Model):
                 try:
                     ans = ans_meta.get("answer", {})
                     if "correct_id" in ans:
-                        ret.append(ans["correct_id"] + 1)
+                        ret.append(ans["correct_id"])
                     elif "correct_ids" in ans:
                         ret.append(ans["correct_ids"])
                     else:
