@@ -139,3 +139,13 @@ class ExportDataForm(Form):
     end_date = DateField(label="End Date", 
                          error_messages={"required": "Specify start date."}, 
                          initial=datetime.datetime.now())
+    
+
+
+class ChangeUserPassManualForm(Form):
+    pass1 = CharField(label="Password", 
+        error_messages={"required": "Reset password" }, 
+        max_length=30)
+    pass2 = CharField(label="Password Repeat", 
+        error_messages={"required": "Reset password." }, 
+        max_length=30)
