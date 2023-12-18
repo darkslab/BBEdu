@@ -76,6 +76,7 @@ from .views.super import (
     UserView                      as SuperUserView,
     ImpersonateUserView           as SuperImpersonateUserView,
     GiveCreditsUserView           as SuperGiveCreditsUserView,
+    ChangePassManualView          as SuperChangePassManualView,
     QuizzesView                   as SuperQuizzesView,
     TrialBalanceView              as SuperTrialBalanceView,
     CreateStudentsView            as SuperCreateStudentsView,
@@ -173,12 +174,14 @@ urlpatterns = [
     url(r"^super/users/(?P<user_id>[0-9]+)/$",              SuperUserView.as_view(),                     name="super_user"                      ),
     url(r"^super/users/(?P<user_id>[0-9]+)/impersonate/$",  SuperImpersonateUserView.as_view(),          name="super_impersonate_user"          ),
     url(r"^super/users/(?P<user_id>[0-9]+)/give-credits/$", SuperGiveCreditsUserView.as_view(),          name="super_give_credits_user"         ),
+    url(r"^super/users/(?P<user_id>[0-9]+)/change-pass-manual/$",   SuperChangePassManualView.as_view(),         name="super_change_pass_manual"        ),
     url(r"^super/quizzes/$",                                SuperQuizzesView.as_view(),                  name="super_quizzes"                   ),
     url(r"^super/trial-balance/$",                          SuperTrialBalanceView.as_view(),             name="super_trial_balance"             ),
     url(r"^super/create-students/$",                        SuperCreateStudentsView.as_view(),           name="super_create_students"           ),
     url(r"^super/create-students/create-form/$",            SuperCreateStudentsFormView.as_view(),       name="super_create_students_form"      ),
     url(r"^super/export-data/$",                            SuperExportDataView.as_view(),               name="super_export_data"               ),
     url(r"^super/export-data/export-form/$",                SuperExportDataFormView.as_view(),           name="super_export_data_form"          ),
+    
     
 
     # SYSTEM URLS
