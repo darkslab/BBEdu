@@ -105,7 +105,7 @@
         <div class="bb-main  bb-grid" data-bb-main>
             <div class="bb-min container-fluid">
                 <div class="row bb-bar bb-bar-personalized">
-                    <nav class="navbar navbar-inverse">
+                    <nav class="navbar navbar-back">
                         <div class="container-fluid">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle mr-0" data-bb-bar-button>
@@ -125,9 +125,13 @@
                             </div>
                             <div class="navbar-collapse collapse" style="height: 1px;">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class="bb-bar-gravatar-container"><img class="img-responsive img-circle bb-bar-gravatar mt-10 mb-10 mr-5 ml-5" src="{{ user.gravatar_url|safe }}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}"></li>
-                                    <li class="dropdown">
-                                        <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">{{ user.get_full_name }} <span class="caret"></span></a>
+                                    <li class="bb-bar-gravatar-container"></li>
+                                    <li class="dropdown djHeight">
+                                        <a href="javascript: void(0);" class="dropdown-toggle djDrop" data-toggle="dropdown">
+                                            {% with iqanat_logo='img/iqanat_'|add:LANGUAGE_CODE|add:'.jpg' %}
+                                                        <img class="img-responsive img-circle bb-menu-gravatar" src="{% static iqanat_logo %}" alt="{{ user.get_full_name }}" title="{{ user.get_full_name }}">
+                                            {% endwith %}
+                                        {{ user.get_full_name }} {% if perms.bbtest.super %} (SuperUser) {% elif perms.bbtest.admin %}({% trans 'Administrator' context 'Badge label under avatar' %}){% elif perms.bbtest.developer %}({% trans 'Developer' context 'Badge label under avatar' %}){% elif perms.bbtest.expert %}({% trans 'Expert' context 'Badge label under avatar' %}){% endif %}<span class="caret"></span></a>
                                         <ul class="dropdown-menu dropdown-menu-right">
                                             <li><a href="{% url 'bbtest:settings' %}"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
                                             <li class="divider"></li>
