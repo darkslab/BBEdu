@@ -50,7 +50,7 @@
                         <input type="text" class="form-control" placeholder="{% trans 'page:/super/tests/:query' %}" name="q" value="{{ q }}">
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-default"  style="border-radius: 4px 0 0 4px" data-bb-submit>{% trans '_common.controls.super.search' %}</button>
-                            <a href="{{ request.path }}" class="btn btn-danger" data-bb-submit>{% trans '_common.controls.super.reset' %}</a>
+                            <a href="{{ request.path }}" class="btn btn-danger"  style="border-radius: 0 4px 4px 0" data-bb-submit>{% trans '_common.controls.super.reset' %}</a>
                         </div>
                     </div>
                 </div>
