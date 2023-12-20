@@ -300,7 +300,7 @@
                 {% if test.is_active %} 
                     <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-deactivate-modal]">{% trans 'Deactivate' context 'Admin tools' %}</button>
                 {% elif test.is_approved %} 
-                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-activate-modal]">{% trans 'Activate' context 'Admin tools' %}</button>
+                    <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-activate-modal]">{% trans 'Activate' context 'Admin tools' %}</button>
                 {% endif %}
                 <a href="{% url 'bbtest:dashboard' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% endif %}
