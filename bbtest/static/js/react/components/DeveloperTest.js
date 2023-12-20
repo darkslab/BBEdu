@@ -184,6 +184,11 @@ var DeveloperTest = /*#__PURE__*/function (_React$Component) {
         className: "col-xs-12 col-sm-6"
       }, /*#__PURE__*/React.createElement("button", {
         type: "button",
+        "class": "btn btn-info mr-5 mb-5",
+        "data-toggle": "modal",
+        "data-target": "[data-specification-modal]"
+      }, this.props.texts.testSpec), /*#__PURE__*/React.createElement("button", {
+        type: "button",
         disabled: this.state.isQuestionSaving,
         className: "btn btn-success mr-5 mb-5",
         onClick: this._saveAndExit.bind(this, this.props.dashboardUrl)

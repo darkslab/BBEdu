@@ -14,7 +14,7 @@ function PersonalizedTemplateModule() {
     Module.call(this);
 }
 PersonalizedTemplateModule.prototype._controlWindow = function() {
-    if ($(window).width() < 1200) {
+    if ($(window).width() < 1366) {
         if (this._$button.hasClass("bb-pushed")) {
             this._$container.removeClass("bb-overlayed");
             this._$container.removeClass("bb-min");
@@ -34,7 +34,7 @@ PersonalizedTemplateModule.prototype._controlWindow = function() {
     }
 }
 PersonalizedTemplateModule.prototype._normalizeScroll = function() {
-    if ($(window).width() < 1200 && this._$button.hasClass("bb-pushed")) {
+    if ($(window).width() < 1366 && this._$button.hasClass("bb-pushed")) {
         this._$container.animate({
             scrollTop: "0px"
         });
