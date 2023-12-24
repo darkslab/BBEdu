@@ -109,8 +109,9 @@ class CreatePackageForm(Form):
     name = CharField(
         label=pgettext("CreatePackageForm", "Login prefix"),
         error_messages={"required": "Package will be generated with this name."},
-        initial="",
-        empty_value="IAC_2024",
+        initial="IAC_2024",
+        # help_text="IAC_2024",
+        # empty_value="IAC_2024",
         min_length=1,
         max_length=100,
     )
@@ -127,7 +128,7 @@ class CreateStudentGroupForm(Form):
         label=pgettext("/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)", "Student Group name"),
         error_messages={"required": "Student Group will be created with this name."},
         # initial = "Test day n",
-        empty_value=pgettext("CreateStudentGroupForm", "Test day 001"),
+        # empty_value=pgettext("CreateStudentGroupForm", "Test day 001"),
         min_length=1,
         max_length=100,
     )
