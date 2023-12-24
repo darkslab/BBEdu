@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-14 23:25+0600\n"
+"POT-Creation-Date: 2023-12-24 17:32+0600\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1775,18 +1775,6 @@ msgctxt "/package-manage/users/"
 msgid "There are no students yet"
 msgstr "Нет студентов"
 
-msgctxt "Badge label under avatar"
-msgid "Administrator"
-msgstr "Администратор"
-
-msgctxt "Badge label under avatar"
-msgid "Developer"
-msgstr "Разработчик"
-
-msgctxt "Badge label under avatar"
-msgid "Expert"
-msgstr "Эксперт"
-
 msgctxt "Navigation link"
 msgid "All Tests"
 msgstr "Все Тесты"
@@ -1822,6 +1810,18 @@ msgstr "Публичная оферта"
 msgctxt "Navigation link"
 msgid "Settings"
 msgstr "Настройки"
+
+msgctxt "Badge label under avatar"
+msgid "Administrator"
+msgstr "Администратор"
+
+msgctxt "Badge label under avatar"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "Badge label under avatar"
+msgid "Expert"
+msgstr "Эксперт"
 
 msgid "page:/student/select-tests/xxxx/:checkout_shortcut"
 msgstr "Начать"
@@ -2320,13 +2320,13 @@ msgid "All Quizzes"
 msgstr "Все Пробные тесты"
 
 msgid "page:/super/quizzes/:query"
-msgstr "Seach by test code, first name, last name, email"
+msgstr "Введите данные для поиска"
 
 msgid "_common.controls.super.search"
-msgstr "Search"
+msgstr "Поиск"
 
 msgid "_common.controls.super.reset"
-msgstr "Reset"
+msgstr "Сбросить"
 
 msgctxt "/super/quizzes/"
 msgid "Student"
@@ -2397,7 +2397,7 @@ msgid "All Tests"
 msgstr "Все Тесты"
 
 msgid "page:/super/tests/:query"
-msgstr "Seach by test code, developer name, developer email"
+msgstr "Введите данные для поиска"
 
 msgctxt "/super/tests/"
 msgid "Developer"
