@@ -77,11 +77,13 @@ class CreateStudentsForm(Form):
 class CreatePackageForm(Form):
     name = CharField(label = pgettext("CreatePackageForm", "Login prefix"), 
         error_messages = {"required": "Package will be generated with this name." }, 
-        initial = "IAC_2023",
+        initial = "",
+        empty_value = "IAC_2024",
         min_length = 1,
         max_length = 100)
 
     domain = ModelChoiceField(
+        label = pgettext("CreatePackageForm", "Domain"),
         queryset = TestDomain.objects.all(),
         empty_label = pgettext("CreatePackageForm", "Select Test Domain")
     )
