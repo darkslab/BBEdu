@@ -124,7 +124,7 @@ class CreatePackageForm(Form):
 
 class CreateStudentGroupForm(Form):
     name = CharField(
-        label=pgettext("CreateStudentGroupForm", "Student Group name"),
+        label=pgettext("/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)", "Student Group name"),
         error_messages={"required": "Student Group will be created with this name."},
         # initial = "Test day n",
         empty_value=pgettext("CreateStudentGroupForm", "Test day 001"),
@@ -141,7 +141,7 @@ class CreateStudentGroupForm(Form):
 class ManagePackageStudentsForm(Form):
 
     amount = IntegerField(
-        label=pgettext("ManagePackageStudentsForm", "Amount"),
+        label=pgettext("/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)", "Amount"),
         initial=1,
         error_messages={
             "required": "Please provide an amount.",
@@ -154,7 +154,7 @@ class ManagePackageStudentsForm(Form):
     )
 
     prefix = CharField(
-        label=pgettext("ManagePackageStudentsForm", "Optional Prefix"),
+        label=pgettext("/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)", "Optional Prefix"),
         # error_messages={"required": "Student's email will be generated with this prefix."},
         max_length=30,
         required=False,
@@ -164,7 +164,10 @@ class ManagePackageStudentsForm(Form):
 
 class ManagePackageTestForm(Form):
     # This form field options are created later in runtime
-    test = ChoiceField(label="Select Test", choices=[])  # queryset=Test.objects.none()
+    test = ChoiceField(
+        label=pgettext("/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)", "Select Test") , 
+        choices=[]
+    )  # queryset=Test.objects.none()
 
     def __init__(self, *args, **kwargs):
         choices = kwargs.pop("choices", [])

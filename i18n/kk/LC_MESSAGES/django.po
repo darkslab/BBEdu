@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 18:04+0600\n"
+"POT-Creation-Date: 2023-12-24 20:57+0600\n"
 "PO-Revision-Date: 2021-05-07 08:13-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -461,9 +461,9 @@ msgctxt "CreatePackageForm"
 msgid "Select Test Domain"
 msgstr "Выберите параллель"
 
-msgctxt "CreateStudentGroupForm"
+msgctxt "/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)"
 msgid "Student Group name"
-msgstr ""
+msgstr "Название Группы пользователей"
 
 #, fuzzy
 #| msgctxt "/student/"
@@ -472,13 +472,17 @@ msgctxt "CreateStudentGroupForm"
 msgid "Test day 001"
 msgstr "Тест 1"
 
-msgctxt "ManagePackageStudentsForm"
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
 msgid "Amount"
-msgstr "Саны"
+msgstr "Количество"
 
-msgctxt "ManagePackageStudentsForm"
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
 msgid "Optional Prefix"
 msgstr ""
+
+msgctxt "/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)"
+msgid "Select Test"
+msgstr "Выберите тест"
 
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
@@ -1702,7 +1706,27 @@ msgctxt "/admin/create_package/"
 msgid "There are no packages yet"
 msgstr "Тест пакеттері жоқ"
 
+msgctxt "Page title"
+msgid "Manage Package"
+msgstr "Управление Пакетом"
+
 msgctxt "/package-manage/manage-package/"
+msgid "Package"
+msgstr "Пакет"
+
+msgctxt "/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)"
+msgid "Add Tests to package"
+msgstr "Добавить Тесты в пакет"
+
+msgctxt "/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)"
+msgid "Add test to package"
+msgstr "Добавить Тест в пакет"
+
+msgctxt "/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)"
+msgid "Create student group"
+msgstr "Создать группу пользователей"
+
+msgctxt "/build/packages/PACKAGE_CODE/"
 msgid "Package"
 msgstr "Пакет"
 
@@ -1730,6 +1754,10 @@ msgctxt "/package-manage/"
 msgid "There are no tests yet"
 msgstr "Тестілер жоқ"
 
+msgctxt "/build/packages/PACKAGE_CODE/"
+msgid "Student Groups"
+msgstr "қатысушулар тобы"
+
 msgctxt "/package-manage/student-group/"
 msgid "Name"
 msgstr "Аты-жөні"
@@ -1754,6 +1782,14 @@ msgctxt "/package-manage/student-group/"
 msgid "No"
 msgstr "Жоқ"
 
+msgctxt "/build/packages/PACKAGE_CODE/"
+msgid "Toggle"
+msgstr "Открыть доступ"
+
+msgctxt "/build/packages/PACKAGE_CODE/"
+msgid "Untoggle"
+msgstr "Закрыть доступ"
+
 msgctxt "/package-manage/student-group/"
 msgid "There are no student groups yet"
 msgstr "тобы жоқ"
@@ -1769,6 +1805,18 @@ msgstr "Пакет"
 msgctxt "/package-manage/student-group/"
 msgid "Student Group"
 msgstr "қатысушулар тобы"
+
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
+msgid "Create Students"
+msgstr "Создать пользователей"
+
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
+msgid "Add users (Перезагрузите страницу после)"
+msgstr "Добавить пользователей"
+
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER"
+msgid "Students"
+msgstr "Пользователи"
 
 msgctxt "/package-manage/users/"
 msgid "Name"

@@ -29,7 +29,7 @@
         <div class="col-xs-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Create Students</h4>
+                    <h4 class="panel-title">{% trans 'Create Students' context '/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)' %} </h4>
                 </div>
                 <div class="panel-body">
                     <form method="post" action="{% url 'bbtest:build_package_add_students' package.code student_group.pk %}" class="mt-15" data-bb-form data-create-package-form >
@@ -43,7 +43,7 @@
                         {% endfor %}
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-success btn-block">Add students (Перезагрузите страницу после)</button>
+                            <button type="submit" class="btn btn-sm btn-success btn-block">{% trans 'Add users (Перезагрузите страницу после)' context '/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)' %}</button>
                         </div>
                     </form>
                 </div>
@@ -56,7 +56,7 @@
         <div class="col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Students&nbsp;</h4>
+                    <h4 class="panel-title">{% trans 'Students' context '/build/packages/PACKAGE_CODE/GROUP_NUMBER' %}</h4>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-pressed">
