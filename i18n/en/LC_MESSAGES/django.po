@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-14 23:25+0600\n"
+"POT-Creation-Date: 2023-12-24 20:57+0600\n"
 "PO-Revision-Date: 2021-05-02 14:46-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -457,6 +457,10 @@ msgctxt "CreatePackageForm"
 msgid "Login prefix"
 msgstr ""
 
+msgctxt "CreatePackageForm"
+msgid "Domain"
+msgstr "Domain"
+
 #, fuzzy
 #| msgctxt "/student/"
 #| msgid "Test Domain 1"
@@ -464,9 +468,12 @@ msgctxt "CreatePackageForm"
 msgid "Select Test Domain"
 msgstr "Test Domain 1"
 
-msgctxt "CreateStudentGroupForm"
+#, fuzzy
+#| msgctxt "Form label"
+#| msgid "Student"
+msgctxt "/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)"
 msgid "Student Group name"
-msgstr ""
+msgstr "Student"
 
 #, fuzzy
 #| msgctxt "/student/"
@@ -478,13 +485,20 @@ msgstr "Test Domain 1"
 #, fuzzy
 #| msgctxt "Form label"
 #| msgid "Amount"
-msgctxt "ManagePackageStudentsForm"
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
 msgid "Amount"
 msgstr "Amount"
 
-msgctxt "ManagePackageStudentsForm"
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
 msgid "Optional Prefix"
 msgstr ""
+
+#, fuzzy
+#| msgctxt "/student/"
+#| msgid "Test Domain 1"
+msgctxt "/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)"
+msgid "Select Test"
+msgstr "Test Domain 1"
 
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
@@ -1711,6 +1725,18 @@ msgctxt "/admin/create_package/"
 msgid "No"
 msgstr "No"
 
+msgctxt "/staff/create_package/"
+msgid "Create Packages"
+msgstr "Create Packages"
+
+msgctxt "/staff/create_package/"
+msgid "Create"
+msgstr "Create"
+
+msgctxt "/staff/create_package/"
+msgid "Packages List"
+msgstr "Packages List"
+
 #, fuzzy
 #| msgctxt "/super/users/"
 #| msgid "Name"
@@ -1757,7 +1783,39 @@ msgstr "There are no tests yet"
 #, fuzzy
 #| msgctxt "Navigation link"
 #| msgid "Create Test"
+msgctxt "Page title"
+msgid "Manage Package"
+msgstr "Create Test"
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Create Test"
 msgctxt "/package-manage/manage-package/"
+msgid "Package"
+msgstr "Create Test"
+
+#, fuzzy
+#| msgctxt "Success alert message"
+#| msgid "Test is now free."
+msgctxt "/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)"
+msgid "Add Tests to package"
+msgstr "Test is now free."
+
+msgctxt "/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)"
+msgid "Add test to package"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/super/"
+#| msgid "Students"
+msgctxt "/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)"
+msgid "Create student group"
+msgstr "Students"
+
+#, fuzzy
+#| msgctxt "Navigation link"
+#| msgid "Create Test"
+msgctxt "/build/packages/PACKAGE_CODE/"
 msgid "Package"
 msgstr "Create Test"
 
@@ -1804,6 +1862,13 @@ msgid "There are no tests yet"
 msgstr "There are no tests yet"
 
 #, fuzzy
+#| msgctxt "Form label"
+#| msgid "Student"
+msgctxt "/build/packages/PACKAGE_CODE/"
+msgid "Student Groups"
+msgstr "Student"
+
+#, fuzzy
 #| msgctxt "/super/users/"
 #| msgid "Name"
 msgctxt "/package-manage/student-group/"
@@ -1842,6 +1907,14 @@ msgctxt "/package-manage/student-group/"
 msgid "No"
 msgstr "No"
 
+msgctxt "/build/packages/PACKAGE_CODE/"
+msgid "Toggle"
+msgstr ""
+
+msgctxt "/build/packages/PACKAGE_CODE/"
+msgid "Untoggle"
+msgstr ""
+
 #, fuzzy
 #| msgctxt "/super/tests/"
 #| msgid "There are no tests yet"
@@ -1866,6 +1939,24 @@ msgstr "Create Test"
 msgctxt "/package-manage/student-group/"
 msgid "Student Group"
 msgstr "Student"
+
+#, fuzzy
+#| msgctxt "/super/"
+#| msgid "Students"
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
+msgid "Create Students"
+msgstr "Students"
+
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
+msgid "Add users (Перезагрузите страницу после)"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "/super/"
+#| msgid "Students"
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER"
+msgid "Students"
+msgstr "Students"
 
 #, fuzzy
 #| msgctxt "/super/users/"
@@ -1909,21 +2000,6 @@ msgctxt "/package-manage/users/"
 msgid "There are no students yet"
 msgstr "There are no tests yet"
 
-msgctxt "Badge label under avatar"
-msgid "Administrator"
-msgstr "Administrator"
-
-msgctxt "Badge label under avatar"
-msgid "Developer"
-msgstr "Developer"
-
-#, fuzzy
-#| msgctxt "Account type"
-#| msgid "Expense"
-msgctxt "Badge label under avatar"
-msgid "Expert"
-msgstr "Expense"
-
 msgctxt "Navigation link"
 msgid "All Tests"
 msgstr "All Tests"
@@ -1965,6 +2041,18 @@ msgstr "Public Offer"
 msgctxt "Navigation link"
 msgid "Settings"
 msgstr "Settings"
+
+msgctxt "Badge label under avatar"
+msgid "Administrator"
+msgstr "Administrator"
+
+msgctxt "Badge label under avatar"
+msgid "Developer"
+msgstr "Developer"
+
+msgctxt "Badge label under avatar"
+msgid "Expert"
+msgstr "Expense"
 
 msgid "page:/student/select-tests/xxxx/:checkout_shortcut"
 msgstr "Start"

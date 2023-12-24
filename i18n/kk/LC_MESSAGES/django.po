@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-14 23:25+0600\n"
+"POT-Creation-Date: 2023-12-24 20:57+0600\n"
 "PO-Revision-Date: 2021-05-07 08:13-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -454,12 +454,16 @@ msgid "Login prefix"
 msgstr "Уникальное название пакета"
 
 msgctxt "CreatePackageForm"
+msgid "Domain"
+msgstr "Параллель"
+
+msgctxt "CreatePackageForm"
 msgid "Select Test Domain"
 msgstr "Выберите параллель"
 
-msgctxt "CreateStudentGroupForm"
+msgctxt "/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)"
 msgid "Student Group name"
-msgstr ""
+msgstr "Название Группы пользователей"
 
 #, fuzzy
 #| msgctxt "/student/"
@@ -468,13 +472,17 @@ msgctxt "CreateStudentGroupForm"
 msgid "Test day 001"
 msgstr "Тест 1"
 
-msgctxt "ManagePackageStudentsForm"
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
 msgid "Amount"
-msgstr "Саны"
+msgstr "Количество"
 
-msgctxt "ManagePackageStudentsForm"
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
 msgid "Optional Prefix"
 msgstr ""
+
+msgctxt "/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)"
+msgid "Select Test"
+msgstr "Выберите тест"
 
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
@@ -1658,6 +1666,18 @@ msgctxt "/admin/create_package/"
 msgid "No"
 msgstr "Жоқ"
 
+msgctxt "/staff/create_package/"
+msgid "Create Packages"
+msgstr "Создать тестовый пакет"
+
+msgctxt "/staff/create_package/"
+msgid "Create"
+msgstr "Создать"
+
+msgctxt "/staff/create_package/"
+msgid "Packages List"
+msgstr "Список пакетов"
+
 msgctxt "/admin/create_package/"
 msgid "Name"
 msgstr "Аты-жөні"
@@ -1686,7 +1706,27 @@ msgctxt "/admin/create_package/"
 msgid "There are no packages yet"
 msgstr "Тест пакеттері жоқ"
 
+msgctxt "Page title"
+msgid "Manage Package"
+msgstr "Управление Пакетом"
+
 msgctxt "/package-manage/manage-package/"
+msgid "Package"
+msgstr "Пакет"
+
+msgctxt "/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)"
+msgid "Add Tests to package"
+msgstr "Добавить Тесты в пакет"
+
+msgctxt "/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)"
+msgid "Add test to package"
+msgstr "Добавить Тест в пакет"
+
+msgctxt "/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)"
+msgid "Create student group"
+msgstr "Создать группу пользователей"
+
+msgctxt "/build/packages/PACKAGE_CODE/"
 msgid "Package"
 msgstr "Пакет"
 
@@ -1714,6 +1754,10 @@ msgctxt "/package-manage/"
 msgid "There are no tests yet"
 msgstr "Тестілер жоқ"
 
+msgctxt "/build/packages/PACKAGE_CODE/"
+msgid "Student Groups"
+msgstr "қатысушулар тобы"
+
 msgctxt "/package-manage/student-group/"
 msgid "Name"
 msgstr "Аты-жөні"
@@ -1738,6 +1782,14 @@ msgctxt "/package-manage/student-group/"
 msgid "No"
 msgstr "Жоқ"
 
+msgctxt "/build/packages/PACKAGE_CODE/"
+msgid "Toggle"
+msgstr "Открыть доступ"
+
+msgctxt "/build/packages/PACKAGE_CODE/"
+msgid "Untoggle"
+msgstr "Закрыть доступ"
+
 msgctxt "/package-manage/student-group/"
 msgid "There are no student groups yet"
 msgstr "тобы жоқ"
@@ -1753,6 +1805,18 @@ msgstr "Пакет"
 msgctxt "/package-manage/student-group/"
 msgid "Student Group"
 msgstr "қатысушулар тобы"
+
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
+msgid "Create Students"
+msgstr "Создать пользователей"
+
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
+msgid "Add users (Перезагрузите страницу после)"
+msgstr "Добавить пользователей"
+
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER"
+msgid "Students"
+msgstr "Пользователи"
 
 msgctxt "/package-manage/users/"
 msgid "Name"
@@ -1777,18 +1841,6 @@ msgstr "Жоқ"
 msgctxt "/package-manage/users/"
 msgid "There are no students yet"
 msgstr "қатысушулар жоқ"
-
-msgctxt "Badge label under avatar"
-msgid "Administrator"
-msgstr "Администратор"
-
-msgctxt "Badge label under avatar"
-msgid "Developer"
-msgstr "Құрастырушы"
-
-msgctxt "Badge label under avatar"
-msgid "Expert"
-msgstr "Эксперт"
 
 msgctxt "Navigation link"
 msgid "All Tests"
@@ -1825,6 +1877,18 @@ msgstr "Жария офертасы"
 msgctxt "Navigation link"
 msgid "Settings"
 msgstr "Құрылғылар"
+
+msgctxt "Badge label under avatar"
+msgid "Administrator"
+msgstr "Администратор"
+
+msgctxt "Badge label under avatar"
+msgid "Developer"
+msgstr "Құрастырушы"
+
+msgctxt "Badge label under avatar"
+msgid "Expert"
+msgstr "Эксперт"
 
 msgid "page:/student/select-tests/xxxx/:checkout_shortcut"
 msgstr "Бастау"
@@ -2319,13 +2383,13 @@ msgid "All Quizzes"
 msgstr "Барлық тестілер"
 
 msgid "page:/super/quizzes/:query"
-msgstr "Seach by test code, first name, last name, email"
+msgstr "Введите данные для поиска"
 
 msgid "_common.controls.super.search"
-msgstr "Search"
+msgstr "Поиск"
 
 msgid "_common.controls.super.reset"
-msgstr "Reset"
+msgstr "Сбросить"
 
 msgctxt "/super/quizzes/"
 msgid "Student"
@@ -2394,7 +2458,7 @@ msgid "All Tests"
 msgstr "Барлық тестілер"
 
 msgid "page:/super/tests/:query"
-msgstr "Seach by test code, developer name, developer email"
+msgstr "Введите данные для поиска"
 
 msgctxt "/super/tests/"
 msgid "Developer"
