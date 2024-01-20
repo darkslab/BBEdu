@@ -60,7 +60,7 @@ def get_test_for_preview_or_404(request, code):
     )
 
 def get_test_for_check_or_404(request, code):
-    if request.user.has_perm("bbtest.super"):
+    if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
         tests = Test.worked_tests
     else:
         tests = request.user.tests(manager="in_development_tests")

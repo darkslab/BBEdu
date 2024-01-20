@@ -779,6 +779,8 @@ class TestSendForm(ModelForm):
 
 class TestCheckForm(ModelForm):
     error_messages = {
+        "answer_missing_class":         pgettext_lazy("Validation error", "No answer specified for question №%(number)s."),
+        "answer_text_missing_class":    pgettext_lazy("Validation error", "Text is missing for some answers in question №%(number)s."),
         "nis_answer_class":             pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
         "unt_compulsory_answer_class":  pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
         "unt_profile_answer_class":     pgettext_lazy("Validation error", "There should be 20 answers of type Multichoice with one answer and 10 answers of type Multichoice with one or more answers."),
@@ -832,9 +834,11 @@ class TestCheckForm(ModelForm):
         return self.instance
 
     def clean(self):
-        questions_queryset = self.instance.questions.select_related("taxonomy", "topic")
-        if self.instance.section.is_nis():
-            self.__clean_dummy(questions_queryset)
+        questions_queryset = self.instance.questions.order_by("order").select_related("taxonomy", "topic")
+        self.__clean_missing_answers(questions_queryset)
+
+        # if self.instance.section.is_nis():
+            # self.__clean_dummy(questions_queryset)
 
             # if self.instance.section.pk == 9540:
             #     self.__clean_nis_mathematics(questions_queryset)
@@ -854,6 +858,62 @@ class TestCheckForm(ModelForm):
 
     def __clean_dummy(self, questions_queryset):
         pass
+
+    def __clean_missing_answers(self, questions_queryset):
+        questions_queryset = questions_queryset.all()
+
+        for question in questions_queryset:
+            
+            if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+
+                correct_id = question.meta_data.get("correct_id", None)
+                if correct_id is None:
+                    self.add_error(None, ValidationError(
+                        self.error_messages["answer_missing_class"],
+                        code="incomplete",
+                        params={ "number": question.order + 1 },
+                    ))
+                # print(question.order, correct_id)
+
+                choices = question.meta_data.get("choices", list)
+                for choice in choices:
+                    choice_text = choice.get("meta_data", dict).get("text", "")
+                    if len(choice_text) == 0:
+                        self.add_error(None, ValidationError(
+                            self.error_messages["answer_text_missing_class"],
+                            code="incomplete",
+                            params={ "number": question.order + 1 },
+                        ))
+                        break
+                
+            if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
+                correct_ids = question.meta_data.get("correct_ids", None)
+
+
+                if correct_ids is None or not isinstance(correct_ids, list) or len(correct_ids) == 0:
+                    self.add_error(None, ValidationError(
+                        self.error_messages["answer_missing_class"],
+                        code="incomplete",
+                        params={ "number": question.order + 1 },
+                    ))
+
+                choices = question.meta_data.get("choices", list)
+                for choice in choices:
+                    choice_text = choice.get("meta_data", dict).get("text", "")
+                    if len(choice_text) == 0:
+                        self.add_error(None, ValidationError(
+                            self.error_messages["answer_text_missing_class"],
+                            code="incomplete",
+                            params={ "number": question.order + 1 },
+                        ))
+                        break
+
+        
+        # """
+        # {"correct_id":2,"choices":[{"id":1,"meta_data":{"text":"df"},"choice_class":"MultichoiceTextChoice"},{"id":2,"meta_data":{"text":"fdf"},"choice_class":"MultichoiceTextChoice"},{"id":3,"meta_data":{"text":"df"},"choice_class":"MultichoiceTextChoice"},{"id":4,"meta_data":{"text":"dfgsf"},"choice_class":"MultichoiceTextChoice"}]}
+        # {"choices":[{"meta_data":{"text":"aa"},"choice_class":"MultichoiceTextChoice","id":6728},{"meta_data":{"text":"ss"},"choice_class":"MultichoiceTextChoice","id":6729},{"meta_data":{"text":"ff"},"choice_class":"MultichoiceTextChoice","id":6730},{"meta_data":{"text":"ff"},"choice_class":"MultichoiceTextChoice","id":6731}],"correct_ids":[6729,6731]}
+        # """
+
 
     def __clean_nis_mathematics(self, questions_queryset):
         questions_queryset = questions_queryset.all()
