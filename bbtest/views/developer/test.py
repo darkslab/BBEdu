@@ -17,111 +17,55 @@ class TestsView(StaffPermissionRequiredMixin, UserContextMixin, FormView):
 
     def get_context_data(self, **kwargs):
         kwargs["empty_language_code"] = Test.LANGUAGE_XX
+        kwargs["domain_list"] = []
+        kwargs["domain_data_list"] = []
+        user = self.request.user
 
-        kwargs["Klass_4_ru"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7911)
-        kwargs["Klass_4_ru_data"] = []
-        for section in kwargs["Klass_4_ru"].sections.all():
-            data = {
-                "section": section,
-                "language": None,
-                "specification": {},
+        if user.is_superuser:
+            domain_dict = {
+                domain: domain.sections.all() for domain in TestDomain.objects.prefetch_related("sections").all()
             }
-            # if section.id in range(9540, 9999):
-            data["language"] = {
-                "title": pgettext("/developer/tests/", "Choose test language"),
-                "choices": [],
-            }
-            data["language"]["choices"].append(Test.LANGUAGES[2])
-            data["specification"][Test.LANGUAGE_RU] = test_specification(section, Test.LANGUAGE_RU, get_language())
-            kwargs["Klass_4_ru_data"].append(data)
 
+        elif user.user_permissions.get().codename == "developer" and user.developer_profile is not None:
+            section_list = user.developer_profile.section.prefetch_related("domain").all()
+            domain_dict = {}
 
-        kwargs["Klass_9_ru"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7912)
-        kwargs["Klass_9_ru_data"] = []
-        for section in kwargs["Klass_9_ru"].sections.all():
-            data = {
-                "section": section,
-                "language": None,
-                "specification": {},
-            }
-            data["language"] = {
-                "title": pgettext("/developer/tests/", "Choose test language"),
-                "choices": [],
-            }
-            data["language"]["choices"].append(Test.LANGUAGES[2])
-            data["specification"][Test.LANGUAGE_RU] = test_specification(section, Test.LANGUAGE_RU, get_language())
-            kwargs["Klass_9_ru_data"].append(data)
-        
-    
+            for section_obj in section_list:
+                domain = section_obj.domain
+                domain_dict[domain] = domain_dict.get(domain, []) + [section_obj] 
+        else:
+            domain_dict = {}
 
-        kwargs["Klass_4_kz"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7913)
-        kwargs["Klass_4_kz_data"] = []
-        for section in kwargs["Klass_4_kz"].sections.all():
-            data = {
-                "section": section,
-                "language": None,
-                "specification": {},
-            }
-            data["language"] = {
-                "title": pgettext("/developer/tests/", "Choose test language"),
-                "choices": [],
-            }
-            data["language"]["choices"].append(Test.LANGUAGES[1])
-            data["specification"][Test.LANGUAGE_KK] = test_specification(section, Test.LANGUAGE_KK, get_language())
-            kwargs["Klass_4_kz_data"].append(data)
+        # print(user.user_permissions.get().codename, user.developer_profile)
+        # kwargs["domain_list"] = list(domain_dict.keys())
 
-        
-        kwargs["Klass_9_kz"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7914)
-        kwargs["Klass_9_kz_data"] = []
-        for section in kwargs["Klass_9_kz"].sections.all():
-            data = {
-                "section": section,
-                "language": None,
-                "specification": {},
-            }
-            data["language"] = {
-                "title": pgettext("/developer/tests/", "Choose test language"),
-                "choices": [],
-            }
-            data["language"]["choices"].append(Test.LANGUAGES[1])
-            data["specification"][Test.LANGUAGE_KK] = test_specification(section, Test.LANGUAGE_KK, get_language())
-            kwargs["Klass_9_kz_data"].append(data)
+        for domain, section_list in domain_dict.items():
+            domain_name = domain.name
+            domain_data = []
 
+            for section in section_list:
+                data = {
+                    "section": section,
+                    "language": None,
+                    "specification": {},
+                }
+                data["language"] = {
+                    "title": pgettext("/developer/tests/", "Choose test language"),
+                    "choices": [],
+                }
+                if "ru" in domain_name:
+                    data["language"]["choices"].append(Test.LANGUAGES[2])
+                    data["specification"][Test.LANGUAGE_RU] = test_specification(section, Test.LANGUAGE_RU, get_language())
+                elif "kz" in domain_name:
+                    data["language"]["choices"].append(Test.LANGUAGES[1])
+                    data["specification"][Test.LANGUAGE_KK] = test_specification(section, Test.LANGUAGE_KK, get_language())
 
-        kwargs["Teacher_ru"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7915)
-        kwargs["Teacher_ru_data"] = []
-        for section in kwargs["Teacher_ru"].sections.all():
-            data = {
-                "section": section,
-                "language": None,
-                "specification": {},
-            }
-            data["language"] = {
-                "title": pgettext("/developer/tests/", "Choose test language"),
-                "choices": [],
-            }
-            data["language"]["choices"].append(Test.LANGUAGES[2])
-            data["specification"][Test.LANGUAGE_RU] = test_specification(section, Test.LANGUAGE_RU, get_language())
-            kwargs["Teacher_ru_data"].append(data)
+                domain_data.append(data)
 
-
-        kwargs["Teacher_kz"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7916)
-        kwargs["Teacher_kz_data"] = []
-        for section in kwargs["Teacher_kz"].sections.all():
-            data = {
-                "section": section,
-                "language": None,
-                "specification": {},
-            }
-            data["language"] = {
-                "title": pgettext("/developer/tests/", "Choose test language"),
-                "choices": [],
-            }
-            data["language"]["choices"].append(Test.LANGUAGES[1])
-            data["specification"][Test.LANGUAGE_KK] = test_specification(section, Test.LANGUAGE_KK, get_language())
-            kwargs["Teacher_kz_data"].append(data)
-        
-        print(kwargs.keys())
+            kwargs["domain_list"].append(domain)
+            kwargs["domain_data_list"].append([domain_name, domain_data])
+        # from pprint import pprint
+        # pprint(kwargs)
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):

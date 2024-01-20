@@ -450,7 +450,28 @@ class TestPackageRelation(Model):
         unique_together = ("package", "test")
 
 
+
+# -------------------------------------------- User Profile --------------------------------------------
+
 class UserTestPackageProfile(Model):
     student = OneToOneField ( User,         on_delete=CASCADE, related_name="student_test_profile")
 
     student_group = ForeignKey       ( StudentGroup,   on_delete=CASCADE,     related_name="students"   )
+
+
+class ExpertProfile(Model):
+    expert = OneToOneField ( User,         on_delete=CASCADE, related_name="expert_profile")
+
+    section = ManyToManyField  ( TestSection, related_name="expert_section_list", )
+
+    def __str__(self):
+        return "{}: {}".format(self.expert.username, self.section.all())
+
+
+class DeveloperProfile(Model):
+    developer = OneToOneField ( User,         on_delete=CASCADE, related_name="developer_profile")
+
+    section = ManyToManyField  ( TestSection, related_name="developer_section_list", )
+
+    def __str__(self):
+        return "{}: {}".format(self.developer.username, self.section.all())

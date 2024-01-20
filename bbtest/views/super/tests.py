@@ -11,7 +11,13 @@ class TestsView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin,
     template_name = "super/tests.html"
 
     def get_context_data(self, **kwargs):
-        tests = Test.objects.select_related("section__domain", "developer").order_by("-created_at")
+        
+        if self.request.user.has_perm("bbtest.super") or self.request.user.has_perm("bbtest.admin"):
+            tests = Test.objects.select_related("section__domain", "developer").order_by("-created_at")
+        elif self.request.user.has_perm("bbtest.expert"):
+            section_list = self.request.user.expert_profile.section.all()
+            tests = Test.objects.filter(section__in=section_list).select_related("section__domain", "developer").order_by("-created_at")
+
         kwargs["q"] = ""
         try:    
             tests = tests.filter(
