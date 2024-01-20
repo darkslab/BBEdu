@@ -500,16 +500,19 @@ class TestForm(ModelForm):
             return self.cleaned_data
 
         try:
-            # NIS sections
-            if section.domain.pk in (7911, 7912, 7913, 7914, 7915, 7916):
-                if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
-                    raise ValueError("Incorrect language")
+            if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
+                raise ValueError("Incorrect language")
+
+            # # NIS sections
+            # if section.domain.pk in (7911, 7912, 7913, 7914, 7915, 7916):
+            #     if language not in (Test.LANGUAGE_KK, Test.LANGUAGE_RU):
+            #         raise ValueError("Incorrect language")
  
-            else:
-                raise ValidationError(
-                    pgettext("Validation error", "Unrecognized test section."),
-                    code="incorrect",
-                )
+            # else:
+            #     raise ValidationError(
+            #         pgettext("Validation error", "Unrecognized test section."),
+            #         code="incorrect",
+            #     )
 
         except ValueError:
             raise ValidationError(
