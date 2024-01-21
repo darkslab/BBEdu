@@ -2,6 +2,7 @@ from django.forms import ModelForm, Form
 from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy, ugettext as _, npgettext_lazy, pgettext
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from random import randint
 from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset
 from bbtest.forms.fields import JSONField
@@ -224,6 +225,11 @@ class TestParagraphForm(ModelForm):
             return self.__clean_split_text_paragraph_meta_data(meta_data)
         elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
             return self.__clean_image_paragraph_meta_data(meta_data)
+        elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_PERIODIC_TABLE:
+            return {
+                "text": "",
+                "periodicTableUrl": static("img/Periodic_table_large.jpg")
+            }
 
         raise ValidationError(
             self.error_messages["incorrect"],

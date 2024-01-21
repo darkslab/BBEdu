@@ -204,6 +204,12 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
                 progress: 0
             };
             break;
+        case "PeriodicTableParagraph":
+            newParagraph.data.meta_data = {
+                text: "",
+                periodicTableUrl: ""
+            };
+            break;
     }
     this._paragraphs.push(newParagraph);
     this._isParagraphsSaved = false;

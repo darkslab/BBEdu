@@ -158,6 +158,12 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
             caption: this.props.texts.paragraphsModalButtonImageParagraph
           });
         }
+        if (this.props.ability.canChoosePeriodicTableParagraph()) {
+          paragraphClassData.push({
+            "class": "PeriodicTableParagraph",
+            caption: this.props.texts.paragraphsModalButtonPeriodicTableParagraph
+          });
+        }
         modal = /*#__PURE__*/React.createElement(DeveloperSelectorModal, {
           title: this.props.texts.paragraphsModalTitle,
           complete: this._completeModal.bind(this, "paragraphs"),

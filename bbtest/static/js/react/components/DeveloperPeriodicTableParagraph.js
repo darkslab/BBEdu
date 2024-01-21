@@ -1,12 +1,6 @@
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _excluded = ["has_formulas"];
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -46,12 +40,6 @@ var DeveloperPeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
           className: "fa fa-fw fa-times"
         })));
       }
-      buttons.push( /*#__PURE__*/React.createElement("button", {
-        key: "formulas",
-        type: "button",
-        className: "btn btn-xs pull-right ml-5" + (this.props.data.has_formulas ? " btn-success active" : " btn-default"),
-        onClick: this._handleFormulas.bind(this)
-      }, this.props.texts.controlFormulasButton));
       var sharedLabel = null;
       if (this.props.sharedQuestionIds.length > 0) {
         sharedLabel = /*#__PURE__*/React.createElement("p", {
@@ -61,10 +49,12 @@ var DeveloperPeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
       } else {
         paragraphClassName += " bb-test-section-background";
       }
-      var textareaClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
-      if (!this.props.data.text) {
-        textareaClassName += " bb-test-paragraph-textarea-empty";
-      }
+
+      // let textareaClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
+      // if (!this.props.data.text) {
+      //     textareaClassName += " bb-test-paragraph-textarea-empty";
+      // }
+
       var modal = null;
       if (this.state.confirmModal) {
         modal = /*#__PURE__*/React.createElement(ConfirmModal, {
@@ -75,6 +65,7 @@ var DeveloperPeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
           complete: this._completeModal.bind(this)
         });
       }
+      console.log("this.props", this.props);
       return /*#__PURE__*/React.createElement(React.Fragment, null, modal, /*#__PURE__*/React.createElement("div", {
         className: paragraphClassName,
         "data-paragraph-id": this.props.paragraphId
@@ -83,31 +74,41 @@ var DeveloperPeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
       }, sharedLabel, buttons, /*#__PURE__*/React.createElement("button", {
         type: "button",
         className: "btn btn-default btn-xs pull-right ml-5 invisible"
-      }, "Spacer")), /*#__PURE__*/React.createElement("textarea", {
-        className: textareaClassName,
-        placeholder: this.props.texts.paragraphTextareaPlaceholder,
-        value: this.props.data.text,
-        onChange: this._handleChange.bind(this)
-      })));
+      }, "Spacer"))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("img", {
+        "class": "periodicTableThumbnail",
+        src: this.props.data.periodicTableUrl,
+        width: "100px",
+        alt: "PeriodicTableThumbnail",
+        onClick: this._openOverlay.bind(this)
+      }), /*#__PURE__*/React.createElement("div", {
+        id: "periodicTableOverlay",
+        "class": "periodicTableOverlay",
+        onClick: this._closeOverlay.bind(this)
+      }, /*#__PURE__*/React.createElement("img", {
+        id: "overlayPeriodicTableImage",
+        src: "",
+        alt: "PeriodicTableLarge"
+      }))));
     }
   }, {
-    key: "_handleChange",
-    value: function _handleChange(event) {
-      this.props.onChange(_objectSpread(_objectSpread({}, this.props.data), {}, {
-        text: event.target.value
-      }));
+    key: "_openOverlay",
+    value: function _openOverlay() {
+      // console.log("_openOverlay", document.getElementById('overlayImage'));
+      document.getElementById('overlayPeriodicTableImage').src = this.props.data.periodicTableUrl;
+      document.getElementById('periodicTableOverlay').style.display = 'flex';
     }
   }, {
-    key: "_handleFormulas",
-    value: function _handleFormulas() {
-      var _this$props$data = this.props.data,
-        has_formulas = _this$props$data.has_formulas,
-        data = _objectWithoutProperties(_this$props$data, _excluded);
-      if (has_formulas === undefined) {
-        data.has_formulas = true;
-      }
-      this.props.onChange(data);
+    key: "_closeOverlay",
+    value: function _closeOverlay() {
+      document.getElementById('periodicTableOverlay').style.display = 'none';
     }
+
+    // _handleChange(event) {
+    //     this.props.onChange({
+    //         ...this.props.data,
+    //         text: event.target.value
+    //     });
+    // }
   }, {
     key: "_renderModal",
     value: function _renderModal() {

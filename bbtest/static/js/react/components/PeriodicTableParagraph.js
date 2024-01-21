@@ -24,35 +24,29 @@ var PeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
       originalText: "",
       rawHtml: ""
     };
-    _this._processor;
+    // this._processor;
     return _this;
   }
+  // componentDidMount() {
+  //     if (!this.props.data.has_formulas) {
+  //         return;
+  //     }
+  //     this._setupProcessor();
+  // }
+  // componentWillUnmount() {
+  //     if (this._processor) {
+  //         this._processor.stop();
+  //     }
+  // }
+  // componentDidUpdate() {
+  //     if (this._processor || !this.props.data.has_formulas) {
+  //         return;
+  //     }
+  //     if (this.props.data.text !== this.state.originalText) {
+  //         this._setupProcessor();
+  //     }
+  // }
   _createClass(PeriodicTableParagraph, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (!this.props.data.has_formulas) {
-        return;
-      }
-      this._setupProcessor();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      if (this._processor) {
-        this._processor.stop();
-      }
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      if (this._processor || !this.props.data.has_formulas) {
-        return;
-      }
-      if (this.props.data.text !== this.state.originalText) {
-        this._setupProcessor();
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       var content = null;
@@ -64,43 +58,59 @@ var PeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
           className: "text-center mt-0 mb-5"
         }, /*#__PURE__*/React.createElement("em", null, this.props.testTexts.shared_paragraph_header));
       }
-      if (!this.props.data.text) {
-        var _content = null;
-        if (this.props.forDevelopers) {
-          className += " bb-placeholder";
-          _content = this.props.texts.paragraphEmptyPlaceholder;
-        }
-        content = /*#__PURE__*/React.createElement(React.Fragment, null, sharedAddon, /*#__PURE__*/React.createElement("div", {
-          className: className
-        }, _content));
-      } else if (this.props.data.has_formulas) {
-        content = /*#__PURE__*/React.createElement(React.Fragment, null, sharedAddon, /*#__PURE__*/React.createElement("div", {
-          className: className,
-          dangerouslySetInnerHTML: {
-            __html: this.state.rawHtml
-          }
-        }));
-      } else {
-        content = /*#__PURE__*/React.createElement(React.Fragment, null, sharedAddon, /*#__PURE__*/React.createElement("div", {
-          className: className
-        }, SimpleFormattedFragment(this.props.data.text)));
-      }
+      console.log("PeriodicTableParagraph this.props", this.props);
+      content = /*#__PURE__*/React.createElement(React.Fragment, null, sharedAddon, /*#__PURE__*/React.createElement("div", {
+        className: className
+      }, SimpleFormattedFragment(this.props.data.text)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("img", {
+        "class": "periodicTableThumbnail",
+        src: this.props.data.periodicTableUrl,
+        width: "100px",
+        alt: "Periodic Table Thumbnail",
+        onClick: this._openOverlay.bind(this)
+      }), /*#__PURE__*/React.createElement("div", {
+        id: "periodicTableOverlay",
+        "class": "periodicTableOverlay",
+        onClick: this._closeOverlay.bind(this)
+      }, /*#__PURE__*/React.createElement("img", {
+        id: "overlayPeriodicTableImage",
+        src: "",
+        alt: "Periodic Table Large"
+      }))));
       return content;
     }
   }, {
-    key: "_setupProcessor",
-    value: function _setupProcessor() {
-      this._processor = new KatexAsyncProcessor(this._doneProcessing.bind(this), this.props.data.text);
+    key: "_openOverlay",
+    value: function _openOverlay() {
+      // console.log("_openOverlay", document.getElementById('overlayImage'));
+      document.getElementById('overlayPeriodicTableImage').src = this.props.data.periodicTableUrl;
+      document.getElementById('periodicTableOverlay').style.display = 'flex';
     }
   }, {
-    key: "_doneProcessing",
-    value: function _doneProcessing(rawHtml, originalText) {
-      this.setState({
-        originalText: originalText,
-        rawHtml: rawHtml
-      });
-      this._processor = undefined;
+    key: "_closeOverlay",
+    value: function _closeOverlay() {
+      document.getElementById('periodicTableOverlay').style.display = 'none';
     }
+
+    // _openOverlay() {
+    //     console.log("_openOverlay", document.getElementById('overlayImage'));
+    //     document.getElementById('overlayImage').src = this.props.data.periodicTableUrl;
+    //     document.getElementById('overlay').style.display = 'flex';
+    // }
+
+    // _closeOverlay() {
+    //     document.getElementById('overlay').style.display = 'none';
+    // }
+
+    // _setupProcessor() {
+    //     this._processor = new KatexAsyncProcessor(this._doneProcessing.bind(this), this.props.data.text);
+    // }
+    // _doneProcessing(rawHtml, originalText) {
+    //     this.setState({
+    //         originalText: originalText,
+    //         rawHtml: rawHtml
+    //     });
+    //     this._processor = undefined;
+    // }
   }]);
   return PeriodicTableParagraph;
 }(React.Component);

@@ -19,12 +19,6 @@ class DeveloperPeriodicTableParagraph extends React.Component {
                 </button>
             );
         }
-        buttons.push(
-            <button key="formulas"
-                    type="button"
-                    className={"btn btn-xs pull-right ml-5" + (this.props.data.has_formulas ? " btn-success active" : " btn-default")}
-                    onClick={this._handleFormulas.bind(this)}>{this.props.texts.controlFormulasButton}</button>
-        );
 
         let sharedLabel = null;
         if (this.props.sharedQuestionIds.length > 0) {
@@ -36,10 +30,10 @@ class DeveloperPeriodicTableParagraph extends React.Component {
             paragraphClassName += " bb-test-section-background";
         }
 
-        let textareaClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
-        if (!this.props.data.text) {
-            textareaClassName += " bb-test-paragraph-textarea-empty";
-        }
+        // let textareaClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
+        // if (!this.props.data.text) {
+        //     textareaClassName += " bb-test-paragraph-textarea-empty";
+        // }
 
         let modal = null;
         if (this.state.confirmModal) {
@@ -51,7 +45,7 @@ class DeveloperPeriodicTableParagraph extends React.Component {
                               complete={this._completeModal.bind(this)} />
             );
         }
-
+        console.log("this.props", this.props)
         return (
             <React.Fragment>
                 {modal}
@@ -61,27 +55,35 @@ class DeveloperPeriodicTableParagraph extends React.Component {
                         {buttons}
                         <button type="button" className="btn btn-default btn-xs pull-right ml-5 invisible">Spacer</button>
                     </div>
-                    <textarea className={textareaClassName}
-                              placeholder={this.props.texts.paragraphTextareaPlaceholder}
-                              value={this.props.data.text}
-                              onChange={this._handleChange.bind(this)} />
+                    
+                </div>
+                <div>
+                    <img class="periodicTableThumbnail" src={this.props.data.periodicTableUrl} width="100px" alt="PeriodicTableThumbnail" onClick={this._openOverlay.bind(this)}></img>
+
+                    <div id="periodicTableOverlay" class="periodicTableOverlay" onClick={this._closeOverlay.bind(this)}>
+                        <img id="overlayPeriodicTableImage" src="" alt="PeriodicTableLarge"></img>
+                    </div>
                 </div>
             </React.Fragment>
         );
     }
-    _handleChange(event) {
-        this.props.onChange({
-            ...this.props.data,
-            text: event.target.value
-        });
+
+    _openOverlay() {
+        // console.log("_openOverlay", document.getElementById('overlayImage'));
+        document.getElementById('overlayPeriodicTableImage').src = this.props.data.periodicTableUrl;
+        document.getElementById('periodicTableOverlay').style.display = 'flex';
     }
-    _handleFormulas() {
-        let { has_formulas, ...data } = this.props.data;
-        if (has_formulas === undefined) {
-            data.has_formulas = true;
-        }
-        this.props.onChange(data);
+
+    _closeOverlay() {
+        document.getElementById('periodicTableOverlay').style.display = 'none';
     }
+
+    // _handleChange(event) {
+    //     this.props.onChange({
+    //         ...this.props.data,
+    //         text: event.target.value
+    //     });
+    // }
     _renderModal() {
         this.setState({
             confirmModal: true
