@@ -14,7 +14,7 @@ class DashboardView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMi
 
     def get_context_data(self, **kwargs):
         paginator = Paginator(
-            self.request.user.tests.select_related("section__domain").order_by("-created_at"),
+            self.request.user.tests.filter(status__lt=Test.STATUS_ARCHIVED).select_related("section__domain").order_by("-created_at"),
             25,
         )
         try:
