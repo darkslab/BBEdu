@@ -22,30 +22,11 @@ var PeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       originalText: "",
-      rawHtml: ""
+      rawHtml: "",
+      zoomLevel: 1
     };
-    // this._processor;
     return _this;
   }
-  // componentDidMount() {
-  //     if (!this.props.data.has_formulas) {
-  //         return;
-  //     }
-  //     this._setupProcessor();
-  // }
-  // componentWillUnmount() {
-  //     if (this._processor) {
-  //         this._processor.stop();
-  //     }
-  // }
-  // componentDidUpdate() {
-  //     if (this._processor || !this.props.data.has_formulas) {
-  //         return;
-  //     }
-  //     if (this.props.data.text !== this.state.originalText) {
-  //         this._setupProcessor();
-  //     }
-  // }
   _createClass(PeriodicTableParagraph, [{
     key: "render",
     value: function render() {
@@ -61,56 +42,60 @@ var PeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
       console.log("PeriodicTableParagraph this.props", this.props);
       content = /*#__PURE__*/React.createElement(React.Fragment, null, sharedAddon, /*#__PURE__*/React.createElement("div", {
         className: className
-      }, SimpleFormattedFragment(this.props.data.text)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("img", {
-        "class": "periodicTableThumbnail",
+      }, SimpleFormattedFragment(this.props.data.text)), /*#__PURE__*/React.createElement("img", {
+        className: "periodicTableThumbnail",
         src: this.props.data.periodicTableUrl,
         width: "100px",
-        alt: "Periodic Table Thumbnail",
+        alt: "Thumbnail",
         onClick: this._openOverlay.bind(this)
       }), /*#__PURE__*/React.createElement("div", {
         id: "periodicTableOverlay",
-        "class": "periodicTableOverlay",
-        onClick: this._closeOverlay.bind(this)
+        className: "periodicTableOverlay",
+        onClick: this._closeOverlay.bind(this),
+        onWheel: this._handleWheel.bind(this)
       }, /*#__PURE__*/React.createElement("img", {
         id: "overlayPeriodicTableImage",
-        src: "",
-        alt: "Periodic Table Large"
-      }))));
+        src: this.props.data.periodicTableUrl,
+        alt: "Large Image",
+        style: {
+          transform: "scale(".concat(this.state.zoomLevel, ")")
+        }
+      })));
       return content;
     }
   }, {
     key: "_openOverlay",
     value: function _openOverlay() {
-      // console.log("_openOverlay", document.getElementById('overlayImage'));
-      document.getElementById('overlayPeriodicTableImage').src = this.props.data.periodicTableUrl;
+      // console.log("_openOverlay");
       document.getElementById('periodicTableOverlay').style.display = 'flex';
+      // this.state.zoomLevel = 1;  // Reset zoom level when opening the overlay
+      // this.setState({ zoomLevel: 1 }); 
     }
   }, {
     key: "_closeOverlay",
     value: function _closeOverlay() {
       document.getElementById('periodicTableOverlay').style.display = 'none';
+      // this.state.zoomLevel = 1;  // Reset zoom level when opening the overlay
     }
-
-    // _openOverlay() {
-    //     console.log("_openOverlay", document.getElementById('overlayImage'));
-    //     document.getElementById('overlayImage').src = this.props.data.periodicTableUrl;
-    //     document.getElementById('overlay').style.display = 'flex';
-    // }
-
-    // _closeOverlay() {
-    //     document.getElementById('overlay').style.display = 'none';
-    // }
-
-    // _setupProcessor() {
-    //     this._processor = new KatexAsyncProcessor(this._doneProcessing.bind(this), this.props.data.text);
-    // }
-    // _doneProcessing(rawHtml, originalText) {
-    //     this.setState({
-    //         originalText: originalText,
-    //         rawHtml: rawHtml
-    //     });
-    //     this._processor = undefined;
-    // }
+  }, {
+    key: "_handleWheel",
+    value: function _handleWheel(event) {
+      event.preventDefault();
+      // console.log(event)
+      // console.log(event.deltaY)
+      // console.log(this.state.zoomLevel )
+      // const deltaY = event.deltaY;
+      var image = document.getElementById('overlayPeriodicTableImage');
+      if (event.deltaY > 0) {
+        this.state.zoomLevel = this.state.zoomLevel - 0.1;
+      } else {
+        this.state.zoomLevel = this.state.zoomLevel + 0.1;
+      }
+      if (this.state.zoomLevel < 0.2) {
+        this.state.zoomLevel = 0.2;
+      }
+      image.style.transform = "scale(".concat(this.state.zoomLevel, ")");
+    }
   }]);
   return PeriodicTableParagraph;
 }(React.Component);

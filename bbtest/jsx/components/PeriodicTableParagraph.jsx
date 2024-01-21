@@ -3,29 +3,11 @@ class PeriodicTableParagraph extends React.Component {
         super(props);
         this.state = {
             originalText: "",
-            rawHtml: ""
+            rawHtml: "",
+            zoomLevel: 1
         };
-        // this._processor;
     }
-    // componentDidMount() {
-    //     if (!this.props.data.has_formulas) {
-    //         return;
-    //     }
-    //     this._setupProcessor();
-    // }
-    // componentWillUnmount() {
-    //     if (this._processor) {
-    //         this._processor.stop();
-    //     }
-    // }
-    // componentDidUpdate() {
-    //     if (this._processor || !this.props.data.has_formulas) {
-    //         return;
-    //     }
-    //     if (this.props.data.text !== this.state.originalText) {
-    //         this._setupProcessor();
-    //     }
-    // }
+
     render() {
         let content = null;
         let className = "bb-test-paragraph";
@@ -43,12 +25,22 @@ class PeriodicTableParagraph extends React.Component {
             <React.Fragment>
                 {sharedAddon}
                 <div className={className}>{SimpleFormattedFragment(this.props.data.text)}</div>
-                <div>
-                    <img class="periodicTableThumbnail" src={this.props.data.periodicTableUrl} width="100px" alt="Periodic Table Thumbnail" onClick={this._openOverlay.bind(this)}></img>
 
-                    <div id="periodicTableOverlay" class="periodicTableOverlay" onClick={this._closeOverlay.bind(this)}>
-                        <img id="overlayPeriodicTableImage" src="" alt="Periodic Table Large"></img>
-                    </div>
+                <img
+                    className="periodicTableThumbnail"
+                    src={this.props.data.periodicTableUrl}
+                    width="100px"
+                    alt="Thumbnail"
+                    onClick={this._openOverlay.bind(this)}
+                ></img>
+
+                <div id="periodicTableOverlay" className="periodicTableOverlay" onClick={this._closeOverlay.bind(this)} onWheel={this._handleWheel.bind(this)}>
+                    <img
+                        id="overlayPeriodicTableImage"
+                        src={this.props.data.periodicTableUrl}
+                        alt="Large Image"
+                        style={{ transform: `scale(${this.state.zoomLevel})` }}
+                    ></img>
                 </div>
             </React.Fragment>
         );
@@ -56,23 +48,34 @@ class PeriodicTableParagraph extends React.Component {
     }
 
     _openOverlay() {
-        // console.log("_openOverlay", document.getElementById('overlayImage'));
-        document.getElementById('overlayPeriodicTableImage').src = this.props.data.periodicTableUrl;
+        // console.log("_openOverlay");
         document.getElementById('periodicTableOverlay').style.display = 'flex';
+        // this.state.zoomLevel = 1;  // Reset zoom level when opening the overlay
+        // this.setState({ zoomLevel: 1 }); 
     }
 
     _closeOverlay() {
         document.getElementById('periodicTableOverlay').style.display = 'none';
+        // this.state.zoomLevel = 1;  // Reset zoom level when opening the overlay
     }
 
-    // _setupProcessor() {
-    //     this._processor = new KatexAsyncProcessor(this._doneProcessing.bind(this), this.props.data.text);
-    // }
-    // _doneProcessing(rawHtml, originalText) {
-    //     this.setState({
-    //         originalText: originalText,
-    //         rawHtml: rawHtml
-    //     });
-    //     this._processor = undefined;
-    // }
+    _handleWheel(event) {
+        event.preventDefault();
+        // console.log(event)
+        // console.log(event.deltaY)
+        // console.log(this.state.zoomLevel )
+        // const deltaY = event.deltaY;
+        const image = document.getElementById('overlayPeriodicTableImage')
+
+        if (event.deltaY > 0) {
+            this.state.zoomLevel = this.state.zoomLevel - 0.1;
+        } else {
+            this.state.zoomLevel = this.state.zoomLevel + 0.1;
+        }
+            
+        if (this.state.zoomLevel  < 0.2) {
+            this.state.zoomLevel = 0.2
+        }
+        image.style.transform = `scale(${this.state.zoomLevel})`
+    }
 }
