@@ -83,6 +83,7 @@ BASE3_SOURCE_FILENAMES = (
     "js/react/components/DeveloperTextParagraph.js",
     "js/react/components/DeveloperSplitTextParagraph.js",
     "js/react/components/DeveloperImageParagraph.js",
+    "js/react/components/DeveloperPeriodicTableParagraph.js",
     "js/react/components/DeveloperMultichoiceOneAnswer.js",
     "js/react/components/DeveloperMultichoiceMultiAnswer.js",
     "js/react/components/DeveloperMultichoiceTextChoice.js",
