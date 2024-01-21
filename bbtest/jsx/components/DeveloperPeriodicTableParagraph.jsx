@@ -1,4 +1,4 @@
-class DeveloperTextParagraph extends React.Component {
+class DeveloperPeriodicTableParagraph extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
