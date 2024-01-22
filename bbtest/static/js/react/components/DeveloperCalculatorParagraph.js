@@ -68,19 +68,19 @@ var DeveloperCalculatorParagraph = /*#__PURE__*/function (_React$Component) {
         type: "button",
         className: "btn btn-default btn-xs pull-right ml-5 invisible"
       }, "Spacer"))), /*#__PURE__*/React.createElement("script", {
-        src: "https://linangdata.com/calculatorEmbed/linangcalc.js"
+        src: "/static/Calculator_files/linangcalc.js"
       }), /*#__PURE__*/React.createElement("div", {
         style: {
           width: "50px",
           height: "50px",
-          "backgroundImage": "url('https://linangdata.com/calculatorEmbed/icons/48x48.png')",
-          zIndex: 99999
+          "backgroundImage": "/static/Calculator_files/48x48.png",
+          zIndex: 0
         }
       }, /*#__PURE__*/React.createElement("iframe", {
         id: "linangcalc",
-        src: "https://linangdata.com/calculatorEmbed/embeddable.html?placement=right",
-        width: "500",
-        height: "500",
+        src: "/static/Calculator.html?placement=right",
+        width: "370",
+        height: "340",
         scrolling: "auto",
         frameBorder: "0",
         allowtransparency: "true",
@@ -88,7 +88,7 @@ var DeveloperCalculatorParagraph = /*#__PURE__*/function (_React$Component) {
           border: 0,
           position: "absolute",
           opacity: 1.0,
-          zIndex: 99999
+          zIndex: 9000
         }
       })));
     }
