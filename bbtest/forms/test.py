@@ -230,7 +230,11 @@ class TestParagraphForm(ModelForm):
                 "text": "",
                 "periodicTableUrl": static("img/Periodic_table_large.jpg")
             }
-
+        elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_CALCULATOR:
+            return {
+                "text": "",
+                "calculator": "TODO"
+            }
         raise ValidationError(
             self.error_messages["incorrect"],
             code="incorrect",
