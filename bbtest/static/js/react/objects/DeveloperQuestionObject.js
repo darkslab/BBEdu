@@ -210,6 +210,12 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
                 periodicTableUrl: ""
             };
             break;
+        case "CalculatorParagraph":
+            newParagraph.data.meta_data = {
+                text: "",
+                calculator: ""
+            };
+            break;
     }
     this._paragraphs.push(newParagraph);
     this._isParagraphsSaved = false;

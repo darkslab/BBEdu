@@ -3,8 +3,7 @@ class CalculatorParagraph extends React.Component {
         super(props);
         this.state = {
             originalText: "",
-            rawHtml: "",
-            zoomLevel: 1
+            rawHtml: ""
         };
     }
 
@@ -26,10 +25,10 @@ class CalculatorParagraph extends React.Component {
                 {sharedAddon}
                 <div className={className}>{SimpleFormattedFragment(this.props.data.text)}</div>
                 <script src="https://linangdata.com/calculatorEmbed/linangcalc.js"></script>
-                <div style={{ width: "50px", height: "50px", "backgroundImage": "url('https://linangdata.com/calculatorEmbed/icons/48x48.png')"}}>
+                <div style={{ width: "50px", height: "50px", "backgroundImage": "url('https://linangdata.com/calculatorEmbed/icons/48x48.png')", zIndex: 9999}}>
                   <iframe id="linangcalc" src="https://linangdata.com/calculatorEmbed/embeddable.html?placement=right" 
                       width="500" height="500" scrolling="auto" frameBorder="0" allowtransparency="true"
-                      style={{border: 0, position: "absolute", opacity: 1.0}}
+                      style={{border: 0, position: "absolute", opacity: 1.0, zIndex: 9999}}
                       >
                   </iframe>
                 </div>
@@ -38,5 +37,5 @@ class CalculatorParagraph extends React.Component {
         return content;
     }
 
-
+     
 }
