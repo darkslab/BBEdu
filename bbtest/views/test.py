@@ -255,16 +255,20 @@ class DeleteTestView(StaffPermissionRequiredMixin, View):
             if test.developer != request.user:
                 raise Http404("Superusers can only delete their own tests")
 
-        paragraph_ids = []
-        for question in test.questions.all():
-            for paragraph in question.paragraphs.all():
-                paragraph_ids.append(paragraph.id)
+        # paragraph_ids = []
+        # for question in test.questions.all():
+        #     for paragraph in question.paragraphs.all():
+        #         paragraph_ids.append(paragraph.id)
 
-                if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
-                    image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
+        #         if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+        #             image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
 
-        TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
-        test.delete()
+        # TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
+        # test.delete()
+        
+        test.status = Test.STATUS_ARCHIVED
+        test.save()
+            
 
         success(request, pgettext("Success alert message", "You have deleted the Test."))
         return redirect("bbtest:build_tests")

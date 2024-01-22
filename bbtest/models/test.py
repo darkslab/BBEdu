@@ -364,14 +364,18 @@ class TestQuestion(Model):
 
 
 class TestParagraph(Model):
-    PARAGRAPH_CLASS_TEXT        = "TextParagraph"
-    PARAGRAPH_CLASS_SPLIT_TEXT  = "SplitTextParagraph"
-    PARAGRAPH_CLASS_IMAGE       = "ImageParagraph"
-    PARAGRAPH_CLASS_AUDIO       = "AudioParagraph"
+    PARAGRAPH_CLASS_TEXT           = "TextParagraph"
+    PARAGRAPH_CLASS_SPLIT_TEXT     = "SplitTextParagraph"
+    PARAGRAPH_CLASS_IMAGE          = "ImageParagraph"
+    PARAGRAPH_CLASS_AUDIO          = "AudioParagraph"
+    PARAGRAPH_CLASS_PERIODIC_TABLE = "PeriodicTableParagraph"
+    PARAGRAPH_CLASS_CALCULATOR     = "CalculatorParagraph"
     PARAGRAPH_CLASSES = (
-        ( PARAGRAPH_CLASS_TEXT,       PARAGRAPH_CLASS_TEXT       ),
-        ( PARAGRAPH_CLASS_SPLIT_TEXT, PARAGRAPH_CLASS_SPLIT_TEXT ),
-        ( PARAGRAPH_CLASS_IMAGE,      PARAGRAPH_CLASS_IMAGE      ),
+        ( PARAGRAPH_CLASS_TEXT,           PARAGRAPH_CLASS_TEXT              ),
+        ( PARAGRAPH_CLASS_SPLIT_TEXT,     PARAGRAPH_CLASS_SPLIT_TEXT        ),
+        ( PARAGRAPH_CLASS_IMAGE,          PARAGRAPH_CLASS_IMAGE             ),
+        ( PARAGRAPH_CLASS_PERIODIC_TABLE, PARAGRAPH_CLASS_PERIODIC_TABLE    ),
+        ( PARAGRAPH_CLASS_CALCULATOR,     PARAGRAPH_CLASS_CALCULATOR        ),
     )
 
     questions  = ManyToManyField  ( TestQuestion, through="TestParagraphQuestion", related_name="paragraphs", )

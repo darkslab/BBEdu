@@ -134,6 +134,18 @@ class DeveloperQuestion extends React.Component {
                     caption: this.props.texts.paragraphsModalButtonImageParagraph
                 });
             }
+            if (this.props.ability.canChoosePeriodicTableParagraph()) {
+                paragraphClassData.push({
+                    class: "PeriodicTableParagraph",
+                    caption: this.props.texts.paragraphsModalButtonPeriodicTableParagraph
+                });
+            }
+            if (this.props.ability.canChooseCalculatorParagraph()) {
+                paragraphClassData.push({
+                    class: "CalculatorParagraph",
+                    caption: this.props.texts.paragraphsModalButtonCalculatorParagraph
+                });
+            }
             modal = (
                 <DeveloperSelectorModal title={this.props.texts.paragraphsModalTitle}
                                         complete={this._completeModal.bind(this, "paragraphs")}
