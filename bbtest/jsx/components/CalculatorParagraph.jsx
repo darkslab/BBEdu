@@ -35,8 +35,8 @@ class CalculatorParagraph extends React.Component {
                 <script src="/static/Calculator_files/linangcalc.js"></script>
                 <div style={{ width: "50px", height: "50px", "backgroundImage": "/static/Calculator_files/48x48.png", zIndex: 0}}>
                   <iframe id="linangcalc" src="/static/Calculator.html?placement=right" 
-                      width="500" height="400" scrolling="auto" frameBorder="0" allowtransparency="true"
-                      style={{border: 2, position: "absolute", opacity: 1.0, zIndex: 9000}}
+                      width="370" height="340" scrolling="auto" frameBorder="0" allowtransparency="true"
+                      style={{border: 0, position: "absolute", opacity: 1.0, zIndex: 9000}}
                       >
                   </iframe>
                 </div>
