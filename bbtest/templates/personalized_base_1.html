@@ -42,7 +42,8 @@
 
                         {% elif perms.bbtest.developer %}
                             <li class="{% block nav_developer_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:developer_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
-                            <li class="{% block nav_developer_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
+                            <li class="{% block nav_developer_quesion_bank_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Question Bank' context 'Navigation link' %}</a></li>
                             {% comment %} <li class="{% block nav_developer_users_class %}{% endblock %}"><a href="{% url 'bbtest:developer_users' %}"><i class="fa fa-fw fa-users"></i> {% trans 'All Users' context 'Navigation link' %}</a></li> {% endcomment %}
                             <!-- <li class="{% block nav_developer_offer_class %}{% endblock %}"><a href="{% url 'bbtest:developer_offer' %}"><i class="fa fa-fw fa-handshake-o"></i> {% trans 'Public Offer' context 'Navigation link' %}</a></li> -->
                         {% elif perms.bbtest.student %}
