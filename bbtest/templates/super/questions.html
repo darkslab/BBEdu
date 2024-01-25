@@ -92,7 +92,7 @@
                                     {% comment %} column 10 {% endcomment %}
                                     <th class="text-center">{% trans 'Goal' context '/super/questions/' %}</th>
                                     {% comment %} column 11 {% endcomment %}
-                                    <th class="text-center">{% trans 'Extract' context '/super/questions/' %}</th>
+                                    <th class="text-center">{% trans 'Status' context '/super/questions/' %}</th>
                                     {% comment %} column 12 {% endcomment %}
                                     <th class="pr-15 text-center">{% trans 'Actions' context '/super/questions/' %}</th>
                                 </tr>
@@ -128,8 +128,15 @@
                                         {% comment %} column 10 {% endcomment %}
                                         <td class="text-center">{{ question.goal.name }}</td>
                                         {% comment %} column 11 {% endcomment %}
-                                        <td class="text-center">{{ "TODO" }}</td>
-                                        
+                                        <td class="text-center">
+                                            {% if question.is_archived   %}<span class="label label-danger" >{{ question.get_status_display }}</span>
+                                            {% elif question.is_approved %}<span class="label label-success">{{ question.get_status_display }}</span>
+                                            {% elif question.is_pending  %}<span class="label label-info"   >{{ question.get_status_display }}</span>
+                                            {% elif question.is_draft    %}<span class="label label-default">{{ question.get_status_display }}</span>
+                                            {% elif question.is_redo     %}<span class="label label-warning">{{ question.get_status_display }}</span>
+                                            {% elif question.is_active   %}<span class="label label-primary">{{ question.get_status_display }}</span>
+                                            {% endif %}
+                                        </td>
                                         {% comment %} column 12 {% endcomment %}
                                         <td class="pr-15 text-center">
                                             {% comment %} {% if test.is_archived or test.is_approved %}

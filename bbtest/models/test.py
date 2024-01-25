@@ -332,6 +332,23 @@ class TestQuestion(Model):
         ( ANSWER_CLASS_MULTICHOICE_MULTI, ANSWER_CLASS_MULTICHOICE_MULTI ),
     )
 
+    STATUS_DRAFT     = 0x00
+    STATUS_REDO      = 0x01
+    STATUS_PENDING   = 0x10
+    STATUS_APPROVED  = 0x20
+    STATUS_ACTIVE    = 0x30
+    
+    STATUS_ARCHIVED  = 0xFF
+
+    STATUSES = (
+        ( STATUS_DRAFT,    pgettext_lazy("Test status", "Draft")    ),
+        ( STATUS_PENDING,  pgettext_lazy("Test status", "Pending")  ),
+        ( STATUS_APPROVED, pgettext_lazy("Test status", "Approved") ),
+        ( STATUS_ACTIVE,   pgettext_lazy("Test status", "Active")   ),
+        ( STATUS_REDO,     pgettext_lazy("Test status", "Redo")     ),
+        ( STATUS_ARCHIVED, pgettext_lazy("Test status", "Archived") ),
+    )
+
     test       = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )
     section    = ForeignKey  ( TestSection,  on_delete=CASCADE, related_name="questions",                        )
     taxonomy   = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
@@ -340,6 +357,8 @@ class TestQuestion(Model):
     goal       = ForeignKey  ( TestEducationGoal,   on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     developer  = ForeignKey  ( User,         on_delete=CASCADE, related_name="questions",                        )
 
+    status         = PositiveSmallIntegerField ( pgettext_lazy("Model field", "status"),                                choices=STATUSES,       default=STATUS_DRAFT,      db_index=True, )
+    # code           = CharField                 ( pgettext_lazy("Model field", "code of the question"),     max_length=15,                       unique=True,               db_index=True, )
     answer_class  = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
     meta_data     = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
     difficulty    = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NONE  , db_index=True, )
@@ -362,6 +381,24 @@ class TestQuestion(Model):
         # if test_section.is_nis():
         #     return 1
         return 1
+    
+    def is_draft(self):
+        return self.status == self.STATUS_DRAFT
+
+    def is_pending(self):
+        return self.status == self.STATUS_PENDING
+
+    def is_approved(self):
+        return self.status == self.STATUS_APPROVED
+
+    def is_archived(self):
+        return self.status == self.STATUS_ARCHIVED
+    
+    def is_redo(self):
+        return self.status == self.STATUS_REDO
+    
+    def is_active(self):
+        return self.status == self.STATUS_ACTIVE
 
 
 class TestParagraph(Model):
