@@ -333,6 +333,7 @@ class TestQuestion(Model):
     )
 
     test       = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )
+    section    = ForeignKey  ( TestSection,  on_delete=CASCADE, related_name="questions",                        )
     taxonomy   = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     topic      = ForeignKey  ( TestTopic,    on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     subtopic   = ForeignKey  ( TestSubTopic,        on_delete=CASCADE, related_name="questions", null=True, blank=True, )
