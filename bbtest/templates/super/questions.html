@@ -3,7 +3,7 @@
 
 {% block extended_footer %}{% endblock %}
 
-{% block title %}{% trans 'All Tests' context 'Page title' %}{% endblock %}
+{% block title %}{% trans 'Questions Bank' context 'Page title' %}{% endblock %}
 
 {% block nav_developer_quesion_bank_class %}active{% endblock %}
 {% block nav_expert_quesion_bank_class %}active{% endblock %}
@@ -48,7 +48,7 @@
             <form method="get" action="{{ request.path }}" data-bb-form>
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="{% trans 'page:/super/tests/:query' %}" name="q" value="{{ q }}">
+                        <input type="text" class="form-control" placeholder="{% trans 'page:/super/questions/:query' %}" name="q" value="{{ q }}">
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-default"  style="border-radius: 4px 0 0 4px" data-bb-submit>{% trans '_common.controls.super.search' %}</button>
                             <a href="{{ request.path }}" class="btn btn-danger"  style="border-radius: 0 4px 4px 0" data-bb-submit>{% trans '_common.controls.super.reset' %}</a>
@@ -70,27 +70,27 @@
                             <thead>
                                 <tr>
                                     {% comment %} column 1 {% endcomment %}
-                                    <th class="pl-15">{% trans 'Developer' context '/super/tests/' %}</th>
+                                    <th class="pl-15">{% trans 'Developer' context '/super/questions/' %}</th>
                                     {% comment %} column 2 {% endcomment %}
-                                    <th>{% trans 'Domain' context '/super/tests/' %}</th>
+                                    <th>{% trans 'Domain' context '/super/questions/' %}</th>
                                     {% comment %} column 3 {% endcomment %}
-                                    <th>{% trans 'Section' context '/super/tests/' %}</th>
+                                    <th>{% trans 'Section' context '/super/questions/' %}</th>
                                     {% comment %} column 4 {% endcomment %}
-                                    <th class="text-center">{% trans 'Language' context '/super/tests/' %}</th>
+                                    <th class="text-center">{% trans 'Language' context '/super/questions/' %}</th>
                                     {% comment %} column 5 {% endcomment %}
-                                    <th class="text-center">{% trans 'Variant' context '/super/tests/' %}</th>
+                                    <th class="text-center">{% trans 'Variant' context '/super/questions/' %}</th>
                                     {% comment %} column 6 {% endcomment %}
-                                    <th class="text-center">{% trans 'Free?' context '/super/tests/' %}</th>
+                                    <th class="text-center">{% trans 'Free?' context '/super/questions/' %}</th>
                                     {% comment %} column 7 {% endcomment %}
-                                    <th class="text-center">{% trans 'Status' context '/super/tests/' %}</th>
+                                    <th class="text-center">{% trans 'Status' context '/super/questions/' %}</th>
                                     {% comment %} column 8 {% endcomment %}
-                                    <th class="text-center">{% trans 'Sold/Completed' context '/super/tests/' %}</th>
+                                    <th class="text-center">{% trans 'Sold/Completed' context '/super/questions/' %}</th>
                                     {% comment %} column 9 {% endcomment %}
-                                    <th class="pr-15 text-center">{% trans 'Actions' context '/super/tests/' %}</th>
+                                    <th class="pr-15 text-center">{% trans 'Actions' context '/super/questions/' %}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for test in tests %}
+                                {% for test in questions %}
                                     <tr {% if test.developer == user %}class="success"{% endif %}>
                                         {% comment %} column 1 {% endcomment %}
                                         {% if test.developer|has_perm:'bbtest.super' %}
@@ -108,7 +108,7 @@
                                         <td class="text-center">#{{ test.code|upper }}</td>
                                         {% comment %} column 6 {% endcomment %}
                                         <td class="text-center">
-                                            <span class="label {% if test.is_free %}label-danger{% else %}label-success{% endif %}">{% if test.is_free %}{% trans 'Yes' context '/super/tests/' %}{% else %}{% trans 'No' context '/super/tests/' %}{% endif %}</span>
+                                            <span class="label {% if test.is_free %}label-danger{% else %}label-success{% endif %}">{% if test.is_free %}{% trans 'Yes' context '/super/questions/' %}{% else %}{% trans 'No' context '/super/questions/' %}{% endif %}</span>
                                         </td> 
                                         {% comment %} column 7 {% endcomment %}
                                         <td class="text-center">
@@ -125,10 +125,10 @@
                                         {% comment %} column 9 {% endcomment %}
                                         <td class="pr-15 text-center">
                                             {% if test.is_archived or test.is_approved %}
-                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/tests/' %}</a>
+                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/questions/' %}</a>
                                             {% elif test.is_pending %}
-                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn djBtnDefault btn-xs mr-5 mb-5">{% trans 'Edit' context '/super/tests/' %}</a>
-                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/tests/' %}</a>
+                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn djBtnDefault btn-xs mr-5 mb-5">{% trans 'Edit' context '/super/questions/' %}</a>
+                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/questions/' %}</a>
                                             {% elif test.is_draft %}
                                                 {% if test.developer|has_perm:'bbtest.super' %}
                                                     <a href="{% url 'bbtest:build_test' test.code %}" class="btn djBtnDefault btn-xs mr-5 mb-5">{% trans 'Edit' context '/developer/' %}</a>
@@ -138,13 +138,6 @@
                                                     <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
                                                 {% endif %}
                                             {% endif %}
-                                            {% comment %} {% if not test.is_archived %}
-                                                {% if test.is_free %}
-                                                    <button class="btn djBtnSuccess btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_toggle_free_test' test.code 'false' %}?r={{ test_page_redirect|urlencode }}" data-toggle="modal" data-target="[data-modal]">{% trans 'Change to Paid' context 'Developer tools' %}</button>
-                                                {% else %}
-                                                    <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_toggle_free_test' test.code 'true' %}?r={{ test_page_redirect|urlencode }}" data-toggle="modal" data-target="[data-modal]">{% trans 'Change to Free' context 'Developer tools' %}</button>
-                                                {% endif %}
-                                            {% endif %} {% endcomment %}
                                             {% if not test.is_draft %}
                                                 <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/developer/' %}</button>
                                             {% else %}
@@ -154,7 +147,7 @@
                                     </tr>
                                 {% empty %}
                                     <tr>
-                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/super/tests/' %}</td>
+                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no questions yet' context '/super/questions/' %}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -180,7 +173,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for test in tests %}
+                                {% for test in questions %}
                                     <tr {% if test.developer == user %}class="success"{% endif %}>
                                         {% comment %} column 1 {% endcomment %}
                                         {% if test.developer|has_perm:'bbtest.super' %}
@@ -223,7 +216,7 @@
                                     </tr>
                                 {% empty %}
                                     <tr>
-                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/expert/dashboard/' %}</td>
+                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no questions yet' context '/expert/dashboard/' %}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -249,7 +242,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for test in tests %}
+                                {% for test in questions %}
                                     <tr {% if test.developer == user %}class="success"{% endif %}>
                                         {% comment %} column 1 {% endcomment %}
                                         {% if test.developer|has_perm:'bbtest.super' %}
@@ -290,7 +283,7 @@
                                     </tr>
                                 {% empty %}
                                     <tr>
-                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/admin/dashboard/' %}</td>
+                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no questions yet' context '/admin/dashboard/' %}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -299,23 +292,23 @@
                 </div>
             </div>
         </div>
-        {% if tests.has_other_pages %}
+        {% if questions.has_other_pages %}
             <div class="col-xs-12 text-center">
                 <ul class="pagination mt-0 mb-0">
-                    {% if tests.has_previous %}
-                        <li><a href="{{ request.path }}?{% pagination_qs tests.previous_page_number %}">&laquo;</a></li>
+                    {% if questions.has_previous %}
+                        <li><a href="{{ request.path }}?{% pagination_qs questions.previous_page_number %}">&laquo;</a></li>
                     {% else %}
                         <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
                     {% endif %}
-                    {% for page_index in tests.paginator.page_indexes %}
-                        {% if page_index == tests.number %}
+                    {% for page_index in questions.paginator.page_indexes %}
+                        {% if page_index == questions.number %}
                             <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
                         {% else %}
                             <li><a href="{{ request.path }}?{% pagination_qs page_index %}">{{ page_index }}</a></li>
                         {% endif %}
                     {% endfor %}
-                    {% if tests.has_next %}
-                        <li><a href="{{ request.path }}?{% pagination_qs tests.next_page_number %}">&raquo;</a></li>
+                    {% if questions.has_next %}
+                        <li><a href="{{ request.path }}?{% pagination_qs questions.next_page_number %}">&raquo;</a></li>
                     {% else %}
                         <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
                     {% endif %}
