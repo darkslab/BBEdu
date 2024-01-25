@@ -65,10 +65,12 @@
                     <h4 class="panel-title">&nbsp;</h4>
                 </div>
                 <div class="table-responsive">
-                    {% if perms.bbtest.super %}
+                    {% if perms.bbtest.super or perms.bbtest.expert or perms.bbtest.admin or perms.bbtest.developer %}
                         <table class="table table-striped table-hover table-pressed">
                             <thead>
                                 <tr>
+                                    {% comment %} column 0 {% endcomment %}
+                                    <th>{% trans 'ID' context '/super/questions/' %}</th>
                                     {% comment %} column 1 {% endcomment %}
                                     <th class="pl-15">{% trans 'Developer' context '/super/questions/' %}</th>
                                     {% comment %} column 2 {% endcomment %}
@@ -76,55 +78,60 @@
                                     {% comment %} column 3 {% endcomment %}
                                     <th>{% trans 'Section' context '/super/questions/' %}</th>
                                     {% comment %} column 4 {% endcomment %}
-                                    <th class="text-center">{% trans 'Language' context '/super/questions/' %}</th>
+                                    {% comment %} <th class="text-center">{% trans 'Language' context '/super/questions/' %}</th> {% endcomment %}
                                     {% comment %} column 5 {% endcomment %}
-                                    <th class="text-center">{% trans 'Variant' context '/super/questions/' %}</th>
+                                    <th class="text-center">{% trans 'Created at' context '/super/questions/' %}</th>
                                     {% comment %} column 6 {% endcomment %}
-                                    <th class="text-center">{% trans 'Free?' context '/super/questions/' %}</th>
+                                    <th class="text-center">{% trans 'Updated at' context '/super/questions/' %}</th>
                                     {% comment %} column 7 {% endcomment %}
-                                    <th class="text-center">{% trans 'Status' context '/super/questions/' %}</th>
+                                    <th class="text-center">{% trans 'Taxonomy' context '/super/questions/' %}</th>
                                     {% comment %} column 8 {% endcomment %}
-                                    <th class="text-center">{% trans 'Sold/Completed' context '/super/questions/' %}</th>
+                                    <th class="text-center">{% trans 'Topic' context '/super/questions/' %}</th>
                                     {% comment %} column 9 {% endcomment %}
+                                    <th class="text-center">{% trans 'Subtopic' context '/super/questions/' %}</th>
+                                    {% comment %} column 10 {% endcomment %}
+                                    <th class="text-center">{% trans 'Goal' context '/super/questions/' %}</th>
+                                    {% comment %} column 11 {% endcomment %}
+                                    <th class="text-center">{% trans 'Extract' context '/super/questions/' %}</th>
+                                    {% comment %} column 12 {% endcomment %}
                                     <th class="pr-15 text-center">{% trans 'Actions' context '/super/questions/' %}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for test in questions %}
-                                    <tr {% if test.developer == user %}class="success"{% endif %}>
+                                {% for question in questions %}
+                                    <tr {% if question.developer == user %}class="success"{% endif %}>
+                                        {% comment %} column 0 {% endcomment %}
+                                        <td class="text-center">{{ question.pk }}</td>
                                         {% comment %} column 1 {% endcomment %}
-                                        {% if test.developer|has_perm:'bbtest.super' %}
-                                            <td class="pl-15">{{ test.developer.get_full_name }}</td>
+                                        {% if question.developer|has_perm:'bbtest.super' %}
+                                            <td class="pl-15">{{ question.developer.get_full_name }}</td>
                                         {% else %}
-                                            <td class="pl-15"><a href="{% url 'bbtest:super_user' test.developer.pk %}">{{ test.developer.get_full_name }}</a><br><small class="text-info">{{ test.developer.email }}</small></td>
+                                            <td class="pl-15"><a href="{% url 'bbtest:super_user' question.developer.pk %}">{{ question.developer.get_full_name }}</a><br><small class="text-info">{{ question.developer.email }}</small></td>
                                         {% endif %}
                                         {% comment %} column 2 {% endcomment %}
-                                        <td>{% trans test.section.domain.name %}</td>
+                                        <td>{% trans question.section.domain.name %}</td>
                                         {% comment %} column 3 {% endcomment %}
-                                        <td>{% trans test.section.name %}</td>
+                                        <td>{% trans question.section.name %}</td>
                                         {% comment %} column 4 {% endcomment %}
-                                        <td class="text-center">{{ test.display_language }}</td>
+                                        {% comment %} <td class="text-center">{{ question.language }}</td> {% endcomment %}
                                         {% comment %} column 5 {% endcomment %}
-                                        <td class="text-center">#{{ test.code|upper }}</td>
+                                        <td class="text-center">{{ question.created_at }}</td>
                                         {% comment %} column 6 {% endcomment %}
-                                        <td class="text-center">
-                                            <span class="label {% if test.is_free %}label-danger{% else %}label-success{% endif %}">{% if test.is_free %}{% trans 'Yes' context '/super/questions/' %}{% else %}{% trans 'No' context '/super/questions/' %}{% endif %}</span>
-                                        </td> 
+                                        <td class="text-center">{{ question.updated_at }}</td>
                                         {% comment %} column 7 {% endcomment %}
-                                        <td class="text-center">
-                                            {% if test.is_archived   %}<span class="label label-danger" >{{ test.get_status_display }}</span>
-                                            {% elif test.is_approved %}<span class="label label-success">{{ test.get_status_display }}</span>
-                                            {% elif test.is_pending  %}<span class="label label-info"   >{{ test.get_status_display }}</span>
-                                            {% elif test.is_draft    %}<span class="label label-default">{{ test.get_status_display }}</span>
-                                            {% elif test.is_redo     %}<span class="label label-warning">{{ test.get_status_display }}</span>
-                                            {% elif test.is_active   %}<span class="label label-primary">{{ test.get_status_display }}</span>
-                                            {% endif %}
-                                        </td>
+                                        <td class="text-center">{% trans question.taxonomy.name %}</td>
                                         {% comment %} column 8 {% endcomment %}
-                                        <td class="text-center">{{ test.sales_count }}/{{ test.completed_count }}</td>
+                                        <td class="text-center">{{ question.topic.name }}</td>
                                         {% comment %} column 9 {% endcomment %}
+                                        <td class="text-center">{{ question.subtopic.name }}</td>
+                                        {% comment %} column 10 {% endcomment %}
+                                        <td class="text-center">{{ question.goal.name }}</td>
+                                        {% comment %} column 11 {% endcomment %}
+                                        <td class="text-center">{{ "TODO" }}</td>
+                                        
+                                        {% comment %} column 12 {% endcomment %}
                                         <td class="pr-15 text-center">
-                                            {% if test.is_archived or test.is_approved %}
+                                            {% comment %} {% if test.is_archived or test.is_approved %}
                                                 <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/questions/' %}</a>
                                             {% elif test.is_pending %}
                                                 <a href="{% url 'bbtest:build_test' test.code %}" class="btn djBtnDefault btn-xs mr-5 mb-5">{% trans 'Edit' context '/super/questions/' %}</a>
@@ -142,148 +149,12 @@
                                                 <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/developer/' %}</button>
                                             {% else %}
                                                 <button class="btn djBtnSuccess btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_reapprove_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReApprove' context '/developer/' %}</button>
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                {% empty %}
-                                    <tr>
-                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no questions yet' context '/super/questions/' %}</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    {% elif perms.bbtest.expert %}
-                        <table class="table table-striped table-hover table-pressed">
-                            <thead>
-                                <tr>
-                                    {% comment %} column 1 {% endcomment %}
-                                    <th class="pl-15">{% trans 'Developer' context '/expert/dashboard/' %}</th>
-                                    {% comment %} column 2 {% endcomment %}
-                                    <th>{% trans 'Domain' context '/expert/dashboard/' %}</th>
-                                    {% comment %} column 3 {% endcomment %}
-                                    <th>{% trans 'Section' context '/expert/dashboard/' %}</th>
-                                    {% comment %} column 4 {% endcomment %}
-                                    <th class="text-center">{% trans 'Language' context '/expert/dashboard/' %}</th>
-                                    {% comment %} column 5 {% endcomment %}
-                                    <th class="text-center">{% trans 'Variant' context '/expert/dashboard/' %}</th>
-                                    {% comment %} column 6 {% endcomment %}
-                                    <th class="text-center">{% trans 'Status' context '/expert/dashboard/' %}</th>
-                                    {% comment %} column 7 {% endcomment %}
-                                    <th class="pr-15 text-center">{% trans 'Actions' context '/expert/dashboard/' %}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for test in questions %}
-                                    <tr {% if test.developer == user %}class="success"{% endif %}>
-                                        {% comment %} column 1 {% endcomment %}
-                                        {% if test.developer|has_perm:'bbtest.super' %}
-                                            <td class="pl-15">{{ test.developer.get_full_name }}</td>
-                                        {% else %}
-                                            <td class="pl-15"><a href="{% url 'bbtest:super_user' test.developer.pk %}">{{ test.developer.get_full_name }}</a><br><small class="text-info">{{ test.developer.email }}</small></td>
-                                        {% endif %}
-                                        {% comment %} column 2 {% endcomment %}
-                                        <td>{% trans test.section.domain.name %}</td>
-                                        {% comment %} column 3 {% endcomment %}
-                                        <td>{% trans test.section.name %}</td>
-                                        {% comment %} column 4 {% endcomment %}
-                                        <td class="text-center">{{ test.display_language }}</td>
-                                        {% comment %} column 5 {% endcomment %}
-                                        <td class="text-center">#{{ test.code|upper }}</td>
-                                        {% comment %} column 6 {% endcomment %}
-                                        <td class="text-center">
-                                            {% if test.is_archived   %}<span class="label label-danger" >{{ test.get_status_display }}</span>
-                                            {% elif test.is_approved %}<span class="label label-success">{{ test.get_status_display }}</span>
-                                            {% elif test.is_pending  %}<span class="label label-info"   >{{ test.get_status_display }}</span>
-                                            {% elif test.is_draft    %}<span class="label label-default">{{ test.get_status_display }}</span>
-                                            {% elif test.is_redo     %}<span class="label label-warning">{{ test.get_status_display }}</span>
-                                            {% elif test.is_active   %}<span class="label label-primary">{{ test.get_status_display }}</span>
-                                            {% endif %}
-                                        </td>
-                                        {% comment %} column 7 {% endcomment %}
-                                        <td class="pr-15 text-center">
-                                            {% if not test.is_draft %}
-                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/expert/dashboard/' %}</a>
-                                            {% endif %}
-                                            {% if test.is_pending %}
-                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn djBtnDefault btn-xs mr-5 mb-5">{% trans 'Edit' context '/expert/dashboard/' %}</a>
-                                                <button class="btn djBtnSuccess btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_reapprove_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReApprove' context '/expert/' %}</button>
-                                                <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/expert/' %}</button>
-                                            {% endif %}
-                                            {% comment %} {% if test.is_approved %}
-                                                <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/expert/' %}</button>
                                             {% endif %} {% endcomment %}
                                         </td>
                                     </tr>
                                 {% empty %}
                                     <tr>
-                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no questions yet' context '/expert/dashboard/' %}</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    {% elif perms.bbtest.admin %}
-                        <table class="table table-striped table-hover table-pressed">
-                            <thead>
-                                <tr>
-                                    {% comment %} column 1 {% endcomment %}
-                                    <th class="pl-15">{% trans 'Developer' context '/admin/dashboard/' %}</th>
-                                    {% comment %} column 2 {% endcomment %}
-                                    <th>{% trans 'Domain' context '/admin/dashboard/' %}</th>
-                                    {% comment %} column 3 {% endcomment %}
-                                    <th>{% trans 'Section' context '/admin/dashboard/' %}</th>
-                                    {% comment %} column 4 {% endcomment %}
-                                    <th class="text-center">{% trans 'Language' context '/admin/dashboard/' %}</th>
-                                    {% comment %} column 5 {% endcomment %}
-                                    <th class="text-center">{% trans 'Variant' context '/admin/dashboard/' %}</th>
-                                    {% comment %} column 6 {% endcomment %}
-                                    <th class="text-center">{% trans 'Status' context '/admin/dashboard/' %}</th>
-                                    {% comment %} column 7 {% endcomment %}
-                                    <th class="pr-15 text-center">{% trans 'Actions' context '/admin/dashboard/' %}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for test in questions %}
-                                    <tr {% if test.developer == user %}class="success"{% endif %}>
-                                        {% comment %} column 1 {% endcomment %}
-                                        {% if test.developer|has_perm:'bbtest.super' %}
-                                            <td class="pl-15">{{ test.developer.get_full_name }}</td>
-                                        {% else %}
-                                            <td class="pl-15"><a href="{% url 'bbtest:super_user' test.developer.pk %}">{{ test.developer.get_full_name }}</a><br><small class="text-info">{{ test.developer.email }}</small></td>
-                                        {% endif %}
-                                        {% comment %} column 2 {% endcomment %}
-                                        <td>{% trans test.section.domain.name %}</td>
-                                        {% comment %} column 3 {% endcomment %}
-                                        <td>{% trans test.section.name %}</td>
-                                        {% comment %} column 4 {% endcomment %}
-                                        <td class="text-center">{{ test.display_language }}</td>
-                                        {% comment %} column 5 {% endcomment %}
-                                        <td class="text-center">#{{ test.code|upper }}</td>
-                                        {% comment %} column 6 {% endcomment %}
-                                        <td class="text-center">
-                                            {% if test.is_archived   %}<span class="label label-danger" >{{ test.get_status_display }}</span>
-                                            {% elif test.is_approved %}<span class="label label-success">{{ test.get_status_display }}</span>
-                                            {% elif test.is_pending  %}<span class="label label-info"   >{{ test.get_status_display }}</span>
-                                            {% elif test.is_draft    %}<span class="label label-default">{{ test.get_status_display }}</span>
-                                            {% elif test.is_redo     %}<span class="label label-warning">{{ test.get_status_display }}</span>
-                                            {% elif test.is_active   %}<span class="label label-primary">{{ test.get_status_display }}</span>
-                                            {% endif %}
-                                        </td>
-                                        {% comment %} column 7 {% endcomment %}
-                                        <td class="pr-15 text-center">
-                                            {% if not test.is_draft %}
-                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/expert/dashboard/' %}</a>
-                                            {% endif %}
-                                            {% if test.is_approved %}
-                                                <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/admin/dashboard/' %}</button>
-                                                <button class="btn djBtnSuccess btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_activate_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Activate' context '/admin/dashboard/' %}</button>
-                                            {% elif test.is_active %}
-                                                <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_deactivate_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Deactivate' context '/admin/dashboard/' %}</button>
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                {% empty %}
-                                    <tr>
-                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no questions yet' context '/admin/dashboard/' %}</td>
+                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no questions yet' context '/super/questions/' %}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
