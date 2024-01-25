@@ -99,7 +99,8 @@
                             </thead>
                             <tbody>
                                 {% for question in questions %}
-                                    <tr {% if question.developer == user %}class="success"{% endif %}>
+                                    {% comment %} <tr {% if question.developer == user %}class="success"{% endif %}> {% endcomment %}
+                                    <tr>
                                         {% comment %} column 0 {% endcomment %}
                                         <td class="text-center">{{ question.pk }}</td>
                                         {% comment %} column 1 {% endcomment %}

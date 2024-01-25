@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.urls import reverse
 from bbtest.views.generic import TemplateView
@@ -12,16 +13,19 @@ class QuestionView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMix
 
     def get_context_data(self, **kwargs):
         
-        # if self.request.user.has_perm("bbtest.super") or self.request.user.has_perm("bbtest.admin") or self.request.user.has_perm("bbtest.developer"):
-        #     tests = Test.objects.select_related("section__domain", "developer").order_by("-created_at")
-        # elif self.request.user.has_perm("bbtest.expert") :
-        #     section_list = self.request.user.expert_profile.section.all()
-        #     tests = Test.objects.filter(section__in=section_list).select_related("section__domain", "developer").order_by("-created_at")
+        if self.request.user.has_perm("bbtest.super"):
+            questions = TestQuestion.objects.select_related("section__domain", "developer").order_by("-created_at") # .order_by("taxonomy") #
+        elif self.request.user.has_perm("bbtest.expert"):
+            section_list = self.request.user.expert_profile.section.all()
+            questions = TestQuestion.objects.filter(section__in=section_list).select_related("section__domain", "developer").order_by("-created_at")
+        elif self.request.user.has_perm("bbtest.admin"):
+            questions = TestQuestion.objects.select_related("section__domain", "developer").order_by("-created_at")
+        elif self.request.user.has_perm("bbtest.developer"):
+            questions = TestQuestion.objects.select_related("section__domain", "developer").order_by("-created_at").filter(developer = self.request.user)
+        else:
+            raise PermissionDenied()
 
-        questions = TestQuestion.objects.select_related("section__domain", "developer").order_by("-created_at").all()
-
-        print(questions)
-
+        
         kwargs["q"] = ""
         # try:    
         #     tests = tests.filter(
@@ -48,7 +52,6 @@ class QuestionView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMix
 
         paginator.page_indexes = self.page_indexes(kwargs["questions"], 5)
 
-        print(self.request.user)
 
         if self.request.user.has_perm("bbtest.super"):
             kwargs["question_page_redirect"] = reverse("bbtest:super_tests")
