@@ -358,7 +358,7 @@ class TestQuestion(Model):
     developer  = ForeignKey  ( User,         on_delete=CASCADE, related_name="questions",                        )
 
     status         = PositiveSmallIntegerField ( pgettext_lazy("Model field", "status"),                                choices=STATUSES,       default=STATUS_DRAFT,      db_index=True, )
-    # code           = CharField                 ( pgettext_lazy("Model field", "code of the question"),     max_length=15,                       unique=True,               db_index=True, )
+    code           = CharField                 ( pgettext_lazy("Model field", "code of the question"),     max_length=15,                       unique=True,               db_index=True, )
     answer_class  = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
     meta_data     = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
     difficulty    = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NONE  , db_index=True, )
