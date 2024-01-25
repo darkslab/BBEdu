@@ -399,6 +399,14 @@ class TestQuestion(Model):
     
     def is_active(self):
         return self.status == self.STATUS_ACTIVE
+    
+    def get_lang(self):
+        domain_name = self.section.domain.name
+        if "ru" in domain_name:
+            return Test.LANGUAGE_RU
+        if "kz" in domain_name:
+            return Test.LANGUAGE_KK
+        return Test.LANGUAGE_XX
 
 
 class TestParagraph(Model):
