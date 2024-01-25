@@ -152,7 +152,7 @@ urlpatterns = [
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
     # url(r"^developer/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="developer_acknowledgement"),
     url(r"^developer/tests/$",           DeveloperTestsView.as_view(),           name="developer_tests"          ),
-    url(r"^developer/questions/$",       SuperQuestionView.as_view(),            name="developer_questions"          ),
+    url(r"^developer/questions/$",       SuperQuestionView.as_view(),            name="developer_questions"      ),
     url(r"^developer/offer/$",           DeveloperOfferView.as_view(),           name="developer_offer"          ),
     # url(r"^developer/users/$",           SuperUsersView.as_view(),               name="developer_users"          ),
 
@@ -160,6 +160,7 @@ urlpatterns = [
     url(r"^expert/$",                 SuperTestsView.as_view(),               name="expert_dashboard"      ),
     url(r"^expert/tests/$",           DeveloperTestsView.as_view(),           name="expert_tests"          ),
     url(r"^expert/users/$",           SuperUsersView.as_view(),               name="expert_users"          ),
+    url(r"^expert/questions/$",       SuperQuestionView.as_view(),            name="expert_questions"      ),
 
     # ADMIN URLS
     url(r"^admin/$",                 SuperTestsView.as_view(),               name="admin_dashboard"      ),
@@ -171,6 +172,7 @@ urlpatterns = [
     # SUPER URLS
     url(r"^super/$",                                        SuperDashboardView.as_view(),                name="super_dashboard"                 ),
     url(r"^super/tests/$",                                  SuperTestsView.as_view(),                    name="super_tests"                     ),
+    url(r"^super/questions/$",                              SuperQuestionView.as_view(),                 name="super_questions"                 ),
     url(r"^super/download-subscription-list/$",             SuperDownloadSubscriptionListView.as_view(), name="super_download_subscription_list"),
     url(r"^super/users/$",                                  SuperUsersView.as_view(),                    name="super_users"                     ),
     url(r"^super/users/(?P<user_id>[0-9]+)/$",              SuperUserView.as_view(),                     name="super_user"                      ),
