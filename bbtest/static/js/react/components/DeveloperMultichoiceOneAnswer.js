@@ -1,347 +1,315 @@
 "use strict";
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DeveloperMultichoiceOneAnswer = function (_React$Component) {
-    _inherits(DeveloperMultichoiceOneAnswer, _React$Component);
-
-    function DeveloperMultichoiceOneAnswer(props) {
-        _classCallCheck(this, DeveloperMultichoiceOneAnswer);
-
-        var _this = _possibleConstructorReturn(this, (DeveloperMultichoiceOneAnswer.__proto__ || Object.getPrototypeOf(DeveloperMultichoiceOneAnswer)).call(this, props));
-
-        _this._alphabet = "ABCDEFGH";
-        _this._$choicesContainer;
-        _this.state = {
-            choicesModal: false,
-            confirmModal: false
-        };
-        return _this;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+var DeveloperMultichoiceOneAnswer = /*#__PURE__*/function (_React$Component) {
+  _inherits(DeveloperMultichoiceOneAnswer, _React$Component);
+  var _super = _createSuper(DeveloperMultichoiceOneAnswer);
+  function DeveloperMultichoiceOneAnswer(props) {
+    var _this;
+    _classCallCheck(this, DeveloperMultichoiceOneAnswer);
+    _this = _super.call(this, props);
+    _this._alphabet = "ABCDEFGH";
+    _this._$choicesContainer;
+    _this.state = {
+      choicesModal: false,
+      confirmModal: false
+    };
+    return _this;
+  }
+  _createClass(DeveloperMultichoiceOneAnswer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this._$choicesContainer = $("[data-choices]");
+      if (this._$choicesContainer.length) {
+        this._$choicesContainer.sortable({
+          axis: "y",
+          cancel: "input,textarea,button,select,option,[data-bb-non-sortable]",
+          forceHelperSize: true,
+          forcePlaceholderSize: true,
+          items: "> [data-choice-id]",
+          placeholder: "bb-test-answer-placeholder",
+          tolerance: "pointer",
+          create: function () {
+            this._$choicesContainer.height(this._$choicesContainer.height());
+          }.bind(this),
+          update: this._choicesSorted.bind(this)
+        });
+      } else {
+        this._$choicesContainer = undefined;
+      }
     }
-
-    _createClass(DeveloperMultichoiceOneAnswer, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            this._$choicesContainer = $("[data-choices]");
-            if (this._$choicesContainer.length) {
-                this._$choicesContainer.sortable({
-                    axis: "y",
-                    cancel: "input,textarea,button,select,option,[data-bb-non-sortable]",
-                    forceHelperSize: true,
-                    forcePlaceholderSize: true,
-                    items: "> [data-choice-id]",
-                    placeholder: "bb-test-answer-placeholder",
-                    tolerance: "pointer",
-
-                    create: function () {
-                        this._$choicesContainer.height(this._$choicesContainer.height());
-                    }.bind(this),
-                    update: this._choicesSorted.bind(this)
-                });
+  }, {
+    key: "componentWillUpdate",
+    value: function componentWillUpdate() {
+      if (this._$choicesContainer) {
+        this._$choicesContainer.css("height", "");
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (this._$choicesContainer) {
+        this._$choicesContainer.height(this._$choicesContainer.height());
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this._$choicesContainer) {
+        this._$choicesContainer.sortable("destroy");
+        this._$choicesContainer = undefined;
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+      var developerChoices = [];
+      var choices = [];
+      this.props.data.choices.map(function (choice, index) {
+        var DeveloperChoiceClass = eval("Developer" + choice.choice_class);
+        var ChoiceClass = eval(choice.choice_class);
+        var chosen = _this2.props.data.correct_id && _this2.props.data.correct_id === choice.id ? true : false;
+        developerChoices.push( /*#__PURE__*/React.createElement(DeveloperChoiceClass, {
+          key: choice.id,
+          choiceId: choice.id,
+          data: choice.meta_data,
+          onChange: _this2._choiceChange.bind(_this2, choice.id),
+          onSelect: _this2._choiceSelect.bind(_this2, choice.id),
+          onDelete: _this2._choiceDelete.bind(_this2, choice.id),
+          canEdit: _this2.props.ability.canEditAnswerChoice(choice.id),
+          canDelete: _this2.props.ability.canDeleteAnswerChoice(choice.id),
+          texts: _this2.props.texts,
+          chosen: chosen
+        }));
+        choices.push( /*#__PURE__*/React.createElement(ChoiceClass, {
+          key: choice.id,
+          data: choice.meta_data,
+          label: _this2._alphabet[index],
+          chosen: chosen,
+          isMulti: false,
+          texts: _this2.props.texts,
+          forDevelopers: true,
+          showCorrectAnswer: false,
+          isCorrect: false
+        }));
+      });
+      if (!choices.length) {
+        choices.push( /*#__PURE__*/React.createElement("div", {
+          key: "empty",
+          className: "row"
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "col-xs-12"
+        }, /*#__PURE__*/React.createElement("p", {
+          className: "lead text-center mb-0"
+        }, this.props.texts.noAnswerChoices))));
+      }
+      var modal = null;
+      if (this.state.choicesModal) {
+        modal = /*#__PURE__*/React.createElement(DeveloperSelectorModal, {
+          title: this.props.texts.answerChoicesModalTitle,
+          complete: this._completeModal.bind(this, "choices"),
+          classData: [{
+            "class": "MultichoiceTextChoice",
+            caption: this.props.texts.answerChoicesModalTitleButtonMultichoiceTextChoice
+          }]
+        });
+      } else if (this.state.confirmModal) {
+        modal = /*#__PURE__*/React.createElement(ConfirmModal, {
+          title: this.props.texts.deleteModalTitle,
+          yesCaption: this.props.texts.deleteModalYesCaption,
+          noCaption: this.props.texts.deleteModalNoCaption,
+          isInverse: true,
+          complete: this._completeModal.bind(this, "confirm")
+        });
+      }
+      var addAnswerChoiceButton = null;
+      if (this.props.ability.canAddAnswerChoice() && developerChoices.length < this._alphabet.length) {
+        addAnswerChoiceButton = /*#__PURE__*/React.createElement("div", {
+          className: "form-group text-center mt-23"
+        }, /*#__PURE__*/React.createElement("button", {
+          type: "button",
+          className: "btn btn-success",
+          onClick: this._renderModal.bind(this, "choices")
+        }, this.props.texts.addAnswerChoice));
+      }
+      var deleteButton = null;
+      if (this.props.ability.canDeleteAnswer()) {
+        deleteButton = /*#__PURE__*/React.createElement("button", {
+          type: "button",
+          className: "btn btn-danger btn-sm",
+          onClick: this._renderModal.bind(this, "confirm")
+        }, /*#__PURE__*/React.createElement("i", {
+          className: "fa fa-fw fa-times"
+        }));
+      }
+      return /*#__PURE__*/React.createElement(React.Fragment, null, modal, /*#__PURE__*/React.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "col-xs-12"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "panel panel-default mb-15"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "panel-heading"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/React.createElement("h4", {
+        className: "col-xs-9 col-sm-11 mt-5 mb-5"
+      }, this.props.texts.multichoiceOneAnswerTitle), /*#__PURE__*/React.createElement("div", {
+        className: "col-xs-3 col-sm-1 text-right pl-0"
+      }, deleteButton))), /*#__PURE__*/React.createElement("div", {
+        className: "panel-body"
+      }, /*#__PURE__*/React.createElement("div", {
+        "data-choices": true
+      }, developerChoices), addAnswerChoiceButton, /*#__PURE__*/React.createElement("hr", {
+        className: "bb-separator"
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "mb-15"
+      }, choices))))));
+    }
+  }, {
+    key: "_choiceChange",
+    value: function _choiceChange(choiceId, data) {
+      var _data = this._deepCopyData();
+      for (var i = 0; i < _data.choices.length; i++) {
+        if (_data.choices[i].id === choiceId) {
+          _data.choices[i].meta_data = data;
+          break;
+        }
+      }
+      this.props.onChange(_data);
+    }
+  }, {
+    key: "_choiceSelect",
+    value: function _choiceSelect(choiceId, data) {
+      var _data = this._deepCopyData();
+      _data.correct_id = data ? choiceId : null;
+      this.props.onChange(_data);
+    }
+  }, {
+    key: "_choiceDelete",
+    value: function _choiceDelete(choiceId) {
+      var data = this._deepCopyData();
+      for (var i = 0; i < data.choices.length; i++) {
+        if (data.choices[i].id === choiceId) {
+          if (data.correct_id === choiceId) {
+            data.correct_id = null;
+          }
+          data.choices.splice(i, 1);
+          break;
+        }
+      }
+      this.props.onChange(data);
+    }
+  }, {
+    key: "_deepCopyData",
+    value: function _deepCopyData() {
+      var data = _objectSpread({}, this.props.data);
+      data.choices = _toConsumableArray(data.choices);
+      for (var i = 0; i < data.choices.length; i++) {
+        data.choices[i] = _objectSpread({}, data.choices[i]);
+        data.choices[i].meta_data = _objectSpread({}, data.choices[i].meta_data);
+      }
+      return data;
+    }
+  }, {
+    key: "_choicesSorted",
+    value: function _choicesSorted(event, ui) {
+      var choicesIds = this._$choicesContainer.sortable("toArray", {
+        attribute: "data-choice-id"
+      }).map(function (id) {
+        return parseInt(id, 10);
+      });
+      var _data = this._deepCopyData();
+      _data.choices.sort(function (a, b) {
+        var i = choicesIds.indexOf(a.id);
+        var j = choicesIds.indexOf(b.id);
+        if (i === j) {
+          return 0;
+        }
+        return i < j ? -1 : 1;
+      });
+      this.props.onChange(_data);
+    }
+  }, {
+    key: "_renderModal",
+    value: function _renderModal(type) {
+      switch (type) {
+        case "choices":
+          this.setState({
+            choicesModal: true
+          });
+          break;
+        case "confirm":
+          this.setState({
+            confirmModal: true
+          });
+          break;
+      }
+    }
+  }, {
+    key: "_completeModal",
+    value: function _completeModal(type, data) {
+      switch (type) {
+        case "choices":
+          if (data) {
+            var _data = this._deepCopyData();
+            var choiceIds = _data.choices.map(function (choice) {
+              return choice.id;
+            }).sort(function (a, b) {
+              return a === b ? 0 : a < b ? -1 : 1;
+            });
+            var choice = {
+              choice_class: data,
+              id: null,
+              meta_data: {
+                text: ""
+              }
+            };
+            if (choiceIds.length) {
+              choice.id = choiceIds[choiceIds.length - 1] + 1;
             } else {
-                this._$choicesContainer = undefined;
+              choice.id = Math.random() * 0xffff | 0x00;
             }
-        }
-    }, {
-        key: "componentWillUpdate",
-        value: function componentWillUpdate() {
-            if (this._$choicesContainer) {
-                this._$choicesContainer.css("height", "");
-            }
-        }
-    }, {
-        key: "componentDidUpdate",
-        value: function componentDidUpdate() {
-            if (this._$choicesContainer) {
-                this._$choicesContainer.height(this._$choicesContainer.height());
-            }
-        }
-    }, {
-        key: "componentWillUnmount",
-        value: function componentWillUnmount() {
-            if (this._$choicesContainer) {
-                this._$choicesContainer.sortable("destroy");
-                this._$choicesContainer = undefined;
-            }
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var _this2 = this;
-
-            var developerChoices = [];
-            var choices = [];
-            this.props.data.choices.map(function (choice, index) {
-                var DeveloperChoiceClass = eval("Developer" + choice.choice_class);
-                var ChoiceClass = eval(choice.choice_class);
-
-                var chosen = _this2.props.data.correct_id && _this2.props.data.correct_id === choice.id ? true : false;
-
-                developerChoices.push(React.createElement(DeveloperChoiceClass, { key: choice.id,
-                    choiceId: choice.id,
-                    data: choice.meta_data,
-                    onChange: _this2._choiceChange.bind(_this2, choice.id),
-                    onSelect: _this2._choiceSelect.bind(_this2, choice.id),
-                    onDelete: _this2._choiceDelete.bind(_this2, choice.id),
-                    canEdit: _this2.props.ability.canEditAnswerChoice(choice.id),
-                    canDelete: _this2.props.ability.canDeleteAnswerChoice(choice.id),
-                    texts: _this2.props.texts,
-                    chosen: chosen }));
-                choices.push(React.createElement(ChoiceClass, { key: choice.id,
-                    data: choice.meta_data,
-                    label: _this2._alphabet[index],
-                    chosen: chosen,
-                    isMulti: false,
-                    texts: _this2.props.texts,
-                    forDevelopers: true,
-                    showCorrectAnswer: false,
-                    isCorrect: false }));
-            });
-            if (!choices.length) {
-                choices.push(React.createElement(
-                    "div",
-                    { key: "empty", className: "row" },
-                    React.createElement(
-                        "div",
-                        { className: "col-xs-12" },
-                        React.createElement(
-                            "p",
-                            { className: "lead text-center mb-0" },
-                            this.props.texts.noAnswerChoices
-                        )
-                    )
-                ));
-            }
-
-            var modal = null;
-            if (this.state.choicesModal) {
-                modal = React.createElement(DeveloperSelectorModal, { title: this.props.texts.answerChoicesModalTitle,
-                    complete: this._completeModal.bind(this, "choices"),
-                    classData: [{
-                        class: "MultichoiceTextChoice",
-                        caption: this.props.texts.answerChoicesModalTitleButtonMultichoiceTextChoice
-                    }] });
-            } else if (this.state.confirmModal) {
-                modal = React.createElement(ConfirmModal, { title: this.props.texts.deleteModalTitle,
-                    yesCaption: this.props.texts.deleteModalYesCaption,
-                    noCaption: this.props.texts.deleteModalNoCaption,
-                    isInverse: true,
-                    complete: this._completeModal.bind(this, "confirm") });
-            }
-
-            var addAnswerChoiceButton = null;
-            if (this.props.ability.canAddAnswerChoice() && developerChoices.length < this._alphabet.length) {
-                addAnswerChoiceButton = React.createElement(
-                    "div",
-                    { className: "form-group text-center mt-23" },
-                    React.createElement(
-                        "button",
-                        { type: "button",
-                            className: "btn btn-success",
-                            onClick: this._renderModal.bind(this, "choices") },
-                        this.props.texts.addAnswerChoice
-                    )
-                );
-            }
-
-            var deleteButton = null;
-            if (this.props.ability.canDeleteAnswer()) {
-                deleteButton = React.createElement(
-                    "button",
-                    { type: "button",
-                        className: "btn btn-danger btn-sm",
-                        onClick: this._renderModal.bind(this, "confirm") },
-                    React.createElement("i", { className: "fa fa-fw fa-times" })
-                );
-            }
-
-            return React.createElement(
-                React.Fragment,
-                null,
-                modal,
-                React.createElement(
-                    "div",
-                    { className: "row" },
-                    React.createElement(
-                        "div",
-                        { className: "col-xs-12" },
-                        React.createElement(
-                            "div",
-                            { className: "panel panel-default mb-15" },
-                            React.createElement(
-                                "div",
-                                { className: "panel-heading" },
-                                React.createElement(
-                                    "div",
-                                    { className: "row" },
-                                    React.createElement(
-                                        "h4",
-                                        { className: "col-xs-9 col-sm-11 mt-5 mb-5" },
-                                        this.props.texts.multichoiceOneAnswerTitle
-                                    ),
-                                    React.createElement(
-                                        "div",
-                                        { className: "col-xs-3 col-sm-1 text-right pl-0" },
-                                        deleteButton
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "panel-body" },
-                                React.createElement(
-                                    "div",
-                                    { "data-choices": true },
-                                    developerChoices
-                                ),
-                                addAnswerChoiceButton,
-                                React.createElement("hr", { className: "bb-separator" }),
-                                React.createElement(
-                                    "div",
-                                    { className: "mb-15" },
-                                    choices
-                                )
-                            )
-                        )
-                    )
-                )
-            );
-        }
-    }, {
-        key: "_choiceChange",
-        value: function _choiceChange(choiceId, data) {
-            var _data = this._deepCopyData();
-            for (var i = 0; i < _data.choices.length; i++) {
-                if (_data.choices[i].id === choiceId) {
-                    _data.choices[i].meta_data = data;
-                    break;
-                }
-            }
+            _data.choices.push(choice);
             this.props.onChange(_data);
-        }
-    }, {
-        key: "_choiceSelect",
-        value: function _choiceSelect(choiceId, data) {
-            var _data = this._deepCopyData();
-            _data.correct_id = data ? choiceId : null;
-            this.props.onChange(_data);
-        }
-    }, {
-        key: "_choiceDelete",
-        value: function _choiceDelete(choiceId) {
-            var data = this._deepCopyData();
-            for (var i = 0; i < data.choices.length; i++) {
-                if (data.choices[i].id === choiceId) {
-                    if (data.correct_id === choiceId) {
-                        data.correct_id = null;
-                    }
-                    data.choices.splice(i, 1);
-                    break;
-                }
-            }
-            this.props.onChange(data);
-        }
-    }, {
-        key: "_deepCopyData",
-        value: function _deepCopyData() {
-            var data = _extends({}, this.props.data);
-            data.choices = [].concat(_toConsumableArray(data.choices));
-            for (var i = 0; i < data.choices.length; i++) {
-                data.choices[i] = _extends({}, data.choices[i]);
-                data.choices[i].meta_data = _extends({}, data.choices[i].meta_data);
-            }
-            return data;
-        }
-    }, {
-        key: "_choicesSorted",
-        value: function _choicesSorted(event, ui) {
-            var choicesIds = this._$choicesContainer.sortable("toArray", {
-                attribute: "data-choice-id"
-            }).map(function (id) {
-                return parseInt(id, 10);
+          }
+          this.setState({
+            choicesModal: false
+          });
+          break;
+        case "confirm":
+          if (data) {
+            this.props.onDelete();
+          } else {
+            this.setState({
+              confirmModal: false
             });
-            var _data = this._deepCopyData();
-            _data.choices.sort(function (a, b) {
-                var i = choicesIds.indexOf(a.id);
-                var j = choicesIds.indexOf(b.id);
-                if (i === j) {
-                    return 0;
-                }
-                return i < j ? -1 : 1;
-            });
-            this.props.onChange(_data);
-        }
-    }, {
-        key: "_renderModal",
-        value: function _renderModal(type) {
-            switch (type) {
-                case "choices":
-                    this.setState({
-                        choicesModal: true
-                    });
-                    break;
-                case "confirm":
-                    this.setState({
-                        confirmModal: true
-                    });
-                    break;
-            }
-        }
-    }, {
-        key: "_completeModal",
-        value: function _completeModal(type, data) {
-            switch (type) {
-                case "choices":
-                    if (data) {
-                        var _data = this._deepCopyData();
-                        var choiceIds = _data.choices.map(function (choice) {
-                            return choice.id;
-                        }).sort(function (a, b) {
-                            return a === b ? 0 : a < b ? -1 : 1;
-                        });
-
-                        var choice = {
-                            choice_class: data,
-                            id: null,
-                            meta_data: {
-                                text: ""
-                            }
-                        };
-                        if (choiceIds.length) {
-                            choice.id = choiceIds[choiceIds.length - 1] + 1;
-                        } else {
-                            choice.id = Math.random() * 0xffff | 0x00;
-                        }
-
-                        _data.choices.push(choice);
-                        this.props.onChange(_data);
-                    }
-                    this.setState({
-                        choicesModal: false
-                    });
-                    break;
-                case "confirm":
-                    if (data) {
-                        this.props.onDelete();
-                    } else {
-                        this.setState({
-                            confirmModal: false
-                        });
-                    }
-                    break;
-            }
-        }
-    }]);
-
-    return DeveloperMultichoiceOneAnswer;
+          }
+          break;
+      }
+    }
+  }]);
+  return DeveloperMultichoiceOneAnswer;
 }(React.Component);
