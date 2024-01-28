@@ -17,6 +17,24 @@
             }
         });
     </script>
+    <style>
+        s, strike{text-decoration:none;position:relative;}
+        s::before, strike::before {
+            top: 50%; /*tweak this to adjust the vertical position if it's off a bit due to your font family */
+            background:red; /*this is the color of the line*/
+            opacity:.7;
+            content: '';
+            width: 110%;
+            position: absolute;
+            height:.1em;
+            border-radius:.1em;
+            left: -5%;
+            white-space:nowrap;
+            display: block;
+            transform: rotate(-15deg);  
+        }
+        s.straight::before, strike.straight::before{transform: rotate(0deg);left:-1%;width:102%;}
+    </style>
     <div class="modal fade" data-failure-modal data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -184,7 +202,8 @@
                             </div>
                             <hr class="mt-10 mb-10" style="border-color: #ccc;">
                         </div>
-                        <h4 class="text-right mt-15 mb-15" data-totals-total></h4>
+                        <h4 class="text-right mt-15 mb-15 " data-totals-total-x2></h4>
+                        <b><h3 class="text-right mt-15 mb-15 text-bold" data-totals-total></h3></b>
                         <h6 class="text-center mt-15 mb-15" data-totals-test-language></h4>
                         <button type="button" class="btn btn-success btn-lg btn-block" data-totals-buy-tests>{% trans 'Buy tests' context '/student/buy-tests/xxxx/' %}</button>
                         <a href="{% url 'bbtest:buy_credits' %}" class="btn btn-primary btn-lg btn-block" data-totals-buy-credits>{% trans 'Buy credits' context '/student/buy-tests/xxxx/' %}</a>

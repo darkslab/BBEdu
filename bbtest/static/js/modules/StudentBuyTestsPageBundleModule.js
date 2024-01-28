@@ -23,6 +23,7 @@ function StudentBuyTestsPageBundleModule(data) {
     this._$totals_subtotals_row = this._$totals_subtotals.find("[data-totals-row]");
     this._$totals_subtotals_row.remove();
     this._$totals_total = this._$totals.find("[data-totals-total]");
+    this._$totals_total_x2 = this._$totals.find("[data-totals-total-x2]");
     this._$totals_test_language = this._$totals.find("[data-totals-test-language]");
     this._$totals_buy_tests = this._$totals.find("[data-totals-buy-tests]");
     this._$totals_buy_credits = this._$totals.find("[data-totals-buy-credits]");
@@ -274,7 +275,11 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
         for (i = 0; i < data.totals.line_items.length; i++) {
             var $row = this._$totals_line_items_row.clone();
             $row.find("[data-totals-description]").text(data.totals.line_items[i].description);
-            $row.find("[data-totals-amount]").text(data.totals.line_items[i].amount);
+            let price_unit_amount = data.totals.line_items[i].amount.split(" ")
+            let temp_text = "<strike>" + parseInt(price_unit_amount[0]) * 2 + " " + price_unit_amount[1] + "</strike>"
+            console.log(data.totals.line_items[i].amount, price_unit_amount);
+            $row.find("[data-totals-amount]").html(temp_text + " <b>" + data.totals.line_items[i].amount + "</b>");
+            // $row.find("[data-totals-amount]").text(data.totals.line_items[i].amount);
             this._$totals_line_items.append($row);
         }
     } else {
@@ -287,7 +292,11 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
         for (i = 0; i < data.totals.subtotals.length; i++) {
             var $row = this._$totals_subtotals_row.clone();
             $row.find("[data-totals-description]").text(data.totals.subtotals[i].description);
-            $row.find("[data-totals-amount]").text(data.totals.subtotals[i].amount);
+
+            let price_unit_amount = data.totals.subtotals[i].amount.split(" ")
+            let temp_text = "<strike>" + parseInt(price_unit_amount[0]) * 2 + " " + price_unit_amount[1] + "</strike>"
+            console.log(data.totals.subtotals[i].amount, price_unit_amount);
+            $row.find("[data-totals-amount]").html(temp_text + " " + data.totals.subtotals[i].amount);
             this._$totals_subtotals.append($row);
         }
     } else {
@@ -295,6 +304,9 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
     }
 
     this._$totals_total.text(data.totals.total);
+    const price_unit = data.totals.total.split(" ")
+    // console.log(data.totals.total, price_unit);
+    this._$totals_total_x2.html("<strike>" + parseInt(price_unit[0]) * 2 + " " + price_unit[1] + "</strike>");
 
     if (data.totals.line_items.length) {
         if (test_language_explanation) {

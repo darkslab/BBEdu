@@ -317,5 +317,5 @@ class Command(BaseCommand):
 
             row = [username, first_name, last_name, phone, email, joined_at, last_login, is_active, meta_data]
             worksheet.write_row(i+1, 0, row)
-            worksheet.write_datetime(i+1, 5, joined_at, date_format)
-            worksheet.write_datetime(i+1, 6, last_login, date_format)
+            if type(joined_at) == datetime: worksheet.write_datetime(i+1, 5, joined_at, date_format)
+            if type(last_login) == datetime: worksheet.write_datetime(i+1, 6, last_login, date_format)
