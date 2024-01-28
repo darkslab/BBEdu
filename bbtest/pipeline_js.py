@@ -93,6 +93,7 @@ BASE3_SOURCE_FILENAMES = (
 
     "js/react/components/Test.js",
     "js/react/components/Question.js",
+    "js/react/components/StandaloneQuestion.js",
     "js/react/components/RefreshModal.js",
     "js/react/components/ConfirmModal.js",
 
