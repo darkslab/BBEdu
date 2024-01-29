@@ -307,8 +307,10 @@ StudentBuyTestsPageBundleModule.prototype._apply = function(data) {
     this._$totals_total.text(data.totals.total);
     const price_unit = data.totals.total.split(" ")
     // console.log(data.totals.total, price_unit);
-    if (price_unit[1] > 0) {
+    if (parseInt(price_unit[0]) > 0) {
         this._$totals_total_x2.html("<strike>12000 " + price_unit[1] + "</strike>");
+    } else {
+        this._$totals_total_x2.html("");
     }
 
     if (data.totals.line_items.length) {
