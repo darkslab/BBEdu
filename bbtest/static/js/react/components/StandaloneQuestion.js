@@ -13,12 +13,12 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-var Test = /*#__PURE__*/function (_React$Component) {
-  _inherits(Test, _React$Component);
-  var _super = _createSuper(Test);
-  function Test(props) {
+var StandaloneQuestion = /*#__PURE__*/function (_React$Component) {
+  _inherits(StandaloneQuestion, _React$Component);
+  var _super = _createSuper(StandaloneQuestion);
+  function StandaloneQuestion(props) {
     var _this;
-    _classCallCheck(this, Test);
+    _classCallCheck(this, StandaloneQuestion);
     _this = _super.call(this, props);
     _this.state = {
       isErrored: false,
@@ -35,7 +35,7 @@ var Test = /*#__PURE__*/function (_React$Component) {
     _this._boundWindowFocus = _this._windowFocus.bind(_assertThisInitialized(_this));
     return _this;
   }
-  _createClass(Test, [{
+  _createClass(StandaloneQuestion, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this._continue(true, false);
@@ -54,62 +54,6 @@ var Test = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var content = null;
       switch (this.state.status) {
-        case "queued":
-          var instructions = [];
-          for (var i = 0; i < this._statusData.instructions.length; i++) {
-            var className = "lead";
-            var isLastGroup = true;
-            if (i < this._statusData.instructions.length - 1) {
-              isLastGroup = false;
-            }
-            for (var j = 0; j < this._statusData.instructions[i].length; j++) {
-              var innerClassName = "";
-              if (j < this._statusData.instructions[i].length - 1) {
-                innerClassName += " mb-0";
-              } else if (!isLastGroup) {
-                innerClassName += " mb-10";
-              }
-              instructions.push( /*#__PURE__*/React.createElement("p", {
-                key: i + "-" + j,
-                className: className + innerClassName
-              }, this._statusData.instructions[i][j]));
-            }
-          }
-          var video = null;
-          if (this._statusData.video) {
-            video = /*#__PURE__*/React.createElement("div", {
-              className: "embed-responsive embed-responsive-16by9 mb-23"
-            }, /*#__PURE__*/React.createElement("iframe", {
-              src: this._statusData.video,
-              frameBorder: "0",
-              allow: "accelerometer; encrypted-media; gyroscope; picture-in-picture",
-              allowFullScreen: true
-            }));
-          }
-          content = /*#__PURE__*/React.createElement("div", {
-            className: "panel panel-default"
-          }, /*#__PURE__*/React.createElement("div", {
-            className: "panel-body"
-          }, /*#__PURE__*/React.createElement("h3", {
-            className: "text-center mb-15"
-          }, this._statusData.section[0], " ", /*#__PURE__*/React.createElement("span", {
-            className: "label label-default"
-          }, this._statusData.section[1])), instructions, video, /*#__PURE__*/React.createElement("div", {
-            className: "text-center mb-23"
-          }, /*#__PURE__*/React.createElement("div", {
-            className: "visible-xs-block"
-          }, /*#__PURE__*/React.createElement("button", {
-            type: "button",
-            className: "btn btn-primary btn-block",
-            onClick: this._renderModal.bind(this, "start")
-          }, this.props.texts.startButton)), /*#__PURE__*/React.createElement("div", {
-            className: "hidden-xs"
-          }, /*#__PURE__*/React.createElement("button", {
-            type: "button",
-            className: "btn btn-primary btn-lg",
-            onClick: this._renderModal.bind(this, "start")
-          }, this.props.texts.startButton)))));
-          break;
         case "started":
           var header = null;
           if (this._statusData.section !== undefined) {
@@ -186,13 +130,7 @@ var Test = /*#__PURE__*/function (_React$Component) {
             secondsLeft: this._statusData.focused ? this._statusData.seconds : -1,
             texts: this.props.texts,
             hasTimer: this.props.hasTimer
-          }), /*#__PURE__*/React.createElement("div", {
-            className: "row"
-          }, /*#__PURE__*/React.createElement("div", {
-            className: "col-xs-12"
-          }, /*#__PURE__*/React.createElement("ul", {
-            className: "pager mt-0 mb-0"
-          }, bottomPaginationLeft, bottomPaginationRight))), endControl);
+          }), endControl);
           break;
         case "expired":
           content = /*#__PURE__*/React.createElement("div", {
@@ -325,51 +263,16 @@ var Test = /*#__PURE__*/function (_React$Component) {
         this._errorOut();
         return;
       }
-      var msecs = new Date().getTime() - this._xhrStartTime;
-      switch (data.status) {
-        case "queued":
-          this._statusData = {
-            section: data.section,
-            instructions: data.instructions
-          };
-          if (data.video) {
-            this._statusData["video"] = data.video;
-          }
-          this._currentQuestionIndex = 0;
-          break;
-        case "started":
-          if (data.reload) {
-            // location.href = location.href;
-            // console.log("reload", data)
-            location.reload();
-          }
-          var seconds = Math.max(data.seconds - Math.round(msecs / 1000), 0);
-          if (seconds <= 1) {
-            data.status = undefined;
-            this._lingerTimer = setTimeout(function () {
-              this._continue(true, false);
-            }.bind(this), 2000);
-          } else {
-            this._statusData = {
-              seconds: seconds,
-              focused: true,
-              testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report, data.texts),
-              questionIndex: this._currentQuestionIndex,
-              questionsCount: data.questions.length,
-              timer: setTimeout(this._tick.bind(this), 1000)
-            };
-            if (data.section !== undefined) {
-              this._statusData.section = data.section;
-            }
-          }
-          break;
-        case "expired":
-          break;
-        case "concluded":
-          break;
-      }
+      this._statusData = {
+        seconds: 100000000000000000000000,
+        focused: true,
+        testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report, data.texts),
+        questionIndex: this._currentQuestionIndex,
+        questionsCount: data.questions.length,
+        timer: setTimeout(this._tick.bind(this), 1000)
+      };
       this.setState({
-        status: data.status
+        status: "started"
       });
     }
   }, {
@@ -595,5 +498,5 @@ var Test = /*#__PURE__*/function (_React$Component) {
       this._continue();
     }
   }]);
-  return Test;
+  return StandaloneQuestion;
 }(React.Component);

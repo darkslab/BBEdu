@@ -1,4 +1,4 @@
-class Test extends React.Component {
+class StandaloneQuestion extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,66 +31,6 @@ class Test extends React.Component {
     render() {
         let content = null;
         switch (this.state.status) {
-            case "queued":
-                let instructions = [];
-                for (let i = 0; i < this._statusData.instructions.length; i++) {
-                    let className = "lead";
-                    let isLastGroup = true;
-                    if (i < this._statusData.instructions.length - 1) {
-                        isLastGroup = false;
-                    }
-                    for (let j = 0; j < this._statusData.instructions[i].length; j++) {
-                        let innerClassName = "";
-                        if (j < this._statusData.instructions[i].length - 1) {
-                            innerClassName += " mb-0";
-                        } else if (!isLastGroup) {
-                            innerClassName += " mb-10";
-                        }
-                        instructions.push(
-                            <p key={i + "-" + j} className={className + innerClassName}>{this._statusData.instructions[i][j]}</p>
-                        );
-                    }
-                }
-                let video = null;
-                if (this._statusData.video) {
-                    video = (
-                        <div className="embed-responsive embed-responsive-16by9 mb-23">
-                            <iframe src={this._statusData.video} frameBorder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                        </div>
-                    );
-                }
-                content = (
-                    <div className="panel panel-default">
-                        <div className="panel-body">
-                            <h3 className="text-center mb-15">{this._statusData.section[0]} <span className="label label-default">{this._statusData.section[1]}</span></h3>
-                            {instructions}
-                            {video}
-                            <div className="text-center mb-23">
-                                <div className="visible-xs-block">
-                                    <button type="button"
-                                            className="btn btn-primary btn-block"
-                                            onClick={this._renderModal.bind(this, "start")}>{this.props.texts.startButton}</button>
-                                    {/*
-                                    <button type="button"
-                                            className="btn btn-danger btn-block"
-                                            onClick={this._renderModal.bind(this, "skip")}>{this.props.texts.skipButton}</button>
-                                    */}
-                                </div>
-                                <div className="hidden-xs">
-                                    <button type="button"
-                                            className="btn btn-primary btn-lg"
-                                            onClick={this._renderModal.bind(this, "start")}>{this.props.texts.startButton}</button>
-                                    {/*
-                                    <button type="button"
-                                            className="btn btn-danger btn-lg ml-5"
-                                            onClick={this._renderModal.bind(this, "skip")}>{this.props.texts.skipButton}</button>
-                                    */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
-                break;
             case "started":
                 let header = null;
                 if (this._statusData.section !== undefined) {
@@ -168,14 +108,14 @@ class Test extends React.Component {
                                   secondsLeft={this._statusData.focused ? this._statusData.seconds : -1}
                                   texts={this.props.texts}
                                   hasTimer={this.props.hasTimer} />
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-xs-12">
                                 <ul className="pager mt-0 mb-0">
                                     {bottomPaginationLeft}
                                     {bottomPaginationRight}
                                 </ul>
                             </div>
-                        </div>
+                        </div> */}
                         {endControl}
                     </React.Fragment>
                 );
@@ -304,51 +244,19 @@ class Test extends React.Component {
             this._errorOut();
             return;
         }
-        let msecs = (new Date()).getTime() - this._xhrStartTime;
-        switch (data.status) {
-            case "queued":
-                this._statusData = {
-                    section: data.section,
-                    instructions: data.instructions
-                };
-                if (data.video) {
-                    this._statusData["video"] = data.video;
-                }
-                this._currentQuestionIndex = 0;
-                break;
-            case "started":
-                if (data.reload) {
-                    // location.href = location.href;
-                    // console.log("reload", data)
-                    location.reload();
-                }
-                let seconds = Math.max(data.seconds - Math.round(msecs / 1000), 0);
-                if (seconds <= 1) {
-                    data.status = undefined;
-                    this._lingerTimer = setTimeout(function() {
-                        this._continue(true, false);
-                    }.bind(this), 2000);
-                } else {
-                    this._statusData = {
-                        seconds: seconds,
-                        focused: true,
-                        testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report, data.texts),
-                        questionIndex: this._currentQuestionIndex,
-                        questionsCount: data.questions.length,
-                        timer: setTimeout(this._tick.bind(this), 1000)
-                    };
-                    if (data.section !== undefined) {
-                        this._statusData.section = data.section;
-                    }
-                }
-                break;
-            case "expired":
-                break;
-            case "concluded":
-                break;
-        }
+
+        this._statusData = {
+            seconds: 100000000000000000000000,
+            focused: true,
+            testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report, data.texts),
+            questionIndex: this._currentQuestionIndex,
+            questionsCount: data.questions.length,
+            timer: setTimeout(this._tick.bind(this), 1000)
+        };
+
+
         this.setState({
-            status: data.status
+            status: "started"
         });
     }
     _ajaxError($xhr, status, error) {
