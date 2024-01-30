@@ -10,6 +10,7 @@ from bbtest.utils.json import tight_dumps
 from bbtest.models.asset_classes import ImageParagraphAsset
 from bbtest.jobs.upload import image_paragraph_destroyer
 from bbtest.texts import nis_quantitative_answer
+from datetime import datetime
 
 
 class TestQuestionForm(ModelForm):
@@ -557,6 +558,12 @@ class TestForm(ModelForm):
                 question = test.questions.create(
                     answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
                     meta_data=meta_data,
+                    section=test.section,
+                    status=test.status,
+                    code="{}{:%y}{:04}".format(
+                        test.section.code, 
+                        datetime.now(), 
+                        TestQuestion.objects.filter(created_at__year=datetime.now().year, section=test.section).count()),
                     weight=0,
                     order=i,
                     developer=test.developer,
