@@ -790,6 +790,18 @@ class TestSendForm(ModelForm):
         return test
 
 
+class QuestionSendForm(ModelForm):
+    class Meta:
+        model = TestQuestion
+        fields = ()
+
+    def save(self, commit=True):
+        test_question = super().save(commit=False)
+        test_question.status = Test.STATUS_PENDING
+        if commit:
+            test_question.save()
+        return test_question
+
 class TestCheckForm(ModelForm):
     error_messages = {
         "answer_missing_class":         pgettext_lazy("Validation error", "No answer specified for question №%(number)s."),

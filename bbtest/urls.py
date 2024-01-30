@@ -30,6 +30,9 @@ from .views.test import (
     CheckTestView        as BuildCheckTestView,
     TestPreviewView      as BuildTestPreviewView,
     TestPreviewDataView  as BuildTestPreviewDataView,
+    StandaloneQuestionView              as BuildStandaloneQuestionView,
+    StandaloneQuestionPreviewView       as BuildStandaloneQuestionPreviewView,
+    StandaloneQuestionPreviewDataView   as BuildStandaloneQuestionPreviewDataView,
 )
 from .views.package import (
     BuildPackagesView             as BuildPackagesView,
@@ -121,6 +124,12 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/check/$",                                          BuildCheckTestView.as_view(),          name="build_check_test"       ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
+
+    url(r"^build/questions/(?:(?P<code>\d+)/)?$",                                               BuildStandaloneQuestionView.as_view(),               name="build_standalone_question"    ),
+    # url(r"^build/questions/(?:(?P<code>\d+)/paragraphs/)?$",                                    BuildStandaloneQuestionParagraphsView.as_view(),     name="build_standalone_question_paragraphs"  ),
+    url(r"^build/questions/(?P<code>\d+)/preview/$",                                       BuildStandaloneQuestionPreviewView.as_view(),        name="build_standalone_question_preview"  ),
+    url(r"^build/questions/(?P<code>\d+)/preview-data/$",                                  BuildStandaloneQuestionPreviewDataView.as_view(),    name="build_standalone_question_preview_data"  ),
+
 
     url(r"^build/packages/$",                                                                                   BuildPackagesView.as_view(),                name="build_packages" ),
     url(r"^build/create-package/create-form/$",                                                                 BuildCreatePackageFormView.as_view(),       name="build_create_package_form"),

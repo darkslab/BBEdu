@@ -13,19 +13,19 @@
         moduleDataStack.push({
             module: "ReactModule",
             data: {
-                class: "Test",
+                class: "StandaloneQuestion",
                 props: {
-                    hasTimer: false,
-                    canEnd: false,
+                    // hasTimer: false,
+                    // canEnd: false,
                     spinnerLogo: "{% static 'img/logo2_spinner.png' %}",
-                    continueUrl: "{% url 'bbtest:build_test_preview_data' code %}",
-                    startUrl: "{% url 'bbtest:build_test_preview_data' code %}",
-                    skipUrl: "{% url 'bbtest:build_test_preview_data' code %}",
-                    endUrl: "{% url 'bbtest:build_test_preview_data' code %}",
-                    reportUrl: "{% url 'bbtest:build_test_preview_data' code %}",
-                    resultsUrl: "{% url 'bbtest:build_test_preview' code %}",
-                    buyUrl: "{% url 'bbtest:build_test_preview' code %}",
-                    refreshUrl: "{% url 'bbtest:build_test_preview' code %}",
+                    {% comment %} // continueUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    // startUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    // skipUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    // endUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    // reportUrl: "{% url 'bbtest:build_test_preview_data' code %}",
+                    // resultsUrl: "{% url 'bbtest:build_test_preview' code %}",
+                    // buyUrl: "{% url 'bbtest:build_test_preview' code %}", {% endcomment %}
+                    refreshUrl: "{% url 'bbtest:build_standalone_question_preview' code %}",
                     cancelRefreshUrl: "{% url 'bbtest:build_tests' %}",
                     objectClass: "PreviewTestObject",
                     texts: {
@@ -55,15 +55,16 @@
                 }
             }
         });
-        moduleDataStack.push({
+        {% comment %} moduleDataStack.push({
             module: "DeveloperTestPreviewPageModule",
             data: {
                 url: "{% url 'bbtest:build_check_test' code %}"
             }
-        });
+        }); {% endcomment %}
     </script>
     <form method="post" action="{{ request.path }}" data-bb-form>
         {% csrf_token %}
+        request.path = {{ request.path }}
         <div class="modal fade" data-send-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -85,7 +86,7 @@
             </div>
         </div>
     </form>
-    <form method="post" action="{% url 'bbtest:build_approve_test' code %}" data-bb-form>
+    {% comment %} <form method="post" action="{% url 'bbtest:build_approve_test' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-approve-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -122,8 +123,8 @@
                 </div>
             </div>
         </div>
-    </form>
-    <form method="post" action="{% url 'bbtest:build_refuse_test' code %}" data-bb-form>
+    </form> {% endcomment %}
+    {% comment %} <form method="post" action="{% url 'bbtest:build_refuse_test' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-refuse-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -145,8 +146,8 @@
                 </div>
             </div>
         </div>
-    </form>
-    <form method="post" action="{% url 'bbtest:build_delete_test' code %}" data-bb-form>
+    </form> {% endcomment %}
+    {% comment %} <form method="post" action="{% url 'bbtest:build_delete_test' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-delete-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -168,8 +169,8 @@
                 </div>
             </div>
         </div>
-    </form>
-    <form method="post" action="{% url 'bbtest:build_activate_test' code %}" data-bb-form>
+    </form> {% endcomment %}
+    {% comment %} <form method="post" action="{% url 'bbtest:build_activate_test' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-activate-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -191,8 +192,8 @@
                 </div>
             </div>
         </div>
-    </form>
-    <form method="post" action="{% url 'bbtest:build_deactivate_test' code %}" data-bb-form>
+    </form> {% endcomment %}
+    {% comment %} <form method="post" action="{% url 'bbtest:build_deactivate_test' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-deactivate-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -214,7 +215,7 @@
                 </div>
             </div>
         </div>
-    </form>
+    </form> {% endcomment %}
     <div class="modal fade" data-check-modal data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -244,7 +245,7 @@
             </div>
         </div>
     </div>
-    {% url 'bbtest:build_toggle_free_test' code 'true' as make_test_free_url %}
+    {% comment %} {% url 'bbtest:build_toggle_free_test' code 'true' as make_test_free_url %}
     {% url 'bbtest:build_toggle_free_test' code 'false' as make_test_paid_url %}
     <form method="post" action="{% if test.is_free %}{{ make_test_paid_url }}{% else %}{{ make_test_free_url }}{% endif %}" data-bb-form>
         {% csrf_token %}
@@ -268,8 +269,9 @@
                 </div>
             </div>
         </div>
-    </form>
-    <div class="row">
+    </form> {% endcomment %}
+
+    {% comment %} <div class="row">
         <div class="col-xs-12 mb-23">
             {% if perms.bbtest.super or perms.bbtest.expert %}
                 {% if test.is_pending or test.is_draft and test.developer|has_perm:'bbtest.super' %}
@@ -305,7 +307,7 @@
                 <a href="{% url 'bbtest:dashboard' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% endif %}
         </div>
-    </div>
+    </div> {% endcomment %}
     <div id="root" class="mb-10">
         <div class="row">
             <div class="col-xs-12 bb-test-container">

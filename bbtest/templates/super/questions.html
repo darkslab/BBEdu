@@ -102,7 +102,7 @@
                                     {% comment %} <tr {% if question.developer == user %}class="success"{% endif %}> {% endcomment %}
                                     <tr>
                                         {% comment %} column 0 {% endcomment %}
-                                        <td class="text-center">{{ question.pk }}</td>
+                                        <td class="text-center">{{ question.code }}</td>
                                         {% comment %} column 1 {% endcomment %}
                                         {% if question.developer|has_perm:'bbtest.super' %}
                                             <td class="pl-15">{{ question.developer.get_full_name }}</td>
@@ -139,25 +139,28 @@
                                         </td>
                                         {% comment %} column 12 {% endcomment %}
                                         <td class="pr-15 text-center">
-                                            {% comment %} {% if test.is_archived or test.is_approved %}
-                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/questions/' %}</a>
-                                            {% elif test.is_pending %}
-                                                <a href="{% url 'bbtest:build_test' test.code %}" class="btn djBtnDefault btn-xs mr-5 mb-5">{% trans 'Edit' context '/super/questions/' %}</a>
-                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/questions/' %}</a>
-                                            {% elif test.is_draft %}
-                                                {% if test.developer|has_perm:'bbtest.super' %}
-                                                    <a href="{% url 'bbtest:build_test' test.code %}" class="btn djBtnDefault btn-xs mr-5 mb-5">{% trans 'Edit' context '/developer/' %}</a>
+                                            <a href="{% url 'bbtest:build_standalone_question_preview' question.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/questions/' %}</a>
+                                            {% comment %} 
+                                            {% if question.is_archived or question.is_approved %}
+                                                <a href="{% url 'bbtest:build_test_preview' question.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/questions/' %}</a>
+                                            {% elif question.is_pending %}
+                                                <a href="{% url 'bbtest:build_test' question.code %}" class="btn djBtnDefault btn-xs mr-5 mb-5">{% trans 'Edit' context '/super/questions/' %}</a>
+                                                <a href="{% url 'bbtest:build_test_preview' question.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/super/questions/' %}</a>
+                                            {% elif question.is_draft %}
+                                                {% if question.developer|has_perm:'bbtest.super' %}
+                                                    <a href="{% url 'bbtest:build_test' question.code %}" class="btn djBtnDefault btn-xs mr-5 mb-5">{% trans 'Edit' context '/developer/' %}</a>
                                                 {% endif %}
-                                                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/developer/' %}</a>
-                                                {% if test.developer == user %}
-                                                    <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_delete_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
+                                                <a href="{% url 'bbtest:build_test_preview' question.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/developer/' %}</a>
+                                                {% if question.developer == user %}
+                                                    <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_delete_test' question.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Delete' context '/developer/' %}</button>
                                                 {% endif %}
                                             {% endif %}
-                                            {% if not test.is_draft %}
-                                                <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/developer/' %}</button>
+                                            {% if not question.is_draft %}
+                                                <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' question.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/developer/' %}</button>
                                             {% else %}
-                                                <button class="btn djBtnSuccess btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_reapprove_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReApprove' context '/developer/' %}</button>
-                                            {% endif %} {% endcomment %}
+                                                <button class="btn djBtnSuccess btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_reapprove_test' question.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReApprove' context '/developer/' %}</button>
+                                            {% endif %}
+                                            {% endcomment %}
                                         </td>
                                     </tr>
                                 {% empty %}
