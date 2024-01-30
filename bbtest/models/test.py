@@ -28,6 +28,7 @@ class TestSection(Model):
     domain  = ForeignKey  ( TestDomain, on_delete=CASCADE, related_name="sections", )
 
     name             = CharField                  ( pgettext_lazy("Model field", "name"),                max_length=100,                )
+    code             = CharField                  ( pgettext_lazy("Model field", "code"),                max_length=6,                  )
     duration         = PositiveIntegerField       ( pgettext_lazy("Model field", "duration in seconds"),                                )
     question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                     )
     order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                               db_index=True, )
@@ -373,7 +374,7 @@ class TestQuestion(Model):
 
     def __str__(self):
         if self.id:
-            return "TestQuestion #%d" % self.id
+            return "TestQuestion #%d code%s" % (self.id, self.code)
         return "New TestQuestion"
 
     @classmethod
