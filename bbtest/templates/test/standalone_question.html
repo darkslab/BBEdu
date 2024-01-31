@@ -14,12 +14,12 @@
                     class: "DeveloperTest",
                     props: {
                         spinnerLogo: "{% static 'img/logo2_spinner.png' %}",
-                        questionUrl: "{% url 'bbtest:build_test_question' code %}",
+                        questionUrl: "{% url 'bbtest:build_standalone_question_question' code %}",
                         questionIds: {{ question_ids|safe }},
-                        paragraphsUrl: "{% url 'bbtest:build_test_paragraphs' code %}",
-                        attributesUrl: "{% url 'bbtest:build_test_attributes' code %}",
-                        dashboardUrl: "{% url 'bbtest:dashboard' %}",
-                        previewUrl: "{% url 'bbtest:build_test_preview' code %}",
+                        paragraphsUrl: "{% url 'bbtest:build_standalone_question_paragraphs' code %}",
+                        attributesUrl: "{% url 'bbtest:build_standalone_question_attributes' code %}",
+                        dashboardUrl: "{% url 'bbtest:questions' %}",
+                        previewUrl: "{% url 'bbtest:build_standalone_question_preview' code %}",
                         uploadStartUrl: "{% url 'bbtest:upload_start' %}",
                         texts: {
                             error:                                               "{% trans 'There was an error, please reload the page.'            context 'Developer tools' %}",
