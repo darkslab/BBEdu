@@ -30,6 +30,8 @@ from .views.test import (
     CheckTestView        as BuildCheckTestView,
     TestPreviewView      as BuildTestPreviewView,
     TestPreviewDataView  as BuildTestPreviewDataView,
+)
+from .views.standalone_question import (
     StandaloneQuestionView              as BuildStandaloneQuestionView,
     StandaloneQuestionPreviewView       as BuildStandaloneQuestionPreviewView,
     StandaloneQuestionPreviewDataView   as BuildStandaloneQuestionPreviewDataView,

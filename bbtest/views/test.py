@@ -59,6 +59,36 @@ def get_test_for_preview_or_404(request, code):
         code=code,
     )
 
+
+def get_question_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
+    if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
+        questions = TestQuestion.select_related("developer")
+    elif request.user.has_perm("bbtest.developer"): 
+        questions = request.user.questions.filter(status__lt=TestQuestion.STATUS_APPROVED)
+    else:
+        raise Http404("You do not have permission to edit tests")
+    
+    if include_section:
+        questions = questions.select_related("section")
+    if include_paragraphs:
+        questions = questions.prefetch_related("questions__paragraphs")
+    question = get_object_or_404(
+        questions,
+        code=code,
+    )
+    if request.user.has_perm("bbtest.super"):
+        if not question.developer.has_perm("bbtest.super") and not question.is_pending():
+            raise Http404("Superusers can only edit questions of other developers that are in pending status")
+        if question.developer.has_perm("bbtest.super") and not question.is_draft():
+            raise Http404("Superusers can only edit questions of other superusers (and their own) that are in draft status")
+        
+    if request.user.has_perm("bbtest.expert"):
+        if not question.developer.has_perm("bbtest.expert") and not question.is_pending():
+            raise Http404("Experts can only edit questions of other developers that are in pending status")
+        if question.developer.has_perm("bbtest.super") and not question.is_draft():
+            raise Http404("Experts can only edit questions of other experts (and their own) that are in draft status")
+    return question
+
 def get_question_for_preview_or_404(request, code):
     if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert") or request.user.has_perm("bbtest.admin"):
         questions = TestQuestion.objects
@@ -409,76 +439,3 @@ class TestPreviewDataView(StaffPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
         return self.get(request, code, *args, **kwargs)
 
-
-class StandaloneQuestionView(StaffPermissionRequiredMixin, UserContextMixin, TemplateView):
-    template_name = "test/standalone_question.html"
-
-    def get_context_data(self, **kwargs):
-        test = get_test_for_edit_or_404(self.request, self.kwargs["code"], include_section=True)
-
-        kwargs["test"] = test
-        kwargs["code"] = self.kwargs["code"]
-        kwargs["section_name"] = _(test.section.name)
-        kwargs["domain_name"] = _(test.section.domain.name)
-        kwargs["language"] = None
-        if test.language != Test.LANGUAGE_XX:
-            kwargs["language"] = next(test_language[1] for test_language in Test.LANGUAGES if test_language[0] == test.language)
-        kwargs["specification"] = test_specification(test.section, test.language, get_language())
-        question_ids = []
-        for data in test.questions.values("id").order_by("order"):
-            question_ids.append(data["id"])
-        kwargs["question_ids"] = tight_dumps(question_ids)
-        return super().get_context_data(**kwargs)
-    
-
-
-class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMixin, FormView):
-    template_name = "test/standalone_question_preview.html"
-    form_class = QuestionSendForm
-    success_url = reverse_lazy("bbtest:build_tests")  # TODO
-
-    def get(self, request, *args, **kwargs):
-        self._question = get_question_for_preview_or_404(request, self.kwargs["code"])
-        return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        self._question = get_question_for_preview_or_404(request, self.kwargs["code"])
-        if request.user.has_perm("bbtest.super"):
-            raise Http404("Superusers cannot send tests for approval")
-        return super().post(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        kwargs["question"] = self._question
-        kwargs["code"] = self.kwargs["code"]
-        kwargs["section_name"] = _(self._question.section.name)
-        kwargs["domain_name"] = _(self._question.section.domain.name)
-        kwargs["language"] = self._question.get_lang() 
-        return super().get_context_data(**kwargs)
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs["instance"] = self._question
-        return kwargs
-
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-    
-
-class StandaloneQuestionPreviewDataView(StaffPermissionRequiredMixin, View):
-    def get(self, request, code, *args, **kwargs):
-        question = get_question_for_preview_or_404(request, code)
-        response = {
-            "success": True,
-            "status": "started",
-            "seconds": question.section.duration,
-        }
-        # inject_questions_and_report_into_started_response(response, question)
-        inject_standalone_question_and_report_into_started_response(response, question)
-        # inject_texts_into_response(response, question)
-        inject_texts_into_question_response(response, question)
-
-        return TightJsonResponse(response)
-
-    def post(self, request, code, *args, **kwargs):
-        return self.get(request, code, *args, **kwargs)
