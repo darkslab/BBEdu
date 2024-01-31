@@ -7,7 +7,7 @@ from django.http import Http404
 from json import loads
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin, AdminPermissionRequiredMixin
 from .generic import View, TemplateView, FormView, RedirectView
-from .common import UserContextMixin, inject_questions_and_report_into_started_response, inject_standalone_question_and_report_into_started_response
+from .common import UserContextMixin, inject_standalone_question_and_report_into_started_response
 from bbtest.utils.json import tight_dumps
 from bbtest.models.upload import expiring_url
 from bbtest.models import TestQuestion, Test, TestParagraph
@@ -75,10 +75,12 @@ class TestsView(StaffPermissionRequiredMixin, UserContextMixin, RedirectView):
         return reverse("bbtest:developer_dashboard")
 
 
-class TestQuestionView(StaffPermissionRequiredMixin, View):
-    def get(self, request, code, question_id, *args, **kwargs):
-        test = get_test_for_edit_or_404(request, code)
-        question = get_object_or_404(test.questions, pk=question_id)
+class StandaloneQuestionQuestionView(StaffPermissionRequiredMixin, View):
+    def get(self, request, code, *args, **kwargs):
+        # print("StandaloneQuestionQuestionView", kwargs)
+        question = get_question_for_edit_or_404(request, code)
+        # question = get_object_or_404(question.questions, pk=question_id)
+        # print("StandaloneQuestionQuestionView", question)
 
         question_data = {
             "id": question.id,
@@ -110,14 +112,14 @@ class TestQuestionView(StaffPermissionRequiredMixin, View):
                     paragraph_data["question_ids"].append(through.question_id)
             question_data["paragraphs"].append(paragraph_data)
 
-        inject_texts_into_response(question_data, test)
+        inject_texts_into_question_response(question_data, question)
 
         # DARK_TODO  add "success" to response
         return TightJsonResponse(question_data)
 
-    def post(self, request, code, question_id, *args, **kwargs):
-        test = get_test_for_edit_or_404(request, code)
-        question = get_object_or_404(test.questions, pk=question_id)
+    def post(self, request, code, *args, **kwargs):
+        question = get_question_for_edit_or_404(request, code)
+        # question = get_object_or_404(question.questions, pk=question_id)
 
         form = TestQuestionForm(data=request.POST, instance=question)
         if not form.is_valid():
@@ -134,10 +136,10 @@ class TestQuestionView(StaffPermissionRequiredMixin, View):
         return TightJsonResponse({"success": True})
 
 
-class TestParagraphsView(StaffPermissionRequiredMixin, View):
-    def post(self, request, code, question_id, *args, **kwargs):
-        test = get_test_for_edit_or_404(request, code)
-        question = get_object_or_404(test.questions, pk=question_id)
+class StandaloneQuestionParagraphsView(StaffPermissionRequiredMixin, View):
+    def post(self, request, code, *args, **kwargs):
+        question = get_question_for_edit_or_404(request, code)
+        # question = get_object_or_404(question.questions, pk=question_id)
 
         form = TestParagraphsContainerForm(question, data=request.POST)
         if not form.is_valid():
@@ -153,9 +155,9 @@ class TestParagraphsView(StaffPermissionRequiredMixin, View):
         })
 
 
-class TestAttributesView(StaffPermissionRequiredMixin, View):
+class StandaloneQuestionAttributesView(StaffPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
-        test = get_test_for_edit_or_404(request, code, include_section=True)
+        question = get_question_for_edit_or_404(request, code, include_section=True)
         attributes_data = {
             "difficulties": [],
             "taxonomies": [],
@@ -169,23 +171,23 @@ class TestAttributesView(StaffPermissionRequiredMixin, View):
                 "value": difficulty[0],
                 "caption": str(difficulty[1]),
             })
-        for taxonomy in test.section.taxonomies.order_by("through"):
+        for taxonomy in question.section.taxonomies.order_by("through"):
             attributes_data["taxonomies"].append({
                 "value": taxonomy.id,
                 "caption": str(_(str(taxonomy))),
             })
-        for topic in test.section.topics.order_by("through"):
+        for topic in question.section.topics.order_by("through"):
             attributes_data["topics"].append({
                 "value": topic.id,
                 "caption": str(_(str(topic))),
             })
-        for subtopic in test.section.subtopics.order_by("through"):
+        for subtopic in question.section.subtopics.order_by("through"):
             attributes_data["subtopics"].append({
                 "value": subtopic.id,
                 "caption": str(_(str(subtopic))),
             })
         
-        for goal in test.section.goals.order_by("through"):
+        for goal in question.section.goals.order_by("through"):
             attributes_data["goals"].append({
                 "value": goal.id,
                 "caption": str(_(str(goal))),
@@ -194,7 +196,7 @@ class TestAttributesView(StaffPermissionRequiredMixin, View):
         return TightJsonResponse(attributes_data)
 
 
-class ApproveTestView(ExpertPermissionRequiredMixin, View):
+class ApproveTestView(ExpertPermissionRequiredMixin, View):  # TODO
     def post(self, request, code, *args, **kwargs):
         test = get_object_or_404(Test.worked_tests.select_related("developer"), code=code)
         if not test.developer.has_perm("bbtest.super") and test.is_draft():
@@ -215,7 +217,7 @@ class ApproveTestView(ExpertPermissionRequiredMixin, View):
         return redirect("bbtest:super_tests")
 
 
-class RefuseTestView(ExpertPermissionRequiredMixin, View):
+class RefuseTestView(ExpertPermissionRequiredMixin, View): # TODO
     def post(self, request, code, *args, **kwargs):
         test = get_object_or_404(Test.pending_tests.select_related("developer"), code=code)
         if test.developer.has_perm("bbtest.super"):
@@ -228,11 +230,11 @@ class RefuseTestView(ExpertPermissionRequiredMixin, View):
         return redirect("bbtest:super_tests")
 
 
-class DeleteTestView(StaffPermissionRequiredMixin, View):
+class DeleteStandaloneQuestionView(StaffPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
-        test = get_test_for_edit_or_404(request, code, include_paragraphs=True)
+        question = get_question_for_edit_or_404(request, code, include_paragraphs=True)
         if request.user.has_perm("bbtest.super"):
-            if test.developer != request.user:
+            if question.developer != request.user:
                 raise Http404("Superusers can only delete their own tests")
 
         # paragraph_ids = []
@@ -246,8 +248,8 @@ class DeleteTestView(StaffPermissionRequiredMixin, View):
         # TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
         # test.delete()
         
-        test.status = Test.STATUS_ARCHIVED
-        test.save()
+        question.status = Test.STATUS_ARCHIVED
+        question.save()
             
 
         success(request, pgettext("Success alert message", "You have deleted the Test."))
@@ -329,9 +331,11 @@ class StandaloneQuestionView(StaffPermissionRequiredMixin, UserContextMixin, Tem
     template_name = "test/standalone_question.html"
 
     def get_context_data(self, **kwargs):
+        # print("StandaloneQuestionView.get_context_data", self.kwargs)
         question = get_question_for_edit_or_404(self.request, self.kwargs["code"], include_section=True)
+        # print("StandaloneQuestionView.get_context_data", question)
 
-        kwargs["test"] = question
+        kwargs["question"] = question
         kwargs["code"] = self.kwargs["code"]
         kwargs["section_name"] = _(question.section.name)
         kwargs["domain_name"] = _(question.section.domain.name)
@@ -344,6 +348,7 @@ class StandaloneQuestionView(StaffPermissionRequiredMixin, UserContextMixin, Tem
         # for data in question.questions.values("id").order_by("order"):
         #     question_ids.append(data["id"])
         kwargs["question_ids"] = tight_dumps([question.id])
+        # print("StandaloneQuestionView.get_context_data", kwargs)
         return super().get_context_data(**kwargs)
     
 
