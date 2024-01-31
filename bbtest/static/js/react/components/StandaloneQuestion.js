@@ -109,17 +109,7 @@ var StandaloneQuestion = /*#__PURE__*/function (_React$Component) {
               onClick: this._renderModal.bind(this, "end")
             }, this.props.texts.endButton)));
           }
-          content = /*#__PURE__*/React.createElement(React.Fragment, null, header, /*#__PURE__*/React.createElement("div", {
-            className: "row"
-          }, /*#__PURE__*/React.createElement("div", {
-            className: "col-xs-12 text-center hidden-xs"
-          }, /*#__PURE__*/React.createElement("ul", {
-            className: "pagination mt-0 mb-0"
-          }, this._paginationElements(13))), /*#__PURE__*/React.createElement("div", {
-            className: "col-xs-12 text-center visible-xs-block"
-          }, /*#__PURE__*/React.createElement("ul", {
-            className: "pagination pagination-sm mt-0 mb-0"
-          }, this._paginationElements(6)))), /*#__PURE__*/React.createElement(Question, {
+          content = /*#__PURE__*/React.createElement(React.Fragment, null, header, /*#__PURE__*/React.createElement(Question, {
             count: this._statusData.questionIndex + 1,
             object: this._statusData.testObject.question(this._statusData.questionIndex),
             answerData: this._statusData.testObject.answer(this._statusData.questionIndex),
@@ -131,54 +121,6 @@ var StandaloneQuestion = /*#__PURE__*/function (_React$Component) {
             texts: this.props.texts,
             hasTimer: this.props.hasTimer
           }), endControl);
-          break;
-        case "expired":
-          content = /*#__PURE__*/React.createElement("div", {
-            className: "panel panel-default"
-          }, /*#__PURE__*/React.createElement("div", {
-            className: "panel-body"
-          }, /*#__PURE__*/React.createElement("h3", {
-            className: "text-center mb-15 text-danger"
-          }, this.props.texts.expiredTitle), /*#__PURE__*/React.createElement("p", {
-            className: "lead text-center"
-          }, this.props.texts.expiredExplanation), /*#__PURE__*/React.createElement("div", {
-            className: "text-center mb-23"
-          }, /*#__PURE__*/React.createElement("div", {
-            className: "visible-xs-block"
-          }, /*#__PURE__*/React.createElement("button", {
-            type: "button",
-            className: "btn btn-primary btn-block",
-            onClick: this._end.bind(this)
-          }, this.props.texts.continueButton)), /*#__PURE__*/React.createElement("div", {
-            className: "hidden-xs"
-          }, /*#__PURE__*/React.createElement("button", {
-            type: "button",
-            className: "btn btn-primary btn-lg",
-            onClick: this._end.bind(this)
-          }, this.props.texts.continueButton)))));
-          break;
-        case "concluded":
-          content = /*#__PURE__*/React.createElement("div", {
-            className: "panel panel-default"
-          }, /*#__PURE__*/React.createElement("div", {
-            className: "panel-body"
-          }, /*#__PURE__*/React.createElement("h3", {
-            className: "text-center mb-15 text-success"
-          }, this.props.texts.concludedTitle), /*#__PURE__*/React.createElement("p", {
-            className: "lead text-center"
-          }, this.props.texts.concludedExplanation), /*#__PURE__*/React.createElement("div", {
-            className: "text-center mb-23"
-          }, /*#__PURE__*/React.createElement("div", {
-            className: "visible-xs-block"
-          }, /*#__PURE__*/React.createElement("a", {
-            href: this.props.resultsUrl,
-            className: "btn btn-success btn-block"
-          }, this.props.texts.resultsButton)), /*#__PURE__*/React.createElement("div", {
-            className: "hidden-xs"
-          }, /*#__PURE__*/React.createElement("a", {
-            href: this.props.resultsUrl,
-            className: "btn btn-success btn-lg"
-          }, this.props.texts.resultsButton)))));
           break;
         default:
           content = /*#__PURE__*/React.createElement("img", {

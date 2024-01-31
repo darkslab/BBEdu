@@ -90,6 +90,7 @@ class StandaloneQuestion extends React.Component {
                 content = (
                     <React.Fragment>
                         {header}
+                        {/*
                         <div className="row">
                             <div className="col-xs-12 text-center hidden-xs">
                                 <ul className="pagination mt-0 mb-0">{this._paginationElements(13)}</ul>
@@ -98,6 +99,7 @@ class StandaloneQuestion extends React.Component {
                                 <ul className="pagination pagination-sm mt-0 mb-0">{this._paginationElements(6)}</ul>
                             </div>
                         </div>
+                        */}
                         <Question count={this._statusData.questionIndex + 1}
                                   object={this._statusData.testObject.question(this._statusData.questionIndex)}
                                   answerData={this._statusData.testObject.answer(this._statusData.questionIndex)}
@@ -118,48 +120,6 @@ class StandaloneQuestion extends React.Component {
                         </div> */}
                         {endControl}
                     </React.Fragment>
-                );
-                break;
-            case "expired":
-                content = (
-                    <div className="panel panel-default">
-                        <div className="panel-body">
-                            <h3 className="text-center mb-15 text-danger">{this.props.texts.expiredTitle}</h3>
-                            <p className="lead text-center">{this.props.texts.expiredExplanation}</p>
-                            <div className="text-center mb-23">
-                                <div className="visible-xs-block">
-                                    <button type="button"
-                                            className="btn btn-primary btn-block"
-                                            onClick={this._end.bind(this)}>{this.props.texts.continueButton}</button>
-                                </div>
-                                <div className="hidden-xs">
-                                    <button type="button"
-                                            className="btn btn-primary btn-lg"
-                                            onClick={this._end.bind(this)}>{this.props.texts.continueButton}</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
-                break;
-            case "concluded":
-                content = (
-                    <div className="panel panel-default">
-                        <div className="panel-body">
-                            <h3 className="text-center mb-15 text-success">{this.props.texts.concludedTitle}</h3>
-                            <p className="lead text-center">{this.props.texts.concludedExplanation}</p>
-                            <div className="text-center mb-23">
-                                <div className="visible-xs-block">
-                                    <a href={this.props.resultsUrl}
-                                       className="btn btn-success btn-block">{this.props.texts.resultsButton}</a>
-                                </div>
-                                <div className="hidden-xs">
-                                    <a href={this.props.resultsUrl}
-                                       className="btn btn-success btn-lg">{this.props.texts.resultsButton}</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 );
                 break;
             default:
