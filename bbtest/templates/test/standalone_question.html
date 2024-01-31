@@ -1,0 +1,105 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n static %}
+
+{% block window_title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (#{{ code }}){% endblocktrans %}{% endblock %}
+
+{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (#{{ code }}){% endblocktrans %} <small><span class="label label-default">{{ domain_name }}</span>{% if language %} <span class="label label-default">{{ language }}</span>{% endif %}{% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}</small>{% endblock %}
+
+{% block content %}
+    <script>
+        (function() {
+            var moduleData = {
+                module: "ReactModule",
+                data: {
+                    class: "DeveloperTest",
+                    props: {
+                        spinnerLogo: "{% static 'img/logo2_spinner.png' %}",
+                        questionUrl: "{% url 'bbtest:build_test_question' code %}",
+                        questionIds: {{ question_ids|safe }},
+                        paragraphsUrl: "{% url 'bbtest:build_test_paragraphs' code %}",
+                        attributesUrl: "{% url 'bbtest:build_test_attributes' code %}",
+                        dashboardUrl: "{% url 'bbtest:dashboard' %}",
+                        previewUrl: "{% url 'bbtest:build_test_preview' code %}",
+                        uploadStartUrl: "{% url 'bbtest:upload_start' %}",
+                        texts: {
+                            error:                                               "{% trans 'There was an error, please reload the page.'            context 'Developer tools' %}",
+                            question:                                            "{% trans 'Question'                                               context 'Developer tools' %}",
+                            difficulty:                                          "{% trans 'Difficulty'                                             context 'Developer tools' %}",
+                            taxonomy:                                            "{% trans 'Taxonomy'                                               context 'Developer tools' %}",
+                            topic:                                               "{% trans 'Topic'                                                  context 'Developer tools' %}",
+                            subtopic:                                            "{% trans 'Subtopic'                                               context 'Developer tools' %}",
+                            goal:                                                "{% trans 'Goal'                                                   context 'Developer tools' %}",
+                            addParagraph:                                        "{% trans 'Add Section'                                            context 'Developer tools' %}",
+                            paragraphTextareaPlaceholder:                        "{% trans 'Type your question here'                                context 'Developer tools' %}",
+                            paragraphEmptyPlaceholder:                           "{% trans 'Your question will be previewed here'                   context 'Developer tools' %}",
+                            addAnswer:                                           "{% trans 'Add Answer'                                             context 'Developer tools' %}",
+                            multichoiceOneAnswerTitle:                           "{% trans 'Multi-choice with 1 answer'                             context 'Developer tools' %}",
+                            multichoiceMultiAnswerTitle:                         "{% trans 'Multi-choice with multiple answers'                     context 'Developer tools' %}",
+                            addAnswerChoice:                                     "{% trans 'Add Answer Choice'                                      context 'Developer tools' %}",
+                            choiceTextareaPlaceholder:                           "{% trans 'Type your answer choice here'                           context 'Developer tools' %}",
+                            choiceEmptyPlaceholder:                              "{% trans 'Your answer choice will be previewed here'              context 'Developer tools' %}",
+                            paragraphsModalTitle:                                "{% trans 'Please choose Section type'                             context 'Developer tools' %}",
+                            paragraphsModalButtonTextParagraph:                  "{% trans 'Text Section'                                           context 'Developer tools' %}",
+                            paragraphsSharedLabelTextParagraph:                  "{% trans 'Shared paragraph'                                       context 'Developer tools' %}",
+                            paragraphsModalButtonSplitTextParagraph:             "{% trans 'Split Text Section'                                     context 'Developer tools' %}",
+                            paragraphsModalButtonPeriodicTableParagraph:         "{% trans 'Periodic Table Section'                                 context 'Developer tools' %}",
+                            paragraphsModalButtonCalculatorParagraph:            "{% trans 'Calculator Section'                                     context 'Developer tools' %}",
+                            paragraphsModalButtonImageParagraph:                 "{% trans 'Image Section'                                          context 'Developer tools' %}",
+                            paragraphsUploadButtonImageParagraph:                "{% trans 'Upload Image'                                           context 'Developer tools' %}",
+                            paragraphsImagePreviewImageParagraph:                "{% trans 'Please preview your image below.'                       context 'Developer tools' %}",
+                            paragraphsImageErrorImageParagraph:                  "{% trans 'Could not process the file. Please try another one.'    context 'Developer tools' %}",
+                            answersModalTitle:                                   "{% trans 'Please choose Answer type'                              context 'Developer tools' %}",
+                            noParagraphs:                                        "{% trans 'Please add a Section above to preview it here.'         context 'Developer tools' %}",
+                            noAnswerChoices:                                     "{% trans 'Please add an Answer Choice above to preview it here.'  context 'Developer tools' %}",
+                            answerChoicesModalTitle:                             "{% trans 'Please choose Answer Choice type'                       context 'Developer tools' %}",
+                            answerChoicesModalTitleButtonMultichoiceTextChoice:  "{% trans 'Text Answer Choice'                                     context 'Developer tools' %}",
+                            answerChoiceSelectButton:                            "{% trans 'Correct'                                                context 'Developer tools' %}",
+                            answerChoiceSolutionButton:                          "{% trans 'Solution'                                               context 'Developer tools' %}",
+                            deleteModalTitle:                                    "{% trans 'Are you sure?'                                          context 'Developer tools' %}",
+                            deleteModalYesCaption:                               "{% trans 'Yes'                                                    context 'Developer tools' %}",
+                            deleteModalNoCaption:                                "{% trans 'No'                                                     context 'Developer tools' %}",
+                            saved:                                               "{% trans 'Saved'                                                  context 'Developer tools' %}",
+                            controlFormulasButton:                               "{% trans 'Formulas'                                               context 'Developer tools' %}",
+                            saveAndExitButton:                                   "{% trans 'Save and Exit'                                          context 'Developer tools' %}",
+                            saveAndPreviewButton:                                "{% trans 'Save and Preview'                                       context 'Developer tools' %}",
+                            testSpec:                                            "{% trans 'Test Specification'                                     context 'Developer tools' %}",
+                        },
+                        ability: undefined
+                    }
+                }
+            };
+            moduleData.data.props.ability = "SuperAbility";
+            moduleDataStack.push(moduleData);
+        })();
+    </script>
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- <button type="button" class="btn btn-info mr-5 mb-5" data-toggle="modal" data-target="[data-specification-modal]">{% trans 'Test Specification' context 'Developer tools' %}</button> -->
+            <div class="modal fade" data-specification-modal>
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" data-specification-close>&times;</button>
+                            <h4 class="modal-title text-center">{% trans 'Test Specification' context 'Developer tools' %}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-10 col-sm-offset-1">{{ specification|safe }}</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' context 'Developer tools' %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="root">
+        <div class="row">
+            <div class="col-xs-12 bb-test-container">
+                <img class="bb-spinner" src="{% static 'img/logo2_spinner.png' %}">
+            </div>
+        </div>
+    </div>
+{% endblock %}
