@@ -125,10 +125,12 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
 
+    url(r"^build/questions/$",                                                                       SuperQuestionView.as_view(),               name="questions"      ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/$",                                               BuildStandaloneQuestionView.as_view(),               name="build_standalone_question"    ),
     # url(r"^build/questions/(?:(?P<code>\d+)/paragraphs/)?$",                                    BuildStandaloneQuestionParagraphsView.as_view(),     name="build_standalone_question_paragraphs"  ),
-    url(r"^build/questions/(?P<code>.+)/preview/$",                                       BuildStandaloneQuestionPreviewView.as_view(),        name="build_standalone_question_preview"  ),
+    url(r"^build/questions/(?P<code>.+)/preview/$",                                                      BuildStandaloneQuestionPreviewView.as_view(),        name="build_standalone_question_preview"  ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/preview-data/$",                                  BuildStandaloneQuestionPreviewDataView.as_view(),    name="build_standalone_question_preview_data"  ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/approve/$",                                        BuildApproveTestView.as_view(),        name="build_approve_question"     ),
 
 
     url(r"^build/packages/$",                                                                                   BuildPackagesView.as_view(),                name="build_packages" ),
@@ -161,7 +163,7 @@ urlpatterns = [
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
     # url(r"^developer/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="developer_acknowledgement"),
     url(r"^developer/tests/$",           DeveloperTestsView.as_view(),           name="developer_tests"          ),
-    url(r"^developer/questions/$",       SuperQuestionView.as_view(),            name="developer_questions"      ),
+    # url(r"^developer/questions/$",       SuperQuestionView.as_view(),            name="developer_questions"      ),
     url(r"^developer/offer/$",           DeveloperOfferView.as_view(),           name="developer_offer"          ),
     # url(r"^developer/users/$",           SuperUsersView.as_view(),               name="developer_users"          ),
 
