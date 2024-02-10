@@ -55,12 +55,12 @@
                 }
             }
         });
-        {% comment %} moduleDataStack.push({
+        moduleDataStack.push({
             module: "DeveloperTestPreviewPageModule",
             data: {
-                url: "{% url 'bbtest:build_check_test' code %}"
+                url: "{% url 'bbtest:build_check_standalone_question' code %}"
             }
-        }); {% endcomment %}
+        });
     </script>
     <form method="post" action="{{ request.path }}" data-bb-form>
         {% csrf_token %}
@@ -85,7 +85,7 @@
             </div>
         </div>
     </form>
-    <form method="post" action="{% url 'bbtest:build_approve_question' 'TODO' %}" data-bb-form>
+    <form method="post" action="{% url 'bbtest:build_approve_standalone_question' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-approve-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -104,7 +104,7 @@
                                 <div class="checkbox mt-0 mb-0">
                                     <label>
                                         <input type="checkbox" name="skip_check" value="true">
-                                        <strong>{% trans 'Skip test checks!' context 'Developer tools' %}</strong>
+                                        <strong>{% trans 'Skip question checks!' context 'Developer tools' %}</strong>
                                     </label>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
             </div>
         </div>
     </form>
-    {% comment %} <form method="post" action="{% url 'bbtest:build_refuse_test' code %}" data-bb-form>
+    <form method="post" action="{% url 'bbtest:build_refuse_standalone_question' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-refuse-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -145,8 +145,8 @@
                 </div>
             </div>
         </div>
-    </form> {% endcomment %}
-    {% comment %} <form method="post" action="{% url 'bbtest:build_delete_test' code %}" data-bb-form>
+    </form>
+    <form method="post" action="{% url 'bbtest:build_delete_standalone_question' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-delete-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -168,8 +168,8 @@
                 </div>
             </div>
         </div>
-    </form> {% endcomment %}
-    {% comment %} <form method="post" action="{% url 'bbtest:build_activate_test' code %}" data-bb-form>
+    </form>
+    <form method="post" action="{% url 'bbtest:build_activate_standalone_question' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-activate-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -191,8 +191,8 @@
                 </div>
             </div>
         </div>
-    </form> {% endcomment %}
-    {% comment %} <form method="post" action="{% url 'bbtest:build_deactivate_test' code %}" data-bb-form>
+    </form>
+    <form method="post" action="{% url 'bbtest:build_deactivate_standalone_question' code %}" data-bb-form>
         {% csrf_token %}
         <div class="modal fade" data-deactivate-modal data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-sm">
@@ -214,7 +214,7 @@
                 </div>
             </div>
         </div>
-    </form> {% endcomment %}
+    </form>
     <div class="modal fade" data-check-modal data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -230,7 +230,7 @@
                             </div>
                             <div class="hidden text-danger" data-check-modal-body="feedback"></div>
                             <div class="hidden" data-check-modal-body="success">
-                                <h4 class="text-success text-center">{% trans 'The test is correct.' context 'Developer tools' %}</h4>
+                                <h4 class="text-success text-center">{% trans 'The question is correct.' context 'Developer tools' %}</h4>
                             </div>
                             <div class="hidden" data-check-modal-body="error">
                                 <h4 class="text-danger text-center">{% trans 'There was an error. Please try again.' context 'Developer tools' %}</h4>

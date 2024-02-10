@@ -38,6 +38,17 @@ from .views.standalone_question import (
     StandaloneQuestionQuestionView      as BuildStandaloneQuestionQuestionView,
     StandaloneQuestionParagraphsView    as BuildStandaloneQuestionParagraphsView,
     StandaloneQuestionAttributesView    as BuildStandaloneQuestionAttributesView,
+
+    ApproveQuestionView      as BuildApproveStandaloneQuestionView,
+    RefuseQuestionView       as BuildRefuseStandaloneQuestionView,
+    DeleteQuestionView       as BuildDeleteStandaloneQuestionView,
+    ReDraftQuestionView      as BuildReDraftStandaloneQuestionView,
+    ReApproveQuestionView    as BuildReApproveStandaloneQuestionView,
+    ActivateQuestionView     as BuildActivateStandaloneQuestionView,
+    DeactivateQuestionView   as BuildDeactivateStandaloneQuestionView,
+    CheckQuestionView        as BuildCheckStandaloneQuestionView,
+    # ToggleFreeQuestionView   as BuildToggleFreeTestView,
+
 )
 from .views.package import (
     BuildPackagesView             as BuildPackagesView,
@@ -139,7 +150,17 @@ urlpatterns = [
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/paragraphs/(?P<code3>[0-9A-Za-z]{1,15})/paragraphs/$",                                    BuildStandaloneQuestionParagraphsView.as_view(),     name="build_standalone_question_paragraphs"  ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/preview/$",                                       BuildStandaloneQuestionPreviewView.as_view(),        name="build_standalone_question_preview"  ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/preview-data/$",                                  BuildStandaloneQuestionPreviewDataView.as_view(),    name="build_standalone_question_preview_data"  ),
-    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/approve/$",                                       BuildApproveTestView.as_view(),                      name="build_approve_question"     ),
+    # url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/approve/$",                                       BuildApproveTestView.as_view(),                      name="build_approve_question"     ),
+
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/approve/$",                                        BuildApproveStandaloneQuestionView.as_view(),        name="build_approve_standalone_question"     ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/redraft/$",                                        BuildReDraftStandaloneQuestionView.as_view(),        name="build_redraft_standalone_question"     ), 
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/reapprove/$",                                      BuildReApproveStandaloneQuestionView.as_view(),      name="build_reapprove_standalone_question"   ), 
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/activate/$",                                       BuildActivateStandaloneQuestionView.as_view(),       name="build_activate_standalone_question"    ), 
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/deactivate/$",                                     BuildDeactivateStandaloneQuestionView.as_view(),     name="build_deactivate_standalone_question"  ), 
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/refuse/$",                                         BuildRefuseStandaloneQuestionView.as_view(),         name="build_refuse_standalone_question"      ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/delete/$",                                         BuildDeleteStandaloneQuestionView.as_view(),         name="build_delete_standalone_question"      ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/check/$",                                          BuildCheckStandaloneQuestionView.as_view(),          name="build_check_standalone_question"       ),
+    # url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/toggle-free/(?P<free>true|false)/$",               BuildToggleFreeTestView.as_view(),     name="build_toggle_free_test" ),
 
 
     url(r"^build/packages/$",                                                                                   BuildPackagesView.as_view(),                name="build_packages" ),
