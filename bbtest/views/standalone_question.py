@@ -12,18 +12,18 @@ from bbtest.utils.json import tight_dumps
 from bbtest.models.upload import expiring_url
 from bbtest.models import TestQuestion, Test, TestParagraph
 from bbtest.http import TightJsonResponse
-from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestSendForm, TestCheckForm, QuestionSendForm
+from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, QuestionCheckForm, QuestionSendForm
 from bbtest.jobs.upload import image_paragraph_destroyer
 from bbtest.texts import inject_texts_into_response, test_specification, inject_texts_into_question_response
 
 
 def get_question_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
     if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
-        questions = TestQuestion.select_related("developer")
+        questions = TestQuestion.worked_questions.select_related("developer")
     elif request.user.has_perm("bbtest.developer"): 
         questions = request.user.questions.filter(status__lt=TestQuestion.STATUS_APPROVED)
     else:
-        raise Http404("You do not have permission to edit tests")
+        raise Http404("You do not have permission to edit questions")
     
     if include_section:
         questions = questions.select_related("section")
@@ -53,22 +53,22 @@ def get_question_for_preview_or_404(request, code):
         # tests = request.user.tests(manager="production_tests")
         questions = TestQuestion.objects
     else:
-        raise Http404("You do not have permission to preview tests")
+        raise Http404("You do not have permission to preview questions")
     questions = questions.select_related("section")
     return get_object_or_404(
         questions,
         code=code,   # TODO: create code field
     )
 
-def get_test_for_check_or_404(request, code):
+def get_question_for_check_or_404(request, code):
     if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
-        tests = Test.worked_tests
+        questions = TestQuestion.worked_questions
     else:
-        tests = request.user.tests(manager="in_development_tests")
-    return get_object_or_404(tests, code=code)
+        questions = request.user.questions(manager="in_development_questions")
+    return get_object_or_404(questions, code=code)
 
 
-class TestsView(StaffPermissionRequiredMixin, UserContextMixin, RedirectView):
+class TestsView(StaffPermissionRequiredMixin, UserContextMixin, RedirectView):  # TODO
     def get_redirect_url(self, *args, **kwargs):
         if self.request.user.is_superuser:
             return reverse("bbtest:super_tests")
@@ -139,7 +139,6 @@ class StandaloneQuestionQuestionView(StaffPermissionRequiredMixin, View):
 class StandaloneQuestionParagraphsView(StaffPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
         question = get_question_for_edit_or_404(request, code)
-        # question = get_object_or_404(question.questions, pk=question_id)
 
         form = TestParagraphsContainerForm(question, data=request.POST)
         if not form.is_valid():
@@ -196,46 +195,46 @@ class StandaloneQuestionAttributesView(StaffPermissionRequiredMixin, View):
         return TightJsonResponse(attributes_data)
 
 
-class ApproveTestView(ExpertPermissionRequiredMixin, View):  # TODO
+class ApproveQuestionView(ExpertPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
-        test = get_object_or_404(Test.worked_tests.select_related("developer"), code=code)
-        if not test.developer.has_perm("bbtest.super") and test.is_draft():
-            raise Http404("Superusers cannot approve draft tests of other developers")
+        question = get_object_or_404(TestQuestion.worked_questions.select_related("developer"), code=code)
+        if not question.developer.has_perm("bbtest.super") and question.is_draft():
+            raise Http404("Superusers cannot approve draft questions of other developers")
 
-        form = TestCheckForm(instance=test, data={})
+        form = QuestionCheckForm(instance=question, data={})
         skip = False
         if "skip_check" in request.POST and request.POST["skip_check"] == "true":
             skip = True
         if not form.is_valid() and not skip:
-            error(request, pgettext("Error alert message", "Could not approve the Test. Please check the Test for correctness."))
-            return redirect("bbtest:build_test_preview", code=test.code)
+            error(request, pgettext("Error alert message", "Could not approve the Question. Please check the Question for correctness."))
+            return redirect("bbtest:build_standalone_question_preview", code=question.code)
 
-        test.status = Test.STATUS_APPROVED
-        test.save()
+        question.status = TestQuestion.STATUS_APPROVED
+        question.save()
 
-        success(request, pgettext("Success alert message", "You have approved the Test."))
-        return redirect("bbtest:super_tests")
+        success(request, pgettext("Success alert message", "You have approved the Question."))
+        return redirect("bbtest:questions")
 
 
-class RefuseTestView(ExpertPermissionRequiredMixin, View): # TODO
+class RefuseQuestionView(ExpertPermissionRequiredMixin, View): # TODO
     def post(self, request, code, *args, **kwargs):
-        test = get_object_or_404(Test.pending_tests.select_related("developer"), code=code)
-        if test.developer.has_perm("bbtest.super"):
-            raise Http404("Superusers can only refuse tests of other developers")
+        question = get_object_or_404(TestQuestion.pending_questions.select_related("developer"), code=code)
+        if question.developer.has_perm("bbtest.super"):
+            raise Http404("Superusers can only refuse questions of other developers")
 
-        test.status = Test.STATUS_REDO
-        test.save()
+        question.status = TestQuestion.STATUS_REDO
+        question.save()
 
-        success(request, pgettext("Success alert message", "You have refused the Test."))
-        return redirect("bbtest:super_tests")
+        success(request, pgettext("Success alert message", "You have refused the Question."))
+        return redirect("bbtest:questions")
 
 
-class DeleteStandaloneQuestionView(StaffPermissionRequiredMixin, View):
+class DeleteQuestionView(StaffPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
         question = get_question_for_edit_or_404(request, code, include_paragraphs=True)
         if request.user.has_perm("bbtest.super"):
             if question.developer != request.user:
-                raise Http404("Superusers can only delete their own tests")
+                raise Http404("Superusers can only delete their own questions")
 
         # paragraph_ids = []
         # for question in test.questions.all():
@@ -248,79 +247,75 @@ class DeleteStandaloneQuestionView(StaffPermissionRequiredMixin, View):
         # TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
         # test.delete()
         
-        question.status = Test.STATUS_ARCHIVED
+        question.status = TestQuestion.STATUS_ARCHIVED
         question.save()
             
 
-        success(request, pgettext("Success alert message", "You have deleted the Test."))
-        return redirect("bbtest:build_tests")
+        success(request, pgettext("Success alert message", "You have deleted the Question."))
+        return redirect("bbtest:questions")
 
 
-class ReDraftTestView(ExpertPermissionRequiredMixin, View):  # DeveloperPermissionRequiredMixin, 
+class ReDraftQuestionView(ExpertPermissionRequiredMixin, View):  # DeveloperPermissionRequiredMixin, 
     def post(self, request, code, *args, **kwargs):
-        print("sonic", code)
-        test = get_object_or_404(Test.production_tests.select_related("developer"), code=code)
-        test.status = Test.STATUS_REDO
-        test.save()
-        success(request, pgettext("Success alert message", "Test is now draft again."))
-        return redirect("bbtest:home")
+        question = get_object_or_404(TestQuestion.production_question.select_related("developer"), code=code)
+        question.status = TestQuestion.STATUS_REDO
+        question.save()
+        success(request, pgettext("Success alert message", "Question is now draft again."))
+        return redirect("bbtest:questions")
 
 
-class ReApproveTestView(ExpertPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
+class ReApproveQuestionView(ExpertPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
     def post(self, request, code, *args, **kwargs):
-        test = get_object_or_404(Test.production_tests.select_related("developer"), code=code)
-        test.status = Test.STATUS_APPROVED
-        test.save()
-        success(request, pgettext("Success alert message", "Test is now approved again."))
-        return redirect("bbtest:home")
+        question = get_object_or_404(TestQuestion.production_question.select_related("developer"), code=code)
+        question.status = TestQuestion.STATUS_APPROVED
+        question.save()
+        success(request, pgettext("Success alert message", "Question is now approved again."))
+        return redirect("bbtest:questions")
 
-class ActivateTestView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
+class ActivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
     def post(self, request, code, *args, **kwargs):
-        test = get_object_or_404(Test.production_tests.select_related("developer"), code=code)
-        test.status = Test.STATUS_ACTIVE
-        test.save()
-        success(request, pgettext("Success alert message", "Test is active now."))
-        return redirect("bbtest:home")
+        question = get_object_or_404(TestQuestion.production_question.select_related("developer"), code=code)
+        question.status = TestQuestion.STATUS_ACTIVE
+        question.save()
+        success(request, pgettext("Success alert message", "Question is active now."))
+        return redirect("bbtest:questions")
 
-class DeactivateTestView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
+class DeactivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
     def post(self, request, code, *args, **kwargs):
-        test = get_object_or_404(Test.active_tests.select_related("developer"), code=code)
-        test.status = Test.STATUS_APPROVED
-        test.save()
-        success(request, pgettext("Success alert message", "Test is deactivated."))
-        return redirect("bbtest:home")
+        question = get_object_or_404(TestQuestion.active_questions.select_related("developer"), code=code)
+        question.status = TestQuestion.STATUS_APPROVED
+        question.save()
+        success(request, pgettext("Success alert message", "Question is deactivated."))
+        return redirect("bbtest:questions")
 
-class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
-    def post(self, request, code, free, *args, **kwargs):
-        test = get_object_or_404(Test.production_tests.select_related("developer"), code=code)
-
-        if free == "true":
-            free = True
-        else:
-            free = False
-
-        if free:
-            test.is_free = True
-        else:
-            test.is_free = False
-        test.save()
-
-        if free:
-            success(request, pgettext("Success alert message", "Test is now free."))
-        else:
-            success(request, pgettext("Success alert message", "Test is now paid."))
-        if "r" in self.request.GET:
-            return redirect(self.request.GET["r"])
-        return redirect("bbtest:build_test_preview", code=test.code)
+# class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
+#     def post(self, request, code, free, *args, **kwargs):
+#         test = get_object_or_404(Test.production_tests.select_related("developer"), code=code)
+#         if free == "true":
+#             free = True
+#         else:
+#             free = False
+#         if free:
+#             test.is_free = True
+#         else:
+#             test.is_free = False
+#         test.save()
+#         if free:
+#             success(request, pgettext("Success alert message", "Test is now free."))
+#         else:
+#             success(request, pgettext("Success alert message", "Test is now paid."))
+#         if "r" in self.request.GET:
+#             return redirect(self.request.GET["r"])
+#         return redirect("bbtest:build_test_preview", code=test.code)
 
 
-class CheckTestView(StaffPermissionRequiredMixin, View):
+class CheckQuestionView(StaffPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
-        test = get_test_for_check_or_404(request, code)
+        question = get_question_for_check_or_404(request, code)
         response = {
             "success": True,
         }
-        form = TestCheckForm(instance=test, data=request.POST)
+        form = QuestionCheckForm(instance=question, data=request.POST)
         if not form.is_valid():
             response["success"] = False
             response["errors"] = loads(form.errors.as_json())
@@ -355,7 +350,7 @@ class StandaloneQuestionView(StaffPermissionRequiredMixin, UserContextMixin, Tem
 class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMixin, FormView):
     template_name = "test/standalone_question_preview.html"
     form_class = QuestionSendForm
-    success_url = reverse_lazy("bbtest:build_tests")  # TODO
+    success_url = reverse_lazy("bbtest:questions")  # TODO
 
     def get(self, request, *args, **kwargs):
         self._question = get_question_for_preview_or_404(request, self.kwargs["code"])
@@ -364,7 +359,7 @@ class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMix
     def post(self, request, *args, **kwargs):
         self._question = get_question_for_preview_or_404(request, self.kwargs["code"])
         if request.user.has_perm("bbtest.super"):
-            raise Http404("Superusers cannot send tests for approval")
+            raise Http404("Superusers cannot send questions for approval")
         return super().post(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
