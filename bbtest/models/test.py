@@ -582,3 +582,12 @@ class DeveloperProfile(Model):
 
     def __str__(self):
         return "{}: {}".format(self.developer.username, self.section.all())
+    
+
+# -------------------------------------------- Simple chat --------------------------------------------
+    
+class QuestionComments(Model):
+    sender = ForeignKey(User, on_delete=CASCADE)
+    question = ForeignKey(TestQuestion, on_delete=CASCADE, related_name='comments')
+    content = CharField( pgettext_lazy("Model field", "content"),  max_length=1000, unique=False, )
+    created_at  = DateTimeField( pgettext_lazy("Model field", "created at"), auto_now_add=True, )
