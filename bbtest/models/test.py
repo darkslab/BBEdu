@@ -296,6 +296,48 @@ class Test(Model):
         return branches
 
 
+
+class DraftQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_DRAFT)
+
+class PendingQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_PENDING)
+
+class WorkedQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__lt=TestQuestion.STATUS_APPROVED)
+
+class ApprovedQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_APPROVED)
+
+class PreProductionQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__lte=TestQuestion.STATUS_APPROVED)
+    
+class ProductionQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__lt=TestQuestion.STATUS_ARCHIVED)
+
+class ActiveQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_ACTIVE)
+
+class ArchivedQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_ARCHIVED)
+    
+class RedoQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_REDO)
+
+class InDevelopmentQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__lte=TestQuestion.STATUS_REDO)
+
+
 class TestQuestion(Model):
     # DIFFICULTY_RESERVED  = 0x0f
     # DIFFICULTY_RESERVED  = 0x0e
@@ -367,6 +409,20 @@ class TestQuestion(Model):
     order         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                                                                    db_index=True, )
     created_at    = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                   )
     updated_at    = DateTimeField              ( pgettext_lazy("Model field", "updated at"),         auto_now=True,                                                                       )
+
+
+    objects = Manager()
+    draft_questions = DraftQuestionManager()
+    pending_questions = PendingQuestionManager()
+    worked_questions = WorkedQuestionManager()
+    approved_questions = ApprovedQuestionManager()
+    preproduction_questions = PreProductionQuestionManager()
+    production_questions = ProductionQuestionManager()
+    active_questions = ActiveQuestionManager()
+    archived_questions = ArchivedQuestionManager()
+    redo_questions = RedoQuestionManager()
+    in_development_questions = InDevelopmentQuestionManager()
+
 
     class Meta:
         default_permissions = ()
