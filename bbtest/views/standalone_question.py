@@ -369,7 +369,7 @@ class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMix
         kwargs["domain_name"] = _(self._question.section.domain.name)
         kwargs["language"] = self._question.get_lang() 
 
-        kwargs["comments"] = self._question.comments.all() 
+        kwargs["comments"] = self._question.comments.order_by("-created_at").all() 
         kwargs["comment_form"] = QuestionCommentForm()
         return super().get_context_data(**kwargs)
 
