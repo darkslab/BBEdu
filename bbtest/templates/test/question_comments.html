@@ -26,7 +26,17 @@
     {% for comment in comments %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong>{% trans 'Sender' %}:</strong> {{ comment.sender.username }}
+            {% if comment.sender.role == 'admin' %}
+                <span class="label label-info">{% trans 'Administrator' context '/super/users/' %}</span>
+            {% elif comment.sender.role == 'developer' %}
+                <span class="label label-success">{% trans 'Developer' context '/super/users/' %}</span>
+            {% elif comment.sender.role == 'expert' %}
+                <span class="label label-primary">{% trans 'Expert' context '/super/users/' %}</span>
+            {% elif comment.sender.role == 'student' %}
+                <span class="label label-danger">{% trans 'Student' context '/super/users/' %}</span>
+            {% endif %}
+            {% comment %} <strong>{% trans 'Sender' %}:</strong>  {% endcomment %}
+            {{ comment.sender.get_full_name }}
             <span class="pull-right"><strong>{% trans 'Sent At' %}:</strong> {{ comment.created_at|date:"Y-m-d H:i" }}</span>
         </div>
         <div class="panel-body">

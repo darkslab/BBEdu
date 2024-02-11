@@ -1213,7 +1213,7 @@ class QuestionCheckForm(ModelForm):
 
 
 class QuestionCommentForm(ModelForm):
-    content = CharField(widget=Textarea(attrs={'placeholder': 'Leave a comment...'}), label='')
+    content = CharField(widget=Textarea(attrs={'placeholder': ''}), label='')  # attrs={'placeholder': pgettext("QuestionCommentForm", 'Leave a comment...')}
 
     class Meta:
         model = QuestionComments

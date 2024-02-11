@@ -371,6 +371,13 @@ class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMix
 
         kwargs["comments"] = self._question.comments.order_by("-created_at").all() 
         kwargs["comment_form"] = QuestionCommentForm()
+        
+        for comment in kwargs["comments"]:
+            for permission in comment.sender.user_permissions.all():
+                if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "developer", "expert", "student"):
+                    comment.sender.role = permission.codename
+                    break
+
         return super().get_context_data(**kwargs)
 
     def get_form_kwargs(self):
