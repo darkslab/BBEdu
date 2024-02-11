@@ -244,32 +244,6 @@
             </div>
         </div>
     </div>
-    {% comment %} {% url 'bbtest:build_toggle_free_test' code 'true' as make_test_free_url %}
-    {% url 'bbtest:build_toggle_free_test' code 'false' as make_test_paid_url %}
-    <form method="post" action="{% if test.is_free %}{{ make_test_paid_url }}{% else %}{{ make_test_free_url }}{% endif %}" data-bb-form>
-        {% csrf_token %}
-        <div class="modal fade" data-toggle-free-modal data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Developer tools' %}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-xs-6 pr-5">
-                                <button type="submit" class="btn {% if test.is_free %}btn-success{% else %}btn-danger{% endif %} btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Developer tools' %}</button>
-                            </div>
-                            <div class="col-xs-6 pl-5">
-                                <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Developer tools' %}</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer"></div>
-                </div>
-            </div>
-        </div>
-    </form> {% endcomment %}
-
     <div class="row">
         <div class="col-xs-12 mb-23">
             {% if perms.bbtest.super or perms.bbtest.expert %}
