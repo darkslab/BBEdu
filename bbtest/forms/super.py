@@ -199,3 +199,40 @@ class ChangeUserPassManualForm(Form):
         error_messages={"required": "Reset password."},
         max_length=30,
     )
+
+
+class CreateCustomTestSelectionForm(Form):
+    # This form field options are created later in runtime
+    section = ChoiceField(
+        label=pgettext("/build/test_assemble/ (CreateCustomTestSelectionForm)", "Select section") , 
+        choices=[]
+    ) 
+    question_count = IntegerField(
+        label=pgettext("/build/test_assemble/ (CreateCustomTestSelectionForm)", "question_count"),
+        initial=10,
+        error_messages={
+            "required": "Please provide an amount.",
+            "invalid": "Amount is invalid.",
+            "max_value": "Amount cannot be more than %(limit_value)s.",
+            "min_value": "Amount has to be at least %(limit_value)s.",
+        },
+        max_value=1000,
+        min_value=1,
+    )
+    test_duration = IntegerField(
+        label=pgettext("/build/test_assemble/ (CreateCustomTestSelectionForm)", "test_duration"),
+        initial=60,
+        error_messages={
+            "required": "Please provide an amount.",
+            "invalid": "Amount is invalid.",
+            "max_value": "Amount cannot be more than %(limit_value)s.",
+            "min_value": "Amount has to be at least %(limit_value)s.",
+        },
+        max_value=1000,
+        min_value=1,
+    )
+
+    def __init__(self, *args, **kwargs):
+        choices = kwargs.pop("choices", [])
+        super(Form, self).__init__(*args, **kwargs)
+        self.fields["section"].choices = choices
