@@ -107,6 +107,9 @@ from .views.super import (
 
     
 )
+from .views.test_bank import (
+    BuildSelectTestForAssembleView
+)
 
 
 app_name = "bbtest"
@@ -141,6 +144,8 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/check/$",                                          BuildCheckTestView.as_view(),          name="build_check_test"       ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
+
+    url(r"^build/test_assemble/$",                                                                     BuildSelectTestForAssembleView.as_view(),              name="build_test_assemble"            ),
 
     url(r"^build/questions/$",                                                                           SuperQuestionView.as_view(),                         name="questions"      ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/$",                                               BuildStandaloneQuestionView.as_view(),               name="build_standalone_question"    ),
