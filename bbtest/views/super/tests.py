@@ -42,14 +42,17 @@ class TestsView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin,
             kwargs["tests"] = paginator.page(paginator.num_pages)
         paginator.page_indexes = self.page_indexes(kwargs["tests"], 5)
 
-        kwargs["test_page_redirect"] = reverse("bbtest:super_tests")
+        if self.request.user.has_perm("bbtest.super"):
+            kwargs["test_page_redirect"] = reverse("bbtest:super_tests")
+        elif self.request.user.has_perm("bbtest.expert"):
+            kwargs["test_page_redirect"] = reverse("bbtest:expert_dashboard")
+        elif self.request.user.has_perm("bbtest.admin"):
+            kwargs["test_page_redirect"] = reverse("bbtest:admin_dashboard")
+        elif self.request.user.has_perm("bbtest.developer"):
+            kwargs["test_page_redirect"] = reverse("bbtest:developer_dashboard")
+
         if self.request.GET.get("page"):
-            if self.request.user.has_perm("bbtest.super"):
-                kwargs["test_page_redirect"] = "%s?page=%s" % (reverse("bbtest:super_tests"), self.request.GET.get("page"))
-            elif self.request.user.has_perm("bbtest.expert"):
-                kwargs["test_page_redirect"] = "%s?page=%s" % (reverse("bbtest:expert_dashboard"), self.request.GET.get("page"))
-            elif self.request.user.has_perm("bbtest.admin"):
-                kwargs["test_page_redirect"] = "%s?page=%s" % (reverse("bbtest:admin_dashboard"), self.request.GET.get("page"))
+            kwargs["test_page_redirect"] = "%s?page=%s" % (kwargs["test_page_redirect"], self.request.GET.get("page"))
 
         for test in kwargs["tests"]:
             test.display_language = ""

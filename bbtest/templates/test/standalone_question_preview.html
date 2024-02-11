@@ -1,0 +1,292 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n static permission %}
+
+{% block window_title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (#{{ code }}){% endblocktrans %}{% endblock %}
+
+{% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (#{{ code }}){% endblocktrans %} <small><span class="label label-default">{{ domain_name }}</span>{% if language %} <span class="label label-default">{{ language }}</span>{% endif %}{% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}</small>{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "ReactModule",
+            data: {
+                class: "StandaloneQuestion",
+                props: {
+                    // hasTimer: false,
+                    // canEnd: false,
+                    spinnerLogo: "{% static 'img/logo2_spinner.png' %}",
+                    continueUrl: "{% url 'bbtest:build_standalone_question_preview_data' code %}",
+                    startUrl: "{% url 'bbtest:build_standalone_question_preview_data' code %}",
+                    skipUrl: "{% url 'bbtest:build_standalone_question_preview_data' code %}",
+                    endUrl: "{% url 'bbtest:build_standalone_question_preview_data' code %}",
+                    reportUrl: "{% url 'bbtest:build_standalone_question_preview_data' code %}",
+                    resultsUrl: "{% url 'bbtest:build_standalone_question_preview' code %}",
+                    buyUrl: "{% url 'bbtest:build_standalone_question_preview' code %}",
+                    refreshUrl: "{% url 'bbtest:build_standalone_question_preview' code %}",
+                    cancelRefreshUrl: "{% url 'bbtest:build_tests' %}",
+                    objectClass: "PreviewTestObject",
+                    texts: {
+                        error:                        "{% trans 'There was an error, please reload the page.'  context 'Exam' %}",
+                        startButton:                  "{% trans 'Start the test'                               context 'Exam' %}",
+                        skipButton:                   "{% trans 'Skip the test'                                context 'Exam' %}",
+                        endButton:                    "{% trans 'End the test'                                 context 'Exam' %}",
+                        continueButton:               "{% trans 'Continue'                                     context 'Exam' %}",
+                        resultsButton:                "{% trans 'Go to Results'                                context 'Exam' %}",
+                        buyButton:                    "{% trans 'Buy new tests'                                context 'Exam' %}",
+                        refreshButton:                "{% trans 'Reload the page'                              context 'Exam' %}",
+                        cancelRefreshButton:          "{% trans 'Cancel'                                       context 'Exam' %}",
+                        question:                     "{% trans 'Question'                                     context 'Exam' %}",
+                        multichoiceOneAnswerTitle:    "{% trans 'Please choose an answer choice'               context 'Exam' %}",
+                        multichoiceMultiAnswerTitle:  "{% trans 'Please choose answer choices that apply'      context 'Exam' %}",
+                        previousPager:                "{% trans 'Previous'                                     context 'Exam' %}",
+                        nextPager:                    "{% trans 'Next'                                         context 'Exam' %}",
+                        confirmModalTitle:            "{% trans 'Are you sure?'                                context 'Exam' %}",
+                        confirmModalYesCaption:       "{% trans 'Yes'                                          context 'Exam' %}",
+                        confirmModalNoCaption:        "{% trans 'No'                                           context 'Exam' %}",
+                        expiredTitle:                 "{% trans 'Time is up'                                   context 'Exam' %}",
+                        concludedTitle:               "{% trans 'Finished'                                     context 'Exam' %}",
+
+                        expiredExplanation: "{% trans 'You ran out of allocated time for the test. Please continue to the next test.' context 'Exam' %}",
+                        concludedExplanation: "{% trans 'All tests are finished. Please continue to view the results.' context 'Exam' %}"
+                    }
+                }
+            }
+        });
+        moduleDataStack.push({
+            module: "DeveloperTestPreviewPageModule",
+            data: {
+                url: "{% url 'bbtest:build_check_standalone_question' code %}"
+            }
+        });
+    </script>
+    <form method="post" action="{{ request.path }}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-send-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Developer tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Developer tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Developer tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="{% url 'bbtest:build_approve_standalone_question' code %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-approve-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Developer tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12 mb-10 text-danger text-center text-uppercase">
+                                <strong>{% trans 'This action is irreversable!' context 'Developer tools' %}</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 mb-15 text-danger text-center">
+                                <div class="checkbox mt-0 mb-0">
+                                    <label>
+                                        <input type="checkbox" name="skip_check" value="true">
+                                        <strong>{% trans 'Skip question checks!' context 'Developer tools' %}</strong>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Developer tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Developer tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="{% url 'bbtest:build_refuse_standalone_question' code %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-refuse-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Developer tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Developer tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Developer tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="{% url 'bbtest:build_delete_standalone_question' code %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-delete-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Developer tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Developer tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Developer tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="{% url 'bbtest:build_activate_standalone_question' code %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-activate-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Admin tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Admin tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Admin tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="{% url 'bbtest:build_deactivate_standalone_question' code %}" data-bb-form>
+        {% csrf_token %}
+        <div class="modal fade" data-deactivate-modal data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{% trans 'Are you sure?' context 'Admin tools' %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 pr-5">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" data-bb-submit>{% trans 'Yes' context 'Admin tools' %}</button>
+                            </div>
+                            <div class="col-xs-6 pl-5">
+                                <button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" data-bb-submit>{% trans 'No' context 'Admin tools' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal fade" data-check-modal data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" data-check-modal-header="wait">{% trans 'Please wait for the feedback...' context 'Developer tools' %}</h4>
+                    <h4 class="modal-title hidden" data-check-modal-header="done">{% trans 'Feedback' context 'Developer tools' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="bb-min-220" data-check-modal-body="spinner">
+                                <img class="bb-spinner" src="{% static 'img/logo2_spinner.png' %}">
+                            </div>
+                            <div class="hidden text-danger" data-check-modal-body="feedback"></div>
+                            <div class="hidden" data-check-modal-body="success">
+                                <h4 class="text-success text-center">{% trans 'The question is correct.' context 'Developer tools' %}</h4>
+                            </div>
+                            <div class="hidden" data-check-modal-body="error">
+                                <h4 class="text-danger text-center">{% trans 'There was an error. Please try again.' context 'Developer tools' %}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' context 'Developer tools' %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 mb-23">
+            {% if perms.bbtest.super or perms.bbtest.expert %}
+                {% if question.is_pending or question.is_draft and question.developer|has_perm:'bbtest.super' %}
+                    <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-approve-modal]">{% trans 'Approve' context 'Developer tools' %}</button>
+                {% endif %}
+                {% if question.is_pending %}
+                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-refuse-modal]">{% trans 'Refuse' context 'Developer tools' %}</button>
+                {% endif %}
+                {% if question.is_pending or question.is_draft and question.developer|has_perm:'bbtest.super' %}
+                    <a href="{% url 'bbtest:build_standalone_question' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
+                {% endif %}
+                {% if question.is_draft and question.developer == user %}
+                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
+                {% endif %}
+                {% if question.is_pending or question.is_draft %}
+                    <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button>
+                {% endif %}
+                <a href="{% url 'bbtest:questions' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
+            {% elif perms.bbtest.developer %}
+                {% if question.is_draft or question.is_redo %}
+                    <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button>
+                    <a href="{% url 'bbtest:build_standalone_question' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
+                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
+                    <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button>
+                {% endif %}
+                <a href="{% url 'bbtest:questions' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
+            {% elif perms.bbtest.admin %}
+                {% if question.is_active %} 
+                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-deactivate-modal]">{% trans 'Deactivate' context 'Admin tools' %}</button>
+                {% elif question.is_approved %} 
+                    <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-activate-modal]">{% trans 'Activate' context 'Admin tools' %}</button>
+                {% endif %}
+                <a href="{% url 'bbtest:questions' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
+            {% endif %}
+        </div>
+    </div>
+    <div id="root" class="mb-10">
+        <div class="row">
+            <div class="col-xs-12 bb-test-container">
+                <img class="bb-spinner" src="{% static 'img/logo2_spinner.png' %}">
+            </div>
+        </div>
+    </div>
+    {% include "./question_comments.html" with question=question comments=comments form=comment_form%}
+{% endblock %}

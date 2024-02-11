@@ -10,6 +10,7 @@ from .result_descriptions import (
 )
 from .exam import (
     inject_texts_into_response,
+    inject_texts_into_question_response,
 )
 from .test import (
     nis_quantitative_answer,

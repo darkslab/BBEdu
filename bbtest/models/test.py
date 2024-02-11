@@ -28,6 +28,7 @@ class TestSection(Model):
     domain  = ForeignKey  ( TestDomain, on_delete=CASCADE, related_name="sections", )
 
     name             = CharField                  ( pgettext_lazy("Model field", "name"),                max_length=100,                )
+    code             = CharField                  ( pgettext_lazy("Model field", "code"),                max_length=6,                  )
     duration         = PositiveIntegerField       ( pgettext_lazy("Model field", "duration in seconds"),                                )
     question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                     )
     order            = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                               db_index=True, )
@@ -295,6 +296,48 @@ class Test(Model):
         return branches
 
 
+
+class DraftQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_DRAFT)
+
+class PendingQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_PENDING)
+
+class WorkedQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__lt=TestQuestion.STATUS_APPROVED)
+
+class ApprovedQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_APPROVED)
+
+class PreProductionQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__lte=TestQuestion.STATUS_APPROVED)
+    
+class ProductionQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__lt=TestQuestion.STATUS_ARCHIVED)
+
+class ActiveQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_ACTIVE)
+
+class ArchivedQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_ARCHIVED)
+    
+class RedoQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=TestQuestion.STATUS_REDO)
+
+class InDevelopmentQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status__lte=TestQuestion.STATUS_REDO)
+
+
 class TestQuestion(Model):
     # DIFFICULTY_RESERVED  = 0x0f
     # DIFFICULTY_RESERVED  = 0x0e
@@ -332,13 +375,33 @@ class TestQuestion(Model):
         ( ANSWER_CLASS_MULTICHOICE_MULTI, ANSWER_CLASS_MULTICHOICE_MULTI ),
     )
 
+    STATUS_DRAFT     = 0x00
+    STATUS_REDO      = 0x01
+    STATUS_PENDING   = 0x10
+    STATUS_APPROVED  = 0x20
+    STATUS_ACTIVE    = 0x30
+    
+    STATUS_ARCHIVED  = 0xFF
+
+    STATUSES = (
+        ( STATUS_DRAFT,    pgettext_lazy("Test status", "Draft")    ),
+        ( STATUS_PENDING,  pgettext_lazy("Test status", "Pending")  ),
+        ( STATUS_APPROVED, pgettext_lazy("Test status", "Approved") ),
+        ( STATUS_ACTIVE,   pgettext_lazy("Test status", "Active")   ),
+        ( STATUS_REDO,     pgettext_lazy("Test status", "Redo")     ),
+        ( STATUS_ARCHIVED, pgettext_lazy("Test status", "Archived") ),
+    )
+
     test       = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )
+    section    = ForeignKey  ( TestSection,  on_delete=CASCADE, related_name="questions",                        )
     taxonomy   = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     topic      = ForeignKey  ( TestTopic,    on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     subtopic   = ForeignKey  ( TestSubTopic,        on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     goal       = ForeignKey  ( TestEducationGoal,   on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     developer  = ForeignKey  ( User,         on_delete=CASCADE, related_name="questions",                        )
 
+    status         = PositiveSmallIntegerField ( pgettext_lazy("Model field", "status"),                                choices=STATUSES,       default=STATUS_DRAFT,      db_index=True, )
+    code           = CharField                 ( pgettext_lazy("Model field", "code of the question"),     max_length=15,                       unique=True,               db_index=True, )
     answer_class  = CharField                  ( pgettext_lazy("Model field", "answer class"),       max_length=100,    choices=ANSWER_CLASSES,                                           )
     meta_data     = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
     difficulty    = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NONE  , db_index=True, )
@@ -347,13 +410,27 @@ class TestQuestion(Model):
     created_at    = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                   )
     updated_at    = DateTimeField              ( pgettext_lazy("Model field", "updated at"),         auto_now=True,                                                                       )
 
+
+    objects = Manager()
+    draft_questions = DraftQuestionManager()
+    pending_questions = PendingQuestionManager()
+    worked_questions = WorkedQuestionManager()
+    approved_questions = ApprovedQuestionManager()
+    preproduction_questions = PreProductionQuestionManager()
+    production_questions = ProductionQuestionManager()
+    active_questions = ActiveQuestionManager()
+    archived_questions = ArchivedQuestionManager()
+    redo_questions = RedoQuestionManager()
+    in_development_questions = InDevelopmentQuestionManager()
+
+
     class Meta:
         default_permissions = ()
         ordering = ("order",)
 
     def __str__(self):
         if self.id:
-            return "TestQuestion #%d" % self.id
+            return "TestQuestion #%d code%s" % (self.id, self.code)
         return "New TestQuestion"
 
     @classmethod
@@ -361,6 +438,32 @@ class TestQuestion(Model):
         # if test_section.is_nis():
         #     return 1
         return 1
+    
+    def is_draft(self):
+        return self.status == self.STATUS_DRAFT
+
+    def is_pending(self):
+        return self.status == self.STATUS_PENDING
+
+    def is_approved(self):
+        return self.status == self.STATUS_APPROVED
+
+    def is_archived(self):
+        return self.status == self.STATUS_ARCHIVED
+    
+    def is_redo(self):
+        return self.status == self.STATUS_REDO
+    
+    def is_active(self):
+        return self.status == self.STATUS_ACTIVE
+    
+    def get_lang(self):
+        domain_name = self.section.domain.name
+        if "ru" in domain_name:
+            return Test.LANGUAGE_RU
+        if "kz" in domain_name:
+            return Test.LANGUAGE_KK
+        return Test.LANGUAGE_XX
 
 
 class TestParagraph(Model):
@@ -479,3 +582,12 @@ class DeveloperProfile(Model):
 
     def __str__(self):
         return "{}: {}".format(self.developer.username, self.section.all())
+    
+
+# -------------------------------------------- Simple chat --------------------------------------------
+    
+class QuestionComments(Model):
+    sender = ForeignKey(User, on_delete=CASCADE)
+    question = ForeignKey(TestQuestion, on_delete=CASCADE, related_name='comments')
+    content = CharField( pgettext_lazy("Model field", "content"),  max_length=1000, unique=False, )
+    created_at  = DateTimeField( pgettext_lazy("Model field", "created at"), auto_now_add=True, )

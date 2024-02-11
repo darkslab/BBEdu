@@ -31,6 +31,26 @@ from .views.test import (
     TestPreviewView      as BuildTestPreviewView,
     TestPreviewDataView  as BuildTestPreviewDataView,
 )
+from .views.standalone_question import (
+    StandaloneQuestionView              as BuildStandaloneQuestionView,
+    StandaloneQuestionPreviewView       as BuildStandaloneQuestionPreviewView,
+    StandaloneQuestionPreviewDataView   as BuildStandaloneQuestionPreviewDataView,
+    StandaloneQuestionQuestionView      as BuildStandaloneQuestionQuestionView,
+    StandaloneQuestionParagraphsView    as BuildStandaloneQuestionParagraphsView,
+    StandaloneQuestionAttributesView    as BuildStandaloneQuestionAttributesView,
+    StandaloneQuestionSendCommentView   as BuildStandaloneQuestionSendCommentView,
+
+    ApproveQuestionView      as BuildApproveStandaloneQuestionView,
+    RefuseQuestionView       as BuildRefuseStandaloneQuestionView,
+    DeleteQuestionView       as BuildDeleteStandaloneQuestionView,
+    ReDraftQuestionView      as BuildReDraftStandaloneQuestionView,
+    ReApproveQuestionView    as BuildReApproveStandaloneQuestionView,
+    ActivateQuestionView     as BuildActivateStandaloneQuestionView,
+    DeactivateQuestionView   as BuildDeactivateStandaloneQuestionView,
+    CheckQuestionView        as BuildCheckStandaloneQuestionView,
+    # ToggleFreeQuestionView   as BuildToggleFreeTestView,
+
+)
 from .views.package import (
     BuildPackagesView             as BuildPackagesView,
     CreatePackageFormView         as BuildCreatePackageFormView,
@@ -71,6 +91,7 @@ from .views.developer import (
 from .views.super import (
     DashboardView                 as SuperDashboardView,
     TestsView                     as SuperTestsView,
+    QuestionView                  as SuperQuestionView,
     DownloadSubscriptionListView  as SuperDownloadSubscriptionListView,
     UsersView                     as SuperUsersView,
     UserView                      as SuperUserView,
@@ -121,6 +142,28 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview/$",                                        BuildTestPreviewView.as_view(),        name="build_test_preview"     ),
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
 
+    url(r"^build/questions/$",                                                                           SuperQuestionView.as_view(),                         name="questions"      ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/$",                                               BuildStandaloneQuestionView.as_view(),               name="build_standalone_question"    ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/question/$",                                      BuildStandaloneQuestionQuestionView.as_view(),       name="build_standalone_question_question"    ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/question/(?P<code3>[0-9A-Za-z]{1,15})/$",         BuildStandaloneQuestionQuestionView.as_view(),       name="build_standalone_question_question2"    ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/attributes/$",                                    BuildStandaloneQuestionAttributesView.as_view(),     name="build_standalone_question_attributes"  ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/paragraphs/$",                                    BuildStandaloneQuestionParagraphsView.as_view(),     name="build_standalone_question_paragraphs"  ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/paragraphs/(?P<code3>[0-9A-Za-z]{1,15})/paragraphs/$",                                    BuildStandaloneQuestionParagraphsView.as_view(),     name="build_standalone_question_paragraphs"  ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/preview/$",                                       BuildStandaloneQuestionPreviewView.as_view(),        name="build_standalone_question_preview"  ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/preview-data/$",                                  BuildStandaloneQuestionPreviewDataView.as_view(),    name="build_standalone_question_preview_data"  ),
+    # url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/approve/$",                                       BuildApproveTestView.as_view(),                      name="build_approve_question"     ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/send_comment/$",                                   BuildStandaloneQuestionSendCommentView.as_view(),    name="build_standalone_question_send_comment"  ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/approve/$",                                        BuildApproveStandaloneQuestionView.as_view(),        name="build_approve_standalone_question"     ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/redraft/$",                                        BuildReDraftStandaloneQuestionView.as_view(),        name="build_redraft_standalone_question"     ), 
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/reapprove/$",                                      BuildReApproveStandaloneQuestionView.as_view(),      name="build_reapprove_standalone_question"   ), 
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/activate/$",                                       BuildActivateStandaloneQuestionView.as_view(),       name="build_activate_standalone_question"    ), 
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/deactivate/$",                                     BuildDeactivateStandaloneQuestionView.as_view(),     name="build_deactivate_standalone_question"  ), 
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/refuse/$",                                         BuildRefuseStandaloneQuestionView.as_view(),         name="build_refuse_standalone_question"      ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/delete/$",                                         BuildDeleteStandaloneQuestionView.as_view(),         name="build_delete_standalone_question"      ),
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/check/$",                                          BuildCheckStandaloneQuestionView.as_view(),          name="build_check_standalone_question"       ),
+    # url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/toggle-free/(?P<free>true|false)/$",               BuildToggleFreeTestView.as_view(),     name="build_toggle_free_test" ),
+
+
     url(r"^build/packages/$",                                                                                   BuildPackagesView.as_view(),                name="build_packages" ),
     url(r"^build/create-package/create-form/$",                                                                 BuildCreatePackageFormView.as_view(),       name="build_create_package_form"),
 
@@ -151,6 +194,7 @@ urlpatterns = [
     url(r"^developer/$",                 DeveloperDashboardView.as_view(),       name="developer_dashboard"      ),
     # url(r"^developer/acknowledgement/$", DeveloperAcknowledgementView.as_view(), name="developer_acknowledgement"),
     url(r"^developer/tests/$",           DeveloperTestsView.as_view(),           name="developer_tests"          ),
+    # url(r"^developer/questions/$",       SuperQuestionView.as_view(),            name="developer_questions"      ),
     url(r"^developer/offer/$",           DeveloperOfferView.as_view(),           name="developer_offer"          ),
     # url(r"^developer/users/$",           SuperUsersView.as_view(),               name="developer_users"          ),
 
@@ -158,6 +202,7 @@ urlpatterns = [
     url(r"^expert/$",                 SuperTestsView.as_view(),               name="expert_dashboard"      ),
     url(r"^expert/tests/$",           DeveloperTestsView.as_view(),           name="expert_tests"          ),
     url(r"^expert/users/$",           SuperUsersView.as_view(),               name="expert_users"          ),
+    url(r"^expert/questions/$",       SuperQuestionView.as_view(),            name="expert_questions"      ),
 
     # ADMIN URLS
     url(r"^admin/$",                 SuperTestsView.as_view(),               name="admin_dashboard"      ),
@@ -169,6 +214,7 @@ urlpatterns = [
     # SUPER URLS
     url(r"^super/$",                                        SuperDashboardView.as_view(),                name="super_dashboard"                 ),
     url(r"^super/tests/$",                                  SuperTestsView.as_view(),                    name="super_tests"                     ),
+    url(r"^super/questions/$",                              SuperQuestionView.as_view(),                 name="super_questions"                 ),
     url(r"^super/download-subscription-list/$",             SuperDownloadSubscriptionListView.as_view(), name="super_download_subscription_list"),
     url(r"^super/users/$",                                  SuperUsersView.as_view(),                    name="super_users"                     ),
     url(r"^super/users/(?P<user_id>[0-9]+)/$",              SuperUserView.as_view(),                     name="super_user"                      ),

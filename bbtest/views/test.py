@@ -7,14 +7,14 @@ from django.http import Http404
 from json import loads
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin, AdminPermissionRequiredMixin
 from .generic import View, TemplateView, FormView, RedirectView
-from .common import UserContextMixin, inject_questions_and_report_into_started_response
+from .common import UserContextMixin, inject_questions_and_report_into_started_response, inject_standalone_question_and_report_into_started_response
 from bbtest.utils.json import tight_dumps
 from bbtest.models.upload import expiring_url
 from bbtest.models import TestQuestion, Test, TestParagraph
 from bbtest.http import TightJsonResponse
-from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestSendForm, TestCheckForm
+from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, TestSendForm, TestCheckForm, QuestionSendForm
 from bbtest.jobs.upload import image_paragraph_destroyer
-from bbtest.texts import inject_texts_into_response, test_specification
+from bbtest.texts import inject_texts_into_response, test_specification, inject_texts_into_question_response
 
 
 def get_test_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
@@ -57,6 +57,50 @@ def get_test_for_preview_or_404(request, code):
     return get_object_or_404(
         tests,
         code=code,
+    )
+
+
+def get_question_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
+    if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
+        questions = TestQuestion.select_related("developer")
+    elif request.user.has_perm("bbtest.developer"): 
+        questions = request.user.questions.filter(status__lt=TestQuestion.STATUS_APPROVED)
+    else:
+        raise Http404("You do not have permission to edit tests")
+    
+    if include_section:
+        questions = questions.select_related("section")
+    if include_paragraphs:
+        questions = questions.prefetch_related("questions__paragraphs")
+    question = get_object_or_404(
+        questions,
+        code=code,
+    )
+    if request.user.has_perm("bbtest.super"):
+        if not question.developer.has_perm("bbtest.super") and not question.is_pending():
+            raise Http404("Superusers can only edit questions of other developers that are in pending status")
+        if question.developer.has_perm("bbtest.super") and not question.is_draft():
+            raise Http404("Superusers can only edit questions of other superusers (and their own) that are in draft status")
+        
+    if request.user.has_perm("bbtest.expert"):
+        if not question.developer.has_perm("bbtest.expert") and not question.is_pending():
+            raise Http404("Experts can only edit questions of other developers that are in pending status")
+        if question.developer.has_perm("bbtest.super") and not question.is_draft():
+            raise Http404("Experts can only edit questions of other experts (and their own) that are in draft status")
+    return question
+
+def get_question_for_preview_or_404(request, code):
+    if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert") or request.user.has_perm("bbtest.admin"):
+        questions = TestQuestion.objects
+    elif request.user.has_perm("bbtest.developer"):
+        # tests = request.user.tests(manager="production_tests")
+        questions = TestQuestion.objects
+    else:
+        raise Http404("You do not have permission to preview tests")
+    questions = questions.select_related("section")
+    return get_object_or_404(
+        questions,
+        code=code,   # TODO: create code field
     )
 
 def get_test_for_check_or_404(request, code):
@@ -394,3 +438,4 @@ class TestPreviewDataView(StaffPermissionRequiredMixin, View):
 
     def post(self, request, code, *args, **kwargs):
         return self.get(request, code, *args, **kwargs)
+
