@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-24 20:57+0600\n"
+"POT-Creation-Date: 2024-02-11 18:09+0600\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -458,10 +458,6 @@ msgctxt "/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)"
 msgid "Student Group name"
 msgstr "Название Группы пользователей"
 
-msgctxt "CreateStudentGroupForm"
-msgid "Test day 001"
-msgstr "День тестирования 001"
-
 msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
 msgid "Amount"
 msgstr "Количество"
@@ -527,12 +523,16 @@ msgid "Incorrect test language value."
 msgstr "Язык тестирования указан неверно."
 
 msgctxt "Validation error"
-msgid "Unrecognized test section."
-msgstr "Непонятный предмет."
-
-msgctxt "Validation error"
 msgid "Incorrect test language."
 msgstr "Неверный язык теста."
+
+msgctxt "Validation error"
+msgid "No answer specified for question №%(number)s."
+msgstr "Правильный ответ не был указан для вопроса №%(number)s."
+
+msgctxt "Validation error"
+msgid "Text is missing for some answers in question №%(number)s."
+msgstr "Некоторые ответы в вопросе №%(number)s пустые"
 
 msgctxt "Validation error"
 msgid "Answer types should only be Multichoice with one answer."
@@ -1047,6 +1047,10 @@ msgid "Could not checkout. Please try again."
 msgstr "Покупка невозможна. Попробуйте еще раз."
 
 msgctxt "Model field"
+msgid "code"
+msgstr "код"
+
+msgctxt "Model field"
 msgid "duration in seconds"
 msgstr "секунд"
 
@@ -1131,6 +1135,10 @@ msgid "Unspecified"
 msgstr "Не указано"
 
 msgctxt "Model field"
+msgid "code of the question"
+msgstr "код вопроса"
+
+msgctxt "Model field"
 msgid "answer class"
 msgstr "ответ"
 
@@ -1169,6 +1177,10 @@ msgstr "Количество учеников"
 msgctxt "Model field"
 msgid "is active?"
 msgstr "активный?"
+
+msgctxt "Model field"
+msgid "content"
+msgstr "контент"
 
 msgctxt "Model field"
 msgid "uuid"
@@ -1864,6 +1876,10 @@ msgid "Manage Package"
 msgstr "Управление Пакетами"
 
 msgctxt "Navigation link"
+msgid "Question Bank"
+msgstr "Банк Вопросов"
+
+msgctxt "Navigation link"
 msgid "Manage Packages"
 msgstr "Управление Пакетами"
 
@@ -2380,10 +2396,10 @@ msgid "All Users"
 msgstr "Все Пользователи"
 
 msgctxt "Page title"
-msgid "All Quizzes"
-msgstr "Все Пробные тесты"
+msgid "Questions Bank"
+msgstr "Банк Вопросов"
 
-msgid "page:/super/quizzes/:query"
+msgid "page:/super/questions/:query"
 msgstr "Введите данные для поиска"
 
 msgid "_common.controls.super.search"
@@ -2391,6 +2407,69 @@ msgstr "Поиск"
 
 msgid "_common.controls.super.reset"
 msgstr "Сбросить"
+
+msgctxt "/super/questions/"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "/super/questions/"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "/super/questions/"
+msgid "Domain"
+msgstr "Параллель"
+
+msgctxt "/super/questions/"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "/super/questions/"
+msgid "Created at"
+msgstr "Создано"
+
+msgctxt "/super/questions/"
+msgid "Updated at"
+msgstr "обновлено"
+
+msgctxt "/super/questions/"
+msgid "Taxonomy"
+msgstr "Цель оценивания"
+
+msgctxt "/super/questions/"
+msgid "Topic"
+msgstr "Раздел"
+
+msgctxt "/super/questions/"
+msgid "Subtopic"
+msgstr "Подраздел"
+
+msgctxt "/super/questions/"
+msgid "Goal"
+msgstr "Цель Обучения"
+
+msgctxt "/super/questions/"
+msgid "Status"
+msgstr "Статус"
+
+msgctxt "/super/questions/"
+msgid "Actions"
+msgstr "Действия"
+
+msgctxt "/super/questions/"
+msgid "Preview"
+msgstr "Просмотреть"
+
+msgctxt "/super/questions/"
+msgid "There are no questions yet"
+msgstr "Нет загруженных вопросов"
+
+msgctxt "Page title"
+msgid "All Quizzes"
+msgstr "Все Пробные тесты"
+
+msgid "page:/super/quizzes/:query"
+msgstr "Введите данные для поиска"
 
 msgctxt "/super/quizzes/"
 msgid "Student"
@@ -2660,6 +2739,24 @@ msgctxt "/super/users/"
 msgid "There are no users yet"
 msgstr "Нет пользователей"
 
+msgid "Leave a comment"
+msgstr "Оставить комментарий"
+
+msgid "Submit"
+msgstr "Отправить"
+
+msgid "Comments"
+msgstr "Комментарии"
+
+msgid "Sender"
+msgstr "Отправитель"
+
+msgid "Sent At"
+msgstr "отправлено в"
+
+msgid "No comments yet."
+msgstr "Комментарии отсутсвуют"
+
 #, python-format
 msgctxt "Page title"
 msgid "%(section_name)s (#%(code)s)"
@@ -2750,6 +2847,14 @@ msgid "Split Text Section"
 msgstr "Две колонки"
 
 msgctxt "Developer tools"
+msgid "Periodic Table Section"
+msgstr "Таблица Менделеева"
+
+msgctxt "Developer tools"
+msgid "Calculator Section"
+msgstr "Калькулятор"
+
+msgctxt "Developer tools"
 msgid "Image Section"
 msgstr "Рисунок"
 
@@ -2834,8 +2939,8 @@ msgid "This action is irreversable!"
 msgstr "Это действие необратимо!"
 
 msgctxt "Developer tools"
-msgid "Skip test checks!"
-msgstr "Пропустить проверку теста!"
+msgid "Skip question checks!"
+msgstr "Пропустить проверку вопроса!"
 
 msgctxt "Admin tools"
 msgid "Are you sure?"
@@ -2858,8 +2963,8 @@ msgid "Feedback"
 msgstr "Результат"
 
 msgctxt "Developer tools"
-msgid "The test is correct."
-msgstr "Ошибок в тесте не найдено."
+msgid "The question is correct."
+msgstr "Ошибок в вопросе не найдено."
 
 msgctxt "Developer tools"
 msgid "There was an error. Please try again."
@@ -2882,6 +2987,10 @@ msgid "Delete"
 msgstr "Удалить"
 
 msgctxt "Developer tools"
+msgid "Check"
+msgstr "Проверить"
+
+msgctxt "Developer tools"
 msgid "Exit"
 msgstr "Выйти"
 
@@ -2896,6 +3005,14 @@ msgstr "ДеДоступ"
 msgctxt "Admin tools"
 msgid "Activate"
 msgstr "Доступ"
+
+msgctxt "Developer tools"
+msgid "Skip test checks!"
+msgstr "Пропустить проверку теста!"
+
+msgctxt "Developer tools"
+msgid "The test is correct."
+msgstr "Ошибок в тесте не найдено."
 
 msgctxt "Success alert message"
 msgid ""
@@ -2918,6 +3035,39 @@ msgstr "Тест убран из пакета."
 msgctxt "Success alert message"
 msgid "Package is finalized."
 msgstr "Пакет финализирован"
+
+msgctxt "Error alert message"
+msgid ""
+"Could not approve the Question. Please check the Question for correctness."
+msgstr "Не удалось одобрить вопрос. Проверьте правильность вопрооса."
+
+msgctxt "Success alert message"
+msgid "You have approved the Question."
+msgstr "Вы одобрили вопрос."
+
+msgctxt "Success alert message"
+msgid "You have refused the Question."
+msgstr "Вы отправили вопрос назад на доработку."
+
+msgctxt "Success alert message"
+msgid "You have deleted the Question."
+msgstr "Вы удалили вопрос."
+
+msgctxt "Success alert message"
+msgid "Question is now draft again."
+msgstr "Вопрос изменен на черновик."
+
+msgctxt "Success alert message"
+msgid "Question is now approved again."
+msgstr "Вопрос переодобрен."
+
+msgctxt "Success alert message"
+msgid "Question is active now."
+msgstr "Вопрос изменен на доступный."
+
+msgctxt "Success alert message"
+msgid "Question is deactivated."
+msgstr "Вопрос изменен на не доступный."
 
 msgctxt "/student/"
 msgid "Test Domain 1"
