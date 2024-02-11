@@ -2,12 +2,21 @@
 {% load i18n %}
 
 
-<div id="comment-form">
-    <h4>{% trans 'Leave a comment' %}</h4>
-    <form method="post" action="{% url 'bbtest:build_standalone_question_send_comment' code %}" class="mt-15">
+<div id="comment-form" class="well">
+    <h4 class="text-center">{% trans 'Leave a comment' %}</h4>
+    <form method="post" action="{% url 'bbtest:build_standalone_question_send_comment' code %}" class="form-horizontal mt-15 ">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+        <div class="form-group">
+            <div class="col-sm-12">
+                {{ form.content.label_tag }}
+                {{ form.content }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+            </div>
+        </div>
     </form>
 </div>
 
@@ -15,10 +24,14 @@
 <div id="comments">
     <h3>{% trans 'Comments' %}</h3>
     {% for comment in comments %}
-    <div class="comment">
-        <p><strong>{% trans 'Sender' %}:</strong> {{ comment.sender.username }}</p>
-        <p><strong>{% trans 'Content' %}:</strong> {{ comment.content }}</p>
-        <p><strong>{% trans 'Sent At' %}:</strong> {{ comment.created_at|date:"Y-m-d H:i" }}</p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>{% trans 'Sender' %}:</strong> {{ comment.sender.username }}
+            <span class="pull-right"><strong>{% trans 'Sent At' %}:</strong> {{ comment.created_at|date:"Y-m-d H:i" }}</span>
+        </div>
+        <div class="panel-body">
+            {{ comment.content }}
+        </div>
     </div>
     {% empty %}
     <p>{% trans 'No comments yet.' %}</p>
