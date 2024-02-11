@@ -10,9 +10,9 @@ from .generic import View, TemplateView, FormView, RedirectView
 from .common import UserContextMixin, inject_standalone_question_and_report_into_started_response
 from bbtest.utils.json import tight_dumps
 from bbtest.models.upload import expiring_url
-from bbtest.models import TestQuestion, Test, TestParagraph
+from bbtest.models import TestQuestion, Test, TestParagraph, QuestionComments
 from bbtest.http import TightJsonResponse
-from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, QuestionCheckForm, QuestionSendForm
+from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, QuestionCheckForm, QuestionSendForm, QuestionCommentForm
 from bbtest.jobs.upload import image_paragraph_destroyer
 from bbtest.texts import inject_texts_into_response, test_specification, inject_texts_into_question_response
 
@@ -368,6 +368,9 @@ class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMix
         kwargs["section_name"] = _(self._question.section.name)
         kwargs["domain_name"] = _(self._question.section.domain.name)
         kwargs["language"] = self._question.get_lang() 
+
+        kwargs["comments"] = self._question.comments.all() 
+        kwargs["comment_form"] = QuestionCommentForm()
         return super().get_context_data(**kwargs)
 
     def get_form_kwargs(self):
@@ -379,6 +382,34 @@ class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMix
         form.save()
         return super().form_valid(form)
     
+
+
+class StandaloneQuestionSendCommentView(StaffPermissionRequiredMixin, View):
+
+    def post(self, request, code, *args, **kwargs):
+        # return self.get(request, code, *args, **kwargs)
+    
+        form = QuestionCommentForm(data=request.POST)
+        if form.is_valid():
+            
+            question = get_question_for_preview_or_404(request, code)
+
+            comment_content = form.cleaned_data["content"]
+            print(request.user, comment_content)
+
+            obj = QuestionComments.objects.create(
+                sender = request.user,
+                question = question,
+                content = comment_content,
+            )
+
+            print("StandaloneQuestionSendCommentView", obj)
+
+        else:
+            error(request, "Could not create comment! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
+
+        return redirect("bbtest:build_standalone_question_preview", code)
+
 
 class StandaloneQuestionPreviewDataView(StaffPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):

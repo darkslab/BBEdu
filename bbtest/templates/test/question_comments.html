@@ -1,0 +1,28 @@
+<!-- comments.html -->
+{% load i18n %}
+
+
+<div id="comment-form">
+    <h4>{% trans 'Leave a comment' %}</h4>
+    <form method="post" action="{% url 'bbtest:build_standalone_question_send_comment' code %}" class="mt-15">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{% trans 'Submit' %}</button>
+    </form>
+</div>
+
+
+<div id="comments">
+    <h3>{% trans 'Comments' %}</h3>
+    {% for comment in comments %}
+    <div class="comment">
+        <p><strong>{% trans 'Sender' %}:</strong> {{ comment.sender.username }}</p>
+        <p><strong>{% trans 'Content' %}:</strong> {{ comment.content }}</p>
+        <p><strong>{% trans 'Sent At' %}:</strong> {{ comment.created_at|date:"Y-m-d H:i" }}</p>
+    </div>
+    {% empty %}
+    <p>{% trans 'No comments yet.' %}</p>
+    {% endfor %}
+</div>
+
+

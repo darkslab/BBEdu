@@ -1,10 +1,10 @@
-from django.forms import ModelForm, Form
+from django.forms import ModelForm, Form, CharField, Textarea
 from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy, ugettext as _, npgettext_lazy, pgettext
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from random import randint
-from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset
+from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset, QuestionComments
 from bbtest.forms.fields import JSONField
 from bbtest.utils.json import tight_dumps
 from bbtest.models.asset_classes import ImageParagraphAsset
@@ -1210,3 +1210,11 @@ class QuestionCheckForm(ModelForm):
         # {"correct_id":2,"choices":[{"id":1,"meta_data":{"text":"df"},"choice_class":"MultichoiceTextChoice"},{"id":2,"meta_data":{"text":"fdf"},"choice_class":"MultichoiceTextChoice"},{"id":3,"meta_data":{"text":"df"},"choice_class":"MultichoiceTextChoice"},{"id":4,"meta_data":{"text":"dfgsf"},"choice_class":"MultichoiceTextChoice"}]}
         # {"choices":[{"meta_data":{"text":"aa"},"choice_class":"MultichoiceTextChoice","id":6728},{"meta_data":{"text":"ss"},"choice_class":"MultichoiceTextChoice","id":6729},{"meta_data":{"text":"ff"},"choice_class":"MultichoiceTextChoice","id":6730},{"meta_data":{"text":"ff"},"choice_class":"MultichoiceTextChoice","id":6731}],"correct_ids":[6729,6731]}
         # """
+
+
+class QuestionCommentForm(ModelForm):
+    content = CharField(widget=Textarea(attrs={'placeholder': 'Leave a comment...'}), label='')
+
+    class Meta:
+        model = QuestionComments
+        fields = ['content']

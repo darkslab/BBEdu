@@ -38,6 +38,7 @@ from .views.standalone_question import (
     StandaloneQuestionQuestionView      as BuildStandaloneQuestionQuestionView,
     StandaloneQuestionParagraphsView    as BuildStandaloneQuestionParagraphsView,
     StandaloneQuestionAttributesView    as BuildStandaloneQuestionAttributesView,
+    StandaloneQuestionSendCommentView   as BuildStandaloneQuestionSendCommentView,
 
     ApproveQuestionView      as BuildApproveStandaloneQuestionView,
     RefuseQuestionView       as BuildRefuseStandaloneQuestionView,
@@ -151,7 +152,7 @@ urlpatterns = [
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/preview/$",                                       BuildStandaloneQuestionPreviewView.as_view(),        name="build_standalone_question_preview"  ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/preview-data/$",                                  BuildStandaloneQuestionPreviewDataView.as_view(),    name="build_standalone_question_preview_data"  ),
     # url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/approve/$",                                       BuildApproveTestView.as_view(),                      name="build_approve_question"     ),
-
+    url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/send_comment/$",                                   BuildStandaloneQuestionSendCommentView.as_view(),    name="build_standalone_question_send_comment"  ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/approve/$",                                        BuildApproveStandaloneQuestionView.as_view(),        name="build_approve_standalone_question"     ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/redraft/$",                                        BuildReDraftStandaloneQuestionView.as_view(),        name="build_redraft_standalone_question"     ), 
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/reapprove/$",                                      BuildReApproveStandaloneQuestionView.as_view(),      name="build_reapprove_standalone_question"   ), 
