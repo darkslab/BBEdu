@@ -773,6 +773,8 @@ class TestForm(ModelForm):
     def save(self, developer, commit=True):
         test = super().save(commit=False)
         test.developer = developer
+        test.question_count = self.cleaned_data.get("section").question_count
+        test.duration = self.cleaned_data.get("section").duration
 
         while True:
             test.code = "%04x" % randint(0x0000, 0xffff)
