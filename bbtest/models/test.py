@@ -231,13 +231,14 @@ class Test(Model):
 
     code             = CharField                  ( pgettext_lazy("Model field", "code of the test"),     max_length=6,                                               unique=True,   )
     language         = CharField                  ( pgettext_lazy("Model field", "language of the test"), max_length=2,      choices=LANGUAGES,                       db_index=True, )
+    question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                     )
+    duration         = PositiveIntegerField       ( pgettext_lazy("Model field", "duration in seconds"),                                )
+
     status           = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "status"),                                  choices=STATUSES,  default=STATUS_DRAFT, db_index=True, )
     is_free          = BooleanField               ( pgettext_lazy("Model field", "is free?"),                                                   default=True,         db_index=True, )
     sales_count      = PositiveIntegerField       ( pgettext_lazy("Model field", "sales count"),                                                default=0,                           )
     completed_count  = PositiveIntegerField       ( pgettext_lazy("Model field", "completed count"),                                            default=0,                           )
     created_at       = DateTimeField              ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                         )
-    question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                     )
-    duration         = PositiveIntegerField       ( pgettext_lazy("Model field", "duration in seconds"),                                )
 
     objects = Manager()
     draft_tests = DraftTestManager()
@@ -401,7 +402,8 @@ class TestQuestion(Model):
         ( STATUS_ARCHIVED, pgettext_lazy("Test status", "Archived") ),
     )
 
-    test       = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )
+    test       = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )  # TODO: remove
+    test_list  = ManyToManyField  ( Test,                       related_name="list_questions", through="TestToQuestionRelation",)
     section    = ForeignKey  ( TestSection,  on_delete=CASCADE, related_name="questions",                        )
     taxonomy   = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     topic      = ForeignKey  ( TestTopic,    on_delete=CASCADE, related_name="questions", null=True, blank=True, )
@@ -415,7 +417,7 @@ class TestQuestion(Model):
     meta_data     = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
     difficulty    = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NONE  , db_index=True, )
     weight        = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "weight of question"),                                                                       db_index=True, )
-    order         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),                                                                                    db_index=True, )
+    order         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),    db_index=True, ) # TODO: remove
     created_at    = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                   )
     updated_at    = DateTimeField              ( pgettext_lazy("Model field", "updated at"),         auto_now=True,                                                                       )
 
@@ -474,6 +476,17 @@ class TestQuestion(Model):
             return Test.LANGUAGE_KK
         return Test.LANGUAGE_XX
 
+
+class TestToQuestionRelation(Model):
+    question   = ForeignKey  ( TestQuestion,  on_delete=CASCADE,                         )
+    test  = ForeignKey  ( Test, on_delete=CASCADE, related_name="through", )
+
+    order  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"), db_index=True, )
+
+    class Meta:
+        default_permissions = ()
+        ordering = ("order",)
+        unique_together = ("test", "question")
 
 class TestParagraph(Model):
     PARAGRAPH_CLASS_TEXT           = "TextParagraph"
