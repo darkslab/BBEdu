@@ -43,7 +43,7 @@ class Command(BaseCommand):
                 for quiz in quiz_set_list[0].quizzes.order_by("test__section__order", "order").all():
                     test = quiz.test
 
-                    answers = [""] * test.section.question_count
+                    answers = [""] * test.question_count
 
                     for i, ans in enumerate(quiz.get_answers_ids()):
                         if ans is not None:

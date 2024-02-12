@@ -25,12 +25,12 @@ class MathematicsNISItem(NonLanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("10.00") * self.test().section.question_count
+        return Decimal("10.00") * self.test().question_count
 
     # def discount(self):
     #     if self.price().is_zero():
     #         return Decimal("0.00")
-    #     return self.question_discount() * self.test().section.question_count
+    #     return self.question_discount() * self.test().question_count
 
 
 class KazakhLanguageNISItem(LanguageNISItem):
@@ -42,12 +42,12 @@ class KazakhLanguageNISItem(LanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("10.00") * self.test().section.question_count
+        return Decimal("10.00") * self.test().question_count
 
     # def discount(self):
     #     if self.price().is_zero():
     #         return Decimal("0.00")
-    #     return self.question_discount() * self.test().section.question_count
+    #     return self.question_discount() * self.test().question_count
 
 
 class RussianLanguageNISItem(LanguageNISItem):
@@ -59,12 +59,12 @@ class RussianLanguageNISItem(LanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("10.00") * self.test().section.question_count
+        return Decimal("10.00") * self.test().question_count
 
     # def discount(self):
     #     if self.price().is_zero():
     #         return Decimal("0.00")
-    #     return self.question_discount() * self.test().section.question_count
+    #     return self.question_discount() * self.test().question_count
 
 
 class EnglishLanguageNISItem(LanguageNISItem):
@@ -76,12 +76,12 @@ class EnglishLanguageNISItem(LanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("10.00") * self.test().section.question_count
+        return Decimal("10.00") * self.test().question_count
 
     # def discount(self):
     #     if self.price().is_zero():
     #         return Decimal("0.00")
-    #     return self.question_discount() * self.test().section.question_count
+    #     return self.question_discount() * self.test().question_count
 
 
 class QuantitativeNISItem(NonLanguageNISItem):
@@ -93,12 +93,12 @@ class QuantitativeNISItem(NonLanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("10.00") * self.test().section.question_count
+        return Decimal("10.00") * self.test().question_count
 
     # def discount(self):
     #     if self.price().is_zero():
     #         return Decimal("0.00")
-    #     return self.question_discount() * self.test().section.question_count
+    #     return self.question_discount() * self.test().question_count
 
 
 class CriticalThinkingNISItem(NonLanguageNISItem):
@@ -110,12 +110,12 @@ class CriticalThinkingNISItem(NonLanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("10.00") * self.test().section.question_count
+        return Decimal("10.00") * self.test().question_count
 
     # def discount(self):
     #     if self.price().is_zero():
     #         return Decimal("0.00")
-    #     return self.question_discount() * self.test().section.question_count
+    #     return self.question_discount() * self.test().question_count
 
 
 class SpatialThinkingNISItem(NonLanguageNISItem):
@@ -127,9 +127,9 @@ class SpatialThinkingNISItem(NonLanguageNISItem):
     def price(self):
         if self.test().is_free:
             return Decimal("0.00")
-        return Decimal("10.00") * self.test().section.question_count
+        return Decimal("10.00") * self.test().question_count
 
     # def discount(self):
     #     if self.price().is_zero():
     #         return Decimal("0.00")
-    #     return self.question_discount() * self.test().section.question_count
+    #     return self.question_discount() * self.test().question_count

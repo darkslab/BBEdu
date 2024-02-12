@@ -538,7 +538,7 @@ class TestForm(ModelForm):
         # NIS sections
         if test.section.is_nis():
             shared_paragraph = None
-            for i in range(test.section.question_count):
+            for i in range(test.question_count):
                 choice_id = 1 # randint(0x0000, 0xffff)
                 meta_data = {
                     "choices": [
@@ -637,7 +637,7 @@ class TestForm(ModelForm):
         # UNT core sections
         elif test.section.is_unt_compulsory():
             shared_paragraph = None
-            for i in range(test.section.question_count):
+            for i in range(test.question_count):
                 choice_id = 1 # randint(0x0000, 0xffff)
                 meta_data = {
                     "choices": [
@@ -711,7 +711,7 @@ class TestForm(ModelForm):
 
         # UNT spec sections
         elif test.section.is_unt_profile():
-            for i in range(test.section.question_count):
+            for i in range(test.question_count):
                 choice_id = 1 # randint(0x0000, 0xffff)
                 if i in range(20):
                     answer_class = TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE

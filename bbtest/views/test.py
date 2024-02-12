@@ -430,7 +430,7 @@ class TestPreviewDataView(StaffPermissionRequiredMixin, View):
         response = {
             "success": True,
             "status": "started",
-            "seconds": test.section.duration,
+            "seconds": test.duration,
         }
         inject_questions_and_report_into_started_response(response, test)
         inject_texts_into_response(response, test)

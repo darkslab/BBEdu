@@ -164,16 +164,16 @@ def test_instructions(test):
     if test.language == Test.LANGUAGE_RU:
         return  [
             [
-                "Данный предмет содержит {} вопросов.".format(test.section.question_count),
-                "Для ответа на все вопросы выделено {} минут.".format(test.section.duration // 60),
+                "Данный предмет содержит {} вопросов.".format(test.question_count),
+                "Для ответа на все вопросы выделено {} минут.".format(test.duration // 60),
                 "Не забудьте перепроверить свои ответы.",
             ]
         ]
     else:
         return  [
             [
-                "Бұл пән {} сұрақтан тұрады.".format(test.section.question_count),
-                "Барлық сұрақтарға жауап беруге {} минут беріледі.".format(test.section.duration // 60),
+                "Бұл пән {} сұрақтан тұрады.".format(test.question_count),
+                "Барлық сұрақтарға жауап беруге {} минут беріледі.".format(test.duration // 60),
                 "Жауаптарыңызды екі рет тексеруді ұмытпаңыз.",
             ]
         ]

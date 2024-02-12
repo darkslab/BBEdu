@@ -229,6 +229,8 @@ class Test(Model):
     sales_count      = PositiveIntegerField       ( pgettext_lazy("Model field", "sales count"),                                                default=0,                           )
     completed_count  = PositiveIntegerField       ( pgettext_lazy("Model field", "completed count"),                                            default=0,                           )
     created_at       = DateTimeField              ( pgettext_lazy("Model field", "created at"),           auto_now_add=True,                                                         )
+    question_count   = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "question count"),                                     )
+    duration         = PositiveIntegerField       ( pgettext_lazy("Model field", "duration in seconds"),                                )
 
     objects = Manager()
     draft_tests = DraftTestManager()

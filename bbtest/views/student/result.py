@@ -143,7 +143,7 @@ class ResultDataView(StudentPermissionRequiredMixin, View):
         response = {
             "success": True,
             "status": "started",
-            "seconds": quiz.test.section.duration,
+            "seconds": quiz.test.duration,
         }
         inject_questions_and_report_into_started_response(response, quiz.test, hide_answers=False)
         inject_texts_into_response(response, quiz.test)
