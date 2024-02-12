@@ -29,8 +29,8 @@
                     <h4 class="panel-title">{% trans 'Assemble Tests' context '/build/test_assemble/ (CreateCustomTestSelectionForm)' %}</h4>
                 </div>
                 <div class="panel-body">
-                    {% comment %} <form method="post" action="{% url 'bbtest:build_package_add_test' package.code %}" class="mt-15"> {% endcomment %}
-                    <form method="post" class="mt-15">
+                    <form method="post" action="{% url 'bbtest:build_assemble_tests' %}" class="mt-15">
+                    {% comment %} <form method="post" class="mt-15"> {% endcomment %}
                         {% csrf_token %}
 
                         {% for field in select_section_form %}
