@@ -133,7 +133,7 @@ class TestView(StaffPermissionRequiredMixin, UserContextMixin, TemplateView):
             kwargs["language"] = next(test_language[1] for test_language in Test.LANGUAGES if test_language[0] == test.language)
         kwargs["specification"] = test_specification(test.section, test.language, get_language())
         question_ids = []
-        for data in test.questions.values("id").order_by("order"):
+        for data in test.questions.values("id").order_by("testtoquestionrelation"):
             question_ids.append(data["id"])
         kwargs["question_ids"] = tight_dumps(question_ids)
         return super().get_context_data(**kwargs)
@@ -191,7 +191,7 @@ class TestQuestionView(StaffPermissionRequiredMixin, View):
             }, status=400)
 
         test_question = form.save()
-        new_weight = TestQuestion.calculate_weight(test_question, test_question.test.section)
+        new_weight = TestQuestion.calculate_weight(test_question)
         if new_weight is not None:
             test_question.weight = new_weight
             test_question.save()

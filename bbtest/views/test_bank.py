@@ -12,7 +12,7 @@ from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.forms.super import  CreateCustomTestSelectionForm
-from bbtest.models.test import TestDomain, Test, TestSection, TestQuestion, TestParagraph, TestParagraphQuestion
+from bbtest.models.test import TestDomain, Test, TestSection, TestQuestion, TestParagraph, TestParagraphQuestion, TestToQuestionRelation
 from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.http import TightJsonResponse
 import uuid
@@ -124,7 +124,7 @@ class BuildSelectTestForAssembleView(AdminPermissionRequiredMixin, UserContextMi
             #     meta_data["choices"][2]["meta_data"]["text"] = nis_quantitative_answer(test, "=")
             #     meta_data["choices"][3]["meta_data"]["text"] = nis_quantitative_answer(test, "?")
 
-            question = test.questions.create(
+            question = TestQuestion.objects.create(
                 answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
                 meta_data=meta_data,
                 section=test.section,
@@ -134,11 +134,17 @@ class BuildSelectTestForAssembleView(AdminPermissionRequiredMixin, UserContextMi
                     datetime.now(), 
                     TestQuestion.objects.filter(created_at__year=datetime.now().year, section=test.section).count()),
                 weight=0,
-                order=i,
+                # order=i,
                 developer=test.developer,
             )
-            question.weight = TestQuestion.calculate_weight(question, test.section)
+            question.weight = TestQuestion.calculate_weight(question)
             question.save()
+
+            TestToQuestionRelation.objects.create(
+                test = test,
+                question = question,
+                order = i,
+            )
 
             # if test.section.id == 9540 or test.section.id in (9566, 9567):
             paragraph = TestParagraph.objects.create(
@@ -153,21 +159,3 @@ class BuildSelectTestForAssembleView(AdminPermissionRequiredMixin, UserContextMi
 
 
         return test
-
-    # def save(self, developer, commit=True):
-    #     # test = super().save(commit=False)
-    #     test = Test.objects.create(
-    #         section
-    #         developer
-    #     )
-
-    #     test.developer = developer
-
-    #     while True:
-    #         test.code = "%04x" % randint(0x0000, 0xffff)
-    #         if not Test.objects.filter(code=test.code).exists():
-    #             break
-
-    #     if commit:
-    #         test.save()
-    #     return test

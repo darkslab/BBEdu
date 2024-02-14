@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import pgettext_lazy, ugettext as _, npgettext_lazy, pgettext
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from random import randint
-from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset, QuestionComments
+from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset, QuestionComments, TestToQuestionRelation
 from bbtest.forms.fields import JSONField
 from bbtest.utils.json import tight_dumps
 from bbtest.models.asset_classes import ImageParagraphAsset
@@ -555,7 +555,7 @@ class TestForm(ModelForm):
                 #     meta_data["choices"][2]["meta_data"]["text"] = nis_quantitative_answer(test, "=")
                 #     meta_data["choices"][3]["meta_data"]["text"] = nis_quantitative_answer(test, "?")
 
-                question = test.questions.create(
+                question = TestQuestion.objects.create(
                     answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
                     meta_data=meta_data,
                     section=test.section,
@@ -565,11 +565,17 @@ class TestForm(ModelForm):
                         datetime.now(), 
                         TestQuestion.objects.filter(created_at__year=datetime.now().year, section=test.section).count()),
                     weight=0,
-                    order=i,
+                    # order=i,
                     developer=test.developer,
                 )
-                question.weight = TestQuestion.calculate_weight(question, test.section)
+                question.weight = TestQuestion.calculate_weight(question)
                 question.save()
+
+                TestToQuestionRelation.objects.create(
+                    test = test,
+                    question = question,
+                    order = i,
+                )
 
                 # if test.section.id == 9540 or test.section.id in (9566, 9567):
                 paragraph = TestParagraph.objects.create(
@@ -655,15 +661,21 @@ class TestForm(ModelForm):
                     "correct_id": None,
                 }
 
-                question = test.questions.create(
+                question = TestQuestion.objects.create(
                     answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
                     meta_data=meta_data,
                     weight=0,
-                    order=i,
+                    # order=i,
                     developer=test.developer,
                 )
-                question.weight = TestQuestion.calculate_weight(question, test.section)
+                question.weight = TestQuestion.calculate_weight(question)
                 question.save()
+
+                TestToQuestionRelation.objects.create(
+                    test = test,
+                    question = question,
+                    order = i,
+                )
 
                 if test.section.id == 9546:
                     if i in (0, 2, 6, 12):
@@ -748,15 +760,21 @@ class TestForm(ModelForm):
                         "correct_ids": [],
                     }
 
-                question = test.questions.create(
+                question = TestQuestion.objects.create(
                     answer_class=answer_class,
                     meta_data=meta_data,
                     weight=0,
-                    order=i,
+                    # order=i,
                     developer=test.developer,
                 )
-                question.weight = TestQuestion.calculate_weight(question, test.section)
+                question.weight = TestQuestion.calculate_weight(question)
                 question.save()
+
+                TestToQuestionRelation.objects.create(
+                    test = test,
+                    question = question,
+                    order = i,
+                )
 
                 paragraph = TestParagraph.objects.create(
                     paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
@@ -868,7 +886,7 @@ class TestCheckForm(ModelForm):
         return self.instance
 
     def clean(self):
-        questions_queryset = self.instance.questions.order_by("order").select_related("taxonomy", "topic")
+        questions_queryset = self.instance.questions.order_by("testtoquestionrelation").select_related("taxonomy", "topic")
         self.__clean_missing_answers(questions_queryset)
 
         # if self.instance.section.is_nis():
@@ -897,6 +915,11 @@ class TestCheckForm(ModelForm):
         questions_queryset = questions_queryset.all()
 
         for question in questions_queryset:
+
+            relation = TestToQuestionRelation.objects.get(
+                test = self.instance,
+                question = question
+            )
             
             if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
 
@@ -905,7 +928,7 @@ class TestCheckForm(ModelForm):
                     self.add_error(None, ValidationError(
                         self.error_messages["answer_missing_class"],
                         code="incomplete",
-                        params={ "number": question.order + 1 },
+                        params={ "number": relation.order + 1 },
                     ))
                 # print(question.order, correct_id)
 
@@ -913,10 +936,11 @@ class TestCheckForm(ModelForm):
                 for choice in choices:
                     choice_text = choice.get("meta_data", dict).get("text", "")
                     if len(choice_text) == 0:
+                        self.instance
                         self.add_error(None, ValidationError(
                             self.error_messages["answer_text_missing_class"],
                             code="incomplete",
-                            params={ "number": question.order + 1 },
+                            params={ "number": relation.order + 1 },
                         ))
                         break
                 
@@ -928,7 +952,7 @@ class TestCheckForm(ModelForm):
                     self.add_error(None, ValidationError(
                         self.error_messages["answer_missing_class"],
                         code="incomplete",
-                        params={ "number": question.order + 1 },
+                        params={ "number": relation.order + 1 },
                     ))
 
                 choices = question.meta_data.get("choices", list)
@@ -938,7 +962,7 @@ class TestCheckForm(ModelForm):
                         self.add_error(None, ValidationError(
                             self.error_messages["answer_text_missing_class"],
                             code="incomplete",
-                            params={ "number": question.order + 1 },
+                            params={ "number": relation.order + 1 },
                         ))
                         break
 
@@ -1100,8 +1124,8 @@ class TestCheckForm(ModelForm):
 
 class QuestionCheckForm(ModelForm):
     error_messages = {
-        "answer_missing_class":         pgettext_lazy("Validation error", "No answer specified for question №%(number)s."),
-        "answer_text_missing_class":    pgettext_lazy("Validation error", "Text is missing for some answers in question №%(number)s."),
+        "answer_missing_class":         pgettext_lazy("Validation error", "No answer specified for question."),
+        "answer_text_missing_class":    pgettext_lazy("Validation error", "Text is missing for some answers in question"),
         "nis_answer_class":             pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
         "unt_compulsory_answer_class":  pgettext_lazy("Validation error", "Answer types should only be Multichoice with one answer."),
         "unt_profile_answer_class":     pgettext_lazy("Validation error", "There should be 20 answers of type Multichoice with one answer and 10 answers of type Multichoice with one or more answers."),
@@ -1171,7 +1195,7 @@ class QuestionCheckForm(ModelForm):
                 self.add_error(None, ValidationError(
                     self.error_messages["answer_missing_class"],
                     code="incomplete",
-                    params={ "number": question.order + 1 },
+                    # params={ "number": question.order + 1 },
                 ))
 
             choices = question.meta_data.get("choices", list)
@@ -1181,7 +1205,7 @@ class QuestionCheckForm(ModelForm):
                     self.add_error(None, ValidationError(
                         self.error_messages["answer_text_missing_class"],
                         code="incomplete",
-                        params={ "number": question.order + 1 },
+                        # params={ "number": question.order + 1 },
                     ))
                     break
             
@@ -1193,7 +1217,7 @@ class QuestionCheckForm(ModelForm):
                 self.add_error(None, ValidationError(
                     self.error_messages["answer_missing_class"],
                     code="incomplete",
-                    params={ "number": question.order + 1 },
+                    # params={ "number": question.order + 1 },
                 ))
 
             choices = question.meta_data.get("choices", list)
@@ -1203,7 +1227,7 @@ class QuestionCheckForm(ModelForm):
                     self.add_error(None, ValidationError(
                         self.error_messages["answer_text_missing_class"],
                         code="incomplete",
-                        params={ "number": question.order + 1 },
+                        # params={ "number": question.order + 1 },
                     ))
                     break
 

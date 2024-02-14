@@ -402,8 +402,8 @@ class TestQuestion(Model):
         ( STATUS_ARCHIVED, pgettext_lazy("Test status", "Archived") ),
     )
 
-    test       = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )  # TODO: remove
-    test_list  = ManyToManyField  ( Test,                       related_name="list_questions", through="TestToQuestionRelation",)
+    # test       = ForeignKey  ( Test,         on_delete=CASCADE, related_name="questions",                        )  # TODO: remove
+    test  = ManyToManyField  ( Test,                       related_name="questions", through="TestToQuestionRelation",)
     section    = ForeignKey  ( TestSection,  on_delete=CASCADE, related_name="questions",                        )
     taxonomy   = ForeignKey  ( TestTaxonomy, on_delete=CASCADE, related_name="questions", null=True, blank=True, )
     topic      = ForeignKey  ( TestTopic,    on_delete=CASCADE, related_name="questions", null=True, blank=True, )
@@ -417,7 +417,7 @@ class TestQuestion(Model):
     meta_data     = JSONField                  ( pgettext_lazy("Model field", "meta data"),                                                                                               )
     difficulty    = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "difficulty"),                            choices=DIFFICULTIES,   default=DIFFICULTY_NONE  , db_index=True, )
     weight        = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "weight of question"),                                                                       db_index=True, )
-    order         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),    db_index=True, ) # TODO: remove
+    # order         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),    db_index=True, ) # TODO: remove
     created_at    = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                   )
     updated_at    = DateTimeField              ( pgettext_lazy("Model field", "updated at"),         auto_now=True,                                                                       )
 
@@ -437,7 +437,7 @@ class TestQuestion(Model):
 
     class Meta:
         default_permissions = ()
-        ordering = ("order",)
+        # ordering = ("order",)
 
     def __str__(self):
         if self.id:
@@ -445,7 +445,7 @@ class TestQuestion(Model):
         return "New TestQuestion"
 
     @classmethod
-    def calculate_weight(cls, test_question, test_section):
+    def calculate_weight(cls, test_question):
         # if test_section.is_nis():
         #     return 1
         return 1
@@ -487,6 +487,8 @@ class TestToQuestionRelation(Model):
         default_permissions = ()
         ordering = ("order",)
         unique_together = ("test", "question")
+
+
 
 class TestParagraph(Model):
     PARAGRAPH_CLASS_TEXT           = "TextParagraph"

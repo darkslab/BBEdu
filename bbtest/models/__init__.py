@@ -1,6 +1,6 @@
 from bbtest.auth.models import User, REGIONS
 from .email import Email
-from .test import TestDomain, TestSection, TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, Test, TestQuestion, TestParagraph, TestParagraphQuestion, QuestionComments
+from .test import TestDomain, TestSection, TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, Test, TestQuestion, TestParagraph, TestParagraphQuestion, QuestionComments, TestToQuestionRelation
 from .acknowledgement import DeveloperAcknowledgement
 from .subscription import Subscription
 from .upload import Upload, Asset
