@@ -29,6 +29,8 @@
                             <li class="{% block nav_super_create_test_class %}{% endblock %}"><a href="{% url 'bbtest:developer_tests' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Test' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_create_package_class %}{% endblock %}"><a href="{% url 'bbtest:build_packages' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Manage Package' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_quesion_bank_class %}{% endblock %}"><a href="{% url 'bbtest:super_questions' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Question Bank' context 'Navigation link' %}</a></li>
+                            <li class="{% if active_nav_item|default:'' == 'testbank' %}active{% endif %}"><a href="{% url 'bbtest:build_assemble_tests' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Test Assemle' context 'Navigation link' %}</a></li>
+
                         {% elif perms.bbtest.admin %}
                             
                             <li class="{% block nav_admin_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:admin_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
@@ -36,7 +38,7 @@
                             {% comment %} <li class="{% block nav_admin_create_students_class %}{% endblock %}"><a href="{% url 'bbtest:admin_create_students' %}"><i class="fa fa-fw fa-users"></i> {% trans 'Create Students' context 'Navigation link' %}</a></li> {% endcomment %}
                             <li class="{% block nav_admin_create_package_class %}{% endblock %}"><a href="{% url 'bbtest:build_packages' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Manage Packages' context 'Navigation link' %}</a></li>
                             {% comment %} <li class="{% block nav_admin_export_data_class %}{% endblock %}"><a href="{% url 'bbtest:super_export_data' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Export Data' context 'Navigation link' %}</a></li> {% endcomment %}
-                            <li class="{% if active_nav_item|default:'' == 'testbank' %}active{% endif %}"><a href="{% url 'bbtest:build_test_assemble' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Test Assemle' context 'Navigation link' %}</a></li>
+                            <li class="{% if active_nav_item|default:'' == 'testbank' %}active{% endif %}"><a href="{% url 'bbtest:build_assemble_tests' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Test Assemle' context 'Navigation link' %}</a></li>
                         
                         {% elif perms.bbtest.expert %}
                             <li class="{% block nav_expert_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:expert_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
