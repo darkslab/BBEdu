@@ -178,4 +178,4 @@ class Quiz(Model):
                     
             return ret
         else:
-            return [None for _ in range(self.test.section.question_count)]
+            return [None for _ in range(self.test.question_count)]

@@ -4,3 +4,4 @@
 /_.*
 /secrets.json
 /node_modules
+*.sql.gz

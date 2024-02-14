@@ -26,7 +26,7 @@ class Command(BaseCommand):
             ]
             # table.append(row)
 
-            question_set = test_obj.questions.order_by("order").all()
+            question_set = test_obj.questions.order_by("testtoquestionrelation").all()
             for question_obj in question_set:
 
                 row_q = [

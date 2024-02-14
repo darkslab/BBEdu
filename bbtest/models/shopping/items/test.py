@@ -103,7 +103,7 @@ class TestItem(Item):
             return _funds
 
         _funds.append(Debit(account=self.__balance_account, amount=self.total()))
-        question_amount = (self.total() / self.test().section.question_count).quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
+        question_amount = (self.total() / self.test().question_count).quantize(Decimal("1.00"), rounding=ROUND_HALF_UP)
         liabilities_amount = Decimal("0.00")
 
         for developer, developer_data in self.__plan_c_developers.items():

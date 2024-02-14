@@ -129,7 +129,7 @@ class StandaloneQuestionQuestionView(StaffPermissionRequiredMixin, View):
             }, status=400)
 
         test_question = form.save()
-        new_weight = TestQuestion.calculate_weight(test_question, test_question.test.section)
+        new_weight = TestQuestion.calculate_weight(test_question)
         if new_weight is not None:
             test_question.weight = new_weight
             test_question.save()

@@ -36,6 +36,7 @@ class ExportDataView(AdminPermissionRequiredMixin, UserContextMixin, PaginationM
 
 class ExportDataFormView(AdminPermissionRequiredMixin, View):
     def post(self, request, *args, **kwargs):
+        print("TODO: TestSection.objects.get(name=section_name).question_count is probably depreciated")
         form = ExportDataForm(data=request.POST)
         valid = form.is_valid()    # is_valid should be called before form.cleaned_data could be accessed
         start_date = form.cleaned_data["start_date"]

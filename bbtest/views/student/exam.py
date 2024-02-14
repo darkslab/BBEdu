@@ -111,7 +111,7 @@ class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin,
             with atomic(savepoint=False):
                 self.quiz_set().save()
                 self.current_quiz().started_at = now_at
-                self.current_quiz().due_at = now_at + timedelta(seconds=self.current_quiz().test.section.duration)
+                self.current_quiz().due_at = now_at + timedelta(seconds=self.current_quiz().test.duration)
                 self.current_quiz().save()
         except ConcurrentUpdate:
             return TightJsonResponse({

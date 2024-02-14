@@ -1,0 +1,55 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n pagination widget_tweaks%}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'Assemble Custom Test' context 'Page title' %}{% endblock %}
+
+{% comment %} {% block nav_super_class %}active{% endblock %}
+{% block nav_developer_class %}active{% endblock %}
+{% block nav_admin_class %}active{% endblock %}
+{% block nav_expert_class %}active{% endblock %} {% endcomment %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "SuperCreatePackageModule"
+        });
+    </script>
+
+
+    <div class="row">
+        {% comment %} Add Tests form {% endcomment %}
+        <div class="col-xs-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Assemble Tests' context '/build/test_assemble/ (CreateCustomTestSelectionForm)' %}</h4>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="{% url 'bbtest:build_assemble_tests' %}" class="mt-15">
+                    {% comment %} <form method="post" class="mt-15"> {% endcomment %}
+                        {% csrf_token %}
+
+                        {% for field in select_section_form %}
+                            <div class="form-group has-error">
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                {{field|add_class:'form-control' }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-sm btn-success btn-block">
+                                {% trans 'Assemble test' context '/build/test_assemble/ (CreateCustomTestSelectionForm)' %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+{% endblock %}
