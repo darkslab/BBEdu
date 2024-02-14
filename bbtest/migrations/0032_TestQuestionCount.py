@@ -19,11 +19,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='test',
-            name='question_count',
-            field=models.PositiveSmallIntegerField(default=20, verbose_name='question count'),
-            preserve_default=False,
-        ),
+        # migrations.AddField(
+        #     model_name='test',
+        #     name='question_count',
+        #     field=models.PositiveSmallIntegerField(default=20, verbose_name='question count'),
+        #     preserve_default=False,
+        # ),
         migrations.RunPython(add_migration, migrations.RunPython.noop),
     ]
