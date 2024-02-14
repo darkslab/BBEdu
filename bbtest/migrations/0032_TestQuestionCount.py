@@ -5,12 +5,6 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 
 
-from bbtest.models.test import Test, TestSection
-
-def add_migration(apps, schema_editor):
-    for test in Test.objects.select_related("section").all():
-        test.question_count = test.section.question_count
-        test.save()
 
 class Migration(migrations.Migration):
 
@@ -19,11 +13,16 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        # migrations.AddField(
-        #     model_name='test',
-        #     name='question_count',
-        #     field=models.PositiveSmallIntegerField(default=20, verbose_name='question count'),
-        #     preserve_default=False,
-        # ),
-        migrations.RunPython(add_migration, migrations.RunPython.noop),
+        migrations.AddField(
+            model_name='test',
+            name='question_count',
+            field=models.PositiveSmallIntegerField(default=20, verbose_name='question count'),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name='test',
+            name='duration',
+            field=models.PositiveIntegerField(default=3600, verbose_name='duration in seconds'),
+            preserve_default=False,
+        ),
     ]
