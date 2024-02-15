@@ -3,8 +3,12 @@
 
 {% block extended_footer %}{% endblock %}
 
-{% block title %}{% trans 'Assemble Custom Test' context 'Page title' %}{% endblock %}
-
+{% block title %}
+    {% trans test.section.name %}(#{{ test.code|upper }})
+    <small><span class="label label-default">{% trans test.section.domain.name %}</span>
+    {% if language %} <span class="label label-default">{{ language }}</span>{% endif %}
+    {% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}</small>
+{% endblock %}
 
 
 {% block content %}
@@ -16,8 +20,46 @@
             module: "SuperCreatePackageModule"
         });
     </script>
+    <script>
+        function selectQuestion(questionIndex, questionCode) {
+            console.log("Selected question " + questionCode + " for index " + questionIndex);
+            // Assuming test.code is available in JavaScript; if not, you'll need to make it available
+            const testCode = "{{ test.code }}"; // You might need to pass this differently depending on your setup
+            const url = "{% url 'bbtest:build_assemble_variant' test.code %}"; 
+            
+            // Data to be sent in the POST request
+            const data = {
+                'question_code': questionCode,
+                'question_index': questionIndex,
+                // Include CSRF token in the request for Django to accept it
+                'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            };
+            console.log(testCode, url, JSON.stringify(data), Cookies.get("csrftoken"))
 
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Ensure CSRF token is sent with the request
+                    //'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    "X-CSRFToken": Cookies.get("csrftoken")
+                }
+            })
+            //.then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // Close the modal manually
+                $('#selectQuestionModal_' + questionIndex).modal('hide');
+                window.location.replace(data.url);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 
+    {% csrf_token %}
     <div class="row">
         {% comment %} Add Tests form {% endcomment %}
         <div class="col-xs-12">
@@ -32,9 +74,9 @@
                                 {% comment %} column 0 {% endcomment %}
                                 <th class="pl-15">№</th>
                                 {% comment %} column 1 {% endcomment %}
-                                <th class="pl-15">{% trans 'Developer' context '/super/questions/' %}</th>
+                                <th>{% trans 'Code' context '/super/code/' %}</th>
                                 {% comment %} column 2 {% endcomment %}
-                                <th>{% trans 'Domain' context '/super/questions/' %}</th>
+                                <th class="pl-15">{% trans 'Developer' context '/super/questions/' %}</th>
                                 {% comment %} column 3 {% endcomment %}
                                 <th>{% trans 'Section' context '/super/questions/' %}</th>
                                 {% comment %} column 4 {% endcomment %}
@@ -64,10 +106,14 @@
                                         {% comment %} column 0 {% endcomment %}
                                         <td class="text-center">{{ question_obj.index }}</td>
                                         {% comment %} column 1-9 {% endcomment %}
-                                        <td class="text-center" colspan=8></td>
+                                        <td class="text-center" colspan="7"></td>
                                         <td class="pr-15 text-center">
-                                            act
                                             {% comment %} Add action trigger here {% endcomment %}
+                                            <td class="pr-15 text-center">
+                                                <!-- Trigger/Open The Modal -->
+                                                <button id="btnSelectQuestion_{{ question_obj.index }}" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#selectQuestionModal_{{ question_obj.index }}">Select Question</button>
+                                            </td>
+                                            
                                         </td>
                                     </tr>
                                 {% else %}
@@ -75,13 +121,13 @@
                                         {% comment %} column 0 {% endcomment %}
                                         <td class="text-center">{{ question_obj.index }}</td>
                                         {% comment %} column 1 {% endcomment %}
+                                        <td>{{ question_obj.code }}</td>
+                                            {% comment %} column 2 {% endcomment %}
                                         {% if question_obj.question.developer|has_perm:'bbtest.super' %}
                                             <td class="pl-15">{{ question_obj.question.developer.get_full_name }}</td>
                                         {% else %}
                                             <td class="pl-15"><a href="{% url 'bbtest:super_user' question_obj.question.developer.pk %}">{{ question_obj.question.developer.get_full_name }}</a><br><small class="text-info">{{ question_obj.question.developer.email }}</small></td>
                                         {% endif %}
-                                        {% comment %} column 2 {% endcomment %}
-                                        <td>{% trans question_obj.section.domain.name %}</td>
                                         {% comment %} column 3 {% endcomment %}
                                         <td>{% trans question_obj.section.name %}</td>
                                         {% comment %} column 4 {% endcomment %}
@@ -110,17 +156,48 @@
                                         </td>
                                         {% comment %} column 12 {% endcomment %}
                                         <td class="pr-15 text-center">
-                                            {% comment %} Add action trigger here {% endcomment %}
+                                            <!-- Trigger/Open The Modal -->
+                                            <button id="btnSelectQuestion_{{ question_obj.index }}" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#selectQuestionModal_{{ question_obj.index }}">Change Question</button>
                                         </td>
                                     </tr>
                                 {% endif %}
                             {% empty %}
                                 <tr>
-                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="5">{% trans 'There are no users yet' context '/super/users/' %}</td>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="10">{% trans 'There are no users yet' context '/super/users/' %}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
+
+                    {% for question_obj in test_question_list %} 
+                        <!-- The Modal -->
+                        <div id="selectQuestionModal_{{ question_obj.index }}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Select a Question</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Please select a question:</p>
+                                        <ul>
+                                            {% for question in question_list %}
+                                            <li>
+                                                <a href="#" onclick="selectQuestion('{{ question_obj.index }}', '{{ question.id }}'); return false;">{{ question.code }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

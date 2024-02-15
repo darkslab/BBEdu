@@ -23,6 +23,7 @@ from django.core.exceptions import ValidationError
 from datetime import datetime
 from django.views.generic.base import TemplateResponseMixin, ContextMixin, View
 from random import randint
+import json
 
 
 
@@ -199,11 +200,25 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
         return self.render_to_response(super().get_context_data(**kwargs))
     
     def post(self, request, code, *args, **kwargs):
-        print(request.POST)
+        print("BuildTestAssembleView", request.POST, request.body)
 
+        data = json.loads(request.body.decode("utf-8"))
         test = get_object_or_404(Test.objects, code=code)
-        print(test)
+        question_code = data['question_code']
+        order = int(data["question_index"]) - 1
+        question = TestQuestion.objects.get(code = question_code)
 
-        # raise Http404("Superusers cannot send tests for approval")
-        # return redirect("bbtest:build_assemble_tests")
+        if not TestToQuestionRelation.objects.filter(test=test, question=question).exists():
+            relation = TestToQuestionRelation.objects.create(
+                test=test, 
+                question=question,
+                order=order
+            )
+        else:
+            relation = TestToQuestionRelation.objects.get(test=test, question=question)
+            relation.question = question
+            relation.save()
+        
+        print(test, question, relation)
+
         return redirect("bbtest:build_assemble_variant", test.code )
