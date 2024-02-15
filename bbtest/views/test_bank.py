@@ -288,7 +288,7 @@ class BuildStandaloneQuestionCreateView(AdminPermissionRequiredMixin, UserContex
 
         # raise Http404("Superusers cannot send tests for approval")
         # return redirect("bbtest:build_assemble_tests")
-        return redirect("bbtest:build_standalone_question_preview", question.code )
+        return redirect("bbtest:build_standalone_question", question.code )
 
 
 
