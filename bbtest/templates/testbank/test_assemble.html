@@ -10,6 +10,10 @@
     {% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}</small>
 {% endblock %}
 
+{% block additional_libs %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock %}
 
 {% block content %}
     <script>
@@ -21,6 +25,15 @@
         });
     </script>
     <script>
+        function confirmQuestionSelection(questionIndex) {
+            // Retrieve the selected question ID from the select2 dropdown
+            const questionId = $('#questionSelect_' + questionIndex).val();
+            if (!questionId) {
+                alert('Please select a question.');
+                return;
+            }
+            selectQuestion(questionIndex, questionId);
+        }
         function selectQuestion(questionIndex, questionCode) {
             console.log("Selected question " + questionCode + " for index " + questionIndex);
             // Assuming test.code is available in JavaScript; if not, you'll need to make it available
@@ -32,7 +45,7 @@
                 'question_code': questionCode,
                 'question_index': questionIndex,
                 // Include CSRF token in the request for Django to accept it
-                'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value  // Cookies.get("csrftoken")  //
             };
             console.log(testCode, url, JSON.stringify(data), Cookies.get("csrftoken"))
 
@@ -51,14 +64,21 @@
                 console.log('Success:', data);
                 // Close the modal manually
                 $('#selectQuestionModal_' + questionIndex).modal('hide');
-                window.location.replace(data.url);
+                //window.location.replace(data.url);
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
         }
     </script>
-
+    <script>
+        $(document).ready(function() {
+            $('.question-select').select2({
+                placeholder: "Select a question",
+                allowClear: true
+            });
+        });
+    </script>
     {% csrf_token %}
     <div class="row">
         {% comment %} Add Tests form {% endcomment %}
@@ -181,17 +201,16 @@
                                         <h4 class="modal-title">Select a Question</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Please select a question:</p>
-                                        <ul>
+                                        <label for="questionSelect_{{ question_obj.index }}">Select a question:</label>
+                                        <select id="questionSelect_{{ question_obj.index }}" class="question-select" style="width: 100%">
                                             {% for question in question_list %}
-                                            <li>
-                                                <a href="#" onclick="selectQuestion('{{ question_obj.index }}', '{{ question.id }}'); return false;">{{ question.code }}</a>
-                                            </li>
+                                            <option value="{{ question.id }}">{{ question.code }} - {{ question.get_status_display }} - {{ question.developer.get_full_name }}</option>
                                             {% endfor %}
-                                        </ul>
+                                        </select>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" onclick="confirmQuestionSelection('{{ question_obj.index }}');">Submit</button>
                                     </div>
                                 </div>
 
