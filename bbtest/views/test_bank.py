@@ -204,6 +204,10 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
             test.status = Test.STATUS_APPROVED
             test.save()
 
+        if not kwargs['preview_button'] and test.status != Test.STATUS_DRAFT:
+            test.status = Test.STATUS_DRAFT
+            test.save()
+
         return self.render_to_response(super().get_context_data(**kwargs))
     
     def post(self, request, code, *args, **kwargs):
