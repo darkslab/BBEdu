@@ -488,7 +488,8 @@ class TestToQuestionRelation(Model):
         ordering = ("order",)
         unique_together = ("test", "question")
 
-
+    def __str__(self):
+        return "({}: {} {})".format(self.order, self.test, self.question)
 
 class TestParagraph(Model):
     PARAGRAPH_CLASS_TEXT           = "TextParagraph"
