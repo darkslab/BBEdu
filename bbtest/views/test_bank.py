@@ -215,8 +215,9 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
         order = int(data["question_index"]) - 1
         question = TestQuestion.objects.get(code = question_code)
 
-        if TestToQuestionRelation.objects.filter(test=test, order=order).exists():
-            TestToQuestionRelation.objects.filter(test=test, order=order).delete()
+        # if TestToQuestionRelation.objects.filter(test=test, order=order).exists():
+        TestToQuestionRelation.objects.filter(test=test, order=order).delete()
+        TestToQuestionRelation.objects.filter(test=test, question=question).delete()
 
         relation = TestToQuestionRelation.objects.create(
             test=test, 
