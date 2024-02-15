@@ -1,5 +1,5 @@
 {% extends '../personalized_base_1.html' %}
-{% load i18n pagination widget_tweaks%}
+{% load i18n pagination permission widget_tweaks%}
 
 {% block extended_footer %}{% endblock %}
 
@@ -29,28 +29,91 @@
                     <table class="table table-striped table-hover table-pressed">
                         <thead>
                             <tr>
-                                <th class="pl-15">{% trans 'Name' context '/super/users/' %}</th>
-                                <th class="text-center">{% trans 'Role' context '/super/users/' %}</th>
-                                <th class="text-center">{% trans 'Joined at' context '/super/users/' %}</th>
-                                <th class="text-center">{% trans 'Active?' context '/super/users/' %}</th>
-                                <!-- <th class="pr-15 text-center">{% trans 'Actions' context '/super/users/' %}</th> -->
+                                {% comment %} column 0 {% endcomment %}
+                                <th class="pl-15">№</th>
+                                {% comment %} column 1 {% endcomment %}
+                                <th class="pl-15">{% trans 'Developer' context '/super/questions/' %}</th>
+                                {% comment %} column 2 {% endcomment %}
+                                <th>{% trans 'Domain' context '/super/questions/' %}</th>
+                                {% comment %} column 3 {% endcomment %}
+                                <th>{% trans 'Section' context '/super/questions/' %}</th>
+                                {% comment %} column 4 {% endcomment %}
+                                {% comment %} <th class="text-center">{% trans 'Language' context '/super/questions/' %}</th> {% endcomment %}
+                                {% comment %} column 5 {% endcomment %}
+                                {% comment %} <th class="text-center">{% trans 'Created at' context '/super/questions/' %}</th> {% endcomment %}
+                                {% comment %} column 6 {% endcomment %}
+                                {% comment %} <th class="text-center">{% trans 'Updated at' context '/super/questions/' %}</th> {% endcomment %}
+                                {% comment %} column 7 {% endcomment %}
+                                <th class="text-center">{% trans 'Taxonomy' context '/super/questions/' %}</th>
+                                {% comment %} column 8 {% endcomment %}
+                                <th class="text-center">{% trans 'Topic' context '/super/questions/' %}</th>
+                                {% comment %} column 9 {% endcomment %}
+                                <th class="text-center">{% trans 'Subtopic' context '/super/questions/' %}</th>
+                                {% comment %} column 10 {% endcomment %}
+                                <th class="text-center">{% trans 'Goal' context '/super/questions/' %}</th>
+                                {% comment %} column 11 {% endcomment %}
+                                <th class="text-center">{% trans 'Status' context '/super/questions/' %}</th>
+                                {% comment %} column 12 {% endcomment %}
+                                <th class="pr-15 text-center">{% trans 'Actions' context '/super/questions/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for question in question_list %}
-                                <tr>
-                                    <td class="pl-15"><a href="{% url 'bbtest:super_user' user.pk %}">{{ question }}</a><br><small class="text-info">{{ question }}</small></td>
-                                    <td class="text-center">
-                                        {{ question }}
-                                    </td>
-                                    <td class="text-center">{{ "asd" }}</td>
-                                    <td class="text-center">
-                                        asdf
-                                    </td>
-                                    <!-- <td class="pr-15 text-center">
-                                        <button type="button" class="btn btn-danger btn-xs mr-5 mb-5" data-impersonate-url="{% url 'bbtest:super_impersonate_user' user.pk %}" data-toggle="modal" data-target="[data-modal]">{% trans 'Impersonate' context '/super/users/' %}</button>
-                                    </td> -->
-                                </tr>
+                            {% for question_obj in test_question_list %}
+                                {% if question_obj.question is None %}
+                                    <tr>
+                                        {% comment %} column 0 {% endcomment %}
+                                        <td class="text-center">{{ question_obj.index }}</td>
+                                        {% comment %} column 1-9 {% endcomment %}
+                                        <td class="text-center" colspan=8></td>
+                                        <td class="pr-15 text-center">
+                                            act
+                                            {% comment %} Add action trigger here {% endcomment %}
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        {% comment %} column 0 {% endcomment %}
+                                        <td class="text-center">{{ question_obj.index }}</td>
+                                        {% comment %} column 1 {% endcomment %}
+                                        {% if question_obj.question.developer|has_perm:'bbtest.super' %}
+                                            <td class="pl-15">{{ question_obj.question.developer.get_full_name }}</td>
+                                        {% else %}
+                                            <td class="pl-15"><a href="{% url 'bbtest:super_user' question_obj.question.developer.pk %}">{{ question_obj.question.developer.get_full_name }}</a><br><small class="text-info">{{ question_obj.question.developer.email }}</small></td>
+                                        {% endif %}
+                                        {% comment %} column 2 {% endcomment %}
+                                        <td>{% trans question_obj.section.domain.name %}</td>
+                                        {% comment %} column 3 {% endcomment %}
+                                        <td>{% trans question_obj.section.name %}</td>
+                                        {% comment %} column 4 {% endcomment %}
+                                        {% comment %} <td class="text-center">{{ question.language }}</td> {% endcomment %}
+                                        {% comment %} column 5 {% endcomment %}
+                                        {% comment %} <td class="text-center">{{ question_obj.question.created_at }}</td> {% endcomment %}
+                                        {% comment %} column 6 {% endcomment %}
+                                        {% comment %} <td class="text-center">{{ question_obj.question.updated_at }}</td> {% endcomment %}
+                                        {% comment %} column 7 {% endcomment %}
+                                        <td class="text-center">{% trans question_obj.question.taxonomy.name %}</td>
+                                        {% comment %} column 8 {% endcomment %}
+                                        <td class="text-center">{{ question_obj.question.topic.name }}</td>
+                                        {% comment %} column 9 {% endcomment %}
+                                        <td class="text-center">{{ question_obj.question.subtopic.name }}</td>
+                                        {% comment %} column 10 {% endcomment %}
+                                        <td class="text-center">{{ question_obj.question.goal.name }}</td>
+                                        {% comment %} column 11 {% endcomment %}
+                                        <td class="text-center">
+                                            {% if question_obj.question.is_archived   %}<span class="label label-danger" >{{ question_obj.question.get_status_display }}</span>
+                                            {% elif question_obj.question.is_approved %}<span class="label label-success">{{ question_obj.question.get_status_display }}</span>
+                                            {% elif question_obj.question.is_pending  %}<span class="label label-info"   >{{ question_obj.question.get_status_display }}</span>
+                                            {% elif question_obj.question.is_draft    %}<span class="label label-default">{{ question_obj.question.get_status_display }}</span>
+                                            {% elif question_obj.question.is_redo     %}<span class="label label-warning">{{ question_obj.question.get_status_display }}</span>
+                                            {% elif question_obj.question.is_active   %}<span class="label label-primary">{{ question_obj.question.get_status_display }}</span>
+                                            {% endif %}
+                                        </td>
+                                        {% comment %} column 12 {% endcomment %}
+                                        <td class="pr-15 text-center">
+                                            {% comment %} Add action trigger here {% endcomment %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
                             {% empty %}
                                 <tr>
                                     <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="5">{% trans 'There are no users yet' context '/super/users/' %}</td>

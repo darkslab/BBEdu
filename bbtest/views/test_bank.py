@@ -167,16 +167,35 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
         kwargs['active_nav_item'] = 'testbank'
 
         test = get_object_or_404(Test.objects, code=code)
-
-        kwargs['test'] = test
-        kwargs['question_list'] = []
-
         question_count = test.question_count
+        test_question_list = [None] * question_count
+
+        relation_query = TestToQuestionRelation.objects.filter(test=test)
+
+        question_list = TestQuestion.production_questions.filter(section=test.section)
+
+        for relation in relation_query:
+            order = relation.order
+            test_question_list[order] = {
+                "index": order + 1,
+                "question": relation.question,
+                "code": relation.question.code,
+                "section": test.section,
+            }
 
         for i in range(question_count):
-            kwargs['question_list'].append(i)
+            if test_question_list[i] is None:
+                test_question_list[i] = {
+                    "index": i + 1,
+                    "question": None,
+                    "code": "TODO",
+                    "section": test.section,
+                }
 
-    
+        kwargs["test_question_list"] = test_question_list
+        kwargs["question_list"] = question_list
+        kwargs['test'] = test
+
         return self.render_to_response(super().get_context_data(**kwargs))
     
     def post(self, request, code, *args, **kwargs):
