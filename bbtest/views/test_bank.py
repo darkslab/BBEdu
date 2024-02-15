@@ -62,7 +62,7 @@ class BuildSelectTestForAssembleView(AdminPermissionRequiredMixin, UserContextMi
 
         # raise Http404("Superusers cannot send tests for approval")
         # return redirect("bbtest:build_assemble_tests")
-        return redirect("bbtest:build_test", test.code )
+        return redirect("bbtest:build_assemble_variant", test.code )
     
 
     def clean(self, request):
@@ -105,57 +105,86 @@ class BuildSelectTestForAssembleView(AdminPermissionRequiredMixin, UserContextMi
 
         print(question_count, test_duration, section_obj, test)
 
-        # NIS sections
-        shared_paragraph = None
-        for i in range(question_count):
-            choice_id = 1 
-            meta_data = {
-                "choices": [
-                    {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
-                    {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
-                    {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
-                    {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
-                ],
-                "correct_id": None,
-            }
-            # if test.section.id == 9544:
-            #     meta_data["choices"][0]["meta_data"]["text"] = nis_quantitative_answer(test, "a")
-            #     meta_data["choices"][1]["meta_data"]["text"] = nis_quantitative_answer(test, "b")
-            #     meta_data["choices"][2]["meta_data"]["text"] = nis_quantitative_answer(test, "=")
-            #     meta_data["choices"][3]["meta_data"]["text"] = nis_quantitative_answer(test, "?")
+        # shared_paragraph = None
+        # for i in range(question_count):
+        #     choice_id = 1 
+        #     meta_data = {
+        #         "choices": [
+        #             {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+        #             {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+        #             {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+        #             {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+        #         ],
+        #         "correct_id": None,
+        #     }
+        #     # if test.section.id == 9544:
+        #     #     meta_data["choices"][0]["meta_data"]["text"] = nis_quantitative_answer(test, "a")
+        #     #     meta_data["choices"][1]["meta_data"]["text"] = nis_quantitative_answer(test, "b")
+        #     #     meta_data["choices"][2]["meta_data"]["text"] = nis_quantitative_answer(test, "=")
+        #     #     meta_data["choices"][3]["meta_data"]["text"] = nis_quantitative_answer(test, "?")
 
-            question = TestQuestion.objects.create(
-                answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
-                meta_data=meta_data,
-                section=test.section,
-                status=test.status,
-                code="{}{:%y}{:04}".format(
-                    test.section.code, 
-                    datetime.now(), 
-                    TestQuestion.objects.filter(created_at__year=datetime.now().year, section=test.section).count()),
-                weight=0,
-                # order=i,
-                developer=test.developer,
-            )
-            question.weight = TestQuestion.calculate_weight(question)
-            question.save()
+        #     question = TestQuestion.objects.create(
+        #         answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
+        #         meta_data=meta_data,
+        #         section=test.section,
+        #         status=test.status,
+        #         code="{}{:%y}{:04}".format(
+        #             test.section.code, 
+        #             datetime.now(), 
+        #             TestQuestion.objects.filter(created_at__year=datetime.now().year, section=test.section).count()),
+        #         weight=0,
+        #         # order=i,
+        #         developer=test.developer,
+        #     )
+        #     question.weight = TestQuestion.calculate_weight(question)
+        #     question.save()
 
-            TestToQuestionRelation.objects.create(
-                test = test,
-                question = question,
-                order = i,
-            )
+        #     TestToQuestionRelation.objects.create(
+        #         test = test,
+        #         question = question,
+        #         order = i,
+        #     )
 
-            # if test.section.id == 9540 or test.section.id in (9566, 9567):
-            paragraph = TestParagraph.objects.create(
-                paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                meta_data={"text": ""},
-            )
-            TestParagraphQuestion.objects.create(
-                question=question,
-                paragraph=paragraph,
-                order=0,
-            )
+        #     # if test.section.id == 9540 or test.section.id in (9566, 9567):
+        #     paragraph = TestParagraph.objects.create(
+        #         paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+        #         meta_data={"text": ""},
+        #     )
+        #     TestParagraphQuestion.objects.create(
+        #         question=question,
+        #         paragraph=paragraph,
+        #         order=0,
+        #     )
 
 
         return test
+
+
+class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateResponseMixin, ContextMixin, View):
+    template_name = "testbank/test_assemble.html"
+    
+    def get(self, request, code, *args, **kwargs):
+        kwargs['active_nav_item'] = 'testbank'
+
+        test = get_object_or_404(Test.objects, code=code)
+
+        kwargs['test'] = test
+        kwargs['question_list'] = []
+
+        question_count = test.question_count
+
+        for i in range(question_count):
+            kwargs['question_list'].append(i)
+
+    
+        return self.render_to_response(super().get_context_data(**kwargs))
+    
+    def post(self, request, code, *args, **kwargs):
+        print(request.POST)
+
+        test = get_object_or_404(Test.objects, code=code)
+        print(test)
+
+        # raise Http404("Superusers cannot send tests for approval")
+        # return redirect("bbtest:build_assemble_tests")
+        return redirect("bbtest:build_assemble_variant", test.code )
