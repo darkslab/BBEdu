@@ -200,7 +200,7 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
         return self.render_to_response(super().get_context_data(**kwargs))
     
     def post(self, request, code, *args, **kwargs):
-        print("BuildTestAssembleView", request.POST, request.body)
+        # print("BuildTestAssembleView", request.POST, request.body)
 
         data = json.loads(request.body.decode("utf-8"))
         test = get_object_or_404(Test.objects, code=code)
@@ -208,17 +208,15 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
         order = int(data["question_index"]) - 1
         question = TestQuestion.objects.get(code = question_code)
 
-        if not TestToQuestionRelation.objects.filter(test=test, question=question).exists():
-            relation = TestToQuestionRelation.objects.create(
-                test=test, 
-                question=question,
-                order=order
-            )
-        else:
-            relation = TestToQuestionRelation.objects.get(test=test, question=question)
-            relation.question = question
-            relation.save()
+        if TestToQuestionRelation.objects.filter(test=test, order=order).exists():
+            TestToQuestionRelation.objects.filter(test=test, order=order).delete()
+
+        relation = TestToQuestionRelation.objects.create(
+            test=test, 
+            question=question,
+            order=order
+        )
         
-        print(test, question, relation)
+        # print(test.pk, question.pk, relation)
 
         return redirect("bbtest:build_assemble_variant", test.code )
