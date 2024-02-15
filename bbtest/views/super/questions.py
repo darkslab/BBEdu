@@ -9,7 +9,7 @@ from bbtest.models import Test, TestQuestion
 
 
 class QuestionView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
-    template_name = "super/questions.html"
+    template_name = "testbank/questions.html"
 
     def get_context_data(self, **kwargs):
         

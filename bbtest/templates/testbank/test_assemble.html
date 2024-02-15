@@ -1,0 +1,231 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n pagination permission widget_tweaks%}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}
+    {% trans test.section.name %}(#{{ test.code|upper }})
+    <small><span class="label label-default">{% trans test.section.domain.name %}</span>
+    {% if language %} <span class="label label-default">{{ language }}</span>{% endif %}
+    {% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}</small>
+{% endblock %}
+
+{% block additional_libs %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "SuperCreatePackageModule"
+        });
+    </script>
+    <script>
+        function confirmQuestionSelection(questionIndex) {
+            // Retrieve the selected question ID from the select2 dropdown
+            const questionId = $('#questionSelect_' + questionIndex).val();
+            if (!questionId) {
+                alert('Please select a question.');
+                return;
+            }
+            selectQuestion(questionIndex, questionId);
+        }
+        function selectQuestion(questionIndex, questionCode) {
+            console.log("Selected question " + questionCode + " for index " + questionIndex);
+            // Assuming test.code is available in JavaScript; if not, you'll need to make it available
+            const testCode = "{{ test.code }}"; // You might need to pass this differently depending on your setup
+            const url = "{% url 'bbtest:build_assemble_variant' test.code %}"; 
+            
+            // Data to be sent in the POST request
+            const data = {
+                'question_code': questionCode,
+                'question_index': questionIndex,
+                // Include CSRF token in the request for Django to accept it
+                'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value  // Cookies.get("csrftoken")  //
+            };
+            console.log(testCode, url, JSON.stringify(data), Cookies.get("csrftoken"))
+
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Ensure CSRF token is sent with the request
+                    //'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    "X-CSRFToken": Cookies.get("csrftoken")
+                }
+            })
+            //.then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // Close the modal manually
+                $('#selectQuestionModal_' + questionIndex).modal('hide');
+                window.location.replace(data.url);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.question-select').select2({
+                placeholder: "Select a question",
+                allowClear: true
+            });
+        });
+    </script>
+    {% csrf_token %}
+    <div class="row">
+        {% comment %} Add Tests form {% endcomment %}
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">&nbsp;</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-pressed">
+                        <thead>
+                            <tr>
+                                {% comment %} column 0 {% endcomment %}
+                                <th class="pl-15">№</th>
+                                {% comment %} column 1 {% endcomment %}
+                                <th>{% trans 'Code' context '/test-assemble/code/' %}</th>
+                                {% comment %} column 2 {% endcomment %}
+                                <th class="pl-15">{% trans 'Developer' context '/test-assemble/' %}</th>
+                                {% comment %} column 3 {% endcomment %}
+                                <th>{% trans 'Section' context '/test-assemble/' %}</th>
+                                {% comment %} column 4 {% endcomment %}
+                                {% comment %} <th class="text-center">{% trans 'Language' context '/test-assemble/' %}</th> {% endcomment %}
+                                {% comment %} column 5 {% endcomment %}
+                                {% comment %} <th class="text-center">{% trans 'Created at' context '/test-assemble/' %}</th> {% endcomment %}
+                                {% comment %} column 6 {% endcomment %}
+                                {% comment %} <th class="text-center">{% trans 'Updated at' context '/test-assemble/' %}</th> {% endcomment %}
+                                {% comment %} column 7 {% endcomment %}
+                                <th class="text-center">{% trans 'Taxonomy' context '/test-assemble/' %}</th>
+                                {% comment %} column 8 {% endcomment %}
+                                <th class="text-center">{% trans 'Topic' context '/test-assemble/' %}</th>
+                                {% comment %} column 9 {% endcomment %}
+                                <th class="text-center">{% trans 'Subtopic' context '/test-assemble/' %}</th>
+                                {% comment %} column 10 {% endcomment %}
+                                <th class="text-center">{% trans 'Goal' context '/test-assemble/' %}</th>
+                                {% comment %} column 11 {% endcomment %}
+                                <th class="text-center">{% trans 'Status' context '/test-assemble/' %}</th>
+                                {% comment %} column 12 {% endcomment %}
+                                <th class="pr-15 text-center">{% trans 'Actions' context '/test-assemble/' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for question_obj in test_question_list %}
+                                {% if question_obj.question is None %}
+                                    <tr>
+                                        {% comment %} column 0 {% endcomment %}
+                                        <td class="text-center">{{ question_obj.index }}</td>
+                                        {% comment %} column 1-9 {% endcomment %}
+                                        <td class="text-center" colspan="7"></td>
+                                        <td class="pr-15 text-center">
+                                            {% comment %} Add action trigger here {% endcomment %}
+                                            <td class="pr-15 text-center">
+                                                <!-- Trigger/Open The Modal -->
+                                                <button id="btnSelectQuestion_{{ question_obj.index }}" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#selectQuestionModal_{{ question_obj.index }}">{% trans "Select Question" context '/test-assemble/' %}</button>
+                                            </td>
+                                            
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        {% comment %} column 0 {% endcomment %}
+                                        <td class="text-center">{{ question_obj.index }}</td>
+                                        {% comment %} column 1 {% endcomment %}
+                                        <td>{{ question_obj.code }}</td>
+                                            {% comment %} column 2 {% endcomment %}
+                                        {% if question_obj.question.developer|has_perm:'bbtest.super' %}
+                                            <td class="pl-15">{{ question_obj.question.developer.get_full_name }}</td>
+                                        {% else %}
+                                            <td class="pl-15"><a href="{% url 'bbtest:super_user' question_obj.question.developer.pk %}">{{ question_obj.question.developer.get_full_name }}</a><br><small class="text-info">{{ question_obj.question.developer.email }}</small></td>
+                                        {% endif %}
+                                        {% comment %} column 3 {% endcomment %}
+                                        <td>{% trans question_obj.section.name %}</td>
+                                        {% comment %} column 4 {% endcomment %}
+                                        {% comment %} <td class="text-center">{{ question.language }}</td> {% endcomment %}
+                                        {% comment %} column 5 {% endcomment %}
+                                        {% comment %} <td class="text-center">{{ question_obj.question.created_at }}</td> {% endcomment %}
+                                        {% comment %} column 6 {% endcomment %}
+                                        {% comment %} <td class="text-center">{{ question_obj.question.updated_at }}</td> {% endcomment %}
+                                        {% comment %} column 7 {% endcomment %}
+                                        <td class="text-center">{% trans question_obj.question.taxonomy.name %}</td>
+                                        {% comment %} column 8 {% endcomment %}
+                                        <td class="text-center">{{ question_obj.question.topic.name }}</td>
+                                        {% comment %} column 9 {% endcomment %}
+                                        <td class="text-center">{{ question_obj.question.subtopic.name }}</td>
+                                        {% comment %} column 10 {% endcomment %}
+                                        <td class="text-center">{{ question_obj.question.goal.name }}</td>
+                                        {% comment %} column 11 {% endcomment %}
+                                        <td class="text-center">
+                                            {% if question_obj.question.is_archived   %}<span class="label label-danger" >{{ question_obj.question.get_status_display }}</span>
+                                            {% elif question_obj.question.is_approved %}<span class="label label-success">{{ question_obj.question.get_status_display }}</span>
+                                            {% elif question_obj.question.is_pending  %}<span class="label label-info"   >{{ question_obj.question.get_status_display }}</span>
+                                            {% elif question_obj.question.is_draft    %}<span class="label label-default">{{ question_obj.question.get_status_display }}</span>
+                                            {% elif question_obj.question.is_redo     %}<span class="label label-warning">{{ question_obj.question.get_status_display }}</span>
+                                            {% elif question_obj.question.is_active   %}<span class="label label-primary">{{ question_obj.question.get_status_display }}</span>
+                                            {% endif %}
+                                        </td>
+                                        {% comment %} column 12 {% endcomment %}
+                                        <td class="pr-15 text-center">
+                                            <!-- Trigger/Open The Modal -->
+                                            <button id="btnSelectQuestion_{{ question_obj.index }}" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#selectQuestionModal_{{ question_obj.index }}">{% trans "Change Question" context '/test-assemble/' %}</button>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% empty %}
+                                <tr>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="10">{% trans 'There are no questions yet, something whent wrong' context '/test-assemble/' %}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% for question_obj in test_question_list %} 
+                        <!-- The Modal -->
+                        <div id="selectQuestionModal_{{ question_obj.index }}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">{% trans "Select a Question" context '/test-assemble/' %}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="questionSelect_{{ question_obj.index }}">{% trans "Select a Question" context '/test-assemble/' %}:</label>
+                                        <select id="questionSelect_{{ question_obj.index }}" class="question-select" style="width: 100%">
+                                            {% for question in question_list %}
+                                                <option value="{{ question.id }}">{{ question.code }} - {{ question.get_status_display }} - {{ question.developer.get_full_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" context '/test-assemble/' %}</button>
+                                        <button type="submit" class="btn btn-primary" onclick="confirmQuestionSelection('{{ question_obj.index }}');">{% trans "Submit" context '/test-assemble/' %}</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% if preview_button %}
+            <div class="col-xs-12 text-right">
+                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/expert/dashboard/' %}</a>
+            </div>
+        {% endif %}
+    </div>
+
+    
+{% endblock %}

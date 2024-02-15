@@ -108,7 +108,8 @@ from .views.super import (
     
 )
 from .views.test_bank import (
-    BuildSelectTestForAssembleView
+    BuildSelectTestForAssembleView,
+    BuildTestAssembleView,
 )
 
 
@@ -146,7 +147,7 @@ urlpatterns = [
     url(r"^build/tests/(?P<code>[0-9A-Fa-f]{4,6})/preview-data/$",                                   BuildTestPreviewDataView.as_view(),    name="build_test_preview_data"),
 
     url(r"^build/test_assemble/$",                                                                     BuildSelectTestForAssembleView.as_view(),              name="build_assemble_tests"            ),
-    # url(r"^build/test_assemble/(?P<code>[0-9A-Fa-f]{4,6})/$",                                          BuildSelectTestForAssembleView.as_view(),              name="build_assemble_variant"            ),
+    url(r"^build/test_assemble/(?P<code>[0-9A-Fa-f]{4,6})/$",                                          BuildTestAssembleView.as_view(),                       name="build_assemble_variant"            ),
 
     url(r"^build/questions/$",                                                                           SuperQuestionView.as_view(),                         name="questions"      ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/$",                                               BuildStandaloneQuestionView.as_view(),               name="build_standalone_question"    ),

@@ -40,6 +40,10 @@
         {% javascript 'base2' %}
         {% javascript 'base3' %}
     {% endif %}
+
+    {% block additional_libs %}{% endblock %}
+
+
     <script>
         var moduleDataStack = [];
     </script>

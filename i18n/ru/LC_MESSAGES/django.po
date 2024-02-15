@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-11 18:42+0600\n"
+"POT-Creation-Date: 2024-02-15 16:33+0600\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -470,6 +470,18 @@ msgctxt "/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)"
 msgid "Select Test"
 msgstr "Выберите Тест"
 
+msgctxt "/build/test_assemble/ (CreateCustomTestSelectionForm)"
+msgid "Select section"
+msgstr "Выберите Предмет"
+
+msgctxt "/build/test_assemble/ (CreateCustomTestSelectionForm)"
+msgid "question_count"
+msgstr "Количество вопросов"
+
+msgctxt "/build/test_assemble/ (CreateCustomTestSelectionForm)"
+msgid "test_duration"
+msgstr "Время тестирования"
+
 msgctxt "Validation error"
 msgid "Incorrect difficulty value."
 msgstr "Сложность указана неверно."
@@ -508,11 +520,11 @@ msgstr "Предоставьте мета данные."
 
 msgctxt "Validation error"
 msgid "Please select test section."
-msgstr "Выберите тест."
+msgstr "Выберите предмет."
 
 msgctxt "Validation error"
 msgid "Incorrect test section value."
-msgstr "Тест указан неверно."
+msgstr "Предмет указан неверно."
 
 msgctxt "Validation error"
 msgid "Please select test language."
@@ -593,6 +605,14 @@ msgstr[2] "Должно быть %(count)s вопросов низкого ур�
 msgctxt "Validation error"
 msgid "Some questions do not have a topic assigned to it."
 msgstr "Все вопросы должны быть назначены к разделам."
+
+msgctxt "Validation error"
+msgid "No answer specified for question."
+msgstr "Правильный ответ не был указан для вопроса."
+
+msgctxt "Validation error"
+msgid "Text is missing for some answers in question"
+msgstr "Некоторые ответы в вопросе пустые"
 
 msgctxt "Validation error"
 msgid "Incorrect upload starter data."
@@ -1882,6 +1902,10 @@ msgid "Question Bank"
 msgstr "Банк Вопросов"
 
 msgctxt "Navigation link"
+msgid "Test Assemle"
+msgstr "Собрать тест"
+
+msgctxt "Navigation link"
 msgid "Manage Packages"
 msgstr "Управление Пакетами"
 
@@ -2398,10 +2422,10 @@ msgid "All Users"
 msgstr "Все Пользователи"
 
 msgctxt "Page title"
-msgid "Questions Bank"
-msgstr "Банк Вопросов"
+msgid "All Quizzes"
+msgstr "Все Пробные тесты"
 
-msgid "page:/super/questions/:query"
+msgid "page:/super/quizzes/:query"
 msgstr "Введите данные для поиска"
 
 msgid "_common.controls.super.search"
@@ -2409,69 +2433,6 @@ msgstr "Поиск"
 
 msgid "_common.controls.super.reset"
 msgstr "Сбросить"
-
-msgctxt "/super/questions/"
-msgid "ID"
-msgstr "ID"
-
-msgctxt "/super/questions/"
-msgid "Developer"
-msgstr "Разработчик"
-
-msgctxt "/super/questions/"
-msgid "Domain"
-msgstr "Параллель"
-
-msgctxt "/super/questions/"
-msgid "Section"
-msgstr "Предмет"
-
-msgctxt "/super/questions/"
-msgid "Created at"
-msgstr "Создано"
-
-msgctxt "/super/questions/"
-msgid "Updated at"
-msgstr "обновлено"
-
-msgctxt "/super/questions/"
-msgid "Taxonomy"
-msgstr "Цель оценивания"
-
-msgctxt "/super/questions/"
-msgid "Topic"
-msgstr "Раздел"
-
-msgctxt "/super/questions/"
-msgid "Subtopic"
-msgstr "Подраздел"
-
-msgctxt "/super/questions/"
-msgid "Goal"
-msgstr "Цель Обучения"
-
-msgctxt "/super/questions/"
-msgid "Status"
-msgstr "Статус"
-
-msgctxt "/super/questions/"
-msgid "Actions"
-msgstr "Действия"
-
-msgctxt "/super/questions/"
-msgid "Preview"
-msgstr "Просмотреть"
-
-msgctxt "/super/questions/"
-msgid "There are no questions yet"
-msgstr "Нет загруженных вопросов"
-
-msgctxt "Page title"
-msgid "All Quizzes"
-msgstr "Все Пробные тесты"
-
-msgid "page:/super/quizzes/:query"
-msgstr "Введите данные для поиска"
 
 msgctxt "/super/quizzes/"
 msgid "Student"
@@ -2683,6 +2644,10 @@ msgstr "Статус"
 msgctxt "/admin/dashboard/"
 msgid "Actions"
 msgstr "Действия"
+
+msgctxt "/expert/dashboard/"
+msgid "Reassemble"
+msgstr "Пересобрать"
 
 msgctxt "/admin/dashboard/"
 msgid "ReDraft"
@@ -3012,6 +2977,141 @@ msgstr "Пропустить проверку теста!"
 msgctxt "Developer tools"
 msgid "The test is correct."
 msgstr "Ошибок в тесте не найдено."
+
+msgctxt "Page title"
+msgid "Questions Bank"
+msgstr "Банк Вопросов"
+
+msgid "page:/super/questions/:query"
+msgstr "Введите данные для поиска"
+
+msgctxt "/super/questions/"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "/super/questions/"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "/super/questions/"
+msgid "Domain"
+msgstr "Параллель"
+
+msgctxt "/super/questions/"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "/super/questions/"
+msgid "Created at"
+msgstr "Создано"
+
+msgctxt "/super/questions/"
+msgid "Updated at"
+msgstr "обновлено"
+
+msgctxt "/super/questions/"
+msgid "Taxonomy"
+msgstr "Цель оценивания"
+
+msgctxt "/super/questions/"
+msgid "Topic"
+msgstr "Раздел"
+
+msgctxt "/super/questions/"
+msgid "Subtopic"
+msgstr "Подраздел"
+
+msgctxt "/super/questions/"
+msgid "Goal"
+msgstr "Цель Обучения"
+
+msgctxt "/super/questions/"
+msgid "Status"
+msgstr "Статус"
+
+msgctxt "/super/questions/"
+msgid "Actions"
+msgstr "Действия"
+
+msgctxt "/super/questions/"
+msgid "Preview"
+msgstr "Просмотреть"
+
+msgctxt "/super/questions/"
+msgid "There are no questions yet"
+msgstr "Нет загруженных вопросов"
+
+msgctxt "/test-assemble/code/"
+msgid "Code"
+msgstr "Код"
+
+msgctxt "/test-assemble/"
+msgid "Developer"
+msgstr "Разработчик"
+
+msgctxt "/test-assemble/"
+msgid "Section"
+msgstr "Предмет"
+
+msgctxt "/test-assemble/"
+msgid "Taxonomy"
+msgstr "Цель оценивания"
+
+msgctxt "/test-assemble/"
+msgid "Topic"
+msgstr "Раздел"
+
+msgctxt "/test-assemble/"
+msgid "Subtopic"
+msgstr "Подраздел"
+
+msgctxt "/test-assemble/"
+msgid "Goal"
+msgstr "Цель Обучения"
+
+msgctxt "/test-assemble/"
+msgid "Status"
+msgstr "Статус"
+
+msgctxt "/test-assemble/"
+msgid "Actions"
+msgstr "Действия"
+
+msgctxt "/test-assemble/"
+msgid "Select Question"
+msgstr "Выберите Вопрос"
+
+msgctxt "/test-assemble/"
+msgid "Change Question"
+msgstr "Изменить Вопрос"
+
+msgctxt "/test-assemble/"
+msgid "There are no questions yet, something whent wrong"
+msgstr "Нет загруженных вопросов, что-то пошло не так"
+
+msgctxt "/test-assemble/"
+msgid "Select a Question"
+msgstr "Выберите Вопрос"
+
+msgctxt "/test-assemble/"
+msgid "Close"
+msgstr "Закрыть"
+
+msgctxt "/test-assemble/"
+msgid "Submit"
+msgstr "Подтвердить"
+
+msgctxt "Page title"
+msgid "Assemble Custom Test"
+msgstr "Собрать тест из банка вопросов"
+
+msgctxt "/build/test_assemble/ (CreateCustomTestSelectionForm)"
+msgid "Assemble Tests"
+msgstr "Собрать Тесты"
+
+msgctxt "/build/test_assemble/ (CreateCustomTestSelectionForm)"
+msgid "Assemble test"
+msgstr "Собрать Тест"
 
 msgctxt "Success alert message"
 msgid ""

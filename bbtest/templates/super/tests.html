@@ -276,8 +276,11 @@
                                         </td>
                                         {% comment %} column 7 {% endcomment %}
                                         <td class="pr-15 text-center">
-                                            {% if not test.is_draft %}
+                                            {% if not test.is_draft or test.developer == user  %}
                                                 <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/expert/dashboard/' %}</a>
+                                            {% endif %}
+                                            {% if test.developer == user  %}
+                                                <a href="{% url 'bbtest:build_assemble_variant' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Reassemble' context '/expert/dashboard/' %}</a>
                                             {% endif %}
                                             {% if test.is_approved %}
                                                 <button class="btn djBtnDanger btn-xs mr-5 mb-5" data-form-url="{% url 'bbtest:build_redraft_test' test.code %}" data-toggle="modal" data-target="[data-modal]">{% trans 'ReDraft' context '/admin/dashboard/' %}</button>
