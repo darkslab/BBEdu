@@ -64,7 +64,7 @@
                 console.log('Success:', data);
                 // Close the modal manually
                 $('#selectQuestionModal_' + questionIndex).modal('hide');
-                //window.location.replace(data.url);
+                window.location.replace(data.url);
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -94,29 +94,29 @@
                                 {% comment %} column 0 {% endcomment %}
                                 <th class="pl-15">№</th>
                                 {% comment %} column 1 {% endcomment %}
-                                <th>{% trans 'Code' context '/super/code/' %}</th>
+                                <th>{% trans 'Code' context '/test-assemble/code/' %}</th>
                                 {% comment %} column 2 {% endcomment %}
-                                <th class="pl-15">{% trans 'Developer' context '/super/questions/' %}</th>
+                                <th class="pl-15">{% trans 'Developer' context '/test-assemble/' %}</th>
                                 {% comment %} column 3 {% endcomment %}
-                                <th>{% trans 'Section' context '/super/questions/' %}</th>
+                                <th>{% trans 'Section' context '/test-assemble/' %}</th>
                                 {% comment %} column 4 {% endcomment %}
-                                {% comment %} <th class="text-center">{% trans 'Language' context '/super/questions/' %}</th> {% endcomment %}
+                                {% comment %} <th class="text-center">{% trans 'Language' context '/test-assemble/' %}</th> {% endcomment %}
                                 {% comment %} column 5 {% endcomment %}
-                                {% comment %} <th class="text-center">{% trans 'Created at' context '/super/questions/' %}</th> {% endcomment %}
+                                {% comment %} <th class="text-center">{% trans 'Created at' context '/test-assemble/' %}</th> {% endcomment %}
                                 {% comment %} column 6 {% endcomment %}
-                                {% comment %} <th class="text-center">{% trans 'Updated at' context '/super/questions/' %}</th> {% endcomment %}
+                                {% comment %} <th class="text-center">{% trans 'Updated at' context '/test-assemble/' %}</th> {% endcomment %}
                                 {% comment %} column 7 {% endcomment %}
-                                <th class="text-center">{% trans 'Taxonomy' context '/super/questions/' %}</th>
+                                <th class="text-center">{% trans 'Taxonomy' context '/test-assemble/' %}</th>
                                 {% comment %} column 8 {% endcomment %}
-                                <th class="text-center">{% trans 'Topic' context '/super/questions/' %}</th>
+                                <th class="text-center">{% trans 'Topic' context '/test-assemble/' %}</th>
                                 {% comment %} column 9 {% endcomment %}
-                                <th class="text-center">{% trans 'Subtopic' context '/super/questions/' %}</th>
+                                <th class="text-center">{% trans 'Subtopic' context '/test-assemble/' %}</th>
                                 {% comment %} column 10 {% endcomment %}
-                                <th class="text-center">{% trans 'Goal' context '/super/questions/' %}</th>
+                                <th class="text-center">{% trans 'Goal' context '/test-assemble/' %}</th>
                                 {% comment %} column 11 {% endcomment %}
-                                <th class="text-center">{% trans 'Status' context '/super/questions/' %}</th>
+                                <th class="text-center">{% trans 'Status' context '/test-assemble/' %}</th>
                                 {% comment %} column 12 {% endcomment %}
-                                <th class="pr-15 text-center">{% trans 'Actions' context '/super/questions/' %}</th>
+                                <th class="pr-15 text-center">{% trans 'Actions' context '/test-assemble/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -131,7 +131,7 @@
                                             {% comment %} Add action trigger here {% endcomment %}
                                             <td class="pr-15 text-center">
                                                 <!-- Trigger/Open The Modal -->
-                                                <button id="btnSelectQuestion_{{ question_obj.index }}" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#selectQuestionModal_{{ question_obj.index }}">Select Question</button>
+                                                <button id="btnSelectQuestion_{{ question_obj.index }}" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#selectQuestionModal_{{ question_obj.index }}">{% trans "Select Question" context '/test-assemble/' %}</button>
                                             </td>
                                             
                                         </td>
@@ -177,13 +177,13 @@
                                         {% comment %} column 12 {% endcomment %}
                                         <td class="pr-15 text-center">
                                             <!-- Trigger/Open The Modal -->
-                                            <button id="btnSelectQuestion_{{ question_obj.index }}" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#selectQuestionModal_{{ question_obj.index }}">Change Question</button>
+                                            <button id="btnSelectQuestion_{{ question_obj.index }}" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#selectQuestionModal_{{ question_obj.index }}">{% trans "Change Question" context '/test-assemble/' %}</button>
                                         </td>
                                     </tr>
                                 {% endif %}
                             {% empty %}
                                 <tr>
-                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="10">{% trans 'There are no users yet' context '/super/users/' %}</td>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="10">{% trans 'There are no questions yet, something whent wrong' context '/test-assemble/' %}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -198,19 +198,19 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Select a Question</h4>
+                                        <h4 class="modal-title">{% trans "Select a Question" context '/test-assemble/' %}</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <label for="questionSelect_{{ question_obj.index }}">Select a question:</label>
+                                        <label for="questionSelect_{{ question_obj.index }}">{% trans "Select a Question" context '/test-assemble/' %}:</label>
                                         <select id="questionSelect_{{ question_obj.index }}" class="question-select" style="width: 100%">
                                             {% for question in question_list %}
-                                            <option value="{{ question.id }}">{{ question.code }} - {{ question.get_status_display }} - {{ question.developer.get_full_name }}</option>
+                                                <option value="{{ question.id }}">{{ question.code }} - {{ question.get_status_display }} - {{ question.developer.get_full_name }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" onclick="confirmQuestionSelection('{{ question_obj.index }}');">Submit</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" context '/test-assemble/' %}</button>
+                                        <button type="submit" class="btn btn-primary" onclick="confirmQuestionSelection('{{ question_obj.index }}');">{% trans "Submit" context '/test-assemble/' %}</button>
                                     </div>
                                 </div>
 
