@@ -200,6 +200,10 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
         kwargs["question_list"] = question_list
         kwargs['test'] = test
 
+        if kwargs['preview_button'] and test.status == Test.STATUS_DRAFT:
+            test.status = Test.STATUS_APPROVED
+            test.save()
+
         return self.render_to_response(super().get_context_data(**kwargs))
     
     def post(self, request, code, *args, **kwargs):
