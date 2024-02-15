@@ -236,3 +236,17 @@ class CreateCustomTestSelectionForm(Form):
         choices = kwargs.pop("choices", [])
         super(Form, self).__init__(*args, **kwargs)
         self.fields["section"].choices = choices
+
+
+class CreateStandaloneQuestionForm(Form):
+    # This form field options are created later in runtime
+    section = ChoiceField(
+        label=pgettext("/build/question_standalone_create/ (CreateStandaloneQuestionForm)", "Select section") , 
+        choices=[]
+    ) 
+
+
+    def __init__(self, *args, **kwargs):
+        choices = kwargs.pop("choices", [])
+        super(Form, self).__init__(*args, **kwargs)
+        self.fields["section"].choices = choices
