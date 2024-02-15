@@ -30,6 +30,7 @@
                             <li class="{% block nav_super_create_package_class %}{% endblock %}"><a href="{% url 'bbtest:build_packages' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Manage Package' context 'Navigation link' %}</a></li>
                             <li class="{% block nav_super_quesion_bank_class %}{% endblock %}"><a href="{% url 'bbtest:super_questions' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Question Bank' context 'Navigation link' %}</a></li>
                             <li class="{% if active_nav_item|default:'' == 'testbank' %}active{% endif %}"><a href="{% url 'bbtest:build_assemble_tests' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Test Assemle' context 'Navigation link' %}</a></li>
+                            <li class="{% if active_nav_item|default:'' == 'question_create' %}active{% endif %}"><a href="{% url 'bbtest:question_create' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Question' context 'Navigation link' %}</a></li>
 
                         {% elif perms.bbtest.admin %}
                             
