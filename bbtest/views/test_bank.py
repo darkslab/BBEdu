@@ -166,6 +166,7 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
     
     def get(self, request, code, *args, **kwargs):
         kwargs['active_nav_item'] = 'testbank'
+        kwargs['preview_button'] = True
 
         test = get_object_or_404(Test.objects, code=code)
         question_count = test.question_count
@@ -192,6 +193,8 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
                     "code": "TODO",
                     "section": test.section,
                 }
+                kwargs['preview_button'] = False
+
 
         kwargs["test_question_list"] = test_question_list
         kwargs["question_list"] = question_list

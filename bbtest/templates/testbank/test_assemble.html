@@ -220,6 +220,11 @@
                 </div>
             </div>
         </div>
+        {% if preview_button %}
+            <div class="col-xs-12 text-right">
+                <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/expert/dashboard/' %}</a>
+            </div>
+        {% endif %}
     </div>
 
     
