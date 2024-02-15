@@ -11,7 +11,7 @@ from django.http import HttpResponse
 from bbtest.auth.mixins import SuperPermissionRequiredMixin
 from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
-from bbtest.forms.super import  CreateCustomTestSelectionForm
+from bbtest.forms.super import  CreateCustomTestSelectionForm, CreateStandaloneQuestionForm
 from bbtest.models.test import TestDomain, Test, TestSection, TestQuestion, TestParagraph, TestParagraphQuestion, TestToQuestionRelation
 from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.http import TightJsonResponse
@@ -232,3 +232,104 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
         # print(test.pk, question.pk, relation)
 
         return redirect("bbtest:build_assemble_variant", test.code )
+    
+
+
+class BuildStandaloneQuestionCreateView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateResponseMixin, ContextMixin, View):
+    template_name = "testbank/question_create.html"
+    
+    def get(self, request, *args, **kwargs):
+        kwargs['active_nav_item'] = 'question_create'
+        user = request.user
+
+
+        if user.is_superuser:
+            domain_dict = {
+                domain: domain.sections.all() for domain in TestDomain.objects.prefetch_related("sections").all()
+            }
+
+        elif user.user_permissions.get().codename == "developer" and user.developer_profile is not None:
+            section_list = user.developer_profile.section.prefetch_related("domain").all()
+            domain_dict = {}
+
+            for section_obj in section_list:
+                domain = section_obj.domain
+                domain_dict[domain] = domain_dict.get(domain, []) + [section_obj] 
+        else:
+            domain_dict = {}
+
+
+
+        CATEGORY_CHOICES = [(None, "-----")]
+        for domain_obj, section_list in domain_dict.items():
+            options = []
+            # section_list = domain_obj.sections.all()
+            for section in section_list:
+                options.append((section.pk, gettext_lazy(section.name)))
+
+            if len(options) > 0:
+                CATEGORY_CHOICES.append((gettext_lazy(domain_obj.name), tuple(options)))
+
+        
+        form = CreateStandaloneQuestionForm(choices = CATEGORY_CHOICES)
+        kwargs["select_section_form"] = form
+
+    
+        return self.render_to_response(super().get_context_data(**kwargs))
+    
+
+    def post(self, request, *args, **kwargs):
+        print(request.POST)
+        section_id = request.POST["section"]
+        section_obj = TestSection.objects.get(id=section_id)
+
+        question = self.create_question_suite(request.user, section_obj)
+        print(question)
+
+        # raise Http404("Superusers cannot send tests for approval")
+        # return redirect("bbtest:build_assemble_tests")
+        return redirect("bbtest:build_standalone_question", question.code )
+
+
+
+    def create_question_suite(self, developer, section_obj):
+
+        choice_id = 1 
+        meta_data = {
+            "choices": [
+                {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+                {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+                {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+                {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice", "meta_data": {"text": ""}},
+            ],
+            "correct_id": None,
+        }
+
+        question = TestQuestion.objects.create(
+            answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
+            meta_data=meta_data,
+            section=section_obj,
+            status=TestQuestion.STATUS_DRAFT,
+            code="{}{:%y}{:04}".format(
+                section_obj.code, 
+                datetime.now(), 
+                TestQuestion.objects.filter(created_at__year=datetime.now().year, section=section_obj).count()),
+            weight=0,
+            # order=i,
+            developer=developer,
+        )
+        question.weight = TestQuestion.calculate_weight(question)
+        question.save()
+
+        # if test.section.id == 9540 or test.section.id in (9566, 9567):
+        paragraph = TestParagraph.objects.create(
+            paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+            meta_data={"text": ""},
+        )
+        TestParagraphQuestion.objects.create(
+            question=question,
+            paragraph=paragraph,
+            order=0,
+        )
+
+        return question

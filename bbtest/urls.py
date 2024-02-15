@@ -110,6 +110,7 @@ from .views.super import (
 from .views.test_bank import (
     BuildSelectTestForAssembleView,
     BuildTestAssembleView,
+    BuildStandaloneQuestionCreateView,
 )
 
 
@@ -150,6 +151,7 @@ urlpatterns = [
     url(r"^build/test_assemble/(?P<code>[0-9A-Fa-f]{4,6})/$",                                          BuildTestAssembleView.as_view(),                       name="build_assemble_variant"            ),
 
     url(r"^build/questions/$",                                                                           SuperQuestionView.as_view(),                         name="questions"      ),
+    url(r"^build/questions/create/$",                                                                    BuildStandaloneQuestionCreateView.as_view(),         name="question_create"      ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/$",                                               BuildStandaloneQuestionView.as_view(),               name="build_standalone_question"    ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/question/$",                                      BuildStandaloneQuestionQuestionView.as_view(),       name="build_standalone_question_question"    ),
     url(r"^build/questions/(?P<code>[0-9A-Za-z]{1,15})/question/(?P<code3>[0-9A-Za-z]{1,15})/$",         BuildStandaloneQuestionQuestionView.as_view(),       name="build_standalone_question_question2"    ),
