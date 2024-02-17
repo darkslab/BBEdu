@@ -35,15 +35,22 @@ class QuestionView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMix
 
         print("self.request.GET", self.request.GET)
 
-        kwargs["q"] = ""
+        kwargs["question_id"] = self.request.GET.get("question_id", "")
         kwargs["filter_status"] = self.request.GET.get("filter_status", "")
         kwargs["order_by"] = self.request.GET.get("order_by", "")
         kwargs["filter_developer"] = self.request.GET.get("filter_developer", "")
+        kwargs["filter_with_comments"] = self.request.GET.get("filter_with_comments", "")
         
+
+        if kwargs["question_id"]:
+            questions = questions.filter(code__icontains=kwargs["question_id"] )
 
         if kwargs["filter_status"]:
             kwargs["filter_status"] = str(kwargs["filter_status"])
             questions = questions.filter(status=kwargs["filter_status"] )
+
+        if kwargs["filter_with_comments"]:
+            questions = questions.filter(comments__isnull=False)
 
         developers_ids = questions.values_list('developer', flat=True).distinct()
         kwargs["developers_options"] =  list(User.objects.filter(id__in=developers_ids))
@@ -51,6 +58,8 @@ class QuestionView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMix
 
         if kwargs["order_by"] == "time":
             questions = questions.order_by("-created_at")
+        elif kwargs["order_by"] == "comment":
+            questions = questions.order_by("-last_comment_at")
         elif kwargs["order_by"] == "status":
             questions = questions.order_by("status")
         elif kwargs["order_by"] == "id":
@@ -74,7 +83,7 @@ class QuestionView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMix
         except EmptyPage:
             kwargs["questions"] = paginator.page(paginator.num_pages)
 
-        paginator.page_indexes = self.page_indexes(kwargs["questions"], 5)
+        paginator.page_indexes = self.page_indexes(kwargs["questions"], 9)
 
 
         if self.request.user.has_perm("bbtest.super"):
