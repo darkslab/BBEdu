@@ -409,6 +409,8 @@ class StandaloneQuestionSendCommentView(StaffPermissionRequiredMixin, View):
                 question = question,
                 content = comment_content,
             )
+            question.last_comment_at = obj.created_at
+            question.save()
 
             print("StandaloneQuestionSendCommentView", obj)
 

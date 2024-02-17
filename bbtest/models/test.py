@@ -420,7 +420,7 @@ class TestQuestion(Model):
     # order         = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"),    db_index=True, ) # TODO: remove
     created_at    = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                   )
     updated_at    = DateTimeField              ( pgettext_lazy("Model field", "updated at"),         auto_now=True,                                                                       )
-
+    last_comment_at    = DateTimeField         ( pgettext_lazy("Model field", "last_comment at"),    default=None,     null=True, blank=True                                              )
 
     objects = Manager()
     draft_questions = DraftQuestionManager()
