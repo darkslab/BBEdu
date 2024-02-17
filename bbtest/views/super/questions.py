@@ -8,39 +8,63 @@ from bbtest.auth.mixins import SuperPermissionRequiredMixin, ExpertPermissionReq
 from bbtest.models import Test, TestQuestion
 
 
+from bbtest.models import User
+
+# from django.contrib.auth import get_user_model
+# User = get_user_model()
+
+
 class QuestionView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "testbank/questions.html"
 
     def get_context_data(self, **kwargs):
         
         if self.request.user.has_perm("bbtest.super"):
-            questions = TestQuestion.objects.select_related("section__domain", "developer").order_by("-created_at") # .order_by("taxonomy") #
+            questions = TestQuestion.objects.select_related("section__domain", "developer") # .order_by("-created_at") # .order_by("taxonomy") #
         elif self.request.user.has_perm("bbtest.expert"):
             section_list = self.request.user.expert_profile.section.all()
-            questions = TestQuestion.objects.filter(section__in=section_list).select_related("section__domain", "developer").order_by("-created_at")
+            questions = TestQuestion.objects.filter(section__in=section_list).select_related("section__domain", "developer") #.order_by("-created_at")
         elif self.request.user.has_perm("bbtest.admin"):
-            questions = TestQuestion.objects.select_related("section__domain", "developer").order_by("-created_at")
+            questions = TestQuestion.objects.select_related("section__domain", "developer")  #.order_by("-created_at")
         elif self.request.user.has_perm("bbtest.developer"):
-            questions = TestQuestion.objects.select_related("section__domain", "developer").order_by("-created_at").filter(developer = self.request.user)
+            questions = TestQuestion.objects.select_related("section__domain", "developer").filter(developer = self.request.user)  # .order_by("-created_at")
         else:
             raise PermissionDenied()
 
-        
-        kwargs["q"] = ""
-        # try:    
-        #     tests = tests.filter(
-        #         Q(developer__first_name__icontains=self.request.GET["q"])
-        #         |
-        #         Q(developer__last_name__icontains=self.request.GET["q"])
-        #         |
-        #         Q(developer__email__icontains=self.request.GET["q"])
-        #         |
-        #         Q(code__iexact=self.request.GET["q"])
-        #     )
-        #     kwargs["q"] = self.request.GET["q"]
-        # except KeyError:
-        #     pass
+        kwargs["statuses"] = [[str(a), b] for a,b in TestQuestion.STATUSES]
 
+        print("self.request.GET", self.request.GET)
+
+        kwargs["q"] = ""
+        kwargs["filter_status"] = self.request.GET.get("filter_status", "")
+        kwargs["order_by"] = self.request.GET.get("order_by", "")
+        kwargs["filter_developer"] = self.request.GET.get("filter_developer", "")
+        
+
+        if kwargs["filter_status"]:
+            kwargs["filter_status"] = str(kwargs["filter_status"])
+            questions = questions.filter(status=kwargs["filter_status"] )
+
+        developers_ids = questions.values_list('developer', flat=True).distinct()
+        kwargs["developers_options"] =  list(User.objects.filter(id__in=developers_ids))
+        # print(kwargs["developers_options"])
+
+        if kwargs["order_by"] == "time":
+            questions = questions.order_by("-created_at")
+        elif kwargs["order_by"] == "status":
+            questions = questions.order_by("status")
+        elif kwargs["order_by"] == "id":
+            questions = questions.order_by("code")
+        elif kwargs["order_by"] == "developer":
+            questions = questions.order_by("developer")
+        else:
+            questions = questions.order_by("-created_at")
+
+
+        if kwargs["filter_developer"]:
+            # kwargs["filter_developer"] = str(kwargs["filter_developer"])
+            questions = questions.filter(developer__id=kwargs["filter_developer"] )
+        
 
         paginator = Paginator(questions, 25)
         try:
