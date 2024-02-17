@@ -67,30 +67,7 @@ var DeveloperCalculatorParagraph = /*#__PURE__*/function (_React$Component) {
       }, sharedLabel, buttons, /*#__PURE__*/React.createElement("button", {
         type: "button",
         className: "btn btn-default btn-xs pull-right ml-5 invisible"
-      }, "Spacer"))), /*#__PURE__*/React.createElement("script", {
-        src: "/static/Calculator_files/linangcalc.js"
-      }), /*#__PURE__*/React.createElement("div", {
-        style: {
-          width: "50px",
-          height: "50px",
-          "backgroundImage": "/static/Calculator_files/48x48.png",
-          zIndex: 0
-        }
-      }, /*#__PURE__*/React.createElement("iframe", {
-        id: "linangcalc",
-        src: "/static/Calculator.html?placement=right",
-        width: "370",
-        height: "340",
-        scrolling: "auto",
-        frameBorder: "0",
-        allowtransparency: "true",
-        style: {
-          border: 0,
-          position: "absolute",
-          opacity: 1.0,
-          zIndex: 9000
-        }
-      })));
+      }, "Spacer"))), /*#__PURE__*/React.createElement("span", null, "(\u041A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440 \u0431\u0443\u0434\u0435\u0442 \u0434\u043E\u043F\u0443\u0441\u0442\u0435\u043D \u043D\u0430 \u043F\u0430\u043D\u0435\u043B\u0438 \u0432 \u043F\u0440\u0435\u0432\u044C\u044E)"));
     }
   }, {
     key: "_renderModal",
