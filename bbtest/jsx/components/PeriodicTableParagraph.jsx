@@ -9,7 +9,8 @@ class PeriodicTableParagraph extends React.Component {
             dragStartX: 0,
             dragStartY: 0,
             imgPosX: 0,
-            imgPosY: 0
+            imgPosY: 0,
+            dragStartTime: null,
         };
 
         // Using callback refs instead of createRef
@@ -33,6 +34,7 @@ class PeriodicTableParagraph extends React.Component {
             isDragging: true,
             dragStartX: e.clientX - this.state.imgPosX,
             dragStartY: e.clientY - this.state.imgPosY,
+            dragStartTime: Date.now(),
         });
     
         // Prevent image dragging behavior to allow custom handling
@@ -50,8 +52,17 @@ class PeriodicTableParagraph extends React.Component {
     }
 
     _endDrag = () => {
+        const dragEndTime = Date.now();
+        const dragDuration = dragEndTime - this.state.dragStartTime;
+        // console.log(this.state.dragStartTime, dragEndTime, dragDuration)
         this.setState({
-            isDragging: false
+            isDragging: false,
+            dragStartTime: null, // Reset the drag start time
+        }, () => {
+            // If the drag duration is less than 100ms, treat it as a click and close the overlay
+            if (dragDuration < 200 ) {
+                this._closeOverlay();
+            }
         });
     }
 
@@ -63,10 +74,19 @@ class PeriodicTableParagraph extends React.Component {
     }
 
     _closeOverlay = () => {
-        // Use this.overlayRef directly
-        if (this.overlayRef) {
-            this.overlayRef.style.display = 'none';
+        if (!this.state.isDragging) {
+            if (this.overlayRef) {
+                this.overlayRef.style.display = 'none';
+            }
         }
+    }
+
+    _handleWheel = (event) => {
+        // event.preventDefault();
+        const zoomDelta = event.deltaY > 0 ? -0.1 : 0.1;
+        this.setState(prevState => ({
+            zoomLevel: Math.max(0.2, prevState.zoomLevel + zoomDelta)
+        }));
     }
 
     render() {
@@ -96,12 +116,12 @@ class PeriodicTableParagraph extends React.Component {
                 <div
                     ref={this.setOverlayRef} // Updated to use setOverlayRef
                     className="periodicTableOverlay"
-                    onClick={this._closeOverlay}
+                    // onClick={this._closeOverlay}
                     onWheel={this._handleWheel}
                     onMouseDown={this._startDrag}
                     onMouseMove={this._onDrag}
                     onMouseUp={this._endDrag}
-                    onMouseLeave={this._endDrag}
+                    // onMouseLeave={this._endDrag}
                     style={{ display: 'none' }}
                 >
                     <img
@@ -120,25 +140,4 @@ class PeriodicTableParagraph extends React.Component {
         return content;
     }
 
-    _openOverlay = () => {
-        // Directly using this.overlayRef as it's assigned in setOverlayRef
-        if (this.overlayRef) {
-            this.overlayRef.style.display = 'flex';
-        }
-    }
-
-    _closeOverlay = () => {
-        // Directly using this.overlayRef as it's assigned in setOverlayRef
-        if (this.overlayRef) {
-            this.overlayRef.style.display = 'none';
-        }
-    }
-
-    _handleWheel = (event) => {
-        event.preventDefault();
-        const zoomDelta = event.deltaY > 0 ? -0.1 : 0.1;
-        this.setState(prevState => ({
-            zoomLevel: Math.max(0.2, prevState.zoomLevel + zoomDelta)
-        }));
-    }
 }
