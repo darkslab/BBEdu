@@ -27,6 +27,16 @@ var CalculatorParagraph = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
   _createClass(CalculatorParagraph, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      document.getElementById('embeddable').style.display = 'block';
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.getElementById('embeddable').style.display = 'none';
+    }
+  }, {
     key: "render",
     value: function render() {
       var content = null;
@@ -42,30 +52,7 @@ var CalculatorParagraph = /*#__PURE__*/function (_React$Component) {
       // console.log("CalculatorParagraph this.props", this.props    )
       content = /*#__PURE__*/React.createElement(React.Fragment, null, sharedAddon, /*#__PURE__*/React.createElement("div", {
         className: className
-      }, SimpleFormattedFragment(this.props.data.text)), /*#__PURE__*/React.createElement("script", {
-        src: "/static/Calculator_files/linangcalc.js"
-      }), /*#__PURE__*/React.createElement("div", {
-        style: {
-          width: "50px",
-          height: "50px",
-          "backgroundImage": "/static/Calculator_files/48x48.png",
-          zIndex: 0
-        }
-      }, /*#__PURE__*/React.createElement("iframe", {
-        id: "linangcalc",
-        src: "/static/Calculator.html?placement=right",
-        width: "370",
-        height: "340",
-        scrolling: "auto",
-        frameBorder: "0",
-        allowtransparency: "true",
-        style: {
-          border: 0,
-          position: "absolute",
-          opacity: 1.0,
-          zIndex: 9000
-        }
-      })));
+      }, SimpleFormattedFragment(this.props.data.text)));
       return content;
     }
   }]);

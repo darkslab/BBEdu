@@ -6,7 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	const urlParams = new URLSearchParams(queryString);
 	const  placementUrlParam = urlParams.get('placement')
 	// console.log(placementUrlParam);
-	const placement =  placementUrlParam || 'auto'
+	
+	// const placement =  placementUrlParam || 'auto'
+
+	const placement = "right"
 	// console.log(placement);
 
 	// configure the default type of number as BigNumbers
@@ -688,9 +691,9 @@ document.addEventListener('DOMContentLoaded', function () {
 				};
 			}
 
-			$("#linangdata").click(function () {
-				window.open("https://linangdata.com", "_blank");
-			});
+			// $("#linangdata").click(function () {
+			// 	window.open("https://linangdata.com", "_blank");
+			// });
 		}
 	}
 
