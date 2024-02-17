@@ -43,21 +43,62 @@
             </div>
         </div>
     </form>
-    <div class="row">
-        <div class="col-xs-12">
-            <form method="get" action="{{ request.path }}" data-bb-form>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="{% trans 'page:/super/questions/:query' %}" name="q" value="{{ q }}">
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-default"  style="border-radius: 4px 0 0 4px" data-bb-submit>{% trans '_common.controls.super.search' %}</button>
-                            <a href="{{ request.path }}" class="btn btn-danger"  style="border-radius: 0 4px 4px 0" data-bb-submit>{% trans '_common.controls.super.reset' %}</a>
-                        </div>
+    <form method="get" action="{{ request.path }}" data-bb-form>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12 col-lg-2">
+                    <!-- Filters onchange="this.form.submit()" -->
+                    <select class="form-control" name="filter_status">
+                        <option value="">{% trans 'All Statuses' %}</option>
+                        {% for status, status_display in statuses %}
+                            <option value="{{ status }}" {% if request.GET.filter_status == status %}selected{% endif %}>{{ status_display }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <div class="col-xs-12 col-lg-2">
+                    <select class="form-control" name="filter_developer">
+                        <option value="">{% trans 'All Developers' %}</option>
+                        {% for developer in developers_options %}
+                            <option value="{{ developer.id }}" {% if request.GET.filter_developer == developer.id|stringformat:"s" %}selected{% endif %}>{{ developer.get_full_name  }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <div class="col-xs-12 col-lg-2">
+                    <!-- Sorting -->
+                    <select class="form-control" name="order_by">
+                        <option value="">{% trans 'Default Order' %}</option>
+                        <option value="time" {% if request.GET.order_by == 'time' %}selected{% endif %}>{% trans 'Time' %}</option>
+                        <option value="status" {% if request.GET.order_by == 'status' %}selected{% endif %}>{% trans 'Status' %}</option>
+                        <option value="id" {% if request.GET.order_by == 'id' %}selected{% endif %}>{% trans 'ID' %}</option>
+                        <option value="developer" {% if request.GET.order_by == 'developer' %}selected{% endif %}>{% trans 'Developer' %}</option>
+                        <option value="comment" {% if request.GET.order_by == 'comment' %}selected{% endif %}>{% trans 'Comments' %}</option>
+                        <!-- Add more sorting options as needed -->
+                    </select>
+
+                </div>
+                <div class="col-xs-7 col-lg-1">
+                    <!-- Search Input -->
+                    <input type="text" class="form-control" placeholder="{% trans 'ID...' %}" name="question_id" value="{{ request.GET.question_id }}">
+                </div>
+                <div class="col-xs-5 col-lg-1">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="filter_with_comments" value="1" {% if request.GET.filter_with_comments == "1" %}checked{% endif %}> With comments
+                        </label>
                     </div>
                 </div>
-            </form>
+                <!-- Submit and Reset Buttons -->
+                <div class="input-group-btn col-xs-12 col-lg-1 ">
+                    <button type="submit" class="btn btn-default">{% trans 'Apply' %}</button>
+                    <a href="{{ request.path }}" class="btn btn-danger">{% trans 'Reset' %}</a>
+                </div>
+
+            </div>
         </div>
-    </div>
+        
+    </form>
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
@@ -82,7 +123,7 @@
                                     {% comment %} column 5 {% endcomment %}
                                     <th class="text-center">{% trans 'Created at' context '/super/questions/' %}</th>
                                     {% comment %} column 6 {% endcomment %}
-                                    <th class="text-center">{% trans 'Updated at' context '/super/questions/' %}</th>
+                                    <th class="text-center">{% trans 'Last comment at' context '/super/questions/' %}</th>
                                     {% comment %} column 7 {% endcomment %}
                                     <th class="text-center">{% trans 'Taxonomy' context '/super/questions/' %}</th>
                                     {% comment %} column 8 {% endcomment %}
@@ -118,7 +159,7 @@
                                         {% comment %} column 5 {% endcomment %}
                                         <td class="text-center">{{ question.created_at }}</td>
                                         {% comment %} column 6 {% endcomment %}
-                                        <td class="text-center">{{ question.updated_at }}</td>
+                                        <td class="text-center">{{ question.last_comment_at|default_if_none:"" }}</td>
                                         {% comment %} column 7 {% endcomment %}
                                         <td class="text-center">{% trans question.taxonomy.name %}</td>
                                         {% comment %} column 8 {% endcomment %}
