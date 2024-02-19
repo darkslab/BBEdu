@@ -39,6 +39,7 @@ class DeveloperTest extends React.Component {
 
         $(window).on("beforeunload", this._boundConfirmIsSaved);
         $(document).on("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
+        _load_calculator();
     }
     componentWillUnmount() {
         this._cleanUp();
