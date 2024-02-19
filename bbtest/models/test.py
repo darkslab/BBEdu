@@ -7,6 +7,7 @@ from django.utils.translation import pgettext_lazy
 from django.contrib.auth import get_user_model
 from .fields import JSONField
 from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
+from django.db.models import Q
 
 
 User = get_user_model()
@@ -323,6 +324,10 @@ class ApprovedQuestionManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status=TestQuestion.STATUS_APPROVED)
 
+class FinishedQuestionManager(Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(Q(status=TestQuestion.STATUS_APPROVED) | Q(status=TestQuestion.STATUS_ACTIVE))
+
 class PreProductionQuestionManager(Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status__lte=TestQuestion.STATUS_APPROVED)
@@ -429,6 +434,7 @@ class TestQuestion(Model):
     approved_questions = ApprovedQuestionManager()
     preproduction_questions = PreProductionQuestionManager()
     production_questions = ProductionQuestionManager()
+    finished_questions = FinishedQuestionManager()
     active_questions = ActiveQuestionManager()
     archived_questions = ArchivedQuestionManager()
     redo_questions = RedoQuestionManager()
