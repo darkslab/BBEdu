@@ -58,6 +58,7 @@ var DeveloperTest = /*#__PURE__*/function (_React$Component) {
       });
       $(window).on("beforeunload", this._boundConfirmIsSaved);
       $(document).on("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
+      _load_calculator();
     }
   }, {
     key: "componentWillUnmount",

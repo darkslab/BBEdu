@@ -204,7 +204,7 @@
                                         <label for="questionSelect_{{ question_obj.index }}">{% trans "Select a Question" context '/test-assemble/' %}:</label>
                                         <select id="questionSelect_{{ question_obj.index }}" class="question-select" style="width: 100%">
                                             {% for question in question_list %}
-                                                <option value="{{ question.id }}">{{ question.code }} - {{ question.get_status_display }} - {{ question.developer.get_full_name }}</option>
+                                                <option value="{{ question.code }}">{{ question.code }} - {{ question.get_status_display }} - {{ question.developer.get_full_name }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>

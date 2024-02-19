@@ -50,7 +50,7 @@ class QuestionView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMix
             questions = questions.filter(status=kwargs["filter_status"] )
 
         if kwargs["filter_with_comments"]:
-            questions = questions.filter(comments__isnull=False)
+            questions = questions.filter(comments__isnull=False).distinct()
 
         developers_ids = questions.values_list('developer', flat=True).distinct()
         kwargs["developers_options"] =  list(User.objects.filter(id__in=developers_ids))

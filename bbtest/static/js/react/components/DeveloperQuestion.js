@@ -56,6 +56,7 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
       });
       this._$quickModal = $("[data-quick-modal]");
       this._$quickModal.on("webkitTransitionEnd otransitionend transitionend", this._boundQuickModalTransitioned);
+      _load_calculator();
     }
   }, {
     key: "componentWillUpdate",

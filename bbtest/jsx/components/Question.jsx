@@ -2,6 +2,9 @@ class Question extends React.Component {
     constructor(props) {
         super(props);
     }
+    componentDidMount() {
+        _load_calculator()
+    }
     render() {
         let paragraphs = [];
         for (let i = 0; i < this.props.object.paragraphs.length; i++) {

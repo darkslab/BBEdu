@@ -174,7 +174,7 @@ class BuildTestAssembleView(AdminPermissionRequiredMixin, UserContextMixin, Pagi
 
         relation_query = TestToQuestionRelation.objects.filter(test=test)
 
-        question_list = TestQuestion.production_questions.filter(section=test.section)
+        question_list = TestQuestion.finished_questions.filter(section=test.section)
 
         for relation in relation_query:
             order = relation.order

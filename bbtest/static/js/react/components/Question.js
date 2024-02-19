@@ -21,6 +21,11 @@ var Question = /*#__PURE__*/function (_React$Component) {
     return _super.call(this, props);
   }
   _createClass(Question, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      _load_calculator();
+    }
+  }, {
     key: "render",
     value: function render() {
       var paragraphs = [];
