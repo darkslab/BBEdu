@@ -1,42 +1,84 @@
-from bbtest.models import User
+from bbtest.models import User, TestQuestion, TestSection
 from pprint import pprint
+import django
+# us = User.objects.all()
 
-us = User.objects.all()
+# us[0].user_permissions.all()
 
-us[0].user_permissions.all()
+# res = []
+# for u in us:
+#     res.append([u.username, u.user_permissions.all()])
 
-res = []
-for u in us:
-    res.append([u.username, u.user_permissions.all()])
+# pprint(res)
 
-pprint(res)
+# User.objects.filter(user_permissions__codename="expert").all()
 
-User.objects.filter(user_permissions__codename="expert").all()
-
-User.active_users.filter(user_permissions__codename="student").count()
-User.objects.filter(user_permissions__codename="developer").count()
-User.active_users.filter(user_permissions__codename="admin").count()
-User.active_users.filter(user_permissions__codename="expert").count()
-User.active_users.filter(is_superuser=True).count()
+# User.active_users.filter(user_permissions__codename="student").count()
+# User.objects.filter(user_permissions__codename="developer").count()
+# User.active_users.filter(user_permissions__codename="admin").count()
+# User.active_users.filter(user_permissions__codename="expert").count()
+# User.active_users.filter(is_superuser=True).count()
 
 
-res = []
-for u in us:
-    if u.is_superuser:
-        res.append("super: {}".format(str(u.username)) )
+# res = []
+# for u in us:
+#     if u.is_superuser:
+#         res.append("super: {}".format(str(u.username)) )
+#         continue
+#     codename = str(u.user_permissions.get().codename)
+#     if codename == "student":
+#         continue
+#     res.append("{}: {}".format(codename, str(u.username)) )
+
+# pprint(res)
+
+#     # res.append([u.username, u.user_permissions.all()])
+
+
+# User.objects.get(username="Dev-007")
+
+# from bbtest.models import User
+# user = User.objects.get(username="Expert-007")
+# user.expert_profile
+
+question = TestQuestion.objects.create(
+    answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
+    meta_data=meta_data,
+    section=test.section,
+    status=test.status,
+    code="{}{:%y}{:04}".format(
+        test.section.code, 
+        datetime.now(), 
+        TestQuestion.objects.filter(created_at__year=datetime.now().year, section=test.section).count()),
+    weight=0,
+    # order=i,
+    developer=test.developer,
+)
+
+
+for obj in TestQuestion.objects.all():
+    obj.code = obj.pk
+    obj.save()
+
+
+res = ""
+for obj in TestQuestion.objects.order_by("created_at").all():
+    try: 
+        int(obj.code)
+    except ValueError:
         continue
-    codename = str(u.user_permissions.get().codename)
-    if codename == "student":
-        continue
-    res.append("{}: {}".format(codename, str(u.username)) )
-
-pprint(res)
-
-    # res.append([u.username, u.user_permissions.all()])
+    index = TestQuestion.objects.filter(created_at__year=obj.created_at.year, section=obj.section, code__icontains=obj.section.code).count()
+    code="{}{:%y}{:04}".format(obj.section.code, obj.created_at, index)
+    res += str(obj.code) + " vs " + code + "\n"
+    obj.code = code
+    obj.save()
 
 
-User.objects.get(username="Dev-007")
+    # except django.db.utils.IntegrityError:
 
-from bbtest.models import User
-user = User.objects.get(username="Expert-007")
-user.expert_profile
+
+
+print(res)
+
+
+TestQuestion.objects.first()
