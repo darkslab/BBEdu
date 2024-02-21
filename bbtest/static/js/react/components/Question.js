@@ -23,7 +23,12 @@ var Question = /*#__PURE__*/function (_React$Component) {
   _createClass(Question, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // _load_calculator()
+      _load_calculator();
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      _unload_calculator();
     }
   }, {
     key: "render",
