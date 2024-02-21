@@ -66,6 +66,7 @@ var DeveloperTest = /*#__PURE__*/function (_React$Component) {
       this._cleanUp();
       $(window).off("beforeunload", this._boundConfirmIsSaved);
       $(document).off("turbolinks:before-visit", this._boundConfirmIsSavedTurbolinks);
+      _unload_calculator();
     }
   }, {
     key: "render",
