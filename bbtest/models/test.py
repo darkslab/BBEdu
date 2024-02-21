@@ -602,6 +602,8 @@ class ExpertProfile(Model):
 
     section = ManyToManyField  ( TestSection, related_name="expert_section_list", )
 
+    permission_all = BooleanField( default=False, db_index=True, )
+
     def __str__(self):
         return "{}: {}".format(self.expert.username, self.section.all())
 
@@ -610,6 +612,8 @@ class DeveloperProfile(Model):
     developer = OneToOneField ( User,         on_delete=CASCADE, related_name="developer_profile")
 
     section = ManyToManyField  ( TestSection, related_name="developer_section_list", )
+    
+    permission_all = BooleanField( default=False, db_index=True, )
 
     def __str__(self):
         return "{}: {}".format(self.developer.username, self.section.all())
