@@ -28,6 +28,7 @@ class Test extends React.Component {
 
         $(window).off("blur", this._boundWindowBlur);
         $(window).off("focus", this._boundWindowFocus);
+        _unload_calculator();
     }
     render() {
         let content = null;

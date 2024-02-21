@@ -36,7 +36,6 @@ class DeveloperQuestion extends React.Component {
 
         this._$quickModal = $("[data-quick-modal]");
         this._$quickModal.on("webkitTransitionEnd otransitionend transitionend", this._boundQuickModalTransitioned);
-        _load_calculator()
     }
     componentWillUpdate() {
         this._$paragraphsContainer.css("height", "");

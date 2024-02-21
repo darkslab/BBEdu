@@ -733,3 +733,8 @@ function _load_calculator() {
     }
 
 }
+
+function _unload_calculator() {
+    $('[data-calculator]').off()
+    // $('[data-calculator]').off('hide.bs.popover')
+}

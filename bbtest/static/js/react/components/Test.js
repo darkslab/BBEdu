@@ -49,6 +49,7 @@ var Test = /*#__PURE__*/function (_React$Component) {
       this._stop();
       $(window).off("blur", this._boundWindowBlur);
       $(window).off("focus", this._boundWindowFocus);
+      _unload_calculator();
     }
   }, {
     key: "render",
