@@ -3,10 +3,10 @@ class Question extends React.Component {
         super(props);
     }
     componentDidMount() {
-        _load_calculator()
+        // _load_calculator()
     }
     componentWillUnmount() {
-        _unload_calculator()
+        // _unload_calculator()
     }
     render() {
         let paragraphs = [];

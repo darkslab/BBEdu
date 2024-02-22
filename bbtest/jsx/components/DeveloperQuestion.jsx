@@ -36,7 +36,7 @@ class DeveloperQuestion extends React.Component {
 
         this._$quickModal = $("[data-quick-modal]");
         this._$quickModal.on("webkitTransitionEnd otransitionend transitionend", this._boundQuickModalTransitioned);
-        _load_calculator()
+        // _load_calculator()
     }
     componentWillUpdate() {
         this._$paragraphsContainer.css("height", "");
@@ -52,7 +52,7 @@ class DeveloperQuestion extends React.Component {
 
         this._$quickModal.off("webkitTransitionEnd otransitionend transitionend", this._boundQuickModalTransitioned);
         clearTimeout(this._quickModalTimer);
-        _unload_calculator()
+        // _unload_calculator()
     }
     render() {
         let developerParagraphs = [];
