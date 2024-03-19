@@ -36,13 +36,13 @@ def get_test_for_edit_or_404(request, code, include_section=False, include_parag
     if request.user.has_perm("bbtest.super"):
         if not test.developer.has_perm("bbtest.super") and not test.is_pending():
             raise Http404("Superusers can only edit tests of other developers that are in pending status")
-        if test.developer.has_perm("bbtest.super") and not test.is_draft():
+        if test.developer.has_perm("bbtest.super") and not test.is_draft() and not test.is_redo():
             raise Http404("Superusers can only edit tests of other superusers (and their own) that are in draft status")
         
     if request.user.has_perm("bbtest.expert"):
         if not test.developer.has_perm("bbtest.expert") and not test.is_pending():
             raise Http404("Experts can only edit tests of other developers that are in pending status")
-        if test.developer.has_perm("bbtest.super") and not test.is_draft():
+        if test.developer.has_perm("bbtest.super") and not test.is_draft() and not test.is_redo():
             raise Http404("Experts can only edit tests of other experts (and their own) that are in draft status")
     return test
 
