@@ -27,12 +27,17 @@ class TestsView(StaffPermissionRequiredMixin, UserContextMixin, FormView):
             }
 
         elif user.user_permissions.get().codename == "developer" and user.developer_profile is not None:
-            section_list = user.developer_profile.section.prefetch_related("domain").all()
-            domain_dict = {}
+            if user.developer_profile.permission_all:
+                domain_dict = {
+                    domain: domain.sections.all() for domain in TestDomain.objects.prefetch_related("sections").all()
+                }
+            else:
+                section_list = user.developer_profile.section.prefetch_related("domain").all()
+                domain_dict = {}
 
-            for section_obj in section_list:
-                domain = section_obj.domain
-                domain_dict[domain] = domain_dict.get(domain, []) + [section_obj] 
+                for section_obj in section_list:
+                    domain = section_obj.domain
+                    domain_dict[domain] = domain_dict.get(domain, []) + [section_obj] 
         else:
             domain_dict = {}
 
