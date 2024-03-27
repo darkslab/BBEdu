@@ -180,7 +180,7 @@ def inject_standalone_question_and_report_into_started_response(response, standa
     for paragraph in question.paragraphs.all():
         pprint(paragraph)
         if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
-            paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"], expire_in=question.duration)
+            paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"])
 
         _paragraph = {
             "paragraph_class": paragraph.paragraph_class,
