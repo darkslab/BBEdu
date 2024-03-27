@@ -24,7 +24,7 @@ def image_paragraph_processor(upload_uuid, asset_uuid):
                 image = background
             elif image.mode != "RGB":
                 image = image.convert("RGB")
-            image.thumbnail((576, 324))
+            image.thumbnail((1500, 1000))
             with NamedTemporaryFile() as asset_file:
                 image.save(asset_file, "JPEG", quality=95)
 
