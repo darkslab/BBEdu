@@ -972,7 +972,7 @@ html {
 }
 
 .bb-test-paragraph-image {
-    max-height: 400px;
+    max-height: 1000px;
     cursor: pointer;
 }
 
