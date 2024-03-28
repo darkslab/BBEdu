@@ -7,7 +7,7 @@ from django.http import Http404
 from json import loads
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin, AdminPermissionRequiredMixin
 from .generic import View, TemplateView, FormView, RedirectView
-from .common import UserContextMixin, inject_questions_and_report_into_started_response, inject_standalone_question_and_report_into_started_response
+from .common import UserContextMixin, inject_questions_and_report_into_started_response
 from bbtest.utils.json import tight_dumps
 from bbtest.models.upload import expiring_url
 from bbtest.models import TestQuestion, Test, TestParagraph
@@ -144,6 +144,7 @@ class TestQuestionView(StaffPermissionRequiredMixin, View):
         test = get_test_for_edit_or_404(request, code)
         question = get_object_or_404(test.questions, pk=question_id)
 
+        question.meta_data["question_code"] = question.code
         question_data = {
             "id": question.id,
             "data": {

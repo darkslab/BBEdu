@@ -24,6 +24,7 @@ def inject_questions_and_report_into_started_response(response, test, hide_answe
         }
 
         answer_meta_data = question.meta_data
+        answer_meta_data["question_code"] = question.code
         if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
             if answer_meta_data["correct_id"] is not None:
                 _answer["answer"] = {
@@ -152,6 +153,7 @@ def inject_standalone_question_and_report_into_started_response(response, standa
     }
 
     answer_meta_data = question.meta_data
+    answer_meta_data["question_code"] = question.code
     if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
         if answer_meta_data["correct_id"] is not None:
             _answer["answer"] = {
