@@ -973,6 +973,7 @@ html {
 
 .bb-test-paragraph-image {
     max-height: 400px;
+    cursor: pointer;
 }
 
 .bb-test-paragraph-image-waiting {
