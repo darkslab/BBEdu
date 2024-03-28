@@ -259,7 +259,9 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
         className: "bb-test-number"
       }, this.props.count), /*#__PURE__*/React.createElement("h4", {
         className: "panel-title bb-test-title mt-15 mb-15 pull-left"
-      }, this.props.texts.question)), /*#__PURE__*/React.createElement("div", {
+      }, this.props.texts.question), /*#__PURE__*/React.createElement("h4", {
+        className: "panel-title bb-test-title mt-15 mb-15 pull-right"
+      }, this.props.object._data.meta_data.question_code)), /*#__PURE__*/React.createElement("div", {
         className: "panel-body"
       }, /*#__PURE__*/React.createElement("div", {
         className: "form-horizontal"

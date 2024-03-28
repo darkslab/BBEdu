@@ -81,7 +81,7 @@ class StandaloneQuestionQuestionView(StaffPermissionRequiredMixin, View):
         question = get_question_for_edit_or_404(request, code)
         # question = get_object_or_404(question.questions, pk=question_id)
         # print("StandaloneQuestionQuestionView", question)
-
+        question.meta_data["question_code"] = question.code
         question_data = {
             "id": question.id,
             "data": {
