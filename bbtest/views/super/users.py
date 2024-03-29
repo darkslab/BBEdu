@@ -23,18 +23,29 @@ class UsersView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin,
 
     def get_context_data(self, **kwargs):
         users = User.objects.filter(is_superuser=False).order_by("-joined_at").prefetch_related("user_permissions__content_type")
-        kwargs["q"] = ""
-        try:
+        kwargs["q"] = self.request.GET.get("q", "")
+        kwargs["filter_role"] = self.request.GET.get("filter_role", "")
+        kwargs["filter_active"] = self.request.GET.get("filter_active", "")
+        kwargs["role_type_list"] = ["developer", "expert", "admin", "student", "super"]
+
+
+        if kwargs["filter_active"] == "1":
+            users = users.filter(is_active=True)
+
+        if kwargs["filter_role"]:
+            users = users.filter(user_permissions__codename=kwargs["filter_role"] )
+
+        if kwargs["q"]:
             users = users.filter(
                 Q(first_name__icontains=self.request.GET["q"])
                 |
                 Q(last_name__icontains=self.request.GET["q"])
                 |
                 Q(email__icontains=self.request.GET["q"])
+                |
+                Q(username__icontains=self.request.GET["q"])
             )
-            kwargs["q"] = self.request.GET["q"]
-        except KeyError:
-            pass
+
 
         paginator = Paginator(users, 25)
         try:
