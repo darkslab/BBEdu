@@ -42,7 +42,7 @@
             </div>
         </div>
     </form>
-    <div class="row">
+    {% comment %} <div class="row">
         <div class="col-xs-12">
             <form method="get" action="{{ request.path }}" data-bb-form>
                 <div class="form-group">
@@ -56,7 +56,40 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> {% endcomment %}
+    <form method="get" action="{{ request.path }}" data-bb-form>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-7 col-lg-8">
+                    <!-- Search Input -->
+                    <input type="text" class="form-control" placeholder="{% trans 'page:/super/users/:query' %}" name="q" value="{{ q }}">
+                </div>
+                <div class="col-xs-12 col-lg-2">
+                    <!-- Filter by user role -->
+                    <select class="form-control" name="filter_role">
+                        <option value="">{% trans 'All Roles' %}</option>
+                        {% for role_type in role_type_list %}
+                            <option value="{{ role_type }}" {% if request.GET.filter_role == role_type %}selected{% endif %}>{{ role_type  }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-xs-5 col-lg-1">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="filter_active" value="1" {% if request.GET.filter_active == "1" %}checked{% endif %}> Active only?
+                        </label>
+                    </div>
+                </div>
+                <!-- Submit and Reset Buttons -->
+                <div class="input-group-btn col-xs-12 col-lg-1 ">
+                    <button type="submit" class="btn btn-default">{% trans '_common.controls.super.search' %}</button>
+                    <a href="{{ request.path }}" class="btn btn-danger">{% trans 'Reset' %}</a>
+                </div>
+
+            </div>
+        </div>
+        
+    </form>
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
