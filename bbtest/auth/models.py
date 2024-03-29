@@ -102,6 +102,19 @@ class User(AbstractBaseUser, PermissionsMixin):
         if self.has_perm("bbtest.student"):
             return reverse("bbtest:student_dashboard")
         return reverse("home")
+    
+    def get_user_role(self):
+        if self.has_perm("bbtest.super"):
+            return "super"
+        if self.has_perm("bbtest.admin"):
+            return "admin"
+        if self.has_perm("bbtest.developer"):
+            return "developer"
+        if self.has_perm("bbtest.expert"):
+            return "expert"
+        if self.has_perm("bbtest.student"):
+            return "student"
+        return "unknown_role"
 
     def get_full_name(self):
         full_name_values = []
