@@ -155,7 +155,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         try:
             return self.carts.get(is_current=True)
         except Cart.DoesNotExist:
-            return Cart(buyer=self, is_current=True)
+            return Cart(buyer=self, is_current=True, discount=0)
 
     def balance_account_name(self):
         if not self.pk:

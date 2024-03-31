@@ -20,6 +20,11 @@ class CartHandle:
 
         if self.is_complete():
             raise CartHandleError("Only current carts are allowed")
+
+        # print(f"CartHandle buyer: {cart.buyer.email}")
+        # print(f"CartHandle line_items: {cart.line_items}")
+        self.__cart .save()
+        
         for line_item in self.line_items_manager().all():
             if line_item.item_class not in items.__all__:
                 raise CartHandleError("Incorrect item class: %s" % line_item.item_class)
