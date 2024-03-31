@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 from bbtest.models.test import TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, TestSection, TestDomain, TestSubTopic, TestSubTopicSection, TestEducationGoal, TestEducationGoalSection
 import os
 from openpyxl import load_workbook
@@ -30,55 +30,55 @@ def add_migration(apps, schema_editor):
 
     
     section_list = OrderedDict()
-    section_list[ugettext_noop("Biology_9_kz")] =  {"n_questions": 7, "t_time": 14*60}
-    section_list[ugettext_noop("Biology_9_ru")] =  {"n_questions": 7, "t_time": 14*60}
-    section_list[ugettext_noop("Chemistry_9_kz")] =  {"n_questions": 8, "t_time": 16*60}
-    section_list[ugettext_noop("Chemistry_9_ru")] =  {"n_questions": 8, "t_time": 16*60}
-    section_list[ugettext_noop("Geography_9_kz")] =  {"n_questions": 7, "t_time": 14*60}
-    section_list[ugettext_noop("Geography_9_ru")] =  {"n_questions": 7, "t_time": 14*60}
-    section_list[ugettext_noop("Physics_9_kz")] =  {"n_questions": 8, "t_time": 16*60}
-    section_list[ugettext_noop("Physics_9_ru")] =  {"n_questions": 8, "t_time": 16*60}
-    section_list[ugettext_noop("Math_9_kz")] =  {"n_questions": 20, "t_time": 45*60}
-    section_list[ugettext_noop("Math_9_ru")] =  {"n_questions": 20, "t_time": 45*60}
-    section_list[ugettext_noop("Kazakh_9_kz")] =  {"n_questions": 15, "t_time": 40*60}
-    section_list[ugettext_noop("Russian_9_ru")] =  {"n_questions": 15, "t_time": 40*60}
-    section_list[ugettext_noop("NaturalScience_4_kz")] = {"n_questions": 20, "t_time": 45*60}
-    section_list[ugettext_noop("NaturalScience_4_ru")] = {"n_questions": 20, "t_time": 45*60}
-    section_list[ugettext_noop("Math_4_kz")] = {"n_questions": 20, "t_time": 45*60}
-    section_list[ugettext_noop("Math_4_ru")] = {"n_questions": 20, "t_time": 45*60}
-    section_list[ugettext_noop("Kazakh_4_kz")] = {"n_questions": 10, "t_time": 25*60}
-    section_list[ugettext_noop("Russian_4_ru")] = {"n_questions": 10, "t_time": 25*60}
-    section_list[ugettext_noop("Questionnaire-A_4_kz")] = {"n_questions": 23, "t_time": 25*60}
-    section_list[ugettext_noop("Questionnaire-A_4_ru")] = {"n_questions": 23, "t_time": 25*60}
-    section_list[ugettext_noop("Questionnaire-B_4_kz")] = {"n_questions": 25, "t_time": 25*60}
-    section_list[ugettext_noop("Questionnaire-B_4_ru")] = {"n_questions": 25, "t_time": 25*60}
-    section_list[ugettext_noop("Questionnaire-C_4_kz")] = {"n_questions": 24, "t_time": 25*60}
-    section_list[ugettext_noop("Questionnaire-C_4_ru")] = {"n_questions": 24, "t_time": 25*60}
-    section_list[ugettext_noop("Questionnaire-A_9_kz")] = {"n_questions": 31, "t_time": 30*60}
-    section_list[ugettext_noop("Questionnaire-A_9_ru")] = {"n_questions": 31, "t_time": 30*60}
-    section_list[ugettext_noop("Questionnaire-B_9_kz")] = {"n_questions": 31, "t_time": 30*60}
-    section_list[ugettext_noop("Questionnaire-B_9_ru")] = {"n_questions": 31, "t_time": 30*60}
-    section_list[ugettext_noop("Questionnaire-C_9_kz")] = {"n_questions": 32, "t_time": 30*60}
-    section_list[ugettext_noop("Questionnaire-C_9_ru")] = {"n_questions": 32, "t_time": 30*60}
+    section_list[gettext_noop("Biology_9_kz")] =  {"n_questions": 7, "t_time": 14*60}
+    section_list[gettext_noop("Biology_9_ru")] =  {"n_questions": 7, "t_time": 14*60}
+    section_list[gettext_noop("Chemistry_9_kz")] =  {"n_questions": 8, "t_time": 16*60}
+    section_list[gettext_noop("Chemistry_9_ru")] =  {"n_questions": 8, "t_time": 16*60}
+    section_list[gettext_noop("Geography_9_kz")] =  {"n_questions": 7, "t_time": 14*60}
+    section_list[gettext_noop("Geography_9_ru")] =  {"n_questions": 7, "t_time": 14*60}
+    section_list[gettext_noop("Physics_9_kz")] =  {"n_questions": 8, "t_time": 16*60}
+    section_list[gettext_noop("Physics_9_ru")] =  {"n_questions": 8, "t_time": 16*60}
+    section_list[gettext_noop("Math_9_kz")] =  {"n_questions": 20, "t_time": 45*60}
+    section_list[gettext_noop("Math_9_ru")] =  {"n_questions": 20, "t_time": 45*60}
+    section_list[gettext_noop("Kazakh_9_kz")] =  {"n_questions": 15, "t_time": 40*60}
+    section_list[gettext_noop("Russian_9_ru")] =  {"n_questions": 15, "t_time": 40*60}
+    section_list[gettext_noop("NaturalScience_4_kz")] = {"n_questions": 20, "t_time": 45*60}
+    section_list[gettext_noop("NaturalScience_4_ru")] = {"n_questions": 20, "t_time": 45*60}
+    section_list[gettext_noop("Math_4_kz")] = {"n_questions": 20, "t_time": 45*60}
+    section_list[gettext_noop("Math_4_ru")] = {"n_questions": 20, "t_time": 45*60}
+    section_list[gettext_noop("Kazakh_4_kz")] = {"n_questions": 10, "t_time": 25*60}
+    section_list[gettext_noop("Russian_4_ru")] = {"n_questions": 10, "t_time": 25*60}
+    section_list[gettext_noop("Questionnaire-A_4_kz")] = {"n_questions": 23, "t_time": 25*60}
+    section_list[gettext_noop("Questionnaire-A_4_ru")] = {"n_questions": 23, "t_time": 25*60}
+    section_list[gettext_noop("Questionnaire-B_4_kz")] = {"n_questions": 25, "t_time": 25*60}
+    section_list[gettext_noop("Questionnaire-B_4_ru")] = {"n_questions": 25, "t_time": 25*60}
+    section_list[gettext_noop("Questionnaire-C_4_kz")] = {"n_questions": 24, "t_time": 25*60}
+    section_list[gettext_noop("Questionnaire-C_4_ru")] = {"n_questions": 24, "t_time": 25*60}
+    section_list[gettext_noop("Questionnaire-A_9_kz")] = {"n_questions": 31, "t_time": 30*60}
+    section_list[gettext_noop("Questionnaire-A_9_ru")] = {"n_questions": 31, "t_time": 30*60}
+    section_list[gettext_noop("Questionnaire-B_9_kz")] = {"n_questions": 31, "t_time": 30*60}
+    section_list[gettext_noop("Questionnaire-B_9_ru")] = {"n_questions": 31, "t_time": 30*60}
+    section_list[gettext_noop("Questionnaire-C_9_kz")] = {"n_questions": 32, "t_time": 30*60}
+    section_list[gettext_noop("Questionnaire-C_9_ru")] = {"n_questions": 32, "t_time": 30*60}
 
 
     domain_dict = {
         domain_name: TestDomain.objects.get(
             id=7911 + i
         ) for i, domain_name in enumerate([
-            ugettext_noop("Klass_4_ru"),
-            ugettext_noop("Klass_9_ru"),
-            ugettext_noop("Klass_4_kz"),
-            ugettext_noop("Klass_9_kz"),
+            gettext_noop("Klass_4_ru"),
+            gettext_noop("Klass_9_ru"),
+            gettext_noop("Klass_4_kz"),
+            gettext_noop("Klass_9_kz"),
         ])}
     
 
     domain_section_order = {
         domain_name: 0 for domain_name in [
-            ugettext_noop("Klass_4_ru"),
-            ugettext_noop("Klass_9_ru"),
-            ugettext_noop("Klass_4_kz"),
-            ugettext_noop("Klass_9_kz"),
+            gettext_noop("Klass_4_ru"),
+            gettext_noop("Klass_9_ru"),
+            gettext_noop("Klass_4_kz"),
+            gettext_noop("Klass_9_kz"),
         ]}
 
     # section_start_id = 9541

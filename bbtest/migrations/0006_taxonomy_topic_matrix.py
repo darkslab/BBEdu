@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 from bbtest.models.test import TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, TestSection, TestDomain, TestSubTopic, TestSubTopicSection, TestEducationGoal, TestEducationGoalSection
 import os
 from openpyxl import load_workbook
@@ -13,63 +13,63 @@ def add_migration(apps, schema_editor):
 
     knowledge, _ = TestTaxonomy.objects.update_or_create(
         pk = 1000,
-        name = ugettext_noop("Knowledge and understanding"),
+        name = gettext_noop("Knowledge and understanding"),
     )
     application, _ = TestTaxonomy.objects.update_or_create (
         pk = 1001,
-        name = ugettext_noop("Application"),
+        name = gettext_noop("Application"),
     )
     high_level_skills, _ = TestTaxonomy.objects.update_or_create (
         pk = 1002,
-        name = ugettext_noop("High level skills")
+        name = gettext_noop("High level skills")
     )
 
     # for filename in os.listdir("./"):
     #     if filename.endswith('.xlsx') and filename[0] not in ".~":
     #         filename = filename.replace('.xlsx', "")
-    #         print(f'ugettext_noop("{filename}")')
+    #         print(f'gettext_noop("{filename}")')
     
     section_question_count = {
-        ugettext_noop("Biology_9_kz"): 7,
-        ugettext_noop("Biology_9_ru"): 7,
-        ugettext_noop("Chemistry_9_kz"): 8,
-        ugettext_noop("Chemistry_9_ru"): 8,
-        ugettext_noop("Geography_9_kz"): 7,
-        ugettext_noop("Geography_9_ru"): 7,
-        ugettext_noop("Kazakh_4_kz"): 10,
-        ugettext_noop("Kazakh_9_kz"): 15,
-        ugettext_noop("Math_4_kz"): 20,
-        ugettext_noop("Math_4_ru"): 20,
-        ugettext_noop("Math_9_kz"): 20,
-        ugettext_noop("Math_9_ru"): 20,
-        ugettext_noop("NaturalScience_4_kz"): 20,
-        ugettext_noop("NaturalScience_4_ru"): 20,
-        ugettext_noop("Physics_9_kz"): 8,
-        ugettext_noop("Physics_9_ru"): 8,
-        ugettext_noop("Russian_4_ru"): 10,
-        ugettext_noop("Russian_9_ru"): 15,
+        gettext_noop("Biology_9_kz"): 7,
+        gettext_noop("Biology_9_ru"): 7,
+        gettext_noop("Chemistry_9_kz"): 8,
+        gettext_noop("Chemistry_9_ru"): 8,
+        gettext_noop("Geography_9_kz"): 7,
+        gettext_noop("Geography_9_ru"): 7,
+        gettext_noop("Kazakh_4_kz"): 10,
+        gettext_noop("Kazakh_9_kz"): 15,
+        gettext_noop("Math_4_kz"): 20,
+        gettext_noop("Math_4_ru"): 20,
+        gettext_noop("Math_9_kz"): 20,
+        gettext_noop("Math_9_ru"): 20,
+        gettext_noop("NaturalScience_4_kz"): 20,
+        gettext_noop("NaturalScience_4_ru"): 20,
+        gettext_noop("Physics_9_kz"): 8,
+        gettext_noop("Physics_9_ru"): 8,
+        gettext_noop("Russian_4_ru"): 10,
+        gettext_noop("Russian_9_ru"): 15,
     }
 
 
     domain_dict = {
         domain_name: TestDomain.objects.create(
             id=7911 + i,
-            name=ugettext_noop(domain_name),
+            name=gettext_noop(domain_name),
             order=1 + i,
         ) for i, domain_name in enumerate([
-            ugettext_noop("Klass_4_ru"),
-            ugettext_noop("Klass_9_ru"),
-            ugettext_noop("Klass_4_kz"),
-            ugettext_noop("Klass_9_kz"),
+            gettext_noop("Klass_4_ru"),
+            gettext_noop("Klass_9_ru"),
+            gettext_noop("Klass_4_kz"),
+            gettext_noop("Klass_9_kz"),
         ])}
     
 
     domain_section_order = {
         domain_name: 0 for domain_name in [
-            ugettext_noop("Klass_4_ru"),
-            ugettext_noop("Klass_9_ru"),
-            ugettext_noop("Klass_4_kz"),
-            ugettext_noop("Klass_9_kz"),
+            gettext_noop("Klass_4_ru"),
+            gettext_noop("Klass_9_ru"),
+            gettext_noop("Klass_4_kz"),
+            gettext_noop("Klass_9_kz"),
         ]}
 
     section_start_id = 9541

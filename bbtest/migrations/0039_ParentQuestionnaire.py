@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 from bbtest.models.test import TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, TestSection, TestDomain, TestSubTopic, TestSubTopicSection, TestEducationGoal, TestEducationGoalSection
 import os
 from openpyxl import load_workbook
@@ -25,8 +25,8 @@ def add_migration(apps, schema_editor):
 
     
     section_list = OrderedDict()
-    section_list[ugettext_noop("Questionnaire-klass-4_Parent_ru")] = {"n_questions": 20, "t_time": 3600*24*5}
-    section_list[ugettext_noop("Questionnaire-klass-4_Parent_kz")] = {"n_questions": 20, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-klass-4_Parent_ru")] = {"n_questions": 20, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-klass-4_Parent_kz")] = {"n_questions": 20, "t_time": 3600*24*5}
 
 
     domain_dict = {
@@ -34,15 +34,15 @@ def add_migration(apps, schema_editor):
             name = domain_name,
             order = i
         ) for i, domain_name in enumerate([
-            ugettext_noop("Parent_ru"),
-            ugettext_noop("Parent_kz"),
+            gettext_noop("Parent_ru"),
+            gettext_noop("Parent_kz"),
         ], 7)}
     
 
     domain_section_order = {
         domain_name: 0 for domain_name in [
-            ugettext_noop("Parent_ru"),
-            ugettext_noop("Parent_kz"),
+            gettext_noop("Parent_ru"),
+            gettext_noop("Parent_kz"),
         ]}
 
     # section_start_id = 9541

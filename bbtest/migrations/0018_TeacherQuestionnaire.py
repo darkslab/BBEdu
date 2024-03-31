@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.utils.translation import ugettext_noop
+from django.utils.translation import gettext_noop
 from bbtest.models.test import TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, TestSection, TestDomain, TestSubTopic, TestSubTopicSection, TestEducationGoal, TestEducationGoalSection
 import os
 from openpyxl import load_workbook
@@ -25,16 +25,16 @@ def add_migration(apps, schema_editor):
 
     
     section_list = OrderedDict()
-    section_list[ugettext_noop("Questionnaire-Director_Teacher_kz")] = {"n_questions": 65, "t_time": 3600*24*5}
-    section_list[ugettext_noop("Questionnaire-Director_Teacher_ru")] = {"n_questions": 65, "t_time": 3600*24*5}
-    section_list[ugettext_noop("Questionnaire-klass-4_Teacher_ru")] = {"n_questions": 70, "t_time": 3600*24*5}
-    section_list[ugettext_noop("Questionnaire-klass-4_Teacher_kz")] = {"n_questions": 70, "t_time": 3600*24*5}
-    section_list[ugettext_noop("Questionnaire-klass-9-lang_Teacher_kz")] = {"n_questions": 64, "t_time": 3600*24*5}
-    section_list[ugettext_noop("Questionnaire-klass-9-lang_Teacher_ru")] = {"n_questions": 64, "t_time": 3600*24*5}
-    section_list[ugettext_noop("Questionnaire-klass-9-math_Teacher_kz")] = {"n_questions": 53, "t_time": 3600*24*5}
-    section_list[ugettext_noop("Questionnaire-klass-9-math_Teacher_ru")] = {"n_questions": 53, "t_time": 3600*24*5}
-    section_list[ugettext_noop("Questionnaire-klass-9-sci_Teacher_kz")] = {"n_questions": 51, "t_time": 3600*24*5}
-    section_list[ugettext_noop("Questionnaire-klass-9-sci_Teacher_ru")] = {"n_questions": 51, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-Director_Teacher_kz")] = {"n_questions": 65, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-Director_Teacher_ru")] = {"n_questions": 65, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-klass-4_Teacher_ru")] = {"n_questions": 70, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-klass-4_Teacher_kz")] = {"n_questions": 70, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-klass-9-lang_Teacher_kz")] = {"n_questions": 64, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-klass-9-lang_Teacher_ru")] = {"n_questions": 64, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-klass-9-math_Teacher_kz")] = {"n_questions": 53, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-klass-9-math_Teacher_ru")] = {"n_questions": 53, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-klass-9-sci_Teacher_kz")] = {"n_questions": 51, "t_time": 3600*24*5}
+    section_list[gettext_noop("Questionnaire-klass-9-sci_Teacher_ru")] = {"n_questions": 51, "t_time": 3600*24*5}
 
 
     domain_dict = {
@@ -42,15 +42,15 @@ def add_migration(apps, schema_editor):
             name = domain_name,
             order = i
         ) for i, domain_name in enumerate([
-            ugettext_noop("Teacher_ru"),
-            ugettext_noop("Teacher_kz"),
+            gettext_noop("Teacher_ru"),
+            gettext_noop("Teacher_kz"),
         ], 5)}
     
 
     domain_section_order = {
         domain_name: 0 for domain_name in [
-            ugettext_noop("Teacher_ru"),
-            ugettext_noop("Teacher_kz"),
+            gettext_noop("Teacher_ru"),
+            gettext_noop("Teacher_kz"),
         ]}
 
     # section_start_id = 9541
