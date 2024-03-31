@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-27 00:46+0600\n"
+"POT-Creation-Date: 2024-03-31 23:31+0500\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 2.3\n"
 
 msgctxt "Form label"
@@ -79,14 +79,14 @@ msgstr "Введите подтверждение нового пароля."
 msgid "_common.regions.select"
 msgstr "Выберите область"
 
+msgid "_common.regions.names.almaty"
+msgstr "Алматинская область"
+
 msgid "_common.regions.names.akmola"
 msgstr "Акмолинская область"
 
 msgid "_common.regions.names.aktobe"
 msgstr "Актюбинская область"
-
-msgid "_common.regions.names.almaty"
-msgstr "Алматинская область"
 
 msgid "_common.regions.names.atyrau"
 msgstr "Атырауская область"
@@ -120,6 +120,21 @@ msgstr "Туркестанская область"
 
 msgid "_common.regions.names.east_kz"
 msgstr "Восточно-Казахстанская область"
+
+#, fuzzy
+#| msgid "_common.regions.names.kostanai"
+msgid "_common.regions.names.abai"
+msgstr "Костанайская область"
+
+#, fuzzy
+#| msgid "_common.regions.names.atyrau"
+msgid "_common.regions.names.jetısu"
+msgstr "Атырауская область"
+
+#, fuzzy
+#| msgid "_common.regions.names.atyrau"
+msgid "_common.regions.names.ulytau"
+msgstr "Атырауская область"
 
 msgctxt "Model field"
 msgid "username"
@@ -2710,6 +2725,12 @@ msgstr "Участник тестирования"
 msgid "page:/super/users/:query"
 msgstr "Seach by first name, last name or email"
 
+msgid "All Roles"
+msgstr "Все Роли"
+
+msgid "Reset"
+msgstr "Сбросить"
+
 msgctxt "/super/users/"
 msgid "Actions"
 msgstr "Действия"
@@ -3040,9 +3061,6 @@ msgstr "ID..."
 
 msgid "Apply"
 msgstr "Применить"
-
-msgid "Reset"
-msgstr "Сбросить"
 
 msgctxt "/super/questions/"
 msgid "ID"
