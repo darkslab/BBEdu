@@ -1,7 +1,7 @@
 from django.forms import ModelForm, Form, CharField, Textarea
 from django.forms.widgets import HiddenInput
 from django.core.exceptions import ValidationError
-from django.utils.translation import pgettext_lazy, ugettext as _, npgettext_lazy, pgettext
+from django.utils.translation import pgettext_lazy, gettext as _, npgettext_lazy, pgettext
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from random import randint
 from bbtest.models import TestQuestion, TestParagraph, TestParagraphQuestion, Test, Asset, QuestionComments, TestToQuestionRelation

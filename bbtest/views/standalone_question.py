@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext as _, pgettext, get_language
+from django.utils.translation import gettext as _, pgettext, get_language
 from django.urls import reverse_lazy, reverse
 from django.contrib.messages import success, error
 from django.db.models import Prefetch

@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.utils.translation import ugettext as _, pgettext
+from django.utils.translation import gettext as _, pgettext
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404
 from random import randint
