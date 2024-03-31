@@ -2,7 +2,7 @@ import os
 import gzip
 from re import split
 from difflib import SequenceMatcher
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.core.exceptions import FieldDoesNotExist, ValidationError
 from django.contrib.auth import password_validation
 from django.utils.translation import pgettext, pgettext_lazy
@@ -122,7 +122,7 @@ class UserAttributeSimilarityValidator:
             for value_part in value_parts:
                 if SequenceMatcher(a=password.lower(), b=value_part.lower()).quick_ratio() >= self.max_similarity:
                     try:
-                        verbose_name = force_text(user._meta.get_field(attribute_name).verbose_name)
+                        verbose_name = force_str(user._meta.get_field(attribute_name).verbose_name)
                     except FieldDoesNotExist:
                         verbose_name = attribute_name
                     raise ValidationError(
