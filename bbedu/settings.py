@@ -156,8 +156,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = "/var/www/html/static/"
 STATICFILES_STORAGE = "bbtest.pipeline.storage.ManifestPipelineStorage"
 STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "pipeline.finders.FileSystemFinder",
+    "pipeline.finders.AppDirectoriesFinder",
     "pipeline.finders.CachedFileFinder",
     "pipeline.finders.PipelineFinder",
 ]
