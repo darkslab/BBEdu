@@ -36,7 +36,16 @@
                                             <ul class="dropdown-menu dropdown-menu-right">
                                                 <li><a href="{% url 'bbtest:settings' %}"><i class="fa fa-fw fa-sliders"></i> {% trans 'Settings' context 'Navigation link' %}</a></li>
                                                 <li class="divider"></li>
-                                                <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
+                                                {% comment %} <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li> {% endcomment %}
+                                                <li>
+                                                    <form action="{% url 'bbtest:logout' %}" method="post">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-info">
+                                                            <i class="fa fa-fw fa-sign-out"></i>
+                                                            {% trans 'Logout' context 'Navigation link' %}
+                                                        </button>
+                                                    </form>
+                                                </li>
                                             </ul>
                                         </li>
                                     {% else %}

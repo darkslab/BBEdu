@@ -48,7 +48,17 @@
                                                 <li class="dropdown">
                                                     <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown">{{ user.get_full_name }} <span class="caret"></span></a>
                                                     <ul class="dropdown-menu dropdown-menu-right">
-                                                        <li><a href="{% url 'bbtest:logout' %}"><i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}</a></li>
+                                                        <li>
+                                                            <form action="{% url 'bbtest:logout' %}" method="post">
+                                                                {% csrf_token %}
+                                                                <button type="submit" class="btn btn-info">
+                                                                    <i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}
+                                                                </button>
+                                                            </form>
+                                                            {% comment %} <a href="{% url 'bbtest:logout' %}">
+                                                                <i class="fa fa-fw fa-sign-out"></i> {% trans 'Logout' context 'Navigation link' %}
+                                                            </a> {% endcomment %}
+                                                        </li>
                                                     </ul>
                                                 </li>
                                             {% else %}
