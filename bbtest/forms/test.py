@@ -641,150 +641,150 @@ class TestForm(ModelForm):
                 #     )
 
         # UNT core sections
-        elif test.section.is_unt_compulsory():
-            shared_paragraph = None
-            for i in range(test.question_count):
-                choice_id = 1 # randint(0x0000, 0xffff)
-                meta_data = {
-                    "choices": [
-                        {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
-                         "meta_data": {"text": ""}},
-                        {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
-                         "meta_data": {"text": ""}},
-                        {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
-                         "meta_data": {"text": ""}},
-                        {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
-                         "meta_data": {"text": ""}},
-                        {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
-                         "meta_data": {"text": ""}},
-                    ],
-                    "correct_id": None,
-                }
+        # elif test.section.is_unt_compulsory():
+        #     shared_paragraph = None
+        #     for i in range(test.question_count):
+        #         choice_id = 1 # randint(0x0000, 0xffff)
+        #         meta_data = {
+        #             "choices": [
+        #                 {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
+        #                  "meta_data": {"text": ""}},
+        #                 {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
+        #                  "meta_data": {"text": ""}},
+        #                 {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
+        #                  "meta_data": {"text": ""}},
+        #                 {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
+        #                  "meta_data": {"text": ""}},
+        #                 {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
+        #                  "meta_data": {"text": ""}},
+        #             ],
+        #             "correct_id": None,
+        #         }
 
-                question = TestQuestion.objects.create(
-                    answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
-                    meta_data=meta_data,
-                    weight=0,
-                    # order=i,
-                    developer=test.developer,
-                )
-                question.weight = TestQuestion.calculate_weight(question)
-                question.save()
+        #         question = TestQuestion.objects.create(
+        #             answer_class=TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE,
+        #             meta_data=meta_data,
+        #             weight=0,
+        #             # order=i,
+        #             developer=test.developer,
+        #         )
+        #         question.weight = TestQuestion.calculate_weight(question)
+        #         question.save()
 
-                TestToQuestionRelation.objects.create(
-                    test = test,
-                    question = question,
-                    order = i,
-                )
+        #         TestToQuestionRelation.objects.create(
+        #             test = test,
+        #             question = question,
+        #             order = i,
+        #         )
 
-                if test.section.id == 9546:
-                    if i in (0, 2, 6, 12):
-                        shared_paragraph = TestParagraph.objects.create(
-                            paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                            meta_data={"text": ""},
-                        )
-                        TestParagraphQuestion.objects.create(
-                            question=question,
-                            paragraph=shared_paragraph,
-                            order=0,
-                        )
-                        TestParagraphQuestion.objects.create(
-                            question=question,
-                            paragraph=TestParagraph.objects.create(
-                                paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                                meta_data={"text": ""},
-                            ),
-                            order=1,
-                        )
-                    else:
-                        TestParagraphQuestion.objects.create(
-                            question=question,
-                            paragraph=shared_paragraph,
-                            order=0,
-                        )
-                        TestParagraphQuestion.objects.create(
-                            question=question,
-                            paragraph=TestParagraph.objects.create(
-                                paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                                meta_data={"text": ""},
-                            ),
-                            order=1,
-                        )
-                else:
-                    paragraph = TestParagraph.objects.create(
-                        paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                        meta_data={"text": ""},
-                    )
-                    TestParagraphQuestion.objects.create(
-                        question=question,
-                        paragraph=paragraph,
-                        order=0,
-                    )
+        #         if test.section.id == 9546:
+        #             if i in (0, 2, 6, 12):
+        #                 shared_paragraph = TestParagraph.objects.create(
+        #                     paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+        #                     meta_data={"text": ""},
+        #                 )
+        #                 TestParagraphQuestion.objects.create(
+        #                     question=question,
+        #                     paragraph=shared_paragraph,
+        #                     order=0,
+        #                 )
+        #                 TestParagraphQuestion.objects.create(
+        #                     question=question,
+        #                     paragraph=TestParagraph.objects.create(
+        #                         paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+        #                         meta_data={"text": ""},
+        #                     ),
+        #                     order=1,
+        #                 )
+        #             else:
+        #                 TestParagraphQuestion.objects.create(
+        #                     question=question,
+        #                     paragraph=shared_paragraph,
+        #                     order=0,
+        #                 )
+        #                 TestParagraphQuestion.objects.create(
+        #                     question=question,
+        #                     paragraph=TestParagraph.objects.create(
+        #                         paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+        #                         meta_data={"text": ""},
+        #                     ),
+        #                     order=1,
+        #                 )
+        #         else:
+        #             paragraph = TestParagraph.objects.create(
+        #                 paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+        #                 meta_data={"text": ""},
+        #             )
+        #             TestParagraphQuestion.objects.create(
+        #                 question=question,
+        #                 paragraph=paragraph,
+        #                 order=0,
+        #             )
 
         # UNT spec sections
-        elif test.section.is_unt_profile():
-            for i in range(test.question_count):
-                choice_id = 1 # randint(0x0000, 0xffff)
-                if i in range(20):
-                    answer_class = TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE
-                    meta_data = {
-                        "choices": [
-                            {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                        ],
-                        "correct_id": None,
-                    }
-                else:
-                    answer_class = TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI
-                    meta_data = {
-                        "choices": [
-                            {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                            {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
-                             "meta_data": {"text": ""}},
-                        ],
-                        "correct_ids": [],
-                    }
+        # elif test.section.is_unt_profile():
+        #     for i in range(test.question_count):
+        #         choice_id = 1 # randint(0x0000, 0xffff)
+        #         if i in range(20):
+        #             answer_class = TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE
+        #             meta_data = {
+        #                 "choices": [
+        #                     {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
+        #                      "meta_data": {"text": ""}},
+        #                     {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
+        #                      "meta_data": {"text": ""}},
+        #                     {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
+        #                      "meta_data": {"text": ""}},
+        #                     {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
+        #                      "meta_data": {"text": ""}},
+        #                     {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
+        #                      "meta_data": {"text": ""}},
+        #                 ],
+        #                 "correct_id": None,
+        #             }
+        #         else:
+        #             answer_class = TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI
+        #             meta_data = {
+        #                 "choices": [
+        #                     {"id": choice_id + 0, "choice_class": "MultichoiceTextChoice",
+        #                      "meta_data": {"text": ""}},
+        #                     {"id": choice_id + 1, "choice_class": "MultichoiceTextChoice",
+        #                      "meta_data": {"text": ""}},
+        #                     {"id": choice_id + 2, "choice_class": "MultichoiceTextChoice",
+        #                      "meta_data": {"text": ""}},
+        #                     {"id": choice_id + 3, "choice_class": "MultichoiceTextChoice",
+        #                      "meta_data": {"text": ""}},
+        #                     {"id": choice_id + 4, "choice_class": "MultichoiceTextChoice",
+        #                      "meta_data": {"text": ""}},
+        #                 ],
+        #                 "correct_ids": [],
+        #             }
 
-                question = TestQuestion.objects.create(
-                    answer_class=answer_class,
-                    meta_data=meta_data,
-                    weight=0,
-                    # order=i,
-                    developer=test.developer,
-                )
-                question.weight = TestQuestion.calculate_weight(question)
-                question.save()
+        #         question = TestQuestion.objects.create(
+        #             answer_class=answer_class,
+        #             meta_data=meta_data,
+        #             weight=0,
+        #             # order=i,
+        #             developer=test.developer,
+        #         )
+        #         question.weight = TestQuestion.calculate_weight(question)
+        #         question.save()
 
-                TestToQuestionRelation.objects.create(
-                    test = test,
-                    question = question,
-                    order = i,
-                )
+        #         TestToQuestionRelation.objects.create(
+        #             test = test,
+        #             question = question,
+        #             order = i,
+        #         )
 
-                paragraph = TestParagraph.objects.create(
-                    paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
-                    meta_data={"text": ""},
-                )
-                TestParagraphQuestion.objects.create(
-                    question=question,
-                    paragraph=paragraph,
-                    order=0,
-                )
+        #         paragraph = TestParagraph.objects.create(
+        #             paragraph_class=TestParagraph.PARAGRAPH_CLASS_TEXT,
+        #             meta_data={"text": ""},
+        #         )
+        #         TestParagraphQuestion.objects.create(
+        #             question=question,
+        #             paragraph=paragraph,
+        #             order=0,
+        #         )
 
         return test
 
@@ -899,13 +899,6 @@ class TestCheckForm(ModelForm):
             # elif self.instance.section.pk == 9544:
             #     self.__clean_nis_quantitative(questions_queryset)
 
-        # elif self.instance.section.is_unt_compulsory() or self.instance.section.is_unt_profile():
-        #     if self.instance.section.is_unt_compulsory():
-        #         self.__clean_unt_compulsory(questions_queryset)
-        #     elif self.instance.section.is_unt_profile():
-        #         self.__clean_unt_profile(questions_queryset)
-        # elif self.instance.section.is_nufypet():
-        #     self.__clean_nufypet(questions_queryset)
         return self.cleaned_data
 
     def __clean_dummy(self, questions_queryset):

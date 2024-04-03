@@ -59,13 +59,7 @@ class Quiz(Model):
                 score = self.__calculate_nis_quantitative(question_ids, bucket)
             else:
                 score = self.__calculate_straightforward(question_ids, bucket)
-        elif self.test.section.is_unt_compulsory():
-            score = self.__calculate_straightforward(question_ids, bucket)
-        elif self.test.section.is_unt_profile():
-            score = self.__calculate_unt_profile(question_ids, bucket)
-        elif self.test.section.is_nufypet():
-            score = self.__calculate_straightforward(question_ids, bucket)
-        elif self.test.section.is_law():
+        else:
             score = self.__calculate_straightforward(question_ids, bucket)
 
         return score

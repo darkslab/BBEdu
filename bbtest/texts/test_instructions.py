@@ -183,41 +183,41 @@ def test_instructions(test):
 
     if test.section.is_nis():
         return NIS_TEST_INSTRUCTION_TEXTS[test.section.pk][test.language]
-    elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
-        return UNT_TEST_INSTRUCTION_TEXTS[test.section.pk]
-    elif test.section.is_nufypet():
-        return [
-            [
-                "This is an unofficial NUFYPET Simulation.",
-                "Total time given for the test: 60 min.",
-            ],
-            [
-                "Choose the choice you find correct one in multichoice questions.",
-                "Dictionaries and Calculators MUST NOT be used.",
-                "Figures are NOT accurately drawn and NOT to scale, except if it is mentioned otherwise in a question.",
-                "There is only one correct choice in each question, answers with two or more selected choices are counted as an incorrect answer.",
-                "The total score of the test is 30 points (Each question has a score of 1 point).",
-                "There is NO penalty for wrong answers.",
-            ],
-            [
-                "Read each question carefully.",
-                "Keep track of the timer (2 minutes for each question in average)",
-                "Don't stay in one task for long.",
-                "Try to answer for all questions.",
-                "Recheck your answers if possible.",
-            ],
-            [
-                "If you think something is wrong with the test, please contact us.",
-            ],
-        ]
-    elif test.section.is_law():
-        return [
-            [
-                "Данный предмет содержит 60 вопросов.",
-                "Для ответа на все вопросы выделено 60 минут.",
-                "Не забудьте перепроверить свои ответы.",
-            ],
-        ]
+    # elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
+    #     return UNT_TEST_INSTRUCTION_TEXTS[test.section.pk]
+    # elif test.section.is_nufypet():
+    #     return [
+    #         [
+    #             "This is an unofficial NUFYPET Simulation.",
+    #             "Total time given for the test: 60 min.",
+    #         ],
+    #         [
+    #             "Choose the choice you find correct one in multichoice questions.",
+    #             "Dictionaries and Calculators MUST NOT be used.",
+    #             "Figures are NOT accurately drawn and NOT to scale, except if it is mentioned otherwise in a question.",
+    #             "There is only one correct choice in each question, answers with two or more selected choices are counted as an incorrect answer.",
+    #             "The total score of the test is 30 points (Each question has a score of 1 point).",
+    #             "There is NO penalty for wrong answers.",
+    #         ],
+    #         [
+    #             "Read each question carefully.",
+    #             "Keep track of the timer (2 minutes for each question in average)",
+    #             "Don't stay in one task for long.",
+    #             "Try to answer for all questions.",
+    #             "Recheck your answers if possible.",
+    #         ],
+    #         [
+    #             "If you think something is wrong with the test, please contact us.",
+    #         ],
+    #     ]
+    # elif test.section.is_law():
+    #     return [
+    #         [
+    #             "Данный предмет содержит 60 вопросов.",
+    #             "Для ответа на все вопросы выделено 60 минут.",
+    #             "Не забудьте перепроверить свои ответы.",
+    #         ],
+    #     ]
     return []
 
 
@@ -293,21 +293,6 @@ def test_instructions_title(test):
     # if test.section.is_nis():
     #     return [
     #         PSEUDO_NIS_TEST_INSTRUCTION_TITLE_TEXTS[test.section.pk][test.language],
-    #         test.code.upper(),
-    #     ]
-    # elif test.section.is_unt_compulsory() or test.section.is_unt_profile():
-    #     return [
-    #         _(test.section.name),
-    #         test.code.upper(),
-    #     ]
-    # elif test.section.is_nufypet():
-    #     return [
-    #         _(test.section.name),
-    #         test.code.upper(),
-    #     ]
-    # elif test.section.is_law():
-    #     return [
-    #         "",
     #         test.code.upper(),
     #     ]
     # return []
