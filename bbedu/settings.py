@@ -155,8 +155,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = "/var/www/html/static/"
 # STATICFILES_STORAGE = "bbtest.pipeline.storage.ManifestPipelineStorage"
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-# STATICFILES_STORAGE = 'pipeline.storage.PipelineManifestStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineManifestStorage'
+
 STATICFILES_FINDERS = [
     "pipeline.finders.FileSystemFinder",
     "pipeline.finders.AppDirectoriesFinder",
@@ -179,8 +179,8 @@ from bbtest.pipeline_css import (
 )
 
 PIPELINE = {
-    "PIPELINE_ENABLED": True,  # True if assets should be compressed, False if not.  Defaults to not settings.DEBUG
-    "PIPELINE_COLLECTOR_ENABLED": False,  # True if assets should be collected in develop , False if not.  (This only applies when PIPELINE_ENABLED is False.)
+    # "PIPELINE_ENABLED": True,  # True if assets should be compressed, False if not.  Defaults to not settings.DEBUG
+    "PIPELINE_COLLECTOR_ENABLED": True,  # True if assets should be collected in develop , False if not.  (This only applies when PIPELINE_ENABLED is False.)
     "DISABLE_WRAPPER": True,
     "SHOW_ERRORS_INLINE": True,
     "JAVASCRIPT": {
