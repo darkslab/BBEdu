@@ -151,6 +151,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
+# STATICFILES_STORAGE = 'pipeline.storage.PipelineManifestStorage'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = "/var/www/html/static/"
@@ -177,9 +178,10 @@ from bbtest.pipeline_css import (
 )
 
 PIPELINE = {
-    "PIPELINE_COLLECTOR_ENABLED": False,
+    "PIPELINE_ENABLED": True,  # True if assets should be compressed, False if not.  Defaults to not settings.DEBUG
+    "PIPELINE_COLLECTOR_ENABLED": False,  # True if assets should be collected in develop , False if not.  (This only applies when PIPELINE_ENABLED is False.)
     "DISABLE_WRAPPER": True,
-    "SHOW_ERRORS_INLINE": False,
+    "SHOW_ERRORS_INLINE": True,
     "JAVASCRIPT": {
         "base0": {
             "source_filenames": BASE0_SOURCE_FILENAMES_JS,
