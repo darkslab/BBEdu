@@ -155,8 +155,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = "/var/www/html/static/"
 # STATICFILES_STORAGE = "bbtest.pipeline.storage.ManifestPipelineStorage"
-# STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
-STATICFILES_STORAGE = 'pipeline.storage.PipelineManifestStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+# STATICFILES_STORAGE = 'pipeline.storage.PipelineManifestStorage'
 STATICFILES_FINDERS = [
     "pipeline.finders.FileSystemFinder",
     "pipeline.finders.AppDirectoriesFinder",
