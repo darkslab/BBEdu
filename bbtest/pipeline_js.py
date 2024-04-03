@@ -6,6 +6,8 @@ BASE0_SOURCE_FILENAMES = (
     "js/katex.min.js",
     "js/auto-render.min.js",
     "js/script.js",
+    "Calculator_files/math.min.js",
+    "js/jquery-3.2.1.min.js"
 )
 BASE1_SOURCE_FILENAMES = (
     "js/common/utils.js",
