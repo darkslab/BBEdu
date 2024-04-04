@@ -5,7 +5,7 @@ import multiprocessing
 # Django WSGI application path in pattern MODULE_NAME:VARIABLE_NAME
 wsgi_app = "bbedu.wsgi"
 # The granularity of Error log outputs
-loglevel = "debug"
+loglevel = "error"
 # The number of worker processes for handling requests
 workers = multiprocessing.cpu_count() * 2 + 1
 worker_class = "gevent"
