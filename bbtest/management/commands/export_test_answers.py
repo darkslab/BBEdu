@@ -19,14 +19,17 @@ class Command(BaseCommand):
         for i, group_obj in enumerate(group_set_obj):
             domain_obj = group_obj.package.domain
 
-            if domain_obj.name not in ["Klass_4_ru", "Klass_4_kz"]:
-                continue
+            # if domain_obj.name not in ["Klass_4_ru", "Klass_4_kz"]:
+            #     continue
 
             # if domain_obj.name not in ["Klass_9_ru", "Klass_9_kz"]:
             #     continue
 
             # if domain_obj.name not in ["Teacher_ru", "Teacher_kz"]:
             #     continue
+
+            if domain_obj.name not in ["Parent_kz", "Parent_ru"]:
+                continue
 
             for j, student_test_profile in enumerate(group_obj.students.order_by("student__username").all()):
                 print(i, j, " "*20, end="\r")
