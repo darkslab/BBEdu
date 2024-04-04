@@ -17,7 +17,7 @@ class Command(BaseCommand):
         # domain_name_filter = ["Klass_9_ru", "Klass_9_kz"]
         # domain_name_filter = ["Teacher_ru", "Teacher_kz"]
 
-        group_set_obj = StudentGroup.objects
+        group_set_obj = StudentGroup.objects.prefetch_related("package", "package__domain", "package__student")
         group_set_obj = group_set_obj.filter(package__domain__name__in=domain_name_filter)
         group_set_obj.order_by("package__domain").all()
 
@@ -29,7 +29,7 @@ class Command(BaseCommand):
             if domain_obj.name not in domain_name_filter:
                 continue
 
-            for j, student_test_profile in enumerate(group_obj.students.order_by("student__username").all()):
+            for j, student_test_profile in enumerate(group_obj.students.prefetch_related("quiz_sets").order_by("student__username").all()):
                 print(i, j, " "*20, end="\r")
                 student = student_test_profile.student
                 quiz_set_list = student.quiz_sets.all()
