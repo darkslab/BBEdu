@@ -12,23 +12,21 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **kwargs):
-        group_set_obj = StudentGroup.objects.order_by("package__domain").all()
+        domain_name_filter = ["Teacher_ru", "Teacher_kz"]
+        # domain_name_filter = ["Klass_4_ru", "Klass_4_kz"]
+        # domain_name_filter = ["Klass_9_ru", "Klass_9_kz"]
+        # domain_name_filter = ["Teacher_ru", "Teacher_kz"]
+
+        group_set_obj = StudentGroup.objects
+        group_set_obj = group_set_obj.filter(package__domain__name__in=domain_name_filter)
+        group_set_obj.order_by("package__domain").all()
 
         result = []
 
         for i, group_obj in enumerate(group_set_obj):
             domain_obj = group_obj.package.domain
 
-            # if domain_obj.name not in ["Klass_4_ru", "Klass_4_kz"]:
-            #     continue
-
-            # if domain_obj.name not in ["Klass_9_ru", "Klass_9_kz"]:
-            #     continue
-
-            # if domain_obj.name not in ["Teacher_ru", "Teacher_kz"]:
-            #     continue
-
-            if domain_obj.name not in ["Parent_kz", "Parent_ru"]:
+            if domain_obj.name not in domain_name_filter:
                 continue
 
             for j, student_test_profile in enumerate(group_obj.students.order_by("student__username").all()):
