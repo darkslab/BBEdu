@@ -38,6 +38,7 @@ pyasn1_modules==0.4.0
 pycparser==2.22
 pymemcache==4.0.0
 pyparsing==3.1.2
+pytz>=2024.1
 redis==5.0.3
 requests==2.31.0
 rq==1.16.1
