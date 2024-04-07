@@ -182,7 +182,7 @@ from bbtest.pipeline_css import (
 PIPELINE = {
     "PIPELINE_ENABLED": True,  # True if assets should be compressed, False if not.  Defaults to not settings.DEBUG
     "PIPELINE_COLLECTOR_ENABLED": True,  # True if assets should be collected in develop , False if not.  (This only applies when PIPELINE_ENABLED is False.)
-    "DISABLE_WRAPPER": False,
+    "DISABLE_WRAPPER": True,
     "SHOW_ERRORS_INLINE": True,
     "JAVASCRIPT": {
         "base0": {
@@ -217,7 +217,7 @@ PIPELINE = {
             "source_filenames": ["js/jquery-3.2.1.min.js"],
             "output_filename": "js/jquery-3.2.1.min.js",
             "extra_context": {
-                "defer": True,
+                "defer": False,
             },
         }
     },
