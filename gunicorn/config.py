@@ -45,5 +45,11 @@ group = "nginx"
 
 pythonpath = f'/home/{SECRETS["GUNICORN_USER"]}/BBEdu'
 
+print(f"pythonpath: {pythonpath}")
+print(f"user: {user}")
+print(f"bind: {bind}")
+print(f"workers: {workers}")
+print(f"worker_class: {worker_class}")
+
 # sudo systemctl daemon-reload && sudo systemctl restart gunicorn && sleep 1 && sudo systemctl status gunicorn
 # ExecStart=/usr/local/bin/gunicorn -c /home/dd/BBEdu/gunicorn/conf.py
