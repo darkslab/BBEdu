@@ -6,6 +6,9 @@
 {% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (#{{ code }}){% endblocktrans %} <small><span class="label label-default">{{ domain_name }}</span>{% if language %} <span class="label label-default">{{ language }}</span>{% endif %}{% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}</small>{% endblock %}
 
 {% block content %}
+    {% if test_unfinished %}
+        <h1>Сформируйте тест полностью</h1>
+    {% else %}
     <script>
         moduleDataStack.push({
             module: "SubmitModule"
@@ -314,4 +317,6 @@
             </div>
         </div>
     </div>
+    {% endif %}
+
 {% endblock %}

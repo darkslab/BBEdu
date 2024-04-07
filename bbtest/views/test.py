@@ -411,6 +411,9 @@ class TestPreviewView(StaffPermissionRequiredMixin, UserContextMixin, FormView):
         kwargs["section_name"] = _(self._test.section.name)
         kwargs["domain_name"] = _(self._test.section.domain.name)
         kwargs["language"] = None
+
+        kwargs["test_unfinished"] = self._test.question_count != self._test.actual_question_count
+
         if self._test.language != Test.LANGUAGE_XX:
             kwargs["language"] = next(test_language[1] for test_language in Test.LANGUAGES if test_language[0] == self._test.language)
         return super().get_context_data(**kwargs)
