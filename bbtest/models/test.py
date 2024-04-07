@@ -256,6 +256,10 @@ class Test(Model):
     class Meta:
         default_permissions = ()
 
+    @property
+    def actual_question_count(self):
+        return self.questions.count()
+
     def __str__(self):
         return self.code
 

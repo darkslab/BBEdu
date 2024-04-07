@@ -276,7 +276,7 @@
                                         </td>
                                         {% comment %} column 7 {% endcomment %}
                                         <td class="pr-15 text-center">
-                                            {% if not test.is_draft or test.developer == user  %}
+                                            {% if not test.is_draft and test.developer == user  %}
                                                 <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Preview' context '/expert/dashboard/' %}</a>
                                             {% endif %}
                                             {% if test.developer == user  %}
