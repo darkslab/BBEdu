@@ -33,9 +33,9 @@
     {% stylesheet 'base0' %}
     {% stylesheet 'base1' %}
 
-    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    {% comment %} <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> {% endcomment %}
 	{% comment %} <script src="{% static 'Calculator_files/math.min.js' %}"></script> {% endcomment %}
-    
+    {% javascript 'jquery' %}
     {% javascript 'base0' %}
     {% javascript 'base1' %}
     {% if user.is_authenticated %}
