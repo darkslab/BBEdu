@@ -213,13 +213,13 @@ PIPELINE = {
                 "defer": True,
             },
         },
-        "jquery": {
-            "source_filenames": ["js/jquery-3.2.1.min.js"],
-            "output_filename": "js/jquery-3.2.1.min.js",
-            "extra_context": {
-                "defer": False,
-            },
-        }
+        # "jquery": {
+        #     "source_filenames": ["js/jquery-3.2.1.min.js"],
+        #     "output_filename": "js/jquery-3.2.1.min.9197b23b03df.js",
+        #     "extra_context": {
+        #         "defer": False,
+        #     },
+        # }
     },
     "STYLESHEETS": {
         "base0": {
