@@ -43,7 +43,7 @@ user = SECRETS["GUNICORN_USER"]
 group = "nginx"
 # preload_app = True
 
-pythonpath = "/home/razrab1/BBEdu"
+pythonpath = f'/home/{SECRETS["GUNICORN_USER"]}/BBEdu'
 
 # sudo systemctl daemon-reload && sudo systemctl restart gunicorn && sleep 1 && sudo systemctl status gunicorn
 # ExecStart=/usr/local/bin/gunicorn -c /home/dd/BBEdu/gunicorn/conf.py
