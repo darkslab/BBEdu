@@ -184,6 +184,9 @@ PIPELINE = {
     "PIPELINE_COLLECTOR_ENABLED": True,  # True if assets should be collected in develop , False if not.  (This only applies when PIPELINE_ENABLED is False.)
     "DISABLE_WRAPPER": True,
     "SHOW_ERRORS_INLINE": True,
+
+    'JS_COMPRESSOR': 'pipeline.compressors.NoopCompressor',
+
     "JAVASCRIPT": {
         "base0": {
             "source_filenames": BASE0_SOURCE_FILENAMES_JS,
