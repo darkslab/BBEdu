@@ -1,6 +1,19 @@
 """Gunicorn *development* config file"""
 
 import multiprocessing
+from pathlib import Path
+from json import load
+from re import match
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR_PATH = Path(BASE_DIR).resolve()
+try:
+    with (BASE_DIR_PATH / "secrets.json").open() as settings_file:
+        SECRETS = load(settings_file)
+except (OSError, ValueError):
+    pass
 
 # Django WSGI application path in pattern MODULE_NAME:VARIABLE_NAME
 wsgi_app = "bbedu.wsgi"
@@ -26,7 +39,7 @@ pidfile = "/var/run/gunicorn/prod.pid"
 # daemon = True
 
  
-user = "razrab1"
+user = SECRETS["GUNICORN_USER"]
 group = "nginx"
 # preload_app = True
 
