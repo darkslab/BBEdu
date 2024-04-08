@@ -38,8 +38,10 @@ def populate_package_student_group(package_code, student_group_name, prefix, amo
         print("ManagePackageStudentsFormView", package_name, group_obj.name, student_count)
         
         
+        count = 0
+
         for i in range(student_count + 1, student_count + amount + 1):
-            print(f"{i}/{amount}            ", end="\r")
+            print(f"Creating users {i}/{amount}            ", end="\r")
             # username = "{}{}{:03}".format(package_name, group_obj.name, i)
             username = "{}{:03}".format(group_obj.name, i)
             login_email =  None
@@ -62,17 +64,25 @@ def populate_package_student_group(package_code, student_group_name, prefix, amo
             except ValidationError:
                 writer.writerow([username, login_email, "already_exist"])
 
+            count += 1
+            if count % 100 == 0:
+                group_obj.student_count += 100
+                group_obj.save()
+
         if package_obj.finalized:
             test_set = package_obj.tests.order_by('section__order').all()
             domain = package_obj.domain
 
-            for student_obj in student_list:
+            for i, student_obj in enumerate(student_list):
                 quiz_set = student_obj.quiz_sets.create(test_domain=domain, cart=None)
                 for quiz_order, test in enumerate(test_set):
                     quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
                     # test.update(sales_count=(F("sales_count") + 1))
+                
+                print(f"Creating quizzes {i}/{len(student_list)}            ", end="\r")
 
-        group_obj.student_count += amount
+        group_obj.student_count = student_count + amount
+        group_obj.student_count = group_obj.students.count()
         group_obj.save()
         
         print("Success", "Created %s students." % amount)
