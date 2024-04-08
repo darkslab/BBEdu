@@ -9,8 +9,6 @@ import csv
 import uuid
 
 
-
-
 def create_students(username, email, password, is_active):
     user = User.objects.create_user(username=username, email=email, password=password)
     user.first_name = username
@@ -23,12 +21,13 @@ def create_students(username, email, password, is_active):
     user.user_permissions.set(permissions)
     return user
 
-def populate_package_student_group(package_code, student_group_id, prefix, amount = 1):
-    group_obj = StudentGroup.objects.get(pk=student_group_id)
+
+def populate_package_student_group(package_code, student_group_name, prefix, amount = 1):
+    group_obj = StudentGroup.objects.get(name=student_group_name)
     package_obj = TestPackage.objects.get(code = package_code)
 
     # initialize csv table response
-    with open("export_logins.csv", "w") as f:
+    with open("export_logins.csv", "w+") as f:
         writer = csv.writer(f)
 
 
@@ -50,7 +49,7 @@ def populate_package_student_group(package_code, student_group_id, prefix, amoun
             gen_pass = "{:05}".format(randint(1, 99999))
             
             try:
-                student_obj = self.create_students(username, login_email, gen_pass, group_obj.is_active)
+                student_obj = create_students(username, login_email, gen_pass, group_obj.is_active)
                 UserTestPackageProfile.objects.create(
                     student = student_obj,
                     student_group = group_obj,
@@ -78,3 +77,18 @@ def populate_package_student_group(package_code, student_group_id, prefix, amoun
         print("Success", "Created %s students." % amount)
             
 
+
+class Command(BaseCommand):
+    help = 'export student info (phone, email, etc.)' 
+
+
+    def handle(self, *args, **kwargs):
+        package_code = "2404085ebe"
+        student_group_name = "9084"
+        prefix = "9084"
+
+        # package_code = "240327a01c"
+        # student_group_name = "test_user"
+        # prefix = "nz"
+
+        populate_package_student_group(package_code, student_group_name, prefix, amount = 1)

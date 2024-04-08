@@ -1,4 +1,4 @@
-from bbtest.models import User, TestQuestion, TestSection
+from bbtest.models import User, TestQuestion, TestSection, Test
 from pprint import pprint
 import django
 # us = User.objects.all()
@@ -82,3 +82,7 @@ print(res)
 
 
 TestQuestion.objects.first()
+
+from bbtest.models import User, TestQuestion, TestSection, Test
+test = Test.objects.first()
+test.actual_question_count
