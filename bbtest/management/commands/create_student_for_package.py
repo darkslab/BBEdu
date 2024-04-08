@@ -39,6 +39,7 @@ def populate_package_student_group(package_code, student_group_name, prefix, amo
         
         
         for i in range(student_count + 1, student_count + amount + 1):
+            print(f"{i}/{amount}            ", end="\r")
             # username = "{}{}{:03}".format(package_name, group_obj.name, i)
             username = "{}{:03}".format(group_obj.name, i)
             login_email =  None
