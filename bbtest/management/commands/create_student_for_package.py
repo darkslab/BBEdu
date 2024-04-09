@@ -27,9 +27,8 @@ def populate_package_student_group(package_code, student_group_name, prefix, amo
     package_obj = TestPackage.objects.get(code = package_code)
 
     # initialize csv table response
-    with open("export_logins.csv", "w+") as f:
+    with open(f"export_logins_{package_code}_{student_group_name}.csv", "w+") as f:
         writer = csv.writer(f)
-
 
         student_count = group_obj.student_count 
         student_list = []
@@ -69,23 +68,23 @@ def populate_package_student_group(package_code, student_group_name, prefix, amo
                 group_obj.student_count += 100
                 group_obj.save()
 
-        if package_obj.finalized:
-            test_set = package_obj.tests.order_by('section__order').all()
-            domain = package_obj.domain
+    if package_obj.finalized:
+        test_set = package_obj.tests.order_by('section__order').all()
+        domain = package_obj.domain
 
-            for i, student_obj in enumerate(student_list):
-                quiz_set = student_obj.quiz_sets.create(test_domain=domain, cart=None)
-                for quiz_order, test in enumerate(test_set):
-                    quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
-                    # test.update(sales_count=(F("sales_count") + 1))
-                
-                print(f"Creating quizzes {i}/{len(student_list)}            ", end="\r")
+        for i, student_obj in enumerate(student_list):
+            quiz_set = student_obj.quiz_sets.create(test_domain=domain, cart=None)
+            for quiz_order, test in enumerate(test_set):
+                quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
+                # test.update(sales_count=(F("sales_count") + 1))
+            
+            print(f"Creating quizzes {i}/{len(student_list)}            ", end="\r")
 
-        group_obj.student_count = student_count + amount
-        group_obj.student_count = group_obj.students.count()
-        group_obj.save()
-        
-        print("Success", "Created %s students." % amount)
+    # group_obj.student_count = student_count + amount
+    group_obj.student_count = group_obj.students.count()
+    group_obj.save()
+    
+    print("Success", "Created %s students." % amount)
             
 
 
