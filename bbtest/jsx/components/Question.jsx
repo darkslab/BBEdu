@@ -136,7 +136,8 @@ class Question extends React.Component {
         }
 
         let periodicTable = null;
-        if (this.props.hasPeriodicTable.includes(this.props.count)) {
+        console.log(this.prop)
+        if (this.props.hasPeriodicTable & this.props.hasPeriodicTable.includes(this.props.count)) {
             let imgClassName = "img-responsive center-block bb-test-paragraph-image";
 
             periodicTable = <React.Fragment>

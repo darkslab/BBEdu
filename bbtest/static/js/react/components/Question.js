@@ -153,7 +153,8 @@ var Question = /*#__PURE__*/function (_React$Component) {
         }), countDown);
       }
       var periodicTable = null;
-      if (this.props.hasPeriodicTable.includes(this.props.count)) {
+      console.log(this.prop);
+      if (this.props.hasPeriodicTable & this.props.hasPeriodicTable.includes(this.props.count)) {
         var imgClassName = "img-responsive center-block bb-test-paragraph-image";
         periodicTable = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
           className: imgClassName,

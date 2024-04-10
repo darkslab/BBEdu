@@ -13,6 +13,11 @@
                 data: {
                     class: "DeveloperTest",
                     props: {
+                        hasCalculator: [0, 1, 2, 3],
+                        hasPeriodicTable: [0, 1, 2, 3],
+                        periodicTableUrl: "{% static 'img/Periodic_table_large.jpg' %}",
+                        periodicTableIconUrl: "{% static 'img/periodic-table-icon.png' %}",
+                        
                         spinnerLogo: "{% static 'img/logo2_spinner.png' %}",
                         questionUrl: "{% url 'bbtest:build_test_question' code %}",
                         questionIds: {{ question_ids|safe }},
