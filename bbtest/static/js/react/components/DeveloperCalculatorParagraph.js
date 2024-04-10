@@ -66,7 +66,7 @@ var DeveloperCalculatorParagraph = /*#__PURE__*/function (_React$Component) {
       }, sharedLabel, buttons, /*#__PURE__*/React.createElement("button", {
         type: "button",
         className: "btn btn-default btn-xs pull-right ml-5 invisible"
-      }, "Spacer"))), /*#__PURE__*/React.createElement("span", null, "(\u041A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440 \u0431\u0443\u0434\u0435\u0442 \u0434\u043E\u043F\u0443\u0441\u0442\u0435\u043D \u043D\u0430 \u043F\u0430\u043D\u0435\u043B\u0438 \u0432 \u043F\u0440\u0435\u0432\u044C\u044E)"));
+      }, "Spacer"))), /*#__PURE__*/React.createElement("span", null, "(\u041A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440 \u0431\u0443\u0434\u0435\u0442 \u0434\u043E\u043F\u0443\u0441\u0442\u0435\u043D \u043D\u0430 \u043F\u0430\u043D\u0435\u043B\u0438 \u0441\u0432\u0435\u0440\u0445\u0443)"));
     }
   }, {
     key: "_renderModal",
