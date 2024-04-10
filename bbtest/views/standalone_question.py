@@ -371,6 +371,8 @@ class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMix
 
         kwargs["comments"] = self._question.comments.order_by("-created_at").all() 
         kwargs["comment_form"] = QuestionCommentForm()
+
+        kwargs["has_periodic_table"] = [True]
         
         for comment in kwargs["comments"]:
             for permission in comment.sender.user_permissions.all():

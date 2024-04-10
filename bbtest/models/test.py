@@ -430,6 +430,8 @@ class TestQuestion(Model):
     created_at    = DateTimeField              ( pgettext_lazy("Model field", "created at"),         auto_now_add=True,                                                                   )
     updated_at    = DateTimeField              ( pgettext_lazy("Model field", "updated at"),         auto_now=True,                                                                       )
     last_comment_at    = DateTimeField         ( pgettext_lazy("Model field", "last_comment at"),    default=None,     null=True, blank=True                                              )
+    has_periodic_table   = BooleanField        ( pgettext_lazy("Model field", "has periodic table"), default=False)
+    has_calculator       = BooleanField        ( pgettext_lazy("Model field", "has calculator"),     default=False)
 
     objects = Manager()
     draft_questions = DraftQuestionManager()
