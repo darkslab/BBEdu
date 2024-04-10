@@ -140,7 +140,7 @@ class Question extends React.Component {
         if (this.props.hasPeriodicTable) {
             periodicTable = <React.Fragment>
                 <img
-                    className="periodicTableThumbnail mt-0 mb-0 pull-right" 
+                    className="periodicTableThumbnail mt-0 mb-0 mx-1 pull-right" 
                     src={this.props.periodicTableIconUrl}
                     alt="Thumbnail"
                     onClick={this._openOverlay}
@@ -191,8 +191,8 @@ class Question extends React.Component {
                             <div className="panel-heading bb-rel clearfix">
                                 <div className="bb-test-number">{this.props.count}</div>
                                 <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question} ({this.props.object.meta_data.question_code})</h4>
-                                {periodicTable}
                                 {timer}
+                                {periodicTable}
                             </div>
                             <div className="panel-body">
                                 <div className="mb-15">

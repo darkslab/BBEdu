@@ -229,7 +229,8 @@ class TestParagraphForm(ModelForm):
         elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_PERIODIC_TABLE:
             return {
                 "text": "",
-                "periodicTableUrl": static("img/Periodic_table_large.jpg")
+                "periodicTableUrl": static("img/Periodic_table_large.jpg"),
+                "periodicTableIconUrl": static("img/periodic-table-icon.png"),
             }
         elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_CALCULATOR:
             return {

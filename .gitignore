@@ -5,3 +5,6 @@
 /secrets.json
 /node_modules
 *.sql.gz
+BBEdu.code-workspace
+package-lock.json
+Pipfile

@@ -113,6 +113,7 @@ class StandaloneQuestion extends React.Component {
                                   hasPeriodicTable={this.props.hasPeriodicTable[this._statusData.questionIndex]} 
                                   periodicTableIconUrl={this.props.periodicTableIconUrl}
                                   periodicTableUrl={this.props.periodicTableUrl}
+                                  hasCalculator={this.props.hasTimer} 
                                   />
                         {/* <div className="row">
                             <div className="col-xs-12">
