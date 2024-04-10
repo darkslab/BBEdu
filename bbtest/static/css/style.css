@@ -1593,7 +1593,8 @@ html {
 
 /* Style for the thumbnail image */
 .periodicTableThumbnail {
-    width: 100px; /* Adjust the width of the thumbnail as needed */
+    /* width: 100px;  */  /* Adjust the width of the thumbnail as needed */
+    max-height: 60px;
     cursor: pointer;
 }
 

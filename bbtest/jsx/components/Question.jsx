@@ -137,13 +137,10 @@ class Question extends React.Component {
 
         let periodicTable = null;
         console.log(this.props)
-        // this.props.hasPeriodicTable & this.props.hasPeriodicTable.includes(this.props.count)
-        if (true) {
-            let imgClassName = "img-responsive center-block bb-test-paragraph-image";
-
+        if (this.props.hasPeriodicTable) {
             periodicTable = <React.Fragment>
                 <img
-                    className={imgClassName} 
+                    className="periodicTableThumbnail mt-0 mb-0 pull-right" 
                     src={this.props.periodicTableIconUrl}
                     alt="Thumbnail"
                     onClick={this._openOverlay}

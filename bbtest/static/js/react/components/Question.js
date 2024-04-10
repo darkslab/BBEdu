@@ -154,11 +154,9 @@ var Question = /*#__PURE__*/function (_React$Component) {
       }
       var periodicTable = null;
       console.log(this.props);
-      // this.props.hasPeriodicTable & this.props.hasPeriodicTable.includes(this.props.count)
-      if (true) {
-        var imgClassName = "img-responsive center-block bb-test-paragraph-image";
+      if (this.props.hasPeriodicTable) {
         periodicTable = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
-          className: imgClassName,
+          className: "periodicTableThumbnail mt-0 mb-0 pull-right",
           src: this.props.periodicTableIconUrl,
           alt: "Thumbnail",
           onClick: this._openOverlay
