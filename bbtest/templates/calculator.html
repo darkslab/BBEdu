@@ -1,16 +1,16 @@
 {% load i18n pipeline static %}
 
-{% block additional_libs %}
+{% comment %} {% block additional_libs %} {% endcomment %}
     {% comment %} <script src="{% static 'Calculator_files/linangcalc.js' %}"></script> {% endcomment %}
     {% comment %} <link rel="stylesheet" href="./Calculator_files/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> {% endcomment %}
     {% comment %} <link rel="stylesheet" href="{% static 'Calculator_files/calculator.css' %}"> {% endcomment %}
 	{% comment %} <script src="./Calculator_files/jquery.min.js.download"></script> {% endcomment %}
 	{% comment %} <script src="{% static 'Calculator_files/math.min.js' %}"></script> {% endcomment %}
 	{% comment %} <script type="text/javascript" src="{% static 'Calculator_files/calculator.js' %}"></script> {% endcomment %}
-{% endblock %}
+{% comment %} {% endblock %} {% endcomment %}
 
 
-<div id="embeddable" class="w-100 text-center mb-5" style="display: none">
+<div id="embeddable" class="w-100 text-right mb-5" style="display: none">
     <span data-calculator="" data-toggle="popover" data-original-title="" title="">
         <img src="{% static 'Calculator_files/48x48.png' %}">
     </span>
