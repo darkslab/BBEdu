@@ -186,7 +186,11 @@ var Test = /*#__PURE__*/function (_React$Component) {
             testTexts: this._statusData.testObject.texts(),
             secondsLeft: this._statusData.focused ? this._statusData.seconds : -1,
             texts: this.props.texts,
-            hasTimer: this.props.hasTimer
+            hasTimer: this.props.hasTimer,
+            hasPeriodicTable: this.props.hasPeriodicTable[this._statusData.questionIndex],
+            periodicTableIconUrl: this.props.periodicTableIconUrl,
+            periodicTableUrl: this.props.periodicTableUrl,
+            hasCalculator: this.props.hasTimer
           }), /*#__PURE__*/React.createElement("div", {
             className: "row"
           }, /*#__PURE__*/React.createElement("div", {
