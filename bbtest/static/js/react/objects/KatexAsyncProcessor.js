@@ -4,8 +4,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var KatexAsyncProcessor = /*#__PURE__*/function () {
   function KatexAsyncProcessor(callback, text) {
     _classCallCheck(this, KatexAsyncProcessor);
@@ -15,7 +15,7 @@ var KatexAsyncProcessor = /*#__PURE__*/function () {
     this._$container = $("<div></div>");
     ReactDOM.render(SimpleFormattedFragment(this._originalText), this._$container[0], this._doneRendering.bind(this));
   }
-  _createClass(KatexAsyncProcessor, [{
+  return _createClass(KatexAsyncProcessor, [{
     key: "stop",
     value: function stop() {
       this._isActive = false;
@@ -41,7 +41,6 @@ var KatexAsyncProcessor = /*#__PURE__*/function () {
       this._callback(this._$container.html(), this._originalText);
     }
   }]);
-  return KatexAsyncProcessor;
 }();
 function _load_calculator() {
   // Get placement
@@ -63,7 +62,6 @@ function _load_calculator() {
     // 	'number' (default), 'bignumber', or 'fraction'
     precision: 20 // Number of significant digits for BigNumbers
   });
-
   if (!math.percent) {
     math.percent = function (x, y) {
       return y / x * 100;
@@ -120,7 +118,6 @@ function _load_calculator() {
   }).on('hidden.bs.popover', function (e) {}).on('shown.bs.popover', function () {
     Calculator.init(); //Build calculator
   });
-
   var Calculator = {
     init: function init() {
       var $display = $("#display");
@@ -440,7 +437,6 @@ function _load_calculator() {
           $display.data("number", newValue);
           //$display.text(newValue);
         }
-
         setLastState();
       });
       $(".modifier-button").click(function (e) {
@@ -700,7 +696,6 @@ function _load_calculator() {
     }
   };
 }
-
 function _unload_calculator() {
   $('[data-calculator]').off();
   // $('[data-calculator]').off('hide.bs.popover')
