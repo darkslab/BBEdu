@@ -36,7 +36,7 @@ def populate_package_student_group(package_code, student_group_name, prefix, amo
     with open(f"{BASE_DIR}/logins/export_logins_{package_code}_{student_group_name}.csv", "w+") as f:
         writer = csv.writer(f)
 
-        student_count = group_obj.student_count 
+        student_count = group_obj.students.count()
         student_list = []
 
         package_name = package_obj.name
