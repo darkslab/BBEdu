@@ -67,8 +67,7 @@ class Question extends React.Component {
                         <div className="panel mb-15 panel-primary">
                             <div className="panel-heading bb-rel clearfix">
                                 <div className="bb-test-number">{this.props.count}</div>
-                                <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question}</h4>
-                                <h4 className="panel-title bb-test-title mt-15 mb-15 pull-right">{this.props.object.meta_data.question_code}</h4>
+                                <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question} ({this.props.object.meta_data.question_code})</h4>
                                 {timer}
                             </div>
                             <div className="panel-body">
