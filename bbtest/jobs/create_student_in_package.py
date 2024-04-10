@@ -1,4 +1,3 @@
-from django.core.management.base import BaseCommand
 from django.forms import ValidationError
 from bbtest.models import User, Test, StudentGroup, TestPackage, UserTestPackageProfile
 from django.contrib.contenttypes.models import ContentType
@@ -8,6 +7,10 @@ from random import randint
 import csv
 import uuid
 from django_rq import job
+from django.conf import settings
+from pathlib import Path
+
+BASE_DIR = Path(settings.BASE_DIR_PATH).resolve().parent
 
 
 def create_students(username, email, password, is_active):
@@ -28,15 +31,16 @@ def populate_package_student_group(package_code, student_group_name, prefix, amo
     group_obj = StudentGroup.objects.get(name=student_group_name)
     package_obj = TestPackage.objects.get(code = package_code)
 
+
     # initialize csv table response
-    with open(f"export_logins_{package_code}_{student_group_name}.csv", "w+") as f:
+    with open(f"{BASE_DIR}/logins/export_logins_{package_code}_{student_group_name}.csv", "w+") as f:
         writer = csv.writer(f)
 
         student_count = group_obj.student_count 
         student_list = []
 
         package_name = package_obj.name
-        print("ManagePackageStudentsFormView", package_name, group_obj.name, student_count)
+        print("populate_package_student_group", BASE_DIR,  package_name, group_obj.name, student_count)
         
         
         count = 0
@@ -80,7 +84,7 @@ def populate_package_student_group(package_code, student_group_name, prefix, amo
                 quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
                 # test.update(sales_count=(F("sales_count") + 1))
             
-            print(f"Creating quizzes {i}/{len(student_list)}            ", end="\r")
+            print(f"Creating quizzes {i}/{len(student_list)}     ", end="\r")
 
     # group_obj.student_count = student_count + amount
     group_obj.student_count = group_obj.students.count()

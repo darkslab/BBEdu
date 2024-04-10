@@ -26,7 +26,7 @@ from django.core.exceptions import ValidationError
 # User = get_user_model()
 from datetime import datetime
 from django.views.generic.base import TemplateResponseMixin, ContextMixin, View
-
+from bbtest.jobs.create_student_in_package import populate_package_student_group
 
 class BuildPackagesView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "package/create_package.html"
@@ -212,6 +212,24 @@ class ManagePackageCreateStudentGroupFormView(CreateStudentRequiredMixin, View):
 
 class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
     def post(self, request, package_code, student_group_id, *args, **kwargs):
+        form = ManagePackageStudentsForm(data=request.POST)
+        print("ManagePackageStudentsForm", form.is_valid())
+        if not form.is_valid():
+            error(request, "Could not create package! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
+            return redirect("bbtest:build_package", package_code)
+        
+        group_obj = get_object_or_404(StudentGroup.objects, pk=student_group_id)
+        package_obj = get_object_or_404(TestPackage.objects, code = package_code)
+
+        amount = int(form.cleaned_data["amount"])
+        prefix = form.cleaned_data["prefix"]
+
+        populate_package_student_group.delay(package_code, group_obj.name, prefix, amount)
+
+        success(request, f"Работа по созданию {amount} учеников начата на фоне, на данный момент визуализации нету.")
+        return redirect("bbtest:build_package", package_code)
+
+    def post_old(self, request, package_code, student_group_id, *args, **kwargs):
         form = ManagePackageStudentsForm(data=request.POST)
         print("ManagePackageStudentsForm", form.is_valid())
         if not form.is_valid():
