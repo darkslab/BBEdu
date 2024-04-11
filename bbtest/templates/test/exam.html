@@ -13,6 +13,12 @@
             data: {
                 class: "Test",
                 props: {
+                    hasCalculator:  "{{ has_calculator }}",
+                    hasPeriodicTable: "{{ has_periodic_table }}",
+                    periodicTableUrl: "{% static 'img/Periodic_table_large.jpg' %}",
+                    periodicTableIconUrl: "{% static 'img/periodic-table-icon.png' %}",
+                    calculatorIconUrl: "{% static 'Calculator_files/Calculator.512.png' %}",
+                    
                     hasTimer: true,
                     canEnd: true,
                     spinnerLogo: "{% static 'img/logo2_spinner.png' %}",
@@ -54,7 +60,7 @@
             }
         });
     </script>
-    {% include "../calculator.html" %}
+    {% comment %} {% include "../calculator.html" %} {% endcomment %}
     <div id="root" class="mt-10 mb-10">
         <div class="row">
             <div class="col-xs-12 bb-test-container">

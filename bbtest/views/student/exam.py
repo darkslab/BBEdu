@@ -12,17 +12,22 @@ from .mixins import CurrentQuizSetRequiredMixin
 from bbtest.http import TightJsonResponse
 from bbtest.models import Test, Quiz
 from bbtest.forms.exam import ExamReportForm
+from bbtest.utils.json import tight_dumps
 from bbtest.texts import test_instructions, test_video, test_instructions_title, inject_texts_into_response
 from django.contrib.messages import success, warning
 from django.utils.translation import pgettext_lazy, pgettext
 
 
 class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
-    template_name = "student/exam.html"
+    template_name = "test/exam.html"
 
     def get_context_data(self, **kwargs):
         kwargs["test_domain"] = self.quiz_set().test_domain
         kwargs["is_current"] = self.quiz_set().is_current
+
+        kwargs["has_periodic_table"] = tight_dumps([True] * self.current_quiz().test.question_count)
+        kwargs["has_calculator"] = tight_dumps([True] * self.current_quiz().test.question_count)
+
         return super().get_context_data(**kwargs)
 
 
