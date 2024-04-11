@@ -161,7 +161,7 @@ class DeveloperTest extends React.Component {
         return (
             <div className="row">
                 <div className="col-xs-12 col-sm-6">
-                    <button type="button" class="btn btn-info mr-5 mb-5" data-toggle="modal" data-target="[data-specification-modal]">{this.props.texts.testSpec}</button>
+                    <button type="button" className="btn btn-info mr-5 mb-5" data-toggle="modal" data-target="[data-specification-modal]">{this.props.texts.testSpec}</button>
                     <button type="button"
                             disabled={this.state.isQuestionSaving}
                             className="btn btn-success mr-5 mb-5"

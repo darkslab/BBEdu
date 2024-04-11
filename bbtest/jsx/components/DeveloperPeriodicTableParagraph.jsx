@@ -58,9 +58,9 @@ class DeveloperPeriodicTableParagraph extends React.Component {
                     
                 </div>
                 <div>
-                    <img class="periodicTableThumbnail" src={this.props.data.periodicTableUrl} width="100px" alt="PeriodicTableThumbnail" onClick={this._openOverlay.bind(this)}></img>
+                    <img className="periodicTableThumbnail" src={this.props.data.periodicTableUrl} width="100px" alt="PeriodicTableThumbnail" onClick={this._openOverlay.bind(this)}></img>
 
-                    <div id="periodicTableOverlay" class="periodicTableOverlay" onClick={this._closeOverlay.bind(this)}>
+                    <div id="periodicTableOverlay" className="periodicTableOverlay" onClick={this._closeOverlay.bind(this)}>
                         <img id="overlayPeriodicTableImage" src="" alt="PeriodicTableLarge"></img>
                     </div>
                 </div>

@@ -185,7 +185,7 @@ var DeveloperTest = /*#__PURE__*/function (_React$Component) {
         className: "col-xs-12 col-sm-6"
       }, /*#__PURE__*/React.createElement("button", {
         type: "button",
-        "class": "btn btn-info mr-5 mb-5",
+        className: "btn btn-info mr-5 mb-5",
         "data-toggle": "modal",
         "data-target": "[data-specification-modal]"
       }, this.props.texts.testSpec), /*#__PURE__*/React.createElement("button", {

@@ -74,14 +74,14 @@ var DeveloperPeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
         type: "button",
         className: "btn btn-default btn-xs pull-right ml-5 invisible"
       }, "Spacer"))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("img", {
-        "class": "periodicTableThumbnail",
+        className: "periodicTableThumbnail",
         src: this.props.data.periodicTableUrl,
         width: "100px",
         alt: "PeriodicTableThumbnail",
         onClick: this._openOverlay.bind(this)
       }), /*#__PURE__*/React.createElement("div", {
         id: "periodicTableOverlay",
-        "class": "periodicTableOverlay",
+        className: "periodicTableOverlay",
         onClick: this._closeOverlay.bind(this)
       }, /*#__PURE__*/React.createElement("img", {
         id: "overlayPeriodicTableImage",
