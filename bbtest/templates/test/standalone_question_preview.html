@@ -15,12 +15,14 @@
             data: {
                 class: "StandaloneQuestion",
                 props: {
-                    hasTimer: true,
-                    hasCalculator: [true, false, true, false, true, true],
-                    hasPeriodicTable: [true, true, false, false, true, true],
+                    hasTimer: false,
+                    hasCalculator:  "{{ has_calculator }}",
+                    hasPeriodicTable: "{{ has_periodic_table }}",
                     periodicTableUrl: "{% static 'img/Periodic_table_large.jpg' %}",
                     periodicTableIconUrl: "{% static 'img/periodic-table-icon.png' %}",
-                    // canEnd: false,
+                    calculatorIconUrl: "{% static 'Calculator_files/Calculator.512.png' %}",
+
+                    canEnd: false,
                     spinnerLogo: "{% static 'img/logo2_spinner.png' %}",
                     continueUrl: "{% url 'bbtest:build_standalone_question_preview_data' code %}",
                     startUrl: "{% url 'bbtest:build_standalone_question_preview_data' code %}",
@@ -285,7 +287,7 @@
             {% endif %}
         </div>
     </div>
-    {% include "../calculator.html" %}
+    {% comment %} {% include "../calculator.html" %} {% endcomment %}
     <div id="root" class="mb-10">
         <div class="row">
             <div class="col-xs-12 bb-test-container">

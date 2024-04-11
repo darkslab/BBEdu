@@ -108,12 +108,12 @@ var Question = /*#__PURE__*/function (_React$Component) {
   return _createClass(Question, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // _load_calculator()
+      _load_calculator();
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      // _unload_calculator()
+      _unload_calculator();
     }
   }, {
     key: "render",
@@ -186,6 +186,22 @@ var Question = /*#__PURE__*/function (_React$Component) {
           }
         })));
       }
+      var calculatorComponent = null;
+      if (this.props.hasCalculator) {
+        calculatorComponent = /*#__PURE__*/React.createElement("div", {
+          id: "embeddable",
+          className: "pull-right"
+        }, /*#__PURE__*/React.createElement("span", {
+          "data-calculator": "",
+          "data-toggle": "popover",
+          "data-original-title": "",
+          title: ""
+        }, /*#__PURE__*/React.createElement("img", {
+          className: "periodicTableThumbnail mt-0 mb-0",
+          src: this.props.calculatorIconUrl,
+          alt: "Thumbnail"
+        })));
+      }
       var answerContent = null;
       if (this.props.object.answer_class) {
         var AnswerClass = eval(this.props.object.answer_class);
@@ -210,7 +226,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
         className: "bb-test-number"
       }, this.props.count), /*#__PURE__*/React.createElement("h4", {
         className: "panel-title bb-test-title mt-15 mb-15 pull-left"
-      }, this.props.texts.question, " (", this.props.object.meta_data.question_code, ")"), periodicTable, timer), /*#__PURE__*/React.createElement("div", {
+      }, this.props.texts.question, " (", this.props.object.meta_data.question_code, ")"), timer, periodicTable, calculatorComponent), /*#__PURE__*/React.createElement("div", {
         className: "panel-body"
       }, /*#__PURE__*/React.createElement("div", {
         className: "mb-15"

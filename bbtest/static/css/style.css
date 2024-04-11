@@ -1595,6 +1595,8 @@ html {
 .periodicTableThumbnail {
     /* width: 100px;  */  /* Adjust the width of the thumbnail as needed */
     max-height: 60px;
+    margin-left: 1em;
+    margin-right: 1em;
     cursor: pointer;
 }
 

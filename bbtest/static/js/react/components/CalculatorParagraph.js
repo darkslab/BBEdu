@@ -28,12 +28,12 @@ var CalculatorParagraph = /*#__PURE__*/function (_React$Component) {
   return _createClass(CalculatorParagraph, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      document.getElementById('embeddable').style.display = 'block';
+      // document.getElementById('embeddable').style.display = 'block'
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      document.getElementById('embeddable').style.display = 'none';
+      // document.getElementById('embeddable').style.display = 'none'
     }
   }, {
     key: "render",

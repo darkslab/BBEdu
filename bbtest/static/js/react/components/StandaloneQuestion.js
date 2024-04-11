@@ -108,6 +108,9 @@ var StandaloneQuestion = /*#__PURE__*/function (_React$Component) {
               onClick: this._renderModal.bind(this, "end")
             }, this.props.texts.endButton)));
           }
+          var hasPeriodicTableList = JSON.parse(this.props.hasPeriodicTable);
+          var hasCalculatorList = JSON.parse(this.props.hasCalculator);
+          // console.log(hasPeriodicTableList, hasCalculatorList)
           content = /*#__PURE__*/React.createElement(React.Fragment, null, header, /*#__PURE__*/React.createElement(Question, {
             count: this._statusData.questionIndex + 1,
             object: this._statusData.testObject.question(this._statusData.questionIndex),
@@ -119,10 +122,11 @@ var StandaloneQuestion = /*#__PURE__*/function (_React$Component) {
             secondsLeft: this._statusData.focused ? this._statusData.seconds : -1,
             texts: this.props.texts,
             hasTimer: this.props.hasTimer,
-            hasPeriodicTable: this.props.hasPeriodicTable[this._statusData.questionIndex],
+            hasPeriodicTable: hasPeriodicTableList[this._statusData.questionIndex],
             periodicTableIconUrl: this.props.periodicTableIconUrl,
             periodicTableUrl: this.props.periodicTableUrl,
-            hasCalculator: this.props.hasTimer
+            hasCalculator: hasCalculatorList[this._statusData.questionIndex],
+            calculatorIconUrl: this.props.calculatorIconUrl
           }), endControl);
           break;
         default:

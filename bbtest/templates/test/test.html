@@ -13,10 +13,11 @@
                 data: {
                     class: "DeveloperTest",
                     props: {
-                        hasCalculator: [true, false, true, false, true, true],
-                        hasPeriodicTable: [true, true, false, false, true, true],
+                        hasCalculator:  "{{ has_calculator }}",
+                        hasPeriodicTable: "{{ has_periodic_table }}",
                         periodicTableUrl: "{% static 'img/Periodic_table_large.jpg' %}",
                         periodicTableIconUrl: "{% static 'img/periodic-table-icon.png' %}",
+                        calculatorIconUrl: "{% static 'Calculator_files/Calculator.512.png' %}",
                         
                         spinnerLogo: "{% static 'img/logo2_spinner.png' %}",
                         questionUrl: "{% url 'bbtest:build_test_question' code %}",

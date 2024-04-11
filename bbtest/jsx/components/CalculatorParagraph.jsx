@@ -7,10 +7,10 @@ class CalculatorParagraph extends React.Component {
         };
     }
     componentDidMount() {
-        document.getElementById('embeddable').style.display = 'block'
+        // document.getElementById('embeddable').style.display = 'block'
     }
     componentWillUnmount() {
-        document.getElementById('embeddable').style.display = 'none'
+        // document.getElementById('embeddable').style.display = 'none'
     }
 
     render() {

@@ -136,6 +136,10 @@ class TestView(StaffPermissionRequiredMixin, UserContextMixin, TemplateView):
         for data in test.questions.values("id").order_by("testtoquestionrelation"):
             question_ids.append(data["id"])
         kwargs["question_ids"] = tight_dumps(question_ids)
+
+        kwargs["has_periodic_table"] = tight_dumps([True] * test.question_count)
+        kwargs["has_calculator"] = tight_dumps([True] * test.question_count)
+
         return super().get_context_data(**kwargs)
 
 
@@ -413,6 +417,9 @@ class TestPreviewView(StaffPermissionRequiredMixin, UserContextMixin, FormView):
         kwargs["language"] = None
 
         kwargs["test_unfinished"] = self._test.question_count != self._test.actual_question_count
+
+        kwargs["has_periodic_table"] = tight_dumps([True] * self._test.question_count)
+        kwargs["has_calculator"] = tight_dumps([True] * self._test.question_count)
 
         if self._test.language != Test.LANGUAGE_XX:
             kwargs["language"] = next(test_language[1] for test_language in Test.LANGUAGES if test_language[0] == self._test.language)

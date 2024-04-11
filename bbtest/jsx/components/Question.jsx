@@ -28,10 +28,10 @@ class Question extends React.Component {
     }
 
     componentDidMount() {
-        // _load_calculator()
+        _load_calculator()
     }
     componentWillUnmount() {
-        // _unload_calculator()
+        _unload_calculator()
     }
 
     _startDrag = (e) => {
@@ -140,7 +140,7 @@ class Question extends React.Component {
         if (this.props.hasPeriodicTable) {
             periodicTable = <React.Fragment>
                 <img
-                    className="periodicTableThumbnail mt-0 mb-0 mx-1 pull-right" 
+                    className="periodicTableThumbnail mt-0 mb-0 pull-right" 
                     src={this.props.periodicTableIconUrl}
                     alt="Thumbnail"
                     onClick={this._openOverlay}
@@ -169,6 +169,20 @@ class Question extends React.Component {
                 </div>
             </React.Fragment>
         }
+        
+        let calculatorComponent = null;
+        if (this.props.hasCalculator) {
+            calculatorComponent = <div id="embeddable" className="pull-right">
+                <span data-calculator="" data-toggle="popover" data-original-title="" title="">
+
+                    <img className="periodicTableThumbnail mt-0 mb-0"
+                        src={this.props.calculatorIconUrl}
+                        alt="Thumbnail"
+                    >
+                    </img>
+                </span>
+            </div>
+        }
 
         let answerContent = null;
         if (this.props.object.answer_class) {
@@ -193,6 +207,7 @@ class Question extends React.Component {
                                 <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question} ({this.props.object.meta_data.question_code})</h4>
                                 {timer}
                                 {periodicTable}
+                                {calculatorComponent}
                             </div>
                             <div className="panel-body">
                                 <div className="mb-15">

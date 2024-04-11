@@ -21,14 +21,12 @@ class Test extends React.Component {
 
         $(window).on("blur", this._boundWindowBlur);
         $(window).on("focus", this._boundWindowFocus);
-        _load_calculator()
     }
     componentWillUnmount() {
         this._stop();
 
         $(window).off("blur", this._boundWindowBlur);
         $(window).off("focus", this._boundWindowFocus);
-        _unload_calculator();
     }
     render() {
         let content = null;
@@ -149,6 +147,11 @@ class Test extends React.Component {
                     );
                 }
 
+
+                const hasPeriodicTableList = JSON.parse(this.props.hasPeriodicTable)
+                const hasCalculatorList = JSON.parse(this.props.hasCalculator)
+                // console.log(hasPeriodicTableList, hasCalculatorList)
+
                 content = (
                     <React.Fragment>
                         {header}
@@ -170,10 +173,11 @@ class Test extends React.Component {
                                   secondsLeft={this._statusData.focused ? this._statusData.seconds : -1}
                                   texts={this.props.texts}
                                   hasTimer={this.props.hasTimer} 
-                                  hasPeriodicTable={this.props.hasPeriodicTable[this._statusData.questionIndex]} 
+                                  hasPeriodicTable={hasPeriodicTableList[this._statusData.questionIndex]} 
                                   periodicTableIconUrl={this.props.periodicTableIconUrl}
                                   periodicTableUrl={this.props.periodicTableUrl}
-                                  hasCalculator={this.props.hasTimer} 
+                                  hasCalculator={hasCalculatorList[this._statusData.questionIndex]} 
+                                  calculatorIconUrl={this.props.calculatorIconUrl}
                                   />
                         <div className="row">
                             <div className="col-xs-12">

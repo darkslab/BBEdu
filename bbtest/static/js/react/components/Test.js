@@ -40,7 +40,6 @@ var Test = /*#__PURE__*/function (_React$Component) {
       this._continue(true, false);
       $(window).on("blur", this._boundWindowBlur);
       $(window).on("focus", this._boundWindowFocus);
-      _load_calculator();
     }
   }, {
     key: "componentWillUnmount",
@@ -48,7 +47,6 @@ var Test = /*#__PURE__*/function (_React$Component) {
       this._stop();
       $(window).off("blur", this._boundWindowBlur);
       $(window).off("focus", this._boundWindowFocus);
-      _unload_calculator();
     }
   }, {
     key: "render",
@@ -166,6 +164,10 @@ var Test = /*#__PURE__*/function (_React$Component) {
               onClick: this._renderModal.bind(this, "end")
             }, this.props.texts.endButton)));
           }
+          var hasPeriodicTableList = JSON.parse(this.props.hasPeriodicTable);
+          var hasCalculatorList = JSON.parse(this.props.hasCalculator);
+          // console.log(hasPeriodicTableList, hasCalculatorList)
+
           content = /*#__PURE__*/React.createElement(React.Fragment, null, header, /*#__PURE__*/React.createElement("div", {
             className: "row"
           }, /*#__PURE__*/React.createElement("div", {
@@ -187,10 +189,11 @@ var Test = /*#__PURE__*/function (_React$Component) {
             secondsLeft: this._statusData.focused ? this._statusData.seconds : -1,
             texts: this.props.texts,
             hasTimer: this.props.hasTimer,
-            hasPeriodicTable: this.props.hasPeriodicTable[this._statusData.questionIndex],
+            hasPeriodicTable: hasPeriodicTableList[this._statusData.questionIndex],
             periodicTableIconUrl: this.props.periodicTableIconUrl,
             periodicTableUrl: this.props.periodicTableUrl,
-            hasCalculator: this.props.hasTimer
+            hasCalculator: hasCalculatorList[this._statusData.questionIndex],
+            calculatorIconUrl: this.props.calculatorIconUrl
           }), /*#__PURE__*/React.createElement("div", {
             className: "row"
           }, /*#__PURE__*/React.createElement("div", {
