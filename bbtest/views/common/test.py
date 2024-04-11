@@ -2,7 +2,7 @@ from django.db.models import Prefetch
 from django.core.cache import cache
 from django.utils.timezone import get_current_timezone
 from datetime import datetime
-from bbtest.models import TestQuestion, TestParagraph, Quiz
+from bbtest.models import TestQuestion, TestParagraph, Quiz, TestToQuestionRelation
 from bbtest.models.upload import expiring_url
 
 
@@ -13,11 +13,21 @@ def inject_questions_and_report_into_started_response(response, test, hide_answe
         "observation": {},
     }
 
+    # Get the `TestQuestion` instances related to the `test_instance` in the specified order
+    questions_in_order = test.through.filter(
+        test=test
+    ).order_by('order').prefetch_related("question", Prefetch("question__paragraphs", queryset=TestParagraph.objects.order_by("through").all()))
+
+    # Extract the questions from the intermediary model in order
+    questions = [relation.question for relation in questions_in_order]
+
+
     paragraphs_map = {}
     paragraphs_questions = {}
-    for question in test.questions.prefetch_related(
-        Prefetch("paragraphs", queryset=TestParagraph.objects.order_by("through").all()),
-    ).all():
+    # for question in test.questions.prefetch_related(
+    #     Prefetch("paragraphs", queryset=TestParagraph.objects.order_by("through").all()),
+    # ).all():
+    for question in questions:
         _answer = {
             "answer": None,
             "observation": {},
