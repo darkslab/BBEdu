@@ -247,7 +247,7 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
         amount = int(form.cleaned_data["amount"])
         prefix = form.cleaned_data["prefix"]
         
-        student_count = group_obj.student_count 
+        student_count = group_obj.students.count()
         student_list = []
 
         package_name = package_obj.name
@@ -287,7 +287,7 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
                     quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
                     # test.update(sales_count=(F("sales_count") + 1))
 
-        group_obj.student_count += amount
+        group_obj.student_count = group_obj.students.count()
         group_obj.save()
         
         success(request, "Created %s students." % amount)
