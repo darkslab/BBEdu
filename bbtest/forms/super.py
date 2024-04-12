@@ -77,7 +77,7 @@ class CreateStudentsForm(Form):
             "max_value": "Amount cannot be more than %(limit_value)s.",
             "min_value": "Amount has to be at least %(limit_value)s.",
         },
-        max_value=1000,
+        max_value=100000,
         min_value=1,
     )
 
@@ -150,7 +150,7 @@ class ManagePackageStudentsForm(Form):
             "max_value": "Amount cannot be more than %(limit_value)s.",
             "min_value": "Amount has to be at least %(limit_value)s.",
         },
-        max_value=1000,
+        max_value=100000,
         min_value=1,
     )
 
@@ -228,7 +228,7 @@ class CreateCustomTestSelectionForm(Form):
             "max_value": "Amount cannot be more than %(limit_value)s.",
             "min_value": "Amount has to be at least %(limit_value)s.",
         },
-        max_value=1000,
+        max_value=10000000,
         min_value=1,
     )
 
