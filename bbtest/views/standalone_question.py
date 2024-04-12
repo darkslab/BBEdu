@@ -216,9 +216,9 @@ class ApproveQuestionView(ExpertPermissionRequiredMixin, View):
         return redirect("bbtest:questions")
 
 
-class RefuseQuestionView(ExpertPermissionRequiredMixin, View): # TODO
+class RefuseQuestionView(StaffPermissionRequiredMixin, View): # TODO
     def post(self, request, code, *args, **kwargs):
-        question = get_object_or_404(TestQuestion.pending_questions.select_related("developer"), code=code)
+        question = get_object_or_404(TestQuestion.objects.select_related("developer"), code=code)  # pending_questions
         if question.developer.has_perm("bbtest.super"):
             raise Http404("Superusers can only refuse questions of other developers")
 
