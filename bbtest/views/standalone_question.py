@@ -339,8 +339,8 @@ class StandaloneQuestionView(StaffPermissionRequiredMixin, UserContextMixin, Tem
         #     kwargs["language"] = next(test_language[1] for test_language in Test.LANGUAGES if test_language[0] == question.language)
         kwargs["specification"] = test_specification(question.section, kwargs["language"], get_language())
 
-        kwargs["has_periodic_table"] = tight_dumps([True])
-        kwargs["has_calculator"] = tight_dumps([True])
+        kwargs["has_periodic_table"] = tight_dumps([question.has_periodic_table])
+        kwargs["has_calculator"] = tight_dumps([question.has_calculator])
 
         # question_ids = []
         # for data in question.questions.values("id").order_by("order"):
@@ -375,8 +375,8 @@ class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMix
         kwargs["comments"] = self._question.comments.order_by("-created_at").all() 
         kwargs["comment_form"] = QuestionCommentForm()
 
-        kwargs["has_periodic_table"] = tight_dumps([True])
-        kwargs["has_calculator"] = tight_dumps([True])
+        kwargs["has_periodic_table"] = tight_dumps([self._question.has_periodic_table])
+        kwargs["has_calculator"] = tight_dumps([self._question.has_calculator])
         
         for comment in kwargs["comments"]:
             for permission in comment.sender.user_permissions.all():

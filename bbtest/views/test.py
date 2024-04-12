@@ -132,13 +132,19 @@ class TestView(StaffPermissionRequiredMixin, UserContextMixin, TemplateView):
         if test.language != Test.LANGUAGE_XX:
             kwargs["language"] = next(test_language[1] for test_language in Test.LANGUAGES if test_language[0] == test.language)
         kwargs["specification"] = test_specification(test.section, test.language, get_language())
-        question_ids = []
-        for data in test.questions.values("id").order_by("testtoquestionrelation"):
-            question_ids.append(data["id"])
-        kwargs["question_ids"] = tight_dumps(question_ids)
 
-        kwargs["has_periodic_table"] = tight_dumps([True] * test.question_count)
-        kwargs["has_calculator"] = tight_dumps([True] * test.question_count)
+        question_ids = []
+        question_has_calculator = []
+        question_has_periodic_table = []
+
+        for data in test.questions.values("id", "has_calculator", "has_periodic_table").order_by("testtoquestionrelation"):
+            question_ids.append(data["id"])
+            question_has_calculator.append(data["has_calculator"])
+            question_has_periodic_table.append(data["has_periodic_table"])
+
+        kwargs["question_ids"] = tight_dumps(question_ids)
+        kwargs["has_periodic_table"] = tight_dumps(question_has_periodic_table)
+        kwargs["has_calculator"] = tight_dumps(question_has_calculator)
 
         return super().get_context_data(**kwargs)
 
@@ -418,8 +424,10 @@ class TestPreviewView(StaffPermissionRequiredMixin, UserContextMixin, FormView):
 
         kwargs["test_unfinished"] = self._test.question_count != self._test.actual_question_count
 
-        kwargs["has_periodic_table"] = tight_dumps([True] * self._test.question_count)
-        kwargs["has_calculator"] = tight_dumps([True] * self._test.question_count)
+        question_list = self._test.questions.values("id", "has_calculator", "has_periodic_table").order_by("testtoquestionrelation")
+
+        kwargs["has_periodic_table"] = tight_dumps([q["has_periodic_table"] for q in question_list])
+        kwargs["has_calculator"] = tight_dumps([q["has_calculator"] for q in question_list])
 
         if self._test.language != Test.LANGUAGE_XX:
             kwargs["language"] = next(test_language[1] for test_language in Test.LANGUAGES if test_language[0] == self._test.language)
