@@ -26,7 +26,7 @@ def create_students(username, email, password, is_active):
     return user
 
 
-@job("low")
+@job("default", timeout=600000000)
 def populate_package_student_group(package_code, student_group_name, prefix, amount = 1):
     group_obj = StudentGroup.objects.get(name=student_group_name)
     package_obj = TestPackage.objects.get(code = package_code)
@@ -48,7 +48,7 @@ def populate_package_student_group(package_code, student_group_name, prefix, amo
         for i in range(student_count + 1, student_count + amount + 1):
             print(f"Creating users {i}/{amount}            ", end="\r")
             # username = "{}{}{:03}".format(package_name, group_obj.name, i)
-            username = "{}{:03}".format(group_obj.name, i)
+            username = "{}{:05}".format(group_obj.name, i)
             login_email =  None
             if len(prefix) > 0:
                 login_email = "{}_{}@not.real.email.kz".format(prefix, uuid.uuid4().hex[:12])
