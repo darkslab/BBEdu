@@ -34,6 +34,9 @@ class QuestionView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMix
         else:
             raise PermissionDenied()
 
+
+        kwargs["active_nav_item"] = "questionbank"
+
         kwargs["statuses"] = [[str(a), b] for a,b in TestQuestion.STATUSES]
 
         print("self.request.GET", self.request.GET)

@@ -40,6 +40,7 @@
                             <li class="{% block nav_admin_create_package_class %}{% endblock %}"><a href="{% url 'bbtest:build_packages' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Manage Packages' context 'Navigation link' %}</a></li>
                             {% comment %} <li class="{% block nav_admin_export_data_class %}{% endblock %}"><a href="{% url 'bbtest:super_export_data' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Export Data' context 'Navigation link' %}</a></li> {% endcomment %}
                             <li class="{% if active_nav_item|default:'' == 'testbank' %}active{% endif %}"><a href="{% url 'bbtest:build_assemble_tests' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Test Assemle' context 'Navigation link' %}</a></li>
+                            <li class="{% if active_nav_item|default:'' == 'questionbank' %}active{% endif %}"><a href="{% url 'bbtest:super_questions' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Question Bank' context 'Navigation link' %}</a></li>
                         
                         {% elif perms.bbtest.expert %}
                             <li class="{% block nav_expert_dashboard_class %}{% endblock %}"><a href="{% url 'bbtest:expert_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li>
