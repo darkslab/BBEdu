@@ -138,7 +138,7 @@ class Question extends React.Component {
         }
 
         let periodicTable = null;
-        console.log(this.props)
+        // console.log(this.props)
         if (this.props.hasPeriodicTable) {
             console.log("Question hasPeriodicTable")
             periodicTable = <React.Fragment>

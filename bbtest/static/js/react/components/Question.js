@@ -155,7 +155,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
         }), countDown);
       }
       var periodicTable = null;
-      console.log(this.props);
+      // console.log(this.props)
       if (this.props.hasPeriodicTable) {
         console.log("Question hasPeriodicTable");
         periodicTable = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
