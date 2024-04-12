@@ -109,11 +109,13 @@ var Question = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       _load_calculator();
+      console.log("Question componentDidMount");
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       _unload_calculator();
+      console.log("Question componentWillUnmount");
     }
   }, {
     key: "render",
@@ -155,6 +157,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
       var periodicTable = null;
       console.log(this.props);
       if (this.props.hasPeriodicTable) {
+        console.log("Question hasPeriodicTable");
         periodicTable = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
           className: "periodicTableThumbnail mt-0 mb-0 pull-right",
           src: this.props.periodicTableIconUrl,
@@ -188,9 +191,11 @@ var Question = /*#__PURE__*/function (_React$Component) {
       }
       var calculatorComponent = null;
       if (this.props.hasCalculator) {
+        console.log("Question hasCalculator");
         calculatorComponent = /*#__PURE__*/React.createElement("div", {
           id: "embeddable",
-          className: "pull-right"
+          className: "pull-right",
+          onClick: _load_calculator()
         }, /*#__PURE__*/React.createElement("span", {
           "data-calculator": "",
           "data-toggle": "popover",
@@ -201,6 +206,10 @@ var Question = /*#__PURE__*/function (_React$Component) {
           src: this.props.calculatorIconUrl,
           alt: "Thumbnail"
         })));
+        setTimeout(function () {
+          _load_calculator();
+          console.log("Question hasCalculator _load_calculator");
+        }, 1000);
       }
       var answerContent = null;
       if (this.props.object.answer_class) {

@@ -45,7 +45,7 @@ class DeveloperPeriodicTableParagraph extends React.Component {
                               complete={this._completeModal.bind(this)} />
             );
         }
-        console.log("this.props", this.props)
+        // console.log("this.props", this.props)
         return (
             <React.Fragment>
                 {modal}

@@ -33,6 +33,8 @@ class KatexAsyncProcessor {
 
 function _load_calculator() {
 
+    console.log("called _load_calculator")
+
     // Get placement
     const queryString = window.location.search;
     // console.log(queryString);

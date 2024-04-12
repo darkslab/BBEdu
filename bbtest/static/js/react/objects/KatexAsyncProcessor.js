@@ -43,6 +43,8 @@ var KatexAsyncProcessor = /*#__PURE__*/function () {
   }]);
 }();
 function _load_calculator() {
+  console.log("called _load_calculator");
+
   // Get placement
   var queryString = window.location.search;
   // console.log(queryString);

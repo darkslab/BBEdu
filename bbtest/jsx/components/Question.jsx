@@ -29,9 +29,11 @@ class Question extends React.Component {
 
     componentDidMount() {
         _load_calculator()
+        console.log("Question componentDidMount")
     }
     componentWillUnmount() {
         _unload_calculator()
+        console.log("Question componentWillUnmount")
     }
 
     _startDrag = (e) => {
@@ -138,6 +140,7 @@ class Question extends React.Component {
         let periodicTable = null;
         console.log(this.props)
         if (this.props.hasPeriodicTable) {
+            console.log("Question hasPeriodicTable")
             periodicTable = <React.Fragment>
                 <img
                     className="periodicTableThumbnail mt-0 mb-0 pull-right" 
@@ -172,8 +175,9 @@ class Question extends React.Component {
         
         let calculatorComponent = null;
         if (this.props.hasCalculator) {
-            calculatorComponent = <div id="embeddable" className="pull-right">
-                <span data-calculator="" data-toggle="popover" data-original-title="" title="">
+            console.log("Question hasCalculator")
+            calculatorComponent = <div id="embeddable" className="pull-right" onClick={_load_calculator()}>
+                <span data-calculator="" data-toggle="popover" data-original-title="" title="" >
 
                     <img className="periodicTableThumbnail mt-0 mb-0"
                         src={this.props.calculatorIconUrl}
@@ -182,6 +186,12 @@ class Question extends React.Component {
                     </img>
                 </span>
             </div>
+
+            setTimeout(() => { 
+                _load_calculator(); 
+                console.log("Question hasCalculator _load_calculator")
+            }, 1000); 
+            
         }
 
         let answerContent = null;

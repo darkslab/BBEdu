@@ -64,7 +64,7 @@ var DeveloperPeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
           complete: this._completeModal.bind(this)
         });
       }
-      console.log("this.props", this.props);
+      // console.log("this.props", this.props)
       return /*#__PURE__*/React.createElement(React.Fragment, null, modal, /*#__PURE__*/React.createElement("div", {
         className: paragraphClassName,
         "data-paragraph-id": this.props.paragraphId
