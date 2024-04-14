@@ -26,7 +26,9 @@ from django.core.exceptions import ValidationError
 # User = get_user_model()
 from datetime import datetime
 from django.views.generic.base import TemplateResponseMixin, ContextMixin, View
-from bbtest.jobs.create_student_in_package import populate_package_student_group
+from bbtest.jobs.create_student_in_package import populate_package_student_group, activate_package
+from django.conf import settings
+
 
 class BuildPackagesView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "package/create_package.html"
@@ -370,3 +372,35 @@ class ActivateStudentGroupToggleView(AdminPermissionRequiredMixin, View):
         group_obj.save()
         
         return redirect("bbtest:build_package", package_code)
+    
+
+class ActivateStudentTurnON(AdminPermissionRequiredMixin, View): 
+
+    def post(self, request, package_code, student_group_id,  *args, **kwargs):
+        print("ActivateStudentTurnON", package_code)
+        group_obj = get_object_or_404(StudentGroup.objects, pk=student_group_id)
+        if settings.DEBUG:
+            # group_obj.students.update(student__is_active=True)
+            # User.objects.filter(student_test_profile=group_obj).count()
+            User.objects.filter(student_test_profile__isnull=False, student_test_profile__student_group=group_obj).update(is_active=True)
+            group_obj.is_active = True
+            group_obj.save()
+        else:
+            activate_package.delay(group_obj, True)
+
+        return redirect("bbtest:build_package", package_code)
+    
+
+class ActivateStudentTurnOFF(AdminPermissionRequiredMixin, View): 
+
+    def post(self, request, package_code, student_group_id,  *args, **kwargs):
+        print("ActivateStudentTurnOFF", package_code)
+        group_obj = get_object_or_404(StudentGroup.objects, pk=student_group_id)
+        if settings.DEBUG:
+            User.objects.filter(student_test_profile__isnull=False, student_test_profile__student_group=group_obj).update(is_active=False)
+            group_obj.is_active = False
+            group_obj.save()
+        else:
+            activate_package.delay(group_obj, False)
+        return redirect("bbtest:build_package", package_code)
+        

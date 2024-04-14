@@ -97,6 +97,19 @@ asd2 = TestQuestion.objects.filter(paragraphs__paragraph_class=TestParagraph.PAR
 
 TestQuestion.objects.filter(has_calculator=True).count()
 
-from bbtest.models import User, TestQuestion, TestSection, Test
+from bbtest.models import User, TestQuestion, TestSection, Test, StudentGroup
 test = Test.objects.first()
 test.actual_question_count
+
+
+
+group_obj = StudentGroup.objects.get(name="test_user")
+# group_obj.students.update(student__is_active=True)
+User.student_test_profile.filter(student_test_profile=group_obj).count()
+
+
+
+User.objects.filter(student_test_profile__isnull=False, student_test_profile__student_group=group_obj).count()
+
+
+User.objects.filter(student_test_profile__isnull=False, student_test_profile__student_group=group_obj).update(is_active=False)

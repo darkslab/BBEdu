@@ -91,4 +91,15 @@ def populate_package_student_group(package_code, student_group_name, prefix, amo
     group_obj.save()
     
     print("Success", "Created %s students." % amount)
-            
+
+
+
+@job("default", timeout=600000000)
+def activate_package(group_obj: StudentGroup, active_state: bool):
+    User.objects.filter(student_test_profile__isnull=False, student_test_profile__student_group=group_obj).update(is_active=True)
+    group_obj.is_active = active_state
+    group_obj.save()
+
+    # for student_test_profile_obj in group_obj.students.all():
+    #     student_test_profile_obj.student.is_active = is_active
+    #     student_test_profile_obj.student.save()

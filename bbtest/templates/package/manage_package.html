@@ -208,7 +208,7 @@
                                         {% endif %}
                                     </td>
                                     <td class="pr-15 text-center">
-                                        <form action="{% url 'bbtest:build_toggle_student_group' package.code student_group.pk %}" method="post">
+                                        {% comment %} <form action="{% url 'bbtest:build_toggle_student_group' package.code student_group.pk %}" method="post">
                                             {% csrf_token %}
                                             {% if not student_group.is_active %}
                                                 <button type="submit" class="btn btn-primary btn-xs mr-5 mb-5" {% if not package.finalized %}disabled{%endif%}>
@@ -219,6 +219,18 @@
                                                     {% trans 'Untoggle' context '/build/packages/PACKAGE_CODE/' %} 
                                                 </button>
                                             {% endif %}
+                                        </form> {% endcomment %}
+                                        <form action="{% url 'bbtest:build_turnon_student_group' package.code student_group.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary btn-xs mr-5 mb-5" {% if not package.finalized %}disabled{%endif%}>
+                                                {% trans 'Toggle' context '/build/packages/PACKAGE_CODE/' %} 
+                                            </button>
+                                        </form>
+                                        <form action="{% url 'bbtest:build_turnoff_student_group' package.code student_group.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5" {% if not package.finalized %}disabled{%endif%}>
+                                                {% trans 'Untoggle' context '/build/packages/PACKAGE_CODE/' %} 
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>

@@ -62,6 +62,8 @@ from .views.package import (
     RemoveTestFromPackageView,
     FinalizePackageView,
     ActivateStudentGroupToggleView,
+    ActivateStudentTurnOFF,
+    ActivateStudentTurnON,
 )
 
 from .views.student import (
@@ -179,7 +181,9 @@ urlpatterns = [
     re_path(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/$",                                               BuildPackageView.as_view(),                 name="build_package" ),
     re_path(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<student_group_id>\d+)?$",                     BuildStudentGroupView.as_view(),            name="build_student_group" ),
     re_path(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<student_group_id>\d+)?/add-students/$",       ManagePackageStudentsFormView.as_view(),    name="build_package_add_students" ),
-    re_path(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<student_group_id>\d+)?/toggle-group/$",       ActivateStudentGroupToggleView.as_view(),   name="build_toggle_student_group"),
+    # re_path(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<student_group_id>\d+)?/toggle-group/$",       ActivateStudentGroupToggleView.as_view(),   name="build_toggle_student_group"),
+    re_path(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<student_group_id>\d+)?/turnon-group/$",       ActivateStudentTurnON.as_view(),            name="build_turnon_student_group"),
+    re_path(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/(?P<student_group_id>\d+)?/turnoff-group/$",      ActivateStudentTurnOFF.as_view(),           name="build_turnoff_student_group"),
 
     re_path(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/add-test/$",                                      ManagePackageTestFormView.as_view(),        name="build_package_add_test" ),
     re_path(r"^build/packages/(?P<package_code>[0-9A-Fa-f]{6,10})/create-student-group/$",                          ManagePackageCreateStudentGroupFormView.as_view(),    name="build_package_create_student_group" ),
