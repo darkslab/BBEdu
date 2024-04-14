@@ -128,9 +128,11 @@
                                         <dd>{{ user_object.last_login|date:'SHORT_DATETIME_FORMAT' }} ({{ now_at|timeuntil:user_object.last_login }})</dd>
                                     </dl>
                                 </div>
-                                <!-- <div class="form-group">
-                                    <button type="button" class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="[data-impersonate-modal]">Impersonate</button>
-                                </div> -->
+                                {% if perms.bbtest.super %}
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="[data-impersonate-modal]">Impersonate</button>
+                                    </div>
+                                {% endif %}
                             </form>
                         </div>
                     </div>
