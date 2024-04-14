@@ -18,6 +18,7 @@ class Test extends React.Component {
     }
     componentDidMount() {
         this._continue(true, false);
+        // _load_calculator()
 
         $(window).on("blur", this._boundWindowBlur);
         $(window).on("focus", this._boundWindowFocus);
@@ -25,6 +26,7 @@ class Test extends React.Component {
     componentWillUnmount() {
         this._stop();
 
+        // _unload_calculator()
         $(window).off("blur", this._boundWindowBlur);
         $(window).off("focus", this._boundWindowFocus);
     }

@@ -28,8 +28,8 @@ class Question extends React.Component {
     }
 
     componentDidMount() {
-        _load_calculator()
-        console.log("Question componentDidMount")
+        // _load_calculator()
+        // console.log("Question componentDidMount")
     }
     componentWillUnmount() {
         _unload_calculator()
@@ -174,9 +174,12 @@ class Question extends React.Component {
         }
         
         let calculatorComponent = null;
-        if (this.props.hasCalculator) {
+        if (true) {
             console.log("Question hasCalculator")
-            calculatorComponent = <div id="embeddable" className="pull-right" onClick={_load_calculator()}>
+
+            const visible = this.props.hasCalculator ? "block" : "none"
+
+            calculatorComponent = <div id="embeddable" className="pull-right" style={{"display": visible}}>
                 <span data-calculator="" data-toggle="popover" data-original-title="" title="" >
 
                     <img className="periodicTableThumbnail mt-0 mb-0"
@@ -186,6 +189,10 @@ class Question extends React.Component {
                     </img>
                 </span>
             </div>
+            // setTimeout(() => { 
+            //     _unload_calculator()
+            //     console.log("Question hasCalculator _unload_calculator")
+            // }, 500); 
 
             setTimeout(() => { 
                 _load_calculator(); 

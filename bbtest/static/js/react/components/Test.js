@@ -38,6 +38,8 @@ var Test = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this._continue(true, false);
+      // _load_calculator()
+
       $(window).on("blur", this._boundWindowBlur);
       $(window).on("focus", this._boundWindowFocus);
     }
@@ -45,6 +47,8 @@ var Test = /*#__PURE__*/function (_React$Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this._stop();
+
+      // _unload_calculator()
       $(window).off("blur", this._boundWindowBlur);
       $(window).off("focus", this._boundWindowFocus);
     }

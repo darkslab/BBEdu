@@ -31,51 +31,58 @@ class KatexAsyncProcessor {
 }
 
 
+var Calculator_Is_Initialized = false
+
+
+// configure the default type of number as BigNumbers
+math.config({
+    number: 'BigNumber',  // Default type of number use bignumber!  test with 666%10:
+    // 	'number' (default), 'bignumber', or 'fraction'
+    precision: 20         // Number of significant digits for BigNumbers
+});
+if (!math.percent) {
+    math.percent = function (x, y) {
+        return (y / x) * 100;
+    };
+}
+
+
 function _load_calculator() {
 
-    console.log("called _load_calculator")
+    if (Calculator_Is_Initialized) {
+        console.log("called _load_calculator, but Calculator_Is_Initialized")
+        return
+    }
 
+    console.log("called _load_calculator")
     // Get placement
-    const queryString = window.location.search;
+    // const queryString = window.location.search;
     // console.log(queryString);
-    const urlParams = new URLSearchParams(queryString);
-    const  placementUrlParam = urlParams.get('placement')
-    // console.log(placementUrlParam);
+    // const urlParams = new URLSearchParams(queryString);
+    // const  placementUrlParam = urlParams.get('placement')
     
     // const placement =  placementUrlParam || 'auto'
-
     const placement = "bottom"
-    // console.log(placement);
 
-    // configure the default type of number as BigNumbers
-    math.config({
-        number: 'BigNumber',  // Default type of number use bignumber!  test with 666%10:
-        // 	'number' (default), 'bignumber', or 'fraction'
-        precision: 20         // Number of significant digits for BigNumbers
-    });
-    if (!math.percent) {
-        math.percent = function (x, y) {
-            return (y / x) * 100;
-        };
-    }
 
-    function sendMessage(display) {
-        if (parent.postMessage) {
-            parent.postMessage(display, '*');
-        }
-    }
-    $('[data-calculator]').on('show.bs.popover', function () {
-        sendMessage("show")
-    });
-    $('[data-calculator]').on('hide.bs.popover', function () {
-        sendMessage("hide")
-    });
+    // function sendMessage(display) {
+    //     if (parent.postMessage) {
+    //         parent.postMessage(display, '*');
+    //     }
+    // }
+    // $('[data-calculator]').on('show.bs.popover', function () {
+    //     sendMessage("show")
+    // });
+    // $('[data-calculator]').on('hide.bs.popover', function () {
+    //     sendMessage("hide")
+    // });
 
     // <a class="function-button percent" href="#">%</a>\
     // <a class="modifier-button squareroot" href="#">&#8730;</a>\
     // <a class="modifier-button plusminus" href="#">&#0177;</a>\
 
     $('[data-calculator]').popover({
+        // trigger: "focus",
         html: true,
         animation: true,
         content: function () {
@@ -109,7 +116,6 @@ function _load_calculator() {
         placement: placement
     }).on('hidden.bs.popover', function (e) {
     }).on('shown.bs.popover', function () {
-
         Calculator.init(); //Build calculator
     });
 
@@ -734,9 +740,19 @@ function _load_calculator() {
         }
     }
 
+    Calculator_Is_Initialized = true
+
 }
 
 function _unload_calculator() {
-    $('[data-calculator]').off()
+    $('[data-calculator]').off();
+    // var $display = $("#display").off();
+    $("#display").off();
+    // var $status = $("#status").off();
+    $("#status").off();
+    $("#calculator").off()
+    $('#calculatorFooter').off()
+
+    Calculator_Is_Initialized = false
     // $('[data-calculator]').off('hide.bs.popover')
 }

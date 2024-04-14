@@ -108,8 +108,8 @@ var Question = /*#__PURE__*/function (_React$Component) {
   return _createClass(Question, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      _load_calculator();
-      console.log("Question componentDidMount");
+      // _load_calculator()
+      // console.log("Question componentDidMount")
     }
   }, {
     key: "componentWillUnmount",
@@ -190,12 +190,15 @@ var Question = /*#__PURE__*/function (_React$Component) {
         })));
       }
       var calculatorComponent = null;
-      if (this.props.hasCalculator) {
+      if (true) {
         console.log("Question hasCalculator");
+        var visible = this.props.hasCalculator ? "block" : "none";
         calculatorComponent = /*#__PURE__*/React.createElement("div", {
           id: "embeddable",
           className: "pull-right",
-          onClick: _load_calculator()
+          style: {
+            "display": visible
+          }
         }, /*#__PURE__*/React.createElement("span", {
           "data-calculator": "",
           "data-toggle": "popover",
@@ -206,6 +209,11 @@ var Question = /*#__PURE__*/function (_React$Component) {
           src: this.props.calculatorIconUrl,
           alt: "Thumbnail"
         })));
+        // setTimeout(() => { 
+        //     _unload_calculator()
+        //     console.log("Question hasCalculator _unload_calculator")
+        // }, 500); 
+
         setTimeout(function () {
           _load_calculator();
           console.log("Question hasCalculator _load_calculator");
