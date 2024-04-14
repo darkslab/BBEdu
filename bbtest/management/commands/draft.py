@@ -80,8 +80,22 @@ for obj in TestQuestion.objects.order_by("created_at").all():
 
 print(res)
 
+from bbtest.models import User, TestQuestion, TestParagraph
+TestQuestion.objects.objects.update(has_periodic_table=True, has_calculator=True)
+TestQuestion.objects.filter(paragraphs__paragraph_class=TestParagraph.PARAGRAPH_CLASS_PERIODIC_TABLE).update(has_periodic_table=True)
+TestQuestion.objects.filter(paragraphs__paragraph_class=TestParagraph.PARAGRAPH_CLASS_CALCULATOR).update(has_calculator=True)
 
-TestQuestion.objects.first()
+# ----------------- 
+
+from bbtest.models import User, TestQuestion, TestParagraph
+obj = TestQuestion.objects.first()
+obj.paragraphs.filter(paragraph_class = TestParagraph.PARAGRAPH_CLASS_PERIODIC_TABLE).exist()
+asd = TestQuestion.objects.filter(paragraphs__paragraph_class=TestParagraph.PARAGRAPH_CLASS_PERIODIC_TABLE).count()
+asd2 = TestQuestion.objects.filter(paragraphs__paragraph_class=TestParagraph.PARAGRAPH_CLASS_CALCULATOR).count()
+
+
+
+TestQuestion.objects.filter(has_calculator=True).count()
 
 from bbtest.models import User, TestQuestion, TestSection, Test
 test = Test.objects.first()
