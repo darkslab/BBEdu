@@ -370,7 +370,7 @@ class ActivateStudentGroupToggleView(AdminPermissionRequiredMixin, View):
 
         group_obj.is_active = not is_active
         group_obj.save()
-        
+
         return redirect("bbtest:build_package", package_code)
     
 
@@ -387,7 +387,7 @@ class ActivateStudentTurnON(AdminPermissionRequiredMixin, View):
             group_obj.save()
         else:
             activate_package.delay(group_obj, True)
-
+        success("Открытие доступа...")
         return redirect("bbtest:build_package", package_code)
     
 
@@ -402,5 +402,6 @@ class ActivateStudentTurnOFF(AdminPermissionRequiredMixin, View):
             group_obj.save()
         else:
             activate_package.delay(group_obj, False)
+        success("Закрытие доступа...")
         return redirect("bbtest:build_package", package_code)
         
