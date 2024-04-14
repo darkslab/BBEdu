@@ -81,7 +81,7 @@ for obj in TestQuestion.objects.order_by("created_at").all():
 print(res)
 
 from bbtest.models import User, TestQuestion, TestParagraph
-TestQuestion.objects.objects.update(has_periodic_table=True, has_calculator=True)
+TestQuestion.objects.update(has_periodic_table=False, has_calculator=False)
 TestQuestion.objects.filter(paragraphs__paragraph_class=TestParagraph.PARAGRAPH_CLASS_PERIODIC_TABLE).update(has_periodic_table=True)
 TestQuestion.objects.filter(paragraphs__paragraph_class=TestParagraph.PARAGRAPH_CLASS_CALCULATOR).update(has_calculator=True)
 

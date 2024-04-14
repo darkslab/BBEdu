@@ -25,8 +25,11 @@ class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, User
         kwargs["test_domain"] = self.quiz_set().test_domain
         kwargs["is_current"] = self.quiz_set().is_current
 
-        kwargs["has_periodic_table"] = tight_dumps([True] * self.current_quiz().test.question_count)
-        kwargs["has_calculator"] = tight_dumps([True] * self.current_quiz().test.question_count)
+        current_test = self.current_quiz().test
+        question_list = current_test.questions.values("id", "has_calculator", "has_periodic_table").order_by("testtoquestionrelation")
+
+        kwargs["has_periodic_table"] = tight_dumps([q["has_periodic_table"] for q in question_list])
+        kwargs["has_calculator"] = tight_dumps([q["has_calculator"] for q in question_list])
 
         return super().get_context_data(**kwargs)
 
