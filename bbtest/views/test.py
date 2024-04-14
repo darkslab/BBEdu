@@ -18,7 +18,9 @@ from bbtest.texts import inject_texts_into_response, test_specification, inject_
 
 
 def get_test_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
-    if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
+    if request.user.has_perm("bbtest.super"):
+        tests = Test.objects.select_related("developer")
+    elif request.user.has_perm("bbtest.expert"):
         tests = Test.worked_tests.select_related("developer")
     elif request.user.has_perm("bbtest.developer"): 
         tests = request.user.tests(manager="in_development_tests") 
@@ -33,11 +35,13 @@ def get_test_for_edit_or_404(request, code, include_section=False, include_parag
         tests,
         code=code,
     )
-    if request.user.has_perm("bbtest.super"):
-        if not test.developer.has_perm("bbtest.super") and not test.is_pending():
-            raise Http404("Superusers can only edit tests of other developers that are in pending status")
-        if test.developer.has_perm("bbtest.super") and not test.is_draft() and not test.is_redo():
-            raise Http404("Superusers can only edit tests of other superusers (and their own) that are in draft status")
+    
+    if request.user.is_superuser:
+        # if not test.developer.has_perm("bbtest.super") and not test.is_pending():
+        #     raise Http404("Superusers can only edit tests of other developers that are in pending status")
+        # if test.developer.has_perm("bbtest.super") and not test.is_draft() and not test.is_redo():
+        #     raise Http404("Superusers can only edit tests of other superusers (and their own) that are in draft status")
+        return test
         
     if request.user.has_perm("bbtest.expert"):
         if not test.developer.has_perm("bbtest.expert") and not test.is_pending():
