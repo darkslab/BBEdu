@@ -17,12 +17,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.3\n"
 
-#, fuzzy
-#| msgctxt "Model field"
-#| msgid "username"
+
 msgctxt "Form label"
 msgid "Username"
-msgstr "аты-жөні"
+msgstr "Оқушы логины"
 
 #, fuzzy
 #| msgctxt "Validation error"
@@ -703,16 +701,16 @@ msgid "Russian_9_ru"
 msgstr "Чтение 9 Класс"
 
 msgid "Klass_4_ru"
-msgstr "4 Сынып Орыс бөлімі"
+msgstr "4 Сынып Орыс тобы"
 
 msgid "Klass_9_ru"
-msgstr "9 Сынып Орыс бөлімі"
+msgstr "9 Сынып Орыс тобы"
 
 msgid "Klass_4_kz"
-msgstr "4 Сынып Қазақ бөлімі"
+msgstr "4 Сынып Қазақ тобы"
 
 msgid "Klass_9_kz"
-msgstr "9 Сынып Қазақ бөлімі"
+msgstr "9 Сынып Қазақ тобы"
 
 msgid "Questionnaire-A_4_kz"
 msgstr "Анкетирование А"
@@ -1898,20 +1896,20 @@ msgid "Choose the test domain"
 msgstr "Тестіні таңдаңыз"
 
 msgid "klass_4_ru"
-msgstr "4 Сынып Орыс бөлімі"
+msgstr "4 Сынып Орыс тобы"
 
 #, python-format
 msgid "page:/:test_domain_full_name:%(domain_name)s"
 msgstr "%(domain_name)s"
 
 msgid "klass_9_ru"
-msgstr "9 Сынып Орыс бөлімі"
+msgstr "9 Сынып Орыс тобы"
 
 msgid "klass_4_kz"
-msgstr "4 Сынып Қазақ бөлімі"
+msgstr "4 Сынып Қазақ тобы"
 
 msgid "klass_9_kz"
-msgstr "9 Сынып Қазақ бөлімі"
+msgstr "9 Сынып Қазақ тобы"
 
 #, python-format
 msgctxt "Page title"
@@ -1964,7 +1962,7 @@ msgstr "Бағасы:"
 
 msgctxt "/student/select-tests/xxxx/"
 msgid "Buy tests"
-msgstr "Бөлімі бастау"
+msgstr "Бөлімді бастау"
 
 msgctxt "/student/select-tests/xxxx/"
 msgid "Buy credits"
@@ -1980,7 +1978,7 @@ msgstr "Тестілеуді бастаңыз"
 
 msgctxt "Exam page"
 msgid "Перейти к экзамену"
-msgstr "Емтиханға өту"
+msgstr "Тестілеуге өту"
 
 msgctxt "Exam page"
 msgid "Тестирование закончено"
@@ -1992,7 +1990,7 @@ msgstr "Қате! Бетті жаңартыңыз."
 
 msgctxt "Exam"
 msgid "Start the test"
-msgstr "Бөлімі бастау"
+msgstr "Бөлімді бастау"
 
 msgctxt "Exam"
 msgid "Skip the test"
@@ -2036,7 +2034,7 @@ msgstr "Бірнеше дұрыс жауаптарды таңдаңыз"
 
 msgctxt "Exam"
 msgid "Previous"
-msgstr "Алдағы"
+msgstr "Алдыңғы"
 
 msgctxt "Exam"
 msgid "Next"
