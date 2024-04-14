@@ -1,102 +1,16 @@
 class Question extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            originalText: "",
-            rawHtml: "",
-            zoomLevel: 1,
-            isDragging: false,
-            dragStartX: 0,
-            dragStartY: 0,
-            imgPosX: 0,
-            imgPosY: 0,
-            dragStartTime: null,
-        };
-
-        // Using callback refs instead of createRef
-        this.overlayRef = null;
-        this.imageRef = null;
-
-        // Set refs
-        this.setOverlayRef = element => {
-            this.overlayRef = element;
-        };
-        
-        this.setImageRef = element => {
-            this.imageRef = element;
-        };
     }
 
-    componentDidMount() {
-        // _load_calculator()
-        // console.log("Question componentDidMount")
-    }
-    componentWillUnmount() {
-        _unload_calculator()
-        console.log("Question componentWillUnmount")
-    }
-
-    _startDrag = (e) => {
-        // Assuming this.imageRef is directly the DOM element now
-        const img = this.imageRef;
-        this.setState({
-            isDragging: true,
-            dragStartX: e.clientX - this.state.imgPosX,
-            dragStartY: e.clientY - this.state.imgPosY,
-            dragStartTime: Date.now(),
-        });
-    
-        // Prevent image dragging behavior to allow custom handling
-        if (img) {
-            img.addEventListener('dragstart', (e) => e.preventDefault());
-        }
-    }
-
-    _onDrag = (e) => {
-        if (!this.state.isDragging) return;
-        this.setState({
-            imgPosX: e.clientX - this.state.dragStartX,
-            imgPosY: e.clientY - this.state.dragStartY,
-        });
-    }
-
-    _endDrag = () => {
-        const dragEndTime = Date.now();
-        const dragDuration = dragEndTime - this.state.dragStartTime;
-        // console.log(this.state.dragStartTime, dragEndTime, dragDuration)
-        this.setState({
-            isDragging: false,
-            dragStartTime: null, // Reset the drag start time
-        }, () => {
-            // If the drag duration is less than 100ms, treat it as a click and close the overlay
-            if (dragDuration < 200 ) {
-                this._closeOverlay();
-            }
-        });
-    }
-
-    _openOverlay = () => {
-        // Use this.overlayRef directly
-        if (this.overlayRef) {
-            this.overlayRef.style.display = 'flex';
-        }
-    }
-
-    _closeOverlay = () => {
-        if (!this.state.isDragging) {
-            if (this.overlayRef) {
-                this.overlayRef.style.display = 'none';
-            }
-        }
-    }
-
-    _handleWheel = (event) => {
-        // event.preventDefault();
-        const zoomDelta = event.deltaY > 0 ? -0.1 : 0.1;
-        this.setState(prevState => ({
-            zoomLevel: Math.max(0.2, prevState.zoomLevel + zoomDelta)
-        }));
-    }
+    // componentDidMount() {
+    //     _load_calculator()
+    //     console.log("Question componentDidMount")
+    // }
+    // componentWillUnmount() {
+    //     _unload_calculator()
+    //     console.log("Question componentWillUnmount")
+    // }
 
     render() {
         let paragraphs = [];
@@ -110,95 +24,6 @@ class Question extends React.Component {
                                 testTexts={this.props.testTexts}
                                 forDevelopers={false} />
             );
-        }
-
-        let timer = null;
-        if (this.props.hasTimer) {
-            let timerClassName = "fa fa-fw mr-10";
-            let countDown = "--:--";
-            if (this.props.secondsLeft >= 0) {
-                countDown = (parseInt(this.props.secondsLeft / 60, 10)) + ":" + ("0" + (this.props.secondsLeft % 60)).substr(-2);
-                timerClassName += " fa-clock-o";
-            } else {
-                timerClassName += " fa-refresh fa-spin";
-            }
-            let countDownClassName = "bb-test-timer label mt-0 mb-0 pull-right";
-            if (this.props.secondsLeft > 10) {
-                countDownClassName += " label-success";
-            } else {
-                countDownClassName += " label-danger";
-            }
-
-            timer = (
-                <span className={countDownClassName}>
-                    <i className={timerClassName}></i>
-                    {countDown}
-                </span>
-            );
-        }
-
-        let periodicTable = null;
-        // console.log(this.props)
-        if (this.props.hasPeriodicTable) {
-            console.log("Question hasPeriodicTable")
-            periodicTable = <React.Fragment>
-                <img
-                    className="periodicTableThumbnail mt-0 mb-0 pull-right" 
-                    src={this.props.periodicTableIconUrl}
-                    alt="Thumbnail"
-                    onClick={this._openOverlay}
-                />
-
-                <div
-                    ref={this.setOverlayRef} // Updated to use setOverlayRef
-                    className="periodicTableOverlay"
-                    // onClick={this._closeOverlay}
-                    onWheel={this._handleWheel}
-                    onMouseDown={this._startDrag}
-                    onMouseMove={this._onDrag}
-                    onMouseUp={this._endDrag}
-                    // onMouseLeave={this._endDrag}
-                    style={{ display: 'none' }}
-                >
-                    <img
-                        ref={this.setImageRef} // Updated to use setImageRef
-                        id="overlayPeriodicTableImage"
-                        src={this.props.periodicTableUrl}
-                        alt="Large Image"
-                        style={{
-                            transform: `scale(${this.state.zoomLevel}) translate(${this.state.imgPosX}px, ${this.state.imgPosY}px)`
-                        }}
-                    />
-                </div>
-            </React.Fragment>
-        }
-        
-        let calculatorComponent = null;
-        if (true) {
-            console.log("Question hasCalculator")
-
-            const visible = this.props.hasCalculator ? "block" : "none"
-
-            calculatorComponent = <div id="embeddable" className="pull-right" style={{"display": visible}}>
-                <span data-calculator="" data-toggle="popover" data-original-title="" title="" >
-
-                    <img className="periodicTableThumbnail mt-0 mb-0"
-                        src={this.props.calculatorIconUrl}
-                        alt="Thumbnail"
-                    >
-                    </img>
-                </span>
-            </div>
-            // setTimeout(() => { 
-            //     _unload_calculator()
-            //     console.log("Question hasCalculator _unload_calculator")
-            // }, 500); 
-
-            setTimeout(() => { 
-                _load_calculator(); 
-                console.log("Question hasCalculator _load_calculator")
-            }, 1000); 
-            
         }
 
         let answerContent = null;
@@ -222,9 +47,19 @@ class Question extends React.Component {
                             <div className="panel-heading bb-rel clearfix">
                                 <div className="bb-test-number">{this.props.count}</div>
                                 <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question} ({this.props.object.meta_data.question_code})</h4>
-                                {timer}
-                                {periodicTable}
-                                {calculatorComponent}
+                                <TestTimer
+                                    secondsLeft={this.props.secondsLeft}
+                                    hasTimer={this.props.hasTimer}
+                                />
+                                <TestPeriodicTable 
+                                    hasPeriodicTable={this.props.hasPeriodicTable} 
+                                    periodicTableIconUrl={this.props.periodicTableIconUrl}
+                                    periodicTableUrl={this.props.periodicTableUrl}
+                                />
+                                <TestCalculator
+                                    hasCalculator={this.props.hasCalculator}
+                                    calculatorIconUrl={this.props.calculatorIconUrl}
+                                />
                             </div>
                             <div className="panel-body">
                                 <div className="mb-15">

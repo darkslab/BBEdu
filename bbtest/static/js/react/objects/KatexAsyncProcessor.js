@@ -712,4 +712,5 @@ function _unload_calculator() {
   $('#calculatorFooter').off();
   Calculator_Is_Initialized = false;
   // $('[data-calculator]').off('hide.bs.popover')
+  console.log("called _unload_calculator");
 }
