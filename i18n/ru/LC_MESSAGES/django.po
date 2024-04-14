@@ -2058,7 +2058,7 @@ msgstr "Начните Тестирование"
 
 msgctxt "Exam page"
 msgid "Перейти к экзамену"
-msgstr "Перейти к экзамену"
+msgstr "Перейти к тестированию"
 
 msgctxt "Exam page"
 msgid "Тестирование закончено"
