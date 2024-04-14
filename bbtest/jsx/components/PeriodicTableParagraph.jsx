@@ -106,7 +106,7 @@ class PeriodicTableParagraph extends React.Component {
                 {sharedAddon}
                 <div className={className}>{/* Your SimpleFormattedFragment rendering here */}</div>
 
-                <img
+                {/* <img
                     className="periodicTableThumbnail"
                     src={this.props.data.periodicTableUrl}
                     alt="Thumbnail"
@@ -133,7 +133,7 @@ class PeriodicTableParagraph extends React.Component {
                             transform: `scale(${this.state.zoomLevel}) translate(${this.state.imgPosX}px, ${this.state.imgPosY}px)`
                         }}
                     />
-                </div>
+                </div> */}
             </React.Fragment>
         );
 

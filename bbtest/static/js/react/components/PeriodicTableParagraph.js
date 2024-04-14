@@ -119,36 +119,7 @@ var PeriodicTableParagraph = /*#__PURE__*/function (_React$Component) {
       }
       content = /*#__PURE__*/React.createElement(React.Fragment, null, sharedAddon, /*#__PURE__*/React.createElement("div", {
         className: className
-      }), /*#__PURE__*/React.createElement("img", {
-        className: "periodicTableThumbnail",
-        src: this.props.data.periodicTableUrl,
-        alt: "Thumbnail",
-        onClick: this._openOverlay
-      }), /*#__PURE__*/React.createElement("div", {
-        ref: this.setOverlayRef // Updated to use setOverlayRef
-        ,
-        className: "periodicTableOverlay"
-        // onClick={this._closeOverlay}
-        ,
-        onWheel: this._handleWheel,
-        onMouseDown: this._startDrag,
-        onMouseMove: this._onDrag,
-        onMouseUp: this._endDrag
-        // onMouseLeave={this._endDrag}
-        ,
-        style: {
-          display: 'none'
-        }
-      }, /*#__PURE__*/React.createElement("img", {
-        ref: this.setImageRef // Updated to use setImageRef
-        ,
-        id: "overlayPeriodicTableImage",
-        src: this.props.data.periodicTableUrl,
-        alt: "Large Image",
-        style: {
-          transform: "scale(".concat(this.state.zoomLevel, ") translate(").concat(this.state.imgPosX, "px, ").concat(this.state.imgPosY, "px)")
-        }
-      })));
+      }));
       return content;
     }
   }]);
