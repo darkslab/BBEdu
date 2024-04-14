@@ -387,7 +387,8 @@ class ActivateStudentTurnON(AdminPermissionRequiredMixin, View):
             group_obj.save()
         else:
             activate_package.delay(group_obj, True)
-        success("Открытие доступа...")
+            
+        success(request, "Открытие доступа...")
         return redirect("bbtest:build_package", package_code)
     
 
@@ -402,6 +403,7 @@ class ActivateStudentTurnOFF(AdminPermissionRequiredMixin, View):
             group_obj.save()
         else:
             activate_package.delay(group_obj, False)
-        success("Закрытие доступа...")
+
+        success(request, "Закрытие доступа...")
         return redirect("bbtest:build_package", package_code)
         
