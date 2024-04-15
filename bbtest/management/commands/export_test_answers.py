@@ -14,8 +14,8 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         from_date = datetime(2024, 4, 1, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
 
-        # domain_name = "Klass_4"
-        domain_name = "Klass_9"
+        domain_name = "Klass_4"
+        # domain_name = "Klass_9"
         # domain_name = "Teacher"
         domain_name_filter = [f"{domain_name}_ru", f"{domain_name}_kz"]
 
@@ -27,8 +27,7 @@ class Command(BaseCommand):
 
         result = []
         with open(f"answers_{domain_name}.csv", "w") as f:
-            
-            
+
             for i, group_obj in enumerate(group_set_obj):
                 domain_obj = group_obj.package.domain
 
@@ -69,4 +68,3 @@ class Command(BaseCommand):
 
         # res = "\n".join(result)
         # print(res)
-        
