@@ -60,6 +60,7 @@ class MultichoiceOneAnswer extends React.Component {
     }
 
     _handleChoose(choiceId) {
+        console.log(choiceId)
         if (!this.props.canAnswer) {
             return;
         }

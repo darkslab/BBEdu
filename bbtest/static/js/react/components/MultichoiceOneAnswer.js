@@ -70,6 +70,7 @@ var MultichoiceOneAnswer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "_handleChoose",
     value: function _handleChoose(choiceId) {
+      console.log(choiceId);
       if (!this.props.canAnswer) {
         return;
       }
