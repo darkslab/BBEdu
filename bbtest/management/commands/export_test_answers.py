@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **kwargs):
-        from_date = datetime(2024, 4, 1, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
+        from_date = datetime(2024, 4, 14, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
 
         domain_name_filter = ["Teacher_ru", "Teacher_kz"]
         # domain_name_filter = ["Klass_4_ru", "Klass_4_kz"]
@@ -56,9 +56,9 @@ class Command(BaseCommand):
                     started_at = str(quiz.started_at.strftime("%Y.%m.%d %H:%M:%S")) if quiz.started_at else ""
                     due_at = str(quiz.due_at.strftime("%Y.%m.%d %H:%M:%S")) if quiz.due_at else ""
                     ended_at = str(quiz.ended_at.strftime("%Y.%m.%d %H:%M:%S")) if quiz.ended_at else due_at
-                    row_w = row + [test.section.name, started_at, ended_at] + answers
+                    row = row + [test.section.name, quiz.calc_score(),  started_at, ended_at] + answers
 
-                    result.append(";".join(row_w))
+                result.append(";".join(row))
 
         res = "\n".join(result)
         with open("answers.csv", "w") as f:
