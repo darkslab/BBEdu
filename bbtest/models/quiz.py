@@ -54,14 +54,7 @@ class Quiz(Model):
         if self.report is None:
             return score
 
-        if self.test.section.is_nis():
-            if self.test.section.pk == 9544:
-                score = self.__calculate_nis_quantitative(question_ids, bucket)
-            else:
-                score = self.__calculate_straightforward(question_ids, bucket)
-        else:
-            score = self.__calculate_straightforward(question_ids, bucket)
-
+        score = self.__calculate_straightforward(question_ids, bucket)
         return score
 
     def __calculate_simple_multichoice_one_answer(self, answer, test_question):
@@ -72,12 +65,12 @@ class Quiz(Model):
                 and answer["answer"] is not None
                 and test_question.meta_data["correct_id"] == answer["answer"]["correct_id"]
             ):
-                score += test_question.weight
+                score += 1 # test_question.weight
         return score
 
     def __calculate_straightforward(self, question_ids, bucket):
         score = 0
-        for i, question in enumerate(self.test.questions.all()):
+        for i, question in enumerate(self.test.questions.order_by("testtoquestionrelation").all()):
             if question_ids is not None and question.pk not in question_ids:
                 continue
             before_score = score
@@ -85,17 +78,6 @@ class Quiz(Model):
             if before_score != score:
                 bucket.append(question.pk)
         return score
-
-    def __calculate_nis_quantitative(self, question_ids, bucket):
-        score = 0
-        for i, question in enumerate(self.test.questions.all()):
-            if question_ids is not None and question.pk not in question_ids:
-                continue
-            before_score = score
-            score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
-            if before_score != score:
-                bucket.append(question.pk)
-        return round(score / 2)
 
     def get_student_answers(self):
         def dif_None(a, b):
@@ -109,10 +91,11 @@ class Quiz(Model):
         return normalized_answers
 
     def get_correct_answers(self):
-        questions = self.test.questions.all()
+        questions = self.test.questions.order_by("testtoquestionrelation").all()
         ret = []
         for q in questions:
-            a_offset = min([option["id"] for option in q.meta_data['choices']])
+            choices = q.meta_data['choices'] # .sort(lambda x: x["id"])
+            a_offset = min([option["id"] for option in choices])
             correct_id = q.meta_data.get("correct_id", None)
             if correct_id is not None:
                 ret.append(correct_id - a_offset + 1)
@@ -121,10 +104,11 @@ class Quiz(Model):
         return ret
 
     def get_a_offset(self):
-        questions = self.test.questions.all()
+        questions = self.test.questions.order_by("testtoquestionrelation").all()
         a_id = []
         for q in questions:
-            a_id.append(min([option["id"] for option in q.meta_data['choices']]))
+            choices = q.meta_data['choices'] #.sort(lambda x: x["id"])
+            a_id.append(min([option["id"] for option in choices]))
         return a_id
         
     def get_answers_ids(self):
