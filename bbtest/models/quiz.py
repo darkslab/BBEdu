@@ -97,32 +97,6 @@ class Quiz(Model):
                 bucket.append(question.pk)
         return round(score / 2)
 
-    def __calculate_unt_profile(self, question_ids, bucket):
-        score = 0
-        for i, question in enumerate(self.test.questions.all()):
-            if question_ids is not None and question.pk not in question_ids:
-                continue
-            before_score = score
-            if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
-                score += self.__calculate_simple_multichoice_one_answer(self.report["answers"][i], question)
-            elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
-                answer = self.report["answers"][i]
-                if (
-                    len(question.meta_data["correct_ids"]) > 0
-                    and len(question.meta_data["correct_ids"]) <= 3
-                    and answer["answer"] is not None
-                ):
-                    correct_answers = set(question.meta_data["correct_ids"])
-                    report_answers = set(answer["answer"]["correct_ids"])
-                    if not len(correct_answers ^ report_answers):
-                        score += question.weight
-                    elif len(correct_answers & report_answers) >= ceil(len(correct_answers) / 2):
-                        if len(report_answers - correct_answers) <= 1:
-                            score += round(question.weight / 2)
-            if before_score != score:
-                bucket.append(question.pk)
-        return score
-
     def get_student_answers(self):
         def dif_None(a, b):
             try:
@@ -141,7 +115,7 @@ class Quiz(Model):
             a_offset = min([option["id"] for option in q.meta_data['choices']])
             correct_id = q.meta_data["correct_id"]
             if correct_id is not None:
-                ret.append(correct_id-a_offset)
+                ret.append(correct_id - a_offset)
             else:
                 ret.append(None)
         return ret
@@ -173,3 +147,15 @@ class Quiz(Model):
             return ret
         else:
             return [None for _ in range(self.test.question_count)]
+        
+    def calc_score(self):
+        student_answers = self.get_student_answers()
+        correct_answers = self.get_correct_answers()
+
+        assert len(student_answers) == len(correct_answers)
+        score = 0
+        for std, corr in zip(student_answers, correct_answers):
+            if std is None:
+                continue
+            score += int(std == corr)
+        return score
