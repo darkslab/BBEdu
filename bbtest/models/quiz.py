@@ -113,7 +113,7 @@ class Quiz(Model):
         ret = []
         for q in questions:
             a_offset = min([option["id"] for option in q.meta_data['choices']])
-            correct_id = q.meta_data["correct_id"]
+            correct_id = q.meta_data.get("correct_id", None)
             if correct_id is not None:
                 ret.append(correct_id - a_offset)
             else:
