@@ -126,7 +126,7 @@ class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin,
                 "success": False,
             })
 
-        return TightJsonResponse(self.started_response(now_at))
+        return TightJsonResponse(self.started_response(now_at, reload=True))
 
 
 class ExamSkipView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
