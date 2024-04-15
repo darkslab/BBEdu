@@ -52,7 +52,7 @@ class Command(BaseCommand):
                         test = quiz.test
                         answers = [""] * test.question_count
 
-                        for i, ans in enumerate(quiz.get_answers_ids()):
+                        for i, ans in enumerate(quiz.get_student_answers()):
                             if ans is not None:
                                 answers[i] = str(ans)
 
