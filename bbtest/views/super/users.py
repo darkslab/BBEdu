@@ -12,6 +12,7 @@ from bbtest.views.generic import TemplateView, View
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.forms.super import GiveCreditsForm, ChangeUserPassManualForm
 from bbtest.models.accounting import Entry, Debit, Credit
+from bbtest.models.quiz import QuizSet, Quiz
 
 from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin, SuperPermissionRequiredMixin, AdminPermissionRequiredMixin
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
@@ -91,6 +92,12 @@ class UserView(AdminPermissionRequiredMixin, UserContextMixin, TemplateView):
 
         kwargs["give_credits_form"] = GiveCreditsForm()
         kwargs["change_pass_manual_form"] = ChangeUserPassManualForm()
+
+        kwargs["quiz_set_list"] = []
+        if user.role == "student":
+            kwargs["quiz_set_list"] = QuizSet.objects.filter(student=user).prefetch_related("quizzes").all()
+        # print(kwargs["quiz_set_list"])
+
         return super().get_context_data(**kwargs)
 
 
