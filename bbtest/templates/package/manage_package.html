@@ -199,7 +199,7 @@
                             {% for student_group in student_group_list %}
                                 <tr>
                                     <td class="pl-15"><a href="{% url 'bbtest:build_student_group' package.code student_group.pk %}">{{ student_group.name }}</a></td>
-                                    <td class="text-center">{{ student_group.student_count }}</td>
+                                    <td class="text-center">{{ student_group.students.count }}</td>
                                     <td class="text-center">
                                         {% if student_group.is_active %}
                                             <span class="label label-success">{% trans 'Yes' context '/package-manage/student-group/' %}</span>
