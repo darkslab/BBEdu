@@ -14,10 +14,10 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         from_date = datetime(2024, 4, 1, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
 
-        # domain_name_filter = ["Teacher_ru", "Teacher_kz"]
-        # domain_name_filter = ["Klass_4_ru", "Klass_4_kz"]
-        domain_name_filter = ["Klass_9_ru", "Klass_9_kz"]
-        # domain_name_filter = ["Teacher_ru", "Teacher_kz"]
+        # domain_name = "Klass_4"
+        domain_name = "Klass_9"
+        # domain_name = "Teacher"
+        domain_name_filter = [f"{domain_name}_ru", f"{domain_name}_kz"]
 
         group_set_obj = StudentGroup.objects.prefetch_related("package", "package__domain")
         group_set_obj = group_set_obj.filter(package__domain__name__in=domain_name_filter)
@@ -26,7 +26,8 @@ class Command(BaseCommand):
         dt = timedelta(hours=5)
 
         result = []
-        with open("answers.csv", "w") as f:
+        with open(f"answers_{domain_name}.csv", "w") as f:
+            
             
             for i, group_obj in enumerate(group_set_obj):
                 domain_obj = group_obj.package.domain
