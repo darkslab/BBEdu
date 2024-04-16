@@ -24,6 +24,7 @@ var Test = /*#__PURE__*/function (_React$Component) {
       toggleFlag: true,
       confirmationFor: undefined
     };
+    _this.error_msg = "";
     _this._xhrStartTime;
     _this._$xhr;
     _this._statusData;
@@ -268,7 +269,8 @@ var Test = /*#__PURE__*/function (_React$Component) {
           refreshUrl: this.props.refreshUrl,
           cancelUrl: this.props.cancelRefreshUrl,
           refreshCaption: this.props.texts.refreshButton,
-          cancelCaption: this.props.texts.cancelRefreshButton
+          cancelCaption: this.props.texts.cancelRefreshButton,
+          error_msg: this.error_msg
         });
       } else if (this.state.confirmationFor !== undefined) {
         var isInverse = true;
@@ -292,17 +294,20 @@ var Test = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "reportFailed",
     value: function reportFailed() {
+      var error_msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
       if (this.state.status !== "started") {
         return;
       }
       if (this._statusData.seconds > 1) {
-        this._errorOut();
+        this._errorOut(error_msg);
       }
     }
   }, {
     key: "_errorOut",
     value: function _errorOut() {
+      var error_msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
       this._stop();
+      this.error_msg = error_msg;
       this.setState({
         isErrored: true
       });
@@ -334,7 +339,7 @@ var Test = /*#__PURE__*/function (_React$Component) {
         ga_report_pageview();
       }
       if (!data.success) {
-        this._errorOut();
+        this._errorOut(data.error_msg);
         return;
       }
       var msecs = new Date().getTime() - this._xhrStartTime;
@@ -390,7 +395,7 @@ var Test = /*#__PURE__*/function (_React$Component) {
       if (status === "abort") {
         return;
       }
-      this._errorOut();
+      this._errorOut("_ajaxError($xhr, status, error)");
     }
   }, {
     key: "_tick",

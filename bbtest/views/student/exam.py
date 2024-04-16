@@ -100,10 +100,15 @@ class ExamContinueView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMix
                 self.quiz_set().is_current = None
                 self.quiz_set().save()
                 return TightJsonResponse(self.concluded_response())
-            except ConcurrentUpdate:
+            except ConcurrentUpdate as e:
                 pass
+                return TightJsonResponse({
+                    "success": False,
+                    "error_msg": f'ExamContinueView.get: ConcurrentUpdate failed: {e}',
+                })
         return TightJsonResponse({
             "success": False,
+            "error_msg": f'ExamContinueView.get: Should not be reached',
         })
 
 
@@ -113,6 +118,7 @@ class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin,
         if self.current_status(now_at) != "queued":
             return TightJsonResponse({
                 "success": False,
+                "error_msg": 'ExamStartView.post: self.current_status(now_at) != "queued"',
             })
 
         try:
@@ -121,9 +127,10 @@ class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin,
                 self.current_quiz().started_at = now_at
                 self.current_quiz().due_at = now_at + timedelta(seconds=self.current_quiz().test.duration)
                 self.current_quiz().save()
-        except ConcurrentUpdate:
+        except ConcurrentUpdate as e:
             return TightJsonResponse({
                 "success": False,
+                "error_msg": f"ExamStartView.post: ConcurrentUpdate failed {e}",
             })
 
         return TightJsonResponse(self.started_response(now_at, reload=True))
@@ -135,6 +142,7 @@ class ExamSkipView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, 
         if self.current_status(now_at) != "queued":
             return TightJsonResponse({
                 "success": False,
+                "error_msg": 'ExamSkipView.post: self.current_status(now_at) != "queued"',
             })
 
         try:
@@ -152,11 +160,16 @@ class ExamSkipView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, 
                 self.quiz_set().is_current = None
                 self.quiz_set().save()
                 return TightJsonResponse(self.concluded_response())
-        except ConcurrentUpdate:
-            pass
+        except ConcurrentUpdate as e:
+            return TightJsonResponse({
+                "success": False,
+                "error_msg": f"ExamSkipView.post: ConcurrentUpdate failed {e}",
+            })
+        
         return TightJsonResponse({
-            "success": False,
-        })
+                "success": False,
+                "error_msg": f'ExamSkipView.post: self.current_status(now_at) not in ("queued", "concluded")',
+            })
 
 
 class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
@@ -165,6 +178,7 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
         if self.current_status(now_at) not in ("started", "expired"):
             return TightJsonResponse({
                 "success": False,
+                "error_msg": f'ExamEndView.post: self.current_status(now_at) not in ("started", "expired")',
             })
 
         try:
@@ -200,6 +214,7 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
             pass
         return TightJsonResponse({
             "success": False,
+            "error_msg": f'ExamEndView.post: missed all conditions',
         })
 
 
@@ -209,6 +224,7 @@ class ExamReportView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin
         if self.current_status(now_at) != "started":
             return TightJsonResponse({
                 "success": False,
+                "error_msg": 'ExamReportView.post: self.current_status(now_at) != "started"',
             })
 
         response = {}
@@ -225,9 +241,11 @@ class ExamReportView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin
             return TightJsonResponse({
                 "success": True,
             })
-        except (ConcurrentUpdate, ValueError):
-            pass
-        response.update({
-            "success": False,
-        })
+        except (ConcurrentUpdate, ValueError) as e:
+            print(e)
+            response.update({
+                "success": False,
+                "error_msg": f"ExamReportView.post: ConcurrentUpdate or ValueError failed. {e}",
+            })
+        
         return TightJsonResponse(response)

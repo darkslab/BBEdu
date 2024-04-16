@@ -57,7 +57,7 @@ StudentTestObject.prototype._push = function() {
 }
 StudentTestObject.prototype._ajaxSuccess = function(data, status, $xhr) {
     if (!data.success) {
-        this._component.reportFailed();
+        this._component.reportFailed(data.error_msg);
         return;
     }
     this._$xhr = undefined;
@@ -70,7 +70,7 @@ StudentTestObject.prototype._ajaxError = function($xhr, status, error) {
     if (status === "abort") {
         return;
     }
-    this._component.reportFailed();
+    this._component.reportFailed("StudentTestObject.prototype._ajaxError");
 }
 StudentTestObject.prototype.texts = function() {
     return this._texts;

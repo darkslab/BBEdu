@@ -167,6 +167,7 @@ var StandaloneQuestion = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "reportFailed",
     value: function reportFailed() {
+      var error_msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
       if (this.state.status !== "started") {
         return;
       }

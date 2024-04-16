@@ -33,6 +33,13 @@ var RefreshModal = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var error_display = this.props.error_msg ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+        "data-toggle": "collapse",
+        "data-target": "#demo"
+      }, "Show error message"), /*#__PURE__*/React.createElement("div", {
+        id: "demo",
+        "class": "collapse"
+      }, this.props.error_msg)) : null;
       return /*#__PURE__*/React.createElement("div", {
         className: "modal fade",
         "data-modal": true
@@ -54,7 +61,7 @@ var RefreshModal = /*#__PURE__*/function (_React$Component) {
       }, this.props.refreshCaption), /*#__PURE__*/React.createElement("a", {
         href: this.props.cancelUrl,
         className: "btn btn-default"
-      }, this.props.cancelCaption))))));
+      }, this.props.cancelCaption))), error_display)));
     }
   }]);
 }(React.Component);

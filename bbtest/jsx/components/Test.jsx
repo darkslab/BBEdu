@@ -5,8 +5,9 @@ class Test extends React.Component {
             isErrored: false,
             status: undefined,
             toggleFlag: true,
-            confirmationFor: undefined
+            confirmationFor: undefined,
         };
+        this.error_msg = "";
         this._xhrStartTime;
         this._$xhr;
         this._statusData;
@@ -249,7 +250,8 @@ class Test extends React.Component {
                               refreshUrl={this.props.refreshUrl}
                               cancelUrl={this.props.cancelRefreshUrl}
                               refreshCaption={this.props.texts.refreshButton}
-                              cancelCaption={this.props.texts.cancelRefreshButton} />
+                              cancelCaption={this.props.texts.cancelRefreshButton}
+                              error_msg={this.error_msg} />
             );
         } else if (this.state.confirmationFor !== undefined) {
             var isInverse = true;
@@ -276,19 +278,20 @@ class Test extends React.Component {
             </React.Fragment>
         );
     }
-    reportFailed() {
+    reportFailed(error_msg="") {
         if (this.state.status !== "started") {
             return;
         }
         if (this._statusData.seconds > 1) {
-            this._errorOut();
+            this._errorOut(error_msg);
         }
     }
 
-    _errorOut() {
+    _errorOut(error_msg="") {
         this._stop();
+        this.error_msg = error_msg
         this.setState({
-            isErrored: true
+            isErrored: true,
         });
     }
     _stop() {
@@ -314,7 +317,7 @@ class Test extends React.Component {
             ga_report_pageview();
         }
         if (!data.success) {
-            this._errorOut();
+            this._errorOut(data.error_msg);
             return;
         }
         let msecs = (new Date()).getTime() - this._xhrStartTime;
@@ -368,7 +371,7 @@ class Test extends React.Component {
         if (status === "abort") {
             return;
         }
-        this._errorOut();
+        this._errorOut("_ajaxError($xhr, status, error)");
     }
     _tick() {
         if (!this.props.hasTimer) {

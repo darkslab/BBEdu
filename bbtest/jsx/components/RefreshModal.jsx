@@ -12,6 +12,15 @@ class RefreshModal extends React.Component {
         }
     }
     render() {
+        
+        const error_display = this.props.error_msg ? <>
+            <button data-toggle="collapse" data-target="#demo">Show error message</button>
+            <div id="demo" class="collapse">
+                {this.props.error_msg}
+            </div>
+        </> : null
+
+
         return (
             <div className="modal fade" data-modal>
                 <div className="modal-dialog">
@@ -25,6 +34,7 @@ class RefreshModal extends React.Component {
                                 <a href={this.props.cancelUrl} className="btn btn-default">{this.props.cancelCaption}</a>
                             </div>
                         </div>
+                        {error_display}
                     </div>
                 </div>
             </div>

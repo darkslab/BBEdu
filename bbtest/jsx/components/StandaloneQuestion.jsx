@@ -172,7 +172,7 @@ class StandaloneQuestion extends React.Component {
             </React.Fragment>
         );
     }
-    reportFailed() {
+    reportFailed(error_msg="") {
         if (this.state.status !== "started") {
             return;
         }
