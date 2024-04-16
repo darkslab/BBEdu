@@ -34,7 +34,7 @@ class ExamReportForm(ModelForm):
             if not isinstance(report["answers"], list):
                 raise ValueError("Incorrect report")
 
-            for i, question in enumerate(self.__test.questions.all()):
+            for i, question in enumerate(self.__test.questions.order_by("testtoquestionrelation").all()):
                 answer_report = {}
                 if not isinstance(report["answers"][i], dict):
                     raise ValueError("Incorrect report")
