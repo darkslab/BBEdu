@@ -131,10 +131,38 @@ class Quiz(Model):
             return ret
         else:
             return [None for _ in range(self.test.question_count)]
-        
+    
+    def get_answers_letters(self):
+        alphabet = "ABCDEFGH"
+        ret = []
+
+        user_answer_id_list = self.get_answers_ids()
+        questions = self.test.questions.order_by("testtoquestionrelation").all()
+
+        for user_answer, question in zip(user_answer_id_list, questions):
+            choices = question.meta_data.get('choices', [])
+            if question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+                for i, ch in enumerate(choices):
+                    if user_answer == ch["id"]:
+                        ret.append(alphabet[i])
+                        break
+            elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
+                temp = []
+                for i, ch in enumerate(choices):
+                    if ch["id"] in user_answer:
+                        temp.append(alphabet[i])
+                ret.append(temp)
+            else:
+                ret.append(None)
+
+        return ret
+
+
     def calc_score(self):
         student_answers = self.get_student_answers()
         correct_answers = self.get_correct_answers()
+        print(student_answers)
+        print(correct_answers)
 
         assert len(student_answers) == len(correct_answers)
         score = 0
