@@ -149,7 +149,7 @@ class Quiz(Model):
             elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
                 temp = []
                 for i, ch in enumerate(choices):
-                    if ch["id"] in user_answer:
+                    if user_answer and ch["id"] in user_answer:
                         temp.append(alphabet[i])
                 ret.append(temp)
             else:
