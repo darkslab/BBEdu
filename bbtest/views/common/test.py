@@ -24,7 +24,7 @@ def inject_questions_and_report_into_started_response(response, test, hide_answe
 
     paragraphs_map = {}
     paragraphs_questions = {}
-    # for question in test.questions.prefetch_related(
+    # for question in test.questions.order_by("testtoquestionrelation").prefetch_related(
     #     Prefetch("paragraphs", queryset=TestParagraph.objects.order_by("through").all()),
     # ).all():
     for question in questions:

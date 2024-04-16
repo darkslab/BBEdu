@@ -237,7 +237,7 @@ class DeleteQuestionView(StaffPermissionRequiredMixin, View):
                 raise Http404("Superusers can only delete their own questions")
 
         # paragraph_ids = []
-        # for question in test.questions.all():
+        # for question in test.questions.order_by("testtoquestionrelation").all():
         #     for paragraph in question.paragraphs.all():
         #         paragraph_ids.append(paragraph.id)
 
