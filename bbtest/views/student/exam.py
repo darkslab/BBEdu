@@ -41,6 +41,7 @@ class ExamMixin:
             "status": "queued",
             "section": test_instructions_title(self.current_quiz().test),
             "instructions": test_instructions(self.current_quiz().test),
+            "username": self.current_quiz().quiz_set.student.username,
         }
         # if test_video(self.current_quiz().test):
         #     data["video"] = test_video(self.current_quiz().test)
@@ -53,6 +54,7 @@ class ExamMixin:
             "section": test_instructions_title(self.current_quiz().test),
             "seconds": (self.current_quiz().due_at - now_at).seconds,
             "reload": reload,
+            "username": self.current_quiz().quiz_set.student.username,
         }
         inject_questions_and_report_into_started_response(response, self.current_quiz().test)
         inject_texts_into_response(response, self.current_quiz().test)

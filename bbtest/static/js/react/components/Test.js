@@ -198,7 +198,8 @@ var Test = /*#__PURE__*/function (_React$Component) {
             periodicTableIconUrl: this.props.periodicTableIconUrl,
             periodicTableUrl: this.props.periodicTableUrl,
             hasCalculator: hasCalculatorList[this._statusData.questionIndex],
-            calculatorIconUrl: this.props.calculatorIconUrl
+            calculatorIconUrl: this.props.calculatorIconUrl,
+            username: this._statusData.username
           }), /*#__PURE__*/React.createElement("div", {
             className: "row"
           }, /*#__PURE__*/React.createElement("div", {
@@ -368,7 +369,8 @@ var Test = /*#__PURE__*/function (_React$Component) {
               testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report, data.texts),
               questionIndex: this._currentQuestionIndex,
               questionsCount: data.questions.length,
-              timer: setTimeout(this._tick.bind(this), 1000)
+              timer: setTimeout(this._tick.bind(this), 1000),
+              username: data.username
             };
             if (data.section !== undefined) {
               this._statusData.section = data.section;

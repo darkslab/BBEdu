@@ -181,6 +181,7 @@ class Test extends React.Component {
                                   periodicTableUrl={this.props.periodicTableUrl}
                                   hasCalculator={hasCalculatorList[this._statusData.questionIndex]} 
                                   calculatorIconUrl={this.props.calculatorIconUrl}
+                                  username={this._statusData.username}
                                   />
                         <div className="row">
                             <div className="col-xs-12">
@@ -347,7 +348,8 @@ class Test extends React.Component {
                         testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report, data.texts),
                         questionIndex: this._currentQuestionIndex,
                         questionsCount: data.questions.length,
-                        timer: setTimeout(this._tick.bind(this), 1000)
+                        timer: setTimeout(this._tick.bind(this), 1000),
+                        username: data.username,
                     };
                     if (data.section !== undefined) {
                         this._statusData.section = data.section;
