@@ -108,8 +108,9 @@ var StandaloneQuestion = /*#__PURE__*/function (_React$Component) {
               onClick: this._renderModal.bind(this, "end")
             }, this.props.texts.endButton)));
           }
-          var hasPeriodicTableList = JSON.parse(this.props.hasPeriodicTable);
-          var hasCalculatorList = JSON.parse(this.props.hasCalculator);
+
+          // const hasPeriodicTableList = JSON.parse(this.props.hasPeriodicTable)
+          // const hasCalculatorList = JSON.parse(this.props.hasCalculator)
           // console.log(hasPeriodicTableList, hasCalculatorList)
           content = /*#__PURE__*/React.createElement(React.Fragment, null, header, /*#__PURE__*/React.createElement(Question, {
             count: this._statusData.questionIndex + 1,
@@ -122,10 +123,10 @@ var StandaloneQuestion = /*#__PURE__*/function (_React$Component) {
             secondsLeft: this._statusData.focused ? this._statusData.seconds : -1,
             texts: this.props.texts,
             hasTimer: this.props.hasTimer,
-            hasPeriodicTable: hasPeriodicTableList[this._statusData.questionIndex],
+            hasPeriodicTable: this._statusData.hasPeriodicTable[this._statusData.questionIndex],
             periodicTableIconUrl: this.props.periodicTableIconUrl,
             periodicTableUrl: this.props.periodicTableUrl,
-            hasCalculator: hasCalculatorList[this._statusData.questionIndex],
+            hasCalculator: this._statusData.hasCalculator[this._statusData.questionIndex],
             calculatorIconUrl: this.props.calculatorIconUrl
           }), endControl);
           break;
@@ -219,7 +220,9 @@ var StandaloneQuestion = /*#__PURE__*/function (_React$Component) {
         testObject: new (eval(this.props.objectClass))(this, this.props.reportUrl, data.questions, data.report, data.texts),
         questionIndex: this._currentQuestionIndex,
         questionsCount: data.questions.length,
-        timer: setTimeout(this._tick.bind(this), 1000)
+        timer: setTimeout(this._tick.bind(this), 1000),
+        hasCalculator: data.has_calculator,
+        hasPeriodicTable: data.has_periodic_table
       };
       this.setState({
         status: "started"

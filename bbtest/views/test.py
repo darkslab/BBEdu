@@ -450,10 +450,15 @@ class TestPreviewView(StaffPermissionRequiredMixin, UserContextMixin, FormView):
 class TestPreviewDataView(StaffPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
         test = get_test_for_preview_or_404(request, code)
+
+        question_list = test.questions.values("id", "has_calculator", "has_periodic_table").order_by("testtoquestionrelation")
+
         response = {
             "success": True,
             "status": "started",
             "seconds": test.duration,
+            "has_periodic_table": [q["has_periodic_table"] for q in question_list],
+            "has_calculator": [q["has_calculator"] for q in question_list],
         }
         inject_questions_and_report_into_started_response(response, test)
         inject_texts_into_response(response, test)

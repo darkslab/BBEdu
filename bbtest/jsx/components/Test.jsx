@@ -151,8 +151,8 @@ class Test extends React.Component {
                 }
 
 
-                const hasPeriodicTableList = JSON.parse(this.props.hasPeriodicTable)
-                const hasCalculatorList = JSON.parse(this.props.hasCalculator)
+                // const hasPeriodicTableList = JSON.parse(this.props.hasPeriodicTable)
+                // const hasCalculatorList = JSON.parse(this.props.hasCalculator)
                 // console.log(hasPeriodicTableList, hasCalculatorList)
 
                 content = (
@@ -176,10 +176,10 @@ class Test extends React.Component {
                                   secondsLeft={this._statusData.focused ? this._statusData.seconds : -1}
                                   texts={this.props.texts}
                                   hasTimer={this.props.hasTimer} 
-                                  hasPeriodicTable={hasPeriodicTableList[this._statusData.questionIndex]} 
+                                  hasPeriodicTable={this._statusData.hasPeriodicTable[this._statusData.questionIndex]} 
                                   periodicTableIconUrl={this.props.periodicTableIconUrl}
                                   periodicTableUrl={this.props.periodicTableUrl}
-                                  hasCalculator={hasCalculatorList[this._statusData.questionIndex]} 
+                                  hasCalculator={this._statusData.hasCalculator[this._statusData.questionIndex]} 
                                   calculatorIconUrl={this.props.calculatorIconUrl}
                                   username={this._statusData.username}
                                   />
@@ -350,6 +350,8 @@ class Test extends React.Component {
                         questionsCount: data.questions.length,
                         timer: setTimeout(this._tick.bind(this), 1000),
                         username: data.username,
+                        hasCalculator: data.has_calculator,
+                        hasPeriodicTable: data.has_periodic_table,
                     };
                     if (data.section !== undefined) {
                         this._statusData.section = data.section;

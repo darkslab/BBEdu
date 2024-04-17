@@ -48,16 +48,21 @@ class ExamMixin:
         return data
 
     def started_response(self, now_at, reload=False):
+        current_test = self.current_quiz().test
+        question_list = current_test.questions.values("id", "has_calculator", "has_periodic_table").order_by("testtoquestionrelation")
+
         response = {
             "success": True,
             "status": "started",
-            "section": test_instructions_title(self.current_quiz().test),
+            "section": test_instructions_title(current_test),
             "seconds": (self.current_quiz().due_at - now_at).seconds,
             "reload": reload,
             "username": self.current_quiz().quiz_set.student.username,
+            "has_periodic_table": [q["has_periodic_table"] for q in question_list],
+            "has_calculator": [q["has_calculator"] for q in question_list],
         }
-        inject_questions_and_report_into_started_response(response, self.current_quiz().test)
-        inject_texts_into_response(response, self.current_quiz().test)
+        inject_questions_and_report_into_started_response(response, current_test)
+        inject_texts_into_response(response, current_test)
         if self.current_quiz().report is None:
             for data in response["report"]["answers"]:
                 data["answer"] = None
@@ -135,7 +140,7 @@ class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin,
                 "error_msg": f"ExamStartView.post: ConcurrentUpdate failed {e}",
             })
 
-        return TightJsonResponse(self.started_response(now_at, reload=True))
+        return TightJsonResponse(self.started_response(now_at))
 
 
 class ExamSkipView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):

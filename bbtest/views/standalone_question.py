@@ -433,6 +433,8 @@ class StandaloneQuestionPreviewDataView(StaffPermissionRequiredMixin, View):
             "success": True,
             "status": "started",
             "seconds": question.section.duration,
+            "has_periodic_table": [question.has_periodic_table],
+            "has_calculator": [question.has_calculator],
         }
         # inject_questions_and_report_into_started_response(response, question)
         inject_standalone_question_and_report_into_started_response(response, question)
