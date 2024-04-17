@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+from django.db.models import Q
 from datetime import datetime
 import pytz
 from bbtest.models import User
@@ -7,28 +8,45 @@ from bbtest.models.quiz import Quiz, QuizSet
 from datetime import timedelta
 from pprint import pprint
 
+
 class Command(BaseCommand):
     help = 'export test info' 
 
-
     def handle(self, *args, **kwargs):
-        from_date = datetime(2024, 4, 15, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
-
         domain_name = "Klass_4"
         # domain_name = "Klass_9"
         # domain_name = "Teacher"
+
+        for day in [15, 16, 17]:
+            from_date = datetime(2024, 4, day, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
+            self.export(from_date, domain_name)
+
+
+    def export(self, from_date: datetime, domain_name: str):
+        to_date = from_date + timedelta(hours=24)
+        dt = timedelta(hours=5)  # correct time zone offset
+
         domain_name_filter = [f"{domain_name}_ru", f"{domain_name}_kz"]
         print(domain_name_filter)
-        group_set_obj = StudentGroup.objects.prefetch_related("package", "package__domain")
-        group_set_obj = group_set_obj.filter(package__domain__name__in=domain_name_filter)
-        group_set_obj.order_by("package__domain").all()
 
-        dt = timedelta(hours=5)
+        date_filter_condition = Q(
+            students__student__quiz_sets__quizzes__started_at__gte=from_date
+        ) & Q(students__student__quiz_sets__quizzes__started_at__lte=to_date)
+
+        group_set_obj = (
+            StudentGroup.objects.prefetch_related("package", "package__domain")
+            .filter(package__domain__name__in=domain_name_filter)
+            .filter(date_filter_condition)
+            .distinct()
+            .order_by("package__domain")
+        )
+
+        print(f"answers_{domain_name}_{from_date:%Y.%m.%d}_{to_date:%Y.%m.%d}", group_set_obj.count())
 
         result = []
-        with open(f"answers_{domain_name}.csv", "w") as f:
+        with open(f"answers_{domain_name}_{from_date:%Y.%m.%d}_{to_date:%Y.%m.%d}.csv", "w") as f:
 
-            for i, group_obj in enumerate(group_set_obj):
+            for i, group_obj in enumerate(group_set_obj.all()):
                 domain_obj = group_obj.package.domain
 
                 if domain_obj.name not in domain_name_filter:
@@ -47,7 +65,7 @@ class Command(BaseCommand):
                     row = [student.username, email, group_obj.name] 
 
                     for quiz in quiz_set_list[0].quizzes.order_by("test__section__order", "order").all():
-                        if not quiz.started_at or quiz.started_at < from_date: continue
+                        if not quiz.started_at or quiz.started_at <= from_date or quiz.started_at >= to_date: continue
 
                         test = quiz.test
                         answers = [""] * test.question_count
@@ -64,7 +82,6 @@ class Command(BaseCommand):
                     # result.append(";".join(row))
                     if len(row) > 4:
                         f.write(";".join(row) + "\n") 
-
 
         # res = "\n".join(result)
         # print(res)
