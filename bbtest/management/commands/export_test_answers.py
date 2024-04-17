@@ -12,13 +12,13 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **kwargs):
-        from_date = datetime(2024, 4, 1, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
+        from_date = datetime(2024, 4, 15, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
 
         domain_name = "Klass_4"
         # domain_name = "Klass_9"
         # domain_name = "Teacher"
         domain_name_filter = [f"{domain_name}_ru", f"{domain_name}_kz"]
-
+        print(domain_name_filter)
         group_set_obj = StudentGroup.objects.prefetch_related("package", "package__domain")
         group_set_obj = group_set_obj.filter(package__domain__name__in=domain_name_filter)
         group_set_obj.order_by("package__domain").all()
@@ -59,7 +59,7 @@ class Command(BaseCommand):
                         started_at = str((quiz.started_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.started_at else ""
                         due_at = str((quiz.due_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.due_at else ""
                         ended_at = str((quiz.ended_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.ended_at else due_at
-                        row = row + [test.section.name, str(quiz.calc_score()),  started_at, ended_at] + answers
+                        row = row + [test.section.name, test.code, str(quiz.calc_score()),  started_at, ended_at] + answers
 
                     # result.append(";".join(row))
                     if len(row) > 4:

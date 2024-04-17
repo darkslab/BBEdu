@@ -161,8 +161,8 @@ class Quiz(Model):
     def calc_score(self):
         student_answers = self.get_student_answers()
         correct_answers = self.get_correct_answers()
-        print(student_answers)
-        print(correct_answers)
+        # print(student_answers)
+        # print(correct_answers)
 
         assert len(student_answers) == len(correct_answers)
         score = 0
