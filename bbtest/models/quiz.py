@@ -146,6 +146,8 @@ class Quiz(Model):
                     if user_answer == ch["id"]:
                         ret.append(alphabet[i])
                         break
+                else:
+                    ret.append("9")
             elif question.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
                 temp = []
                 for i, ch in enumerate(choices):
