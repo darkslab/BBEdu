@@ -376,7 +376,7 @@ class Test extends React.Component {
         if (status === "abort") {
             return;
         }
-        this._errorOut("_ajaxError($xhr, status, error)");
+        this._errorOut(`_ajaxError($xhr, status, error)|${error}`);
     }
     _tick() {
         if (!this.props.hasTimer) {

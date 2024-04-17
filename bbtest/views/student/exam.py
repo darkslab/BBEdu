@@ -248,11 +248,15 @@ class ExamReportView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin
             return TightJsonResponse({
                 "success": True,
             })
-        except (ConcurrentUpdate, ValueError) as e:
-            print(e)
+        except ConcurrentUpdate as e:
             response.update({
                 "success": False,
-                "error_msg": f"ExamReportView.post: ConcurrentUpdate or ValueError failed. {e}",
+                "error_msg": f"ExamReportView.post: ConcurrentUpdate error. {e}\n" + tight_dumps(response.get("errors", {})),
+            })
+        except ValueError as e:
+            response.update({
+                "success": False,
+                "error_msg": f"ExamReportView.post: ValueError failed. {e}\n" + tight_dumps(response.get("errors", {})),
             })
         
         return TightJsonResponse(response)

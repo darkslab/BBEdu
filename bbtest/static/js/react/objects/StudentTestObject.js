@@ -70,7 +70,7 @@ StudentTestObject.prototype._ajaxError = function($xhr, status, error) {
     if (status === "abort") {
         return;
     }
-    this._component.reportFailed("StudentTestObject.prototype._ajaxError");
+    this._component.reportFailed(`StudentTestObject.prototype._ajaxError|${error}`);
 }
 StudentTestObject.prototype.texts = function() {
     return this._texts;
