@@ -275,14 +275,17 @@
                             <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz_col }}</td>
                           {% endfor %} {% endcomment %}
                           <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.test.section.name }}</td>
-                          <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.test.code }}</td>
+                          <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">
+                            <a href="{% url 'bbtest:build_test_preview' quiz.test.code %}">#{{ quiz.test.code }}</a>
+                          </td>
                           <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.started_at }}</td>
                           <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.due_at }}</td>
                           <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.ended_at }}</td>
                           <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.created_at }}</td>
                           <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.updated_at }}</td>
                           <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">
-                            {{ quiz.get_student_answers }}
+                            {{ quiz.get_answers_letters | join:","}}
+                            {% comment %} {{ quiz.get_student_answers | join:","}} {% endcomment %}
                           </td>
                           <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.calc_score }}</td>
                           <td class="text-center {% if not quiz.is_finished %}danger{% endif %}">{{ quiz.is_finished }}</td>
