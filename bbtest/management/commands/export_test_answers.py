@@ -32,6 +32,8 @@ class Command(BaseCommand):
         date_filter_condition = Q(
             students__student__quiz_sets__quizzes__started_at__gte=from_date
         ) & Q(students__student__quiz_sets__quizzes__started_at__lte=to_date)
+        student_date_filter_condition = Q(student__quiz_sets__quizzes__started_at__gte=from_date) & Q(student__quiz_sets__quizzes__started_at__lte=to_date)
+
 
         group_set_obj = (
             StudentGroup.objects.prefetch_related("package", "package__domain")
@@ -52,7 +54,17 @@ class Command(BaseCommand):
                 if domain_obj.name not in domain_name_filter:
                     continue
 
-                for j, student_test_profile in enumerate(group_obj.students.prefetch_related("student__quiz_sets").order_by("student__username").all()):
+                
+
+                student_test_profile_set_obj = (
+                    group_obj.students.prefetch_related("student__quiz_sets")
+                    .filter(student_date_filter_condition)
+                    .distinct()
+                    .order_by("student__username")
+                )
+                print(f"{i} student_test_profile_set_obj", student_test_profile_set_obj.count())
+
+                for j, student_test_profile in enumerate(student_test_profile_set_obj.all()):
                     print(i, j, " "*20, end="\r")
                     student = student_test_profile.student
                     quiz_set_list = student.quiz_sets.all()
