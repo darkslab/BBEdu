@@ -106,6 +106,7 @@ from .views.super import (
     CreateStudentsFormView        as SuperCreateStudentsFormView,
     ExportDataView                as SuperExportDataView,
     ExportDataFormView            as SuperExportDataFormView,
+    CreateQuizSetDublicateView,
 
     
 )
@@ -234,6 +235,7 @@ urlpatterns = [
     re_path(r"^super/users/(?P<user_id>[0-9]+)/impersonate/$",  SuperImpersonateUserView.as_view(),          name="super_impersonate_user"          ),
     re_path(r"^super/users/(?P<user_id>[0-9]+)/give-credits/$", SuperGiveCreditsUserView.as_view(),          name="super_give_credits_user"         ),
     re_path(r"^super/users/(?P<user_id>[0-9]+)/change-pass-manual/$",   SuperChangePassManualView.as_view(),         name="super_change_pass_manual"        ),
+    re_path(r"^super/users/(?P<user_id>[0-9]+)/duplicate-quizset/$",   CreateQuizSetDublicateView.as_view(),         name="super_duplicate_quizset"        ),
     re_path(r"^super/quizzes/$",                                SuperQuizzesView.as_view(),                  name="super_quizzes"                   ),
     re_path(r"^super/trial-balance/$",                          SuperTrialBalanceView.as_view(),             name="super_trial_balance"             ),
     re_path(r"^super/create-students/$",                        SuperCreateStudentsView.as_view(),           name="super_create_students"           ),

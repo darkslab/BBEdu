@@ -155,3 +155,37 @@ class ChangePassManualView(SuperPermissionRequiredMixin, View):
         else:
             error(request, "Could not change password! %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
         return redirect("bbtest:super_user", user_id=user.pk)
+
+
+class CreateQuizSetDublicateView(AdminPermissionRequiredMixin, View):
+    def post(self, request, user_id, *args, **kwargs):
+        print("TODO: TestSection.objects.get(name=section_name).question_count is probably depreciated")
+
+        user_student = get_object_or_404(User.objects.filter(is_superuser=False, student_test_profile__isnull=False), pk=user_id)
+        student_group_obj = user_student.student_test_profile.student_group
+        package_obj = student_group_obj.package
+
+        if not package_obj.finalized:
+            error(request, f"Package is not finilized. {package_obj.name}")
+            return redirect("bbtest:super_user", user_id=user_student.pk)
+        
+        # mark all previous quizzes as finished
+        for quiz_set_obj in user_student.quiz_sets.all():
+
+            # for quiz_obj in quiz_set_obj.quizzes.all():
+            #     quiz_obj.is_finished = True
+            #     quiz_obj.save()
+            
+            quiz_set_obj.is_current = False
+            quiz_set_obj.save()
+
+        
+        test_set = package_obj.tests.order_by('section__order').all()
+        domain = package_obj.domain
+        quiz_set = user_student.quiz_sets.create(test_domain=domain, cart=None)
+        for quiz_order, test in enumerate(test_set):
+            quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
+            # test.update(sales_count=(F("sales_count") + 1))
+
+        success(request, f"New quiz set was create and previous have been stopped. {package_obj.name}")
+        return redirect("bbtest:super_user", user_id=user_student.pk)
