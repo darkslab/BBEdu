@@ -15,7 +15,7 @@ class RefreshModal extends React.Component {
         
         const error_display = this.props.error_msg ? <>
             <button data-toggle="collapse" data-target="#demo">Show error message</button>
-            <div id="demo" class="collapse">
+            <div id="demo" class="collapse in">
                 {this.props.error_msg}
             </div>
         </> : null

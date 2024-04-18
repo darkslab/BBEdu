@@ -38,7 +38,7 @@ var RefreshModal = /*#__PURE__*/function (_React$Component) {
         "data-target": "#demo"
       }, "Show error message"), /*#__PURE__*/React.createElement("div", {
         id: "demo",
-        "class": "collapse"
+        "class": "collapse in"
       }, this.props.error_msg)) : null;
       return /*#__PURE__*/React.createElement("div", {
         className: "modal fade",
