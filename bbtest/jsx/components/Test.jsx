@@ -357,6 +357,9 @@ class Test extends React.Component {
                         this._statusData.section = data.section;
                     }
                 }
+                if (data.alert) {
+                    alert(data.alert)
+                }
                 if (data.reload) {
                     // location.href = location.href;
                     // console.log("reload", data)

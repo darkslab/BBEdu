@@ -47,7 +47,7 @@ class ExamMixin:
         #     data["video"] = test_video(self.current_quiz().test)
         return data
 
-    def started_response(self, now_at, reload=False):
+    def started_response(self, now_at, reload=False, alert=None):
         current_test = self.current_quiz().test
         question_list = current_test.questions.values("id", "has_calculator", "has_periodic_table").order_by("testtoquestionrelation")
 
@@ -57,6 +57,7 @@ class ExamMixin:
             "section": test_instructions_title(current_test),
             "seconds": (self.current_quiz().due_at - now_at).seconds,
             "reload": reload,
+            "alert": alert,
             "username": self.current_quiz().quiz_set.student.username,
             "has_periodic_table": [q["has_periodic_table"] for q in question_list],
             "has_calculator": [q["has_calculator"] for q in question_list],
