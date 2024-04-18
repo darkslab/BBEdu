@@ -10,7 +10,7 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
     template_name = "student/dashboard.html"
 
     def get_context_data(self, **kwargs):
-        kwargs["is_current"] = self.request.user.quiz_sets.first().is_current
+        kwargs["is_current"] = self.request.user.quiz_sets.filter(is_current=True).count() > 0
         return super().get_context_data(**kwargs)
     
     
