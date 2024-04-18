@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
-
+from bbtest.models import Quiz, QuizSet
 
 class CurrentQuizSetRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
@@ -10,14 +10,14 @@ class CurrentQuizSetRequiredMixin:
             return redirect("bbtest:student_dashboard")
         return super().dispatch(request, *args, **kwargs)
 
-    def quiz_set(self):
+    def quiz_set(self) -> QuizSet:
         try:
             self.__quiz_set
         except AttributeError:
             self.__quiz_set = self.request.user.quiz_sets.filter(is_current=True).select_related("test_domain").first()
         return self.__quiz_set
 
-    def current_quiz(self):
+    def current_quiz(self) -> Quiz:
         try:
             self.__current_quiz
         except AttributeError:
