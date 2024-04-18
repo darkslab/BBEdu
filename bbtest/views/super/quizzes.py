@@ -27,7 +27,7 @@ class QuizzesView(SuperPermissionRequiredMixin, UserContextMixin, PaginationMixi
                 Q(student__email__icontains=self.request.GET["q"])
                 |
                 Q(quizzes__test__code__iexact=self.request.GET["q"])
-            )
+            ).distinct()
             kwargs["q"] = self.request.GET["q"]
         except KeyError:
             pass
