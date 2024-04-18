@@ -14,7 +14,7 @@ from bbtest.models import Test, Quiz
 from bbtest.forms.exam import ExamReportForm
 from bbtest.utils.json import tight_dumps
 from bbtest.texts import test_instructions, test_video, test_instructions_title, inject_texts_into_response
-from django.contrib.messages import success, warning
+from django.contrib.messages import success, warning, error
 from django.utils.translation import pgettext_lazy, pgettext
 
 
@@ -195,9 +195,21 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
             #     if None in answer_list:
             #         now_at = now()
             #         indices_of_none = [str(index + 1) for index, value in enumerate(answer_list) if value is None]
-
             #         warning(request, pgettext("Student finish exam", "Вы не ответили на вопрос: ") + ", ".join(indices_of_none) )
             #         return TightJsonResponse(self.started_response(now_at, reload=True))
+
+            # if now_at < self.current_quiz().started_at + timedelta(minutes=3):
+            #     alert_msg = "Должно пройти минимум 3 минуты."
+            #     # error(request, pgettext("Student finish exam", "Должно пройти минимум 3 минуты."))
+            #     return TightJsonResponse(self.started_response(now_at, reload=False, alert=alert_msg))
+
+            if now_at < self.current_quiz().due_at:
+                answer_list = self.current_quiz().get_answers_ids()
+                count = sum([1 for value in answer_list if value is not None])
+                if count < 3:
+                    alert_msg = "Ответьте минимум на 3 вопроса."
+                    # error(request, pgettext("Student finish exam", "Ответьте минимум на 3 вопроса.") )
+                    return TightJsonResponse(self.started_response(now_at, reload=False, alert=alert_msg))
 
             with atomic(savepoint=False):
                 self.quiz_set().save()
