@@ -123,5 +123,5 @@ def _job_export_results(from_date: datetime, domain_name: str, job_progress: Job
     
     job_progress.percentage = 100
     job_progress.is_finished = True
-    job_progress.finished = datetime.now()
+    job_progress.finished_at = datetime.now()
     job_progress.save()

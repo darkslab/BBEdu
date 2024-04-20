@@ -75,7 +75,7 @@
                 </thead>
                 <tbody>
                     {% for progress_bar in job_progress_list %}
-                        <tr>
+                        <tr {% if not progress_bar.is_finished %}class="success"{% endif %}>
                             <td class="text-center">{{ progress_bar.job_name }}</td>
                             <td class="text-center">{{ progress_bar.started_at }}</td>
                             <td class="text-center">{{ progress_bar.finished_at }}</td>
