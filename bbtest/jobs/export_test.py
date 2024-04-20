@@ -34,9 +34,12 @@ BASE_DIR = Path(settings.BASE_DIR_PATH).resolve().parent
 
 # tzinfo=pytz.timezone('Asia/Almaty')
 
-
 @job("default", timeout=600000000)
-def export(from_date: datetime, domain_name: str):
+def job_export_resuts(from_date: datetime, domain_name: str):
+    _job_export_results(from_date, domain_name)
+
+
+def _job_export_results(from_date: datetime, domain_name: str):
     to_date = from_date + timedelta(hours=24)
     dt = timedelta(hours=5)  # correct time zone offset
 
