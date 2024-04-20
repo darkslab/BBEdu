@@ -80,8 +80,8 @@
                             <td class="text-center">{{ progress_bar.started_at }}</td>
                             <td class="text-center">{{ progress_bar.finished_at }}</td>
                             <td class="text-center">
-                                {{ progress_bar.percentage }}%
-                                <progress id="file" value="{{ progress_bar.percentage }}" max="100"></progress>
+                                {{ progress_bar.percentage|stringformat:".2f" }}%
+                                <progress id="file" value='{{ progress_bar.percentage |stringformat:".2f" }}' max="100"></progress>
                             </td>
                         </tr>
                     {% empty %}
