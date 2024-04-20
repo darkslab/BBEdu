@@ -1,32 +1,37 @@
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+import csv
+import datetime
+import uuid
+
 # from django.contrib.auth import get_user_model, login
-from django.shortcuts import redirect, get_object_or_404
-from django.contrib.messages import warning, success, error
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
-from django.utils.translation import pgettext
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.messages import error, success, warning
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.timezone import now
-from django.http import Http404
-from django.http import HttpResponse
-from bbtest.auth.mixins import SuperPermissionRequiredMixin
-from bbtest.views.generic import TemplateView, View
-from bbtest.views.common import UserContextMixin, PaginationMixin
+from django.utils.translation import pgettext
+
+
+from bbtest.auth.mixins import (
+    AdminPermissionRequiredMixin,
+    DeveloperPermissionRequiredMixin,
+    SuperPermissionRequiredMixin,
+)
 from bbtest.forms.super import ExportDataForm
 from bbtest.http import TightJsonResponse
-import uuid
-import csv
 from bbtest.models import Quiz, TestSection
-import datetime
-
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, AdminPermissionRequiredMixin
+from bbtest.views.common import PaginationMixin, UserContextMixin
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
-from django.db.models import Q
+from bbtest.views.generic import TemplateView, View
+
 
 class ExportDataView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/export_data.html"
 
     def get_context_data(self, **kwargs):
+        kwargs["active_nav_item"] = "export_data"
 
         kwargs["export_data_form"] = ExportDataForm()
 
