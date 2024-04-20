@@ -8,13 +8,12 @@ from random import randint
 import pytz
 from django.conf import settings
 from django.contrib.auth.models import Permission
-from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
-from django.forms import ValidationError
 from django_rq import job
 
 from bbtest.models import (
     Account,
+    JobProgress,
     StudentGroup,
     Test,
     TestPackage,
@@ -35,11 +34,14 @@ BASE_DIR = Path(settings.BASE_DIR_PATH).resolve().parent
 # tzinfo=pytz.timezone('Asia/Almaty')
 
 @job("default", timeout=600000000)
-def job_export_resuts(from_date: datetime, domain_name: str):
-    _job_export_results(from_date, domain_name)
+def job_export_results(from_date: datetime, domain_name: str, job_progress: JobProgress):
+    _job_export_results(from_date, domain_name, job_progress)
 
 
-def _job_export_results(from_date: datetime, domain_name: str):
+def _job_export_results(from_date: datetime, domain_name: str, job_progress: JobProgress):
+    job_progress.percentage = 0
+    job_progress.save()
+
     to_date = from_date + timedelta(hours=24)
     dt = timedelta(hours=5)  # correct time zone offset
 
@@ -60,9 +62,11 @@ def _job_export_results(from_date: datetime, domain_name: str):
         .order_by("package__domain")
     )
 
-    # print(f"answers_{domain_name}_{from_date:%Y.%m.%d}_{to_date:%Y.%m.%d}", group_set_obj.count())
+    student_group_count = group_set_obj.count()
 
+    # print(f"answers_{domain_name}_{from_date:%Y.%m.%d}_{to_date:%Y.%m.%d}", group_set_obj.count())
     # result = []
+
     with open(f"{BASE_DIR}/logins/exam_exports/answers_{domain_name}_{from_date:%Y.%m.%d}_{to_date:%Y.%m.%d}.csv", "w") as f:
 
         for i, group_obj in enumerate(group_set_obj.all()):
@@ -79,6 +83,7 @@ def _job_export_results(from_date: datetime, domain_name: str):
                 .distinct()
                 .order_by("student__username")
             )
+            student_test_profile_count = student_test_profile_set_obj.count()
             # print(f"{i} student_test_profile_set_obj", student_test_profile_set_obj.count())
 
             for j, student_test_profile in enumerate(student_test_profile_set_obj.all()):
@@ -112,4 +117,10 @@ def _job_export_results(from_date: datetime, domain_name: str):
                 if len(row) > 4:
                     f.write(";".join(row) + "\n") 
 
-
+                if j % 100 == 0:
+                    job_progress.percentage = (i + j / student_test_profile_count) / student_group_count 
+                    job_progress.save()
+    
+    job_progress.percentage = 100
+    job_progress.is_finished = True
+    job_progress.save()

@@ -20,8 +20,9 @@ from bbtest.auth.mixins import (
 )
 from bbtest.forms.super import ExportDataForm
 from bbtest.http import TightJsonResponse
-from bbtest.jobs.export_test import _job_export_results, job_export_resuts
+from bbtest.jobs.export_test import _job_export_results, job_export_results
 from bbtest.models import Quiz, TestSection
+from bbtest.models.job_progress import JobProgress
 from bbtest.views.common import PaginationMixin, UserContextMixin
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 from bbtest.views.generic import TemplateView, View
@@ -30,13 +31,14 @@ from bbtest.views.generic import TemplateView, View
 class ExportDataView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/export_data.html"
 
-    def get_context_data(self, **kwargs):
-        kwargs["active_nav_item"] = "export_data"
 
+    def get(self, request, *args, **kwargs):
+        kwargs["job_progress_list"] = request.user.job_progresses.order_by("-started_at").all()
+        # print(kwargs["job_progress_list"])
+        kwargs["active_nav_item"] = "export_data"
         kwargs["export_data_form"] = ExportDataForm()
 
-        return super().get_context_data(**kwargs)
-
+        return self.render_to_response(super().get_context_data(**kwargs))
 
 
 class ExportDataFormView(AdminPermissionRequiredMixin, View):
@@ -55,8 +57,12 @@ class ExportDataFormView(AdminPermissionRequiredMixin, View):
         start_date =  datetime(start_date.year, start_date.month, start_date.day, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
 
         print(start_date, klass_domain)
-        _job_export_results(start_date, klass_domain)
-        # job_export_results.delay(start_date, klass_domain)
+        job_progress_bar = JobProgress.objects.create(
+            user = request.user,
+            job_name = f"{klass_domain} {start_date} export answers"
+        )
+        # _job_export_results(start_date, klass_domain, job_progress_bar)
+        job_export_results.delay(start_date, klass_domain, job_progress_bar)
             
         return redirect("bbtest:super_export_data")
 
