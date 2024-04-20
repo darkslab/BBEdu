@@ -1,16 +1,19 @@
+import datetime
+
 from django.forms import (
-    Form,
-    ChoiceField,
-    IntegerField,
     CharField,
+    ChoiceField,
     DateField,
+    DateInput,
     DateTimeField,
+    Form,
+    IntegerField,
     ModelChoiceField,
     MultipleChoiceField,
 )
-from django.utils.translation import pgettext_lazy, pgettext
-from bbtest.models import TestDomain, TestSection, Test
-import datetime
+from django.utils.translation import pgettext, pgettext_lazy
+
+from bbtest.models import Test, TestDomain, TestSection
 
 
 class GiveCreditsForm(Form):
@@ -180,13 +183,31 @@ class ExportDataForm(Form):
     start_date = DateField(
         label="Start Date",
         error_messages={"required": "Specify start date."},
-        initial=datetime.datetime.now() - datetime.timedelta(days=7),
+        initial=datetime.datetime.now() - datetime.timedelta(days=1),
+        widget=DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
+        input_formats=["%Y-%m-%d"],
     )
 
-    end_date = DateField(
-        label="End Date",
-        error_messages={"required": "Specify start date."},
-        initial=datetime.datetime.now(),
+    # end_date = DateField(
+    #     label="End Date",
+    #     error_messages={"required": "Specify start date."},
+    #     initial=datetime.datetime.now(),
+    #     widget=DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
+    #     input_formats=["%Y-%m-%d"],
+    # )
+
+    klass_domain = ChoiceField(
+        label="Domain",
+        error_messages={
+            "required": "Select Domain",
+            "invalid_choice": "Invalid choice.",
+        },
+        choices=(
+            ("Klass_4", "Класс 4"),
+            ("Klass_9", "Класс 9"),
+            ("Teacher", "Учителя"),
+            ("Parent", "Родители"),
+        ),
     )
 
 
