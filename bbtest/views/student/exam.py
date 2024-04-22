@@ -137,7 +137,7 @@ class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin,
         if self.current_status(now_at) != "queued":
             return TightJsonResponse({
                 "success": False,
-                "error_msg": 'ExamStartView.post: self.current_status(now_at) != "queued"',
+                "error_msg": f'ExamStartView.post: self.current_status(now_at) != "queued", {self.current_status(now_at)}',
             })
 
         try:
@@ -197,7 +197,7 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
         if self.current_status(now_at) not in ("started", "expired"):
             return TightJsonResponse({
                 "success": False,
-                "error_msg": f'ExamEndView.post: self.current_status(now_at) not in ("started", "expired")',
+                "error_msg": f'ExamEndView.post: self.current_status(now_at) not in ("started", "expired"), {self.current_status(now_at)}',
             })
 
         try:
@@ -255,7 +255,7 @@ class ExamReportView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin
         if self.current_status(now_at) != "started":
             return TightJsonResponse({
                 "success": False,
-                "error_msg": 'ExamReportView.post: self.current_status(now_at) != "started"',
+                "error_msg": f'ExamReportView.post: self.current_status(now_at) != "started", {self.current_status(now_at)}',
             })
 
         response = {}
