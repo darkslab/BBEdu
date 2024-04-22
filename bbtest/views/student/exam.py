@@ -1,21 +1,32 @@
-from django.utils.timezone import now
-from django.db.transaction import atomic
-from django.db.models import F
-from django.core.cache import cache
-from json import loads
-from ool import ConcurrentUpdate
 from datetime import timedelta
-from bbtest.views.generic import TemplateView, View
-from bbtest.views.common import UserContextMixin, inject_questions_and_report_into_started_response
+from json import loads
+
+from django.contrib.messages import error, success, warning
+from django.core.cache import cache
+from django.db.models import F
+from django.db.transaction import atomic
+from django.utils.timezone import now
+from django.utils.translation import pgettext, pgettext_lazy
+from ool import ConcurrentUpdate
+
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
-from .mixins import CurrentQuizSetRequiredMixin
-from bbtest.http import TightJsonResponse
-from bbtest.models import Test, Quiz
 from bbtest.forms.exam import ExamReportForm
+from bbtest.http import TightJsonResponse
+from bbtest.models import Quiz, Test
+from bbtest.texts import (
+    inject_texts_into_response,
+    test_instructions,
+    test_instructions_title,
+    test_video,
+)
 from bbtest.utils.json import tight_dumps
-from bbtest.texts import test_instructions, test_video, test_instructions_title, inject_texts_into_response
-from django.contrib.messages import success, warning, error
-from django.utils.translation import pgettext_lazy, pgettext
+from bbtest.views.common import (
+    UserContextMixin,
+    inject_questions_and_report_into_started_response,
+)
+from bbtest.views.generic import TemplateView, View
+
+from .mixins import CurrentQuizSetRequiredMixin
 
 
 class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
