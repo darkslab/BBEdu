@@ -183,7 +183,7 @@ class ExportDataForm(Form):
     start_date = DateField(
         label="Start Date",
         error_messages={"required": "Specify start date."},
-        initial=datetime.datetime.now() - datetime.timedelta(days=1),
+        initial=datetime.datetime.now() - datetime.timedelta(days=0),
         widget=DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
         input_formats=["%Y-%m-%d"],
     )
