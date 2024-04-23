@@ -37,9 +37,10 @@ def job_export_results(from_date: datetime, domain_name: str, job_progress: JobP
     _job_export_results(from_date, domain_name, job_progress)
 
 
-def _job_export_results(from_date: datetime, domain_name: str, job_progress: JobProgress):
-    job_progress.percentage = 0
-    job_progress.save()
+def _job_export_results(from_date: datetime, domain_name: str, job_progress: JobProgress = None):
+    if job_progress is not None:
+        job_progress.percentage = 0
+        job_progress.save()
 
     to_date = from_date + timedelta(hours=24)
     dt = timedelta(hours=5)  # correct time zone offset
@@ -120,11 +121,12 @@ def _job_export_results(from_date: datetime, domain_name: str, job_progress: Job
                     if len(row) > 4:
                         f.write(";".join(row) + "\n") 
 
-                if j % 100 == 0:
+                if job_progress is not None and j % 100 == 0:
                     job_progress.percentage = (i + j / student_test_profile_count) / student_group_count 
                     job_progress.save()
-    
-    job_progress.percentage = 100
-    job_progress.is_finished = True
-    job_progress.finished_at = datetime.now()
-    job_progress.save()
+
+    if job_progress is not None:
+        job_progress.percentage = 100
+        job_progress.is_finished = True
+        job_progress.finished_at = datetime.now()
+        job_progress.save()
