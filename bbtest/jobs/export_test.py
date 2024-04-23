@@ -8,11 +8,10 @@ from random import randint
 import pytz
 from django.conf import settings
 from django.contrib.auth.models import Permission
-from django.db.models import Q
+from django.db.models import Q, QuerySet
 from django_rq import job
 
 from bbtest.models import (
-    Account,
     JobProgress,
     StudentGroup,
     Test,
@@ -88,34 +87,38 @@ def _job_export_results(from_date: datetime, domain_name: str, job_progress: Job
 
             for j, student_test_profile in enumerate(student_test_profile_set_obj.all()):
                 # print(i, j, " "*20, end="\r")
-                student = student_test_profile.student
-                quiz_set_list = student.quiz_sets.all()
+                student: User = student_test_profile.student
+                quiz_set_list: QuerySet[QuizSet] = student.quiz_sets.all()
 
                 if len(quiz_set_list) != 1:
                     continue
 
                 email = student.email if student.email else ""
                 # print(quiz_set_list)
-                row = [student.username, email, group_obj.name] 
 
-                for quiz in quiz_set_list[0].quizzes.order_by("test__section__order", "order").all():
-                    if not quiz.started_at or quiz.started_at <= from_date or quiz.started_at >= to_date: continue
+                for quiz_set in quiz_set_list:
+                    row = [student.username, email, group_obj.name] 
+                    quiz_list: QuerySet[Quiz] = quiz_set.quizzes.order_by("test__section__order", "order").all()
 
-                    test = quiz.test
-                    answers = [""] * test.question_count
+                    for quiz in quiz_list:
+                        if not quiz.started_at or quiz.started_at <= from_date or quiz.started_at >= to_date:
+                            continue
 
-                    for i, ans in enumerate(quiz.get_answers_letters()):
-                        if ans is not None:
-                            answers[i] = str(ans)
+                        test: Test = quiz.test
+                        answers = [""] * test.question_count
 
-                    started_at = str((quiz.started_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.started_at else ""
-                    due_at = str((quiz.due_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.due_at else ""
-                    ended_at = str((quiz.ended_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.ended_at else due_at
-                    row = row + [test.section.name, test.code, str(quiz.calc_score()),  started_at, ended_at] + answers
+                        for i, ans in enumerate(quiz.get_answers_letters()):
+                            if ans is not None:
+                                answers[i] = str(ans)
 
-                # result.append(";".join(row))
-                if len(row) > 4:
-                    f.write(";".join(row) + "\n") 
+                        started_at = str((quiz.started_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.started_at else ""
+                        due_at = str((quiz.due_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.due_at else ""
+                        ended_at = str((quiz.ended_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.ended_at else due_at
+                        row = row + [test.section.name, test.code, str(quiz.calc_score()),  started_at, ended_at] + answers
+
+                    # result.append(";".join(row))
+                    if len(row) > 4:
+                        f.write(";".join(row) + "\n") 
 
                 if j % 100 == 0:
                     job_progress.percentage = (i + j / student_test_profile_count) / student_group_count 
