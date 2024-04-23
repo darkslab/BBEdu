@@ -91,7 +91,7 @@ def _job_export_results(from_date: datetime, domain_name: str, job_progress: Job
                 student: User = student_test_profile.student
                 quiz_set_list: QuerySet[QuizSet] = student.quiz_sets.all()
 
-                if len(quiz_set_list) != 1:
+                if len(quiz_set_list) < 1:
                     continue
 
                 email = student.email if student.email else ""
