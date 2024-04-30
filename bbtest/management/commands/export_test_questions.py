@@ -1,9 +1,13 @@
-from django.core.management.base import BaseCommand
 from datetime import datetime
-import pytz
-from bbtest.models import User
-from bbtest.models.test import Test, TestQuestion, TestParagraph, TestToQuestionRelation
 from pprint import pprint
+
+import pytz
+from django.core.management.base import BaseCommand
+from django.db.models import QuerySet
+
+from bbtest.models import User
+from bbtest.models.test import Test, TestParagraph, TestQuestion, TestToQuestionRelation
+
 
 class Command(BaseCommand):
     help = 'export test info' 
@@ -105,6 +109,27 @@ class Command(BaseCommand):
         with open("test_questions.csv", "w") as f:
             f.write(out)
 
+    def question_to_letter(self, question_obj: TestQuestion):
+        alphabet = "ABCDEFGH"
+        correct_id = question_obj.meta_data.get("correct_id", None)
+        if correct_id is None:
+            return "9"
+
+        choices = question_obj.meta_data.get('choices', [])
+        if question_obj.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_ONE:
+            for i, ch in enumerate(choices):
+                if correct_id == ch["id"]:
+                    return alphabet[i]
+            else:
+                return "9"
+        elif question_obj.answer_class == TestQuestion.ANSWER_CLASS_MULTICHOICE_MULTI:
+            temp = []
+            for i, ch in enumerate(choices):
+                if correct_id and ch["id"] in correct_id:
+                    temp.append(alphabet[i])
+            return temp
+        else:
+            return "8"
 
     def handleTest(self, *args, **kwargs):
 
@@ -125,10 +150,10 @@ class Command(BaseCommand):
 
             # question_set = test_obj.questions.order_by("testtoquestionrelation").all()
 
-            test_to_question_set = TestToQuestionRelation.objects.filter(test=test_obj).order_by("order").all()
+            test_to_question_set: QuerySet[TestToQuestionRelation] = TestToQuestionRelation.objects.filter(test=test_obj).order_by("order").all()
 
             for test_to_question_obj in test_to_question_set:
-                question_obj = test_to_question_obj.question
+                question_obj: TestQuestion = test_to_question_obj.question
 
                 row_q = [
                     str(test_to_question_obj.order),
@@ -138,7 +163,7 @@ class Command(BaseCommand):
                     repr(question_obj.subtopic.name) if question_obj.subtopic else "",
                     repr(question_obj.goal.name) if question_obj.goal else "",
                     str(question_obj.answer_class),
-                    str(question_obj.meta_data.get("correct_id", None)),
+                    str(self.question_to_letter(question_obj)),  # str(question_obj.meta_data.get("correct_id", None)),
                     str(question_obj.meta_data.get("choices", None)),
                 ] 
 
