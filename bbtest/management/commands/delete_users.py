@@ -1,11 +1,18 @@
-from django.core.management.base import BaseCommand
-from datetime import datetime
-import pytz
-from bbtest.models import User
-from bbtest.models.test import Test, TestQuestion, TestParagraph, StudentGroup, TestPackage
-from bbtest.models.quiz import Quiz, QuizSet
-from datetime import timedelta
+from datetime import datetime, timedelta
 from pprint import pprint
+
+import pytz
+from django.core.management.base import BaseCommand
+
+from bbtest.models import User
+from bbtest.models.quiz import Quiz, QuizSet
+from bbtest.models.test import (
+    StudentGroup,
+    Test,
+    TestPackage,
+    TestParagraph,
+    TestQuestion,
+)
 
 
 class Command(BaseCommand):

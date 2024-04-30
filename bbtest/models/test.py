@@ -1,14 +1,23 @@
+from django.contrib.auth import get_user_model
 from django.db.models import (
-    Manager, Q,
-    Model, ForeignKey, CASCADE, ManyToManyField, OneToOneField,
-    CharField, PositiveSmallIntegerField, BooleanField, DateTimeField, PositiveIntegerField,
+    CASCADE,
+    BooleanField,
+    CharField,
+    DateTimeField,
+    ForeignKey,
+    Manager,
+    ManyToManyField,
+    Model,
+    OneToOneField,
+    PositiveIntegerField,
+    PositiveSmallIntegerField,
+    Q,
 )
 from django.utils.translation import pgettext_lazy
-from django.contrib.auth import get_user_model
-from .fields import JSONField
-from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
-from django.db.models import Q
 
+from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
+
+from .fields import JSONField
 
 User = get_user_model()
 

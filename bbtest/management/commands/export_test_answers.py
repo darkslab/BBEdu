@@ -11,7 +11,7 @@ from bbtest.models.quiz import Quiz, QuizSet
 
 
 class Command(BaseCommand):
-    help = 'export test info' 
+    help = "export test info"
 
     def handle(self, *args, **kwargs):
         domain_name = "Klass_4"
@@ -19,5 +19,7 @@ class Command(BaseCommand):
         # domain_name = "Teacher"
 
         for day in [15, 16, 17]:
-            from_date = datetime(2024, 4, day, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
+            from_date = datetime(
+                2024, 4, day, 0, 0, 0, tzinfo=pytz.timezone("Asia/Almaty")
+            )
             _job_export_results(from_date, domain_name)

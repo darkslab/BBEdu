@@ -1,7 +1,9 @@
-from django.db.models import TextField
-from django.core.exceptions import ValidationError
-from django.utils.translation import pgettext_lazy
 from json import loads
+
+from django.core.exceptions import ValidationError
+from django.db.models import TextField
+from django.utils.translation import pgettext_lazy
+
 from bbtest.forms.fields import JSONField as JSONFormField
 from bbtest.utils.json import tight_dumps
 

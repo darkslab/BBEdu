@@ -1,9 +1,14 @@
-from django.core.management.base import BaseCommand
-from bbtest.models import User
 from django.contrib.auth.models import Permission
+from django.core.management.base import BaseCommand
 
-from bbtest.models.test import Test, TestQuestion, TestSection, ExpertProfile, DeveloperProfile
-
+from bbtest.models import User
+from bbtest.models.test import (
+    DeveloperProfile,
+    ExpertProfile,
+    Test,
+    TestQuestion,
+    TestSection,
+)
 
 
 def assign(user, section_list):

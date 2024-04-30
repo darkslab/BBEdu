@@ -1,13 +1,23 @@
-from django.db.models import Manager, Model, CharField, DateTimeField, BigIntegerField, BooleanField, URLField
-from django.utils.translation import pgettext_lazy
-from django.utils.timezone import now
-from django.conf import settings
-from google.oauth2.service_account import Credentials
-from google.cloud.storage import Client
-from uuid import uuid4
 from datetime import timedelta
-from .fields import JSONField
+from uuid import uuid4
+
+from django.conf import settings
+from django.db.models import (
+    BigIntegerField,
+    BooleanField,
+    CharField,
+    DateTimeField,
+    Manager,
+    Model,
+    URLField,
+)
+from django.utils.timezone import now
+from django.utils.translation import pgettext_lazy
+from google.cloud.storage import Client
+from google.oauth2.service_account import Credentials
+
 from . import asset_classes
+from .fields import JSONField
 
 
 def storage_bucket():

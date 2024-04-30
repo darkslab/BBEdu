@@ -1,8 +1,13 @@
-from django.db.models import (
-    Model, OneToOneField, CASCADE,
-    PositiveSmallIntegerField, DateTimeField, CharField, GenericIPAddressField,
-)
 from django.contrib.auth import get_user_model
+from django.db.models import (
+    CASCADE,
+    CharField,
+    DateTimeField,
+    GenericIPAddressField,
+    Model,
+    OneToOneField,
+    PositiveSmallIntegerField,
+)
 from django.utils.translation import pgettext_lazy
 
 

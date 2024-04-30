@@ -1,9 +1,10 @@
-from django.core.management.base import BaseCommand
-from bbtest.models import User
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import Permission
-from bbtest.models import Account
 from random import randint
+
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.core.management.base import BaseCommand
+
+from bbtest.models import Account, User
 
 # 4 Класс
 # Казахский язык (с казахским языком обучения)	    Абзалбек Лаура Сапаркызы	            L.Abzalbek@iac.kz

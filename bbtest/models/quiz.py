@@ -1,14 +1,18 @@
-from django.db.models import (
-    Model, ForeignKey, CASCADE,
-    DateTimeField, PositiveSmallIntegerField, BooleanField,
-)
 from django.contrib.auth import get_user_model
+from django.db.models import (
+    CASCADE,
+    BooleanField,
+    DateTimeField,
+    ForeignKey,
+    Model,
+    PositiveSmallIntegerField,
+)
 from django.utils.translation import pgettext_lazy
-from ool import VersionField, VersionedMixin
-from math import ceil
-from .test import TestDomain, Test, TestQuestion
+from ool import VersionedMixin, VersionField
+
 from .fields import JSONField
 from .shopping.base import Cart, LineItem
+from .test import Test, TestDomain, TestQuestion
 
 
 class QuizSet(VersionedMixin, Model):

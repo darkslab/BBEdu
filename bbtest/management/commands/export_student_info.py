@@ -1,8 +1,9 @@
-from django.core.management.base import BaseCommand
-from bbtest.models import User
 from datetime import datetime
-import pytz
 
+import pytz
+from django.core.management.base import BaseCommand
+
+from bbtest.models import User
 
 
 class Command(BaseCommand):

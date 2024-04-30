@@ -1,14 +1,24 @@
+from decimal import ROUND_HALF_UP, Decimal
+
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db.models import (
+    CASCADE,
+    BooleanField,
+    CharField,
+    DateTimeField,
+    DecimalField,
+    ForeignKey,
+    IntegerField,
     Manager,
-    Model, ForeignKey, CASCADE, ManyToManyField,
-    CharField, PositiveSmallIntegerField, BooleanField, DateTimeField, IntegerField, DecimalField,
-    Sum, Q,
+    ManyToManyField,
+    Model,
+    PositiveSmallIntegerField,
+    Q,
+    Sum,
 )
 from django.db.transaction import atomic
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey
 from django.utils.translation import pgettext_lazy
-from decimal import Decimal, ROUND_HALF_UP
 
 
 class AccountManager(Manager):

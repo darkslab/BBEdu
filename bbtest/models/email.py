@@ -1,4 +1,4 @@
-from django.db.models import Model, TextField, BinaryField, DateTimeField
+from django.db.models import BinaryField, DateTimeField, Model, TextField
 from django.utils.translation import pgettext_lazy
 
 

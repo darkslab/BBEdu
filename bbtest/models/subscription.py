@@ -1,4 +1,4 @@
-from django.db.models import Model, EmailField, DateTimeField
+from django.db.models import DateTimeField, EmailField, Model
 from django.utils.translation import pgettext_lazy
 
 

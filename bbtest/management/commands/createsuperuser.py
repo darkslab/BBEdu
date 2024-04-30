@@ -1,4 +1,6 @@
-from django.contrib.auth.management.commands.createsuperuser import Command as CreateSuperUserCommand
+from django.contrib.auth.management.commands.createsuperuser import (
+    Command as CreateSuperUserCommand,
+)
 from django.core.exceptions import ValidationError
 
 
