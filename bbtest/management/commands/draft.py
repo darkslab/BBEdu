@@ -119,7 +119,7 @@ UserTestPackageProfile.objects.get(student=usr)
 TestQuestion.objects.get(code="M9RU230081").test
 
 
-t.questions.order_by("testtoquestionrelation").all()
+test.questions.order_by("testtoquestionrelation").all()
 
 {
     "choices": [
@@ -1880,3 +1880,14 @@ t.questions.order_by("testtoquestionrelation").all()
         "column_b": "B \u049b\u0430\u0442\u0430\u0440\u044b"
     }
 }
+
+from bbtest.models import User
+
+user_list = [
+    "91108400001",
+    "91108400002",
+    "91108400003",
+]
+qset = User.objects.filter(username__in=user_list)
+
+qset.update(is_active=False)
