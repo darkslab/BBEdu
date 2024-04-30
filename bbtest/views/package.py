@@ -1,34 +1,54 @@
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-# from django.contrib.auth import get_user_model, login
-from django.shortcuts import redirect, get_object_or_404
-from django.contrib.messages import warning, success, error
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import Permission
-from django.utils.translation import pgettext
-from django.db.models import Q, F
-from django.utils.timezone import now
-from django.http import Http404
-from django.http import HttpResponse
-from bbtest.auth.mixins import SuperPermissionRequiredMixin
-from bbtest.views.generic import TemplateView, View
-from bbtest.views.common import UserContextMixin, PaginationMixin
-from bbtest.forms.super import  CreatePackageForm, ManagePackageStudentsForm, ManagePackageTestForm, CreateStudentGroupForm
-from bbtest.models.test import TestDomain, Test, TestPackage, TestSection, TestPackageRelation, StudentGroup, UserTestPackageProfile
-from bbtest.models.quiz import Quiz, QuizSet
-from bbtest.http import TightJsonResponse
-import uuid
-from random import randint
 import csv
-from bbtest.models import User
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, AdminPermissionRequiredMixin, CreateStudentRequiredMixin
-from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
-from django.core.exceptions import ValidationError
-# User = get_user_model()
+import uuid
 from datetime import datetime
-from django.views.generic.base import TemplateResponseMixin, ContextMixin, View
-from bbtest.jobs.create_student_in_package import populate_package_student_group, activate_package
-from django.conf import settings
+from random import randint
 
+from django.conf import settings
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.messages import error, success, warning
+from django.core.exceptions import ValidationError
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import F, Q
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, redirect
+from django.utils.timezone import now
+from django.utils.translation import pgettext
+from django.views.generic.base import ContextMixin, TemplateResponseMixin, View
+
+from bbtest.auth.mixins import (
+    AdminPermissionRequiredMixin,
+    CreateStudentRequiredMixin,
+    DeveloperPermissionRequiredMixin,
+    SuperPermissionRequiredMixin,
+)
+from bbtest.forms.super import (
+    CreatePackageForm,
+    CreateStudentGroupForm,
+    ManagePackageStudentsForm,
+    ManagePackageTestForm,
+)
+from bbtest.http import TightJsonResponse
+from bbtest.jobs.create_student_in_package import (
+    activate_package,
+    populate_package_student_group,
+)
+from bbtest.models import User
+from bbtest.models.quiz import Quiz, QuizSet
+from bbtest.models.test import (
+    StudentGroup,
+    Test,
+    TestDomain,
+    TestPackage,
+    TestPackageRelation,
+    TestSection,
+    UserTestPackageProfile,
+)
+from bbtest.views.common import PaginationMixin, UserContextMixin
+from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
+from bbtest.views.generic import TemplateView, View
+
+# User = get_user_model()
 
 class BuildPackagesView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
     template_name = "package/create_package.html"
@@ -396,7 +416,7 @@ class ActivateStudentTurnOFF(AdminPermissionRequiredMixin, View):
 
     def post(self, request, package_code, student_group_id,  *args, **kwargs):
         print("ActivateStudentTurnOFF", package_code)
-        group_obj = get_object_or_404(StudentGroup.objects, pk=student_group_id)
+        group_obj: StudentGroup = get_object_or_404(StudentGroup.objects, pk=student_group_id)
         if settings.DEBUG:
             User.objects.filter(student_test_profile__isnull=False, student_test_profile__student_group=group_obj).update(is_active=False)
             group_obj.is_active = False
