@@ -1,28 +1,12 @@
-from bbtest.auth.models import REGIONS, User
-
-from .accounting import Account, Amount, BalanceAccount, Entry
-from .acknowledgement import DeveloperAcknowledgement
+from bbtest.auth.models import User, REGIONS
 from .email import Email
-from .job_progress import JobProgress
-from .message import Message
-from .quiz import Quiz, QuizSet
-from .shopping.base import Cart, LineItem, Transaction
+from .test import TestDomain, TestSection, TestTaxonomy, TestTaxonomySection, TestTopic, TestTopicSection, Test, TestQuestion, TestParagraph, TestParagraphQuestion, QuestionComments, TestToQuestionRelation, TestPackage, StudentGroup, UserTestPackageProfile
+from .acknowledgement import DeveloperAcknowledgement
 from .subscription import Subscription
-from .test import (
-    QuestionComments,
-    StudentGroup,
-    Test,
-    TestDomain,
-    TestPackage,
-    TestParagraph,
-    TestParagraphQuestion,
-    TestQuestion,
-    TestSection,
-    TestTaxonomy,
-    TestTaxonomySection,
-    TestTopic,
-    TestTopicSection,
-    TestToQuestionRelation,
-    UserTestPackageProfile,
-)
-from .upload import Asset, Upload
+from .upload import Upload, Asset
+from .accounting import Account, BalanceAccount, Entry, Amount
+from .shopping.base import Cart, LineItem, Transaction
+from .quiz import QuizSet, Quiz
+from .message import Message
+from .job_progress import JobProgress
+
