@@ -1,20 +1,44 @@
-from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import gettext as _, pgettext, get_language
-from django.urls import reverse_lazy, reverse
-from django.contrib.messages import success, error
+from json import loads
+
+from django.contrib.messages import error, success
 from django.db.models import Prefetch
 from django.http import Http404
-from json import loads
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, SuperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin, AdminPermissionRequiredMixin
-from .generic import View, TemplateView, FormView, RedirectView
-from .common import UserContextMixin, inject_standalone_question_and_report_into_started_response
-from bbtest.utils.json import tight_dumps
-from bbtest.models.upload import expiring_url
-from bbtest.models import TestQuestion, Test, TestParagraph, QuestionComments
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse, reverse_lazy
+from django.utils.translation import get_language, pgettext
+from django.utils.translation import gettext as _
+from django.core.handlers.wsgi import WSGIRequest
+
+from bbtest.auth.mixins import (
+    AdminPermissionRequiredMixin,
+    DeveloperPermissionRequiredMixin,
+    ExpertPermissionRequiredMixin,
+    StaffPermissionRequiredMixin,
+    SuperPermissionRequiredMixin,
+)
+from bbtest.forms.test import (
+    QuestionCheckForm,
+    QuestionCommentForm,
+    QuestionSendForm,
+    TestParagraphsContainerForm,
+    TestQuestionForm,
+)
 from bbtest.http import TightJsonResponse
-from bbtest.forms.test import TestQuestionForm, TestParagraphsContainerForm, QuestionCheckForm, QuestionSendForm, QuestionCommentForm
 from bbtest.jobs.upload import image_paragraph_destroyer
-from bbtest.texts import inject_texts_into_response, test_specification, inject_texts_into_question_response
+from bbtest.models import QuestionComments, Test, TestParagraph, TestQuestion
+from bbtest.models.upload import expiring_url
+from bbtest.texts import (
+    inject_texts_into_question_response,
+    inject_texts_into_response,
+    test_specification,
+)
+from bbtest.utils.json import tight_dumps
+
+from .common import (
+    UserContextMixin,
+    inject_standalone_question_and_report_into_started_response,
+)
+from .generic import FormView, RedirectView, TemplateView, View
 
 
 def get_question_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
