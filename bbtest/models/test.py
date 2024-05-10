@@ -471,25 +471,25 @@ class TestQuestion(Model):
         #     return 1
         return 1
     
-    def is_draft(self):
+    def is_draft(self) -> bool:
         return self.status == self.STATUS_DRAFT
 
-    def is_pending(self):
+    def is_pending(self) -> bool:
         return self.status == self.STATUS_PENDING
 
-    def is_approved(self):
+    def is_approved(self) -> bool:
         return self.status == self.STATUS_APPROVED
 
-    def is_archived(self):
+    def is_archived(self) -> bool:
         return self.status == self.STATUS_ARCHIVED
     
-    def is_redo(self):
+    def is_redo(self) -> bool:
         return self.status == self.STATUS_REDO
     
-    def is_active(self):
+    def is_active(self) -> bool:
         return self.status == self.STATUS_ACTIVE
     
-    def get_lang(self):
+    def get_lang(self) -> str:
         domain_name = self.section.domain.name
         if "ru" in domain_name:
             return Test.LANGUAGE_RU
