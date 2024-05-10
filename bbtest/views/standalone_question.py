@@ -54,7 +54,7 @@ def get_question_for_edit_or_404(request, code: str, include_section=False, incl
     if include_section:
         questions = questions.select_related("section")
     if include_paragraphs:
-        questions = questions.prefetch_related("questions__paragraphs")
+        questions = questions.prefetch_related("paragraphs")
     question: TestQuestion = get_object_or_404(
         questions,
         code=code,
