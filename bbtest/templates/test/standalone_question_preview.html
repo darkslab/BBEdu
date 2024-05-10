@@ -250,21 +250,23 @@
     </div>
     <div class="row">
         <div class="col-xs-12 mb-23">
-            {% if perms.bbtest.super or perms.bbtest.expert %}
-                {% if question.is_pending or question.is_draft and question.developer|has_perm:'bbtest.super' %}
-                    <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-approve-modal]">{% trans 'Approve' context 'Developer tools' %}</button>
-                {% endif %}
-                {% if question.is_pending %}
-                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-refuse-modal]">{% trans 'Refuse' context 'Developer tools' %}</button>
-                {% endif %}
-                {% if question.is_pending or question.is_draft and question.developer|has_perm:'bbtest.super' %}
-                    <a href="{% url 'bbtest:build_standalone_question' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
-                {% endif %}
-                {% if question.is_draft and question.developer == user %}
-                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
-                {% endif %}
+            {% if perms.bbtest.super %}
+                <a href="{% url 'bbtest:build_standalone_question' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
+                <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button>
+
+                <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-activate-modal]">{% trans 'Activate' context 'Admin tools' %}</button>
+                <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-approve-modal]">{% trans 'Approve' context 'Developer tools' %}</button>
+                <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-refuse-modal]">{% trans 'Refuse' context 'Developer tools' %}</button>
+                {% comment %} <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-send-modal]">{% trans 'Send for Approval' context 'Developer tools' %}</button> {% endcomment %}
+                <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
+                <a href="{% url 'bbtest:questions' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
+            {% elif perms.bbtest.expert %}
                 {% if question.is_pending or question.is_draft %}
+                    <button type="button" class="btn btn-success mr-5 mb-5" data-toggle="modal" data-target="[data-approve-modal]">{% trans 'Approve' context 'Developer tools' %}</button>
+                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-refuse-modal]">{% trans 'Refuse' context 'Developer tools' %}</button>
+                    <a href="{% url 'bbtest:build_standalone_question' code %}" class="btn btn-default mr-5 mb-5">{% trans 'Edit' context 'Developer tools' %}</a>
                     <button type="button" class="btn btn-primary mr-5 mb-5" data-toggle="modal" data-target="[data-check-modal]">{% trans 'Check' context 'Developer tools' %}</button>
+                    <button type="button" class="btn btn-danger mr-5 mb-5" data-toggle="modal" data-target="[data-delete-modal]">{% trans 'Delete' context 'Developer tools' %}</button>
                 {% endif %}
                 <a href="{% url 'bbtest:questions' %}" class="btn btn-default mr-5 mb-5">{% trans 'Exit' context 'Developer tools' %}</a>
             {% elif perms.bbtest.developer %}
