@@ -70,7 +70,7 @@ def get_question_for_edit_or_404(request, code, include_section=False, include_p
             raise Http404("Experts can only edit questions of other experts (and their own) that are in draft status")
     return question
 
-def get_question_for_preview_or_404(request, code):
+def get_question_for_preview_or_404(request, code) -> TestQuestion:
     if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert") or request.user.has_perm("bbtest.admin"):
         questions = TestQuestion.objects
     elif request.user.has_perm("bbtest.developer"):
@@ -100,7 +100,7 @@ class TestsView(StaffPermissionRequiredMixin, UserContextMixin, RedirectView):  
 
 
 class StandaloneQuestionQuestionView(StaffPermissionRequiredMixin, View):
-    def get(self, request, code, *args, **kwargs):
+    def get(self, request: WSGIRequest, code, *args, **kwargs):
         # print("StandaloneQuestionQuestionView", kwargs)
         question: TestQuestion = get_question_for_edit_or_404(request, code)
         # question: TestQuestion = get_object_or_404(question.questions, pk=question_id)
@@ -141,7 +141,7 @@ class StandaloneQuestionQuestionView(StaffPermissionRequiredMixin, View):
         # DARK_TODO  add "success" to response
         return TightJsonResponse(question_data)
 
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_question_for_edit_or_404(request, code)
         # question: TestQuestion = get_object_or_404(question.questions, pk=question_id)
 
@@ -161,7 +161,7 @@ class StandaloneQuestionQuestionView(StaffPermissionRequiredMixin, View):
 
 
 class StandaloneQuestionParagraphsView(StaffPermissionRequiredMixin, View):
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_question_for_edit_or_404(request, code)
 
         form = TestParagraphsContainerForm(question, data=request.POST)
@@ -179,7 +179,7 @@ class StandaloneQuestionParagraphsView(StaffPermissionRequiredMixin, View):
 
 
 class StandaloneQuestionAttributesView(StaffPermissionRequiredMixin, View):
-    def get(self, request, code, *args, **kwargs):
+    def get(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_question_for_edit_or_404(request, code, include_section=True)
         attributes_data = {
             "difficulties": [],
@@ -220,7 +220,7 @@ class StandaloneQuestionAttributesView(StaffPermissionRequiredMixin, View):
 
 
 class ApproveQuestionView(ExpertPermissionRequiredMixin, View):
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_object_or_404(TestQuestion.worked_questions.select_related("developer"), code=code)
         if not question.developer.has_perm("bbtest.super") and question.is_draft():
             raise Http404("Superusers cannot approve draft questions of other developers")
@@ -241,7 +241,7 @@ class ApproveQuestionView(ExpertPermissionRequiredMixin, View):
 
 
 class RefuseQuestionView(StaffPermissionRequiredMixin, View): # TODO
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_object_or_404(TestQuestion.objects.select_related("developer"), code=code)  # pending_questions
         if question.developer.has_perm("bbtest.super"):
             raise Http404("Superusers can only refuse questions of other developers")
@@ -254,11 +254,12 @@ class RefuseQuestionView(StaffPermissionRequiredMixin, View): # TODO
 
 
 class DeleteQuestionView(StaffPermissionRequiredMixin, View):
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_question_for_edit_or_404(request, code, include_paragraphs=True)
-        if request.user.has_perm("bbtest.super"):
-            if question.developer != request.user:
-                raise Http404("Superusers can only delete their own questions")
+
+        # if request.user.has_perm("bbtest.super"):
+        #     if question.developer != request.user:
+        #         raise Http404("Superusers can only delete their own questions")
 
         # paragraph_ids = []
         # for question in test.questions.order_by("testtoquestionrelation").all():
@@ -280,7 +281,7 @@ class DeleteQuestionView(StaffPermissionRequiredMixin, View):
 
 
 class ReDraftQuestionView(ExpertPermissionRequiredMixin, View):  # DeveloperPermissionRequiredMixin, 
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_object_or_404(TestQuestion.production_questions.select_related("developer"), code=code)
         question.status = TestQuestion.STATUS_REDO
         question.save()
@@ -289,7 +290,7 @@ class ReDraftQuestionView(ExpertPermissionRequiredMixin, View):  # DeveloperPerm
 
 
 class ReApproveQuestionView(ExpertPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_object_or_404(TestQuestion.production_questions.select_related("developer"), code=code)
         question.status = TestQuestion.STATUS_APPROVED
         question.save()
@@ -297,7 +298,7 @@ class ReApproveQuestionView(ExpertPermissionRequiredMixin, View): # DeveloperPer
         return redirect("bbtest:questions")
 
 class ActivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_object_or_404(TestQuestion.production_questions.select_related("developer"), code=code)
         question.status = TestQuestion.STATUS_ACTIVE
         question.save()
@@ -305,7 +306,7 @@ class ActivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPermi
         return redirect("bbtest:questions")
 
 class DeactivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_object_or_404(TestQuestion.active_questions.select_related("developer"), code=code)
         question.status = TestQuestion.STATUS_APPROVED
         question.save()
@@ -313,7 +314,7 @@ class DeactivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPer
         return redirect("bbtest:questions")
 
 # class ToggleFreeTestView(SuperPermissionRequiredMixin, View):
-#     def post(self, request, code, free, *args, **kwargs):
+#     def post(self, request: WSGIRequest, code, free, *args, **kwargs):
 #         test = get_object_or_404(Test.production_tests.select_related("developer"), code=code)
 #         if free == "true":
 #             free = True
@@ -334,7 +335,7 @@ class DeactivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPer
 
 
 class CheckQuestionView(StaffPermissionRequiredMixin, View):
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_question_for_check_or_404(request, code)
         response = {
             "success": True,
@@ -379,11 +380,11 @@ class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMix
     form_class = QuestionSendForm
     success_url = reverse_lazy("bbtest:questions")  # TODO
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request: WSGIRequest, *args, **kwargs):
         self._question = get_question_for_preview_or_404(request, self.kwargs["code"])
         return super().get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request: WSGIRequest, *args, **kwargs):
         self._question = get_question_for_preview_or_404(request, self.kwargs["code"])
         if request.user.has_perm("bbtest.super"):
             raise Http404("Superusers cannot send questions for approval")
@@ -423,7 +424,7 @@ class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMix
 
 class StandaloneQuestionSendCommentView(StaffPermissionRequiredMixin, View):
 
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         # return self.get(request, code, *args, **kwargs)
     
         form = QuestionCommentForm(data=request.POST)
@@ -451,7 +452,7 @@ class StandaloneQuestionSendCommentView(StaffPermissionRequiredMixin, View):
 
 
 class StandaloneQuestionPreviewDataView(StaffPermissionRequiredMixin, View):
-    def get(self, request, code, *args, **kwargs):
+    def get(self, request: WSGIRequest, code, *args, **kwargs):
         question: TestQuestion = get_question_for_preview_or_404(request, code)
         response = {
             "success": True,
@@ -467,5 +468,5 @@ class StandaloneQuestionPreviewDataView(StaffPermissionRequiredMixin, View):
 
         return TightJsonResponse(response)
 
-    def post(self, request, code, *args, **kwargs):
+    def post(self, request: WSGIRequest, code, *args, **kwargs):
         return self.get(request, code, *args, **kwargs)
