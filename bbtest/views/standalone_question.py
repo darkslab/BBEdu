@@ -29,7 +29,7 @@ def get_question_for_edit_or_404(request, code, include_section=False, include_p
         questions = questions.select_related("section")
     if include_paragraphs:
         questions = questions.prefetch_related("questions__paragraphs")
-    question = get_object_or_404(
+    question: TestQuestion = get_object_or_404(
         questions,
         code=code,
     )
@@ -78,8 +78,8 @@ class TestsView(StaffPermissionRequiredMixin, UserContextMixin, RedirectView):  
 class StandaloneQuestionQuestionView(StaffPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
         # print("StandaloneQuestionQuestionView", kwargs)
-        question = get_question_for_edit_or_404(request, code)
-        # question = get_object_or_404(question.questions, pk=question_id)
+        question: TestQuestion = get_question_for_edit_or_404(request, code)
+        # question: TestQuestion = get_object_or_404(question.questions, pk=question_id)
         # print("StandaloneQuestionQuestionView", question)
         question.meta_data["question_code"] = question.code
         question_data = {
@@ -118,8 +118,8 @@ class StandaloneQuestionQuestionView(StaffPermissionRequiredMixin, View):
         return TightJsonResponse(question_data)
 
     def post(self, request, code, *args, **kwargs):
-        question = get_question_for_edit_or_404(request, code)
-        # question = get_object_or_404(question.questions, pk=question_id)
+        question: TestQuestion = get_question_for_edit_or_404(request, code)
+        # question: TestQuestion = get_object_or_404(question.questions, pk=question_id)
 
         form = TestQuestionForm(data=request.POST, instance=question)
         if not form.is_valid():
@@ -138,7 +138,7 @@ class StandaloneQuestionQuestionView(StaffPermissionRequiredMixin, View):
 
 class StandaloneQuestionParagraphsView(StaffPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
-        question = get_question_for_edit_or_404(request, code)
+        question: TestQuestion = get_question_for_edit_or_404(request, code)
 
         form = TestParagraphsContainerForm(question, data=request.POST)
         if not form.is_valid():
@@ -156,7 +156,7 @@ class StandaloneQuestionParagraphsView(StaffPermissionRequiredMixin, View):
 
 class StandaloneQuestionAttributesView(StaffPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
-        question = get_question_for_edit_or_404(request, code, include_section=True)
+        question: TestQuestion = get_question_for_edit_or_404(request, code, include_section=True)
         attributes_data = {
             "difficulties": [],
             "taxonomies": [],
@@ -197,7 +197,7 @@ class StandaloneQuestionAttributesView(StaffPermissionRequiredMixin, View):
 
 class ApproveQuestionView(ExpertPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
-        question = get_object_or_404(TestQuestion.worked_questions.select_related("developer"), code=code)
+        question: TestQuestion = get_object_or_404(TestQuestion.worked_questions.select_related("developer"), code=code)
         if not question.developer.has_perm("bbtest.super") and question.is_draft():
             raise Http404("Superusers cannot approve draft questions of other developers")
 
@@ -218,7 +218,7 @@ class ApproveQuestionView(ExpertPermissionRequiredMixin, View):
 
 class RefuseQuestionView(StaffPermissionRequiredMixin, View): # TODO
     def post(self, request, code, *args, **kwargs):
-        question = get_object_or_404(TestQuestion.objects.select_related("developer"), code=code)  # pending_questions
+        question: TestQuestion = get_object_or_404(TestQuestion.objects.select_related("developer"), code=code)  # pending_questions
         if question.developer.has_perm("bbtest.super"):
             raise Http404("Superusers can only refuse questions of other developers")
 
@@ -231,7 +231,7 @@ class RefuseQuestionView(StaffPermissionRequiredMixin, View): # TODO
 
 class DeleteQuestionView(StaffPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
-        question = get_question_for_edit_or_404(request, code, include_paragraphs=True)
+        question: TestQuestion = get_question_for_edit_or_404(request, code, include_paragraphs=True)
         if request.user.has_perm("bbtest.super"):
             if question.developer != request.user:
                 raise Http404("Superusers can only delete their own questions")
@@ -257,7 +257,7 @@ class DeleteQuestionView(StaffPermissionRequiredMixin, View):
 
 class ReDraftQuestionView(ExpertPermissionRequiredMixin, View):  # DeveloperPermissionRequiredMixin, 
     def post(self, request, code, *args, **kwargs):
-        question = get_object_or_404(TestQuestion.production_question.select_related("developer"), code=code)
+        question: TestQuestion = get_object_or_404(TestQuestion.production_questions.select_related("developer"), code=code)
         question.status = TestQuestion.STATUS_REDO
         question.save()
         success(request, pgettext("Success alert message", "Question is now draft again."))
@@ -266,7 +266,7 @@ class ReDraftQuestionView(ExpertPermissionRequiredMixin, View):  # DeveloperPerm
 
 class ReApproveQuestionView(ExpertPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
     def post(self, request, code, *args, **kwargs):
-        question = get_object_or_404(TestQuestion.production_question.select_related("developer"), code=code)
+        question: TestQuestion = get_object_or_404(TestQuestion.production_questions.select_related("developer"), code=code)
         question.status = TestQuestion.STATUS_APPROVED
         question.save()
         success(request, pgettext("Success alert message", "Question is now approved again."))
@@ -274,7 +274,7 @@ class ReApproveQuestionView(ExpertPermissionRequiredMixin, View): # DeveloperPer
 
 class ActivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
     def post(self, request, code, *args, **kwargs):
-        question = get_object_or_404(TestQuestion.production_question.select_related("developer"), code=code)
+        question: TestQuestion = get_object_or_404(TestQuestion.production_questions.select_related("developer"), code=code)
         question.status = TestQuestion.STATUS_ACTIVE
         question.save()
         success(request, pgettext("Success alert message", "Question is active now."))
@@ -282,7 +282,7 @@ class ActivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPermi
 
 class DeactivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPermissionRequiredMixin,
     def post(self, request, code, *args, **kwargs):
-        question = get_object_or_404(TestQuestion.active_questions.select_related("developer"), code=code)
+        question: TestQuestion = get_object_or_404(TestQuestion.active_questions.select_related("developer"), code=code)
         question.status = TestQuestion.STATUS_APPROVED
         question.save()
         success(request, pgettext("Success alert message", "Question is deactivated."))
@@ -311,7 +311,7 @@ class DeactivateQuestionView(AdminPermissionRequiredMixin, View): # DeveloperPer
 
 class CheckQuestionView(StaffPermissionRequiredMixin, View):
     def post(self, request, code, *args, **kwargs):
-        question = get_question_for_check_or_404(request, code)
+        question: TestQuestion = get_question_for_check_or_404(request, code)
         response = {
             "success": True,
         }
@@ -327,7 +327,7 @@ class StandaloneQuestionView(StaffPermissionRequiredMixin, UserContextMixin, Tem
 
     def get_context_data(self, **kwargs):
         # print("StandaloneQuestionView.get_context_data", self.kwargs)
-        question = get_question_for_edit_or_404(self.request, self.kwargs["code"], include_section=True)
+        question: TestQuestion = get_question_for_edit_or_404(self.request, self.kwargs["code"], include_section=True)
         # print("StandaloneQuestionView.get_context_data", question)
 
         kwargs["question"] = question
@@ -405,7 +405,7 @@ class StandaloneQuestionSendCommentView(StaffPermissionRequiredMixin, View):
         form = QuestionCommentForm(data=request.POST)
         if form.is_valid():
             
-            question = get_question_for_preview_or_404(request, code)
+            question: TestQuestion = get_question_for_preview_or_404(request, code)
 
             comment_content = form.cleaned_data["content"]
             print(request.user, comment_content)
@@ -428,7 +428,7 @@ class StandaloneQuestionSendCommentView(StaffPermissionRequiredMixin, View):
 
 class StandaloneQuestionPreviewDataView(StaffPermissionRequiredMixin, View):
     def get(self, request, code, *args, **kwargs):
-        question = get_question_for_preview_or_404(request, code)
+        question: TestQuestion = get_question_for_preview_or_404(request, code)
         response = {
             "success": True,
             "status": "started",
