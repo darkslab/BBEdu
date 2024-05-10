@@ -1,13 +1,15 @@
-from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
-from django.contrib.auth.models import PermissionsMixin
-from django.db.models import CharField, EmailField, DateTimeField, BooleanField
-from django.core.exceptions import ValidationError
-from django.utils.translation import pgettext_lazy, gettext_lazy
-from django.urls import reverse
-from django.apps import apps
-from django.db.models import Q
 from hashlib import md5
 from urllib.parse import urlencode
+
+from django.apps import apps
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+from django.core.exceptions import ValidationError
+from django.db.models import BooleanField, CharField, DateTimeField, EmailField, Q
+from django.http import Http404
+from django.urls import reverse
+from django.utils.translation import gettext_lazy, pgettext_lazy
+
 from bbtest.models.fields import JSONField
 
 
@@ -106,7 +108,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             return reverse("bbtest:student_dashboard")
         return reverse("home")
     
-    def get_user_role(self):
+    def get_user_role(self) -> str:
         if self.has_perm("bbtest.super"):
             return "super"
         if self.has_perm("bbtest.admin"):
@@ -117,7 +119,8 @@ class User(AbstractBaseUser, PermissionsMixin):
             return "expert"
         if self.has_perm("bbtest.student"):
             return "student"
-        return "unknown_role"
+        raise Http404("unknown role")
+        # return "unknown_role"
 
     def get_full_name(self):
         full_name_values = []
