@@ -1,13 +1,13 @@
 from json import loads
 
 from django.contrib.messages import error, success
+from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import Prefetch
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import get_language, pgettext
 from django.utils.translation import gettext as _
-from django.core.handlers.wsgi import WSGIRequest
 
 from bbtest.auth.mixins import (
     AdminPermissionRequiredMixin,
@@ -25,7 +25,7 @@ from bbtest.forms.test import (
 )
 from bbtest.http import TightJsonResponse
 from bbtest.jobs.upload import image_paragraph_destroyer
-from bbtest.models import QuestionComments, Test, TestParagraph, TestQuestion
+from bbtest.models import QuestionComments, Test, TestParagraph, TestQuestion, User
 from bbtest.models.upload import expiring_url
 from bbtest.texts import (
     inject_texts_into_question_response,
@@ -41,13 +41,16 @@ from .common import (
 from .generic import FormView, RedirectView, TemplateView, View
 
 
-def get_question_for_edit_or_404(request, code: str, include_section=False, include_paragraphs=False) -> TestQuestion:
-    if request.user.has_perm("bbtest.super"):
+def get_question_for_edit_or_404(request: WSGIRequest, code: str, include_section=False, include_paragraphs=False) -> TestQuestion:
+    user: User = request.user
+    user_role = user.get_user_role() 
+
+    if user_role == "super":
         questions = TestQuestion.objects.select_related("developer")
-    if request.user.has_perm("bbtest.expert"):
+    elif user_role == "expert":
         questions = TestQuestion.worked_questions.select_related("developer")
-    elif request.user.has_perm("bbtest.developer"): 
-        questions = request.user.questions.filter(status__lt=TestQuestion.STATUS_APPROVED)
+    elif user_role == "developer": 
+        questions = user.questions.filter(status__lt=TestQuestion.STATUS_APPROVED)
     else:
         raise Http404("You do not have permission to edit questions")
     
@@ -64,13 +67,13 @@ def get_question_for_edit_or_404(request, code: str, include_section=False, incl
     #         raise Http404("Superusers can only edit questions of other developers that are in pending status")
     #     if question.developer.has_perm("bbtest.super") and not question.is_draft():
     #         raise Http404("Superusers can only edit questions of other superusers (and their own) that are in draft status")
-        
-    if request.user.has_perm("bbtest.expert"):
+    
+    if user_role == "expert":
         if not (question.is_draft() or question.is_redo()):
             raise Http404("Experts can only edit questions that are in draft or redo status")
     return question
 
-def get_question_for_preview_or_404(request, code) -> TestQuestion:
+def get_question_for_preview_or_404(request: WSGIRequest, code: str) -> TestQuestion:
     if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert") or request.user.has_perm("bbtest.admin"):
         questions = TestQuestion.objects
     elif request.user.has_perm("bbtest.developer"):
