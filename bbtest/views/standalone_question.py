@@ -41,8 +41,10 @@ from .common import (
 from .generic import FormView, RedirectView, TemplateView, View
 
 
-def get_question_for_edit_or_404(request, code, include_section=False, include_paragraphs=False):
-    if request.user.has_perm("bbtest.super") or request.user.has_perm("bbtest.expert"):
+def get_question_for_edit_or_404(request, code: str, include_section=False, include_paragraphs=False) -> TestQuestion:
+    if request.user.has_perm("bbtest.super"):
+        questions = TestQuestion.objects.select_related("developer")
+    if request.user.has_perm("bbtest.expert"):
         questions = TestQuestion.worked_questions.select_related("developer")
     elif request.user.has_perm("bbtest.developer"): 
         questions = request.user.questions.filter(status__lt=TestQuestion.STATUS_APPROVED)
