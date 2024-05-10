@@ -59,17 +59,15 @@ def get_question_for_edit_or_404(request, code: str, include_section=False, incl
         questions,
         code=code,
     )
-    if request.user.has_perm("bbtest.super"):
-        if not question.developer.has_perm("bbtest.super") and not question.is_pending():
-            raise Http404("Superusers can only edit questions of other developers that are in pending status")
-        if question.developer.has_perm("bbtest.super") and not question.is_draft():
-            raise Http404("Superusers can only edit questions of other superusers (and their own) that are in draft status")
+    # if request.user.has_perm("bbtest.super"):
+    #     if not question.developer.has_perm("bbtest.super") and not question.is_pending():
+    #         raise Http404("Superusers can only edit questions of other developers that are in pending status")
+    #     if question.developer.has_perm("bbtest.super") and not question.is_draft():
+    #         raise Http404("Superusers can only edit questions of other superusers (and their own) that are in draft status")
         
     if request.user.has_perm("bbtest.expert"):
-        if not question.developer.has_perm("bbtest.expert") and not question.is_pending():
-            raise Http404("Experts can only edit questions of other developers that are in pending status")
-        if question.developer.has_perm("bbtest.super") and not question.is_draft():
-            raise Http404("Experts can only edit questions of other experts (and their own) that are in draft status")
+        if not (question.is_draft() or question.is_redo()):
+            raise Http404("Experts can only edit questions that are in draft or redo status")
     return question
 
 def get_question_for_preview_or_404(request, code) -> TestQuestion:
