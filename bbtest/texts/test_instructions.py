@@ -159,8 +159,25 @@ UNT_TEST_INSTRUCTION_TEXTS = {
     9558: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
     9559: UNT_PROFILE_TEST_INSTRUCTION_TEXTS,
 }
-Test
-def test_instructions(test):
+
+def test_instructions(test: Test):
+    if test.section.code in ["QP4RU", "QP4KZ"]:
+        if test.language == Test.LANGUAGE_RU:
+            return  [
+                [
+                    f"Анкетирование содержит {test.question_count} вопросов.",
+                    f"Для ответа на все вопросы выделено {test.duration // 60} минут.",
+                ]
+            ]
+        else:
+            return  [
+                [
+                    f"Бұл сауалнама {test.question_count} сұрақтан тұрады.",
+                    f"Барлық сұрақтарға жауап беруге {test.duration // 60} минут беріледі.",
+                ]
+            ]
+
+
     if test.language == Test.LANGUAGE_RU:
         return  [
             [
