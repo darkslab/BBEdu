@@ -218,6 +218,8 @@ class DeveloperQuestion extends React.Component {
             );
         }
 
+        const question_code = this.props.object._data.meta_data !== null ? this.props.object._data.meta_data.question_code: "question code"
+
         return (
             <React.Fragment>
                 <div className="modal bb-quick-modal fade" data-quick-modal>
@@ -235,7 +237,7 @@ class DeveloperQuestion extends React.Component {
                         <div className="panel panel-primary mb-15">
                             <div className="panel-heading bb-rel clearfix">
                                 <div className="bb-test-number">{this.props.count}</div>
-                                <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question} ({this.props.object._data.meta_data.question_code})</h4>
+                                <h4 className="panel-title bb-test-title mt-15 mb-15 pull-left">{this.props.texts.question} ({question_code})</h4>
                                 {/* <h4 className="panel-title bb-test-title mt-15 mb-15 pull-right"></h4> */}
                             </div>
                             <div className="panel-body">
