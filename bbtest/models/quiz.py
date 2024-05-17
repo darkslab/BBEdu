@@ -99,7 +99,9 @@ class Quiz(Model):
         ret = []
         for q in questions:
             choices = q.meta_data['choices'] # .sort(lambda x: x["id"])
-            a_offset = min([option["id"] for option in choices])
+            a_offset = 0
+            if choices:
+                a_offset = min([option["id"] for option in choices])
             correct_id = q.meta_data.get("correct_id", None)
             if correct_id is not None:
                 ret.append(correct_id - a_offset + 1)
@@ -112,7 +114,10 @@ class Quiz(Model):
         a_id = []
         for q in questions:
             choices = q.meta_data['choices'] #.sort(lambda x: x["id"])
-            a_id.append(min([option["id"] for option in choices]))
+            if choices:
+                a_id.append(min([option["id"] for option in choices]))
+            else:
+                a_id.append(0)
         return a_id
         
     def get_answers_ids(self):
