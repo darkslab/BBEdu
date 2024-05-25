@@ -33,16 +33,16 @@ BASE_DIR = Path(settings.BASE_DIR_PATH).resolve().parent
 # tzinfo=pytz.timezone('Asia/Almaty')
 
 @job("default", timeout=600000000)
-def job_export_results(from_date: datetime, domain_name: str, job_progress: JobProgress):
-    _job_export_results(from_date, domain_name, job_progress)
+def job_export_results(from_date: datetime, to_date: datetime, domain_name: str, job_progress: JobProgress):
+    _job_export_results(from_date, to_date, domain_name, job_progress)
 
 
-def _job_export_results(from_date: datetime, domain_name: str, job_progress: JobProgress = None):
+def _job_export_results(from_date: datetime, to_date: datetime, domain_name: str, job_progress: JobProgress = None):
     if job_progress is not None:
         job_progress.percentage = 0
         job_progress.save()
 
-    to_date = from_date + timedelta(hours=24)
+    # to_date = from_date + timedelta(hours=24)
     dt = timedelta(hours=5)  # correct time zone offset
 
     domain_name_filter = [f"{domain_name}_ru", f"{domain_name}_kz"]

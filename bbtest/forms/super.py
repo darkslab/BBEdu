@@ -188,13 +188,13 @@ class ExportDataForm(Form):
         input_formats=["%Y-%m-%d"],
     )
 
-    # end_date = DateField(
-    #     label="End Date",
-    #     error_messages={"required": "Specify start date."},
-    #     initial=datetime.datetime.now(),
-    #     widget=DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
-    #     input_formats=["%Y-%m-%d"],
-    # )
+    end_date = DateField(
+        label="End Date",
+        error_messages={"required": "Specify end date."},
+        initial=datetime.datetime.now(),
+        widget=DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
+        input_formats=["%Y-%m-%d"],
+    )
 
     klass_domain = ChoiceField(
         label="Domain",

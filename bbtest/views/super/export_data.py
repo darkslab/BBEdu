@@ -51,18 +51,21 @@ class ExportDataFormView(AdminPermissionRequiredMixin, View):
             error(request, "Errors %s" % " ".join([ " ".join(errors) for key, errors in form.errors.items() ]))
             return redirect("bbtest:super_export_data")
         
-        start_date = form.cleaned_data["start_date"]
+        start_date: datetime = form.cleaned_data["start_date"]
+        end_date: datetime = form.cleaned_data["end_date"]
         klass_domain = form.cleaned_data["klass_domain"] 
 
         start_date =  datetime(start_date.year, start_date.month, start_date.day, 0, 0, 0, tzinfo=pytz.timezone('Asia/Almaty'))
+        end_date =  datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59, tzinfo=pytz.timezone('Asia/Almaty'))
 
-        print(start_date, klass_domain)
+
+        # print(start_date, klass_domain)
         job_progress_bar = JobProgress.objects.create(
             user = request.user,
             job_name = f"{klass_domain} {start_date} export answers"
         )
         # _job_export_results(start_date, klass_domain, job_progress_bar)
-        job_export_results.delay(start_date, klass_domain, job_progress_bar)
+        job_export_results.delay(start_date, end_date, klass_domain, job_progress_bar)
             
         return redirect("bbtest:super_export_data")
 
