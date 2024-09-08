@@ -253,6 +253,8 @@ if not DEBUG:
         "security.W004",
         "security.W019",
     ]
+    # proxy pass to docker
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 LOGGING = {
     "version": 1,
