@@ -112,9 +112,9 @@ class CreatePackageForm(Form):
     name = CharField(
         label=pgettext("CreatePackageForm", "Login prefix"),
         error_messages={"required": "Package will be generated with this name."},
-        initial="IAC_2024",
-        # help_text="IAC_2024",
-        # empty_value="IAC_2024",
+        initial="Pilot_test",
+        # help_text="Pilot_test",
+        # empty_value="Pilot_test",
         min_length=1,
         max_length=100,
     )
