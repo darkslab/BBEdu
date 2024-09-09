@@ -5,6 +5,29 @@ import django
 
 # us[0].user_permissions.all()
 
+from bbtest.models import User, TestQuestion, TestPackage, TestParagraph, Test, UserTestPackageProfile
+for us in User.objects.all():
+    try:
+        if us.get_user_role() == "student":
+            print("deleted:", us.first_name)
+            us.delete()
+        
+        
+
+    except Exception as e:
+        print("error:", us.first_name)
+        us.delete()
+        print(e)
+
+
+Test.objects.all().delete()
+TestQuestion.objects.all().delete()
+TestPackage.objects.all().delete()
+TestParagraph.objects.all().delete()
+
+
+UserTestPackageProfile.objects.all()
+
 # res = []
 # for u in us:
 #     res.append([u.username, u.user_permissions.all()])
