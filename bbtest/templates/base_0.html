@@ -33,8 +33,9 @@
     {% stylesheet 'base0' %}
     {% stylesheet 'base1' %}
 
-    {% comment %} <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> {% endcomment %}
-    <script src="/static/jquery-3.2.1.min.js"></script>  {% comment %} should be explicetely stored by nginx {% endcomment %}
+    {% comment %} <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>{% endcomment %} {% comment %}shuld be used in developmet{% endcomment %}
+    <script src="/static/jquery-3.2.1.min.js"></script>{% comment %} shuld be used in prod   {% endcomment %}
+    {% comment %} should be explicetely stored by nginx {% endcomment %}
 	{% comment %} <script src="{% static 'Calculator_files/math.min.js' %}"></script> {% endcomment %}
     {% comment %} {% javascript 'jquery' %} {% endcomment %}
     {% javascript 'base0' %}
