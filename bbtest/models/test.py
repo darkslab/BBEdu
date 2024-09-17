@@ -66,6 +66,9 @@ class TestSection(Model):
 
     def is_proftest(self):
         return self.pk == 9566
+    
+    def is_fizmat(self):
+        return self.pk == 9567
 
     def fg_color(self):
         return GOOGLE_COLORS[(self.pk - 9540) % len(GOOGLE_COLORS)]
@@ -75,7 +78,7 @@ class TestSection(Model):
 
     def can_measure_topics(self):
         # 9539 NIS Natural science not measurable
-        return self.pk in (9540, 9544, 9547, 9545) or self.pk in range(9548, 9560) or self.pk in range(9560, 9564) or self.pk == 9565
+        return self.pk in (9540, 9544, 9547, 9545) or self.pk in range(9548, 9560) or self.pk in range(9560, 9564) or self.pk == 9565 or self.pk == 9567
 
 
 class TestTaxonomy(Model):
@@ -300,7 +303,13 @@ class TestQuestion(Model):
     def calculate_weight(cls, test_question, test_section):
         if test_section.is_nis():
             return 10
-        elif test_section.is_unt_compulsory() or test_section.is_nufypet() or test_section.is_nqt_compulsory() or test_section.is_law() or test_section.is_proftest():
+        elif test_section.is_unt_compulsory() \
+                or test_section.is_nufypet() \
+                or test_section.is_nqt_compulsory() \
+                or test_section.is_law() \
+                or test_section.is_proftest() \
+                or test_section.is_fizmat() \
+                    :
             return 1
         elif test_section.is_unt_profile():
             if test_question.answer_class == cls.ANSWER_CLASS_MULTICHOICE_ONE:
