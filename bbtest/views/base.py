@@ -17,13 +17,13 @@ from bbtest.views.common import UserContextMixin
 from bbtest.forms.user import SettingsForm, ExtendedSettingsForm
 from bbtest.forms.base import BuyCreditsForm
 from bbtest.forms.message import MessageForm
-from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError, FirstBeelinePaymentProcessor, KaspiQRPaymentProcessor
+from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError, FirstBeelinePaymentProcessor
 from bbtest.payment_processors.kaspi_qr import order_create as kaspi_qr_order_create
 from bbtest.models.shopping.handle import CartHandleAccessMixin, CartHandle
 from bbtest.models.shopping.items import CreditItem
 from bbtest.models.shopping.items.credit import MIN_CREDIT_AMOUNT
 from bbtest.models.shopping.operate import charge
-from bbtest.models import Cart, TestDomain
+from bbtest.models import Cart, TestDomain, Account, Entry, Transaction
 from bbtest.texts import FAQ_TEXTS
 from bbtest.http import TightJsonResponse
 
@@ -187,10 +187,20 @@ class BuyCreditsKaspiView(LoginRequiredMixin, CartHandleAccessMixin, UserContext
         kwargs["kaspi_qr_form"] = {
             "order_id": order["order_id"],
             "payment_url": order["payment_url"],
+            'status': order["status"],
             # 'order_id': 47734761,
             # 'payment_url': 'https://kaspi.kz/pay/Smartvend?service_id=4680&7363=payprint-47734761',
+            # 'status': "ok",
         }
 
+        current_cart = self.cart_handle().get_cart()
+        transaction = Transaction.objects.create(
+            document=current_cart,
+            payment_processor_class="KaspiQRPaymentProcessor",
+            meta_data=kwargs["kaspi_qr_form"],
+            amount=kwargs["cart_rounded_total"],
+            is_complete=False,
+        )
         return super().get_context_data(**kwargs)
 
 
