@@ -26,7 +26,7 @@ def add_proftest_test_domain(apps, schema_editor):
 
 
 def create_account(apps, schema_editor):
-    Account.objects.create_revenue_account("Tests-MATH")
+    Account.objects.create_revenue_account("Tests-FIZMAT")
 
 
 class Migration(migrations.Migration):
@@ -36,6 +36,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        # migrations.RunPython(create_account, migrations.RunPython.noop),
+        migrations.RunPython(create_account, migrations.RunPython.noop),
         migrations.RunPython(add_proftest_test_domain, migrations.RunPython.noop),
     ]
