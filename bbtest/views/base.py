@@ -17,7 +17,8 @@ from bbtest.views.common import UserContextMixin
 from bbtest.forms.user import SettingsForm, ExtendedSettingsForm
 from bbtest.forms.base import BuyCreditsForm
 from bbtest.forms.message import MessageForm
-from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError, FirstBeelinePaymentProcessor
+from bbtest.payment_processors import FirstQazkomPaymentProcessor, PaymentProcessorError, FirstBeelinePaymentProcessor, KaspiQRPaymentProcessor
+from bbtest.payment_processors.kaspi_qr import order_create as kaspi_qr_order_create
 from bbtest.models.shopping.handle import CartHandleAccessMixin, CartHandle
 from bbtest.models.shopping.items import CreditItem
 from bbtest.models.shopping.items.credit import MIN_CREDIT_AMOUNT
@@ -145,8 +146,14 @@ class BuyCreditsView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin
         if len(old_items):
             cache.set("cart-old-items-%s" % self.request.user.pk, old_items, cache_cart_timeout)
 
+        if form.cleaned_data["payment_type"] == "kaspi-qr":
+            print("bbtest:buy_credits_kaspi_qr")
+            return HttpResponseRedirect(reverse_lazy("bbtest:buy_credits_kaspi_qr"))
+
+
         if form.cleaned_data["payment_type"] == "card":
             return HttpResponseRedirect(reverse_lazy("bbtest:buy_credits_qazkom"))
+        
         return HttpResponseRedirect(reverse_lazy("bbtest:buy_credits_beeline"))
 
 
@@ -158,6 +165,33 @@ def is_cart_with_credits(handle):
             break
         result = True
     return result
+
+
+class BuyCreditsKaspiView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, TemplateView):
+    template_name = "base/buy_credits_kaspi_qr.html"
+
+    def get(self, request, *args, **kwargs):
+        if not is_cart_with_credits(self.cart_handle()):
+            return redirect("bbtest:buy_credits")
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+
+        kwargs["cart_rounded_total"] = round(self.cart_handle().total())
+
+        order = kaspi_qr_order_create(kwargs["cart_rounded_total"])
+        if order["status"] != "ok":
+            raise PaymentProcessorError(str(order))
+        
+        
+        kwargs["kaspi_qr_form"] = {
+            "order_id": order["order_id"],
+            "payment_url": order["payment_url"],
+            # 'order_id': 47734761,
+            # 'payment_url': 'https://kaspi.kz/pay/Smartvend?service_id=4680&7363=payprint-47734761',
+        }
+
+        return super().get_context_data(**kwargs)
 
 
 class BuyCreditsQazkomView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, TemplateView):

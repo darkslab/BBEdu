@@ -1,0 +1,57 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n static %}
+
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3{% endblock %}
+
+{% block title %}{% trans 'Buy Credits' context 'Page title' %}{% endblock %}
+
+{% block nav_student_buy_credits_class %}active{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "BuyCreditKaspiQRPageModule"
+        });
+    </script>
+    <form method="get" action="{{ kaspi_qr_form.payment_url }}" data-kaspi-qr-form>
+        <input type="hidden" name="email" value="{{ user.email }}">
+        <input type="hidden" name="person_id" value="{{ user.id }}">
+        <input type="hidden" name="payment_url" value="{{ kaspi_qr_form.payment_url }}">
+        <input type="hidden" name="order_id" value="{{ kaspi_qr_form.order_id }}">
+    </form>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="bb-min-220 bb-rel mt--15">
+                        <img src="{% static 'img/logo2_spinner.png' %}" class="bb-spinner">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="lead text-center mb-10"><strong>{% trans 'page:/buy-credits/:credits_conversion_rate' %}</strong></p>
+                </div>
+                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                    <div class="row">
+                        <div class="col-xs-4 pr-10">
+                            <img src="{% static 'img/epay.png' %}" class="img-responsive center-block" style="margin-top: 20px; max-height: 32px;">
+                        </div>
+                        <div class="col-xs-4 pr-5 pl-5">
+                            <img src="{% static 'img/halykbank.png' %}" class="img-responsive center-block" style="margin-top: 14px; max-height: 38px;">
+                        </div>
+                        <div class="col-xs-4 pl-10">
+                            <img src="{% static 'img/qazkom.png' %}" class="img-responsive center-block" style="max-height: 62px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+{% endblock %}
+
+{% block popup %}{% include 'popups/whatsapp.html' %}{% endblock %}
