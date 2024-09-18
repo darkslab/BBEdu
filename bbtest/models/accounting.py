@@ -225,6 +225,10 @@ class Debit(Fund):
         if self.account().is_credit_account():
             return True
         return False
+    
+    def __repr__(self) -> str:
+        return "Debit({})".format(self.audit_balance())
+
 
 class Credit(Fund):
     def audit_balance(self):
@@ -236,6 +240,10 @@ class Credit(Fund):
         if self.account().is_debit_account():
             return True
         return False
+    
+    def __repr__(self) -> str:
+        return "Credit({})".format(self.audit_balance())
+        
 
 def squash_funds(funds):
     squashed_funds = []

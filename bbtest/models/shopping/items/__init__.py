@@ -35,6 +35,7 @@ from .nufypet.concrete import (
 from .law import LawItem
 from .proftest import ProftestItem
 from .nqt import NQTItem
+from .fizmat import FizmatItem
 
 # DARK_COMM  Only keep concrete Item classes in __all__!
 __all__ = [
@@ -73,5 +74,7 @@ __all__ = [
 
     "NQTItem",
 
-    "ProftestItem"
+    "ProftestItem",
+
+    "FizmatItem",
 ]

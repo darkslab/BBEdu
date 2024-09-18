@@ -17,7 +17,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
 
     def get_context_data(self, **kwargs):
         kwargs["empty_language_code"] = Test.LANGUAGE_XX
-
+        # --------------------------------------------------------- nis ---------------------------------------------------------
         kwargs["nis"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7911)
         kwargs["nis_data"] = []
         for section in kwargs["nis"].sections.all():
@@ -64,7 +64,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                 data["specification"][Test.LANGUAGE_XX] = test_specification(section, Test.LANGUAGE_XX, get_language())
 
             kwargs["nis_data"].append(data)
-
+        # --------------------------------------------------------- unt ---------------------------------------------------------
         kwargs["unt"] = get_object_or_404(TestDomain.objects.prefetch_related("sections").order_by('order'), pk=7912)
         kwargs["unt_core_data"] = []
         kwargs["unt_spec_data"] = []
@@ -123,7 +123,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                         data["specification"][language[0]] = test_specification(section, language[0], get_language())
 
                 kwargs["unt_spec_data"].append(data)
-
+        # --------------------------------------------------------- nufypet ---------------------------------------------------------
         kwargs["nufypet"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7913)
         kwargs["nufypet_data"] = []
         for section in kwargs["nufypet"].sections.all():
@@ -134,7 +134,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                     Test.LANGUAGE_XX: test_specification(section, Test.LANGUAGE_XX, get_language()),
                 },
             })
-
+        # --------------------------------------------------------- nqt ---------------------------------------------------------
         kwargs["nqt"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7914)
         kwargs["nqt_core_data"] = []
         for section in kwargs["nqt"].sections.all():
@@ -156,7 +156,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                 data["language"]["choices"].append(language)
 
             kwargs["nqt_core_data"].append(data)
-
+        # --------------------------------------------------------- law ---------------------------------------------------------
         kwargs["law"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7915)
         kwargs["law_data"] = []
         for section in kwargs["law"].sections.all():
@@ -178,7 +178,7 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                 data["language"]["choices"].append(language)
 
             kwargs["law_data"].append(data)
-
+        # --------------------------------------------------------- proftest ---------------------------------------------------------
         kwargs["proftest"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7916)
         kwargs["proftest_data"] = []
         for section in kwargs["proftest"].sections.all():
@@ -200,7 +200,28 @@ class TestsView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequir
                 data["language"]["choices"].append(language)
 
             kwargs["proftest_data"].append(data)
+        # --------------------------------------------------------- fizmat ---------------------------------------------------------
+        kwargs["fizmat"] = get_object_or_404(TestDomain.objects.prefetch_related("sections"), pk=7917)
+        kwargs["fizmat_data"] = []
+        for section in kwargs["fizmat"].sections.all():
+            data = {
+                "section": section,
+                "language": None,
+                "specification": {
+                    Test.LANGUAGE_KK: test_specification(section, Test.LANGUAGE_KK, get_language()),
+                    Test.LANGUAGE_RU: test_specification(section, Test.LANGUAGE_RU, get_language()),
+                },
+            }
+            data["language"] = {
+                "title": pgettext("/developer/tests/", "Choose test language"),
+                "choices": [],
+            }
+            for language in Test.LANGUAGES:
+                if language[0] == Test.LANGUAGE_XX:
+                    continue
+                data["language"]["choices"].append(language)
 
+            kwargs["fizmat_data"].append(data)
         
         return super().get_context_data(**kwargs)
 

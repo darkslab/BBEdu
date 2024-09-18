@@ -145,7 +145,7 @@ class Command(BaseCommand):
                     formula = [xl_rowcol_to_cell(i, col) for col in score_cols]
                     worksheet.write_formula(i, last_col, '=' + "+".join(formula))
                     
-        for domain_id in [7911, 7912, 7913, 7914, 7915, 7916]:  # [7911, 7912, 7913, 7914, 7915, 7916]
+        for domain_id in [7911, 7912, 7913, 7914, 7915, 7916, 7917]:
             quizes = Quiz.objects.filter(
                                     Q(started_at__lte=end_date) & Q(started_at__gte=start_date) & Q(test__section__domain=domain_id)
                                 ).order_by("quiz_set__student", "test__language").prefetch_related("test", "test__questions", "test__section", "quiz_set", "quiz_set__student").iterator()
@@ -197,7 +197,7 @@ class Command(BaseCommand):
                     worksheet.write_formula(i, last_col, '=' + "+".join(formula))
                             
     def simple_export(self, start_date, end_date, workbook):
-        for domain_id in [7911, 7912, 7913, 7914, 7915, 7916]:  # [7911, 7912, 7913, 7914, 7915, 7916]
+        for domain_id in [7911, 7912, 7913, 7914, 7915, 7916, 7917]:
             quizes = Quiz.objects.filter(
                                     Q(started_at__lte=end_date) & Q(started_at__gte=start_date) & Q(test__section__domain=domain_id)
                                 ).order_by("quiz_set__student", "test__language").prefetch_related("test", "test__questions", "test__section", "quiz_set", "quiz_set__student").iterator() #.prefetch_related("user_permissions__content_type")  .order_by("-started_at")

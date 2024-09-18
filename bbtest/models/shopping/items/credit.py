@@ -11,7 +11,7 @@ User = get_user_model()
 
 
 MAX_CREDIT_AMOUNT = Decimal("1000000.00")
-MIN_CREDIT_AMOUNT = Decimal("200.00")
+MIN_CREDIT_AMOUNT = Decimal("10.00")
 
 class CreditItem(Item):
     def __init__(self, handle, amount, user):

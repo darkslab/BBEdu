@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-03 04:49+0600\n"
+"POT-Creation-Date: 2024-09-19 01:26+0600\n"
 "PO-Revision-Date: 2020-08-31 22:04+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -586,6 +586,9 @@ msgstr "PROF Tests [Revenue account]"
 
 msgid "page:/super/trial-balance/:account.nqt"
 msgstr "NQT Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.fizmat"
+msgstr "FIZMAT Tests [Revenue account]"
 
 msgid "Knowledge"
 msgstr "Knowledge"
@@ -1302,6 +1305,12 @@ msgstr "Обучение талантливых и одаренных детей
 msgid "_common.topics.nqt.section00.topic17"
 msgstr "Исследование практики"
 
+msgid "_common.domains.fizmat"
+msgstr "FIZMAT"
+
+msgid "_common.section.fizmat.math"
+msgstr "FIZMAT Mathematics"
+
 msgctxt "Account type"
 msgid "Asset"
 msgstr "Asset"
@@ -1498,6 +1507,10 @@ msgid "Credits"
 msgstr "Credits"
 
 msgctxt "Item error"
+msgid "Prof Test is required."
+msgstr "Test is required."
+
+msgctxt "Item error"
 msgid "Law Test is required."
 msgstr "Law Test is required."
 
@@ -1556,10 +1569,6 @@ msgstr "Biology/Chemistry NUFYPET Test is required."
 msgctxt "Item error"
 msgid "Thinking skills NUFYPET Test is required."
 msgstr "Thinking skills NUFYPET Test is required."
-
-msgctxt "Item error"
-msgid "Prof Test is required."
-msgstr "Test is required."
 
 msgctxt "Item error"
 msgid "Test is required."
@@ -1818,6 +1827,12 @@ msgstr ""
 
 msgid "page:/buy-credits/:enter_amount"
 msgstr "Enter amount"
+
+msgid "page:/buy-credits/:payment_option_kaspi_qr"
+msgstr "Payment Option 1"
+
+msgid "page:/buy-credits/:pay_with_kaspi_qr"
+msgstr "Pay with Kaspi QR application"
 
 msgid "page:/buy-credits/:payment_option_1"
 msgstr "Payment Option 1"
@@ -2368,6 +2383,9 @@ msgstr "Start"
 msgctxt "Page title"
 msgid "Choose the test domain"
 msgstr "Choose the test domain"
+
+msgid "_common.domains.fizmat_full"
+msgstr "National School of Physics & Math"
 
 #, python-format
 msgctxt "Page title"

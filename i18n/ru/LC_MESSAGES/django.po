@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-03 04:49+0600\n"
+"POT-Creation-Date: 2024-09-19 01:26+0600\n"
 "PO-Revision-Date: 2020-08-31 22:02+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -594,6 +594,9 @@ msgstr "PROF Tests [Revenue account]"
 
 msgid "page:/super/trial-balance/:account.nqt"
 msgstr "NQT Tests [Revenue account]"
+
+msgid "page:/super/trial-balance/:account.fizmat"
+msgstr "FIZMAT Tests [Revenue account]"
 
 msgid "Knowledge"
 msgstr "Знание"
@@ -1306,6 +1309,12 @@ msgstr "Обучение талантливых и одаренных детей
 msgid "_common.topics.nqt.section00.topic17"
 msgstr "Исследование практики"
 
+msgid "_common.domains.fizmat"
+msgstr "ФизМат"
+
+msgid "_common.section.fizmat.math"
+msgstr "ФизМат Математика"
+
 msgctxt "Account type"
 msgid "Asset"
 msgstr "Актив"
@@ -1502,6 +1511,10 @@ msgid "Credits"
 msgstr "Единицы"
 
 msgctxt "Item error"
+msgid "Prof Test is required."
+msgstr "Требуется тест."
+
+msgctxt "Item error"
 msgid "Law Test is required."
 msgstr "Требуется тест по Тестированию юристов."
 
@@ -1560,10 +1573,6 @@ msgstr "Требуется тест NUFYPET: Biology/Chemistry."
 msgctxt "Item error"
 msgid "Thinking skills NUFYPET Test is required."
 msgstr "Требуется тест NUFYPET: Thinking skills."
-
-msgctxt "Item error"
-msgid "Prof Test is required."
-msgstr "Требуется тест."
 
 msgctxt "Item error"
 msgid "Test is required."
@@ -1823,6 +1832,12 @@ msgstr ""
 
 msgid "page:/buy-credits/:enter_amount"
 msgstr "Введите сумму"
+
+msgid "page:/buy-credits/:payment_option_kaspi_qr"
+msgstr "Способ оплаты 1"
+
+msgid "page:/buy-credits/:pay_with_kaspi_qr"
+msgstr "Оплатить через Kaspi QR"
 
 msgid "page:/buy-credits/:payment_option_1"
 msgstr "Способ оплаты 1"
@@ -2386,6 +2401,9 @@ msgstr "Начать"
 msgctxt "Page title"
 msgid "Choose the test domain"
 msgstr "Выберите тест"
+
+msgid "_common.domains.fizmat_full"
+msgstr "Республиканская Физико-Математическая Школа"
 
 #, python-format
 msgctxt "Page title"

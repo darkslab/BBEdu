@@ -81,7 +81,7 @@ else:
 
 def get_test_domain_or_404(test_domain_id):
     return get_object_or_404(
-        TestDomain.objects.filter(pk__in=[ 7911, 7912, 7913, 7914, 7915, 7916 ]).prefetch_related("sections"),
+        TestDomain.objects.filter(pk__in=[ 7911, 7912, 7913, 7914, 7915, 7916, 7917]).prefetch_related("sections"),
         pk=test_domain_id,
     )
 
@@ -103,6 +103,7 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequir
         kwargs["nqt"] = TestDomain.objects.get(pk=7914)
         # kwargs["law"] = TestDomain.objects.get(pk=7915)
         kwargs["proftest"] = TestDomain.objects.get(pk=7916)
+        kwargs["fizmat"] = TestDomain.objects.get(pk=7917)
 
         return super().get_context_data(**kwargs)
 

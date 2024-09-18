@@ -34,5 +34,7 @@ TEST_SECTION_MAP = {
     "9564": NQTItem,
 
     "9565": LawItem,
-    "9566": ProftestItem
+    "9566": ProftestItem,
+
+    "9567": FizmatItem,
 }

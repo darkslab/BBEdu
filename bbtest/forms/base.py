@@ -133,4 +133,5 @@ class BuyCreditsForm(Form):
     }, widget=HiddenInput, choices=(
         ( "card", None ),
         ( "beeline", None ),
+        ( "kaspi-qr", None ),
     ))
