@@ -83,6 +83,9 @@ class CartHandle:
             self.mark_modified()
             self.save()
         return self.__cart.pk
+    
+    def get_cart(self):
+         return self.__cart
 
     def checkout(self):
         if not len(self.__items()):
