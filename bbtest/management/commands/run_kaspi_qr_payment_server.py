@@ -13,9 +13,9 @@ from datetime import datetime, timedelta
 from django.utils.timezone import now
 
 
-# run script every 2 minutes
+# run script every 1 minutes
 # crontab -e
-# */2 * * * * /usr/local/bin/python3 ~/BBEdu/manage.py run_kaspi_qr_payment_server
+# */1 * * * * /usr/local/bin/python3 ~/BBEdu/manage.py run_kaspi_qr_payment_server
 
 
 
