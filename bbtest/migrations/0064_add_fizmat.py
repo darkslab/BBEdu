@@ -18,7 +18,7 @@ def add_proftest_test_domain(apps, schema_editor):
         id=9567,
         name=ugettext_noop("_common.section.fizmat.math"),
         duration=3600,
-        question_count=42,
+        question_count=50,
         question_price=100,
         order=1,
         domain=domain,
