@@ -12,7 +12,7 @@ class FizmatItem(TestItem):
             raise ItemError(pgettext("Item error", "Prof Test is required."))
 
     def revenue_account(self):
-        return Account.objects.get(name="Tests-MATH")
+        return Account.objects.get(name="Tests-FIZMAT")
 
     def merge_into_items(self, items):
         new_items = []
