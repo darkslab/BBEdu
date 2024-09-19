@@ -58,6 +58,15 @@ class NisView(TemplateView):
             if domain.pk == 7911:
                 kwargs["nis"] = domain
         return super().get_context_data(**kwargs)
+    
+class FizMatView(TemplateView):
+    template_name = "fizmat.html"
+
+    def get_context_data(self, **kwargs):
+        for domain in TestDomain.objects.all():
+            if domain.pk == 7917:
+                kwargs["fizmat"] = domain
+        return super().get_context_data(**kwargs)
 
 class NktView(TemplateView):
     template_name = "nkt.html"
