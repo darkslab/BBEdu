@@ -6,7 +6,9 @@ function BuyCreditKaspiQRPageModule() {
 
     if (this._$form.length) {
         // this._$form.submit();
-        window.location.href = this._$form.find('input[name="payment_url"]').val();
+        const kaspi_link = this._$form.find('input[name="payment_url"]').val()
+        // window.location.href = kaspi_link;
+        window.open(kaspi_link, '_blank');
     }
 
     Module.call(this);
