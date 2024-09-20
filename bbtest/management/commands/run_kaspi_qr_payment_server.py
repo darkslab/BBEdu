@@ -66,11 +66,10 @@ class Command(BaseCommand):
             cart = transaction.document
             # print(cart)
 
-            cart_handle = CartHandle(transaction.document)
-            # print(cart_handle.funds())
             
 
             if status['status'] == 'payment processed':
+                cart_handle = CartHandle(transaction.document)
 
                 payment_processor_funds = [Debit("Cash", cart_handle.total())]
                 post_funds = squash_funds(payment_processor_funds + cart_handle.funds())

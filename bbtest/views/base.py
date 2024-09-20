@@ -26,6 +26,9 @@ from bbtest.models.shopping.operate import charge
 from bbtest.models import Cart, TestDomain, Account, Entry, Transaction
 from bbtest.texts import FAQ_TEXTS
 from bbtest.http import TightJsonResponse
+import qrcode
+from io import BytesIO
+import base64
 
 
 class HomeView(TemplateView):
@@ -192,6 +195,28 @@ class BuyCreditsKaspiView(LoginRequiredMixin, CartHandleAccessMixin, UserContext
         if order["status"] != "ok":
             raise PaymentProcessorError(str(order))
         
+
+        # Generate the QR code
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4,
+        )
+        qr.add_data(order["payment_url"])
+        qr.make(fit=True)
+
+        # Create an image for the QR code
+        img = qr.make_image(fill='black', back_color='white')
+        
+        # Convert the image to a byte stream
+        buffer = BytesIO()
+        img.save(buffer, format="PNG")
+        qr_code_image = buffer.getvalue()
+
+        # Encode the image in base64 so it can be rendered in an <img> tag
+        qr_code_base64 = base64.b64encode(qr_code_image).decode('utf-8')
+        kwargs['qr_code_base64'] = qr_code_base64
         
         kwargs["kaspi_qr_form"] = {
             "order_id": order["order_id"],
