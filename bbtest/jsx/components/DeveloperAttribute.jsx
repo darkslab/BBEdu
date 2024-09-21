@@ -2,18 +2,28 @@ function DeveloperAttribute(props) {
     let caption = "";
     let options = [];
     for (let i = 0; i < props.data.length; i++) {
+        const fullCaption = props.data[i].caption;
+        const truncatedCaption = fullCaption.length > 100 ? `${fullCaption.slice(0, 100)}...` : fullCaption;
+
         if (props.value === props.data[i].value) {
-            caption = props.data[i].caption;
+            caption = fullCaption;
             options.push(
                 <li key={props.data[i].value} className="active">
-                    <a href="javascript:void(0);">{caption}</a>
+                    <a href="javascript:void(0);" title={fullCaption}>
+                        {truncatedCaption}
+                    </a>
                 </li>
             );
         } else {
             options.push(
                 <li key={props.data[i].value}>
-                    <a href="javascript:void(0);"
-                       onClick={props.onChange.bind(null, props.data[i].value)}>{props.data[i].caption}</a>
+                    <a
+                        href="javascript:void(0);"
+                        onClick={props.onChange.bind(null, props.data[i].value)}
+                        title={fullCaption}
+                    >
+                        {truncatedCaption}
+                    </a>
                 </li>
             );
         }
