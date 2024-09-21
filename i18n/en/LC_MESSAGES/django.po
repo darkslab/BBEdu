@@ -1306,7 +1306,7 @@ msgid "_common.topics.nqt.section00.topic17"
 msgstr "Исследование практики"
 
 msgid "_common.domains.fizmat"
-msgstr "FIZMAT"
+msgstr "РФМШ"
 
 msgid "_common.section.fizmat.math"
 msgstr "Mathematics 7 grade"

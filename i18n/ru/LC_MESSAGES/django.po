@@ -1310,7 +1310,7 @@ msgid "_common.topics.nqt.section00.topic17"
 msgstr "Исследование практики"
 
 msgid "_common.domains.fizmat"
-msgstr "ФизМат"
+msgstr "РФМШ"
 
 msgid "_common.section.fizmat.math"
 msgstr "Математика 7 класс"
