@@ -1313,7 +1313,7 @@ msgid "_common.domains.fizmat"
 msgstr "ФизМат"
 
 msgid "_common.section.fizmat.math"
-msgstr "ФизМат Математика"
+msgstr "Математика 7 класс"
 
 msgid "_common.topics.fizmat.section_math.topic01"
 msgstr "Обыкновенные и десятичные дроби. Действия над ними."
