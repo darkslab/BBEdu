@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Kazakh translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-19 15:10+0600\n"
+"POT-Creation-Date: 2024-09-21 21:06+0600\n"
 "PO-Revision-Date: 2020-08-31 22:01+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1308,10 +1308,70 @@ msgid "_common.topics.nqt.section00.topic17"
 msgstr "Исследование практики"
 
 msgid "_common.domains.fizmat"
-msgstr "ФизМат"
+msgstr "РФМШ"
 
 msgid "_common.section.fizmat.math"
-msgstr "ФизМат Математика"
+msgstr "Математика 7 сынып"
+
+msgid "_common.topics.fizmat.section_math.topic01"
+msgstr "Қарапайым және ондық бөлшектер. Оларға амалдар қолдану."
+
+msgid "_common.topics.fizmat.section_math.topic02"
+msgstr "Натурал, бүтін, бөлшек сандар. Оларға амалдар қолдану."
+
+msgid "_common.topics.fizmat.section_math.topic03"
+msgstr "Пайыздар. Қатынас және пропорция."
+
+msgid "_common.topics.fizmat.section_math.topic04"
+msgstr ""
+"Алгебралық өрнектер және тепе-теңдіктер. Өрнектерді теңбе- тең түрлендіру."
+
+msgid "_common.topics.fizmat.section_math.topic05"
+msgstr "Бір айнымалы арқылы берілген сызықтық теңдеулер және олардың жүйелері."
+
+msgid "_common.topics.fizmat.section_math.topic06"
+msgstr ""
+"Функция (шамалар арасындағы тәуелділік). Функцияның берілу тәсілдері. "
+"Сызықтық функция, оның қасиеттері және графигі. Сызықтық функциялардың "
+"графиктерінің өзара орналасуы. Тура пропорционалдық және оның графигі."
+
+msgid "_common.topics.fizmat.section_math.topic07"
+msgstr ""
+"Бір айнымалы арқылы берілген сызықтық теңсіздіктер және олардың жүйелері."
+
+msgid "_common.topics.fizmat.section_math.topic08"
+msgstr "Екі айнымалы арқылы берілген сызықтық теңдеулер және олардың жүйелері."
+
+msgid "_common.topics.fizmat.section_math.topic09"
+msgstr "Координаттық жазықтық."
+
+msgid "_common.topics.fizmat.section_math.topic10"
+msgstr ""
+"Модуль. Айнымалысы модульмен берілген бір айнымалыға тәуелді сызықтық "
+"теңдеулер. Айнымалысы модульмен берілген бір айнымалыға тәуелді сызықтық "
+"теңсіздіктер."
+
+msgid "_common.topics.fizmat.section_math.topic11"
+msgstr ""
+"Қозғалысқа, бірлескен жұмысқа берілген мәтін есептер, санның бөлігін табу "
+"және бөлігі бойынша санды табу, санның пайызын табу және пайызы бойынша "
+"санды табу."
+
+msgid "_common.topics.fizmat.section_math.topic12"
+msgstr ""
+"Деректер қатары. Деректер қатарының ең үлкен және ең кіші мәндері. Сандардың "
+"арифметикалық ортасы. Мода. Медиана. Деректер қатарының ауқымы.Комбинаторлық "
+"есептерді таңдау тәсілімен шешу."
+
+msgid "_common.topics.fizmat.section_math.topic13"
+msgstr ""
+"Перпендикуляр түзулер және кесінділер. Параллель түзулер және кесінділер."
+
+msgid "_common.topics.fizmat.section_math.topic14"
+msgstr "Центрлік симметрия. Өстік симметрия."
+
+msgid "_common.topics.fizmat.section_math.topic15"
+msgstr "Логикалық тапсырмалар"
 
 msgctxt "Account type"
 msgid "Asset"
@@ -1738,15 +1798,15 @@ msgstr "test bundle id"
 
 msgctxt "Question difficulty"
 msgid "High"
-msgstr "Жоғары"
+msgstr "Жоғары (C)"
 
 msgctxt "Question difficulty"
 msgid "Normal"
-msgstr "Орта"
+msgstr "Орта (B)"
 
 msgctxt "Question difficulty"
 msgid "Low"
-msgstr "Төмен"
+msgstr "Төмен (A)"
 
 msgctxt "Model field"
 msgid "answer class"
@@ -1899,6 +1959,15 @@ msgstr "Төлем жасау"
 
 msgid "page:/buy-credits-beeline/:resend_code"
 msgstr "Растау кодын қайта жіберу"
+
+msgid "Manual Payment Message"
+msgstr "Отсканируйте QR или нажнимете кнопку внизу чтобы перейти в Каспи."
+
+msgid "Complete Payment Manually"
+msgstr "Перейти в Каспи"
+
+msgid "Go to tests"
+msgstr "Перейти к тестированию"
 
 msgctxt "Page title"
 msgid "Contact Us"
@@ -2205,7 +2274,6 @@ msgstr "Барлық құқығы қорғалған. %(copyright_code)s BBMINDS
 msgid "page:/fizmat/:html_title"
 msgstr "Пробное тестирование для поступления в ФИЗМАТ"
 
-
 msgid "page:/fizmat/:html_description"
 msgstr ""
 "Удобная платформа онлайн тестирования с предоставлением подробного анализа "
@@ -2415,7 +2483,7 @@ msgid "Choose the test domain"
 msgstr "Тестіні таңдаңыз"
 
 msgid "_common.domains.fizmat_full"
-msgstr "Республиканская Физико-Математическая Школа"
+msgstr "Вступительный экзамен в РФМШ"
 
 #, python-format
 msgctxt "Page title"

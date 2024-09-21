@@ -29,6 +29,7 @@ from bbtest.http import TightJsonResponse
 import qrcode
 from io import BytesIO
 import base64
+from PIL import Image
 
 
 class HomeView(TemplateView):
@@ -207,7 +208,22 @@ class BuyCreditsKaspiView(LoginRequiredMixin, CartHandleAccessMixin, UserContext
         qr.make(fit=True)
 
         # Create an image for the QR code
-        img = qr.make_image(fill='black', back_color='white')
+        img = qr.make_image().convert("RGB")
+
+        # Load the logo image
+        logo = Image.open(settings.BASE_DIR_PATH / "logo/qr_logo_center.png")  # Replace with the actual path to the logo
+        logo = logo.convert("RGB")
+
+        # Resize the logo to fit in the QR code (adjust as needed)
+        logo_size = 75  # You can adjust this size
+        logo = logo.resize((logo_size, logo_size), Image.ANTIALIAS)
+
+        # Calculate the position to paste the logo (center of the QR code)
+        qr_width, qr_height = img.size
+        logo_position = ((qr_width - logo_size) // 2, (qr_height - logo_size) // 2)
+
+        # Paste the logo on the QR code image
+        img.paste(logo, logo_position)
         
         # Convert the image to a byte stream
         buffer = BytesIO()

@@ -102,6 +102,11 @@
                         <h3 class="text-center text-bright mb-23" style="text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.85);">{% trans 'Start practicing to the test right now!' context 'Home page' %}</h3>
                         <div class="row">
                             <div class="col-xs-12">
+                                {% trans '_common.domains.fizmat_full' as domain_name %}
+                                <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' fizmat.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-lg btn-block btn-wrappable hidden-xs">{{ domain_name }}</a>
+                                <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' fizmat.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-block btn-wrappable visible-xs-block">{{ domain_name }}</a>
+                            </div> 
+                            <div class="col-xs-12 mt-10">
                                 {% trans '_common.domains.nis_full' as domain_name %}
                                 {% trans nis.name as domain_abbr %}
                                 <a href="{% if user.is_authenticated %}{% if user|has_perm:'bbtest.student' and not user.is_superuser %}{% url 'bbtest:student_buy_tests' nis.pk %}{% else %}{% url 'bbtest:dashboard' %}{% endif %}{% else %}{% url 'bbtest:register' %}{% endif %}" class="btn btn-primary btn-lg btn-block btn-wrappable hidden-xs">{% blocktrans with break_code='<br>' %}page:/:test_domain_full_name:{{ domain_name }};{{ domain_abbr }};{{ break_code }}{% endblocktrans %}</a>

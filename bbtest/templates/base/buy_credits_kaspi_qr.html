@@ -48,39 +48,23 @@
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-body text-center">
-                    <p><strong>Scan the QR code to complete your payment</strong></p>
+                    <p class="text-center"><strong>
+                        {% trans "Manual Payment Message" %}
+                    </strong></p>
                     <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code" class="img-responsive center-block" />
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <div class="row">
-                <div class="col-xs-12">
-                    <p class="lead text-center mb-10">
-                        <strong>{% trans 'page:/buy-credits/:credits_conversion_rate' %}</strong>
-                    </p>
-                    <!-- Manual Payment Message -->
-                    <p class="text-center mb-10">
-                        {% trans "If you have not been redirected, press the button below to complete your payment or go back home." %}
-                    </p>
-                    
-                    <!-- Manual Payment Button -->
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary" id="manual-payment-btn">
-                            {% trans "Complete Payment" %}
-                        </button>
-                        <a href="{% url 'bbtest:student_buy_test_domains' %}" class="btn btn-secondary">
-                            {% trans "Go to tests" %}
-                        </a>
-                    </div>
+                <!-- Manual Payment Button -->
+                <div class="text-center pb-10">
+                    <button type="button" class="btn btn-primary" id="manual-payment-btn">
+                        {% trans "Complete Payment Manually" %}
+                    </button>
+                    <a href="{% url 'bbtest:student_buy_test_domains' %}" class="btn btn-secondary">
+                        {% trans "Go to tests" %}
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    
     <script>
         // Manual payment button click handler
         document.getElementById('manual-payment-btn').addEventListener('click', function() {
