@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-19 15:10+0600\n"
+"POT-Creation-Date: 2024-09-21 21:06+0600\n"
 "PO-Revision-Date: 2020-08-31 22:02+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1315,6 +1315,63 @@ msgstr "ФизМат"
 msgid "_common.section.fizmat.math"
 msgstr "ФизМат Математика"
 
+msgid "_common.topics.fizmat.section_math.topic01"
+msgstr "Обыкновенные и десятичные дроби. Действия над ними."
+
+msgid "_common.topics.fizmat.section_math.topic02"
+msgstr "Натуральные, целые, рациональные числа. Действия над ними"
+
+msgid "_common.topics.fizmat.section_math.topic03"
+msgstr "Проценты. Отношения и пропорции."
+
+msgid "_common.topics.fizmat.section_math.topic04"
+msgstr ""
+"Алгебраические выражения и тождества. Тождественные преобразования выражений."
+
+msgid "_common.topics.fizmat.section_math.topic05"
+msgstr "Линейные уравнения с одной переменной и их системы."
+
+msgid "_common.topics.fizmat.section_math.topic06"
+msgstr ""
+"Функция (зависимости между величинами). Различные способы задания функции. "
+"Линейная функция и ее график. Взаимное расположение графиков линейных "
+"функций. Прямая пропорциональность и ее график."
+
+msgid "_common.topics.fizmat.section_math.topic07"
+msgstr "Линейные неравенства с одной переменной и их системы."
+
+msgid "_common.topics.fizmat.section_math.topic08"
+msgstr "Линейные уравнения с двумя переменными и их системы."
+
+msgid "_common.topics.fizmat.section_math.topic09"
+msgstr "Координатная плоскость."
+
+msgid "_common.topics.fizmat.section_math.topic10"
+msgstr ""
+"Модуль. Линейные уравнения с одной переменной, содержащие переменную под "
+"знаком модуля. Линейные неравенства с одной переменной, содержащие "
+"переменную под знаком модуля."
+
+msgid "_common.topics.fizmat.section_math.topic11"
+msgstr ""
+"Текстовые задачи на движение, совместную работу, нахождение дроби от числа и "
+"числа по его дроби, нахождение процентов от числа и числа по его процентам."
+
+msgid "_common.topics.fizmat.section_math.topic12"
+msgstr ""
+"Ряды данных. Наибольшее и наименьшее значение ряда данных. Среднее "
+"арифметическое чисел. Мода. Медиана. Размах ряда данных.Решение "
+"комбинаторных задач методом перебора."
+
+msgid "_common.topics.fizmat.section_math.topic13"
+msgstr "Перпендикулярные прямые и отрезки. Параллельные прямые и отрезки."
+
+msgid "_common.topics.fizmat.section_math.topic14"
+msgstr "Центральная симметрия. Осевая симметрия."
+
+msgid "_common.topics.fizmat.section_math.topic15"
+msgstr "Логические задачи."
+
 msgctxt "Account type"
 msgid "Asset"
 msgstr "Актив"
@@ -1740,15 +1797,15 @@ msgstr "ID набора"
 
 msgctxt "Question difficulty"
 msgid "High"
-msgstr "Высокий"
+msgstr "Высокий (C)"
 
 msgctxt "Question difficulty"
 msgid "Normal"
-msgstr "Средний"
+msgstr "Средний (B)"
 
 msgctxt "Question difficulty"
 msgid "Low"
-msgstr "Низкий"
+msgstr "Низкий (A)"
 
 msgctxt "Model field"
 msgid "answer class"
@@ -1901,6 +1958,15 @@ msgstr "Оплатить"
 
 msgid "page:/buy-credits-beeline/:resend_code"
 msgstr "Переотправить код подтверждения"
+
+msgid "Manual Payment Message"
+msgstr "Отсканируйте QR или нажнимете кнопку внизу чтобы перейти в Каспи."
+
+msgid "Complete Payment Manually"
+msgstr "Перейти в Каспи"
+
+msgid "Go to tests"
+msgstr "Перейти к тестированию"
 
 msgctxt "Page title"
 msgid "Contact Us"
@@ -2206,7 +2272,6 @@ msgstr "Все права защищены. %(copyright_code)s BBMINDS"
 msgid "page:/fizmat/:html_title"
 msgstr "Пробное тестирование для поступления в ФИЗМАТ"
 
-
 msgid "page:/fizmat/:html_description"
 msgstr ""
 "Удобная платформа онлайн тестирования с предоставлением подробного анализа "
@@ -2415,7 +2480,7 @@ msgid "Choose the test domain"
 msgstr "Выберите тест"
 
 msgid "_common.domains.fizmat_full"
-msgstr "Республиканская Физико-Математическая Школа"
+msgstr "Вступительный экзамен в РФМШ"
 
 #, python-format
 msgctxt "Page title"

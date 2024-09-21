@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz English translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-19 15:10+0600\n"
+"POT-Creation-Date: 2024-09-21 21:06+0600\n"
 "PO-Revision-Date: 2020-08-31 22:04+0600\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1311,6 +1311,81 @@ msgstr "FIZMAT"
 msgid "_common.section.fizmat.math"
 msgstr "FIZMAT Mathematics"
 
+#, fuzzy
+#| msgid "_common.topics.law.section0.topic0"
+msgid "_common.topics.fizmat.section_math.topic01"
+msgstr "Constitution of the Republic of Kazakhstan"
+
+#, fuzzy
+#| msgid "_common.topics.law.section0.topic0"
+msgid "_common.topics.fizmat.section_math.topic02"
+msgstr "Constitution of the Republic of Kazakhstan"
+
+#, fuzzy
+#| msgid "_common.topics.law.section0.topic0"
+msgid "_common.topics.fizmat.section_math.topic03"
+msgstr "Constitution of the Republic of Kazakhstan"
+
+#, fuzzy
+#| msgid "_common.topics.law.section0.topic0"
+msgid "_common.topics.fizmat.section_math.topic04"
+msgstr "Constitution of the Republic of Kazakhstan"
+
+#, fuzzy
+#| msgid "_common.topics.law.section0.topic0"
+msgid "_common.topics.fizmat.section_math.topic05"
+msgstr "Constitution of the Republic of Kazakhstan"
+
+#, fuzzy
+#| msgid "_common.topics.law.section0.topic0"
+msgid "_common.topics.fizmat.section_math.topic06"
+msgstr "Constitution of the Republic of Kazakhstan"
+
+#, fuzzy
+#| msgid "_common.topics.law.section0.topic0"
+msgid "_common.topics.fizmat.section_math.topic07"
+msgstr "Constitution of the Republic of Kazakhstan"
+
+#, fuzzy
+#| msgid "_common.topics.law.section0.topic0"
+msgid "_common.topics.fizmat.section_math.topic08"
+msgstr "Constitution of the Republic of Kazakhstan"
+
+#, fuzzy
+#| msgid "_common.topics.law.section0.topic0"
+msgid "_common.topics.fizmat.section_math.topic09"
+msgstr "Constitution of the Republic of Kazakhstan"
+
+#, fuzzy
+#| msgid "_common.topics.nqt.section00.topic10"
+msgid "_common.topics.fizmat.section_math.topic10"
+msgstr "Методика воспитания"
+
+#, fuzzy
+#| msgid "_common.topics.nqt.section00.topic11"
+msgid "_common.topics.fizmat.section_math.topic11"
+msgstr "Процесс обучения"
+
+#, fuzzy
+#| msgid "_common.topics.nqt.section00.topic12"
+msgid "_common.topics.fizmat.section_math.topic12"
+msgstr "Управление и организация учебного процесса"
+
+#, fuzzy
+#| msgid "_common.topics.nqt.section00.topic13"
+msgid "_common.topics.fizmat.section_math.topic13"
+msgstr "Новые подходы в преподавании и обучении"
+
+#, fuzzy
+#| msgid "_common.topics.nqt.section00.topic14"
+msgid "_common.topics.fizmat.section_math.topic14"
+msgstr "Обучение критическому мышлению"
+
+#, fuzzy
+#| msgid "_common.topics.nqt.section00.topic15"
+msgid "_common.topics.fizmat.section_math.topic15"
+msgstr "Оценивание учебных достижений"
+
 msgctxt "Account type"
 msgid "Asset"
 msgstr "Asset"
@@ -1736,15 +1811,15 @@ msgstr "test bundle id"
 
 msgctxt "Question difficulty"
 msgid "High"
-msgstr "High"
+msgstr "High (C)"
 
 msgctxt "Question difficulty"
 msgid "Normal"
-msgstr "Normal"
+msgstr "Normal (B)"
 
 msgctxt "Question difficulty"
 msgid "Low"
-msgstr "Low"
+msgstr "Low (A)"
 
 msgctxt "Model field"
 msgid "answer class"
@@ -1895,6 +1970,17 @@ msgstr "Pay"
 
 msgid "page:/buy-credits-beeline/:resend_code"
 msgstr "Resend confirmation code"
+
+msgid "Manual Payment Message"
+msgstr ""
+"Scan QR or press the button below to complete your payment or go back to "
+"tests."
+
+msgid "Complete Payment Manually"
+msgstr "Go to Kaspi."
+
+msgid "Go to tests"
+msgstr "Go to tests"
 
 msgctxt "Page title"
 msgid "Contact Us"
@@ -2193,13 +2279,12 @@ msgstr "All rights reserved. %(copyright_code)s BBMINDS"
 msgid "page:/fizmat/:html_title"
 msgstr "Practice tests for FIZMATx"
 
-
 msgid "page:/fizmat/:html_description"
 msgstr ""
 "Удобная платформа онлайн тестирования с предоставлением подробного анализа "
-"результатов. Пробное тестирование для поступления в классы ФИЗМАТ."
-"Easy to use online testing platform with detailed results analysis. Practice "
-"tests for FIZMAT."
+"результатов. Пробное тестирование для поступления в классы ФИЗМАТ.Easy to "
+"use online testing platform with detailed results analysis. Practice tests "
+"for FIZMAT."
 
 msgctxt "Navigation link"
 msgid "Dashboard"
@@ -2399,7 +2484,7 @@ msgid "Choose the test domain"
 msgstr "Choose the test domain"
 
 msgid "_common.domains.fizmat_full"
-msgstr "National School of Physics & Math"
+msgstr "Вступительный экзамен в РФМШ"
 
 #, python-format
 msgctxt "Page title"
