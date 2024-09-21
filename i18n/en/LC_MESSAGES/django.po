@@ -1973,8 +1973,7 @@ msgstr "Resend confirmation code"
 
 msgid "Manual Payment Message"
 msgstr ""
-"Scan QR or press the button below to complete your payment or go back to "
-"tests."
+"Scan QR to complete your payment"
 
 msgid "Complete Payment Manually"
 msgstr "Go to Kaspi."
