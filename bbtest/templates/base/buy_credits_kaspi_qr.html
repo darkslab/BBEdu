@@ -55,25 +55,13 @@
                 </div>
                 <!-- Manual Payment Button -->
                 <div class="text-center pb-10">
-                    <button type="button" class="btn btn-primary" id="manual-payment-btn">
-                        {% trans "Complete Payment Manually" %}
-                    </button>
-                    <a href="{% url 'bbtest:student_buy_test_domains' %}" class="btn btn-secondary">
+                    <a href="{% url 'bbtest:student_buy_test_domains' %}" class="btn btn-primary">
                         {% trans "Go to tests" %}
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        // Manual payment button click handler
-        document.getElementById('manual-payment-btn').addEventListener('click', function() {
-            // Submit the form to the payment URL
-            var form = document.getElementById('kaspi-qr-form');
-            var paymentUrl = form.querySelector('input[name="payment_url"]').value;
-            window.location.href = paymentUrl;
-        });
-    </script>
 {% endblock %}
 
 {% block popup %}{% include 'popups/whatsapp.html' %}{% endblock %}

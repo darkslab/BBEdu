@@ -1960,7 +1960,7 @@ msgid "page:/buy-credits-beeline/:resend_code"
 msgstr "Переотправить код подтверждения"
 
 msgid "Manual Payment Message"
-msgstr "Отсканируйте QR или нажнимете кнопку внизу чтобы перейти в Каспи."
+msgstr "Отсканируйте QR чтобы совершить платеж."
 
 msgid "Complete Payment Manually"
 msgstr "Перейти в Каспи"
