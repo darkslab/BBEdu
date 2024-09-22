@@ -97,7 +97,9 @@ BranchedResultDetailModule.prototype._activated = function(index) {
     this._updateDropdown(this._index);
 }
 BranchedResultDetailModule.prototype._updateDropdown = function(index) {
-    var dropdownText = this._$tabHandles.filter("[data-" + this._tabHandlesDataAttrName + "=\"" + index + "\"]").text();
+    var dropdownTextFull = this._$tabHandles.filter("[data-" + this._tabHandlesDataAttrName + "=\"" + index + "\"]").attr('title');;
+    const dropdownText = dropdownTextFull.length > 47 ? `${dropdownTextFull.slice(0, 47)}...` : dropdownTextFull;
+
     this._$dropdownCaption.text(dropdownText);
     this._$tabs.each(function(_index) {
         if (_index === index) {
