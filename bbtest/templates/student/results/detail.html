@@ -97,7 +97,11 @@
                         </button>
                         <ul class="dropdown-menu">
                             {% for branch in quiz.stats.detail.branches %}
-                                <li><a href="javascript:void(0);" data-result-tab-handle-{{ parent_index }}-{{ index }}="{{ forloop.counter0 }}">{{ branch.title }}</a></li>
+                                <li><a href="javascript:void(0);" 
+                                   data-result-tab-handle-{{ parent_index }}-{{ index }}="{{ forloop.counter0 }}" 
+                                   title="{{ branch.title }}">
+                                    {{ branch.title|truncatechars:50 }}
+                                </a></li>
                             {% endfor %}
                         </ul>
                     </div>
