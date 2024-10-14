@@ -3,6 +3,7 @@
 
 /_.*
 /secrets.json
+/secrets_*.json
 /node_modules
 *.sql.gz
 BBEdu.code-workspace
