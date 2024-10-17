@@ -128,6 +128,63 @@ class ExtendedBaseUserForm(BaseUserForm):
         return super().clean()
 
 
+class DemoUserForm(ModelForm):
+    require_password = False
+    allow_weak_password = True
+
+    class Meta:
+        model = User
+        fields = ("first_name", "last_name", "email", "phone")
+        error_messages = {
+            "first_name": {
+                "required": pgettext_lazy("Validation error", "Please enter first name."),
+                "max_length": pgettext_lazy("Validation error", "First name is too long."),
+            },
+            "last_name": {
+                "required": pgettext_lazy("Validation error", "Please enter last name."),
+                "max_length": pgettext_lazy("Validation error", "Last name is too long."),
+            },
+            "email": {
+                "required": pgettext_lazy("Validation error", "Please enter email."),
+                "invalid": pgettext_lazy("Validation error", "Incorrect email."),
+                "max_length": pgettext_lazy("Validation error", "Email is too long."),
+                "unique": pgettext_lazy("Validation error", "This email is already taken."),
+            },
+            "phone": {
+                "max_length": pgettext_lazy("Validation error", "Phone is too long."),
+            },
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["first_name"].required = False
+        self.fields["last_name"].required = False
+        self.fields["email"].required = False
+        self.fields["email"].empty_value = ""
+        # if not self.require_password:
+        #     self.fields["password1"].required = False
+        #     self.fields["password2"].required = False
+        self._meta_data = None
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(uuid4().hex)
+            
+        if not user.username:
+            while True:
+                user.username = uuid4().hex
+                user.email = f"{user.username}@demouser.kz"
+                if not User.objects.filter(username=user.username).exists():
+                    break
+        
+        if self._meta_data:
+            user.meta_data = self._meta_data
+
+        if commit:
+            user.save()
+        return user
+
+
 class BuyCreditsForm(Form):
     amount = IntegerField(label=pgettext_lazy("Form label", "Amount"), error_messages={
         "required": pgettext_lazy("Validation error", "Please provide an amount."),

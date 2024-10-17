@@ -1,0 +1,74 @@
+{% extends '../public_base_1.html' %}
+{% load i18n widget_tweaks %}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% if group == 'developer' %}{% trans 'Register as a Developer' context 'Page title' %}{% else %}{% trans 'Register' context 'Page title' %}{% endif %}{% endblock %}
+
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "PopoverModule"
+        });
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+    </script>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form method="post" action="{% url 'bbtest:register_demo' %}" class="mt-15" data-bb-form>
+                        {% csrf_token %}
+
+                        <!-- {% for field in form %}
+                            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}{% if field.name == 'password1' %} <i class="fa fa-question-circle text-help" data-toggle="popover" data-container="body" data-html="true" data-content="{{ field.help_text|force_escape }}" data-placement="auto" data-trigger="hover"></i>{% endif %}</label>
+                                {{ field|add_class:'form-control' }}
+                                {% for error in field.errors %}
+                                    <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endfor %} -->
+
+                        <!-- <div class="form-group hidden">
+                            <label class="control-label">{% trans 'I want to register as' context 'Form label' %}</label>
+                            <div class="mr-23 ml-23">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="group_type" value="student" data-register-radio {% if group == 'student' %}checked{% endif %}>
+                                        {% trans 'Student' context 'Form label' %}
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="group_type" value="developer" data-register-radio {% if group == 'developer' %}checked{% endif %}>
+                                        {% trans 'Test developer' context 'Form label' %}
+                                    </label>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block" data-bb-submit>{% trans 'Login as demouser' context 'Form button' %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-7">
+                            <h6 class="mt-10 mb-10">{% trans 'Already have an account?' context '/register/' %}</h6>
+                        </div>
+                        <div class="col-xs-5">
+                            <a href="{% url 'bbtest:login' %}" class="btn btn-success btn-block">{% trans 'Login' context '/register/' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

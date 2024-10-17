@@ -10,7 +10,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.messages import success
 from django.utils.translation import pgettext
 from django.contrib.auth import login
-from .forms import AuthenticationForm, UserCreationForm, ExtendedUserCreationForm, PasswordResetForm, SetPasswordForm
+from .forms import AuthenticationForm, UserCreationForm, DemoUserCreationForm, ExtendedUserCreationForm, PasswordResetForm, SetPasswordForm
 from .mixins import LogoutRequiredMixin
 from bbtest.views.generic import FormView
 
@@ -55,6 +55,24 @@ class RegisterDeveloperView(RegisterView):
 
     def _group(self):
         return "developer"
+    
+
+class RegisterDemoUserView(RegisterView):
+    form_class = DemoUserCreationForm
+    success_url = reverse_lazy("bbtest:student_dashboard")
+    template_name = "base/register_demo.html"
+
+    def form_valid(self, form: DemoUserCreationForm):
+        login(self.request, form.save(self._group()))
+        self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "registration", { "event_category": self._group() } ]]
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        kwargs["group"] = self._group()
+        return super().get_context_data(**kwargs)
+
+    def _group(self):
+        return "demouser"
 
 
 class PasswordResetView(LogoutRequiredMixin, _PasswordResetView):

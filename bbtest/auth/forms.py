@@ -8,7 +8,7 @@ from django.utils.translation import pgettext_lazy, pgettext
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.messages import success
-from bbtest.forms.base import BaseUserForm, ExtendedBaseUserForm
+from bbtest.forms.base import BaseUserForm, ExtendedBaseUserForm, DemoUserForm
 from bbtest.emails.password_reset import send_mail
 from bbtest.auth.password_validation import password_validators_help_text_html
 from bbtest.models import Account
@@ -32,7 +32,7 @@ class UserCreationFormMixin(ModelForm):
 
         content_type = ContentType.objects.get_for_model(type(user))
         permissions = []
-        if group in ("developer", "expert", "admin", "student"):
+        if group in ("developer", "expert", "admin", "student", "demouser"):
             permissions.append(Permission.objects.get(codename=group, content_type=content_type))
         user.user_permissions.set(permissions)
 
@@ -49,6 +49,8 @@ class UserCreationFormMixin(ModelForm):
 class UserCreationForm(UserCreationFormMixin, BaseUserForm):
     pass
 
+class DemoUserCreationForm(UserCreationFormMixin, DemoUserForm):
+    pass
 
 class ExtendedUserCreationForm(UserCreationFormMixin, ExtendedBaseUserForm):
     pass

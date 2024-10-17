@@ -85,6 +85,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             ("expert", "Can act as an Expert"),
             ("developer", "Can act as a Developer"),
             ("student", "Can act as a Student"),
+            ("demouser", "Can act as a DemoUser"),
         )
 
     def clean(self):
@@ -106,6 +107,8 @@ class User(AbstractBaseUser, PermissionsMixin):
             return reverse("bbtest:expert_dashboard")
         if self.has_perm("bbtest.student"):
             return reverse("bbtest:student_dashboard")
+        if self.has_perm("bbtest.demouser"):
+            return reverse("bbtest:demo_dashboard")
         return reverse("home")
     
     def get_user_role(self) -> str:
@@ -119,6 +122,8 @@ class User(AbstractBaseUser, PermissionsMixin):
             return "expert"
         if self.has_perm("bbtest.student"):
             return "student"
+        if self.has_perm("bbtest.demouser"):
+            return "demouser"
         raise Http404("unknown role")
         # return "unknown_role"
 

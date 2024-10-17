@@ -54,7 +54,7 @@ class CreateStudentsView(AdminPermissionRequiredMixin, UserContextMixin, Paginat
 
         for user in kwargs["users"]:
             for permission in user.user_permissions.all():
-                if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "expert", "developer", "student"):
+                if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "expert", "developer", "student", "demouser"):
                     user.role = permission.codename
                     break
 
