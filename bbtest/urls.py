@@ -1,5 +1,5 @@
 from django.urls import re_path
-from .auth.views import LoginView, LogoutView, RegisterView, RegisterDeveloperView, PasswordResetView, PasswordResetConfirmView
+from .auth.views import LoginView, LogoutView, RegisterView, RegisterDeveloperView, RegisterDemoUserView, PasswordResetView, PasswordResetConfirmView
 from .views.base import (
     HomeView,
     DashboardView,
@@ -83,6 +83,9 @@ from .views.student import (
     ResultDataView        as StudentResultDataView,
     TransactionsView      as StudentTransactionsView,
     TransactionView       as StudentTransactionView,
+)
+from .views.demouser import (
+    DashboardView         as DemouserDashboardView,
 )
 from .views.developer import (
     DashboardView        as DeveloperDashboardView,
@@ -243,9 +246,13 @@ urlpatterns = [
     re_path(r"^super/export-data/$",                            SuperExportDataView.as_view(),               name="super_export_data"               ),
     re_path(r"^super/export-data/export-form/$",                SuperExportDataFormView.as_view(),           name="super_export_data_form"          ),
     
+    # STUDENT URLS
+    re_path(r"^demouser/$",                                     DemouserDashboardView.as_view(),              name="demo_dashboard"                  ),
     
 
     # SYSTEM URLS
     re_path(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),
     re_path(r"^logout/$",                                                                           LogoutView.as_view(),               name="logout"                ),
+    # re_path(r"^register_demo/$",                                                                    RegisterView.as_view(),             name="register"              ),
+    re_path(r"^register_demo/$",                                                                   RegisterDemoUserView.as_view(),     name="register_demo"         ),
 ]
