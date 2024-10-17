@@ -1,4 +1,4 @@
-from bbtest.auth.mixins import DemouserPermissionRequiredMixin
+from bbtest.auth.mixins import PermissionRequiredMixinFactory
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, results_progress, average_score
 from bbtest.utils.json import tight_dumps
@@ -6,7 +6,7 @@ from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
 from django.utils.translation import pgettext
 
 
-class DashboardView(DemouserPermissionRequiredMixin, UserContextMixin, TemplateView):
+class DashboardView(PermissionRequiredMixinFactory(["demouser"]), UserContextMixin, TemplateView):
     template_name = "demouser/student_dashboard.html"
 
     def get_context_data2(self, **kwargs):

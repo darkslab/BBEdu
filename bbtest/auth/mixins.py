@@ -78,9 +78,26 @@ class StaffPermissionRequiredMixin(LoginRequiredMixin):
         if request.is_ajax():
             raise PermissionDenied("Permission denied for AJAX call")
         # return redirect("bbtest:home")
-        # return super().handle_no_permission()
-        return super().dispatch(request, *args, **kwargs)
-    
+        return super().handle_no_permission()
+        # return super().dispatch(request, *args, **kwargs)
+
+
+def PermissionRequiredMixinFactory(role_list: list): 
+
+    class PermissionRequiredMixin(LoginRequiredMixin): 
+        def dispatch(self, request, *args, **kwargs):
+            role = request.user.get_user_role()
+            
+            if role in role_list:
+                return super().dispatch(request, *args, **kwargs)
+                
+            if request.is_ajax():
+                raise PermissionDenied("Permission denied for AJAX call")
+            
+            return super().handle_no_permission()
+            # return super().dispatch(request, *args, **kwargs)
+  
+    return PermissionRequiredMixin
 
 class CreateStudentRequiredMixin(LoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
