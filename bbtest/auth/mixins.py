@@ -87,6 +87,9 @@ def PermissionRequiredMixinFactory(role_list: list):
     class PermissionRequiredMixin(LoginRequiredMixin): 
         def dispatch(self, request, *args, **kwargs):
             role = request.user.get_user_role()
+
+            if role == "super":
+                return super().dispatch(request, *args, **kwargs)
             
             if role in role_list:
                 return super().dispatch(request, *args, **kwargs)
