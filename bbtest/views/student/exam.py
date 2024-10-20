@@ -9,7 +9,7 @@ from django.utils.timezone import now
 from django.utils.translation import pgettext, pgettext_lazy
 from ool import ConcurrentUpdate
 
-from bbtest.auth.mixins import StudentPermissionRequiredMixin
+from bbtest.auth.mixins import StudentPermissionRequiredMixin, PermissionRequiredMixinFactory
 from bbtest.forms.exam import ExamReportForm
 from bbtest.http import TightJsonResponse
 from bbtest.models import Quiz, Test
@@ -29,7 +29,7 @@ from bbtest.views.generic import TemplateView, View
 from .mixins import CurrentQuizSetRequiredMixin
 
 
-class ExamView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
+class ExamView(PermissionRequiredMixinFactory(["student", "demouser"]), CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
     template_name = "test/exam.html"
 
     def get_context_data(self, **kwargs):
@@ -105,7 +105,7 @@ class ExamMixin:
             return "started"
 
 
-class ExamContinueView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
+class ExamContinueView(PermissionRequiredMixinFactory(["student", "demouser"]), CurrentQuizSetRequiredMixin, ExamMixin, View):
     def get(self, request, *args, **kwargs):
         now_at = now()
         if self.current_status(now_at) == "queued":
@@ -127,11 +127,11 @@ class ExamContinueView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMix
                 })
         return TightJsonResponse({
             "success": False,
-            "error_msg": f'ExamContinueView.get: Should not be reached',
+            "error_msg": 'ExamContinueView.get: Should not be reached',
         })
 
 
-class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
+class ExamStartView(PermissionRequiredMixinFactory(["student", "demouser"]), CurrentQuizSetRequiredMixin, ExamMixin, View):
     def post(self, request, *args, **kwargs):
         now_at = now()
         if self.current_status(now_at) != "queued":
@@ -155,7 +155,7 @@ class ExamStartView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin,
         return TightJsonResponse(self.started_response(now_at))
 
 
-class ExamSkipView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
+class ExamSkipView(PermissionRequiredMixinFactory(["student", "demouser"]), CurrentQuizSetRequiredMixin, ExamMixin, View):
     def post(self, request, *args, **kwargs):
         now_at = now()
         if self.current_status(now_at) != "queued":
@@ -191,7 +191,7 @@ class ExamSkipView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, 
             })
 
 
-class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
+class ExamEndView(PermissionRequiredMixinFactory(["student", "demouser"]), CurrentQuizSetRequiredMixin, ExamMixin, View):
     def post(self, request, *args, **kwargs):
         now_at = now()
         if self.current_status(now_at) not in ("started", "expired"):
@@ -249,7 +249,7 @@ class ExamEndView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, E
         })
 
 
-class ExamReportView(StudentPermissionRequiredMixin, CurrentQuizSetRequiredMixin, ExamMixin, View):
+class ExamReportView(PermissionRequiredMixinFactory(["student", "demouser"]), CurrentQuizSetRequiredMixin, ExamMixin, View):
     def post(self, request, *args, **kwargs):
         now_at = now()
         if self.current_status(now_at) != "started":
