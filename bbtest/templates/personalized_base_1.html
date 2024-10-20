@@ -71,6 +71,9 @@
                         {% elif perms.bbtest.B2BTeacher %}
                             <li class="{% if active_nav_item|default:'' == 'dashboard' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_dashboard' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Teacher dashboard' context 'Navigation link' %}</a></li>
                             
+                            <li class="{% if active_nav_item|default:'' == 'buy_packages' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_build_packages' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Manage Packages' context 'Navigation link' %}</a></li>
+                            {% comment %} <li class="{% block nav_admin_create_package_class %}{% endblock %}"><a href="{% url 'bbtest:build_packages' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Manage Packages' context 'Navigation link' %}</a></li> {% endcomment %}
+                            
                         {% endif %}
                     </ul>
                 </div>

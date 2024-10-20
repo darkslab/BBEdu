@@ -1,0 +1,242 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n pagination widget_tweaks%}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'Manage Package' context 'Page title' %}{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "SuperCreatePackageModule"
+        });
+    </script>
+    {% comment %} 
+    <div class="modal fade" data-create-package-modal data-backdrop="static" data-keyboard="false" id="modal-asd">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{% trans 'Are you sure?' context '/admin/create_package/' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6 pr-5">
+                            <button type="button" class="btn btn-success btn-block btn-lg" data-create-package-confirm="true" id="confirm-create">{% trans 'Yes' context '/admin/create_package/' %}</button>
+                        </div>
+                        <div class="col-xs-6 pl-5">
+                            <button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" data-create-package-confirm="false">{% trans 'No' context '/admin/create_package/' %}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div> 
+    {% endcomment %}
+    <div class="row">
+        <div class="col-xs-12">
+            {% comment %} <h4>Package&nbsp;"{{ package.name }}"&nbsp;{{ package.domain.name }}&nbsp;<span class="label label-info">{{ package.code }}</span></h4> {% endcomment %}
+            <h5>{% trans 'Package' context '/package-manage/manage-package/' %} "{{ package.name }}" <span class="label label-info">{{ package.code }}</span></h5>
+            {% comment %} <h5>{% trans 'Student Group' context '/package-manage/student-group/' %} №{{ student_group.pk }}: "{{ student_group.name }}"</h5> {% endcomment %}
+            <h5>{% trans package.domain.name %}</h5>
+        </div>
+    </div>
+    <div class="row">
+        {% comment %} Add Tests form {% endcomment %}
+        <div class="col-xs-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Add Tests to package' context '/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)' %}</h4>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="{% url 'bbtest:build_package_add_test' package.code %}" class="mt-15">
+                        {% csrf_token %}
+
+                        {% for field in add_tests_form %}
+                            <div class="form-group has-error">
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                {{field|add_class:'form-control' }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-sm btn-success btn-block" {% if package.finalized %}disabled{%endif%}>
+                                {% trans 'Add test to package' context '/build/packages/PACKAGE_CODE/ (ManagePackageTestForm)' %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% comment %} Add student group form {% endcomment %}
+        <div class="col-xs-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Create student group' context '/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)' %}</h4>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="{% url 'bbtest:build_package_create_student_group' package.code %}" class="mt-15" data-bb-form data-create-package-form >
+                        {% csrf_token %}
+
+                        {% for field in create_student_group_form %}
+                            <div class="form-group has-error">
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                {{field|add_class:'form-control' }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-sm btn-success btn-block">{% trans 'Create student group' context '/build/packages/PACKAGE_CODE/ (CreateStudentGroupForm)' %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% comment %} Table with already added tests {% endcomment %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Package' context '/build/packages/PACKAGE_CODE/' %}</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-pressed">
+                        <thead>
+                            <tr>
+                                {% comment %} column 1 {% endcomment %}
+                                <th class="text-center">{% trans 'Variant' context '/package-manage/' %}</th>
+                                {% comment %} <th class="pl-15">{% trans 'Developer' context '/package-manage/' %}</th> {% endcomment %}
+                                {% comment %} column 2 {% endcomment %}
+                                {% comment %} <th>{% trans 'Domain' context '/package-manage/' %}</th> {% endcomment %}
+                                {% comment %} column 3 {% endcomment %}
+                                <th>{% trans 'Section' context '/package-manage/' %}</th>
+                                {% comment %} column 4 {% endcomment %}
+                                <th class="text-center">{% trans 'Order' context '/package-manage/' %}</th>
+                                {% comment %} column 5 {% endcomment %}
+                                {% comment %} column 6 {% endcomment %}
+                                <th class="text-center">{% trans 'Status' context '/package-manage/' %}</th>
+                                {% comment %} column 7 {% endcomment %}
+                                <th class="pr-15 text-center">{% trans 'Actions' context '/package-manage/' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for test in tests %}
+                                <tr {% if test.developer == user %}class="success"{% endif %}>
+                                    {% comment %} column 1 {% endcomment %}
+                                    <td class="pl-15 text-center">
+                                        <a href="{% url 'bbtest:build_test_preview' test.code  %}">#{{ test.code|upper }}</a>
+                                    </td>
+                                    {% comment %} <td class="pl-15">{{ test.developer.get_full_name }}</td> {% endcomment %}
+                                    {% comment %} column 2 {% endcomment %}
+                                    {% comment %} <td>{% trans test.section.domain.name %}</td> {% endcomment %}
+                                    {% comment %} column 3 {% endcomment %}
+                                    <td>{% trans test.section.name %}</td>
+                                    {% comment %} column 4 {% endcomment %}
+                                    <td class="text-center">{{ test.section.order }}</td>
+                                    {% comment %} column 5 {% endcomment %}
+                                    {% comment %} column 6 {% endcomment %}
+                                    <td class="text-center">
+                                        {% if test.is_archived   %}<span class="label label-danger" >{{ test.get_status_display }}</span>
+                                        {% elif test.is_approved %}<span class="label label-success">{{ test.get_status_display }}</span>
+                                        {% elif test.is_pending  %}<span class="label label-info"   >{{ test.get_status_display }}</span>
+                                        {% elif test.is_draft    %}<span class="label label-default">{{ test.get_status_display }}</span>
+                                        {% elif test.is_redo     %}<span class="label label-warning">{{ test.get_status_display }}</span>
+                                        {% elif test.is_active   %}<span class="label label-primary">{{ test.get_status_display }}</span>
+                                        {% endif %}
+                                    </td>
+                                    {% comment %} column 7 {% endcomment %}
+                                    <td class="pr-15 text-center">
+                                        {% if not package.finalized %}
+                                            <form action="{% url 'bbtest:build_remove_test_from_package' package_code=package.code test_code=test.code %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">X</button>
+                                            </form>
+                                        {%endif%}
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/package-manage/' %}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+    {% comment %} Table with student groups {% endcomment %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Student Groups' context '/build/packages/PACKAGE_CODE/' %}</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-pressed">
+                        <thead>
+                            <tr>
+                                <th class="pl-15">{% trans 'Name' context '/package-manage/student-group/' %}</th>
+                                <th class="text-center">{% trans 'Count' context '/package-manage/student-group/' %}</th>
+                                <th class="text-center">{% trans 'Available?' context '/package-manage/student-group/' %}</th>
+                                <th class="pr-15 text-center">{% trans 'Actions' context '/package-manage/student-group/' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student_group in student_group_list %}
+                                <tr>
+                                    <td class="pl-15"><a href="{% url 'bbtest:build_student_group' package.code student_group.pk %}">{{ student_group.name }}</a></td>
+                                    <td class="text-center">{{ student_group.students.count }}</td>
+                                    <td class="text-center">
+                                        {% if student_group.is_active %}
+                                            <span class="label label-success">{% trans 'Yes' context '/package-manage/student-group/' %}</span>
+                                        {% else %}
+                                            <span class="label label-danger">{% trans 'No' context '/package-manage/student-group/' %}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="pr-15 text-center">
+                                        {% comment %} <form action="{% url 'bbtest:build_toggle_student_group' package.code student_group.pk %}" method="post">
+                                            {% csrf_token %}
+                                            {% if not student_group.is_active %}
+                                                <button type="submit" class="btn btn-primary btn-xs mr-5 mb-5" {% if not package.finalized %}disabled{%endif%}>
+                                                    {% trans 'Toggle' context '/build/packages/PACKAGE_CODE/' %} 
+                                                </button>
+                                            {% else %}
+                                                <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5" {% if not package.finalized %}disabled{%endif%}>
+                                                    {% trans 'Untoggle' context '/build/packages/PACKAGE_CODE/' %} 
+                                                </button>
+                                            {% endif %}
+                                        </form> {% endcomment %}
+                                        <form action="{% url 'bbtest:build_turnon_student_group' package.code student_group.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-primary btn-xs mr-5 mb-5" {% if not package.finalized %}disabled{%endif%}>
+                                                {% trans 'Toggle' context '/build/packages/PACKAGE_CODE/' %} 
+                                            </button>
+                                        </form>
+                                        <form action="{% url 'bbtest:build_turnoff_student_group' package.code student_group.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5" {% if not package.finalized %}disabled{%endif%}>
+                                                {% trans 'Untoggle' context '/build/packages/PACKAGE_CODE/' %} 
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="5">{% trans 'There are no student groups yet' context '/package-manage/student-group/' %}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+{% endblock %}

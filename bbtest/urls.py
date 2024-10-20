@@ -60,6 +60,12 @@ from .views.standalone_question import (
     # ToggleFreeQuestionView   as BuildToggleFreeTestView,
 
 )
+
+from .views.b2bt import (
+    BuildPackagesView as B2BT_BuildPackagesView,
+    CreatePackageFormView as B2BT_BuildCreatePackageFormView,
+)
+
 from .views.package import (
     BuildPackagesView             as BuildPackagesView,
     CreatePackageFormView         as BuildCreatePackageFormView,
@@ -261,11 +267,12 @@ urlpatterns = [
 
     # B2B TEACHER URLS
     re_path(r"^b2bt/$",                                         DeveloperDashboardView.as_view(),              name="b2bt_dashboard"                  ),
+    re_path(r"^b2bt/packages/$",                                B2BT_BuildPackagesView.as_view(),              name="b2bt_build_packages" ),
+    re_path(r"^b2bt/create-package/create-form/$",              B2BT_BuildCreatePackageFormView.as_view(),     name="b2bt_build_create_package_form"),
 
     # SYSTEM URLS
-    re_path(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),
-    re_path(r"^logout/$",                                                                           LogoutView.as_view(),               name="logout"                ),
-    # re_path(r"^register_demo/$",                                                                    RegisterView.as_view(),             name="register"              ),
-    re_path(r"^register/demo/$",                                                                   RegisterDemoUserView.as_view(),       name="register_demo"        ),
-    re_path(r"^register/b2bt/$",                                                                   RegisterB2BTeacherView.as_view(),     name="register_b2bt"        ),
+    re_path(r"^login/$",                                        LoginView.as_view(),                  name="login"                 ),
+    re_path(r"^logout/$",                                       LogoutView.as_view(),                 name="logout"                ),
+    re_path(r"^register/demo/$",                                RegisterDemoUserView.as_view(),       name="register_demo"         ),
+    re_path(r"^register/b2bt/$",                                RegisterB2BTeacherView.as_view(),     name="register_b2bt"         ),
 ]
