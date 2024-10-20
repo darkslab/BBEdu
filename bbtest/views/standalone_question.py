@@ -408,7 +408,7 @@ class StandaloneQuestionPreviewView(StaffPermissionRequiredMixin, UserContextMix
         
         for comment in kwargs["comments"]:
             for permission in comment.sender.user_permissions.all():
-                if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "developer", "expert", "student"):
+                if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "developer", "expert", "student", "demouser", "B2BTeacher"):
                     comment.sender.role = permission.codename
                     break
 
