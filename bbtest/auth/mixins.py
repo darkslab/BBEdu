@@ -64,9 +64,6 @@ class StudentPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin
     permission_denied_message = "Student access required"
     permission_required = "bbtest.student"
 
-class DemouserPermissionRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
-    permission_denied_message = "Student access required"
-    permission_required = "bbtest.demouser"
 
 class StaffPermissionRequiredMixin(LoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):

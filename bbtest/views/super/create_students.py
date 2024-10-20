@@ -19,13 +19,13 @@ import uuid
 from random import randint
 import csv
 from bbtest.models import User
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, AdminPermissionRequiredMixin, CreateStudentRequiredMixin
+from bbtest.auth.mixins import PermissionRequiredMixinFactory
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 from django.core.exceptions import ValidationError
 # User = get_user_model()
 
 
-class CreateStudentsView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+class CreateStudentsView(PermissionRequiredMixinFactory(["super", "admin"]), UserContextMixin, PaginationMixin, TemplateView):
     template_name = "super/create_students.html"
 
     def get_context_data(self, **kwargs):
@@ -64,7 +64,7 @@ class CreateStudentsView(AdminPermissionRequiredMixin, UserContextMixin, Paginat
 
 
 
-class CreateStudentsFormView(CreateStudentRequiredMixin, View):
+class CreateStudentsFormView(PermissionRequiredMixinFactory(["super", "admin"]), View):
     def post(self, request, *args, **kwargs):
         form = CreateStudentsForm(data=request.POST)
 

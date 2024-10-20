@@ -17,7 +17,7 @@ from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.http import TightJsonResponse
 import uuid
 from bbtest.models import User
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, AdminPermissionRequiredMixin, CreateStudentRequiredMixin
+from bbtest.auth.mixins import AdminPermissionRequiredMixin
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 from django.core.exceptions import ValidationError
 from datetime import datetime
