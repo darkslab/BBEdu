@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.conf import settings
 from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
+from bbtest.models import User
 
 
 class LoginRequiredMixin(AccessMixin):
@@ -89,7 +90,8 @@ class PermissionRequiredMixinFactory:
 
         class PermissionRequiredMixin(LoginRequiredMixin): 
             def dispatch(self, request, *args, **kwargs):
-                role = request.user.get_user_role()
+                user: User = request.user
+                role = user.get_user_role()
 
                 if role == "super":
                     return super().dispatch(request, *args, **kwargs)
@@ -100,6 +102,7 @@ class PermissionRequiredMixinFactory:
                 if request.is_ajax():
                     raise PermissionDenied("Permission denied for AJAX call")
                 
+                print(user, role, role_list)
                 return super().handle_no_permission()
                 # return super().dispatch(request, *args, **kwargs)
     
