@@ -1,5 +1,14 @@
 from django.urls import re_path
-from .auth.views import LoginView, LogoutView, RegisterView, RegisterDeveloperView, RegisterDemoUserView, PasswordResetView, PasswordResetConfirmView
+from .auth.views import (
+    LoginView,
+    LogoutView,
+    RegisterView,
+    RegisterDeveloperView,
+    RegisterDemoUserView,
+    PasswordResetView,
+    PasswordResetConfirmView,
+    RegisterB2BTeacherView,
+)
 from .views.base import (
     HomeView,
     DashboardView,
@@ -254,5 +263,6 @@ urlpatterns = [
     re_path(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),
     re_path(r"^logout/$",                                                                           LogoutView.as_view(),               name="logout"                ),
     # re_path(r"^register_demo/$",                                                                    RegisterView.as_view(),             name="register"              ),
-    re_path(r"^register_demo/$",                                                                   RegisterDemoUserView.as_view(),     name="register_demo"         ),
+    re_path(r"^register/demo/$",                                                                   RegisterDemoUserView.as_view(),       name="register_demo"        ),
+    re_path(r"^register/b2bt/$",                                                                   RegisterB2BTeacherView.as_view(),     name="register_b2bt"        ),
 ]
