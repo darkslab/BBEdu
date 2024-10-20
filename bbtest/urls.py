@@ -255,9 +255,12 @@ urlpatterns = [
     re_path(r"^super/export-data/$",                            SuperExportDataView.as_view(),               name="super_export_data"               ),
     re_path(r"^super/export-data/export-form/$",                SuperExportDataFormView.as_view(),           name="super_export_data_form"          ),
     
-    # STUDENT URLS
+    # DEMO USER URLS
     re_path(r"^demouser/$",                                     DemouserDashboardView.as_view(),              name="demo_dashboard"                  ),
-    
+    re_path(r"^demo_taketest/$",                                DemouserDashboardView.as_view(),              name="demo_student_test"               ),
+
+    # B2B TEACHER URLS
+    re_path(r"^b2bt/$",                                         DeveloperDashboardView.as_view(),              name="b2bt_dashboard"                  ),
 
     # SYSTEM URLS
     re_path(r"^login/$",                                                                            LoginView.as_view(),                name="login"                 ),

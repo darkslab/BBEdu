@@ -111,7 +111,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         if self.has_perm("bbtest.demouser"):
             return reverse("bbtest:demo_dashboard")
         if self.has_perm("bbtest.B2BTeacher"):
-            return reverse("bbtest:demo_dashboard")
+            return reverse("bbtest:b2bt_dashboard")
         return reverse("home")
     
     def get_user_role(self) -> str:

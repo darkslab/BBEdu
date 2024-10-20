@@ -60,7 +60,7 @@ class RegisterDeveloperView(RegisterView):
 
 class RegisterB2BTeacherView(RegisterView):
     form_class = UserCreationForm
-    success_url = reverse_lazy("bbtest:developer_dashboard")
+    success_url = reverse_lazy("bbtest:b2bt_dashboard")
 
     def _group(self):
         return "B2BTeacher"
