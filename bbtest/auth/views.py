@@ -13,6 +13,8 @@ from django.contrib.auth import login
 from .forms import AuthenticationForm, UserCreationForm, DemoUserCreationForm, ExtendedUserCreationForm, PasswordResetForm, SetPasswordForm
 from .mixins import LogoutRequiredMixin
 from bbtest.views.generic import FormView
+from bbtest.models import TestPackage, QuizSet, User
+from bbtest.jobs.create_student_in_package import populate_demouser_test
 
 
 class LoginView(_LoginView):
@@ -59,11 +61,15 @@ class RegisterDeveloperView(RegisterView):
 
 class RegisterDemoUserView(RegisterView):
     form_class = DemoUserCreationForm
-    success_url = reverse_lazy("bbtest:student_dashboard")
+    success_url = reverse_lazy("bbtest:demo_dashboard")
     template_name = "base/register_demo.html"
 
     def form_valid(self, form: DemoUserCreationForm):
-        login(self.request, form.save(self._group()))
+        user: User = form.save(self._group())
+        # print("logging in")
+        login(self.request, user)
+
+        populate_demouser_test.delay(user)
         self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "registration", { "event_category": self._group() } ]]
         return super().form_valid(form)
 

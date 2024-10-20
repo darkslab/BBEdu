@@ -1,5 +1,5 @@
 from django.forms import ValidationError
-from bbtest.models import User, Test, StudentGroup, TestPackage, UserTestPackageProfile
+from bbtest.models import User, Test, StudentGroup, TestPackage, UserTestPackageProfile, QuizSet
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 from bbtest.models import Account
@@ -103,3 +103,22 @@ def activate_package(group_obj: StudentGroup, active_state: bool):
     # for student_test_profile_obj in group_obj.students.all():
     #     student_test_profile_obj.student.is_active = is_active
     #     student_test_profile_obj.student.save()
+
+
+@job("default", timeout=600000000)
+def populate_demouser_test(user: User):
+    package_obj = TestPackage.objects.get(code = "241018b3ff")
+    # print(package_obj)
+    test_set = package_obj.tests.order_by('section__order').all()
+    domain = package_obj.domain
+
+    quiz_set: QuizSet = user.quiz_sets.create(test_domain=domain, cart=None)
+    # quiz_set: QuizSet = QuizSet.objects.create(
+    #     test_domain = domain,
+    #     student = user,
+    #     cart = None,
+    # )
+    # print(quiz_set)
+
+    for quiz_order, test in enumerate(test_set):
+        quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
