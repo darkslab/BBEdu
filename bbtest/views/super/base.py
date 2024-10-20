@@ -18,6 +18,8 @@ class DashboardView(SuperPermissionRequiredMixin, UserContextMixin, TemplateView
     template_name = "super/dashboard.html"
 
     def get_context_data(self, **kwargs):
+        kwargs["active_nav_item"] = "super_dashboard"
+
         kwargs["student_count"] = User.active_users.filter(user_permissions__codename="student").count()
         kwargs["developer_count"] = User.active_users.filter(user_permissions__codename="developer").count()
         kwargs["admin_count"] = User.active_users.filter(user_permissions__codename="admin").count()

@@ -10,11 +10,13 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
     template_name = "student/dashboard.html"
 
     def get_context_data(self, **kwargs):
+        kwargs["active_nav_item"] = "dashboard"
         kwargs["is_current"] = self.request.user.quiz_sets.filter(is_current=True).count() > 0
         return super().get_context_data(**kwargs)
     
     
     def get_context_data2(self, **kwargs):
+        kwargs["active_nav_item"] = "dashboard"
         kwargs["quiz_set"] = self.request.user.quiz_sets.select_related("test_domain").prefetch_related("quizzes__test__questions", "quizzes__test__section").order_by("-created_at").first()
         kwargs["has_results"] = False
 

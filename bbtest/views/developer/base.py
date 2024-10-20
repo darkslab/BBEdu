@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.translation import get_language
 from django.shortcuts import get_object_or_404
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin
+from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, PermissionRequiredMixinFactory
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.texts import DEVELOPER_AGREEMENT_TEXTS
@@ -9,10 +9,11 @@ from bbtest.models import DeveloperAcknowledgement, Test
 from .mixins import DeveloperAcknowledgementRequiredMixin
 
 
-class DashboardView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateView):
+class DashboardView(PermissionRequiredMixinFactory(["super", "expert", "admin", "developer", "B2BTeacher"]), UserContextMixin, PaginationMixin, TemplateView):
     template_name = "developer/dashboard.html"
 
     def get_context_data(self, **kwargs):
+        kwargs["active_nav_item"] = "dashboard"
         paginator = Paginator(
             self.request.user.tests.filter(status__lt=Test.STATUS_ARCHIVED).select_related("section__domain").order_by("-created_at"),
             25,
@@ -33,7 +34,7 @@ class DashboardView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMi
         return super().get_context_data(**kwargs)
 
 
-class OfferView(DeveloperPermissionRequiredMixin, DeveloperAcknowledgementRequiredMixin, UserContextMixin, TemplateView):
+class OfferView(PermissionRequiredMixinFactory(["developer"]), DeveloperAcknowledgementRequiredMixin, UserContextMixin, TemplateView):
     template_name = "developer/offer.html"
 
     def get_context_data(self, **kwargs):
