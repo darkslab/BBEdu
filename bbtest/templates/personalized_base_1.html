@@ -9,7 +9,7 @@
             module: "PersonalizedTemplateModule"
         });
     </script>
-    <div class="bb-container {% if perms.bbtest.super %}bb-container-super{% elif perms.bbtest.admin %}bb-container-admin{% elif perms.bbtest.developer %}bb-container-developer{% elif perms.bbtest.expert %}bb-container-expert{% elif perms.bbtest.student %}bb-container-student{% elif perms.bbtest.demouser %}bb-container-demouser{% endif %}" data-bb-container>
+    <div class="bb-container {% if perms.bbtest.super %}bb-container-super{% elif perms.bbtest.admin %}bb-container-admin{% elif perms.bbtest.developer %}bb-container-developer{% elif perms.bbtest.expert %}bb-container-expert{% elif perms.bbtest.student %}bb-container-student{% elif perms.bbtest.demouser %}bb-container-demouser{% elif perms.bbtest.B2BTeacher %}bb-container-B2BTeacher{% endif %}" data-bb-container>
         <div class="bb-menu bb-min text-bright text-shadowed">
             <div class="container-fluid">
                 <div class="row bb-menu-section bb-menu-section-first pt-15 pb-15">
@@ -65,6 +65,10 @@
                             {% else %}
                                 <li class="{% block nav_student_buy_tests_class %}{% endblock %}"><a href="{% url 'bbtest:student_buy_test_domains' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Start testing' context 'Navigation link' %}</a></li>
                             {% endif %} {% endcomment %}
+
+                        {% elif perms.bbtest.demouser %}
+                        {% elif perms.bbtest.B2BTeacher %}
+                            
                         {% endif %}
                     </ul>
                 </div>

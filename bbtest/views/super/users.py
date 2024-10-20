@@ -14,7 +14,7 @@ from bbtest.forms.super import GiveCreditsForm, ChangeUserPassManualForm
 from bbtest.models.accounting import Entry, Debit, Credit
 from bbtest.models.quiz import QuizSet, Quiz
 
-from bbtest.auth.mixins import DeveloperPermissionRequiredMixin, ExpertPermissionRequiredMixin, StaffPermissionRequiredMixin, SuperPermissionRequiredMixin, AdminPermissionRequiredMixin
+from bbtest.auth.mixins import StaffPermissionRequiredMixin, SuperPermissionRequiredMixin, AdminPermissionRequiredMixin
 from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
 
 User = get_user_model()
@@ -27,7 +27,7 @@ class UsersView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin,
         kwargs["q"] = self.request.GET.get("q", "")
         kwargs["filter_role"] = self.request.GET.get("filter_role", "")
         kwargs["filter_active"] = self.request.GET.get("filter_active", "")
-        kwargs["role_type_list"] = ["developer", "expert", "admin", "student", "super", "demouser"]
+        kwargs["role_type_list"] = ["developer", "expert", "admin", "student", "super", "demouser", "B2BTeacher"]
 
 
         if kwargs["filter_active"] == "1":
@@ -59,7 +59,7 @@ class UsersView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin,
 
         for user in kwargs["users"]:
             for permission in user.user_permissions.all():
-                if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "developer", "expert", "student", "demouser"):
+                if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "developer", "expert", "student", "demouser", "B2BTeacher"):
                     user.role = permission.codename
                     break
 
@@ -74,7 +74,7 @@ class UserView(AdminPermissionRequiredMixin, UserContextMixin, TemplateView):
 
         user = get_object_or_404(User.objects.filter(is_superuser=False), pk=self.kwargs["user_id"])
         for permission in user.user_permissions.all():
-            if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "developer", "expert", "admin", "student", "demouser"):
+            if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "developer", "expert", "admin", "student", "demouser", "B2BTeacher"):
                 user.role = permission.codename
                 break
         kwargs["user_object"] = user
@@ -138,7 +138,7 @@ class ChangePassManualView(SuperPermissionRequiredMixin, View):
         is_found = False
         user = get_object_or_404(User.active_users.filter(is_superuser=False), pk=user_id)
         for permission in user.user_permissions.all():
-            if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("student", "expert", "developer", "admin", "demouser"):
+            if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("student", "expert", "developer", "admin", "demouser", "B2BTeacher"):
                 is_found = True
                 break
         if not is_found:

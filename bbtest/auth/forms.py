@@ -32,7 +32,7 @@ class UserCreationFormMixin(ModelForm):
 
         content_type = ContentType.objects.get_for_model(type(user))
         permissions = []
-        if group in ("developer", "expert", "admin", "student", "demouser"):
+        if group in ("developer", "expert", "admin", "student", "demouser", "B2BTeacher"):
             permissions.append(Permission.objects.get(codename=group, content_type=content_type))
         user.user_permissions.set(permissions)
 

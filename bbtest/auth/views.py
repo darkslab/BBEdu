@@ -57,7 +57,13 @@ class RegisterDeveloperView(RegisterView):
 
     def _group(self):
         return "developer"
-    
+
+class RegisterB2BTeacherView(RegisterView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("bbtest:developer_dashboard")
+
+    def _group(self):
+        return "B2BTeacher"
 
 class RegisterDemoUserView(RegisterView):
     form_class = DemoUserCreationForm
