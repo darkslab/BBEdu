@@ -79,25 +79,44 @@ class StaffPermissionRequiredMixin(LoginRequiredMixin):
         # return super().dispatch(request, *args, **kwargs)
 
 
-def PermissionRequiredMixinFactory(role_list: list): 
+class PermissionRequiredMixinFactory:
 
-    class PermissionRequiredMixin(LoginRequiredMixin): 
-        def dispatch(self, request, *args, **kwargs):
-            role = request.user.get_user_role()
+    def __new__(cls, role_list: list):
+        return cls.factory(role_list)
 
-            if role == "super":
-                return super().dispatch(request, *args, **kwargs)
-            
-            if role in role_list:
-                return super().dispatch(request, *args, **kwargs)
+    @classmethod
+    def factory(cls, role_list: list): 
+
+        class PermissionRequiredMixin(LoginRequiredMixin): 
+            def dispatch(self, request, *args, **kwargs):
+                role = request.user.get_user_role()
+
+                if role == "super":
+                    return super().dispatch(request, *args, **kwargs)
                 
-            if request.is_ajax():
-                raise PermissionDenied("Permission denied for AJAX call")
-            
-            return super().handle_no_permission()
-            # return super().dispatch(request, *args, **kwargs)
-  
-    return PermissionRequiredMixin
+                if role in role_list:
+                    return super().dispatch(request, *args, **kwargs)
+                    
+                if request.is_ajax():
+                    raise PermissionDenied("Permission denied for AJAX call")
+                
+                return super().handle_no_permission()
+                # return super().dispatch(request, *args, **kwargs)
+    
+        return PermissionRequiredMixin
+
+    @classmethod
+    def staff(cls):
+        return cls.factory(["super", "expert", "admin", "developer"])
+    
+    @classmethod
+    def student(cls):
+        return cls.factory(["student"])
+
+    @classmethod
+    def expert(cls):
+        return cls.factory(["super", "expert"])
+
 
 class CreateStudentRequiredMixin(LoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
