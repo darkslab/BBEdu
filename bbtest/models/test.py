@@ -604,6 +604,34 @@ class TestPackageRelation(Model):
 
 
 
+class TestPackageRusKazPair(Model):
+    name = CharField(
+        pgettext_lazy("Model field", "package name"),
+        max_length=100,
+        unique=False,
+    )
+    created_at = DateTimeField(
+        pgettext_lazy("Model field", "created at"),
+        auto_now_add=True,
+    )
+    test_package_ru = ForeignKey(
+        TestPackage, on_delete=CASCADE, related_name="test_packages_ru"
+    )
+    test_package_kz = ForeignKey(
+        TestPackage, on_delete=CASCADE, related_name="test_packages_kz"
+    )
+
+    @property
+    def code(self):
+        return f"{self.test_package_ru.code}{self.test_package_kz.code}"
+
+    class Meta:
+        default_permissions = ()
+        unique_together = ("test_package_ru", "test_package_kz")
+
+    def __str__(self):
+        return self.code
+
 # -------------------------------------------- User Profile --------------------------------------------
 
 class UserTestPackageProfile(Model):
