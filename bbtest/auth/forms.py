@@ -42,6 +42,8 @@ class UserCreationFormMixin(ModelForm):
             Account.objects.create_liability_account("Expert-%s" % user.pk)
         if group == "admin":
             Account.objects.create_liability_account("Admin-%s" % user.pk)
+        # if group == "B2BTeacher":
+        #     Account.objects.create_liability_account("B2BTeacher-%s" % user.pk)
 
         return user
 

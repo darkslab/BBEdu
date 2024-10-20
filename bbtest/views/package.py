@@ -317,7 +317,7 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
             
 
     def create_students(self, username, email, password, is_active):
-        user = User.objects.create_user(username=username, email=email, password=password)
+        user: User = User.objects.create_user(username=username, email=email, password=password)
         user.first_name = username
         user.is_active = is_active
         # user.last_name = "Electric"
