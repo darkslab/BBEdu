@@ -63,7 +63,7 @@ from .views.standalone_question import (
 
 from .views.b2bt import (
     BuildPackagesView as B2BT_BuildPackagesView,
-    CreatePackageFormView as B2BT_BuildCreatePackageFormView,
+    AddPackagePairFormView as B2BT_BuildCreatePackageFormView,
 )
 
 from .views.package import (
@@ -268,7 +268,7 @@ urlpatterns = [
     # B2B TEACHER URLS
     re_path(r"^b2bt/$",                                         DeveloperDashboardView.as_view(),              name="b2bt_dashboard"                  ),
     re_path(r"^b2bt/packages/$",                                B2BT_BuildPackagesView.as_view(),              name="b2bt_build_packages" ),
-    re_path(r"^b2bt/create-package/create-form/$",              B2BT_BuildCreatePackageFormView.as_view(),     name="b2bt_build_create_package_form"),
+    re_path(r"^b2bt/create-package/create-form/$",              B2BT_BuildCreatePackageFormView.as_view(),     name="b2bt_build_add_package_pair_form"),
 
     # SYSTEM URLS
     re_path(r"^login/$",                                        LoginView.as_view(),                  name="login"                 ),
