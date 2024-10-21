@@ -656,6 +656,13 @@ class TestPackageRusKazQuiz(Model):
         db_index=True,
         null=False,
     )
+    number_of_students = PositiveIntegerField(
+        pgettext_lazy("Model field", "number of students in package quiz"),
+    )
+    student_table = JSONField(
+        pgettext_lazy("Model field", "Student Json Table"), default="[]"
+    )
+
     created_at = DateTimeField(
         pgettext_lazy("Model field", "created at"),
         auto_now_add=True,
