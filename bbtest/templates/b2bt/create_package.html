@@ -73,37 +73,30 @@
                         <thead>
                             <tr>
                                 <th class="pl-15">{% trans 'Name' context '/admin/create_package/' %}</th>
-                                <th class="text-center">{% trans 'Domain' context '/admin/create_package/' %}</th>
+                                {% comment %} <th class="text-center">{% trans 'Domain' context '/admin/create_package/' %}</th> {% endcomment %}
                                 <th class="text-center">{% trans 'Code' context '/admin/create_package/' %}</th>
                                 <th class="text-center">{% trans 'Created at' context '/admin/create_package/' %}</th>
-                                {% comment %} <th class="text-center">{% trans 'Finalized?' context '/admin/create_package/' %}</th> {% endcomment %}
+                                <th class="text-center">{% trans 'Number of students' context '/admin/create_package/' %}</th>
                                 <th class="pr-15 text-center">{% trans 'Actions' context '/admin/create_package/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for package_pair_quiz in package_pair_quiz_set %}
                                 <tr>
-                                    {% comment %} {% url 'bbtest:build_package' package_pair_quiz.test_package_ru.code %} {% endcomment %}
-                                    <td class="pl-15"><a href="">{{ package_pair_quiz.TestPackagePair.name }}</a></td>
-                                    <td class="text-center">{% trans package_pair_quiz.TestPackagePair.test_package_ru.domain.name %}</td>
+                                    <td class="pl-15"><a href="{% url 'bbtest:b2bt_build_package_pair_quiz' package_pair_quiz.pk %}">{{ package_pair_quiz.TestPackagePair.name }}</a></td>
+                                    {% comment %} <td class="text-center">{% trans package_pair_quiz.TestPackagePair.test_package_ru.domain.name %}</td> {% endcomment %}
                                     <td class="text-center"><span class="label label-info">{{ package_pair_quiz.TestPackagePair.code  }}</span></td>
                                     <td class="text-center">{{ package_pair_quiz.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
-                                    {% comment %} <td class="text-center">
-                                        {% if package_pair_quiz.finalized %}
-                                            <span class="label label-success">{% trans 'Yes' context '/admin/create_package/' %}</span>
-                                        {% else %}
-                                            <span class="label label-danger">{% trans 'No' context '/admin/create_package/' %}</span>
-                                        {% endif %}
-                                    </td> {% endcomment %}
+                                    <td class="text-center"><span class="label label-success">{{ package_pair_quiz.number_of_students }}</span></td>
                                     <td class="text-center">
-                                        {% comment %} {% if package_pair_quiz.finalized %}
-                                            
-                                        {% else %}
-                                            <form action="{% url 'bbtest:build_activate_package' package_code=package_pair_quiz.code %}" method="post">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">Финализировать пакет<br>(Отменить нельзя)</button>
-                                            </form>
-                                        {% endif %} {% endcomment %}
+                                    {% if package_pair_quiz.buyed %}
+                                    {% else %}
+                                        {% comment %} {% url 'bbtest:build_activate_package' package_code=package_pair_quiz.code %} {% endcomment %}
+                                        <form action="" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">Начать тестирование<br>(Отменить нельзя)</button>
+                                        </form>
+                                    {% endif %}
                                     </td>
                                     
                                 </tr>

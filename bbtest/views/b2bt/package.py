@@ -131,38 +131,22 @@ class BuildPackageView(
     template_name = "b2bt/manage_package.html"
     # form_class = ManagePackageTestForm
 
-    def get(self, request, package_code, *args, **kwargs):
+    def get(self, request, package_pair_quiz_id, *args, **kwargs):
         # print("BuildPackageView", args, kwargs, self.get_context_data())
         # print("BuildPackageView", self.request)
         # print("BuildPackageView", kwargs, code)
 
-        # obj = TestPackage.objects.get(code=code)
-        package_obj = get_object_or_404(TestPackage.objects, code=package_code)
-        kwargs["package"] = package_obj
-        kwargs["tests"] = package_obj.tests.order_by("section__order").all()
-        kwargs["student_group_list"] = package_obj.student_groups.all()
+        package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
 
-        section_set = TestSection.objects.filter(
-            domain=package_obj.domain
-        ).prefetch_related("tests")
+        kwargs["package_ru"] = package_pair_quiz_obj.TestPackagePair.test_package_ru
+        kwargs["package_kz"] = package_pair_quiz_obj.TestPackagePair.test_package_kz
 
-        CATEGORY_CHOICES = [(None, "-----")]
-        for section_obj in section_set:
-            options = []
-            tests = section_obj.tests.filter(status=Test.STATUS_ACTIVE).all()
-            for test_obj in tests:
-                if test_obj not in kwargs["tests"]:
-                    options.append((str(test_obj.code), test_obj.code))
+        kwargs["tests_ru"] = kwargs["package_ru"].tests.order_by("section__order").all()
+        kwargs["tests_kz"] = kwargs["package_kz"].tests.order_by("section__order").all()
 
-            if len(options) > 0:
-                CATEGORY_CHOICES.append((section_obj.name, tuple(options)))
+        # kwargs["student_group_list"] = package_pair_quiz_obj.student_groups.all()
 
-        kwargs["add_tests_form"] = ManagePackageTestForm(choices=CATEGORY_CHOICES)
-
-        # print("BuildPackageView", kwargs["tests"])
-
-        # kwargs["add_students_form"] = ManagePackageStudentsForm()
-        kwargs["create_student_group_form"] = CreateStudentGroupForm()
+        kwargs["student_table"] = package_pair_quiz_obj.student_table
 
         return self.render_to_response(super().get_context_data(**kwargs))
 
@@ -175,12 +159,15 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
             test_package_pair: TestPackageRusKazPair = form.cleaned_data[
                 "test_package_pair"
             ]
-            name = form.cleaned_data["name"]
+            # comment = form.cleaned_data["comment"]
+            number_of_students = form.cleaned_data["number_of_students"]
 
             obj = TestPackageRusKazQuiz.objects.create(
                 # name = name,
                 user=request.user,
                 TestPackagePair=test_package_pair,
+                number_of_students=number_of_students,
+                student_table = [["first", "last", "rus"] for _ in range(int(number_of_students))]
             )
             print("AddPackagePairFormView", obj)
 

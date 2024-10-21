@@ -13,7 +13,7 @@ from django.forms import (
 )
 from django.utils.translation import pgettext, pgettext_lazy
 
-from bbtest.models import Test, TestDomain, TestSection
+from bbtest.models import Test, TestDomain, TestSection, TestPackageRusKazPair
 
 
 class GiveCreditsForm(Form):
@@ -124,6 +124,39 @@ class CreatePackageForm(Form):
         queryset=TestDomain.objects.all(),
         empty_label=pgettext("CreatePackageForm", "Select Test Domain"),
     )
+
+class Buy_B2BTeacher_PackageForm(Form):
+    
+
+    test_package_pair = ModelChoiceField(
+        label=pgettext("Buy_B2BTeacher_PackageForm", "TestPackage"),
+        queryset=TestPackageRusKazPair.objects.all(),
+        empty_label=pgettext("Buy_B2BTeacher_PackageForm", "Select TestPackage"),
+    )
+
+    number_of_students = ChoiceField(
+        label=pgettext("Buy_B2BTeacher_PackageForm", "Number of Students"),
+        error_messages={
+            "required": "Select Number of Students",
+            "invalid_choice": "Invalid choice.",
+        },
+        choices=(
+            (5, "5 (5000 KZT)"),
+            (25, "25 (10000 KZT)"),
+            (50, "50 (19000 KZT)"),
+            (100, "100 (35000 KZT)"),
+        ),
+    )
+
+    # comment = CharField(
+    #     label=pgettext("Buy_B2BTeacher_PackageForm", "Comment"),
+    #     error_messages={"required": "Package will be generated with this name."},
+    #     initial="",
+    #     # help_text="Pilot_test",
+    #     # empty_value="Pilot_test",
+    #     min_length=1,
+    #     max_length=100,
+    # )
 
 
 class CreateStudentGroupForm(Form):
