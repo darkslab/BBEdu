@@ -42,10 +42,10 @@
                     <h4 class="panel-title">{% trans 'Create Packages' context '/staff/create_package/' %}</h4>
                 </div>
                 <div class="panel-body">
-                    <form method="post" action="{% url 'bbtest:build_create_package_form' %}" class="mt-15" data-bb-form data-create-package-form>
+                    <form method="post" action="{% url 'bbtest:b2bt_build_add_package_pair_form' %}" class="mt-15" data-bb-form data-create-package-form>
                         {% csrf_token %}
 
-                        {% for field in create_package_form %}
+                        {% for field in add_package_pair_form %}
                             <div class="form-group has-error">
                                 <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
                                 {{field|add_class:'form-control' }}
@@ -76,33 +76,34 @@
                                 <th class="text-center">{% trans 'Domain' context '/admin/create_package/' %}</th>
                                 <th class="text-center">{% trans 'Code' context '/admin/create_package/' %}</th>
                                 <th class="text-center">{% trans 'Created at' context '/admin/create_package/' %}</th>
-                                <th class="text-center">{% trans 'Finalized?' context '/admin/create_package/' %}</th>
+                                {% comment %} <th class="text-center">{% trans 'Finalized?' context '/admin/create_package/' %}</th> {% endcomment %}
                                 <th class="pr-15 text-center">{% trans 'Actions' context '/admin/create_package/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for package in packages %}
+                            {% for package_pair_quiz in package_pair_quiz_set %}
                                 <tr>
-                                    <td class="pl-15"><a href="{% url 'bbtest:build_package' package.code %}">{{ package.name }}</a><br><small class="text-info">{{ package.email }}</small></td>
-                                    <td class="text-center">{% trans package.domain.name %}</td>
-                                    <td class="text-center"><span class="label label-info">{{ package.code  }}</span></td>
-                                    <td class="text-center">{{ package.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
-                                    <td class="text-center">
-                                        {% if package.finalized %}
+                                    {% comment %} {% url 'bbtest:build_package' package_pair_quiz.test_package_ru.code %} {% endcomment %}
+                                    <td class="pl-15"><a href="">{{ package_pair_quiz.TestPackagePair.name }}</a></td>
+                                    <td class="text-center">{% trans package_pair_quiz.TestPackagePair.test_package_ru.domain.name %}</td>
+                                    <td class="text-center"><span class="label label-info">{{ package_pair_quiz.TestPackagePair.code  }}</span></td>
+                                    <td class="text-center">{{ package_pair_quiz.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
+                                    {% comment %} <td class="text-center">
+                                        {% if package_pair_quiz.finalized %}
                                             <span class="label label-success">{% trans 'Yes' context '/admin/create_package/' %}</span>
                                         {% else %}
                                             <span class="label label-danger">{% trans 'No' context '/admin/create_package/' %}</span>
                                         {% endif %}
-                                    </td>
+                                    </td> {% endcomment %}
                                     <td class="text-center">
-                                        {% if package.finalized %}
+                                        {% comment %} {% if package_pair_quiz.finalized %}
                                             
                                         {% else %}
-                                            <form action="{% url 'bbtest:build_activate_package' package_code=package.code %}" method="post">
+                                            <form action="{% url 'bbtest:build_activate_package' package_code=package_pair_quiz.code %}" method="post">
                                                 {% csrf_token %}
                                                 <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">Финализировать пакет<br>(Отменить нельзя)</button>
                                             </form>
-                                        {% endif %}
+                                        {% endif %} {% endcomment %}
                                     </td>
                                     
                                 </tr>
@@ -116,23 +117,23 @@
                 </div>
             </div>
         </div>
-        {% if packages.has_other_pages %}
+        {% if package_pair_quiz_set.has_other_pages %}
             <div class="col-xs-12 text-center">
                 <ul class="pagination mt-0 mb-0">
-                    {% if packages.has_previous %}
-                        <li><a href="{{ request.path }}?{% pagination_qs packages.previous_page_number %}">&laquo;</a></li>
+                    {% if package_pair_quiz_set.has_previous %}
+                        <li><a href="{{ request.path }}?{% pagination_qs package_pair_quiz_set.previous_page_number %}">&laquo;</a></li>
                     {% else %}
                         <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
                     {% endif %}
-                    {% for page_index in packages.paginator.page_indexes %}
-                        {% if page_index == packages.number %}
+                    {% for page_index in package_pair_quiz_set.paginator.page_indexes %}
+                        {% if page_index == package_pair_quiz_set.number %}
                             <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
                         {% else %}
                             <li><a href="{{ request.path }}?{% pagination_qs page_index %}">{{ page_index }}</a></li>
                         {% endif %}
                     {% endfor %}
-                    {% if packages.has_next %}
-                        <li><a href="{{ request.path }}?{% pagination_qs packages.next_page_number %}">&raquo;</a></li>
+                    {% if package_pair_quiz_set.has_next %}
+                        <li><a href="{{ request.path }}?{% pagination_qs package_pair_quiz_set.next_page_number %}">&raquo;</a></li>
                     {% else %}
                         <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
                     {% endif %}

@@ -21,7 +21,7 @@ from bbtest.auth.mixins import (
     PermissionRequiredMixinFactory,
 )
 from bbtest.forms.super import (
-    CreatePackageForm,
+    Buy_B2BTeacher_PackageForm,
     CreateStudentGroupForm,
     ManagePackageStudentsForm,
     ManagePackageTestForm,
@@ -39,6 +39,8 @@ from bbtest.models.test import (
     TestDomain,
     TestPackage,
     TestPackageRelation,
+    TestPackageRusKazPair,
+    TestPackageRusKazQuiz,
     TestSection,
     UserTestPackageProfile,
 )
@@ -56,37 +58,36 @@ class BuildPackagesView(
     def get_context_data(self, **kwargs):
         kwargs["active_nav_item"] = "buy_packages"
 
-        packages = TestPackage.objects.all().order_by(
+        package_pair_quiz_set: TestPackageRusKazQuiz = TestPackageRusKazQuiz.objects.filter(
+            user = self.request.user
+        ).order_by(
             "-created_at"
-        )  # .prefetch_related("domain_name")
-        kwargs["q"] = ""
-        try:
-            packages = packages.filter(
-                Q(name__icontains=self.request.GET["q"])
-                | Q(code__icontains=self.request.GET["q"])
-                # |
-                # Q(domain_name__icontains=self.request.GET["q"])
-            )
-            kwargs["q"] = self.request.GET["q"]
-        except KeyError:
-            pass
+        ).prefetch_related("TestPackagePair")
 
-        paginator = Paginator(packages, 25)
+
+        # kwargs["q"] = ""
+        # try:
+        #     package_pair_quiz_set = package_pair_quiz_set.filter(
+        #         Q(name__icontains=self.request.GET["q"])
+        #         | Q(code__icontains=self.request.GET["q"])
+        #         # |
+        #         # Q(domain_name__icontains=self.request.GET["q"])
+        #     )
+        #     kwargs["q"] = self.request.GET["q"]
+        # except KeyError:
+        #     pass
+
+        paginator = Paginator(package_pair_quiz_set, 25)
         try:
-            kwargs["packages"] = paginator.page(self.request.GET.get("page"))
+            kwargs["package_pair_quiz_set"] = paginator.page(self.request.GET.get("page"))
         except PageNotAnInteger:
-            kwargs["packages"] = paginator.page(1)
+            kwargs["package_pair_quiz_set"] = paginator.page(1)
         except EmptyPage:
-            kwargs["packages"] = paginator.page(paginator.num_pages)
-        paginator.page_indexes = self.page_indexes(kwargs["packages"], 5)
+            kwargs["package_pair_quiz_set"] = paginator.page(paginator.num_pages)
+        paginator.page_indexes = self.page_indexes(kwargs["package_pair_quiz_set"], 5)
 
-        # for user in kwargs["packages"]:
-        #     for permission in user.user_permissions.all():
-        #         if permission.content_type.natural_key() == ("bbtest", "user") and permission.codename in ("admin", "expert", "developer", "student"):
-        #             user.role = permission.codename
-        #             break
 
-        kwargs["create_package_form"] = CreatePackageForm()
+        kwargs["add_package_pair_form"] = Buy_B2BTeacher_PackageForm()
 
         return super().get_context_data(**kwargs)
 
@@ -166,34 +167,31 @@ class BuildPackageView(
         return self.render_to_response(super().get_context_data(**kwargs))
 
 
-class CreatePackageFormView(CreateStudentRequiredMixin, View):
+class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
     def post(self, request, *args, **kwargs):
-        form = CreatePackageForm(data=request.POST)
-        print("CreatePackageFormView", form.is_valid())
+        form = Buy_B2BTeacher_PackageForm(data=request.POST)
+        print("AddPackagePairFormView", form.is_valid())
         if form.is_valid():
-            domain = form.cleaned_data["domain"]
+            test_package_pair: TestPackageRusKazPair = form.cleaned_data[
+                "test_package_pair"
+            ]
             name = form.cleaned_data["name"]
 
-            obj = TestPackage.objects.create(
-                name=name,
-                code="{}{}".format(
-                    datetime.now().strftime("%y%m%d"), "%04x" % randint(0x0000, 0xFFFF)
-                ),
-                finalized=False,
-                # tests
-                # students
-                domain=domain,
+            obj = TestPackageRusKazQuiz.objects.create(
+                # name = name,
+                user=request.user,
+                TestPackagePair=test_package_pair,
             )
-            print("CreatePackageFormView", obj)
+            print("AddPackagePairFormView", obj)
 
         else:
             error(
                 request,
-                "Could not create package! %s"
+                "Could not create TestPackageRusKazQuizSet! %s"
                 % " ".join([" ".join(errors) for key, errors in form.errors.items()]),
             )
 
-        return redirect("bbtest:build_packages")
+        return redirect("bbtest:b2bt_build_packages")
 
 
 class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
