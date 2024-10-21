@@ -628,13 +628,13 @@ class TestPackageRusKazPair(Model):
 
     class Meta:
         default_permissions = ()
-        # unique_together = ("test_package_ru", "test_package_kz")
+        unique_together = ("test_package_ru", "test_package_kz")
 
     def __str__(self):
-        return self.name + self.code
+        return f"{self.name} ({self.code})"
     
 
-class TestPackageRusKazQuizSet(Model):
+class TestPackageRusKazQuiz(Model):
     user = ForeignKey(
         get_user_model(),
         on_delete=CASCADE,
