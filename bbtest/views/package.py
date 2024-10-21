@@ -54,6 +54,8 @@ class BuildPackagesView(AdminPermissionRequiredMixin, UserContextMixin, Paginati
     template_name = "package/create_package.html"
 
     def get_context_data(self, **kwargs):
+        kwargs["active_nav_item"] = "build_package"
+
         packages = TestPackage.objects.all().order_by("-created_at") # .prefetch_related("domain_name")
         kwargs["q"] = ""
         try:
