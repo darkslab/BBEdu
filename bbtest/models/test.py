@@ -610,27 +610,59 @@ class TestPackageRusKazPair(Model):
         max_length=100,
         unique=False,
     )
+    # organizator = ForeignKey(User, on_delete=CASCADE, related_name="test_packages_ruskaz_pairs")
     created_at = DateTimeField(
         pgettext_lazy("Model field", "created at"),
         auto_now_add=True,
     )
     test_package_ru = ForeignKey(
-        TestPackage, on_delete=CASCADE, related_name="test_packages_ru"
+        TestPackage, on_delete=CASCADE, related_name="test_package_ru_pairs"
     )
     test_package_kz = ForeignKey(
-        TestPackage, on_delete=CASCADE, related_name="test_packages_kz"
+        TestPackage, on_delete=CASCADE, related_name="test_package_kz_pairs"
     )
-
+    
     @property
     def code(self):
         return f"{self.test_package_ru.code}{self.test_package_kz.code}"
 
     class Meta:
         default_permissions = ()
-        unique_together = ("test_package_ru", "test_package_kz")
+        # unique_together = ("test_package_ru", "test_package_kz")
 
     def __str__(self):
-        return self.code
+        return self.name + self.code
+    
+
+class TestPackageRusKazQuizSet(Model):
+    user = ForeignKey(
+        get_user_model(),
+        on_delete=CASCADE,
+        related_name="test_package_pair_quiz_sets",
+    )
+    # name = CharField(
+    #     pgettext_lazy("Model field", "package name"),
+    #     max_length=100,
+    #     unique=False,
+    # )
+    TestPackagePair = ForeignKey(
+        TestPackageRusKazPair,
+        on_delete=CASCADE,
+        related_name="test_package_pair_quiz_sets",
+    )
+    payed = BooleanField(
+        pgettext_lazy("Model field", "is payed?"),
+        default=False,
+        db_index=True,
+        null=False,
+    )
+    created_at = DateTimeField(
+        pgettext_lazy("Model field", "created at"),
+        auto_now_add=True,
+    )
+
+    class Meta:
+        default_permissions = ()
 
 # -------------------------------------------- User Profile --------------------------------------------
 
@@ -660,7 +692,16 @@ class DeveloperProfile(Model):
 
     def __str__(self):
         return "{}: {}".format(self.developer.username, self.section.all())
-    
+
+
+# class B2BTeacherProfile(Model):
+#     B2BTeacher = OneToOneField(
+#         User, on_delete=CASCADE, related_name="B2BTeacher_profile"
+#     )
+#     TestPackagePair = ForeignKey(
+#         TestPackageRusKazPair, on_delete=CASCADE, related_name="test_package_pairs"
+#     )
+
 
 # -------------------------------------------- Simple chat --------------------------------------------
     
