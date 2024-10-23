@@ -67,7 +67,7 @@ class BuildPackagesView(
         ).order_by(
             "-created_at"
         ).prefetch_related("TestPackagePair")
-
+        
 
         # kwargs["q"] = ""
         # try:
@@ -282,6 +282,40 @@ class ExportStudentExcelView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
         response['Content-Disposition'] = 'attachment; filename="students.xlsx"'
         print("ExportStudentExcelView", "end")
         return response
+
+
+class B2BStudentStartExamView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
+
+    def post(self, request: WSGIRequest, package_pair_quiz_id, *args, **kwargs):
+        package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
+
+        package_obj_ru: TestPackage = package_pair_quiz_obj.TestPackagePair.test_package_ru
+        package_obj_kz: TestPackage = package_pair_quiz_obj.TestPackagePair.test_package_kz
+
+        test_set_ru = package_obj_ru.tests.order_by("section__order").all()
+        test_set_kz = package_obj_kz.tests.order_by("section__order").all()
+
+        domain_ru = package_obj_ru.domain
+        domain_kz = package_obj_kz.domain
+
+        for row in package_pair_quiz_obj.student_table:
+            username = row[0]
+            lang = row[3]
+
+            domain = domain_ru if lang == "rus" else domain_kz
+            test_set = test_set_ru if lang == "rus" else test_set_kz
+
+            student: User = User.objects.get(username = username)
+
+            quiz_set = student.quiz_sets.create(test_domain=domain, cart=None)
+            for quiz_order, test in enumerate(test_set):
+                quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
+
+            student.is_active = True
+            student.save()
+
+        success(request, pgettext("Success alert message", "Test is started."))
+        return redirect("bbtest:b2bt_build_package_pair_quiz", package_pair_quiz_id)
 
 
 class ManagePackageCreateStudentGroupFormView(CreateStudentRequiredMixin, View):

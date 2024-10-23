@@ -66,6 +66,7 @@ from .views.b2bt import (
     AddPackagePairFormView as B2BT_BuildCreatePackageFormView,
     BuildPackageView as B2BT_BuildPackageView,
     ExportStudentExcelView as B2BT_ExportStudentExcelView,
+    B2BStudentStartExamView as B2BT_B2BStudentStartExamView,
 )
 
 from .views.package import (
@@ -273,7 +274,7 @@ urlpatterns = [
     re_path(r"^b2bt/create-package/create-form/$",                          B2BT_BuildCreatePackageFormView.as_view(),     name="b2bt_build_add_package_pair_form"),
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/$",           B2BT_BuildPackageView.as_view(),               name="b2bt_build_package_pair_quiz"),
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/export/$",    B2BT_ExportStudentExcelView.as_view(),         name="b2bt_build_package_pair_export"),
-
+    re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/start_exam/$",B2BT_B2BStudentStartExamView.as_view(),        name="b2bt_build_package_pair_start_exam"),
     
 
     # SYSTEM URLS
