@@ -35,7 +35,7 @@ from bbtest.jobs.create_student_in_package import (
     activate_package,
     populate_package_student_group,
 )
-from bbtest.models import User
+from bbtest.auth.models import User
 from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.models.test import (
     StudentGroup,
@@ -142,6 +142,7 @@ class BuildPackageView(
         kwargs["active_nav_item"] = "buy_packages"
 
         package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
+        kwargs["package_pair_quiz_obj"] = package_pair_quiz_obj
 
         kwargs["package_ru"] = package_pair_quiz_obj.TestPackagePair.test_package_ru
         kwargs["package_kz"] = package_pair_quiz_obj.TestPackagePair.test_package_kz
@@ -184,12 +185,18 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
             # comment = form.cleaned_data["comment"]
             number_of_students = form.cleaned_data["number_of_students"]
 
+            student_table = []
+            for i in range(int(number_of_students)):
+                passwrd = "{:05}".format(randint(10000, 99999))
+                user: User = self.create_students(passwrd)
+                student_table.append([user.username, "first", "last", "rus", passwrd])
+
             obj = TestPackageRusKazQuiz.objects.create(
                 # name = name,
                 user=request.user,
                 TestPackagePair=test_package_pair,
                 number_of_students=number_of_students,
-                student_table = [[-1, "first", "last", "rus", "{:05}".format(randint(10000, 99999))] for _ in range(int(number_of_students))]
+                student_table = student_table,
             )
             print("AddPackagePairFormView", obj)
 
@@ -202,6 +209,28 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
 
         return redirect("bbtest:b2bt_build_packages")
 
+    def create_students(self, password, is_active = False):
+        temp_username = uuid.uuid4().hex
+        temp_email = f"{temp_username}@b2b.bbtest.kz"
+
+        user: User = User.objects.create_user(
+            username=temp_username, email=temp_email, password=password
+        )
+
+        user.username = f"std{user.pk}"
+        user.email = f"{user.username}@b2b.bbtest.kz"
+        user.first_name = "first"
+        user.last_name = "last"
+        user.is_active = is_active
+        user.save()
+
+        content_type = ContentType.objects.get_for_model(type(user))
+        permissions = []
+        permissions.append(
+            Permission.objects.get(codename="student", content_type=content_type)
+        )
+        user.user_permissions.set(permissions)
+        return user
 
 class ExportStudentExcelView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
 
@@ -224,7 +253,7 @@ class ExportStudentExcelView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
         worksheet = workbook.add_worksheet()
         print("ExportStudentExcelView", "worksheet")
         # Define Excel headers
-        headers = ['First Name', 'Last Name', 'Language', 'Password']
+        headers = ['Login', 'First Name', 'Last Name', 'Language', 'Password']
 
         # Write the headers to the first row of the worksheet
         for col_num, header in enumerate(headers):
@@ -233,10 +262,11 @@ class ExportStudentExcelView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
         print("ExportStudentExcelView", "header")
         # Write table data to the worksheet (starting from row 1)
         for row_num, row_data in enumerate(table_data, start=1):
-            worksheet.write(row_num, 0, row_data[1])
-            worksheet.write(row_num, 1, row_data[2])
-            worksheet.write(row_num, 2, row_data[3])
-            worksheet.write(row_num, 3, row_data[4])
+            worksheet.write(row_num, 0, row_data[0])
+            worksheet.write(row_num, 1, row_data[1])
+            worksheet.write(row_num, 2, row_data[2])
+            worksheet.write(row_num, 3, row_data[3])
+            worksheet.write(row_num, 4, row_data[4])
 
         # Close the workbook to finalize the output stream
         workbook.close()

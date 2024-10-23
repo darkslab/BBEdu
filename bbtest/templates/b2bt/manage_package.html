@@ -162,7 +162,7 @@
                             <thead>
                                 <tr>
                                     {% comment %} column 0 {% endcomment %}
-                                    <th class="pl-15 text-center" style="display: none;" ></th>
+                                    <th class="pl-15 text-center"  >{% trans 'Login' context '/package-manage/student-group/' %}</th>
                                     {% comment %} column 1 {% endcomment %}
                                     <th class="pl-15 text-center">{% trans 'First Name' context '/package-manage/student-group/' %}</th>
                                     {% comment %} column 2 {% endcomment %}
@@ -179,11 +179,11 @@
                                 {% for student in student_table %}
                                 <tr>
                                     {% comment %} column 0 {% endcomment %}
-                                    <td class="text-center" style="display: none;" data-name="user_id">{{ student.0 }}</td>
+                                    <td class="text-center" data-name="user_id">{{ student.0 }}</td>
                                     {% comment %} column 1 {% endcomment %}
-                                    <td class="text-center" contenteditable="true" data-name="firstname">{{ student.1 }}</td>
+                                    <td class="text-center editable-cell" contenteditable="true" data-name="firstname">{{ student.1 }}</td>
                                     {% comment %} column 2 {% endcomment %}
-                                    <td class="text-center" contenteditable="true" data-name="lastname">{{ student.2 }}</td>
+                                    <td class="text-center editable-cell" contenteditable="true" data-name="lastname">{{ student.2 }}</td>
                                     {% comment %} column 3 {% endcomment %}
                                     <td class="text-center w-5">
                                         <select class="form-control">
@@ -217,6 +217,16 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-12 col-lg-12">
+            {% comment %} {% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz_obj.pk %} {% endcomment %}
+            <form action="{% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz_obj.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">Начать тестирование<br>(Отменить нельзя)</button>
+            </form>
+        </div>
+    </div>
+    
     <script>
         function togglePassword(button) {
             const row = button.closest('tr'); // Get the current row
@@ -305,4 +315,18 @@
             
         }
     </script>
+    <style>
+        /* Add subtle dotted underline to indicate editable cells */
+        .editable-cell {
+            border: 2px dotted #999;
+            cursor: text;
+            transition: background-color 0.3s ease;
+        }
+    
+        /* Change background color on hover to indicate interactivity */
+        .editable-cell:hover {
+            background-color: #f0f8ff;
+        }
+
+    </style>
 {% endblock %}
