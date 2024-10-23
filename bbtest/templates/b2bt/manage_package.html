@@ -167,24 +167,30 @@
                                     <th class="text-center">{% trans 'Last Name' context '/package-manage/student-group/' %}</th>
                                     {% comment %} column 3 {% endcomment %}
                                     <th class="pr-15 text-center">{% trans 'Language' context '/package-manage/student-group/' %}</th>
+                                    {% comment %} column 4 {% endcomment %}
+                                    <th class="pr-15 text-center">{% trans 'Password' context '/package-manage/student-group/' %}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for student in student_table %}
                                 <tr>
                                     {% comment %} column 1 {% endcomment %}
-                                    <td class="text-center" contenteditable="true" data-name="firstname">{{ student.0 }}</td>
+                                    <td class="text-center" contenteditable="true" data-name="firstname">{{ student.1 }}</td>
                                     {% comment %} column 2 {% endcomment %}
-                                    <td class="text-center" contenteditable="true" data-name="lastname">{{ student.1 }}</td>
+                                    <td class="text-center" contenteditable="true" data-name="lastname">{{ student.2 }}</td>
                                     {% comment %} column 3 {% endcomment %}
                                     <td class="text-center w-5">
                                         <select class="form-control">
-                                            <option value="rus" {% if student.2 == 'rus' %}selected{% endif %}>rus</option>
-                                            <option value="kaz" {% if student.2 == 'kaz' %}selected{% endif %}>kaz</option>
+                                            <option value="rus" {% if student.3 == 'rus' %}selected{% endif %}>rus</option>
+                                            <option value="kaz" {% if student.3 == 'kaz' %}selected{% endif %}>kaz</option>
                                         </select>
                                         {% comment %} {{ student.2 }} {% endcomment %}
                                     </td>
-
+                                    {% comment %} column 4 {% endcomment %}
+                                    <td class="text-center">
+                                        <span class="password-text" style="display: none;">{{ student.4  }}</span>
+                                        <button type="button" class="btn btn-sm btn-secondary toggle-password">Show</button>
+                                    </td>
                                 </tr>
                                 {% empty %}
                                 <tr>
@@ -202,6 +208,19 @@
         </div>
     </div>
     <script>
+        document.querySelectorAll('.toggle-password').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const passwordSpan = button.previousElementSibling;
+                if (passwordSpan.style.display === 'none') {
+                    passwordSpan.style.display = 'inline';
+                    button.textContent = 'Hide';
+                } else {
+                    passwordSpan.style.display = 'none';
+                    button.textContent = 'Show';
+                }
+            });
+        });
+
         function logTable() {
             var table = document.getElementById('editable-table');
             var rows = table.getElementsByTagName('tr');

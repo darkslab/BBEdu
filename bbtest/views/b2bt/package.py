@@ -186,7 +186,7 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
                 user=request.user,
                 TestPackagePair=test_package_pair,
                 number_of_students=number_of_students,
-                student_table = [["first", "last", "rus"] for _ in range(int(number_of_students))]
+                student_table = [[-1, "first", "last", "rus", "{:05}".format(randint(10000, 99999))] for _ in range(int(number_of_students))]
             )
             print("AddPackagePairFormView", obj)
 
