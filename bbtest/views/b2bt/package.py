@@ -201,7 +201,7 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
 
 
 class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
-    def post(self, request, package_code, *args, **kwargs):
+    def post(self, request: WSGIRequest, package_code, *args, **kwargs):
         # print("ManagePackageTestFormView", request.POST)
         form = ManagePackageTestForm(data=request.POST)
         # print("ManagePackageTestFormView", form)
@@ -240,7 +240,7 @@ class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
 
 
 class ManagePackageCreateStudentGroupFormView(CreateStudentRequiredMixin, View):
-    def post(self, request, package_code, *args, **kwargs):
+    def post(self, request: WSGIRequest, package_code, *args, **kwargs):
         form = CreateStudentGroupForm(data=request.POST)
 
         UserTestPackageProfile, StudentGroup
@@ -264,7 +264,7 @@ class ManagePackageCreateStudentGroupFormView(CreateStudentRequiredMixin, View):
 
 
 class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
-    def post(self, request, package_code, student_group_id, *args, **kwargs):
+    def post(self, request: WSGIRequest, package_code, student_group_id, *args, **kwargs):
         form = ManagePackageStudentsForm(data=request.POST)
         print("ManagePackageStudentsForm", form.is_valid())
         if not form.is_valid():
@@ -291,7 +291,7 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
         )
         return redirect("bbtest:build_package", package_code)
 
-    def post_old(self, request, package_code, student_group_id, *args, **kwargs):
+    def post_old(self, request: WSGIRequest, package_code, student_group_id, *args, **kwargs):
         form = ManagePackageStudentsForm(data=request.POST)
         print("ManagePackageStudentsForm", form.is_valid())
         if not form.is_valid():
@@ -384,7 +384,7 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
 class RemoveTestFromPackageView(
     PermissionRequiredMixinFactory(["B2BTeacher"]), View
 ):  # DeveloperPermissionRequiredMixin,
-    def post(self, request, package_code, test_code, *args, **kwargs):
+    def post(self, request: WSGIRequest, package_code, test_code, *args, **kwargs):
         print("RemoveTestFromPackageView", package_code, test_code)
         package_obj = get_object_or_404(TestPackage.objects, code=package_code)
         test_obj = get_object_or_404(Test.objects, code=test_code)
@@ -399,7 +399,7 @@ class RemoveTestFromPackageView(
 
 
 class FinalizePackageView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
-    def post(self, request, package_code, *args, **kwargs):
+    def post(self, request: WSGIRequest, package_code, *args, **kwargs):
         print("ActivatePackageView", package_code)
         package_obj = get_object_or_404(TestPackage.objects, code=package_code)
         package_obj.finalized = True
@@ -433,7 +433,7 @@ class FinalizePackageView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
 
 
 class ActivateStudentGroupToggleView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
-    def post(self, request, package_code, student_group_id, *args, **kwargs):
+    def post(self, request: WSGIRequest, package_code, student_group_id, *args, **kwargs):
         print("ActivateStudentGroupView", package_code)
         # package_obj = get_object_or_404(TestPackage.objects, code=package_code)
         group_obj = get_object_or_404(StudentGroup.objects, pk=student_group_id)
@@ -450,7 +450,7 @@ class ActivateStudentGroupToggleView(PermissionRequiredMixinFactory(["B2BTeacher
 
 
 class ActivateStudentTurnON(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
-    def post(self, request, package_code, student_group_id, *args, **kwargs):
+    def post(self, request: WSGIRequest, package_code, student_group_id, *args, **kwargs):
         print("ActivateStudentTurnON", package_code)
         group_obj = get_object_or_404(StudentGroup.objects, pk=student_group_id)
         if settings.DEBUG:
@@ -470,7 +470,7 @@ class ActivateStudentTurnON(PermissionRequiredMixinFactory(["B2BTeacher"]), View
 
 
 class ActivateStudentTurnOFF(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
-    def post(self, request, package_code, student_group_id, *args, **kwargs):
+    def post(self, request: WSGIRequest, package_code, student_group_id, *args, **kwargs):
         print("ActivateStudentTurnOFF", package_code)
         group_obj: StudentGroup = get_object_or_404(
             StudentGroup.objects, pk=student_group_id
