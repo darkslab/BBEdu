@@ -65,6 +65,7 @@ from .views.b2bt import (
     BuildPackagesView as B2BT_BuildPackagesView,
     AddPackagePairFormView as B2BT_BuildCreatePackageFormView,
     BuildPackageView as B2BT_BuildPackageView,
+    ExportStudentExcelView as B2BT_ExportStudentExcelView,
 )
 
 from .views.package import (
@@ -267,10 +268,13 @@ urlpatterns = [
     re_path(r"^demo_taketest/$",                                DemouserDashboardView.as_view(),              name="demo_student_test"               ),
 
     # B2B TEACHER URLS
-    re_path(r"^b2bt/$",                                         DeveloperDashboardView.as_view(),              name="b2bt_dashboard"                  ),
-    re_path(r"^b2bt/packages/$",                                B2BT_BuildPackagesView.as_view(),              name="b2bt_build_packages" ),
-    re_path(r"^b2bt/create-package/create-form/$",              B2BT_BuildCreatePackageFormView.as_view(),     name="b2bt_build_add_package_pair_form"),
-    re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/$", B2BT_BuildPackageView.as_view(),                  name="b2bt_build_package_pair_quiz" ),
+    re_path(r"^b2bt/$",                                                     DeveloperDashboardView.as_view(),              name="b2bt_dashboard"),
+    re_path(r"^b2bt/packages/$",                                            B2BT_BuildPackagesView.as_view(),              name="b2bt_build_packages"),
+    re_path(r"^b2bt/create-package/create-form/$",                          B2BT_BuildCreatePackageFormView.as_view(),     name="b2bt_build_add_package_pair_form"),
+    re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/$",           B2BT_BuildPackageView.as_view(),               name="b2bt_build_package_pair_quiz"),
+    re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/export/$",    B2BT_ExportStudentExcelView.as_view(),         name="b2bt_build_package_pair_export"),
+
+    
 
     # SYSTEM URLS
     re_path(r"^login/$",                                        LoginView.as_view(),                  name="login"                 ),

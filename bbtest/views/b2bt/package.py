@@ -1,9 +1,11 @@
 import csv
+import io
 import json
 import uuid
 from datetime import datetime
 from random import randint
 
+import xlsxwriter
 from django.conf import settings
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -12,7 +14,7 @@ from django.core.exceptions import ValidationError
 from django.core.handlers.wsgi import WSGIRequest
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import F, Q
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.timezone import now
 from django.utils.translation import pgettext
@@ -137,6 +139,7 @@ class BuildPackageView(
         # print("BuildPackageView", args, kwargs, self.get_context_data())
         # print("BuildPackageView", self.request)
         # print("BuildPackageView", kwargs, code)
+        kwargs["active_nav_item"] = "buy_packages"
 
         package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
 
@@ -171,7 +174,7 @@ class BuildPackageView(
 
 
 class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
-    def post(self, request, *args, **kwargs):
+    def post(self, request: WSGIRequest, *args, **kwargs):
         form = Buy_B2BTeacher_PackageForm(data=request.POST)
         print("AddPackagePairFormView", form.is_valid())
         if form.is_valid():
@@ -200,43 +203,55 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
         return redirect("bbtest:b2bt_build_packages")
 
 
-class ManagePackageTestFormView(CreateStudentRequiredMixin, View):
-    def post(self, request: WSGIRequest, package_code, *args, **kwargs):
-        # print("ManagePackageTestFormView", request.POST)
-        form = ManagePackageTestForm(data=request.POST)
-        # print("ManagePackageTestFormView", form)
-        test_code = request.POST.get("test")
-        test_obj = Test.objects.get(code=test_code)
-        if not test_obj:
-            error(request, "not valid test code %s" % test_code)
+class ExportStudentExcelView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
 
-        form.fields["test"].choices = [
-            (test_code, test_code)
-        ]  # this hack is needed because choices are generated dynamically
-        print("ManagePackageTestFormView", form.is_valid())
-        # print("ManagePackageTestFormView", form)
-        if form.is_valid():
-            # test = form.cleaned_data["test"]
-            package_obj = TestPackage.objects.get(code=package_code)
+    def post(self, request: WSGIRequest, package_pair_quiz_id, *args, **kwargs):
+        # Parse the JSON table data from the request
+        print("ExportStudentExcelView", request.POST)
+        try:
+            table_data = json.loads(request.POST.get('tableData'))
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
 
-            TestPackageRelation.objects.create(
-                test=test_obj, package=package_obj, order=0
-            )
+        # package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
+        # table_data = package_pair_quiz_obj.student_table
 
-            # print(test_obj, type(test_obj))
-            # package_obj.tests.add(test_obj)
-            # print(package_obj, package_obj.tests)
+        # Create an in-memory output stream for the Excel file
+        output = io.BytesIO()
 
-            # name = form.cleaned_data["name"]
+        # Create a new Excel workbook and add a worksheet
+        workbook = xlsxwriter.Workbook(output, {'in_memory': True})
+        worksheet = workbook.add_worksheet()
+        print("ExportStudentExcelView", "worksheet")
+        # Define Excel headers
+        headers = ['First Name', 'Last Name', 'Language', 'Password']
 
-        else:
-            error(
-                request,
-                "Could not create package! %s"
-                % " ".join([" ".join(errors) for key, errors in form.errors.items()]),
-            )
+        # Write the headers to the first row of the worksheet
+        for col_num, header in enumerate(headers):
+            worksheet.write(0, col_num, header)
 
-        return redirect("bbtest:build_package", package_code)
+        print("ExportStudentExcelView", "header")
+        # Write table data to the worksheet (starting from row 1)
+        for row_num, row_data in enumerate(table_data, start=1):
+            worksheet.write(row_num, 0, row_data[1])
+            worksheet.write(row_num, 1, row_data[2])
+            worksheet.write(row_num, 2, row_data[3])
+            worksheet.write(row_num, 3, row_data[4])
+
+        # Close the workbook to finalize the output stream
+        workbook.close()
+        print("ExportStudentExcelView", "close")
+        # Rewind the output stream to the beginning
+        output.seek(0)
+
+        # Create an HTTP response with the Excel file
+        response = HttpResponse(
+            output,
+            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
+        response['Content-Disposition'] = 'attachment; filename="students.xlsx"'
+        print("ExportStudentExcelView", "end")
+        return response
 
 
 class ManagePackageCreateStudentGroupFormView(CreateStudentRequiredMixin, View):

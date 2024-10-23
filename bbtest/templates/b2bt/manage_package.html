@@ -161,6 +161,8 @@
                         <table class="table table-striped table-hover table-pressed" id="editable-table">
                             <thead>
                                 <tr>
+                                    {% comment %} column 0 {% endcomment %}
+                                    <th class="pl-15 text-center" style="display: none;" ></th>
                                     {% comment %} column 1 {% endcomment %}
                                     <th class="pl-15 text-center">{% trans 'First Name' context '/package-manage/student-group/' %}</th>
                                     {% comment %} column 2 {% endcomment %}
@@ -169,11 +171,15 @@
                                     <th class="pr-15 text-center">{% trans 'Language' context '/package-manage/student-group/' %}</th>
                                     {% comment %} column 4 {% endcomment %}
                                     <th class="pr-15 text-center">{% trans 'Password' context '/package-manage/student-group/' %}</th>
+                                    {% comment %} column 5 {% endcomment %}
+                                    <th class="pr-15 text-center">{% trans 'Actions' context '/package-manage/student-group/' %}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for student in student_table %}
                                 <tr>
+                                    {% comment %} column 0 {% endcomment %}
+                                    <td class="text-center" style="display: none;" data-name="user_id">{{ student.0 }}</td>
                                     {% comment %} column 1 {% endcomment %}
                                     <td class="text-center" contenteditable="true" data-name="firstname">{{ student.1 }}</td>
                                     {% comment %} column 2 {% endcomment %}
@@ -184,12 +190,15 @@
                                             <option value="rus" {% if student.3 == 'rus' %}selected{% endif %}>rus</option>
                                             <option value="kaz" {% if student.3 == 'kaz' %}selected{% endif %}>kaz</option>
                                         </select>
-                                        {% comment %} {{ student.2 }} {% endcomment %}
                                     </td>
                                     {% comment %} column 4 {% endcomment %}
                                     <td class="text-center">
-                                        <span class="password-text" style="display: none;">{{ student.4  }}</span>
-                                        <button type="button" class="btn btn-sm btn-secondary toggle-password">Show</button>
+                                        <span class="password-text" style="display: none;" data-name="pass">{{ student.4  }}</span>
+                                        <span class="password-placeholder">•••••••••••••••</span> <!-- Placeholder -->
+                                    </td>
+                                    {% comment %} column 5 {% endcomment %}
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-sm btn-secondary toggle-password" onclick="togglePassword(this)">Show</button>
                                     </td>
                                 </tr>
                                 {% empty %}
@@ -201,27 +210,33 @@
                                 {% endfor %}
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-primary" onclick="logTable()">Save & Log Table</button>
+                        <button type="button" class="btn btn-primary" onclick="logTable(false)">Save & Log Table</button>
+                        <button type="button" class="btn btn-primary" onclick="logTable(true)">Export & Download</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        document.querySelectorAll('.toggle-password').forEach(function(button) {
-            button.addEventListener('click', function() {
-                const passwordSpan = button.previousElementSibling;
-                if (passwordSpan.style.display === 'none') {
-                    passwordSpan.style.display = 'inline';
-                    button.textContent = 'Hide';
-                } else {
-                    passwordSpan.style.display = 'none';
-                    button.textContent = 'Show';
-                }
-            });
-        });
+        function togglePassword(button) {
+            const row = button.closest('tr'); // Get the current row
+            const passwordSpan = row.querySelector('[data-name="pass"]'); // Password span
+            const placeholderSpan = row.querySelector('.password-placeholder'); // Placeholder span
+    
+            if (passwordSpan.style.display === 'none') {
+                // Show the actual password and hide the placeholder
+                passwordSpan.style.display = '';
+                placeholderSpan.style.display = 'none';
+                button.textContent = 'Hide';
+            } else {
+                // Hide the password and show the placeholder
+                passwordSpan.style.display = 'none';
+                placeholderSpan.style.display = '';
+                button.textContent = 'Show';
+            }
+        }
 
-        function logTable() {
+        function logTable(bool_export) {
             var table = document.getElementById('editable-table');
             var rows = table.getElementsByTagName('tr');
             var tableData = [];
@@ -231,9 +246,11 @@
                 var rowData = [];
                 // Loop over each cell in the current row
                 for (var j = 0; j < cells.length; j++) {
-                    if (j === 2) {  // Language select column
+                    if (j === 3) {  // Language select column
                         var select = cells[j].getElementsByTagName('select')[0];
                         rowData.push(select.value);  // Get selected value
+                    } else if (j === 4) {
+                        rowData.push(cells[4].querySelector('[data-name="pass"]').textContent.trim())
                     } else {
                         rowData.push(cells[j].textContent.trim());
                     }
@@ -248,22 +265,44 @@
             const formData = new FormData(form);
             formData.append('tableData', JSON.stringify(tableData)); // Attach JSON data
 
-            // Send data using fetch()
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => {
-                if (response.ok) {
-                    // alert('Table data submitted successfully!');
-                    return response.json();
-                } else {
-                    // alert('Failed to submit data.');
-                    throw new Error('Network response was not ok.');
-                }
-            })
-            .then(data => console.log('Response:', data))
-            .catch(error => console.error('Error:', error));
+            if (bool_export) {
+                
+                fetch(form.action + "export/", {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'students.xlsx';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                })
+                .catch(error => console.error('Error:', error));
+
+            } else {
+                // Send data using fetch()
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // alert('Table data submitted successfully!');
+                        return response.json();
+                    } else {
+                        // alert('Failed to submit data.');
+                        throw new Error('Network response was not ok.');
+                    }
+                })
+                .then(data => console.log('Response:', data))
+                .catch(error => console.error('Error:', error));
+            }
+
+            
         }
     </script>
 {% endblock %}
