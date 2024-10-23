@@ -1,4 +1,5 @@
 import csv
+import json
 import uuid
 from datetime import datetime
 from random import randint
@@ -8,6 +9,7 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.messages import error, success, warning
 from django.core.exceptions import ValidationError
+from django.core.handlers.wsgi import WSGIRequest
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import F, Q
 from django.http import Http404, HttpResponse
@@ -131,7 +133,7 @@ class BuildPackageView(
     template_name = "b2bt/manage_package.html"
     # form_class = ManagePackageTestForm
 
-    def get(self, request, package_pair_quiz_id, *args, **kwargs):
+    def get(self, request: WSGIRequest, package_pair_quiz_id, *args, **kwargs):
         # print("BuildPackageView", args, kwargs, self.get_context_data())
         # print("BuildPackageView", self.request)
         # print("BuildPackageView", kwargs, code)
@@ -149,6 +151,23 @@ class BuildPackageView(
         kwargs["student_table"] = package_pair_quiz_obj.student_table
 
         return self.render_to_response(super().get_context_data(**kwargs))
+    
+    def post(self, request: WSGIRequest, package_pair_quiz_id, *args, **kwargs):
+        print(request.POST.dict())
+        tableData = request.POST.get("tableData", [])
+        print(tableData)
+        
+        if not tableData:
+            return TightJsonResponse({"success": False})
+        
+        package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
+        package_pair_quiz_obj.student_table = json.loads(tableData)
+        package_pair_quiz_obj.save()
+
+        response = {
+            "success": True,
+        }
+        return TightJsonResponse(response)
 
 
 class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
