@@ -370,79 +370,6 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
         )
         return redirect("bbtest:build_package", package_code)
 
-    def post_old(self, request: WSGIRequest, package_code, student_group_id, *args, **kwargs):
-        form = ManagePackageStudentsForm(data=request.POST)
-        print("ManagePackageStudentsForm", form.is_valid())
-        if not form.is_valid():
-            error(
-                request,
-                "Could not create package! %s"
-                % " ".join([" ".join(errors) for key, errors in form.errors.items()]),
-            )
-            return redirect("bbtest:build_package", package_code)
-
-        group_obj = get_object_or_404(StudentGroup.objects, pk=student_group_id)
-        package_obj = get_object_or_404(TestPackage.objects, code=package_code)
-
-        # initialize csv table response
-        response = HttpResponse(content_type="text/csv")
-        response["Content-Disposition"] = 'attachment; filename="export.csv"'
-        writer = csv.writer(response)
-
-        amount = int(form.cleaned_data["amount"])
-        prefix = form.cleaned_data["prefix"]
-
-        student_count = group_obj.students.count()
-        student_list = []
-
-        package_name = package_obj.name
-        print(
-            "ManagePackageStudentsFormView", package_name, group_obj.name, student_count
-        )
-
-        for i in range(student_count + 1, student_count + amount + 1):
-            # username = "{}{}{:03}".format(package_name, group_obj.name, i)
-            username = "{}{:03}".format(group_obj.name, i)
-            login_email = None
-            if len(prefix) > 0:
-                login_email = "{}_{}@not.real.email.kz".format(
-                    prefix, uuid.uuid4().hex[:12]
-                )
-            # else:
-            #     login_email = "{}@not.real.email.kz".format(uuid.uuid4().hex[:12])
-            gen_pass = "{:05}".format(randint(1, 99999))
-
-            try:
-                student_obj = self.create_students(
-                    username, login_email, gen_pass, group_obj.is_active
-                )
-                UserTestPackageProfile.objects.create(
-                    student=student_obj,
-                    student_group=group_obj,
-                )
-                student_list.append(student_obj)
-                # package_obj.students.add(student_obj)
-
-                writer.writerow([username, login_email, gen_pass])
-            except ValidationError:
-                writer.writerow([username, login_email, "already_exist"])
-
-        if package_obj.finalized:
-            test_set = package_obj.tests.order_by("section__order").all()
-            domain = package_obj.domain
-
-            for student_obj in student_list:
-                quiz_set = student_obj.quiz_sets.create(test_domain=domain, cart=None)
-                for quiz_order, test in enumerate(test_set):
-                    quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
-                    # test.update(sales_count=(F("sales_count") + 1))
-
-        group_obj.student_count = group_obj.students.count()
-        group_obj.save()
-
-        success(request, "Created %s students." % amount)
-        return response
-
     def create_students(self, username, email, password, is_active):
         user: User = User.objects.create_user(
             username=username, email=email, password=password
@@ -458,23 +385,6 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
         )
         user.user_permissions.set(permissions)
         return user
-
-
-class RemoveTestFromPackageView(
-    PermissionRequiredMixinFactory(["B2BTeacher"]), View
-):  # DeveloperPermissionRequiredMixin,
-    def post(self, request: WSGIRequest, package_code, test_code, *args, **kwargs):
-        print("RemoveTestFromPackageView", package_code, test_code)
-        package_obj = get_object_or_404(TestPackage.objects, code=package_code)
-        test_obj = get_object_or_404(Test.objects, code=test_code)
-
-        obj = TestPackageRelation.objects.get(test=test_obj, package=package_obj)
-        obj.delete()
-
-        success(
-            request, pgettext("Success alert message", "Test is removed from package.")
-        )
-        return redirect("bbtest:build_package", package_code)
 
 
 class FinalizePackageView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
