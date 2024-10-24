@@ -23,17 +23,9 @@ from bbtest.models.shopping.operate import charge
 from bbtest.payment_processors import CreditPaymentProcessor
 from bbtest.views.common import UserContextMixin
 from bbtest.views.generic import TemplateView, View
+from bbtest.views.test import get_domain_ids, get_ttl_hash
 
 from .mixins import NonCurrentQuizSetRequiredMixin
-
-
-def get_ttl_hash(seconds=3600):
-    """Return the same value withing `seconds` time period"""
-    return round(time.time() / seconds)
-
-@lru_cache()
-def get_domain_ids(ttl_hash=None):
-    return [val["id"] for val in TestDomain.objects.values("id").all()]
 
 
 def get_test_domain_or_404(test_domain_id):
