@@ -263,7 +263,12 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
         className: "panel-body"
       }, /*#__PURE__*/React.createElement("div", {
         className: "form-horizontal"
-      }, taxonomyContent, topicContent, subtopicContent, goalContent), /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/React.createElement(DeveloperAttribute, {
+        label: this.props.texts.difficulty,
+        value: this.props.object.difficulty(),
+        data: this.props.attributes.difficulties,
+        onChange: this._attributeChange.bind(this, "difficulty")
+      }), taxonomyContent, topicContent, subtopicContent, goalContent), /*#__PURE__*/React.createElement("div", {
         "data-paragraphs": true
       }, developerParagraphs), addParagaphButton, /*#__PURE__*/React.createElement("hr", {
         className: "bb-separator"

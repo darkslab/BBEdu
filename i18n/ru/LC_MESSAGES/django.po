@@ -1197,7 +1197,7 @@ msgstr "Средний"
 
 msgctxt "Question difficulty"
 msgid "Low"
-msgstr "Низкий"
+msgstr "Базовый"
 
 msgctxt "Question difficulty"
 msgid "Unspecified"

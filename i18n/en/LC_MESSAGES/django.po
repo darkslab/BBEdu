@@ -1170,7 +1170,7 @@ msgstr "Normal"
 
 msgctxt "Question difficulty"
 msgid "Low"
-msgstr "Low"
+msgstr "Basic"
 
 msgctxt "Question difficulty"
 msgid "Unspecified"
