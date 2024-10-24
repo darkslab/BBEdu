@@ -51,8 +51,8 @@ class TestSection(Model):
         return self.name
 
     def is_nis(self):
-        # return self.pk in range(9540, 9559)
-        return self.domain.pk in (7911, 7912, 7913, 7914, 7915, 7916)
+        domain_id_list = (7911, 7912, 7913, 7914, 7915, 7916, 7919, 7920)
+        return self.domain.pk in domain_id_list 
         # return True
 
     def fg_color(self):

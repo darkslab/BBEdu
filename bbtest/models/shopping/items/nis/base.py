@@ -8,8 +8,8 @@ from bbtest.models import Account
 class NISItem(TestItem):
     def assert_init_args(self, test, student, language):
         super().assert_init_args(test, student, language)
-        if test.section.domain.pk not in (7911, 7912, 7913, 7914, 7915, 7916):
-            raise ItemError(pgettext("Item error", "NIS Test is required."))
+        # if test.section.domain.pk not in (7911, 7912, 7913, 7914, 7915, 7916, 7919, 7920):
+        #     raise ItemError(pgettext("Item error", "NIS Test is required."))
 
     def revenue_account(self):
         return Account.objects.get(name="Tests-NIS")

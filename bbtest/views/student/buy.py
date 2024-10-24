@@ -1,29 +1,46 @@
-from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import gettext as _, pgettext
-from django.urls import reverse
-from django.core.cache import cache
-from json import loads
+import time
 from decimal import Decimal
+from functools import lru_cache
+from json import loads
+
+from django.core.cache import cache
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+from django.utils.translation import gettext as _
+from django.utils.translation import pgettext
+
 from bbtest.auth.mixins import StudentPermissionRequiredMixin
-from bbtest.views.generic import TemplateView, View
-from bbtest.views.common import UserContextMixin
-from .mixins import NonCurrentQuizSetRequiredMixin
-from bbtest.models import TestDomain, Test
-from bbtest.http import TightJsonResponse
-from bbtest.models.shopping.handle import CartHandleAccessMixin
 from bbtest.forms.buy import BuyTestsCartForm
+from bbtest.http import TightJsonResponse
+from bbtest.models import Test, TestDomain
+from bbtest.models.shopping import items
+from bbtest.models.shopping.exceptions import ItemError
+from bbtest.models.shopping.handle import CartHandleAccessMixin
 from bbtest.models.shopping.items import *
 from bbtest.models.shopping.items.map import TEST_SECTION_MAP
 from bbtest.models.shopping.items.test import TestItem
-from bbtest.models.shopping.exceptions import ItemError
-from bbtest.models.shopping import items
 from bbtest.models.shopping.operate import charge
 from bbtest.payment_processors import CreditPaymentProcessor
+from bbtest.views.common import UserContextMixin
+from bbtest.views.generic import TemplateView, View
+
+from .mixins import NonCurrentQuizSetRequiredMixin
+
+
+def get_ttl_hash(seconds=3600):
+    """Return the same value withing `seconds` time period"""
+    return round(time.time() / seconds)
+
+@lru_cache()
+def get_domain_ids(ttl_hash=None):
+    return [val["id"] for val in TestDomain.objects.values("id").all()]
 
 
 def get_test_domain_or_404(test_domain_id):
+    domain_id_list = get_domain_ids(ttl_hash = get_ttl_hash(seconds=3600*24))
+    # [ 7911, 7912, 7913, 7914, 7915, 7916, 7919, 7920]
     return get_object_or_404(
-        TestDomain.objects.filter(pk__in=[ 7911, 7912, 7913, 7914, 7915, 7916]).prefetch_related("sections"),
+        TestDomain.objects.filter(pk__in=domain_id_list).prefetch_related("sections"),
         pk=test_domain_id,
     )
 
@@ -45,6 +62,8 @@ class BuyTestDomainsView(StudentPermissionRequiredMixin, NonCurrentQuizSetRequir
         kwargs["klass_9_kz"] = TestDomain.objects.get(pk=7914)
         kwargs["Teacher_ru"] = TestDomain.objects.get(pk=7915)
         kwargs["Teacher_kz"] = TestDomain.objects.get(pk=7916)
+        kwargs["PISA_ru"] = TestDomain.objects.get(pk=7919)
+        kwargs["PISA_kz"] = TestDomain.objects.get(pk=7920)
         # kwargs["nis"] = TestDomain.objects.get(pk=7911)
         # kwargs["unt"] = TestDomain.objects.get(pk=7912)
         # kwargs["nufypet"] = TestDomain.objects.get(pk=7913)
