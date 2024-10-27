@@ -29,19 +29,22 @@ var DeveloperAttribute = /*#__PURE__*/function (_React$Component) {
   return _createClass(DeveloperAttribute, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log(this.label);
-      console.log(this.value);
-      console.log(this.onChange);
+      // console.log(this.label);
+      // console.log(this.value);
+      // console.log(this.onChange);
+
       var label = this.label;
       var onChange = this.onChange;
       $('#' + this.attribute_name).select2({
-        width: '50vw'
+        width: '50vw',
+        placeholder: "Please select"
       });
       $('#' + this.attribute_name).on('select2:select', function (e) {
         var data = e.params.data;
-        console.log(label);
-        console.log(data);
-        console.log(e);
+        // console.log(label);
+        // console.log(data);
+        // console.log(e);
+
         onChange(parseInt(data.id));
       });
     }
@@ -87,6 +90,7 @@ var DeveloperAttribute = /*#__PURE__*/function (_React$Component) {
           value: this.data[i].value
         }, truncatedCaption));
       }
+      console.log(this.value);
       return /*#__PURE__*/React.createElement("div", {
         className: this.value ? "form-group" : "form-group has-error"
       }, /*#__PURE__*/React.createElement("label", {
@@ -100,13 +104,15 @@ var DeveloperAttribute = /*#__PURE__*/function (_React$Component) {
         className: "form-control bb-test-section-background pl-10"
         // data-placeholder={this.label}
         ,
-        defaultValue: this.value,
-        name: "filter_status",
-        onChange: this.onChange.bind(null, function (event) {
-          console.log(event);
-          event.target.value;
-        })
-      }, options_select2))));
+        defaultValue: this.value ? this.value : ""
+        // defaultValue={""}
+        ,
+        name: "filter_status"
+        // onChange={this.onChange.bind(null, (event) => {
+        //     console.log(event)
+        //     event.target.value
+        // })}
+      }, /*#__PURE__*/React.createElement("option", null), options_select2))));
     }
   }]);
 }(React.Component);

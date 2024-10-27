@@ -9,22 +9,23 @@ class DeveloperAttribute extends React.Component {
 
     }
     componentDidMount() {
-        console.log(this.label);
-        console.log(this.value);
-        console.log(this.onChange);
+        // console.log(this.label);
+        // console.log(this.value);
+        // console.log(this.onChange);
 
         const label = this.label;
 
         const onChange = this.onChange
 
         $('#' + this.attribute_name).select2({
-            width: '50vw'
+            width: '50vw',
+            placeholder: "Please select",
         });
         $('#' + this.attribute_name).on('select2:select', function (e) {
             var data = e.params.data;
-            console.log(label);
-            console.log(data);
-            console.log(e);
+            // console.log(label);
+            // console.log(data);
+            // console.log(e);
 
             onChange(parseInt(data.id));
         });
@@ -76,6 +77,9 @@ class DeveloperAttribute extends React.Component {
             );
         }
 
+
+        console.log(this.value);
+
         return (
             <div className={this.value ? "form-group" : "form-group has-error"}>
                 <label className="control-label col-sm-3 text-uppercase">{this.label}</label>
@@ -94,13 +98,15 @@ class DeveloperAttribute extends React.Component {
                             id={this.attribute_name}
                             className="form-control bb-test-section-background pl-10"
                             // data-placeholder={this.label}
-                            defaultValue={this.value}
+                            defaultValue={this.value ? this.value  : ""}
+                            // defaultValue={""}
                             name="filter_status"
-                            onChange={this.onChange.bind(null, (event) => {
-                                console.log(event)
-                                event.target.value
-                            })}
+                            // onChange={this.onChange.bind(null, (event) => {
+                            //     console.log(event)
+                            //     event.target.value
+                            // })}
                         >
+                            <option></option>
                             {options_select2}
                         </select>
                     </div>
