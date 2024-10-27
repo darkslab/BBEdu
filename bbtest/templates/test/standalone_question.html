@@ -5,6 +5,12 @@
 
 {% block title %}{% blocktrans with section_name=section_name code=code|upper context 'Page title' %}{{ section_name }} (#{{ code }}){% endblocktrans %} <small><span class="label label-default">{{ domain_name }}</span>{% if language %} <span class="label label-default">{{ language }}</span>{% endif %}{% if perms.bbtest.super and test.is_free %} <span class="label label-default">{% trans 'Free' context 'Page title' %}</span>{% endif %}</small>{% endblock %}
 
+{% block additional_libs %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock %}
+
+
 {% block content %}
     <script>
         (function() {

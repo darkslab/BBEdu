@@ -205,7 +205,8 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
           label: this.props.texts.taxonomy,
           value: this.props.object.taxonomy(),
           data: this.props.attributes.taxonomies,
-          onChange: this._attributeChange.bind(this, "taxonomy")
+          onChange: this._attributeChange.bind(this, "taxonomy"),
+          attribute_name: "taxonomy"
         });
       }
       var topicContent = null;
@@ -214,7 +215,8 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
           label: this.props.texts.topic,
           value: this.props.object.topic(),
           data: this.props.attributes.topics,
-          onChange: this._attributeChange.bind(this, "topic")
+          onChange: this._attributeChange.bind(this, "topic"),
+          attribute_name: "topic"
         });
       }
       var subtopicContent = null;
@@ -223,7 +225,8 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
           label: this.props.texts.subtopic,
           value: this.props.object.subtopic(),
           data: this.props.attributes.subtopics,
-          onChange: this._attributeChange.bind(this, "subtopic")
+          onChange: this._attributeChange.bind(this, "subtopic"),
+          attribute_name: "subtopic"
         });
       }
       var goalContent = null;
@@ -232,7 +235,8 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
           label: this.props.texts.goal,
           value: this.props.object.goal(),
           data: this.props.attributes.goals,
-          onChange: this._attributeChange.bind(this, "goal")
+          onChange: this._attributeChange.bind(this, "goal"),
+          attribute_name: "goal"
         });
       }
       var question_code = this.props.object._data.meta_data !== null ? this.props.object._data.meta_data.question_code : "question code";
@@ -267,7 +271,8 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
         label: this.props.texts.difficulty,
         value: this.props.object.difficulty(),
         data: this.props.attributes.difficulties,
-        onChange: this._attributeChange.bind(this, "difficulty")
+        onChange: this._attributeChange.bind(this, "difficulty"),
+        attribute_name: "difficulty"
       }), taxonomyContent, topicContent, subtopicContent, goalContent), /*#__PURE__*/React.createElement("div", {
         "data-paragraphs": true
       }, developerParagraphs), addParagaphButton, /*#__PURE__*/React.createElement("hr", {
