@@ -6,6 +6,7 @@ from bbtest.auth.mixins import PermissionRequiredMixinFactory
 from bbtest.views.generic import TemplateView
 from bbtest.views.common import UserContextMixin, PaginationMixin
 from bbtest.models import Test
+import numpy as np
 
 
 class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), UserContextMixin, PaginationMixin, TemplateView):
@@ -14,16 +15,25 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
     def get_context_data(self, **kwargs):
         kwargs["active_nav_item"] = "dashboard"
 
-        kwargs["data"] = [10, 20, 30, 40]  # Example data
-        kwargs["labels"] = ['January', 'February', 'March', 'April']
+        students = [f'Ученик {i + 1}' for i in range(20)]
+        subject_list = ["Математика", "Естествознание", "Русский язык", "Казахский язык"]
 
-        students = [f'Student {i + 1}' for i in range(20)]
-        scores = {}
-        scores["subject1"] = [random.randint(50, 100) for _ in range(20)]
-        scores["subject2"] = [random.randint(50, 100) for _ in range(20)]
-        scores["subject3"] = [random.randint(50, 100) for _ in range(20)]
+        scores = { "Total": np.zeros(20) }
+        mean_subj = { "Total": np.zeros(20) }
+        for subj in subject_list:
+            scores[subj] = np.array([random.randint(40, 100) for _ in range(20)])
+            mean_subj[subj] = np.mean(scores[subj])
+
+            scores["Total"] += scores[subj]
+            mean_subj["Total"] += mean_subj[subj]
+
+        for key in scores.keys():
+            scores[key] = scores[key].tolist()
+            mean_subj[key] = mean_subj[key].tolist()
 
         kwargs = {
+            'subject_list': subject_list,
+            'mean_subj': mean_subj,
             'students': students,
             'scoresData': scores,
         }
