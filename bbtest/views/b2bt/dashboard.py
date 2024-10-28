@@ -31,12 +31,10 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             scores[key] = scores[key].tolist()
             mean_subj[key] = mean_subj[key].tolist()
 
-        kwargs = {
-            'subject_list': subject_list,
-            'mean_subj': mean_subj,
-            'students': students,
-            'scoresData': scores,
-        }
+        kwargs['subject_list'] = subject_list
+        kwargs['mean_subj'] = mean_subj
+        kwargs['students'] = students
+        kwargs['scoresData'] = scores
 
         return super().get_context_data(**kwargs)
 
