@@ -19,7 +19,7 @@
         });
     </script> {% endcomment %}
     <style>
-        canvas {
+            canvas {
             display: block;
             margin: 0 auto;
         }
@@ -52,19 +52,16 @@
         const scoresData = {{ scoresData|safe }};
 
         // Calculate total scores for each student
-        const totalScores = scoresData.subject1.map((_, i) => 
-            scoresData.subject1[i] + scoresData.subject2[i] + scoresData.subject3[i]
-        );
+        function getTotalScores() {
+            return scoresData.subject1.map((_, i) => 
+                scoresData.subject1[i] + scoresData.subject2[i] + scoresData.subject3[i]
+            );
+        }
 
-        // Initial data set to display (subject1)
-        let currentData = scoresData.subject1;
-
-        // Function to calculate the mean (used for the mean line)
         function calculateMean(data) {
             return data.reduce((a, b) => a + b, 0) / data.length;
         }
 
-        // Plugin to draw a horizontal mean line
         const meanLinePlugin = {
             id: 'meanLine',
             afterDatasetsDraw(chart) {
@@ -74,33 +71,38 @@
                 ctx.strokeStyle = 'red';
                 ctx.lineWidth = 2;
                 ctx.setLineDash([5, 5]);
-                const meanY = y.getPixelForValue(calculateMean(currentData));
+                const meanY = y.getPixelForValue(calculateMean(chart.data.datasets[0].data));
                 ctx.moveTo(left, meanY);
                 ctx.lineTo(right, meanY);
                 ctx.stroke();
                 ctx.restore();
-
-                // Draw mean label
                 ctx.font = '12px Arial';
                 ctx.fillStyle = 'red';
-                ctx.fillText(`Mean: ${calculateMean(currentData).toFixed(2)}`, right - 60, meanY - 5);
+                ctx.fillText(`Mean: ${calculateMean(chart.data.datasets[0].data).toFixed(2)}`, right - 60, meanY - 5);
             }
         };
 
-        // Register the plugin
         Chart.register(meanLinePlugin);
 
-        // Create the chart
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: students,
                 datasets: [{
-                    label: 'Test Scores',
-                    data: currentData,
+                    label: 'Subject 1',
+                    data: scoresData.subject1,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    stack: 'Stack 0'
+                }, {
+                    label: 'Subject 2',
+                    data: scoresData.subject2,
                     backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
+                    stack: 'Stack 0'
+                }, {
+                    label: 'Subject 3',
+                    data: scoresData.subject3,
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    stack: 'Stack 0'
                 }]
             },
             options: {
@@ -108,34 +110,49 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 300, // Adjusted for total score range
-                        ticks: {
-                            stepSize: 20
-                        }
+                        stacked: false,  // Default not stacked
+                        max: 100
                     }
                 },
                 plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    }
+                    legend: { display: true, position: 'top' }
                 }
             }
         });
 
-        // Handle subject selection and update chart data
         document.getElementById('subject-select').addEventListener('change', function (e) {
             const selectedSubject = e.target.value;
+
             if (selectedSubject === 'total') {
-                currentData = totalScores;
-                myChart.options.scales.y.max = 300;  // Adjust for total score range
+                myChart.options.scales.y.stacked = true;
+                myChart.data.datasets = [{
+                    label: 'Subject 1',
+                    data: scoresData.subject1,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    stack: 'Stack 0'
+                }, {
+                    label: 'Subject 2',
+                    data: scoresData.subject2,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    stack: 'Stack 0'
+                }, {
+                    label: 'Subject 3',
+                    data: scoresData.subject3,
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    stack: 'Stack 0'
+                }];
+                myChart.options.scales.y.max = 300;
             } else {
-                currentData = scoresData[selectedSubject];
-                myChart.options.scales.y.max = 100;  // Adjust for subject score range
+                myChart.options.scales.y.stacked = false;
+                const subjectKey = selectedSubject;
+                myChart.data.datasets = [{
+                    label: selectedSubject.charAt(0).toUpperCase() + selectedSubject.slice(1),
+                    data: scoresData[subjectKey],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                }];
+                myChart.options.scales.y.max = 100;
             }
 
-            // Update chart data and redraw the chart
-            myChart.data.datasets[0].data = currentData;
             myChart.update();
         });
     </script>
