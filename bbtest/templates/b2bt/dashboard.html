@@ -157,4 +157,132 @@
         });
     </script>
 
+    <h2 style="text-align: center;">Student Performance Radar Chart</h2>
+
+    <!-- Student Selector -->
+    <div class="selector">
+        <label for="student-select">Select Student: </label>
+        <select id="student-select">
+            <!-- Options will be populated dynamically -->
+        </select>
+    </div>
+
+    <canvas id="radarChart" width="800" height="400"></canvas>
+
+    <script>
+        function getMean(subjectScores) {
+            return subjectScores.reduce((a, b) => a + b, 0) / subjectScores.length;
+        }
+
+        function getMedian(subjectScores) {
+            const sorted = [...subjectScores].sort((a, b) => a - b);
+            const middle = Math.floor(sorted.length / 2);
+            return sorted.length % 2 === 0
+                ? (sorted[middle - 1] + sorted[middle]) / 2
+                : sorted[middle];
+        }
+
+        function getPercentile(subjectScores, percentile) {
+            const sorted = [...subjectScores].sort((a, b) => a - b);
+            const index = Math.ceil((percentile / 100) * sorted.length) - 1;
+            return sorted[index];
+        }
+
+        const meanScores = [
+            getMean(scoresData.subject1),
+            getMean(scoresData.subject2),
+            getMean(scoresData.subject3)
+        ];
+
+        const medianScores = [
+            getMedian(scoresData.subject1),
+            getMedian(scoresData.subject2),
+            getMedian(scoresData.subject3)
+        ];
+
+        const percentile95Scores = [
+            getPercentile(scoresData.subject1, 95),
+            getPercentile(scoresData.subject2, 95),
+            getPercentile(scoresData.subject3, 95)
+        ];
+
+        function getStudentScores(index) {
+            return [
+                scoresData.subject1[index],
+                scoresData.subject2[index],
+                scoresData.subject3[index]
+            ];
+        }
+
+        const ctx2 = document.getElementById('radarChart').getContext('2d');
+        let radarChart = new Chart(ctx2, {
+            type: 'radar',
+            data: {
+                labels: ["Subject 1", "Subject 2", "Subject 3"],
+                datasets: [
+                    {
+                        label: 'Student',
+                        data: getStudentScores(0),
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Mean',
+                        data: meanScores,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Median',
+                        data: medianScores,
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1,
+                        hidden: true  // Hide by default
+                    },
+                    {
+                        label: '95th Percentile',
+                        data: percentile95Scores,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        hidden: true  // Hide by default
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    r: {
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+
+        // Populate student dropdown dynamically
+        const studentSelect = document.getElementById('student-select');
+        students.forEach((student, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = student;
+            studentSelect.appendChild(option);
+        });
+
+        // Event listener to update chart when student is selected
+        studentSelect.addEventListener('change', function (e) {
+            const selectedIndex = parseInt(e.target.value);
+            radarChart.data.datasets[0].data = getStudentScores(selectedIndex);
+            radarChart.update();
+        });
+    </script>
+
 {% endblock %}
