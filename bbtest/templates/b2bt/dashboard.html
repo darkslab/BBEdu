@@ -18,7 +18,30 @@
             module: "DeveloperDashboardPageModule"
         });
     </script> {% endcomment %}
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+        .selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+    </style>
     <h2 style="text-align: center;">Student Test Results</h2>
+
+    <!-- Subject Selector -->
+    <div class="selector">
+        <label for="subject-select">Select Subject: </label>
+        <select id="subject-select">
+            <option value="subject1">Subject 1</option>
+            <option value="subject2">Subject 2</option>
+            <option value="subject3">Subject 3</option>
+            <option value="total">Total</option>
+        </select>
+    </div>
+
     <canvas id="studentChart" width="800" height="400"></canvas>
 
     <script>
@@ -26,22 +49,32 @@
 
         // Data passed from Django template
         const students = {{ students|safe }};
-        const scores = {{ scores|safe }};
+        const scoresData = {{ scoresData|safe }};
 
-        // Calculate the mean (average) score
-        const meanScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+        // Calculate total scores for each student
+        const totalScores = scoresData.subject1.map((_, i) => 
+            scoresData.subject1[i] + scoresData.subject2[i] + scoresData.subject3[i]
+        );
 
-        // Chart plugin to draw a horizontal mean line
+        // Initial data set to display (subject1)
+        let currentData = scoresData.subject1;
+
+        // Function to calculate the mean (used for the mean line)
+        function calculateMean(data) {
+            return data.reduce((a, b) => a + b, 0) / data.length;
+        }
+
+        // Plugin to draw a horizontal mean line
         const meanLinePlugin = {
             id: 'meanLine',
             afterDatasetsDraw(chart) {
                 const { ctx, chartArea: { top, right, bottom, left }, scales: { y } } = chart;
                 ctx.save();
                 ctx.beginPath();
-                ctx.strokeStyle = 'red';  // Color of the mean line
+                ctx.strokeStyle = 'red';
                 ctx.lineWidth = 2;
-                ctx.setLineDash([5, 5]);  // Dashed line
-                const meanY = y.getPixelForValue(meanScore);  // Convert mean value to y-coordinate
+                ctx.setLineDash([5, 5]);
+                const meanY = y.getPixelForValue(calculateMean(currentData));
                 ctx.moveTo(left, meanY);
                 ctx.lineTo(right, meanY);
                 ctx.stroke();
@@ -50,21 +83,22 @@
                 // Draw mean label
                 ctx.font = '12px Arial';
                 ctx.fillStyle = 'red';
-                ctx.fillText(`Mean: ${meanScore.toFixed(2)}`, right - 60, meanY - 5);
+                ctx.fillText(`Mean: ${calculateMean(currentData).toFixed(2)}`, right - 60, meanY - 5);
             }
         };
 
         // Register the plugin
         Chart.register(meanLinePlugin);
 
+        // Create the chart
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: students,  // Student names as labels
+                labels: students,
                 datasets: [{
                     label: 'Test Scores',
-                    data: scores,  // Scores for each student
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',  // Blue bars
+                    data: currentData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
                 }]
@@ -74,9 +108,9 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 100,  // Scores range from 0 to 100
+                        max: 300, // Adjusted for total score range
                         ticks: {
-                            stepSize: 10  // Increment y-axis by 10
+                            stepSize: 20
                         }
                     }
                 },
@@ -87,6 +121,22 @@
                     }
                 }
             }
+        });
+
+        // Handle subject selection and update chart data
+        document.getElementById('subject-select').addEventListener('change', function (e) {
+            const selectedSubject = e.target.value;
+            if (selectedSubject === 'total') {
+                currentData = totalScores;
+                myChart.options.scales.y.max = 300;  // Adjust for total score range
+            } else {
+                currentData = scoresData[selectedSubject];
+                myChart.options.scales.y.max = 100;  // Adjust for subject score range
+            }
+
+            // Update chart data and redraw the chart
+            myChart.data.datasets[0].data = currentData;
+            myChart.update();
         });
     </script>
 

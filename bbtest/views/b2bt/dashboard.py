@@ -18,11 +18,14 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         kwargs["labels"] = ['January', 'February', 'March', 'April']
 
         students = [f'Student {i + 1}' for i in range(20)]
-        scores = [random.randint(50, 100) for _ in range(20)]  # Random scores between 50 and 100
+        scores = {}
+        scores["subject1"] = [random.randint(50, 100) for _ in range(20)]
+        scores["subject2"] = [random.randint(50, 100) for _ in range(20)]
+        scores["subject3"] = [random.randint(50, 100) for _ in range(20)]
 
         kwargs = {
             'students': students,
-            'scores': scores,
+            'scoresData': scores,
         }
 
         return super().get_context_data(**kwargs)
