@@ -534,7 +534,7 @@ class TestForm(ModelForm):
         return self.cleaned_data
 
     def create_test_suite(self, developer):
-        test = self.save(developer)
+        test: Test = self.save(developer)
 
         # NIS sections
         if test.section.is_nis():
