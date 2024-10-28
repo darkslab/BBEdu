@@ -18,28 +18,76 @@
             module: "DeveloperDashboardPageModule"
         });
     </script> {% endcomment %}
-    <canvas id="myChart" width="400" height="200"></canvas>
+    <h2 style="text-align: center;">Student Test Results</h2>
+    <canvas id="studentChart" width="800" height="400"></canvas>
+
     <script>
-        const ctx = document.getElementById('myChart').getContext('2d');
+        const ctx = document.getElementById('studentChart').getContext('2d');
+
+        // Data passed from Django template
+        const students = {{ students|safe }};
+        const scores = {{ scores|safe }};
+
+        // Calculate the mean (average) score
+        const meanScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+
+        // Chart plugin to draw a horizontal mean line
+        const meanLinePlugin = {
+            id: 'meanLine',
+            afterDatasetsDraw(chart) {
+                const { ctx, chartArea: { top, right, bottom, left }, scales: { y } } = chart;
+                ctx.save();
+                ctx.beginPath();
+                ctx.strokeStyle = 'red';  // Color of the mean line
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);  // Dashed line
+                const meanY = y.getPixelForValue(meanScore);  // Convert mean value to y-coordinate
+                ctx.moveTo(left, meanY);
+                ctx.lineTo(right, meanY);
+                ctx.stroke();
+                ctx.restore();
+
+                // Draw mean label
+                ctx.font = '12px Arial';
+                ctx.fillStyle = 'red';
+                ctx.fillText(`Mean: ${meanScore.toFixed(2)}`, right - 60, meanY - 5);
+            }
+        };
+
+        // Register the plugin
+        Chart.register(meanLinePlugin);
+
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: {{ labels|safe }},
+                labels: students,  // Student names as labels
                 datasets: [{
-                    label: 'Monthly Sales',
-                    data: {{ data|safe }},
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    label: 'Test Scores',
+                    data: scores,  // Scores for each student
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',  // Blue bars
+                    borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
                 }]
             },
             options: {
+                responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        max: 100,  // Scores range from 0 to 100
+                        ticks: {
+                            stepSize: 10  // Increment y-axis by 10
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
                     }
                 }
             }
         });
     </script>
+
 {% endblock %}

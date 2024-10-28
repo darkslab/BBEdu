@@ -1,4 +1,4 @@
-from random import random
+import random
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.translation import get_language
 from django.shortcuts import get_object_or_404
