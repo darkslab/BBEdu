@@ -11,10 +11,10 @@ BASE0_SOURCE_FILENAMES = (
 BASE1_SOURCE_FILENAMES = (
     "js/common/utils.js",
 
-    "js/charts/SVGChart.js",
-    "js/charts/RadialChart.js",
-    "js/charts/ColumnChart.js",
-    "js/charts/ProgressPieChart.js",
+    # "js/charts/SVGChart.js",
+    # "js/charts/RadialChart.js",
+    # "js/charts/ColumnChart.js",
+    # "js/charts/ProgressPieChart.js",
 
     "js/modules/Module.js",
     "js/modules/PopoverModule.js",
