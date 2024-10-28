@@ -35,10 +35,10 @@
     <div class="selector">
         <label for="subject-select">Select Subject: </label>
         <select id="subject-select">
+            <option value="total">Total</option>
             <option value="subject1">Subject 1</option>
             <option value="subject2">Subject 2</option>
             <option value="subject3">Subject 3</option>
-            <option value="total">Total</option>
         </select>
     </div>
 
@@ -62,7 +62,7 @@
             return data.reduce((a, b) => a + b, 0) / data.length;
         }
 
-        const meanLinePlugin = {
+        {% comment %} const meanLinePlugin = {
             id: 'meanLine',
             afterDatasetsDraw(chart) {
                 const { ctx, chartArea: { top, right, bottom, left }, scales: { y } } = chart;
@@ -82,7 +82,7 @@
             }
         };
 
-        Chart.register(meanLinePlugin);
+        Chart.register(meanLinePlugin); {% endcomment %}
 
         const myChart = new Chart(ctx, {
             type: 'bar',
@@ -110,8 +110,8 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        stacked: false,  // Default not stacked
-                        max: 100
+                        stacked: true,  // Default not stacked
+                        max: 300
                     }
                 },
                 plugins: {
