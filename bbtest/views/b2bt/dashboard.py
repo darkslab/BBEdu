@@ -19,7 +19,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         subject_list = ["Математика", "Естествознание", "Русский язык", "Казахский язык"]
 
         scores = { "Total": np.zeros(20) }
-        mean_subj = { "Total": np.zeros(20) }
+        mean_subj = { "Total": 0 }
         for subj in subject_list:
             scores[subj] = np.array([random.randint(40, 100) for _ in range(20)])
             mean_subj[subj] = np.mean(scores[subj])

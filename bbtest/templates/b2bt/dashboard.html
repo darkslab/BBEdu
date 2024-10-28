@@ -57,10 +57,12 @@
             const students = {{ students|safe }};
             const scoresData = {{ scoresData|safe }};
             const subject_list = {{ subject_list|safe }};
+            const mean_subj = {{ mean_subj|safe }};
 
             console.log(students);
             console.log(scoresData);
             console.log(subject_list);
+            console.log(mean_subj);
     
             function update_chart(myChart, selectedIndex, selectedSubject) {
               if (selectedIndex === 0) {
@@ -76,7 +78,6 @@
                           backgroundColor: `rgba(${(i * 60) % 255}, ${(i * 100 + 100) % 255}, ${(i * 150) % 255}, 0.6)`, // Example color generation
                           stack: 'Stack 0'
                       };
-                      console.log(dataset)
 
                       // Push the dataset to myChart.data.datasets
                       myChart.data.datasets.push(dataset);
@@ -132,10 +133,9 @@
 
 
   <div class="row">
-    <div class="col-lg-3"></div>
-    <div class="col-xs-12 col-lg-6">
-      <h2 style="text-align: center;">Student Performance Radar Chart</h2>
-
+    <h2 style="text-align: center;">Student Performance Radar Chart</h2>
+    <div class="col-lg-4"></div>
+    <div class="col-xs-12 col-lg-4">
       {% comment %}Student Selector{% endcomment %}
       <div class="selector">
         <label for="student-select">Select Student:</label>
@@ -150,60 +150,32 @@
       <canvas id="radarChart" width="800" height="400"></canvas>
 
       <script>
-        function getMean(subjectScores) {
-            return subjectScores.reduce((a, b) => a + b, 0) / subjectScores.length;
-        }
-
-        function getMedian(subjectScores) {
-            const sorted = [...subjectScores].sort((a, b) => a - b);
-            const middle = Math.floor(sorted.length / 2);
-            return sorted.length % 2 === 0
-                ? (sorted[middle - 1] + sorted[middle]) / 2
-                : sorted[middle];
-        }
-
-        function getPercentile(subjectScores, percentile) {
-            const sorted = [...subjectScores].sort((a, b) => a - b);
-            const index = Math.ceil((percentile / 100) * sorted.length) - 1;
-            return sorted[index];
-        }
-
-        const meanScores = [
-            getMean(scoresData.subject1),
-            getMean(scoresData.subject2),
-            getMean(scoresData.subject3)
-        ];
-
-        const medianScores = [
-            getMedian(scoresData.subject1),
-            getMedian(scoresData.subject2),
-            getMedian(scoresData.subject3)
-        ];
-
-        const percentile95Scores = [
-            getPercentile(scoresData.subject1, 95),
-            getPercentile(scoresData.subject2, 95),
-            getPercentile(scoresData.subject3, 95)
-        ];
+        const meanScores = [];
+        for (let i = 0; i < subject_list.length; i++) {
+          const subj_key = subject_list[i];
+          meanScores.push(mean_subj[subj_key]);
+        } 
 
         function getStudentScores(index) {
-            return [
-                scoresData.subject1[index],
-                scoresData.subject2[index],
-                scoresData.subject3[index]
-            ];
+          student_scores = [];
+          // Loop through each subject in subject_list
+          for (let i = 0; i < subject_list.length; i++) {
+              const subj_key = subject_list[i];
+              student_scores.push(scoresData[subj_key][index]);
+          }
+          return student_scores;
         }
 
         const ctx2 = document.getElementById('radarChart').getContext('2d');
         let radarChart = new Chart(ctx2, {
             type: 'radar',
             data: {
-                labels: ["Subject 1", "Subject 2", "Subject 3"],
+                labels: subject_list,
                 datasets: [
                     {
                         label: 'Student',
                         data: getStudentScores(0),
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
@@ -213,22 +185,6 @@
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
-                    },
-                    {
-                        label: 'Median',
-                        data: medianScores,
-                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                        borderColor: 'rgba(255, 206, 86, 1)',
-                        borderWidth: 1,
-                        hidden: true  // Hide by default
-                    },
-                    {
-                        label: '95th Percentile',
-                        data: percentile95Scores,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1,
-                        hidden: true  // Hide by default
                     }
                 ]
             },
@@ -251,9 +207,6 @@
         // Event listener to update chart when student is selected
         $('#student-select').on('select2:select', function (e) {
             var data = e.params.data;
-            {% comment %} console.log(data);
-            console.log(e); {% endcomment %}
-
             const selectedIndex = parseInt(data.id);
             radarChart.data.datasets[0].data = getStudentScores(selectedIndex);
             radarChart.update();
