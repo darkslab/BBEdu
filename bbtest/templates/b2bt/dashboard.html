@@ -49,85 +49,6 @@
       </div>
 
       <canvas id="studentChart" width="800" height="400"></canvas>
-
-      <script>
-            const ctx = document.getElementById('studentChart').getContext('2d');
-    
-            // Data passed from Django template
-            const students = {{ students|safe }};
-            const scoresData = {{ scoresData|safe }};
-            const subject_list = {{ subject_list|safe }};
-            const mean_subj = {{ mean_subj|safe }};
-
-            console.log(students);
-            console.log(scoresData);
-            console.log(subject_list);
-            console.log(mean_subj);
-    
-            function update_chart(myChart, selectedIndex, selectedSubject) {
-              if (selectedIndex === 0) {
-                  myChart.options.scales.y.stacked = true;
-                  myChart.data.datasets = [];
-                  // Loop through each subject in subject_list
-                  for (let i = 0; i < subject_list.length; i++) {
-                      const subj_key = subject_list[i]
-                      // Create dataset for the subject
-                      const dataset = {
-                          label: subj_key.charAt(0).toUpperCase() + subj_key.slice(1), // Capitalize the label
-                          data: scoresData[subj_key], // Get the scores for the subject
-                          backgroundColor: `rgba(${(i * 60) % 255}, ${(i * 100 + 100) % 255}, ${(i * 150) % 255}, 0.6)`, // Example color generation
-                          stack: 'Stack 0'
-                      };
-
-                      // Push the dataset to myChart.data.datasets
-                      myChart.data.datasets.push(dataset);
-                  }
-                  myChart.options.scales.y.max = subject_list.length * 100;
-              } else {
-                  myChart.options.scales.y.stacked = false;
-                  myChart.data.datasets = [{
-                      label: selectedSubject.charAt(0).toUpperCase() + selectedSubject.slice(1),
-                      data: scoresData[selectedSubject],
-                      backgroundColor: 'rgba(54, 162, 235, 0.6)'
-                  }];
-                  myChart.options.scales.y.max = 100;
-              }
-              myChart.update();
-            }
-    
-            const myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: students,
-                    datasets: []
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            stacked: true,  // Default not stacked
-                            max: subject_list.length * 100
-                        }
-                    },
-                    plugins: {
-                        legend: { display: true, position: 'top' }
-                    }
-                }
-            });
-            
-            update_chart(myChart, 0, "Total");
-            
-
-            // Event listener to update chart when student is selected
-            $('#subject-select').on('select2:select', function (e) {
-              var data = e.params.data;
-              const selectedIndex = parseInt(data.id);
-              const selectedSubject = data.text;
-              // console.log(data, selectedIndex, selectedSubject);
-              update_chart(myChart, selectedIndex, selectedSubject)
-          });
-        </script>
     </div>
   </div>
 
@@ -148,70 +69,6 @@
       </div>
 
       <canvas id="radarChart" width="800" height="400"></canvas>
-
-      <script>
-        const meanScores = [];
-        for (let i = 0; i < subject_list.length; i++) {
-          const subj_key = subject_list[i];
-          meanScores.push(mean_subj[subj_key]);
-        } 
-
-        function getStudentScores(index) {
-          student_scores = [];
-          // Loop through each subject in subject_list
-          for (let i = 0; i < subject_list.length; i++) {
-              const subj_key = subject_list[i];
-              student_scores.push(scoresData[subj_key][index]);
-          }
-          return student_scores;
-        }
-
-        const ctx2 = document.getElementById('radarChart').getContext('2d');
-        let radarChart = new Chart(ctx2, {
-            type: 'radar',
-            data: {
-                labels: subject_list,
-                datasets: [
-                    {
-                        label: 'Student',
-                        data: getStudentScores(0),
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Mean',
-                        data: meanScores,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    r: {
-                        suggestedMin: 0,
-                        suggestedMax: 100
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top'
-                    }
-                }
-            }
-        });
-
-        // Event listener to update chart when student is selected
-        $('#student-select').on('select2:select', function (e) {
-            var data = e.params.data;
-            const selectedIndex = parseInt(data.id);
-            radarChart.data.datasets[0].data = getStudentScores(selectedIndex);
-            radarChart.update();
-        });
-    </script>
     </div>
   </div>
   <script>
@@ -220,5 +77,149 @@
             width: '10vw',
         });
     });
-</script>
+
+    (function () {
+      const ctx = document.getElementById('studentChart').getContext('2d');
+  
+      // Data passed from Django template
+      const students = {{ students| safe }};
+      const scoresData = {{ scoresData| safe }};
+      const subject_list = {{ subject_list| safe }};
+      const mean_subj = {{ mean_subj| safe }};
+  
+      console.log(students);
+      console.log(scoresData);
+      console.log(subject_list);
+      console.log(mean_subj);
+  
+      function update_chart(myChart, selectedIndex, selectedSubject) {
+          if (selectedIndex === 0) {
+              myChart.options.scales.y.stacked = true;
+              myChart.data.datasets = [];
+              // Loop through each subject in subject_list
+              for (let i = 0; i < subject_list.length; i++) {
+                  const subj_key = subject_list[i]
+                  // Create dataset for the subject
+                  const dataset = {
+                      label: subj_key.charAt(0).toUpperCase() + subj_key.slice(1), // Capitalize the label
+                      data: scoresData[subj_key], // Get the scores for the subject
+                      backgroundColor: `rgba(${(i * 60) % 255}, ${(i * 100 + 100) % 255}, ${(i * 150) % 255}, 0.6)`, // Example color generation
+                      stack: 'Stack 0'
+                  };
+  
+                  // Push the dataset to myChart.data.datasets
+                  myChart.data.datasets.push(dataset);
+              }
+              myChart.options.scales.y.max = subject_list.length * 100;
+          } else {
+              myChart.options.scales.y.stacked = false;
+              myChart.data.datasets = [{
+                  label: selectedSubject.charAt(0).toUpperCase() + selectedSubject.slice(1),
+                  data: scoresData[selectedSubject],
+                  backgroundColor: 'rgba(54, 162, 235, 0.6)'
+              }];
+              myChart.options.scales.y.max = 100;
+          }
+          myChart.update();
+      }
+  
+      const myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: students,
+              datasets: []
+          },
+          options: {
+              responsive: true,
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      stacked: true,  // Default not stacked
+                      max: subject_list.length * 100
+                  }
+              },
+              plugins: {
+                  legend: { display: true, position: 'top' }
+              }
+          }
+      });
+  
+      update_chart(myChart, 0, "Total");
+  
+  
+      // Event listener to update chart when student is selected
+      $('#subject-select').on('select2:select', function (e) {
+          var data = e.params.data;
+          const selectedIndex = parseInt(data.id);
+          const selectedSubject = data.text;
+          // console.log(data, selectedIndex, selectedSubject);
+          update_chart(myChart, selectedIndex, selectedSubject)
+      });
+      // -------------------------------------------------------------------
+      // Data passed from Django template
+      const meanScores = [];
+      for (let i = 0; i < subject_list.length; i++) {
+          const subj_key = subject_list[i];
+          meanScores.push(mean_subj[subj_key]);
+      }
+  
+      function getStudentScores(index) {
+          student_scores = [];
+          // Loop through each subject in subject_list
+          for (let i = 0; i < subject_list.length; i++) {
+              const subj_key = subject_list[i];
+              student_scores.push(scoresData[subj_key][index]);
+          }
+          return student_scores;
+      }
+  
+      const ctx2 = document.getElementById('radarChart').getContext('2d');
+      let radarChart = new Chart(ctx2, {
+          type: 'radar',
+          data: {
+              labels: subject_list,
+              datasets: [
+                  {
+                      label: 'Student',
+                      data: getStudentScores(0),
+                      backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                      borderColor: 'rgba(54, 162, 235, 1)',
+                      borderWidth: 1
+                  },
+                  {
+                      label: 'Mean',
+                      data: meanScores,
+                      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                      borderColor: 'rgba(75, 192, 192, 1)',
+                      borderWidth: 1
+                  }
+              ]
+          },
+          options: {
+              responsive: true,
+              scales: {
+                  r: {
+                      suggestedMin: 0,
+                      suggestedMax: 100
+                  }
+              },
+              plugins: {
+                  legend: {
+                      position: 'top'
+                  }
+              }
+          }
+      });
+  
+      // Event listener to update chart when student is selected
+      $('#student-select').on('select2:select', function (e) {
+          var data = e.params.data;
+          const selectedIndex = parseInt(data.id);
+          radarChart.data.datasets[0].data = getStudentScores(selectedIndex);
+          radarChart.update();
+      });
+    })();
+  
+    
+  </script>
 {% endblock %}
