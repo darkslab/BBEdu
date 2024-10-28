@@ -1,16 +1,22 @@
 {% extends '../personalized_base_1.html' %}
 {% load i18n permission pagination %}
 
-{% block extended_footer %}{% endblock %}
+{% block extended_footer %}
 
-{% block title %}{% trans 'Dashboard' context 'Page title' %}{% endblock %}
+{% endblock %}
+
+{% block title %}
+  {% trans 'Dashboard' context 'Page title' %}
+{% endblock %}
 
 {% block additional_libs %}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 {% endblock %}
 
 {% block content %}
-    {% comment %} <script>
+  {% comment %} <script>
         moduleDataStack.push({
             module: "SubmitModule"
         });
@@ -18,112 +24,91 @@
             module: "DeveloperDashboardPageModule"
         });
     </script> {% endcomment %}
-    <style>
-            canvas {
-            display: block;
-            margin: 0 auto;
-        }
-        .selector {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-    </style>
-    <h2 style="text-align: center;">Student Test Results</h2>
-
-    <!-- Subject Selector -->
-    <div class="selector">
-        <label for="subject-select">Select Subject: </label>
-        <select id="subject-select">
-            <option value="total">Total</option>
-            <option value="subject1">Subject 1</option>
-            <option value="subject2">Subject 2</option>
-            <option value="subject3">Subject 3</option>
+  <style>
+    canvas {
+      display: block;
+      margin: 0 0;
+    }
+  </style>
+  <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-xs-12 col-lg-6">
+      <h2 style="text-align: center;">Student Test Results</h2>
+      {% comment %}Subject Selector{% endcomment %}
+      <div class="selector">
+        <label for="subject-select">Select Subject:</label>
+        <select class="select_v2" id="subject-select">
+          <option value="total">Total</option>
+          <option value="subject1">Subject 1</option>
+          <option value="subject2">Subject 2</option>
+          <option value="subject3">Subject 3</option>
         </select>
-    </div>
+      </div>
 
-    <canvas id="studentChart" width="800" height="400"></canvas>
+      <canvas id="studentChart" width="800" height="400"></canvas>
 
-    <script>
-        const ctx = document.getElementById('studentChart').getContext('2d');
-
-        // Data passed from Django template
-        const students = {{ students|safe }};
-        const scoresData = {{ scoresData|safe }};
-
-        // Calculate total scores for each student
-        function getTotalScores() {
-            return scoresData.subject1.map((_, i) => 
-                scoresData.subject1[i] + scoresData.subject2[i] + scoresData.subject3[i]
-            );
-        }
-
-        function calculateMean(data) {
-            return data.reduce((a, b) => a + b, 0) / data.length;
-        }
-
-        {% comment %} const meanLinePlugin = {
-            id: 'meanLine',
-            afterDatasetsDraw(chart) {
-                const { ctx, chartArea: { top, right, bottom, left }, scales: { y } } = chart;
-                ctx.save();
-                ctx.beginPath();
-                ctx.strokeStyle = 'red';
-                ctx.lineWidth = 2;
-                ctx.setLineDash([5, 5]);
-                const meanY = y.getPixelForValue(calculateMean(chart.data.datasets[0].data));
-                ctx.moveTo(left, meanY);
-                ctx.lineTo(right, meanY);
-                ctx.stroke();
-                ctx.restore();
-                ctx.font = '12px Arial';
-                ctx.fillStyle = 'red';
-                ctx.fillText(`Mean: ${calculateMean(chart.data.datasets[0].data).toFixed(2)}`, right - 60, meanY - 5);
+      <script>
+            const ctx = document.getElementById('studentChart').getContext('2d');
+    
+            // Data passed from Django template
+            const students = {{ students|safe }};
+            const scoresData = {{ scoresData|safe }};
+    
+            // Calculate total scores for each student
+            function getTotalScores() {
+                return scoresData.subject1.map((_, i) => 
+                    scoresData.subject1[i] + scoresData.subject2[i] + scoresData.subject3[i]
+                );
             }
-        };
-
-        Chart.register(meanLinePlugin); {% endcomment %}
-
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: students,
-                datasets: [{
-                    label: 'Subject 1',
-                    data: scoresData.subject1,
-                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                    stack: 'Stack 0'
-                }, {
-                    label: 'Subject 2',
-                    data: scoresData.subject2,
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                    stack: 'Stack 0'
-                }, {
-                    label: 'Subject 3',
-                    data: scoresData.subject3,
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                    stack: 'Stack 0'
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        stacked: true,  // Default not stacked
-                        max: 300
-                    }
+    
+            function calculateMean(data) {
+                return data.reduce((a, b) => a + b, 0) / data.length;
+            }
+    
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: students,
+                    datasets: [{
+                        label: 'Subject 1',
+                        data: scoresData.subject1,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        stack: 'Stack 0'
+                    }, {
+                        label: 'Subject 2',
+                        data: scoresData.subject2,
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        stack: 'Stack 0'
+                    }, {
+                        label: 'Subject 3',
+                        data: scoresData.subject3,
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                        stack: 'Stack 0'
+                    }]
                 },
-                plugins: {
-                    legend: { display: true, position: 'top' }
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            stacked: true,  // Default not stacked
+                            max: 300
+                        }
+                    },
+                    plugins: {
+                        legend: { display: true, position: 'top' }
+                    }
                 }
-            }
-        });
+            });
 
-        document.getElementById('subject-select').addEventListener('change', function (e) {
-            const selectedSubject = e.target.value;
+            // Event listener to update chart when student is selected
+            $('#subject-select').on('select2:select', function (e) {
+              var data = e.params.data;
+              const selectedIndex = data.id;
+              const selectedSubject = data.id;
+              console.log(data, selectedIndex, selectedSubject);
 
-            if (selectedSubject === 'total') {
+              if (selectedSubject === 'total') {
                 myChart.options.scales.y.stacked = true;
                 myChart.data.datasets = [{
                     label: 'Subject 1',
@@ -154,22 +139,31 @@
             }
 
             myChart.update();
-        });
-    </script>
-
-    <h2 style="text-align: center;">Student Performance Radar Chart</h2>
-
-    <!-- Student Selector -->
-    <div class="selector">
-        <label for="student-select">Select Student: </label>
-        <select id="student-select">
-            <!-- Options will be populated dynamically -->
-        </select>
+          });
+        </script>
     </div>
+  </div>
 
-    <canvas id="radarChart" width="800" height="400"></canvas>
 
-    <script>
+  <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-xs-12 col-lg-6">
+      <h2 style="text-align: center;">Student Performance Radar Chart</h2>
+
+      {% comment %}Student Selector{% endcomment %}
+      <div class="selector">
+        <label for="student-select">Select Student:</label>
+        <select class="select_v2" id="student-select">
+          {% comment %}Options will be populated dynamically{% endcomment %}
+          {% for st in students %}
+            <option value={{ forloop.counter0 }} >{{ st }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <canvas id="radarChart" width="800" height="400"></canvas>
+
+      <script>
         function getMean(subjectScores) {
             return subjectScores.reduce((a, b) => a + b, 0) / subjectScores.length;
         }
@@ -268,21 +262,24 @@
             }
         });
 
-        // Populate student dropdown dynamically
-        const studentSelect = document.getElementById('student-select');
-        students.forEach((student, index) => {
-            const option = document.createElement('option');
-            option.value = index;
-            option.textContent = student;
-            studentSelect.appendChild(option);
-        });
-
         // Event listener to update chart when student is selected
-        studentSelect.addEventListener('change', function (e) {
-            const selectedIndex = parseInt(e.target.value);
+        $('#student-select').on('select2:select', function (e) {
+            var data = e.params.data;
+            {% comment %} console.log(data);
+            console.log(e); {% endcomment %}
+
+            const selectedIndex = parseInt(data.id);
             radarChart.data.datasets[0].data = getStudentScores(selectedIndex);
             radarChart.update();
         });
     </script>
-
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+        $(".select_v2").select2({
+            width: '10vw',
+        });
+    });
+</script>
 {% endblock %}
