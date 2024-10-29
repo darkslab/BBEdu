@@ -86,6 +86,12 @@ class RegisterDemoUserView(RegisterView):
     def _group(self):
         return "demouser"
 
+class Logout_and_Register_DemoUserView(_LogoutView):
+    success_url = reverse_lazy("bbtest:register_b2bt")
+    next_page = reverse_lazy("bbtest:register_b2bt")
+
+    def get_next_page(self):
+        return reverse_lazy("bbtest:register_b2bt")
 
 class PasswordResetView(LogoutRequiredMixin, _PasswordResetView):
     form_class = PasswordResetForm

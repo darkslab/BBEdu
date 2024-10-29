@@ -7,12 +7,13 @@ from django.utils.translation import pgettext
 
 
 class DashboardView(PermissionRequiredMixinFactory(["demouser"]), UserContextMixin, TemplateView):
-    # template_name = "demouser/student_dashboard.html"
-    template_name = "student/dashboard.html"
+    template_name = "demouser/student_dashboard.html"
+    # template_name = "student/dashboard.html"
 
     def get_context_data(self, **kwargs):
         kwargs["active_nav_item"] = "dashboard"
         kwargs["is_current"] = self.request.user.quiz_sets.filter(is_current=True).count() > 0
+
         return super().get_context_data(**kwargs)
     
     

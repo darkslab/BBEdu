@@ -5,6 +5,7 @@ from .auth.views import (
     RegisterView,
     RegisterDeveloperView,
     RegisterDemoUserView,
+    Logout_and_Register_DemoUserView,
     PasswordResetView,
     PasswordResetConfirmView,
     RegisterB2BTeacherView,
@@ -282,5 +283,6 @@ urlpatterns = [
     re_path(r"^login/$",                                        LoginView.as_view(),                  name="login"                 ),
     re_path(r"^logout/$",                                       LogoutView.as_view(),                 name="logout"                ),
     re_path(r"^register/demo/$",                                RegisterDemoUserView.as_view(),       name="register_demo"         ),
+    re_path(r"^register/demo/logout/$",             Logout_and_Register_DemoUserView.as_view(),       name="demo_logout_redirect"  ),
     re_path(r"^register/b2bt/$",                                RegisterB2BTeacherView.as_view(),     name="register_b2bt"         ),
 ]

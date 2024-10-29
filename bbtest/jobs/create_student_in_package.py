@@ -107,7 +107,7 @@ def activate_package(group_obj: StudentGroup, active_state: bool):
 
 @job("default", timeout=600000000)
 def populate_demouser_test(user: User):
-    package_obj = TestPackage.objects.get(code = "2404125eb1")
+    package_obj = TestPackage.objects.get(code = "2404085ebe")
     # print(package_obj)
     test_set = package_obj.tests.order_by('section__order').all()
     domain = package_obj.domain
