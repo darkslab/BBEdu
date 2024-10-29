@@ -31,7 +31,7 @@ def order_status(order_id: int) -> dict:
     }
 
     response = requests.post(base_url + "order_status/", json=data, headers=headers)
-    print(response.json())
+    print(order_id, response.json())
     # {'status': 'payment wait'}
     # {'status': 'payment processed'}
     return response.json()
