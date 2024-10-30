@@ -58,7 +58,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
         className: "row"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12"
+        className: "col-xs-12 col-md-6"
       }, /*#__PURE__*/React.createElement("div", {
         className: "panel mb-15 panel-primary"
       }, /*#__PURE__*/React.createElement("div", {
@@ -83,7 +83,9 @@ var Question = /*#__PURE__*/function (_React$Component) {
         className: "panel-body"
       }, /*#__PURE__*/React.createElement("div", {
         className: "mb-15"
-      }, paragraphs))))), answerContent);
+      }, paragraphs)))), /*#__PURE__*/React.createElement("div", {
+        className: "col-xs-12 col-md-6"
+      }, answerContent)));
     }
   }]);
 }(React.Component);

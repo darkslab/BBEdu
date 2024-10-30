@@ -42,7 +42,7 @@ class Question extends React.Component {
         return (
             <React.Fragment>
                 <div className="row">
-                    <div className="col-xs-12">
+                    <div className="col-xs-12 col-md-6">
                         <div className="panel mb-15 panel-primary">
                             <div className="panel-heading bb-rel clearfix">
                                 <div className="bb-test-number">{this.props.count}</div>
@@ -69,8 +69,11 @@ class Question extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <div className="col-xs-12 col-md-6">
+                        {answerContent}
+                    </div>
                 </div>
-                {answerContent}
+                
             </React.Fragment>
         );
     }
