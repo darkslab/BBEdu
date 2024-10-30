@@ -44,7 +44,7 @@ class MultichoiceOneAnswer extends React.Component {
         return (
             <div className="row">
                 <div className="col-xs-12">
-                    <div className="panel panel-default mb-15">
+                    <div className="mb-15">
                         <div className="panel-heading">
                             <h4 className="panel-title text-center">{this.props.texts.multichoiceOneAnswerTitle}</h4>
                         </div>
