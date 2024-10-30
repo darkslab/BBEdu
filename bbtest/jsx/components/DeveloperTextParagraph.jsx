@@ -25,6 +25,15 @@ class DeveloperTextParagraph extends React.Component {
                     className={"btn btn-xs pull-right ml-5" + (this.props.data.has_formulas ? " btn-success active" : " btn-default")}
                     onClick={this._handleFormulas.bind(this)}>{this.props.texts.controlFormulasButton}</button>
         );
+        buttons.push(
+            <button key="left_side"
+                type="button"
+                className={"btn btn-xs pull-right ml-5 btn-default"}
+                onClick={this._handleLeftSide.bind(this)}>
+                    {this.props.data.left_side | this.props.data.left_side === undefined ? this.props.texts.controlLeftSideButton : this.props.texts.controlRightSideButton}
+            </button>
+        );
+        
 
         let sharedLabel = null;
         if (this.props.sharedQuestionIds.length > 0) {
@@ -79,6 +88,15 @@ class DeveloperTextParagraph extends React.Component {
         let { has_formulas, ...data } = this.props.data;
         if (has_formulas === undefined) {
             data.has_formulas = true;
+        }
+        this.props.onChange(data);
+    }
+    _handleLeftSide() {
+        let { left_side, ...data } = this.props.data;
+        if (left_side === undefined) {
+            data.left_side = false;
+        } else {
+            data.left_side = !left_side;
         }
         this.props.onChange(data);
     }

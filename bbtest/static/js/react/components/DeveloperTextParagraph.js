@@ -1,7 +1,8 @@
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _excluded = ["has_formulas"];
+var _excluded = ["has_formulas"],
+  _excluded2 = ["left_side"];
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -34,6 +35,7 @@ var DeveloperTextParagraph = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var paragraphClassName = "form-group bb-test-section-movable";
+      console.log("DeveloperTextParagraph", this.props.data);
       var buttons = [];
       if (this.props.canDelete) {
         buttons.push( /*#__PURE__*/React.createElement("button", {
@@ -51,6 +53,12 @@ var DeveloperTextParagraph = /*#__PURE__*/function (_React$Component) {
         className: "btn btn-xs pull-right ml-5" + (this.props.data.has_formulas ? " btn-success active" : " btn-default"),
         onClick: this._handleFormulas.bind(this)
       }, this.props.texts.controlFormulasButton));
+      buttons.push( /*#__PURE__*/React.createElement("button", {
+        key: "left_side",
+        type: "button",
+        className: "btn btn-xs pull-right ml-5 btn-default",
+        onClick: this._handleLeftSide.bind(this)
+      }, this.props.data.left_side | this.props.data.left_side === undefined ? this.props.texts.controlLeftSideButton : this.props.texts.controlRightSideButton));
       var sharedLabel = null;
       if (this.props.sharedQuestionIds.length > 0) {
         sharedLabel = /*#__PURE__*/React.createElement("p", {
@@ -104,6 +112,20 @@ var DeveloperTextParagraph = /*#__PURE__*/function (_React$Component) {
         data = _objectWithoutProperties(_this$props$data, _excluded);
       if (has_formulas === undefined) {
         data.has_formulas = true;
+      }
+      this.props.onChange(data);
+    }
+  }, {
+    key: "_handleLeftSide",
+    value: function _handleLeftSide() {
+      var _this$props$data2 = this.props.data,
+        left_side = _this$props$data2.left_side,
+        data = _objectWithoutProperties(_this$props$data2, _excluded2);
+      // console.log(left_side)
+      if (left_side === undefined) {
+        data.left_side = false;
+      } else {
+        data.left_side = !left_side;
       }
       this.props.onChange(data);
     }

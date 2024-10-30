@@ -18,30 +18,29 @@ var Question = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Question);
     return _callSuper(this, Question, [props]);
   }
-
-  // componentDidMount() {
-  //     _load_calculator()
-  //     console.log("Question componentDidMount")
-  // }
-  // componentWillUnmount() {
-  //     _unload_calculator()
-  //     console.log("Question componentWillUnmount")
-  // }
   _inherits(Question, _React$Component);
   return _createClass(Question, [{
     key: "render",
     value: function render() {
-      var paragraphs = [];
+      var paragraphs_left_side = [];
+      var paragraphs_right_side = [];
+      console.log("Question", this.props.object);
       for (var i = 0; i < this.props.object.paragraphs.length; i++) {
         var ParagraphClass = eval(this.props.object.paragraphs[i].paragraph_class);
-        paragraphs.push( /*#__PURE__*/React.createElement(ParagraphClass, {
+        var left_side = this.props.object.paragraphs[i].meta_data["left_side"] | this.props.object.paragraphs[i].meta_data["left_side"] === undefined;
+        var parag = /*#__PURE__*/React.createElement(ParagraphClass, {
           key: i,
           data: this.props.object.paragraphs[i].meta_data,
           isShared: this.props.object.paragraphs[i].is_shared,
           texts: this.props.texts,
           testTexts: this.props.testTexts,
           forDevelopers: false
-        }));
+        });
+        if (left_side) {
+          paragraphs_left_side.push(parag);
+        } else {
+          paragraphs_right_side.push(parag);
+        }
       }
       var answerContent = null;
       if (this.props.object.answer_class) {
@@ -56,10 +55,6 @@ var Question = /*#__PURE__*/function (_React$Component) {
         });
       }
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-        className: "row"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12 col-md-6"
-      }, /*#__PURE__*/React.createElement("div", {
         className: "panel mb-15 panel-primary"
       }, /*#__PURE__*/React.createElement("div", {
         className: "panel-heading bb-rel clearfix"
@@ -80,12 +75,21 @@ var Question = /*#__PURE__*/function (_React$Component) {
         hasCalculator: this.props.hasCalculator,
         calculatorIconUrl: this.props.calculatorIconUrl
       })), /*#__PURE__*/React.createElement("div", {
-        className: "panel-body"
+        className: "row row-eq-height"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "mb-15"
-      }, paragraphs)))), /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12 col-md-6"
-      }, answerContent)));
+        className: "col-xs-12 col-md-5 border",
+        style: {
+          "borderRight": "solid"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: ""
+      }, /*#__PURE__*/React.createElement("div", {
+        className: ""
+      }, /*#__PURE__*/React.createElement("div", {
+        className: ""
+      }, paragraphs_left_side), answerContent))), /*#__PURE__*/React.createElement("div", {
+        className: "col-xs-12 col-md-7"
+      }, paragraphs_right_side))));
     }
   }]);
 }(React.Component);

@@ -181,11 +181,13 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
     switch (type) {
         case "TextParagraph":
             newParagraph.data.meta_data = {
+                left_side: true,
                 text: ""
             };
             break;
         case "SplitTextParagraph":
             newParagraph.data.meta_data = {
+                left_side: true,
                 left: {
                     text: ""
                 },
@@ -201,7 +203,8 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
                 upload_start_url: this._uploadStartUrl,
                 spinner_logo_url: this._spinnerLogoUrl,
                 status: "waiting",
-                progress: 0
+                progress: 0,
+                left_side: true,
             };
             break;
         case "PeriodicTableParagraph":
@@ -340,6 +343,7 @@ DeveloperQuestionObject.prototype._beforeLoadParagraphDataTransform = function(d
             return {
                 paragraph_class: data.paragraph_class,
                 meta_data: {
+                    left_side: data.meta_data.left_side,
                     asset_uuid: data.meta_data.asset_uuid,
                     asset_url: data.meta_data.asset_url,
                     upload_start_url: this._uploadStartUrl,
@@ -360,6 +364,7 @@ DeveloperQuestionObject.prototype._beforeSaveParagraphDataTransform = function(d
             return {
                 paragraph_class: data.paragraph_class,
                 meta_data: {
+                    left_side: data.meta_data.left_side,
                     asset_uuid: data.meta_data.asset_uuid
                 }
             };

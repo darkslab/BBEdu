@@ -3,27 +3,26 @@ class Question extends React.Component {
         super(props);
     }
 
-    // componentDidMount() {
-    //     _load_calculator()
-    //     console.log("Question componentDidMount")
-    // }
-    // componentWillUnmount() {
-    //     _unload_calculator()
-    //     console.log("Question componentWillUnmount")
-    // }
-
     render() {
-        let paragraphs = [];
+        let paragraphs_left_side = [];
+        let paragraphs_right_side = [];
+
         for (let i = 0; i < this.props.object.paragraphs.length; i++) {
             let ParagraphClass = eval(this.props.object.paragraphs[i].paragraph_class);
-            paragraphs.push(
-                <ParagraphClass key={i}
+            let left_side = this.props.object.paragraphs[i].meta_data["left_side"] | this.props.object.paragraphs[i].meta_data["left_side"] === undefined
+
+            let parag = <ParagraphClass key={i}
                                 data={this.props.object.paragraphs[i].meta_data}
                                 isShared={this.props.object.paragraphs[i].is_shared}
                                 texts={this.props.texts}
                                 testTexts={this.props.testTexts}
                                 forDevelopers={false} />
-            );
+
+            if (left_side) {
+                paragraphs_left_side.push(parag);
+            } else {
+                paragraphs_right_side.push(parag);
+            }
         }
 
         let answerContent = null;
@@ -41,8 +40,6 @@ class Question extends React.Component {
         
         return (
             <React.Fragment>
-                <div className="row">
-                    <div className="col-xs-12 col-md-6">
                         <div className="panel mb-15 panel-primary">
                             <div className="panel-heading bb-rel clearfix">
                                 <div className="bb-test-number">{this.props.count}</div>
@@ -62,18 +59,22 @@ class Question extends React.Component {
                                     calculatorIconUrl={this.props.calculatorIconUrl}
                                 />
                             </div>
-                            <div className="panel-body">
-                                <div className="mb-15">
-                                    {paragraphs}
+                    <div className="row row-eq-height">
+                        <div className="col-xs-12 col-md-5 border" style={{"borderRight": "solid"}}>
+                            <div className="">
+                                <div className="">
+                                    <div className="">
+                                        {paragraphs_left_side}
+                                    </div>
+                                    {answerContent}
                                 </div>
                             </div>
                         </div>
+                        <div className="col-xs-12 col-md-7">
+                            {paragraphs_right_side}
                     </div>
-                    <div className="col-xs-12 col-md-6">
-                        {answerContent}
                     </div>
                 </div>
-                
             </React.Fragment>
         );
     }

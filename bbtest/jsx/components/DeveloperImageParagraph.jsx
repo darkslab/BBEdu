@@ -44,6 +44,14 @@ class DeveloperImageParagraph extends React.Component {
                 </button>
             );
         }
+        buttons.push(
+            <button key="left_side"
+                type="button"
+                className={"btn btn-xs pull-right ml-5 btn-default"}
+                onClick={this._handleLeftSide.bind(this)}>
+                    {this.props.data.left_side | this.props.data.left_side === undefined ? this.props.texts.controlLeftSideButton : this.props.texts.controlRightSideButton}
+            </button>
+        );
 
         let modal = null;
         if (this.state.confirmModal) {
@@ -124,6 +132,15 @@ class DeveloperImageParagraph extends React.Component {
         this.setState({
             confirmModal: true
         });
+    }
+    _handleLeftSide() {
+        let { left_side, ...data } = this.props.data;
+        if (left_side === undefined) {
+            data.left_side = false;
+        } else {
+            data.left_side = !left_side;
+        }
+        this.props.onChange(data);
     }
     _completeModal(data) {
         if (data) {

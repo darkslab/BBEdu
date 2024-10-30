@@ -245,6 +245,7 @@ class TestParagraphForm(ModelForm):
     def __clean_text_paragraph_meta_data(self, meta_data):
         clean_meta_data = {
             "text": "",
+            "left_side": False,
         }
         try:
             if not isinstance(meta_data, dict):
@@ -256,6 +257,10 @@ class TestParagraphForm(ModelForm):
                 if not isinstance(meta_data["has_formulas"], bool) or not meta_data["has_formulas"]:
                     raise ValueError("Incorrect meta_data")
                 clean_meta_data["has_formulas"] = meta_data["has_formulas"]
+            if "left_side" in meta_data:
+                if not isinstance(meta_data["left_side"], bool):
+                    raise ValueError("Incorrect meta_data")
+                clean_meta_data["left_side"] = meta_data["left_side"]
         except (KeyError, ValueError):
             raise ValidationError(
                 self.error_messages["incorrect"],
@@ -271,6 +276,7 @@ class TestParagraphForm(ModelForm):
             "left": {
                 "text": "",
             },
+            "left_side": True,
         }
         try:
             if not isinstance(meta_data, dict):
@@ -292,6 +298,10 @@ class TestParagraphForm(ModelForm):
                 if not isinstance(meta_data["has_formulas"], bool) or not meta_data["has_formulas"]:
                     raise ValueError("Incorrect meta_data")
                 clean_meta_data["has_formulas"] = meta_data["has_formulas"]
+            if "left_side" in meta_data:
+                if not isinstance(meta_data["left_side"], bool):
+                    raise ValueError("Incorrect meta_data")
+                clean_meta_data["left_side"] = meta_data["left_side"]
 
         except (KeyError, ValueError):
             raise ValidationError(
@@ -304,6 +314,7 @@ class TestParagraphForm(ModelForm):
         clean_meta_data = {
             "asset_uuid": None,
             "asset_object_name": None,
+            "left_side": True,
         }
         try:
             if not isinstance(meta_data, dict):
@@ -317,6 +328,10 @@ class TestParagraphForm(ModelForm):
 
             clean_meta_data["asset_uuid"] = asset.uuid
             clean_meta_data["asset_object_name"] = asset.asset_object().object_name()
+            if "left_side" in meta_data:
+                if not isinstance(meta_data["left_side"], bool):
+                    raise ValueError("Incorrect meta_data")
+                clean_meta_data["left_side"] = meta_data["left_side"]
 
         except (KeyError, ValueError, Asset.DoesNotExist):
             raise ValidationError(
