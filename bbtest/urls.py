@@ -69,6 +69,7 @@ from .views.b2bt import (
     ExportStudentExcelView as B2BT_ExportStudentExcelView,
     B2BStudentStartExamView as B2BT_B2BStudentStartExamView,
     DashboardView as B2BT_DashboardView,
+    BuyCreditsKaspiView as B2BT_BuyCreditsKaspiView,
 )
 
 from .views.package import (
@@ -277,6 +278,7 @@ urlpatterns = [
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/$",           B2BT_BuildPackageView.as_view(),               name="b2bt_build_package_pair_quiz"),
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/export/$",    B2BT_ExportStudentExcelView.as_view(),         name="b2bt_build_package_pair_export"),
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/start_exam/$",B2BT_B2BStudentStartExamView.as_view(),        name="b2bt_build_package_pair_start_exam"),
+    re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/buy_kapi/$",  B2BT_BuyCreditsKaspiView.as_view(),            name="b2bt_build_packages_buy_kaspi"),
     
 
     # SYSTEM URLS

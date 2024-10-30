@@ -142,6 +142,10 @@ class BuildPackageView(
         kwargs["active_nav_item"] = "buy_packages"
 
         package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
+
+        if not package_pair_quiz_obj.payed:
+            return redirect("bbtest:b2bt_build_packages_buy_kaspi", package_pair_quiz_obj.pk)
+
         kwargs["package_pair_quiz_obj"] = package_pair_quiz_obj
 
         kwargs["package_ru"] = package_pair_quiz_obj.TestPackagePair.test_package_ru
@@ -178,36 +182,35 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
     def post(self, request: WSGIRequest, *args, **kwargs):
         form = Buy_B2BTeacher_PackageForm(data=request.POST)
         print("AddPackagePairFormView", form.is_valid())
-        if form.is_valid():
-            test_package_pair: TestPackageRusKazPair = form.cleaned_data[
-                "test_package_pair"
-            ]
-            # comment = form.cleaned_data["comment"]
-            number_of_students = form.cleaned_data["number_of_students"]
-
-            student_table = []
-            for i in range(int(number_of_students)):
-                passwrd = "{:05}".format(randint(10000, 99999))
-                user: User = self.create_students(passwrd)
-                student_table.append([user.username, "first", "last", "rus", passwrd])
-
-            obj = TestPackageRusKazQuiz.objects.create(
-                # name = name,
-                user=request.user,
-                TestPackagePair=test_package_pair,
-                number_of_students=number_of_students,
-                student_table = student_table,
-            )
-            print("AddPackagePairFormView", obj)
-
-        else:
+        if not form.is_valid():
             error(
                 request,
                 "Could not create TestPackageRusKazQuizSet! %s"
                 % " ".join([" ".join(errors) for key, errors in form.errors.items()]),
             )
+            return redirect("bbtest:b2bt_build_packages")
+        
+        test_package_pair: TestPackageRusKazPair = form.cleaned_data["test_package_pair"]
+        # comment = form.cleaned_data["comment"]
+        number_of_students = form.cleaned_data["number_of_students"]
 
-        return redirect("bbtest:b2bt_build_packages")
+        student_table = []
+        for i in range(int(number_of_students)):
+            passwrd = "{:05}".format(randint(10000, 99999))
+            user: User = self.create_students(passwrd)
+            student_table.append([user.username, "first", "last", "rus", passwrd])
+
+        package_quiz_obj = TestPackageRusKazQuiz.objects.create(
+            # name = name,
+            user=request.user,
+            TestPackagePair=test_package_pair,
+            number_of_students=number_of_students,
+            student_table = student_table,
+        )
+        print("AddPackagePairFormView", package_quiz_obj)
+
+        return redirect("bbtest:b2bt_build_package_pair_quiz", package_quiz_obj.id)
+    
 
     def create_students(self, password, is_active = False):
         temp_username = uuid.uuid4().hex

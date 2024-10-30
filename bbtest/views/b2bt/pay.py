@@ -1,45 +1,45 @@
-from django.shortcuts import resolve_url, redirect
-from django.urls import reverse, reverse_lazy
-from django.contrib.auth import login
-from django.conf import settings
-from django.utils.translation import get_language
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from django.contrib.messages import success
-from django.utils.translation import pgettext
-from django.core.cache import cache
-from decimal import Decimal
-from bbtest.auth.mixins import LoginRequiredMixin
-from bbtest.views.base import is_cart_with_credits
-from bbtest.views.generic import FormView, RedirectView, TemplateView, View
-from bbtest.views.common import UserContextMixin
-from bbtest.forms.base import BuyCreditsForm
-from bbtest.forms.message import MessageForm
-from bbtest.payment_processors import PaymentProcessorError
-from bbtest.payment_processors.kaspi_qr import order_create as kaspi_qr_order_create
-from bbtest.models.shopping.handle import CartHandleAccessMixin, CartHandle
-from bbtest.models.shopping.items import CreditItem
-from bbtest.models.shopping.items.credit import MIN_CREDIT_AMOUNT
-from bbtest.models.shopping.operate import charge
-from bbtest.models import Cart, TestDomain, Account, Entry, Transaction
-from bbtest.http import TightJsonResponse
-import qrcode
-from io import BytesIO
 import base64
+from decimal import Decimal
+from io import BytesIO
+
+import qrcode
+from django.conf import settings
+from django.contrib.messages import success
+from django.core.cache import cache
+from django.core.handlers.wsgi import WSGIRequest
+from django.shortcuts import get_object_or_404, redirect, resolve_url
+from django.urls import reverse, reverse_lazy
+from django.utils.translation import get_language, pgettext
 from PIL import Image
 
+from bbtest.auth.mixins import LoginRequiredMixin
+from bbtest.forms.message import MessageForm
+from bbtest.http import TightJsonResponse
+from bbtest.models import Account, Entry, TestDomain, Transaction
+from bbtest.models.shopping.items import CreditItem
+from bbtest.models.test import (
+    TestPackageRusKazQuiz,
+)
+from bbtest.payment_processors import PaymentProcessorError
+from bbtest.payment_processors.kaspi_qr import order_create as kaspi_qr_order_create
+from bbtest.views.common import UserContextMixin
+from bbtest.views.generic import TemplateView, View
 
-class BuyCreditsKaspiView(LoginRequiredMixin, CartHandleAccessMixin, UserContextMixin, TemplateView):
+
+class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
     template_name = "base/buy_credits_kaspi_qr.html"
 
-    def get(self, request, *args, **kwargs):
-        if not is_cart_with_credits(self.cart_handle()):
-            return redirect("bbtest:buy_credits")
+    def get(self, request: WSGIRequest, package_pair_quiz_id, *args, **kwargs):
+        package_pair_quiz_obj = get_object_or_404(TestPackageRusKazQuiz.objects, user=request.user, pk=package_pair_quiz_id)
+        if package_pair_quiz_obj.payed:
+            return redirect("bbtest:b2bt_build_package_pair_quiz", package_pair_quiz_obj.pk)
+        
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
 
-        kwargs["cart_rounded_total"] = round(self.cart_handle().total())
+        # kwargs["cart_rounded_total"] = round(self.cart_handle().total())
+        kwargs["cart_rounded_total"] = 10
 
         order = kaspi_qr_order_create(kwargs["cart_rounded_total"])
         if order["status"] != "ok":
@@ -65,7 +65,7 @@ class BuyCreditsKaspiView(LoginRequiredMixin, CartHandleAccessMixin, UserContext
 
         # Resize the logo to fit in the QR code (adjust as needed)
         logo_size = 75  # You can adjust this size
-        logo = logo.resize((logo_size, logo_size), Image.ANTIALIAS)
+        logo = logo.resize((logo_size, logo_size), Image.LANCZOS)
 
         # Calculate the position to paste the logo (center of the QR code)
         qr_width, qr_height = img.size
@@ -92,12 +92,12 @@ class BuyCreditsKaspiView(LoginRequiredMixin, CartHandleAccessMixin, UserContext
             # 'status': "ok",
         }
 
-        current_cart = self.cart_handle().get_cart()
-        transaction = Transaction.objects.create(
-            document=current_cart,
-            payment_processor_class="KaspiQRPaymentProcessor",
-            meta_data=kwargs["kaspi_qr_form"],
-            amount=kwargs["cart_rounded_total"],
-            is_complete=False,
-        )
+        # current_cart = self.cart_handle().get_cart()
+        # transaction = Transaction.objects.create(
+        #     document=current_cart,
+        #     payment_processor_class="KaspiQRPaymentProcessor",
+        #     meta_data=kwargs["kaspi_qr_form"],
+        #     amount=kwargs["cart_rounded_total"],
+        #     is_complete=False,
+        # )
         return super().get_context_data(**kwargs)
