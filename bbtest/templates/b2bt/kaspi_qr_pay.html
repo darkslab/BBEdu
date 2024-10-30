@@ -1,0 +1,68 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n static %}
+
+{% block header_class %}col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3{% endblock %}
+
+{% block title %}{% trans 'Buy Credits' context 'Page title' %}{% endblock %}
+
+{% block nav_student_buy_credits_class %}active{% endblock %}
+
+{% block content2 %}
+    <script>
+        moduleDataStack.push({
+            module: "BuyCreditKaspiQRPageModule"
+        });
+    </script>
+    <form method="get" data-kaspi-qr-form>
+        <!-- <input type="hidden" name="email" value="{{ user.email }}"> -->
+        <!-- <input type="hidden" name="person_id" value="{{ user.id }}"> -->
+        <input type="hidden" name="payment_url" value="{{ kaspi_qr_form.payment_url }}">
+        <input type="hidden" name="order_id" value="{{ kaspi_qr_form.order_id }}">
+    </form>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="bb-min-220 bb-rel mt--15">
+                        <img src="{% static 'img/logo2_spinner.png' %}" class="bb-spinner">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "BuyCreditKaspiQRPageModule"
+        });
+    </script>
+    <form method="get" data-kaspi-qr-form id="kaspi-qr-form">
+        <input type="hidden" name="payment_url" value="{{ kaspi_qr_form.payment_url }}">
+        <input type="hidden" name="order_id" value="{{ kaspi_qr_form.order_id }}">
+    </form>
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-body text-center">
+                    <p class="text-center"><strong>
+                        {% trans "Manual Payment Message" %}
+                    </strong></p>
+                    <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code" class="img-responsive center-block" />
+                </div>
+                <!-- Manual Payment Button -->
+                <div class="text-center pb-10">
+                    <a href="{% url 'bbtest:student_buy_test_domains' %}" class="btn btn-primary">
+                        {% trans "Go to tests" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popup %}{% include 'popups/whatsapp.html' %}{% endblock %}
+
