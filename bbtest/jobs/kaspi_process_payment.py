@@ -1,67 +1,70 @@
-from django.core.management.base import BaseCommand
-from django.db.transaction import atomic
-from decimal import Decimal
-from bbtest.models import Transaction, Entry
-from bbtest.models.accounting import squash_funds, Debit
-from bbtest.models.shopping.handle import CartHandle
-from bbtest.payment_processors.kaspi_qr import order_status
-from django.utils.timezone import now
-from datetime import datetime, timedelta
 import logging
+import time
+from datetime import datetime, timedelta
+from decimal import Decimal
+
+from django.db.transaction import atomic
+from django.utils.timezone import now
+from django_rq import job
+
+from bbtest.models import Account, Entry, Transaction
+from bbtest.models.accounting import Debit, squash_funds
+from bbtest.models.shopping.handle import CartHandle
+from bbtest.models.test import (
+    TestPackageRusKazQuiz,
+)
+from bbtest.payment_processors.kaspi_qr import order_status
 
 # run script every 1 minutes
 # crontab -e
 # */1 * * * * /usr/local/bin/python3 ~/BBEdu/manage.py run_kaspi_qr_payment_server
-
 logger = logging.getLogger("bbtest.payment")
 
 
-class Command(BaseCommand):
-    help = 'Runs Kaspi QR payment email service'
+@job("high", timeout=10*60)
+def kaspi_qr_payment_job(transaction: Transaction, order_id: int, time_step = 5, timeout=10*60):
+    logger.debug('Starting kaspi_qr_payment_job.')
 
-    def handle(self, *args, **kwargs):
-        logging.info('Starting Kaspi QR payment server.')
+    package_pair_quiz_obj: TestPackageRusKazQuiz = transaction.document
+    if package_pair_quiz_obj.payed:
+        logger.debug('Already payed TestPackageRusKazQuiz -> pk:{package_pair_quiz_obj.pk}')
 
-        one_hour_ago = now() - timedelta(hours=1)
+    
+    for i in range(timeout // time_step):
+        time.sleep(time_step)
 
         try:
-            pending_transactions = Transaction.objects.filter(
-                is_complete=False,
-                payment_processor_class="KaspiQRPaymentProcessor",
-                created_at__gte=one_hour_ago
-            )
-            logging.info('Found {} pending transactions.'.format(pending_transactions.count()))
+            status = order_status(order_id)
+            logger.debug('Status for order {}: {}'.format(order_id, status))
 
-            for transaction in pending_transactions:
-                order_id = transaction.meta_data["order_id"]
-                logging.debug('Processing transaction with order ID: {}'.format(order_id))
+            if status['status'] == 'payment processed':
+                # cart_handle = CartHandle(transaction.document)
+                total = 1
 
-                status = order_status(order_id)
-                logging.debug('Status for order {}: {}'.format(order_id, status))
+                payment_processor_funds = [Debit("Cash", Decimal(total))]
+                post_funds = squash_funds(payment_processor_funds)
+                post_funds.sort(key=lambda fund: fund.account().pk)
 
-                if status['status'] == 'payment processed':
-                    cart_handle = CartHandle(transaction.document)
-                    payment_processor_funds = [Debit("Cash", cart_handle.total())]
-                    post_funds = squash_funds(payment_processor_funds + cart_handle.funds())
-                    post_funds.sort(key=lambda fund: fund.account().pk)
+                with atomic(savepoint=False):
+                    # completed_cart = cart_handle.checkout()
+                    # logger.info('Cart {} checked out successfully.'.format(completed_cart))
 
-                    with atomic(savepoint=False):
-                        completed_cart = cart_handle.checkout()
-                        logging.info('Cart {} checked out successfully.'.format(completed_cart))
+                    Entry.objects.post(
+                        "Cart checkout ({})".format(total),
+                        post_funds,
+                        document=package_pair_quiz_obj
+                    )
 
-                        Entry.objects.post(
-                            "Cart checkout ({})".format(cart_handle.total()),
-                            post_funds,
-                            document=completed_cart
-                        )
+                    transaction.document = package_pair_quiz_obj
+                    transaction.is_complete = True
+                    transaction.save()
 
-                        transaction.document = completed_cart
-                        transaction.is_complete = True
-                        transaction.save()
-
-                        logging.info('Transaction {} marked as complete.'.format(transaction.id))
+                    logger.info('Transaction {} marked as complete.'.format(transaction.id))
+                
+                    package_pair_quiz_obj.payed = True
+                    package_pair_quiz_obj.save()
 
         except Exception as e:
-            logging.error('An error occurred: {}'.format(e), exc_info=True)
+            logger.error('An error occurred: {}'.format(e), exc_info=True)
         finally:
-            logging.info('Kaspi QR payment server finished.')
+            logger.info('Kaspi QR payment server finished.')
