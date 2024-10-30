@@ -160,11 +160,9 @@ var DeveloperImageParagraph = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "_handleLeftSide",
     value: function _handleLeftSide() {
-      console.log(this.props);
       var _this$props$data = this.props.data,
         left_side = _this$props$data.left_side,
         data = _objectWithoutProperties(_this$props$data, _excluded);
-      // console.log(left_side)
       if (left_side === undefined) {
         data.left_side = false;
       } else {

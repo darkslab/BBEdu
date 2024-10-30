@@ -1,7 +1,8 @@
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _excluded = ["has_formulas"];
+var _excluded = ["has_formulas"],
+  _excluded2 = ["left_side"];
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -50,6 +51,12 @@ var DeveloperSplitTextParagraph = /*#__PURE__*/function (_React$Component) {
         className: "btn btn-xs pull-right ml-5" + (this.props.data.has_formulas ? " btn-success active" : " btn-default"),
         onClick: this._handleFormulas.bind(this)
       }, this.props.texts.controlFormulasButton));
+      buttons.push( /*#__PURE__*/React.createElement("button", {
+        key: "left_side",
+        type: "button",
+        className: "btn btn-xs pull-right ml-5 btn-default",
+        onClick: this._handleLeftSide.bind(this)
+      }, this.props.data.left_side | this.props.data.left_side === undefined ? this.props.texts.controlLeftSideButton : this.props.texts.controlRightSideButton));
       var leftClassName = "form-control bb-test-paragraph bb-test-paragraph-textarea";
       if (!this.props.data.left.text) {
         leftClassName += " bb-test-paragraph-textarea-empty";
@@ -126,6 +133,19 @@ var DeveloperSplitTextParagraph = /*#__PURE__*/function (_React$Component) {
       data.right = _objectSpread({}, this.props.data.right);
       if (has_formulas === undefined) {
         data.has_formulas = true;
+      }
+      this.props.onChange(data);
+    }
+  }, {
+    key: "_handleLeftSide",
+    value: function _handleLeftSide() {
+      var _this$props$data2 = this.props.data,
+        left_side = _this$props$data2.left_side,
+        data = _objectWithoutProperties(_this$props$data2, _excluded2);
+      if (left_side === undefined) {
+        data.left_side = false;
+      } else {
+        data.left_side = !left_side;
       }
       this.props.onChange(data);
     }

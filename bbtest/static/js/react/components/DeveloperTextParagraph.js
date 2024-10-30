@@ -35,7 +35,6 @@ var DeveloperTextParagraph = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var paragraphClassName = "form-group bb-test-section-movable";
-      console.log("DeveloperTextParagraph", this.props.data);
       var buttons = [];
       if (this.props.canDelete) {
         buttons.push( /*#__PURE__*/React.createElement("button", {
@@ -121,7 +120,6 @@ var DeveloperTextParagraph = /*#__PURE__*/function (_React$Component) {
       var _this$props$data2 = this.props.data,
         left_side = _this$props$data2.left_side,
         data = _objectWithoutProperties(_this$props$data2, _excluded2);
-      // console.log(left_side)
       if (left_side === undefined) {
         data.left_side = false;
       } else {
