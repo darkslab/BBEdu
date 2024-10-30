@@ -1,4 +1,5 @@
 from decimal import ROUND_HALF_UP, Decimal
+from typing import List
 
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
@@ -213,10 +214,10 @@ class Fund:
         except ValueError:
             raise RuntimeError("Incorrect amount value")
 
-    def account(self):
+    def account(self) -> Account:
         return self.__account
 
-    def amount(self):
+    def amount(self) -> Decimal:
         return self.__amount
 
     def audit_balance(self):
@@ -247,7 +248,7 @@ class Credit(Fund):
             return True
         return False
 
-def squash_funds(funds):
+def squash_funds(funds: List[Fund]) -> List[Fund]:
     squashed_funds = []
     fund_balances = {}
     for fund in funds:
