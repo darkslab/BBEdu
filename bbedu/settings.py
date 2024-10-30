@@ -276,6 +276,10 @@ LOGGING = {
             "()": "bbtest.logging.MysqlFormatter",
             "format": "[%(server_time)s] %(message)s",
         },
+        "logging.Formatter": {
+            "()": "logging.Formatter",
+            "format": "[%(asctime)s] %(message)s",
+        },
     },
     "handlers": {
         "production_console": {
@@ -304,6 +308,13 @@ LOGGING = {
             "class": "logging.StreamHandler",
             "formatter": "django.mysql",
         },
+        "payment": {
+            "level": "INFO",
+            # "filters": ["require_debug_true"],
+            "class": "logging.FileHandler",
+            "filename": BASE_DIR_PATH.parent / "payment.log",
+            "formatter": "logging.Formatter",
+        },
     },
     "loggers": {
         "django": {
@@ -321,9 +332,14 @@ LOGGING = {
         },
         "django.db.backends": {
             "handlers": ["django.mysql"],
-            "level": "DEBUG",
+            "level": "INFO",
             "propagate": True,
         },
+        "bbtest.payment": {
+            "handlers": ["payment", "development_console"],
+            "level": "DEBUG",
+            "propagate": True,
+        }
     },
 }
 

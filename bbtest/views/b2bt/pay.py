@@ -1,4 +1,5 @@
 
+from decimal import Decimal
 from django.conf import settings
 from django.contrib.messages import success
 from django.core.cache import cache
@@ -10,6 +11,7 @@ from django.utils.translation import get_language, pgettext
 from bbtest.auth.mixins import LoginRequiredMixin
 from bbtest.forms.message import MessageForm
 from bbtest.http import TightJsonResponse
+from bbtest.jobs.kaspi_process_payment import kaspi_qr_payment_job
 from bbtest.models import Account, Entry, TestDomain, Transaction
 from bbtest.models.shopping.items import CreditItem
 from bbtest.models.test import (
@@ -34,8 +36,10 @@ class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
         # caches kaspi payment url for five minutes
         order_key = f"package_pair_quiz_obj-{package_pair_quiz_obj.pk}"
         order = cache.get(order_key)
-        if order is None:
-            kwargs["cart_rounded_total"] = 10
+        cache_hit = order is not None
+        kwargs["cart_rounded_total"] = 1
+
+        if not cache_hit:
             order = kaspi_qr_order_create(kwargs["cart_rounded_total"])
             if order["status"] != "ok":
                 raise PaymentProcessorError(str(order))
@@ -43,7 +47,6 @@ class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
 
         
         kwargs['qr_code_base64'] = generate_QR_base64(order["payment_url"])
-        
         kwargs["kaspi_qr_form"] = {
             "order_id": order["order_id"],
             "payment_url": order["payment_url"],
@@ -53,13 +56,15 @@ class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
             # 'status': "ok",
         }
 
-        # current_cart = self.cart_handle().get_cart()
-        # transaction = Transaction.objects.create(
-        #     document=current_cart,
-        #     payment_processor_class="KaspiQRPaymentProcessor",
-        #     meta_data=kwargs["kaspi_qr_form"],
-        #     amount=kwargs["cart_rounded_total"],
-        #     is_complete=False,
-        # )
+        if not cache_hit:
+            transaction = Transaction.objects.create(
+                document=package_pair_quiz_obj,
+                payment_processor_class="KaspiQRPaymentProcessor",
+                meta_data=kwargs["kaspi_qr_form"],
+                amount=kwargs["cart_rounded_total"],
+                is_complete=False,
+            )
+
+        # kaspi_qr_payment_job.delay(transaction, order["order_id"])
 
         return self.render_to_response(super().get_context_data(**kwargs)) # super().get(request, *args, **kwargs)
