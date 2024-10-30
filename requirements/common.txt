@@ -51,3 +51,4 @@ urllib3==2.2.1
 XlsxWriter==3.2.0
 zope.event==5.0
 zope.interface==6.2
+qrcode==6.1
