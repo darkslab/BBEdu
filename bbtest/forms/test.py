@@ -220,11 +220,11 @@ class TestParagraphForm(ModelForm):
         if paragraph_class is None:
             return meta_data
 
-        if paragraph_class == TestParagraph.PARAGRAPH_CLASS_TEXT:
+        if paragraph_class == TestParagraph.PARAGRAPH_CLASS_TEXT or paragraph_class == TestParagraph.PARAGRAPH_CLASS_SOLUTION_TEXT:
             return self.__clean_text_paragraph_meta_data(meta_data)
         elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_SPLIT_TEXT:
             return self.__clean_split_text_paragraph_meta_data(meta_data)
-        elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+        elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE or paragraph_class == TestParagraph.PARAGRAPH_CLASS_SOLUTION_IMAGE:
             return self.__clean_image_paragraph_meta_data(meta_data)
         elif paragraph_class == TestParagraph.PARAGRAPH_CLASS_PERIODIC_TABLE:
             return {
@@ -448,7 +448,7 @@ class TestParagraphsContainerForm(Form):
         try:
             while True:
                 paragraph = self._removed_paragraphs.pop()
-                if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+                if paragraph.paragraph_class in (TestParagraph.PARAGRAPH_CLASS_IMAGE, TestParagraph.PARAGRAPH_CLASS_SOLUTION_IMAGE):
                     image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
                 paragraph.delete()
         except IndexError:

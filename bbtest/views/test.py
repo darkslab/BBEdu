@@ -205,7 +205,7 @@ class TestQuestionView(StaffPermissionRequiredMixin, View):
             "paragraphs": [],
         }
         for paragraph in question.paragraphs.prefetch_related("through").order_by("through"):
-            if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+            if paragraph.paragraph_class in {TestParagraph.PARAGRAPH_CLASS_IMAGE, TestParagraph.PARAGRAPH_CLASS_SOLUTION_IMAGE}:
                 paragraph.meta_data["asset_url"] = expiring_url(paragraph.meta_data["asset_object_name"])
 
             paragraph_data = {
@@ -351,7 +351,7 @@ class DeleteTestView(StaffPermissionRequiredMixin, View):
         #     for paragraph in question.paragraphs.all():
         #         paragraph_ids.append(paragraph.id)
 
-        #         if paragraph.paragraph_class == TestParagraph.PARAGRAPH_CLASS_IMAGE:
+        #         if paragraph.paragraph_class in {TestParagraph.PARAGRAPH_CLASS_IMAGE, TestParagraph.PARAGRAPH_CLASS_SOLUTION_IMAGE}:
         #             image_paragraph_destroyer.delay(paragraph.meta_data["asset_uuid"])
 
         # TestParagraph.objects.filter(pk__in=paragraph_ids).delete()
