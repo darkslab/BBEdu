@@ -4,10 +4,11 @@ function DeveloperNISLanguageAbility(questionObject) {
 }
 
 DeveloperNISLanguageAbility.prototype.canDeleteParagraph = function(id) {
-    return this.question().paragraph(id).paragraph_class === "ImageParagraph" ? true : false;
+    return this.question().paragraph(id).paragraph_class.includes("ImageParagraph") ? true : false;
 }
 DeveloperNISLanguageAbility.prototype.canChooseTextParagraph = function() { return false; }
 DeveloperNISLanguageAbility.prototype.canChooseSplitTextParagraph = function() { return false; }
+DeveloperNISLanguageAbility.prototype.canChooseSolutionImageParagraph = function() { return true; }
 
 DeveloperNISLanguageAbility.prototype.canDeleteAnswer = function() { return false; }
 DeveloperNISLanguageAbility.prototype.canAddAnswerChoice = function() { return false; }

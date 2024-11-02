@@ -4,7 +4,7 @@ function DeveloperNISMathematicsAbility(questionObject) {
 }
 
 DeveloperNISMathematicsAbility.prototype.canDeleteParagraph = function(id) {
-    return this.question().paragraph(id).paragraph_class === "ImageParagraph" ? true : false;
+    return this.question().paragraph(id).paragraph_class.includes("ImageParagraph") ? true : false;
 }
 DeveloperNISMathematicsAbility.prototype.canChooseTextParagraph = function() { return false; }
 DeveloperNISMathematicsAbility.prototype.canChooseSplitTextParagraph = function() { return false; }

@@ -207,6 +207,23 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
                 left_side: true,
             };
             break;
+        case "SolutionTextParagraph":
+            newParagraph.data.meta_data = {
+                left_side: true,
+                text: ""
+            };
+            break;
+        case "SolutionImageParagraph":
+            newParagraph.data.meta_data = {
+                asset_uuid: undefined,
+                asset_url: undefined,
+                upload_start_url: this._uploadStartUrl,
+                spinner_logo_url: this._spinnerLogoUrl,
+                status: "waiting",
+                progress: 0,
+                left_side: true,
+            };
+            break;
         case "PeriodicTableParagraph":
             newParagraph.data.meta_data = {
                 text: "",
@@ -219,6 +236,8 @@ DeveloperQuestionObject.prototype.addParagraph = function(type) {
                 calculator: ""
             };
             break;
+
+
     }
     this._paragraphs.push(newParagraph);
     this._isParagraphsSaved = false;
@@ -353,6 +372,20 @@ DeveloperQuestionObject.prototype._beforeLoadParagraphDataTransform = function(d
                 }
             };
             break;
+        case "SoutionImageParagraph":
+            return {
+                paragraph_class: data.paragraph_class,
+                meta_data: {
+                    left_side: data.meta_data.left_side,
+                    asset_uuid: data.meta_data.asset_uuid,
+                    asset_url: data.meta_data.asset_url,
+                    upload_start_url: this._uploadStartUrl,
+                    spinner_logo_url: this._spinnerLogoUrl,
+                    status: "staring",
+                    progress: 100
+                }
+            };
+            break;
         default:
             return data;
             break;
@@ -369,6 +402,15 @@ DeveloperQuestionObject.prototype._beforeSaveParagraphDataTransform = function(d
                 }
             };
             break;
+        case "SolutionImageParagraph":
+            return {
+                paragraph_class: data.paragraph_class,
+                meta_data: {
+                    left_side: data.meta_data.left_side,
+                    asset_uuid: data.meta_data.asset_uuid
+                }
+            };
+            break;
         default:
             return data;
             break;
@@ -377,6 +419,11 @@ DeveloperQuestionObject.prototype._beforeSaveParagraphDataTransform = function(d
 DeveloperQuestionObject.prototype._shouldSkipParagraphSave = function(data) {
     switch (data.paragraph_class) {
         case "ImageParagraph":
+            if (data.meta_data.status !== "staring") {
+                return true;
+            }
+            break;
+        case "SolutionImageParagraph":
             if (data.meta_data.status !== "staring") {
                 return true;
             }
