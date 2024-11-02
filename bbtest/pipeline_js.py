@@ -82,6 +82,8 @@ BASE3_SOURCE_FILENAMES = (
     "js/react/components/MultichoiceOneAnswer.js",
     "js/react/components/MultichoiceMultiAnswer.js",
     "js/react/components/MultichoiceTextChoice.js",
+    "js/react/components/SolutionTextParagraph.js",
+    "js/react/components/SolutionImageParagraph.js",
 
     "js/react/components/DeveloperTextParagraph.js",
     "js/react/components/DeveloperSplitTextParagraph.js",
@@ -91,6 +93,8 @@ BASE3_SOURCE_FILENAMES = (
     "js/react/components/DeveloperMultichoiceOneAnswer.js",
     "js/react/components/DeveloperMultichoiceMultiAnswer.js",
     "js/react/components/DeveloperMultichoiceTextChoice.js",
+    "js/react/components/DeveloperSolutionTextParagraph.js",
+    "js/react/components/DeveloperSolutionImageParagraph.js",
 
     "js/react/components/Test.js",
     "js/react/components/Question.js",
