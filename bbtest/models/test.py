@@ -519,12 +519,17 @@ class TestParagraph(Model):
     PARAGRAPH_CLASS_AUDIO          = "AudioParagraph"
     PARAGRAPH_CLASS_PERIODIC_TABLE = "PeriodicTableParagraph"
     PARAGRAPH_CLASS_CALCULATOR     = "CalculatorParagraph"
+    PARAGRAPH_CLASS_SOLUTION_TEXT  = "SolutionTextParagraph"
+    PARAGRAPH_CLASS_SOLUTION_IMAGE = "SolutionImageParagraph"
+
     PARAGRAPH_CLASSES = (
         ( PARAGRAPH_CLASS_TEXT,           PARAGRAPH_CLASS_TEXT              ),
         ( PARAGRAPH_CLASS_SPLIT_TEXT,     PARAGRAPH_CLASS_SPLIT_TEXT        ),
         ( PARAGRAPH_CLASS_IMAGE,          PARAGRAPH_CLASS_IMAGE             ),
         ( PARAGRAPH_CLASS_PERIODIC_TABLE, PARAGRAPH_CLASS_PERIODIC_TABLE    ),
         ( PARAGRAPH_CLASS_CALCULATOR,     PARAGRAPH_CLASS_CALCULATOR        ),
+        ( PARAGRAPH_CLASS_SOLUTION_TEXT,  PARAGRAPH_CLASS_SOLUTION_TEXT     ),
+        ( PARAGRAPH_CLASS_SOLUTION_IMAGE, PARAGRAPH_CLASS_SOLUTION_IMAGE    ),
     )
 
     questions  = ManyToManyField  ( TestQuestion, through="TestParagraphQuestion", related_name="paragraphs", )
