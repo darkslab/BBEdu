@@ -55,9 +55,9 @@ class MultichoiceMultiAnswer extends React.Component {
             <div className="row">
                 <div className="col-xs-12">
                     <div className="panel panel-default mb-15">
-                        <div className="panel-heading">
+                        {/* <div className="panel-heading">
                             <h4 className="panel-title text-center">{this.props.texts.multichoiceMultiAnswerTitle}</h4>
-                        </div>
+                        </div> */}
                         <div className="panel-body">
                             <div className="mb-15">
                                 {choices}
