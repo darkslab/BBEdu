@@ -25,6 +25,9 @@ VERSION = "dev"
 version_match = match(r"^.*?(?P<version>v\d+?\.\d+?\.\d)-[0-9a-f]{8}", BASE_DIR_PATH.name)
 if version_match:
     VERSION = version_match.group("version")
+else:
+    VERSION = os.environ.get('BBTEST_VERSION', VERSION) 
+
 try:
     with (BASE_DIR_PATH / "secrets.json").open() as settings_file:
         SECRETS = load(settings_file)
