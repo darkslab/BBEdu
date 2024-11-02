@@ -55,7 +55,6 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
       });
       this._$quickModal = $("[data-quick-modal]");
       this._$quickModal.on("webkitTransitionEnd otransitionend transitionend", this._boundQuickModalTransitioned);
-      // _load_calculator()
     }
   }, {
     key: "componentWillUpdate",
@@ -75,7 +74,6 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
       this.props.object.stop("question");
       this._$quickModal.off("webkitTransitionEnd otransitionend transitionend", this._boundQuickModalTransitioned);
       clearTimeout(this._quickModalTimer);
-      // _unload_calculator()
     }
   }, {
     key: "render",
@@ -83,6 +81,7 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
       var developerParagraphs = [];
       var paragraphs = [];
+      var solutionParagraphs = [];
       this.props.object.paragraphIds().map(function (id) {
         var paragraphData = _this2.props.object.paragraph(id);
         var sharedQuestionIds = _this2.props.object.paragraphSharedWith(id);
@@ -99,16 +98,28 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
           texts: _this2.props.texts,
           testTexts: _this2.props.object.texts()
         }));
-        paragraphs.push( /*#__PURE__*/React.createElement(ParagraphClass, {
-          key: id,
-          data: paragraphData.meta_data,
-          isShared: sharedQuestionIds.length > 0,
-          texts: _this2.props.texts,
-          testTexts: _this2.props.object.texts(),
-          forDevelopers: true
-        }));
+        if (!paragraphData.paragraph_class.includes("Solution")) {
+          paragraphs.push( /*#__PURE__*/React.createElement(ParagraphClass, {
+            key: id,
+            data: paragraphData.meta_data,
+            isShared: sharedQuestionIds.length > 0,
+            texts: _this2.props.texts,
+            testTexts: _this2.props.object.texts(),
+            forDevelopers: true
+          }));
+        } else {
+          solutionParagraphs.push( /*#__PURE__*/React.createElement(ParagraphClass, {
+            key: id,
+            data: paragraphData.meta_data,
+            isShared: sharedQuestionIds.length > 0,
+            texts: _this2.props.texts,
+            testTexts: _this2.props.object.texts(),
+            forDevelopers: true
+          }));
+        }
       });
       if (!paragraphs.length) {
+        // create empty placeholder paragraph
         paragraphs.push( /*#__PURE__*/React.createElement("div", {
           key: "empty",
           className: "bb-test-paragraph"
@@ -128,6 +139,7 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
           texts: this.props.texts
         });
       } else {
+        // show add answer button if empty
         answerContent = /*#__PURE__*/React.createElement("div", {
           className: "row mb-23"
         }, /*#__PURE__*/React.createElement("div", {
@@ -159,16 +171,16 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
             caption: this.props.texts.paragraphsModalButtonImageParagraph
           });
         }
-        if (this.props.ability.canChoosePeriodicTableParagraph()) {
+        if (this.props.ability.canChooseSolutionTextParagraph()) {
           paragraphClassData.push({
-            "class": "PeriodicTableParagraph",
-            caption: this.props.texts.paragraphsModalButtonPeriodicTableParagraph
+            "class": "SolutionTextParagraph",
+            caption: this.props.texts.paragraphsModalButtonSolutionTextParagraph
           });
         }
-        if (this.props.ability.canChooseCalculatorParagraph()) {
+        if (this.props.ability.canChooseSolutionImageParagraph()) {
           paragraphClassData.push({
-            "class": "CalculatorParagraph",
-            caption: this.props.texts.paragraphsModalButtonCalculatorParagraph
+            "class": "SolutionImageParagraph",
+            caption: this.props.texts.paragraphsModalButtonSolutionImageParagraph
           });
         }
         modal = /*#__PURE__*/React.createElement(DeveloperSelectorModal, {
@@ -279,7 +291,11 @@ var DeveloperQuestion = /*#__PURE__*/function (_React$Component) {
         className: "bb-separator"
       }), /*#__PURE__*/React.createElement("div", {
         className: "mb-15"
-      }, paragraphs))))), answerContent);
+      }, paragraphs), /*#__PURE__*/React.createElement("hr", {
+        className: "bb-separator"
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "mb-15"
+      }, /*#__PURE__*/React.createElement("h3", null, this.props.texts.solution), solutionParagraphs))))), answerContent);
     }
   }, {
     key: "_pokeComponent",

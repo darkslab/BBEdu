@@ -71,10 +71,6 @@ var MultichoiceMultiAnswer = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/React.createElement("div", {
         className: "panel panel-default mb-15"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "panel-heading"
-      }, /*#__PURE__*/React.createElement("h4", {
-        className: "panel-title text-center"
-      }, this.props.texts.multichoiceMultiAnswerTitle)), /*#__PURE__*/React.createElement("div", {
         className: "panel-body"
       }, /*#__PURE__*/React.createElement("div", {
         className: "mb-15"

@@ -24,10 +24,17 @@ var Question = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var paragraphs_left_side = [];
       var paragraphs_right_side = [];
-      console.log("Question", this.props.object);
+      var solutionParagraphs = [];
+      // show solutions only if student is in result page
+      var regex = new RegExp("^/(en|ru|kk)/student/results/([0-9A-Fa-f]{4,6})/$");
+      var regex_dev = new RegExp("^/(en|ru|kk)/build/.+/preview/$");
+      var show_solution = regex.test(window.location.pathname);
+      var show_solution_dev = regex_dev.test(window.location.pathname);
+
+      // console.log("Question.jsx", this.props.object.paragraphs)
       for (var i = 0; i < this.props.object.paragraphs.length; i++) {
-        var ParagraphClass = eval(this.props.object.paragraphs[i].paragraph_class);
-        var left_side = this.props.object.paragraphs[i].meta_data["left_side"] | this.props.object.paragraphs[i].meta_data["left_side"] === undefined;
+        var paragraph_class = this.props.object.paragraphs[i].paragraph_class;
+        var ParagraphClass = eval(paragraph_class);
         var parag = /*#__PURE__*/React.createElement(ParagraphClass, {
           key: i,
           data: this.props.object.paragraphs[i].meta_data,
@@ -36,11 +43,25 @@ var Question = /*#__PURE__*/function (_React$Component) {
           testTexts: this.props.testTexts,
           forDevelopers: false
         });
-        if (left_side) {
-          paragraphs_left_side.push(parag);
+        if (paragraph_class.includes("Solution")) {
+          solutionParagraphs.push(parag);
         } else {
-          paragraphs_right_side.push(parag);
+          var left_side = this.props.object.paragraphs[i].meta_data["left_side"] | this.props.object.paragraphs[i].meta_data["left_side"] === undefined;
+          if (left_side) {
+            paragraphs_left_side.push(parag);
+          } else {
+            paragraphs_right_side.push(parag);
+          }
         }
+      }
+      var solution = null;
+      if ((show_solution || show_solution_dev) && solutionParagraphs.length > 0) {
+        solution = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("hr", {
+          key: "sep_sol",
+          className: "bb-separator"
+        }), /*#__PURE__*/React.createElement("h3", {
+          key: "sep_sol_h3"
+        }, this.props.texts.solution), solutionParagraphs);
       }
       var answerContent = null;
       if (this.props.object.answer_class) {
@@ -89,7 +110,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
         className: ""
       }, paragraphs_left_side), answerContent))), /*#__PURE__*/React.createElement("div", {
         className: "col-xs-12 col-md-7"
-      }, paragraphs_right_side))));
+      }, paragraphs_right_side)), solution));
     }
   }]);
 }(React.Component);
