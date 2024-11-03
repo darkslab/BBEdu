@@ -1,14 +1,23 @@
-from django.forms import ValidationError
-from bbtest.models import User, Test, StudentGroup, TestPackage, UserTestPackageProfile, QuizSet
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import Permission
-from bbtest.models import Account
-from random import randint
 import csv
 import uuid
-from django_rq import job
-from django.conf import settings
 from pathlib import Path
+from random import randint
+
+from django.conf import settings
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.forms import ValidationError
+from django_rq import job
+
+from bbtest.models import (
+    Account,
+    QuizSet,
+    StudentGroup,
+    Test,
+    TestPackage,
+    User,
+    UserTestPackageProfile,
+)
 
 BASE_DIR = Path(settings.BASE_DIR_PATH).resolve().parent
 
@@ -107,7 +116,11 @@ def activate_package(group_obj: StudentGroup, active_state: bool):
 
 @job("default", timeout=600000000)
 def populate_demouser_test(user: User):
-    package_obj = TestPackage.objects.get(code = "2404085ebe")
+    if settings.DEBUG: 
+        package_obj = TestPackage.objects.get(code = "2404085ebe")
+    else: 
+        package_obj = TestPackage.objects.get(code = "241103f825")
+    
     # print(package_obj)
     test_set = package_obj.tests.order_by('section__order').all()
     domain = package_obj.domain
