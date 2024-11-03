@@ -30,6 +30,12 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         subject_list: this.props.subject_list,
         scoresData: this.props.scoresData,
         students: this.props.students
+      }), /*#__PURE__*/React.createElement(ChartPolarArea, {
+        subject_list: this.props.subject_list,
+        scoresData: this.props.scoresData,
+        subject_topics: this.props.subject_topics,
+        subject_scores: this.props.subject_scores,
+        students: this.props.students
       }));
     }
   }]);

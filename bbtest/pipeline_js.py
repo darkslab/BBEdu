@@ -112,4 +112,5 @@ BASE3_SOURCE_FILENAMES = (
 
     "js/react/components/ChartDashboard.js",
     "js/react/components/chart/ChartTotal.js",
+    "js/react/components/chart/ChartPolarArea.js",
 )
