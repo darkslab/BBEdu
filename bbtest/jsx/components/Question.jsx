@@ -39,11 +39,11 @@ class Question extends React.Component {
 
         let solution = null;
         if((show_solution || show_solution_dev) && solutionParagraphs.length > 0){
-            solution = <React.Fragment>
-                <hr key="sep_sol" className="bb-separator" />
+            solution = <div className="border" style={{"borderTop": "solid"}}>
+                {/* <hr key="sep_sol" className="bb-separator" /> */}
                 <h3 key="sep_sol_h3">{this.props.texts.solution}</h3>
                 {solutionParagraphs}
-            </React.Fragment>
+            </div>
         }
 
         let answerContent = null;
@@ -80,8 +80,8 @@ class Question extends React.Component {
                             calculatorIconUrl={this.props.calculatorIconUrl}
                         />
                     </div>
-                    <div className="row row-eq-height">
-                        <div className="col-xs-12 col-md-5 border" style={{"borderRight": "solid"}}>
+                    <div className="row row-eq-height border" style={{"borderBottom": "solid"}}>
+                        <div className="col-xs-12 col-md-5 border ml-2 mr-2" style={{"borderRight": "solid"}}>
                             <div className="">
                                 <div className="">
                                     <div className="">
@@ -91,7 +91,7 @@ class Question extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xs-12 col-md-7">
+                        <div className="col-xs-12 col-md-7 border ml-2 mr-2 pr-5" style={{"borderLeft": "solid"}}>
                             {paragraphs_right_side}
                         </div>
                     </div>

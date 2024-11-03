@@ -56,10 +56,12 @@ var Question = /*#__PURE__*/function (_React$Component) {
       }
       var solution = null;
       if ((show_solution || show_solution_dev) && solutionParagraphs.length > 0) {
-        solution = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("hr", {
-          key: "sep_sol",
-          className: "bb-separator"
-        }), /*#__PURE__*/React.createElement("h3", {
+        solution = /*#__PURE__*/React.createElement("div", {
+          className: "border",
+          style: {
+            "borderTop": "solid"
+          }
+        }, /*#__PURE__*/React.createElement("h3", {
           key: "sep_sol_h3"
         }, this.props.texts.solution), solutionParagraphs);
       }
@@ -96,9 +98,12 @@ var Question = /*#__PURE__*/function (_React$Component) {
         hasCalculator: this.props.hasCalculator,
         calculatorIconUrl: this.props.calculatorIconUrl
       })), /*#__PURE__*/React.createElement("div", {
-        className: "row row-eq-height"
+        className: "row row-eq-height border",
+        style: {
+          "borderBottom": "solid"
+        }
       }, /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12 col-md-5 border",
+        className: "col-xs-12 col-md-5 border ml-2 mr-2",
         style: {
           "borderRight": "solid"
         }
@@ -109,7 +114,10 @@ var Question = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/React.createElement("div", {
         className: ""
       }, paragraphs_left_side), answerContent))), /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12 col-md-7"
+        className: "col-xs-12 col-md-7 border ml-2 mr-2 pr-5",
+        style: {
+          "borderLeft": "solid"
+        }
       }, paragraphs_right_side)), solution));
     }
   }]);
