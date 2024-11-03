@@ -36,6 +36,9 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         subject_topics: this.props.subject_topics,
         subject_scores: this.props.subject_scores,
         students: this.props.students
+      }), /*#__PURE__*/React.createElement(ChartProgressBar, {
+        scoresData: [200, 250, 180, 220, 0, 0, 0, 0, 0, 0],
+        averageScore: 200
       }));
     }
   }]);

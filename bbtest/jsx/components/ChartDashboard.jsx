@@ -23,6 +23,10 @@ class ChartDashboard extends React.Component {
                 subject_scores = {this.props.subject_scores}
                 students = {this.props.students}
             />
+            <ChartProgressBar
+                scoresData = {[200, 250, 180, 220, 0, 0, 0, 0, 0, 0]}
+                averageScore = {200}
+            />
         </React.Fragment>
     }
 
