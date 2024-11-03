@@ -109,4 +109,7 @@ BASE3_SOURCE_FILENAMES = (
     "js/react/components/DeveloperQuestion.js",
     "js/react/components/DeveloperAttribute.js",
     "js/react/components/DeveloperSelectorModal.js",
+
+    "js/react/components/ChartDashboard.js",
+    "js/react/components/chart/ChartTotal.js",
 )
