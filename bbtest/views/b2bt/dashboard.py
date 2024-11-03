@@ -22,15 +22,19 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         domain_obj:  TestDomain = TestDomain.objects.prefetch_related("sections").get(name="PISA_ru")
         section_list: List[TestSection] = domain_obj.sections.prefetch_related("topics").all()
+        # subject_list = ["Математика", "Естествознание", "Русский язык", "Казахский язык"]
+        subject_list = [s.name for s in section_list]
 
-
+        subject_topics = { "Total": subject_list }
+        subject_scores = { }
         for section_obj in section_list:
             print(section_obj)
             topic_list: List[TestTopic] = section_obj.topics.all()
             print(topic_list)
+            subject_topics[section_obj.name] = [t.name for t in topic_list]
+            subject_scores[section_obj.name] = [random.randint(40, 100) for t in topic_list]
 
-        # subject_list = ["Математика", "Естествознание", "Русский язык", "Казахский язык"]
-        subject_list = [s.name for s in section_list]
+        
 
         # get students score by subject
         scores = { "Total": np.zeros(n_students) }
@@ -44,6 +48,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             mean_subj[subj] = np.mean(scores[subj])
             mean_subj["Total"] += mean_subj[subj]
 
+        subject_scores["Total"] = [float(mean_subj[el]) for el in subject_list]
 
         # conver numpy to list for compatibility
         for key in scores.keys():
@@ -57,6 +62,9 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         kwargs['mean_subj'] = mean_subj
         kwargs['students'] = students
         kwargs['scoresData'] = scores
+        kwargs['subject_topics'] = subject_topics
+        kwargs['subject_scores'] = subject_scores
+
 
         # chart options
         kwargs['subject_chart_height'] = min(n_students * 20, 5000)
