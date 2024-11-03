@@ -148,6 +148,18 @@ class DeveloperQuestion extends React.Component {
                     caption: this.props.texts.paragraphsModalButtonImageParagraph
                 });
             }
+            if (this.props.ability.canChoosePeriodicTableParagraph()) {
+                paragraphClassData.push({
+                    class: "PeriodicTableParagraph",
+                    caption: this.props.texts.paragraphsModalButtonPeriodicTableParagraph
+                });
+            }
+            if (this.props.ability.canChooseCalculatorParagraph()) {
+                paragraphClassData.push({
+                    class: "CalculatorParagraph",
+                    caption: this.props.texts.paragraphsModalButtonCalculatorParagraph
+                });
+            }
             if (this.props.ability.canChooseSolutionTextParagraph()) {
                 paragraphClassData.push({
                     class: "SolutionTextParagraph",
