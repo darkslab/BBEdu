@@ -119,7 +119,7 @@ def populate_demouser_test(user: User):
     if settings.DEBUG: 
         package_obj = TestPackage.objects.get(code = "2404085ebe")
     else: 
-        package_obj = TestPackage.objects.get(code = "241103f825")
+        package_obj = TestPackage.objects.get(code = "241104f58d")
     
     # print(package_obj)
     test_set = package_obj.tests.order_by('section__order').all()
