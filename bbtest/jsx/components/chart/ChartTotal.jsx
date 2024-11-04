@@ -3,26 +3,12 @@ class ChartTotal extends React.Component {
         super(props);
     }
     componentDidMount() {
-        $("#subject-select").select2({
-            width: '20vw',
-        });
-        let update_chart =  this._update_chart;
         const subject_list = this.props.subject_list;
-        const scoresData = this.props.scoresData;
-
-        // Event listener to update chart when student is selected
-        $('#subject-select').on('select2:select', function (e) {
-            var data = e.params.data;
-            const selectedIndex = parseInt(data.id);
-            const selectedSubject = data.text;
-            console.log(data, selectedIndex, selectedSubject);
-            update_chart(myChart, selectedIndex, selectedSubject, subject_list, scoresData);
-            // update_doughnut_chart(selectedSubject); // Update doughnut chart with selected subject
-        });
+        const scores_data = this.props.scores_data;
 
         const ctx = document.getElementById('studentChart').getContext('2d');
         
-        const myChart = new Chart(ctx, {
+        this.myChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: this.props.students,
@@ -43,38 +29,38 @@ class ChartTotal extends React.Component {
                 }
             }
         });
-        this._update_chart(myChart, 0, "Total", subject_list, scoresData);
+        this._update_chart(this.myChart, "Total", subject_list, scores_data);
         
     }
 
-    render() {
-        const subject_list = this.props.subject_list;
-        const options = [];
-        for (let i = 0; i < subject_list.length; i++) {
-            options.push(<option key={`option ${i}`} value={{ i }} >{ subject_list[i] }</option>)
-        }
-        // {% for subj in subject_list %}
-        //         
-        //       {% endfor %}
+    componentDidUpdate(prevProps) {
+        // Check if subject_list has changed
+        if (prevProps.selected_subject !== this.props.selected_subject) {
+            
+            const selected_subject = this.props.selected_subject ? this.props.selected_subject : "Total";
+            const subject_list = this.props.subject_list;
+            const scores_data = this.props.scores_data;
 
-        return <div className="row">
-            <div className="col-lg-3"></div>
-            <div className="col-xs-12 col-lg-6">
-                <h2 style={{textAlign: "center"}}>Student Test Results</h2>
-                <div className="selector">
-                    <label htmlFor="subject-select">Select Subject:</label>
-                    <select className="select_v2" id="subject-select">
-                        <option value="0">Total</option>
-                        {options}
-                    </select>
-                </div>
-                <canvas id="studentChart" width="800" height={ this.props.subject_chart_height }></canvas>
-            </div>
-        </div>;
+            console.log("ChartTotal.componentDidUpdate", this.props, selected_subject)
+
+            this._update_chart(this.myChart, selected_subject, subject_list, scores_data)
+        }
     }
 
-    _update_chart(myChart, selectedIndex, selectedSubject, subject_list, scoresData) {
-        if (selectedIndex === 0) {
+    render() {
+        // const subject_list = this.props.subject_list;
+        // const options = [];
+        // for (let i = 1; i <= subject_list.length; i++) {
+        //     options.push(<option key={`option ${i}`} value={{ i }} >{ subject_list[i] }</option>)
+        // }
+
+        return <canvas id="studentChart" width="800" height={ this.props.subject_chart_height }></canvas>
+    }
+
+    _update_chart(myChart, selected_subject, subject_list, scores_data) {
+        console.log("ChartTotal._update_chart", selected_subject, subject_list, scores_data)
+
+        if (selected_subject === "Total") {
             myChart.options.scales.y.stacked = true;
             myChart.data.datasets = [];
             // Loop through each subject in subject_list
@@ -82,8 +68,8 @@ class ChartTotal extends React.Component {
                 const subj_key = subject_list[i]
                 // Create dataset for the subject
                 const dataset = {
-                    label: subj_key.charAt(0).toUpperCase() + subj_key.slice(1), // Capitalize the label
-                    data: scoresData[subj_key], // Get the scores for the subject
+                    label: subj_key.charAt(0).toUpperCase() + subj_key.slice(1), 
+                    data: scores_data[subj_key], // Get the scores for the subject
                     backgroundColor: `rgba(${(i * 60) % 255}, ${(i * 100 + 100) % 255}, ${(i * 150) % 255}, 0.6)`, // Example color generation
                     stack: 'Stack 0'
                 };
@@ -93,10 +79,11 @@ class ChartTotal extends React.Component {
             }
             myChart.options.scales.y.max = subject_list.length * 100;
         } else {
+            const selected_subject_text = selected_subject.charAt(0).toUpperCase() + selected_subject.slice(1) // Capitalize the label
             myChart.options.scales.y.stacked = false;
             myChart.data.datasets = [{
-                label: selectedSubject.charAt(0).toUpperCase() + selectedSubject.slice(1),
-                data: scoresData[selectedSubject],
+                label: selected_subject_text,
+                data: scores_data[selected_subject],
                 backgroundColor: 'rgba(54, 162, 235, 0.6)'
             }];
             myChart.options.scales.y.max = 100;

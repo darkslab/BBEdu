@@ -22,15 +22,12 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
   return _createClass(ChartPolarArea, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // $("#subject-select").select2({
-      //     width: '20vw',
-      // });
-
       var subject_list = this.props.subject_list;
       var scoresData = this.props.scoresData;
       var subject_topics = this.props.subject_topics;
       var subject_scores = this.props.subject_scores;
-      var ctx_doughnut = document.getElementById('myDoughnutChart').getContext('2d');
+      var selected_subject = this.props.selected_subject ? this.props.selected_subject : "Total";
+      var ctx = document.getElementById('myDoughnutChart').getContext('2d');
       var doughnutData = {
         labels: [],
         datasets: [{
@@ -73,8 +70,8 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
             var segmentIndex = element.index; // Get the index of the clicked segment
 
             // Retrieve the label and value of the clicked segment
-            var label = myDoughnutChart.data.labels[segmentIndex];
-            var value = myDoughnutChart.data.datasets[0].data[segmentIndex];
+            var label = myChart.data.labels[segmentIndex];
+            var value = myChart.data.datasets[0].data[segmentIndex];
 
             // Do something with the clicked segment information
             console.log("Clicked on segment: ".concat(label, ", Value: ").concat(value));
@@ -82,7 +79,7 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
           }
         }
       };
-      var myDoughnutChart = new Chart(ctx_doughnut, {
+      this.myChart = new Chart(ctx, {
         type: 'polarArea',
         data: doughnutData,
         options: doughnutOptions
@@ -90,80 +87,48 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
       });
 
       // --------------------------------------------------------------------------------------------------------------------------
-      this._update_doughnut_chart(myDoughnutChart, "Total", subject_topics, subject_scores);
+      this._update_doughnut_chart2(this.myChart, subject_topics[selected_subject], subject_scores[selected_subject]);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      // Check if subject_list has changed
+      if (prevProps.selected_subject !== this.props.selected_subject) {
+        var selected_subject = this.props.selected_subject ? this.props.selected_subject : "Total";
+        this._update_doughnut_chart2(this.myChart, this.props.subject_topics[selected_subject], this.props.subject_scores[selected_subject]);
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this.myChart) {
+        this.myChart.destroy();
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var subject_list = this.props.subject_list;
-      // const options = [];
-      // for (let i = 0; i < subject_list.length; i++) {
-      //     options.push(<option key={`option ${i}`} value={{ i }} >{subject_list[i]}</option>)
-      // }
-      // {% for subj in subject_list %}
-      //         
-      //       {% endfor %}
-
       return /*#__PURE__*/React.createElement("div", {
-        className: "row"
-      }, /*#__PURE__*/React.createElement("h2", {
-        style: {
-          textAlign: "center"
-        }
-      }, "Student Average Results"), /*#__PURE__*/React.createElement("div", {
-        className: "col-lg-3"
-      }), /*#__PURE__*/React.createElement("div", {
         className: "col-xs-12 col-lg-3"
       }, /*#__PURE__*/React.createElement("canvas", {
         id: "myDoughnutChart",
         width: "400",
         height: "400"
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12 col-lg-3"
-      }, /*#__PURE__*/React.createElement("button", {
-        style: {
-          backgroundColor: "#3498db",
-          color: "white",
-          padding: "10px 20px",
-          border: "none"
-        }
-      }, "\u0420\u0410\u0426\u0418\u041E\u041D\u0410\u041B\u042C\u041D\u042B\u0415 \u0427\u0418\u0421\u041B\u0410"), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "\u0412\u044B \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0438 \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E \u043D\u0430 12 \u0432\u043E\u043F\u0440\u043E\u0441\u043E\u0432 (120 \u0431\u0430\u043B\u043B\u043E\u0432) \u0438\u0437 12 \u043F\u043E \u0434\u0430\u043D\u043D\u043E\u043C\u0443 \u0440\u0430\u0437\u0434\u0435\u043B\u0443")), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "\u041F\u043E\u043B\u043E\u0436\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0447\u0438\u0441\u043B\u0430. \u041E\u0442\u0440\u0438\u0446\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0447\u0438\u0441\u043B\u0430. \u041A\u043E\u043E\u0440\u0434\u0438\u043D\u0430\u0442\u043D\u0430\u044F \u043F\u0440\u044F\u043C\u0430\u044F."), /*#__PURE__*/React.createElement("li", null, "\u041F\u0440\u043E\u0442\u0438\u0432\u043E\u043F\u043E\u043B\u043E\u0436\u043D\u044B\u0435 \u0447\u0438\u0441\u043B\u0430. \u0426\u0435\u043B\u044B\u0435 \u0447\u0438\u0441\u043B\u0430. \u0420\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0435 \u0447\u0438\u0441\u043B\u0430. \u041C\u043E\u0434\u0443\u043B\u044C \u0447\u0438\u0441\u043B\u0430."), /*#__PURE__*/React.createElement("li", null, "\u0421\u0440\u0430\u0432\u043D\u0435\u043D\u0438\u0435 \u0440\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0447\u0438\u0441\u0435\u043B. \u0421\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u0440\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0447\u0438\u0441\u0435\u043B \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u043A\u043E\u043E\u0440\u0434\u0438\u043D\u0430\u0442\u043D\u043E\u0439 \u043F\u0440\u044F\u043C\u043E\u0439."), /*#__PURE__*/React.createElement("li", null, "\u0421\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u043E\u0442\u0440\u0438\u0446\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0445 \u0440\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0447\u0438\u0441\u0435\u043B. \u0421\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u0440\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0447\u0438\u0441\u0435\u043B \u0441 \u0440\u0430\u0437\u043D\u044B\u043C\u0438 \u0437\u043D\u0430\u043A\u0430\u043C\u0438. \u0412\u044B\u0447\u0438\u0442\u0430\u043D\u0438\u0435 \u0440\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0447\u0438\u0441\u0435\u043B."), /*#__PURE__*/React.createElement("li", null, "\u0420\u0430\u0441\u0441\u0442\u043E\u044F\u043D\u0438\u0435 \u043C\u0435\u0436\u0434\u0443 \u0442\u043E\u0447\u043A\u0430\u043C\u0438 \u043D\u0430 \u043A\u043E\u043E\u0440\u0434\u0438\u043D\u0430\u0442\u043D\u043E\u0439 \u043F\u0440\u044F\u043C\u043E\u0439."))));
+      }));
     }
-  }, {
-    key: "_update_chart",
-    value: function _update_chart(myChart, selectedIndex, selectedSubject, subject_list, scoresData) {
-      if (selectedIndex === 0) {
-        myChart.options.scales.y.stacked = true;
-        myChart.data.datasets = [];
-        // Loop through each subject in subject_list
-        for (var i = 0; i < subject_list.length; i++) {
-          var subj_key = subject_list[i];
-          // Create dataset for the subject
-          var dataset = {
-            label: subj_key.charAt(0).toUpperCase() + subj_key.slice(1),
-            // Capitalize the label
-            data: scoresData[subj_key],
-            // Get the scores for the subject
-            backgroundColor: "rgba(".concat(i * 60 % 255, ", ").concat((i * 100 + 100) % 255, ", ").concat(i * 150 % 255, ", 0.6)"),
-            // Example color generation
-            stack: 'Stack 0'
-          };
 
-          // Push the dataset to myChart.data.datasets
-          myChart.data.datasets.push(dataset);
-        }
-        myChart.options.scales.y.max = subject_list.length * 100;
-      } else {
-        myChart.options.scales.y.stacked = false;
-        myChart.data.datasets = [{
-          label: selectedSubject.charAt(0).toUpperCase() + selectedSubject.slice(1),
-          data: scoresData[selectedSubject],
-          backgroundColor: 'rgba(54, 162, 235, 0.6)'
-        }];
-        myChart.options.scales.y.max = 100;
-      }
+    // Function to update doughnut chart based on selected subject
+  }, {
+    key: "_update_doughnut_chart2",
+    value: function _update_doughnut_chart2(myChart, subject_topics, subject_scores) {
+      // Update labels and data for the doughnut chart
+      myChart.data.labels = subject_topics;
+      myChart.data.datasets[0].data = subject_scores;
+
+      // Update the doughnut chart display
       myChart.update();
     }
+
     // Function to update doughnut chart based on selected subject
   }, {
     key: "_update_doughnut_chart",

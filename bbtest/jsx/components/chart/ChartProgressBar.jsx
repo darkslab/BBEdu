@@ -4,19 +4,19 @@ class ChartProgressBar extends React.Component {
     }
 
     componentDidMount() {
-        const { scoresData, averageScore } = this.props;
+        const { scores_data, averageScore } = this.props;
 
 
-        console.log(scoresData, averageScore)
+        console.log(scores_data, averageScore)
 
         const ctx = document.getElementById('progressChart').getContext('2d');
 
         const chartData = {
-            labels: scoresData.map((_, index) => `Test ${index + 1}`), // Labels like "Test 1", "Test 2", etc.
+            labels: scores_data.map((_, index) => `Test ${index + 1}`), // Labels like "Test 1", "Test 2", etc.
             datasets: [
                 {
                     label: 'Your Scores',
-                    data: scoresData,
+                    data: scores_data,
                     backgroundColor: 'rgba(52, 152, 219, 0.6)', // Bar color
                     borderColor: 'rgba(52, 152, 219, 1)',
                     borderWidth: 1
@@ -29,7 +29,7 @@ class ChartProgressBar extends React.Component {
             scales: {
                 y: {
                     beginAtZero: true,
-                    max: Math.max(...scoresData) + 50, // Adjust max to fit scores + some margin
+                    max: Math.max(...scores_data) + 50, // Adjust max to fit scores + some margin
                 }
             },
             plugins: {
