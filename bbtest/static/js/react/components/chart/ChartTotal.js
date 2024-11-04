@@ -103,6 +103,7 @@ var ChartTotal = /*#__PURE__*/function (_React$Component) {
       var averageScore = getAverage(scores_data[selected_subject]);
       myChart.options.plugins.annotation.annotations.line1.xMin = averageScore;
       myChart.options.plugins.annotation.annotations.line1.xMax = averageScore;
+      var colors = ['#3498db', '#1abc9c', '#9b59b6', '#f39c12', '#e74c3c'];
       if (selected_subject === "Total") {
         myChart.options.scales.y.stacked = true;
         myChart.data.datasets = [];
@@ -114,8 +115,8 @@ var ChartTotal = /*#__PURE__*/function (_React$Component) {
             label: subj_key.charAt(0).toUpperCase() + subj_key.slice(1),
             data: scores_data[subj_key],
             // Get the scores for the subject
-            backgroundColor: "rgba(".concat(i * 60 % 255, ", ").concat((i * 100 + 100) % 255, ", ").concat(i * 150 % 255, ", 0.6)"),
-            // Example color generation
+            backgroundColor: colors[i % 5],
+            // `rgba(${(i * 60) % 255}, ${(i * 100 + 100) % 255}, ${(i * 150) % 255}, 0.6)`, // Example color generation
             stack: 'Stack 0'
           };
 

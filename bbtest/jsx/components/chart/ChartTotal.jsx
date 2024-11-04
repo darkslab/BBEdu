@@ -78,6 +78,8 @@ class ChartTotal extends React.Component {
         myChart.options.plugins.annotation.annotations.line1.xMin = averageScore;
         myChart.options.plugins.annotation.annotations.line1.xMax = averageScore;
 
+        const colors = ['#3498db', '#1abc9c', '#9b59b6', '#f39c12', '#e74c3c'];
+
         if (selected_subject === "Total") {
             myChart.options.scales.y.stacked = true;
             myChart.data.datasets = [];
@@ -88,7 +90,8 @@ class ChartTotal extends React.Component {
                 const dataset = {
                     label: subj_key.charAt(0).toUpperCase() + subj_key.slice(1), 
                     data: scores_data[subj_key], // Get the scores for the subject
-                    backgroundColor: `rgba(${(i * 60) % 255}, ${(i * 100 + 100) % 255}, ${(i * 150) % 255}, 0.6)`, // Example color generation
+                    backgroundColor: colors[i % 5],
+                    // `rgba(${(i * 60) % 255}, ${(i * 100 + 100) % 255}, ${(i * 150) % 255}, 0.6)`, // Example color generation
                     stack: 'Stack 0'
                 };
 
