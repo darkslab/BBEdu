@@ -68,9 +68,9 @@ class ChartDashboard extends React.Component {
                     students={this.props.students}
                 />
                 <div className="col-xs-12 col-lg-3">
-                    <button style={{ backgroundColor: "#3498db", color: "white", padding: "10px 20px", border: "none" }}>РАЦИОНАЛЬНЫЕ ЧИСЛА</button>
+                    {/* <button style={{ backgroundColor: "#3498db", color: "white", padding: "10px 20px", border: "none" }}>РАЦИОНАЛЬНЫЕ ЧИСЛА</button> */}
                     <p>
-                        <strong>Вы ответили правильно на 12 вопросов (120 баллов) из 12 по данному разделу</strong>
+                        <strong>Ученики в среднем ответили правильно на 12 вопросов (120 баллов) из 12 по данному предмету</strong>
                     </p>
                     <ul>
                         <li>Положительные числа. Отрицательные числа. Координатная прямая.</li>
@@ -84,7 +84,7 @@ class ChartDashboard extends React.Component {
             </div>
             <ChartProgressBar
                 scores_data={[200, 250, 180, 220, 0, 0, 0, 0, 0, 0]}
-                averageScore={200}
+                averageScore={195}
             />
         </React.Fragment>
     }

@@ -18,7 +18,13 @@ class ChartPolarArea extends React.Component {
             datasets: [
                 {
                     data: [],
-                    backgroundColor: ['#3498db', '#1abc9c', '#9b59b6', '#f39c12', '#e74c3c'],
+                    backgroundColor: [
+                        'rgba(52, 152, 219, 0.8)',  // #3498db
+                        'rgba(26, 188, 156, 0.8)',  // #1abc9c
+                        'rgba(155, 89, 182, 0.8)',  // #9b59b6
+                        'rgba(243, 156, 18, 0.8)',  // #f39c12
+                        'rgba(231, 76, 60,  0.8)'    // #e74c3c
+                    ],
                     borderColor: '#ffffff',
                     borderWidth: 2
                 }
@@ -77,7 +83,7 @@ class ChartPolarArea extends React.Component {
             options: polarAreaOptions,
             // plugins: [ChartDataLabels] // Add the data labels plugin
         });
-        
+
         // --------------------------------------------------------------------------------------------------------------------------
         this._update_doughnut_chart2(this.myChart, subject_topics[selected_subject], subject_scores[selected_subject])
 
