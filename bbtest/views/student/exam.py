@@ -217,8 +217,8 @@ class ExamEndView(PermissionRequiredMixinFactory(["student", "demouser"]), Curre
             if now_at < self.current_quiz().due_at:
                 answer_list = self.current_quiz().get_answers_ids()
                 count = sum([1 for value in answer_list if value is not None])
-                if count < 3:
-                    alert_msg = "Ответьте минимум на 3 вопроса."
+                if count < 1:
+                    alert_msg = "Ответьте минимум на 1 вопрос."
                     # error(request, pgettext("Student finish exam", "Ответьте минимум на 3 вопроса.") )
                     return TightJsonResponse(self.started_response(now_at, reload=False, alert=alert_msg))
 
