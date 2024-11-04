@@ -25,7 +25,25 @@ class ChartTotal extends React.Component {
                     }
                 },
                 plugins: {
-                    legend: { display: true, position: 'top' }
+                    legend: { display: true, position: 'top' },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                xMin: 0,
+                                xMax: 0,
+                                borderColor: 'red',
+                                borderWidth: 2,
+                                label: {
+                                    content: 'Average Score',
+                                    enabled: true,
+                                    position: 'end',
+                                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                                    color: 'red'
+                                }
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -48,17 +66,17 @@ class ChartTotal extends React.Component {
     }
 
     render() {
-        // const subject_list = this.props.subject_list;
-        // const options = [];
-        // for (let i = 1; i <= subject_list.length; i++) {
-        //     options.push(<option key={`option ${i}`} value={{ i }} >{ subject_list[i] }</option>)
-        // }
-
         return <canvas id="studentChart" width="800" height={ this.props.subject_chart_height }></canvas>
     }
 
     _update_chart(myChart, selected_subject, subject_list, scores_data) {
         console.log("ChartTotal._update_chart", selected_subject, subject_list, scores_data)
+        const getAverage = (array) =>
+            array.reduce((sum, currentValue) => sum + currentValue, 0) / array.length;
+
+        const averageScore = getAverage(scores_data[selected_subject]);
+        myChart.options.plugins.annotation.annotations.line1.xMin = averageScore;
+        myChart.options.plugins.annotation.annotations.line1.xMax = averageScore;
 
         if (selected_subject === "Total") {
             myChart.options.scales.y.stacked = true;

@@ -46,6 +46,24 @@ var ChartTotal = /*#__PURE__*/function (_React$Component) {
             legend: {
               display: true,
               position: 'top'
+            },
+            annotation: {
+              annotations: {
+                line1: {
+                  type: 'line',
+                  xMin: 0,
+                  xMax: 0,
+                  borderColor: 'red',
+                  borderWidth: 2,
+                  label: {
+                    content: 'Average Score',
+                    enabled: true,
+                    position: 'end',
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    color: 'red'
+                  }
+                }
+              }
             }
           }
         }
@@ -67,12 +85,6 @@ var ChartTotal = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // const subject_list = this.props.subject_list;
-      // const options = [];
-      // for (let i = 1; i <= subject_list.length; i++) {
-      //     options.push(<option key={`option ${i}`} value={{ i }} >{ subject_list[i] }</option>)
-      // }
-
       return /*#__PURE__*/React.createElement("canvas", {
         id: "studentChart",
         width: "800",
@@ -83,6 +95,14 @@ var ChartTotal = /*#__PURE__*/function (_React$Component) {
     key: "_update_chart",
     value: function _update_chart(myChart, selected_subject, subject_list, scores_data) {
       console.log("ChartTotal._update_chart", selected_subject, subject_list, scores_data);
+      var getAverage = function getAverage(array) {
+        return array.reduce(function (sum, currentValue) {
+          return sum + currentValue;
+        }, 0) / array.length;
+      };
+      var averageScore = getAverage(scores_data[selected_subject]);
+      myChart.options.plugins.annotation.annotations.line1.xMin = averageScore;
+      myChart.options.plugins.annotation.annotations.line1.xMax = averageScore;
       if (selected_subject === "Total") {
         myChart.options.scales.y.stacked = true;
         myChart.data.datasets = [];
