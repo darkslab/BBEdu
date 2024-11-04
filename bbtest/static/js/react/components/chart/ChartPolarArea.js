@@ -22,13 +22,14 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
   return _createClass(ChartPolarArea, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this = this;
       var subject_list = this.props.subject_list;
       var scoresData = this.props.scoresData;
       var subject_topics = this.props.subject_topics;
       var subject_scores = this.props.subject_scores;
       var selected_subject = this.props.selected_subject ? this.props.selected_subject : "Total";
       var ctx = document.getElementById('myDoughnutChart').getContext('2d');
-      var doughnutData = {
+      var polarAreaData = {
         labels: [],
         datasets: [{
           data: [],
@@ -37,7 +38,7 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
           borderWidth: 2
         }]
       };
-      var doughnutOptions = {
+      var polarAreaOptions = {
         responsive: false,
         plugins: {
           legend: {
@@ -70,8 +71,8 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
             var segmentIndex = element.index; // Get the index of the clicked segment
 
             // Retrieve the label and value of the clicked segment
-            var label = myChart.data.labels[segmentIndex];
-            var value = myChart.data.datasets[0].data[segmentIndex];
+            var label = _this.myChart.data.labels[segmentIndex];
+            var value = _this.myChart.data.datasets[0].data[segmentIndex];
 
             // Do something with the clicked segment information
             console.log("Clicked on segment: ".concat(label, ", Value: ").concat(value));
@@ -81,8 +82,8 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
       };
       this.myChart = new Chart(ctx, {
         type: 'polarArea',
-        data: doughnutData,
-        options: doughnutOptions
+        data: polarAreaData,
+        options: polarAreaOptions
         // plugins: [ChartDataLabels] // Add the data labels plugin
       });
 

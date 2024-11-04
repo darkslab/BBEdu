@@ -13,7 +13,7 @@ class ChartPolarArea extends React.Component {
         const ctx = document.getElementById('myDoughnutChart').getContext('2d');
 
 
-        const doughnutData = {
+        const polarAreaData = {
             labels: [],
             datasets: [
                 {
@@ -25,7 +25,7 @@ class ChartPolarArea extends React.Component {
             ]
         };
 
-        const doughnutOptions = {
+        const polarAreaOptions = {
             responsive: false,
             plugins: {
                 legend: {
@@ -56,8 +56,8 @@ class ChartPolarArea extends React.Component {
                     const segmentIndex = element.index; // Get the index of the clicked segment
 
                     // Retrieve the label and value of the clicked segment
-                    const label = myChart.data.labels[segmentIndex];
-                    const value = myChart.data.datasets[0].data[segmentIndex];
+                    const label = this.myChart.data.labels[segmentIndex];
+                    const value = this.myChart.data.datasets[0].data[segmentIndex];
 
                     // Do something with the clicked segment information
                     console.log(`Clicked on segment: ${label}, Value: ${value}`);
@@ -68,8 +68,8 @@ class ChartPolarArea extends React.Component {
 
         this.myChart = new Chart(ctx, {
             type: 'polarArea',
-            data: doughnutData,
-            options: doughnutOptions,
+            data: polarAreaData,
+            options: polarAreaOptions,
             // plugins: [ChartDataLabels] // Add the data labels plugin
         });
         

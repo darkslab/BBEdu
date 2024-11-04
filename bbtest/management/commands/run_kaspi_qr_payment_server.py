@@ -12,6 +12,7 @@ import logging
 # run script every 1 minutes
 # crontab -e
 # */1 * * * * /usr/local/bin/python3 ~/BBEdu/manage.py run_kaspi_qr_payment_server
+# */1 * * * * docker exec django_container python3 manage.py run_kaspi_qr_payment_server
 logger = logging.getLogger("bbtest.payment")
 
 
