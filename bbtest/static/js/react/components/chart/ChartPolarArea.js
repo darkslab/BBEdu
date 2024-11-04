@@ -40,6 +40,11 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
       };
       var polarAreaOptions = {
         responsive: false,
+        scale: {
+          min: 0,
+          max: 100,
+          weight: 1000
+        },
         plugins: {
           legend: {
             display: false // Hide default legend

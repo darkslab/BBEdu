@@ -27,6 +27,11 @@ class ChartPolarArea extends React.Component {
 
         const polarAreaOptions = {
             responsive: false,
+            scale: {
+                min: 0,
+                max: 100,
+                weight: 1000,
+            },
             plugins: {
                 legend: {
                     display: false // Hide default legend
