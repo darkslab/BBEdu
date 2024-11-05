@@ -303,7 +303,10 @@ class B2BStudentStartExamView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vi
 
         for row in package_pair_quiz_obj.student_table:
             username = row[0]
+            first_name = row[1]
+            last_name = row[2]
             lang = row[3]
+            pwd = row[4]
 
             domain = domain_ru if lang == "rus" else domain_kz
             test_set = test_set_ru if lang == "rus" else test_set_kz
@@ -315,6 +318,8 @@ class B2BStudentStartExamView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vi
                 quiz_set.quizzes.create(test=test, order=quiz_order, line_item=None)
 
             student.is_active = True
+            student.first_name = first_name
+            student.last_name = last_name
             student.save()
 
         success(request, pgettext("Success alert message", "Test is started."))
