@@ -81,7 +81,7 @@ class Question extends React.Component {
                         />
                     </div>
                     <div className="row row-eq-height border" style={{"borderBottom": "solid"}}>
-                        <div className="col-xs-12 col-md-5 border ml-2 mr-2" style={{"borderRight": "solid"}}>
+                        <div className="col-xs-12 col-md-5 border ml-2 mr-2 pb-2" style={{"borderRight": "solid"}}>
                             <div className="">
                                 <div className="">
                                     <div className="">

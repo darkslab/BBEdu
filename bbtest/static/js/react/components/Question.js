@@ -103,7 +103,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
           "borderBottom": "solid"
         }
       }, /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12 col-md-5 border ml-2 mr-2",
+        className: "col-xs-12 col-md-5 border ml-2 mr-2 pb-2",
         style: {
           "borderRight": "solid"
         }
