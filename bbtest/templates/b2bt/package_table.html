@@ -35,31 +35,6 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4 class="panel-title">{% trans 'Create Packages' context '/staff/create_package/' %}</h4>
-                </div>
-                <div class="panel-body">
-                    <form method="post" action="{% url 'bbtest:b2bt_build_add_package_pair_form' %}" class="mt-15" data-bb-form data-create-package-form>
-                        {% csrf_token %}
-
-                        {% for field in add_package_pair_form %}
-                            <div class="form-group has-error">
-                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
-                                {{field|add_class:'form-control' }}
-                            </div>
-                        {% endfor %}
-
-                        <div class="form-group">
-                            <button type="button" class="btn btn-sm btn-success btn-block" data-toggle="modal" data-target="[data-create-package-modal]">{% trans 'Create' context '/staff/create_package/' %}</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     {% comment %} Table with Existing Packages {% endcomment %}
     <div class="row">

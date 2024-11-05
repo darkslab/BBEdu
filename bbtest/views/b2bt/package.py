@@ -57,7 +57,7 @@ from bbtest.views.generic import TemplateView, View
 class BuildPackagesView(
     PermissionRequiredMixinFactory(["B2BTeacher"]), UserContextMixin, PaginationMixin, TemplateView
 ):
-    template_name = "b2bt/create_package.html"
+    template_name = "b2bt/package_table.html"
 
     def get_context_data(self, **kwargs):
         kwargs["active_nav_item"] = "manage_packages"
