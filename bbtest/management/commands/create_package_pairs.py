@@ -12,11 +12,11 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
 
         package_ru = TestPackage.objects.get(
-            code = "2404122712",
+            code = "241105010c",
             # name = "МОДО PS 9 кл Буклет 8 рус",
         )
         package_kz = TestPackage.objects.get(
-            code = "240412213d",
+            code = "241105010c",
             # name = "МОДО PS 9 кл Буклет 8 kaz",
         )
 
