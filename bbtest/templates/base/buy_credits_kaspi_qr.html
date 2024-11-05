@@ -16,7 +16,8 @@
             data: {
                 class: "BuyCreditKaspiQRPage",
                 props: {
-                    secondsLeft: 60,
+                    secondsLeft: {{ secondsLeft | safe }},
+                    secondsTotal: {{ secondsTotal | safe }},
                     qr_code_base64: "{{ qr_code_base64 | safe }}",
 
                     texts: {

@@ -1,5 +1,7 @@
 
+import time
 from decimal import Decimal
+
 from django.conf import settings
 from django.contrib.messages import success
 from django.core.cache import cache
@@ -24,6 +26,23 @@ from bbtest.views.common import UserContextMixin
 from bbtest.views.generic import TemplateView, View
 
 
+def set_cache_with_expiration(key, value, ttl):
+    expiration_key = f"{key}_expires_at"
+    expiration_time = time.time() + ttl  # Current time + TTL
+
+    cache.set(key, value, ttl)
+    cache.set(expiration_key, expiration_time, ttl)
+
+def get_remaining_ttl(key):
+    expiration_key = f"{key}_expires_at"
+    expiration_time = cache.get(expiration_key)
+
+    if expiration_time:
+        return max(0, expiration_time - time.time())
+    else:
+        return None  # Key does not exist or has expired
+    
+
 class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
     template_name = "base/buy_credits_kaspi_qr.html"
 
@@ -43,8 +62,13 @@ class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
             order = kaspi_qr_order_create(kwargs["cart_rounded_total"])
             if order["status"] != "ok":
                 raise PaymentProcessorError(str(order))
-            cache.set(order_key, order, 60 * 5)
+            # cache.set(order_key, order, 60 * 5)
+            set_cache_with_expiration(order_key, order, 60 * 5)
 
+        kwargs["secondsTotal"] = 60 * 5
+        kwargs["secondsLeft"] = round(get_remaining_ttl(order_key))
+
+        # print("ttl", kwargs["secondsLeft"])
         
         kwargs['qr_code_base64'] = generate_QR_base64(order["payment_url"])
         kwargs["kaspi_qr_form"] = {

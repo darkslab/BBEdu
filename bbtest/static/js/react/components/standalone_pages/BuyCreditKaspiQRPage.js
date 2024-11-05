@@ -18,9 +18,15 @@ var BuyCreditKaspiQRPage = /*#__PURE__*/function (_React$Component) {
     var _this;
     _classCallCheck(this, BuyCreditKaspiQRPage);
     _this = _callSuper(this, BuyCreditKaspiQRPage, [props]);
+    /* props pass from django template */
     // props.qr_code_base64
+    // props.secondsLeft
+    // props.secondsTotal
     _this.state = {
-      current_subject: "Total"
+      secondsLeft: props.secondsLeft || 60 * 5,
+      // Default to 100 if not provided
+      minutes: Math.floor(Math.max(props.secondsLeft - 1, 0) / 60),
+      seconds: Math.max(props.secondsLeft - 1, 0) % 60
     };
     return _this;
   }
@@ -28,17 +34,35 @@ var BuyCreditKaspiQRPage = /*#__PURE__*/function (_React$Component) {
   return _createClass(BuyCreditKaspiQRPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-
-      // setTimeout(() => {
-      //     console.log("timeout", this.props.subject_list[1])
-      //     this.setState({
-      //         current_subject: this.props.subject_list[1]
-      //     })
-      // }, 2000);
+      var _this2 = this;
+      // Set interval to decrease `secondsLeft` every 2 seconds
+      this.interval = setInterval(function () {
+        _this2.setState(function (prevState) {
+          return {
+            secondsLeft: Math.max(prevState.secondsLeft - 1, 0),
+            // Ensure it doesn’t go below 0
+            minutes: Math.floor(Math.max(prevState.secondsLeft - 1, 0) / 60),
+            seconds: Math.max(prevState.secondsLeft - 1, 0) % 60
+          };
+        });
+      }, 1000);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearInterval(this.interval); // Clear interval when the component unmounts
+    }
+  }, {
+    key: "calculateProgressWidth",
+    value: function calculateProgressWidth() {
+      var secondsTotal = this.props.secondsTotal || 100;
+      var widthPercentage = this.state.secondsLeft / secondsTotal * 100;
+      return "".concat(widthPercentage, "%");
     }
   }, {
     key: "render",
     value: function render() {
+      var progressWidth = this.calculateProgressWidth();
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
         className: "row"
       }, /*#__PURE__*/React.createElement("div", {
@@ -49,25 +73,33 @@ var BuyCreditKaspiQRPage = /*#__PURE__*/function (_React$Component) {
         className: "panel-body text-center"
       }, /*#__PURE__*/React.createElement("p", {
         className: "text-center"
-      }, /*#__PURE__*/React.createElement("strong", null, "Manual Payment Message")), /*#__PURE__*/React.createElement("img", {
+      }, /*#__PURE__*/React.createElement("strong", null, "\u0418\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u044F \u043F\u043E \u043E\u043F\u043B\u0430\u0442\u0435"), " "), /*#__PURE__*/React.createElement("img", {
         src: "data:image/png;base64,".concat(this.props.qr_code_base64),
         alt: "QR Code",
         className: "img-responsive center-block"
-      })), /*#__PURE__*/React.createElement("div", {
+      }), /*#__PURE__*/React.createElement("div", {
+        style: {
+          height: "5px",
+          backgroundColor: "red",
+          width: progressWidth,
+          margin: "10px auto",
+          // Centers the line
+          transition: "width 1s linear" // Smoothly update width every second
+        }
+      }), /*#__PURE__*/React.createElement("p", {
+        style: {
+          marginTop: "10px",
+          fontSize: "16px",
+          fontWeight: "bold"
+        }
+      }, "\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u043E\u043F\u043B\u0430\u0442\u0438\u0442\u0435 \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 ", this.state.minutes, " \u043C\u0438\u043D\u0443\u0442 \u0438 ", this.state.seconds, " \u0441\u0435\u043A\u0443\u043D\u0434")), /*#__PURE__*/React.createElement("div", {
         className: "text-center pb-10"
       }, /*#__PURE__*/React.createElement("a", {
         onClick: function onClick() {
           return window.location.reload();
         },
         className: "btn btn-primary"
-      }, "Refresh"))))));
-    }
-  }, {
-    key: "_selectSubject",
-    value: function _selectSubject(e) {
-      // this.setState({
-      //     current_subject: this.props.subject_list[selectedIndex - 1]
-      // });
+      }, "\u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C"))))));
     }
   }]);
 }(React.Component);
