@@ -10,11 +10,11 @@
 
     <link rel="shortcut icon" href="{% static 'img/favicon/favicon_ico.ico' %}" type="image/x-icon">
     <link rel="icon" href="{% static 'img/favicon/favicon_32.png' %}" sizes="32x32">
-    <link rel="icon" href="{% static 'img/favicon/favicon_48.png' %}" sizes="48x48">
-    <link rel="icon" href="{% static 'img/favicon/favicon_96.png' %}" sizes="96x96">
-    <link rel="icon" href="{% static 'img/favicon/favicon_144.png' %}" sizes="144x144">
+    {% comment %} <link rel="icon" href="{% static 'img/favicon/favicon_48.png' %}" sizes="48x48"> {% endcomment %}
+    <link rel="icon" href="{% static 'img/favicon/favicon_180.png' %}" sizes="180x180">
+    <link rel="icon" href="{% static 'img/favicon/favicon_192.png' %}" sizes="192x192">
 
-    <title>{% block window_title %}{% block title %}{% endblock %}{% endblock %}{% block window_title_suffix %} | modo.edu.kz{% endblock %}</title>
+    <title>{% block window_title %}{% block title %}{% endblock %}{% endblock %}{% block window_title_suffix %} | PISA 2025{% endblock %}</title>
 
     <meta name="description" content="{% block description %}{% trans '_common.html_description' %}{% endblock %}">
 
