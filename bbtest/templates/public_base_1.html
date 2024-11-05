@@ -17,13 +17,14 @@
                                     <span class="icon-bar bb-bar-button-third"></span>
                                 </button>
                                 <a class="navbar-brand ml-0 pt-10 pb-10" href="{% url 'bbtest:home' %}">
-                                    {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}
+                                    {% comment %} {% if LANGUAGE_CODE == LANGUAGE_CODE_KK %}
                                         <img class="bb-bar-logo" src="{% static 'img/logo_blue_kz.png' %}" alt="{% trans 'modo.edu.kz Logo' context 'Logo img html tag alt parameter' %}" title="modo.edu.kz">
                                     {% elif LANGUAGE_CODE == LANGUAGE_CODE_RU %}
                                         <img class="bb-bar-logo" src="{% static 'img/logo_blue_ru.png' %}" alt="{% trans 'modo.edu.kz Logo' context 'Logo img html tag alt parameter' %}" title="modo.edu.kz">
                                     {% else %}
                                         <img class="bb-bar-logo" src="{% static 'img/logo_blue_en.png' %}" alt="{% trans 'modo.edu.kz Logo' context 'Logo img html tag alt parameter' %}" title="modo.edu.kz">
-                                    {% endif %}
+                                    {% endif %} {% endcomment %}
+                                    <img class="bb-bar-logo" src="{% static 'img/pisa_logo.png' %}" alt="{% trans 'Pisa 2025 Logo' context 'Logo img html tag alt parameter' %}" title="qabilet.kz">
                                 </a>
                             </div>
                             <div class="navbar-collapse collapse" id="bb-navbar-collapse" style="height: 1px;">
