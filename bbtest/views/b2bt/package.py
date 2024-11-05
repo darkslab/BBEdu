@@ -330,7 +330,6 @@ class B2BStudentStartExamView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vi
 class BuyPackageView(
     PermissionRequiredMixinFactory(["B2BTeacher"]), 
     UserContextMixin, 
-    PaginationMixin, 
     TemplateView
 ):
     template_name = "b2bt/buy_package.html"
@@ -338,23 +337,34 @@ class BuyPackageView(
     def get_context_data(self, **kwargs):
         kwargs["active_nav_item"] = "buy_packages"
 
-        package_pair_quiz_set: TestPackageRusKazQuiz = TestPackageRusKazQuiz.objects.filter(
-            user = self.request.user
-        ).order_by(
-            "-created_at"
-        ).prefetch_related("TestPackagePair")
-        
-
-
-
-        paginator = Paginator(package_pair_quiz_set, 25)
-        try:
-            kwargs["package_pair_quiz_set"] = paginator.page(self.request.GET.get("page"))
-        except PageNotAnInteger:
-            kwargs["package_pair_quiz_set"] = paginator.page(1)
-        except EmptyPage:
-            kwargs["package_pair_quiz_set"] = paginator.page(paginator.num_pages)
-        paginator.page_indexes = self.page_indexes(kwargs["package_pair_quiz_set"], 5)
+        kwargs["card_data"] = [
+            {
+                'title': 'Пакет "Классный"',
+                'features': [
+                    'Предоставление доступа к 1 варианту теста PISA 2025 для 25 чел',
+                    'Автоматическое формирование аналитики по всему классу и каждому ученику',
+                ],
+                'price': '15 000 тг',
+            },
+            {
+                'title': 'Пакет "Школьный"',
+                'features': [
+                    'Предоставление доступа 1 варианта теста PISA 2025 для 150 чел',
+                    'Автоматическое формирование аналитики по всей школе и каждому ученику',
+                    'Предоставление методологической поддержки',
+                ],
+                'price': '50 000 тг',
+            },
+            {
+                'title': 'Пакет "Региональный"',
+                'features': [
+                    'Администрирование теста PISA 2025 для школ под ключ',
+                    'Написание аналитического отчета по успеваемости школ к PISA 2025',
+                    'Проведение тренинга учителей по языковым и предметам естественнонаучного цикла',
+                ],
+                'price': 'Договорная',
+            },
+        ]
 
 
         kwargs["add_package_pair_form"] = Buy_B2BTeacher_PackageForm()
