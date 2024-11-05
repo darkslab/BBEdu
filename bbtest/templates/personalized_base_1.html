@@ -72,9 +72,9 @@
                             <li class="{% block nav_student_buy_tests3_class %}{% endblock %}"><a href="{% url 'bbtest:student_exam' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Student testing' context 'Navigation link' %}</a></li>
                             
                         {% elif perms.bbtest.B2BTeacher %}
-                            <li class="{% if active_nav_item|default:'' == 'dashboard' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_dashboard' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Teacher dashboard' context 'Navigation link' %}</a></li>
-                            
-                            <li class="{% if active_nav_item|default:'' == 'buy_packages' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_build_packages' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Manage Packages' context 'Navigation link' %}</a></li>
+                            <li class="{% if active_nav_item|default:'' == 'dashboard' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Teacher dashboard' context 'Navigation link' %}</a></li>
+                            <li class="{% if active_nav_item|default:'' == 'buy_packages' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_buy' %}"><i class="fa fa-fw fa-dollar"></i> {% trans 'Buy Packages' context 'Navigation link' %}</a></li>
+                            <li class="{% if active_nav_item|default:'' == 'manage_packages' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_build_packages' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Manage Packages' context 'Navigation link' %}</a></li>
                             {% comment %} <li class="{% block nav_admin_create_package_class %}{% endblock %}"><a href="{% url 'bbtest:build_packages' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Manage Packages' context 'Navigation link' %}</a></li> {% endcomment %}
                             
                         {% endif %}

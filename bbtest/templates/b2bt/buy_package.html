@@ -1,0 +1,138 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n pagination widget_tweaks%}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'Create Package' context 'Page title' %}{% endblock %}
+
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "SuperCreatePackageModule"
+        });
+    </script>
+    <div class="modal fade" data-create-package-modal data-backdrop="static" data-keyboard="false" id="modal-asd">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{% trans 'Are you sure?' context '/admin/create_package/' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6 pr-5">
+                            <button type="button" class="btn btn-success btn-block btn-lg" data-create-package-confirm="true" id="confirm-create">{% trans 'Yes' context '/admin/create_package/' %}</button>
+                        </div>
+                        <div class="col-xs-6 pl-5">
+                            <button type="button" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" data-create-package-confirm="false">{% trans 'No' context '/admin/create_package/' %}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Create Packages' context '/staff/create_package/' %}</h4>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="{% url 'bbtest:b2bt_build_add_package_pair_form' %}" class="mt-15" data-bb-form data-create-package-form>
+                        {% csrf_token %}
+
+                        {% for field in add_package_pair_form %}
+                            <div class="form-group has-error">
+                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+                                {{field|add_class:'form-control' }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <button type="button" class="btn btn-sm btn-success btn-block" data-toggle="modal" data-target="[data-create-package-modal]">{% trans 'Create' context '/staff/create_package/' %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% comment %} Table with Existing Packages {% endcomment %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans 'Packages List' context '/staff/create_package/' %}</h4>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-pressed">
+                        <thead>
+                            <tr>
+                                <th class="pl-15">{% trans 'Name' context '/admin/create_package/' %}</th>
+                                {% comment %} <th class="text-center">{% trans 'Domain' context '/admin/create_package/' %}</th> {% endcomment %}
+                                <th class="text-center">{% trans 'Code' context '/admin/create_package/' %}</th>
+                                <th class="text-center">{% trans 'Created at' context '/admin/create_package/' %}</th>
+                                <th class="text-center">{% trans 'Number of students' context '/admin/create_package/' %}</th>
+                                <th class="pr-15 text-center">{% trans 'Actions' context '/admin/create_package/' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for package_pair_quiz in package_pair_quiz_set %}
+                                <tr>
+                                    <td class="pl-15"><a href="{% url 'bbtest:b2bt_build_package_pair_quiz' package_pair_quiz.pk %}">{{ package_pair_quiz.TestPackagePair.name }}</a></td>
+                                    {% comment %} <td class="text-center">{% trans package_pair_quiz.TestPackagePair.test_package_ru.domain.name %}</td> {% endcomment %}
+                                    <td class="text-center"><span class="label label-info">{{ package_pair_quiz.TestPackagePair.code  }}</span></td>
+                                    <td class="text-center">{{ package_pair_quiz.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
+                                    <td class="text-center"><span class="label label-success">{{ package_pair_quiz.number_of_students }}</span></td>
+                                    <td class="text-center">
+                                    {% if package_pair_quiz.buyed %}
+                                    {% else %}
+                                        {% comment %} {% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz.pk %} {% endcomment %}
+                                        <form action="{% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz.pk %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">Начать тестирование<br>(Отменить нельзя)</button>
+                                        </form>
+                                    {% endif %}
+                                    </td>
+                                    
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="5">{% trans 'There are no packages yet' context '/admin/create_package/' %}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% if package_pair_quiz_set.has_other_pages %}
+            <div class="col-xs-12 text-center">
+                <ul class="pagination mt-0 mb-0">
+                    {% if package_pair_quiz_set.has_previous %}
+                        <li><a href="{{ request.path }}?{% pagination_qs package_pair_quiz_set.previous_page_number %}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&laquo;</a></li>
+                    {% endif %}
+                    {% for page_index in package_pair_quiz_set.paginator.page_indexes %}
+                        {% if page_index == package_pair_quiz_set.number %}
+                            <li class="active"><a href="javascript:void(0);">{{ page_index }}</a></li>
+                        {% else %}
+                            <li><a href="{{ request.path }}?{% pagination_qs page_index %}">{{ page_index }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if package_pair_quiz_set.has_next %}
+                        <li><a href="{{ request.path }}?{% pagination_qs package_pair_quiz_set.next_page_number %}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+    
+{% endblock %}

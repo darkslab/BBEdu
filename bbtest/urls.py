@@ -70,6 +70,7 @@ from .views.b2bt import (
     B2BStudentStartExamView as B2BT_B2BStudentStartExamView,
     DashboardView as B2BT_DashboardView,
     BuyCreditsKaspiView as B2BT_BuyCreditsKaspiView,
+    BuyPackageView as B2BT_BuyPackageView,
 )
 
 from .views.package import (
@@ -275,10 +276,11 @@ urlpatterns = [
     re_path(r"^b2bt/$",                                                     B2BT_DashboardView.as_view(),                  name="b2bt_dashboard"),
     re_path(r"^b2bt/packages/$",                                            B2BT_BuildPackagesView.as_view(),              name="b2bt_build_packages"),
     re_path(r"^b2bt/create-package/create-form/$",                          B2BT_BuildCreatePackageFormView.as_view(),     name="b2bt_build_add_package_pair_form"),
+    re_path(r"^b2bt/packages/buy/$",                                        B2BT_BuyPackageView.as_view(),                 name="b2bt_buy"),
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/$",           B2BT_BuildPackageView.as_view(),               name="b2bt_build_package_pair_quiz"),
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/export/$",    B2BT_ExportStudentExcelView.as_view(),         name="b2bt_build_package_pair_export"),
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/start_exam/$",B2BT_B2BStudentStartExamView.as_view(),        name="b2bt_build_package_pair_start_exam"),
-    re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/buy_kapi/$",  B2BT_BuyCreditsKaspiView.as_view(),            name="b2bt_build_packages_buy_kaspi"),
+    re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/buy_kaspi/$", B2BT_BuyCreditsKaspiView.as_view(),            name="b2bt_build_packages_buy_kaspi"),
     
 
     # SYSTEM URLS

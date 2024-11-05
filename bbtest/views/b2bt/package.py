@@ -60,7 +60,7 @@ class BuildPackagesView(
     template_name = "b2bt/create_package.html"
 
     def get_context_data(self, **kwargs):
-        kwargs["active_nav_item"] = "buy_packages"
+        kwargs["active_nav_item"] = "manage_packages"
 
         package_pair_quiz_set: TestPackageRusKazQuiz = TestPackageRusKazQuiz.objects.filter(
             user = self.request.user
@@ -139,7 +139,7 @@ class BuildPackageView(
         # print("BuildPackageView", args, kwargs, self.get_context_data())
         # print("BuildPackageView", self.request)
         # print("BuildPackageView", kwargs, code)
-        kwargs["active_nav_item"] = "buy_packages"
+        kwargs["active_nav_item"] = "manage_packages"
 
         package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
 
@@ -325,6 +325,41 @@ class B2BStudentStartExamView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vi
         success(request, pgettext("Success alert message", "Test is started."))
         return redirect("bbtest:b2bt_build_package_pair_quiz", package_pair_quiz_id)
 
+
+
+class BuyPackageView(
+    PermissionRequiredMixinFactory(["B2BTeacher"]), 
+    UserContextMixin, 
+    PaginationMixin, 
+    TemplateView
+):
+    template_name = "b2bt/buy_package.html"
+
+    def get_context_data(self, **kwargs):
+        kwargs["active_nav_item"] = "buy_packages"
+
+        package_pair_quiz_set: TestPackageRusKazQuiz = TestPackageRusKazQuiz.objects.filter(
+            user = self.request.user
+        ).order_by(
+            "-created_at"
+        ).prefetch_related("TestPackagePair")
+        
+
+
+
+        paginator = Paginator(package_pair_quiz_set, 25)
+        try:
+            kwargs["package_pair_quiz_set"] = paginator.page(self.request.GET.get("page"))
+        except PageNotAnInteger:
+            kwargs["package_pair_quiz_set"] = paginator.page(1)
+        except EmptyPage:
+            kwargs["package_pair_quiz_set"] = paginator.page(paginator.num_pages)
+        paginator.page_indexes = self.page_indexes(kwargs["package_pair_quiz_set"], 5)
+
+
+        kwargs["add_package_pair_form"] = Buy_B2BTeacher_PackageForm()
+
+        return super().get_context_data(**kwargs)
 
 class ManagePackageCreateStudentGroupFormView(CreateStudentRequiredMixin, View):
     def post(self, request: WSGIRequest, package_code, *args, **kwargs):
