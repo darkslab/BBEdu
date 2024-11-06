@@ -72,17 +72,7 @@ class ChartProgressBar extends React.Component {
 
     render() {
         return (
-            <div className="row" style={{textAlign: "center"}}>
-                <h3 style={{textAlign: "center"}}>Мониторинг прогресса участника тестирования</h3>
-                <div className="col-lg-3"></div>
-                <div className="col-xs-12 col-lg-6 text-center" style={{textAlign: "center"}}>
-                    <p>В графике показаны Ваши результаты по данному предмету. Здесь Вы сможете отслеживать результаты каждого теста и траекторию прогресса.</p>
-                    <canvas id="progressChart" width="400" height="300" style={{maxHeight: "300px"}}></canvas>
-                    <p style={{ fontStyle: 'italic', fontSize: '14px', color: '#666' }}>
-                        Для сравнения Ваших результатов мы указали средний балл (красная линия) всех участников на сайте по данному предмету.
-                    </p>
-                </div>
-            </div>
+            <canvas id="progressChart" width="400" height="300" style={{ maxHeight: "300px" }}></canvas>
         );
     }
 }

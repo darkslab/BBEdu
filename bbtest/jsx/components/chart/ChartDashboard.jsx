@@ -97,10 +97,19 @@ class ChartDashboard extends React.Component {
                         </div>
                     </div>
                     <div className="panel panel-default" style={{ minHeight: "300px" }}>
-                        <ChartProgressBar
-                            scores_data={[200, 250, 180, 220, 0, 0, 0, 0, 0, 0]}
-                            averageScore={195}
-                        />
+                        <div className="row" style={{textAlign: "center"}}>
+                            <h3 style={{textAlign: "center"}}>Мониторинг прогресса участника тестирования</h3>
+                            <div className="text-center" style={{textAlign: "center"}}>
+                                <p>В графике показаны Ваши результаты по данному предмету. Здесь Вы сможете отслеживать результаты каждого теста и траекторию прогресса.</p>
+                                <ChartProgressBar
+                                    scores_data={[200, 250, 180, 220, 0, 0, 0, 0, 0, 0]}
+                                    averageScore={195}
+                                />
+                                <p style={{ fontStyle: 'italic', fontSize: '14px', color: '#666' }}>
+                                    Для сравнения Ваших результатов мы указали средний балл (красная линия) всех участников на сайте по данному предмету.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="col-lg-3" />
