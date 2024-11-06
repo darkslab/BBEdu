@@ -65,20 +65,9 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       }
       // console.log("topic_list_html", topic_list_html)
 
-      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-        className: "selector",
-        style: {
-          textAlign: "center"
-        }
-      }, /*#__PURE__*/React.createElement("label", {
-        htmlFor: "subject-select"
-      }, "Select Subject:"), /*#__PURE__*/React.createElement("select", {
-        className: "select_v2",
-        id: "subject-select"
-      }, /*#__PURE__*/React.createElement("option", {
-        key: "option 0",
-        value: "0"
-      }, "Total"), options)), /*#__PURE__*/React.createElement("div", {
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FloatingSelector, {
+        options: options
+      }), /*#__PURE__*/React.createElement("div", {
         className: "row"
       }, /*#__PURE__*/React.createElement("div", {
         className: "col-lg-3"

@@ -5,9 +5,9 @@
 
 {% endblock %}
 
-{% block title %}
+{% comment %} {% block title %}
   {% trans 'Dashboard' context 'Page title' %}
-{% endblock %}
+{% endblock %} {% endcomment %}
 
 {% block content %}
   <script>
@@ -16,15 +16,12 @@
         data: {
             class: "ChartDashboard",
             props: {
-                hasTimer: true,
-                secondsLeft: 60,
                 students: {{ students| safe }},
                 scores_data: {{ scoresData| safe }},
                 subject_list: {{ subject_list| safe }},
                 mean_subj: {{ mean_subj| safe }},
                 subject_topics: {{ subject_topics| safe }},
                 subject_scores: {{ subject_scores| safe }},
-
                 subject_chart_height: {{ subject_chart_height| safe }},
                 //objectClass: "ResultTestObject",
                 texts: {
