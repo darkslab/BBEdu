@@ -3,7 +3,7 @@
 
 {% block extended_footer %}{% endblock %}
 
-{% block title %}{% trans 'Create Package' context 'Page title' %}{% endblock %}
+{% comment %} {% block title %}{% trans 'Create Package' context 'Page title' %}{% endblock %} {% endcomment %}
 
 
 {% block content %}
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    {% comment %} <div class="row">
         <div class="col-xs-12 col-sm-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -59,25 +59,68 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class="row" style="justify-items: center">
-        <div class="pricing-cards">
-            {% for card in card_data %}
-                <div class="card">
-                    <h3>{{ card.title }}</h3>
-                    <ul>
-                        {% for feature in card.features %}
-                            <li>{{ feature }}</li>
-                        {% endfor %}
-                    </ul>
-                    <p class="price">{{ card.price }}</p>
-                    <button class="order-button">Заказать</button>
-                </div>
-            {% endfor %}
+    </div> {% endcomment %}
+    {% for variant in variant_list %}
+        <h2 class="text-center">{{ variant.name }}</h2>
+        <div class="row" style="justify-items: center">
+            <div class="pricing-cards">
+                {% for card in card_data %}
+                    <div class="card">
+                        <h3>{{ card.title }}</h3>
+                        <ul>
+                            {% for feature in card.features %}
+                                <li>{{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p class="price">{{ card.price }}</p>
+                        {% comment %} <button class="order-button">Заказать</button> {% endcomment %}
+                        <button class="order-button" onclick="handleOrder('{{ variant.id }}', '{{ card.number_of_students }}')">Заказать</button>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
 
+    {% endfor %}
+
+    
+    
+    <script>
+        function handleOrder(package_id, number_of_students) {
+            // Create a form element
+            const form = document.createElement("form");
+            form.method = "POST";
+            form.action = "{% url 'bbtest:b2bt_build_add_package_pair_form' %}";  // Update this with the actual endpoint URL for handling the order
+        
+            // Test package pair input
+            const packageInput = document.createElement("input");
+            packageInput.type = "hidden";
+            packageInput.name = "test_package_pair";
+            packageInput.value = 1;
+            form.appendChild(packageInput);
+
+            // Number of students input
+            const studentInput = document.createElement("input");
+            studentInput.type = "hidden";
+            studentInput.name = "number_of_students";
+            studentInput.value = number_of_students;
+            form.appendChild(studentInput);
+        
+            // Add CSRF token if required by your backend (e.g., Django)
+            const csrfToken = "{{ csrf_token }}";  // Adjust if using a templating language that supports CSRF tokens
+            if (csrfToken) {
+                const csrfInput = document.createElement("input");
+                csrfInput.type = "hidden";
+                csrfInput.name = "csrfmiddlewaretoken";
+                csrfInput.value = csrfToken;
+                form.appendChild(csrfInput);
+            }
+        
+            // Append form to body and submit
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+    </script>
     <style>
 
         .pricing-cards {

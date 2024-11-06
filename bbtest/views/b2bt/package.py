@@ -13,7 +13,7 @@ from django.contrib.messages import error, success, warning
 from django.core.exceptions import ValidationError
 from django.core.handlers.wsgi import WSGIRequest
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.db.models import F, Q
+from django.db.models import F, Q, QuerySet
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.timezone import now
@@ -24,6 +24,7 @@ from bbtest.auth.mixins import (
     CreateStudentRequiredMixin,
     PermissionRequiredMixinFactory,
 )
+from bbtest.auth.models import User
 from bbtest.forms.super import (
     Buy_B2BTeacher_PackageForm,
     CreateStudentGroupForm,
@@ -35,7 +36,6 @@ from bbtest.jobs.create_student_in_package import (
     activate_package,
     populate_package_student_group,
 )
-from bbtest.auth.models import User
 from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.models.test import (
     StudentGroup,
@@ -339,12 +339,22 @@ class BuyPackageView(
 
         kwargs["card_data"] = [
             {
+                'title': 'Пакет "Для Разработчиков"',
+                'features': [
+                    'Предоставление доступа к 1 варианту теста PISA 2025 для 5 чел',
+                    'Автоматическое формирование аналитики по всему классу и каждому ученику',
+                ],
+                'price': '1 тг',
+                'number_of_students': 5,
+            },
+            {
                 'title': 'Пакет "Классный"',
                 'features': [
                     'Предоставление доступа к 1 варианту теста PISA 2025 для 25 чел',
                     'Автоматическое формирование аналитики по всему классу и каждому ученику',
                 ],
                 'price': '15 000 тг',
+                'number_of_students': 25,
             },
             {
                 'title': 'Пакет "Школьный"',
@@ -354,20 +364,24 @@ class BuyPackageView(
                     'Предоставление методологической поддержки',
                 ],
                 'price': '50 000 тг',
+                'number_of_students': 150,
             },
-            {
-                'title': 'Пакет "Региональный"',
-                'features': [
-                    'Администрирование теста PISA 2025 для школ под ключ',
-                    'Написание аналитического отчета по успеваемости школ к PISA 2025',
-                    'Проведение тренинга учителей по языковым и предметам естественнонаучного цикла',
-                ],
-                'price': 'Договорная',
-            },
+            # {
+            #     'title': 'Пакет "Региональный"',
+            #     'features': [
+            #         'Администрирование теста PISA 2025 для школ под ключ',
+            #         'Написание аналитического отчета по успеваемости школ к PISA 2025',
+            #         'Проведение тренинга учителей по языковым и предметам естественнонаучного цикла',
+            #     ],
+            #     'price': 'Договорная',
+            # },
         ]
 
+        variant_list: QuerySet[TestPackageRusKazPair] = TestPackageRusKazPair.objects.all()
 
-        kwargs["add_package_pair_form"] = Buy_B2BTeacher_PackageForm()
+        
+        kwargs["variant_list"] = variant_list
+        # kwargs["add_package_pair_form"] = Buy_B2BTeacher_PackageForm()
 
         return super().get_context_data(**kwargs)
 
