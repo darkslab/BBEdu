@@ -105,6 +105,7 @@ BASE3_SOURCE_FILENAMES = (
     "js/react/components/TestTimer.js",
     "js/react/components/TestCalculator.js",
     "js/react/components/TestPeriodicTable.js",
+    "js/react/components/FloatingSelector.js",
 
     "js/react/components/test_dev/DeveloperTest.js",
     "js/react/components/test_dev/DeveloperQuestion.js",
