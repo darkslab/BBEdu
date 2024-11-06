@@ -18,6 +18,13 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
     var _this;
     _classCallCheck(this, ChartDashboard);
     _this = _callSuper(this, ChartDashboard, [props]);
+    // this.props.students
+    // this.props.scores_data
+    // this.props.subject_list
+    // this.props.mean_subj
+    // this.props.subject_topics
+    // this.props.subject_scores
+    // this.props.subject_chart_height
     _this.state = {
       current_subject: "Total"
     };
@@ -32,24 +39,9 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       option_select.select2({
         width: '20vw'
       });
-      // option_select.on('select2:select', function (e) {
-      //     var data = e.params.data;
-      //     const selectedIndex = parseInt(data.id);
-      //     const selectedSubject = data.text;
-      //     console.log(data, selectedIndex, selectedSubject);
-      //     update_chart(myChart, selectedIndex, selectedSubject, subject_list, scores_data);
-      //     // update_doughnut_chart(selectedSubject); // Update doughnut chart with selected subject
-      // });
       option_select.on('select2:select', function (event) {
         return _this2._selectSubject(event);
       });
-
-      // setTimeout(() => {
-      //     console.log("timeout", this.props.subject_list[1])
-      //     this.setState({
-      //         current_subject: this.props.subject_list[1]
-      //     })
-      // }, 2000);
     }
   }, {
     key: "render",
@@ -62,18 +54,22 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
           value: i + 1
         }, subject_list[i]));
       }
+      var selected_subject_topics = this.props.subject_topics[this.state.current_subject];
+      var selected_subject_average = this.props.mean_subj[this.state.current_subject];
+      var topic_list_html = [];
+      for (var _i = 0; _i < selected_subject_topics.length; _i++) {
+        topic_list_html.push( /*#__PURE__*/React.createElement("li", {
+          key: "option ".concat(_i + 1),
+          value: _i + 1
+        }, selected_subject_topics[_i]));
+      }
+      // console.log("topic_list_html", topic_list_html)
+
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-        className: "row"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "col-lg-3"
-      }), /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12 col-lg-6"
-      }, /*#__PURE__*/React.createElement("h2", {
+        className: "selector",
         style: {
           textAlign: "center"
         }
-      }, "Student Test Results"), /*#__PURE__*/React.createElement("div", {
-        className: "selector"
       }, /*#__PURE__*/React.createElement("label", {
         htmlFor: "subject-select"
       }, "Select Subject:"), /*#__PURE__*/React.createElement("select", {
@@ -82,32 +78,56 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/React.createElement("option", {
         key: "option 0",
         value: "0"
-      }, "Total"), options)), /*#__PURE__*/React.createElement(ChartTotal, {
+      }, "Total"), options)), /*#__PURE__*/React.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "col-lg-3"
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "col-xs-12 col-lg-6",
+        style: {
+          minWidth: "600px"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "row panel panel-default"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "h3",
+        style: {
+          textAlign: "center"
+        }
+      }, "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u0443\u0447\u0435\u043D\u0438\u043A\u043E\u0432"), /*#__PURE__*/React.createElement(ChartTotal, {
         subject_list: this.props.subject_list,
         scores_data: this.props.scores_data,
         selected_subject: this.state.current_subject,
         students: this.props.students
-      }))), ";", /*#__PURE__*/React.createElement("div", {
-        className: "row"
-      }, /*#__PURE__*/React.createElement("h2", {
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "row panel panel-default"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "h3",
         style: {
           textAlign: "center"
         }
-      }, "Student Average Results"), /*#__PURE__*/React.createElement("div", {
-        className: "col-lg-3"
-      }), /*#__PURE__*/React.createElement(ChartPolarArea, {
+      }, "\u0423\u0441\u0440\u0435\u0434\u043D\u0435\u043D\u043D\u044B\u0435 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u0443\u0447\u0435\u043D\u0438\u043A\u043E\u0432"), /*#__PURE__*/React.createElement("div", {
+        className: "col-xs-12 col-lg-6"
+      }, /*#__PURE__*/React.createElement(ChartPolarArea, {
         subject_list: this.props.subject_list,
         scores_data: this.props.scores_data,
         subject_topics: this.props.subject_topics,
         subject_scores: this.props.subject_scores,
         selected_subject: this.state.current_subject,
         students: this.props.students
-      }), /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12 col-lg-3"
-      }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "\u0423\u0447\u0435\u043D\u0438\u043A\u0438 \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0438 \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E \u043D\u0430 12 \u0432\u043E\u043F\u0440\u043E\u0441\u043E\u0432 (120 \u0431\u0430\u043B\u043B\u043E\u0432) \u0438\u0437 12 \u043F\u043E \u0434\u0430\u043D\u043D\u043E\u043C\u0443 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u0443")), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "\u041F\u043E\u043B\u043E\u0436\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0447\u0438\u0441\u043B\u0430. \u041E\u0442\u0440\u0438\u0446\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0447\u0438\u0441\u043B\u0430. \u041A\u043E\u043E\u0440\u0434\u0438\u043D\u0430\u0442\u043D\u0430\u044F \u043F\u0440\u044F\u043C\u0430\u044F."), /*#__PURE__*/React.createElement("li", null, "\u041F\u0440\u043E\u0442\u0438\u0432\u043E\u043F\u043E\u043B\u043E\u0436\u043D\u044B\u0435 \u0447\u0438\u0441\u043B\u0430. \u0426\u0435\u043B\u044B\u0435 \u0447\u0438\u0441\u043B\u0430. \u0420\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0435 \u0447\u0438\u0441\u043B\u0430. \u041C\u043E\u0434\u0443\u043B\u044C \u0447\u0438\u0441\u043B\u0430."), /*#__PURE__*/React.createElement("li", null, "\u0421\u0440\u0430\u0432\u043D\u0435\u043D\u0438\u0435 \u0440\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0447\u0438\u0441\u0435\u043B. \u0421\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u0440\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0447\u0438\u0441\u0435\u043B \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u043A\u043E\u043E\u0440\u0434\u0438\u043D\u0430\u0442\u043D\u043E\u0439 \u043F\u0440\u044F\u043C\u043E\u0439."), /*#__PURE__*/React.createElement("li", null, "\u0421\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u043E\u0442\u0440\u0438\u0446\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0445 \u0440\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0447\u0438\u0441\u0435\u043B. \u0421\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u0440\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0447\u0438\u0441\u0435\u043B \u0441 \u0440\u0430\u0437\u043D\u044B\u043C\u0438 \u0437\u043D\u0430\u043A\u0430\u043C\u0438. \u0412\u044B\u0447\u0438\u0442\u0430\u043D\u0438\u0435 \u0440\u0430\u0446\u0438\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0447\u0438\u0441\u0435\u043B."), /*#__PURE__*/React.createElement("li", null, "\u0420\u0430\u0441\u0441\u0442\u043E\u044F\u043D\u0438\u0435 \u043C\u0435\u0436\u0434\u0443 \u0442\u043E\u0447\u043A\u0430\u043C\u0438 \u043D\u0430 \u043A\u043E\u043E\u0440\u0434\u0438\u043D\u0430\u0442\u043D\u043E\u0439 \u043F\u0440\u044F\u043C\u043E\u0439.")))), /*#__PURE__*/React.createElement(ChartProgressBar, {
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "col-xs-12 col-lg-6"
+      }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "\u0423\u0447\u0435\u043D\u0438\u043A\u0438 \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0438 \u043D\u0430\u0431\u0440\u0430\u043B\u0438 ".concat(selected_subject_average, " \u0431\u0430\u043B\u043B\u043E\u0432"))), /*#__PURE__*/React.createElement("ul", null, topic_list_html))), /*#__PURE__*/React.createElement("div", {
+        className: "panel panel-default",
+        style: {
+          minHeight: "300px"
+        }
+      }, /*#__PURE__*/React.createElement(ChartProgressBar, {
         scores_data: [200, 250, 180, 220, 0, 0, 0, 0, 0, 0],
         averageScore: 195
-      }));
+      }))), /*#__PURE__*/React.createElement("div", {
+        className: "col-lg-3"
+      })));
     }
   }, {
     key: "_selectSubject",

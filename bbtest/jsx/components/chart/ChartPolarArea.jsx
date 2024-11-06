@@ -32,7 +32,7 @@ class ChartPolarArea extends React.Component {
         };
 
         const polarAreaOptions = {
-            responsive: false,
+            responsive: true,
             scale: {
                 min: 0,
                 max: 100,
@@ -106,9 +106,7 @@ class ChartPolarArea extends React.Component {
 
     render() {
 
-        return <div className="col-xs-12 col-lg-3">
-            <canvas id="myDoughnutChart" width="400" height="400"></canvas>
-        </div>
+        return <canvas id="myDoughnutChart" width="400" height="400"></canvas>
     }
 
     // Function to update doughnut chart based on selected subject

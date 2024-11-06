@@ -48,7 +48,7 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
         }]
       };
       var polarAreaOptions = {
-        responsive: false,
+        responsive: true,
         scale: {
           min: 0,
           max: 100,
@@ -123,13 +123,11 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12 col-lg-3"
-      }, /*#__PURE__*/React.createElement("canvas", {
+      return /*#__PURE__*/React.createElement("canvas", {
         id: "myDoughnutChart",
         width: "400",
         height: "400"
-      }));
+      });
     }
 
     // Function to update doughnut chart based on selected subject
