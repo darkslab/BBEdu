@@ -49,12 +49,23 @@
                                     {% comment %} column 0 {% endcomment %}
                                     <td class="text-center" data-name="user_id">{{ student.0 }}</td>
                                     {% comment %} column 1 {% endcomment %}
-                                    <td class="text-center editable-cell" contenteditable="true" data-name="firstname">{{ student.1 }}</td>
+                                    {% if not package_pair_quiz_obj.started %}
+                                        <td class="text-center editable-cell" contenteditable="true" data-name="firstname">{{ student.1 }}</td>
+                                    {% else %}
+                                        <td class="text-center" data-name="firstname">{{ student.1 }}</td>
+                                    {% endif %}
                                     {% comment %} column 2 {% endcomment %}
-                                    <td class="text-center editable-cell" contenteditable="true" data-name="lastname">{{ student.2 }}</td>
+                                    {% if not package_pair_quiz_obj.started %}
+                                        <td class="text-center editable-cell" contenteditable="true" data-name="lastname">{{ student.2 }}</td>
+                                    {% else %}
+                                        <td class="text-center" data-name="lastname">{{ student.2 }}</td>
+                                    {% endif %}
                                     {% comment %} column 3 {% endcomment %}
                                     <td class="text-center w-5">
-                                        <select class="form-control">
+                                        <select 
+                                            class="form-control"
+                                            {% if package_pair_quiz_obj.started %}disabled{% endif %}
+                                            >
                                             <option value="rus" {% if student.3 == 'rus' %}selected{% endif %}>rus</option>
                                             <option value="kaz" {% if student.3 == 'kaz' %}selected{% endif %}>kaz</option>
                                         </select>

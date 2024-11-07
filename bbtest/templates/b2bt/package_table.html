@@ -58,7 +58,7 @@
                         </thead>
                         <tbody>
                             {% for package_pair_quiz in package_pair_quiz_set %}
-                                <tr {% if package_pair_quiz.payed %}class="success"{% endif %}>
+                                <tr {% if not package_pair_quiz.payed %}class="danger"{% endif %}>
                                     <td class="pl-15">{{ forloop.counter }}</td>
 
 
