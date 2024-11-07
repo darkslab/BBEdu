@@ -661,6 +661,12 @@ class TestPackageRusKazQuiz(Model):
         db_index=True,
         null=False,
     )
+    started = BooleanField(
+        pgettext_lazy("Model field", "is started?"),
+        default=False,
+        db_index=True,
+        null=False,
+    )
     number_of_students = PositiveIntegerField(
         pgettext_lazy("Model field", "number of students in package quiz"),
     )
