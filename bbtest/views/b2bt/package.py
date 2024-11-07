@@ -55,12 +55,12 @@ from bbtest.views.generic import TemplateView, View
 
 
 class BuildPackagesView(
-    PermissionRequiredMixinFactory(["B2BTeacher"]), UserContextMixin, PaginationMixin, TemplateView
+    PermissionRequiredMixinFactory(["B2BTeacher"]), UserContextMixin, TemplateView, PaginationMixin
 ):
     template_name = "b2bt/package_table.html"
 
     def get_context_data(self, **kwargs):
-        kwargs["active_nav_item"] = "manage_packages"
+        kwargs["active_nav_item"] = "manage_students"
 
         package_pair_quiz_set: TestPackageRusKazQuiz = TestPackageRusKazQuiz.objects.filter(
             user = self.request.user
@@ -68,18 +68,6 @@ class BuildPackagesView(
             "-created_at"
         ).prefetch_related("TestPackagePair")
         
-
-        # kwargs["q"] = ""
-        # try:
-        #     package_pair_quiz_set = package_pair_quiz_set.filter(
-        #         Q(name__icontains=self.request.GET["q"])
-        #         | Q(code__icontains=self.request.GET["q"])
-        #         # |
-        #         # Q(domain_name__icontains=self.request.GET["q"])
-        #     )
-        #     kwargs["q"] = self.request.GET["q"]
-        # except KeyError:
-        #     pass
 
         paginator = Paginator(package_pair_quiz_set, 25)
         try:
@@ -104,11 +92,6 @@ class BuildPackagesListView(
     def get_context_data(self, **kwargs):
         kwargs["active_nav_item"] = "manage_variants"
 
-        # package_pair_quiz_set: TestPackageRusKazQuiz = TestPackageRusKazQuiz.objects.filter(
-        #     user = self.request.user
-        # ).order_by(
-        #     "-created_at"
-        # ).prefetch_related("TestPackagePair")
         
         package_pair_list: QuerySet[TestPackageRusKazPair] = TestPackageRusKazPair.objects.filter(
             test_package_pair_quiz_sets__user = self.request.user
@@ -181,7 +164,7 @@ class BuildPackageView(
         # print("BuildPackageView", args, kwargs, self.get_context_data())
         # print("BuildPackageView", self.request)
         # print("BuildPackageView", kwargs, code)
-        kwargs["active_nav_item"] = "manage_packages"
+        kwargs["active_nav_item"] = "manage_students"
 
         package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
 
@@ -363,6 +346,9 @@ class B2BStudentStartExamView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vi
             student.first_name = first_name
             student.last_name = last_name
             student.save()
+        
+        package_pair_quiz_obj.started = True
+        package_pair_quiz_obj.save()
 
         success(request, pgettext("Success alert message", "Test is started."))
         return redirect("bbtest:b2bt_build_package_pair_quiz", package_pair_quiz_id)
@@ -426,6 +412,8 @@ class BuyPackageView(
         # kwargs["add_package_pair_form"] = Buy_B2BTeacher_PackageForm()
 
         return super().get_context_data(**kwargs)
+
+# ---------------------------------------------------------------------
 
 class ManagePackageCreateStudentGroupFormView(CreateStudentRequiredMixin, View):
     def post(self, request: WSGIRequest, package_code, *args, **kwargs):
