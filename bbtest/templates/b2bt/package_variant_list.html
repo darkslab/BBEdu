@@ -1,0 +1,69 @@
+{% extends '../personalized_base_1.html' %}
+{% load i18n pagination widget_tweaks%}
+
+{% block extended_footer %}{% endblock %}
+
+{% block title %}{% trans 'Manage Variants' context 'Page title' %}{% endblock %}
+
+{% block content %}
+    <script>
+        moduleDataStack.push({
+            module: "SubmitModule"
+        });
+        moduleDataStack.push({
+            module: "SuperCreatePackageModule"
+        });
+    </script>
+    {% for package_pair in package_pair_list %}
+        {% comment %} Table with already added tests {% endcomment %}
+        <div class="row " style="display: flex; justify-content: center">
+            <div class="col-xs-12 col-lg-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">{% trans 'Variant' context '/b2bt/' %}: {{ package_pair.name }}</h4>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-pressed">
+                            <thead>
+                                <tr>
+                                    {% comment %} column 1 {% endcomment %}
+                                    <th>{% trans 'Section' context '/package-manage/' %}</th>
+                                    {% comment %} column 2 {% endcomment %}
+                                    <th>{% trans 'Language' context '/super/tests/' %}</th>
+                                    {% comment %} column 3 {% endcomment %}
+                                    <th class="pr-15 text-center">{% trans 'Actions' context '/super/tests/' %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for test, lang in package_pair.tests_list %}
+                                    <tr>
+                                        {% comment %} column 1 {% endcomment %}
+                                        <td>{% trans test.section.name %}</td>
+                                        {% comment %} column 2 {% endcomment %}
+                                        <td>{% trans lang %}</td>
+                                        {% comment %} column 3 {% endcomment %}
+                                        <td class="pl-15 text-center">
+                                            {% comment %} <a href="{% url 'bbtest:build_test_preview' test.code  %}">#{{ test.code|upper }}</a> {% endcomment %}
+                                            <a href="{% url 'bbtest:build_test_preview' test.code %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'View' context '/b2bt/' %}</a>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/package-manage/' %}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% empty %}
+        <tr>
+            <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are test package bought     yet' context '/super/tests/' %}</td>
+        </tr>
+    {% endfor %}
+
+    
+{% endblock %}

@@ -96,6 +96,48 @@ class BuildPackagesView(
         return super().get_context_data(**kwargs)
 
 
+class BuildPackagesListView(
+    PermissionRequiredMixinFactory(["B2BTeacher"]), UserContextMixin, TemplateView
+):
+    template_name = "b2bt/package_variant_list.html"
+
+    def get_context_data(self, **kwargs):
+        kwargs["active_nav_item"] = "manage_variants"
+
+        # package_pair_quiz_set: TestPackageRusKazQuiz = TestPackageRusKazQuiz.objects.filter(
+        #     user = self.request.user
+        # ).order_by(
+        #     "-created_at"
+        # ).prefetch_related("TestPackagePair")
+        
+        package_pair_list: QuerySet[TestPackageRusKazPair] = TestPackageRusKazPair.objects.filter(
+            test_package_pair_quiz_sets__user = self.request.user
+        ).distinct().order_by(
+            "id"
+        ).all()
+
+        kwargs["package_pair_list"] = package_pair_list
+        
+        print(package_pair_list)
+
+        for test_package_pair_obj in package_pair_list:
+
+            package_ru = test_package_pair_obj.test_package_ru
+            package_kz = test_package_pair_obj.test_package_kz
+
+
+            tests_ru: QuerySet[Test] = package_ru.tests.order_by("section__order").all()
+            tests_kz: QuerySet[Test] = package_kz.tests.order_by("section__order").all()
+
+
+            # test_package_pair_obj.tests_list = [{"test": ts, "lang": "rus"} for ts in tests_ru]
+            # test_package_pair_obj.tests_list.extend([{"test": ts, "lang": "kaz"} for ts in tests_kz])
+            test_package_pair_obj.tests_list = [[ts, "rus"] for ts in tests_ru]
+            test_package_pair_obj.tests_list.extend([[ts, "kaz"] for ts in tests_kz])
+
+
+        return super().get_context_data(**kwargs)
+
 class BuildStudentGroupView(
     PermissionRequiredMixinFactory(["B2BTeacher"]),
     UserContextMixin,
