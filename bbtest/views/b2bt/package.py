@@ -4,6 +4,7 @@ import json
 import uuid
 from datetime import datetime
 from random import randint
+from typing import List
 
 import xlsxwriter
 from django.conf import settings
@@ -14,6 +15,7 @@ from django.core.exceptions import ValidationError
 from django.core.handlers.wsgi import WSGIRequest
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import F, Q, QuerySet
+from django.db.transaction import atomic
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.timezone import now
@@ -34,6 +36,8 @@ from bbtest.forms.super import (
 from bbtest.http import TightJsonResponse
 from bbtest.jobs.create_student_in_package import (
     activate_package,
+    create_package_pair_quiz_users,
+    create_package_pair_quiz_users_helper,
     populate_package_student_group,
 )
 from bbtest.models.quiz import Quiz, QuizSet
@@ -222,43 +226,76 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
         student_table = []
         for i in range(int(number_of_students)):
             passwrd = "{:05}".format(randint(10000, 99999))
-            user: User = self.create_students(passwrd)
-            student_table.append([user.username, "first", "last", "rus", passwrd])
+            # user: User = self.create_students(passwrd)
+            student_table.append(["", f"Имя {i+1}", f"Фамилия {i+1}", "rus", passwrd])
+            
+
+        # student_table = []
+        # bulk_create_user: List[User] = []
+        # for i in range(int(number_of_students)):
+        #     temp_username = uuid.uuid4().hex
+        #     temp_email = f"{temp_username}@b2b.bbtest.kz"
+        #     passwrd = "{:05}".format(randint(10000, 99999))
+        #     # user: User = self.create_students(passwrd)
+        #     temp_user = User(
+        #             username=temp_username,
+        #             email=temp_email,
+        #             password=passwrd,
+        #             is_active=False,
+        #             first_name = f"Имя {i+1}",
+        #             last_name = f"Фамилия {i+1}",
+        #         )
+        #     bulk_create_user.append(temp_user)
+        #     student_table.append(["user.username", f"Имя {i+1}", f"Фамилия {i+1}", "rus", passwrd])
+
+        # content_type = ContentType.objects.get_for_model(User)
+        # permissions = [Permission.objects.get(codename="student", content_type=content_type)]
+
+        # with atomic(savepoint=False):
+        #     created_users: List[User] = User.objects.bulk_create(bulk_create_user)
+        # for i, std_user in enumerate(created_users):
+        #     std_user.user_permissions.set(permissions)
+        #     std_user.username = f"std{std_user.pk}"
+        #     student_table[i][0] = f"std{std_user.pk}"
+        
+        # User.objects.bulk_update(created_users, ["username"])
+
 
         package_quiz_obj = TestPackageRusKazQuiz.objects.create(
-            # name = name,
             user=request.user,
             TestPackagePair=test_package_pair,
             number_of_students=number_of_students,
             student_table = student_table,
         )
+
+        # create_package_pair_quiz_users.delay(package_quiz_obj)
+        create_package_pair_quiz_users_helper(package_quiz_obj)
+
+
         print("AddPackagePairFormView", package_quiz_obj)
 
         return redirect("bbtest:b2bt_build_package_pair_quiz", package_quiz_obj.id)
     
 
-    def create_students(self, password, is_active = False):
-        temp_username = uuid.uuid4().hex
-        temp_email = f"{temp_username}@b2b.bbtest.kz"
+    # def create_students(self, password, is_active = False):
+        # temp_username = uuid.uuid4().hex
+        # temp_email = f"{temp_username}@b2b.bbtest.kz"
 
-        user: User = User.objects.create_user(
-            username=temp_username, email=temp_email, password=password
-        )
+        # user: User = User.objects.create_user(
+        #     username=temp_username, email=temp_email, password=password
+        # )
 
-        user.username = f"std{user.pk}"
-        user.email = f"{user.username}@b2b.bbtest.kz"
-        user.first_name = "first"
-        user.last_name = "last"
-        user.is_active = is_active
-        user.save()
+        # user.username = f"std{user.pk}"
+        # user.email = f"{user.username}@b2b.bbtest.kz"
+        # user.first_name = "first"
+        # user.last_name = "last"
+        # user.is_active = is_active
+        # user.save()
 
-        content_type = ContentType.objects.get_for_model(type(user))
-        permissions = []
-        permissions.append(
-            Permission.objects.get(codename="student", content_type=content_type)
-        )
-        user.user_permissions.set(permissions)
-        return user
+        # content_type = ContentType.objects.get_for_model(type(user))
+        # permissions = [Permission.objects.get(codename="student", content_type=content_type)]
+        # user.user_permissions.set(permissions)
+        # return user
 
 class ExportStudentExcelView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
 
