@@ -142,9 +142,9 @@ def populate_demouser_test(user: User):
 
 
 def create_package_pair_quiz_users_helper(package_quiz_obj: TestPackageRusKazQuiz):
-    student_table = package_quiz_obj.student_table
-    number_of_students = len(student_table)
-
+    student_table = [] # package_quiz_obj.student_table
+    number_of_students = package_quiz_obj.number_of_students 
+    
     bulk_create_user: List[User] = []
     for i in range(int(number_of_students)):
         temp_username = uuid.uuid4().hex

@@ -223,11 +223,11 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
         # comment = form.cleaned_data["comment"]
         number_of_students = form.cleaned_data["number_of_students"]
 
-        student_table = []
-        for i in range(int(number_of_students)):
-            passwrd = "{:05}".format(randint(10000, 99999))
-            # user: User = self.create_students(passwrd)
-            student_table.append(["", f"Имя {i+1}", f"Фамилия {i+1}", "rus", passwrd])
+        # student_table = []
+        # for i in range(int(number_of_students)):
+        #     passwrd = "{:05}".format(randint(10000, 99999))
+        #     # user: User = self.create_students(passwrd)
+        #     student_table.append(["", f"Имя {i+1}", f"Фамилия {i+1}", "rus", passwrd])
             
 
         # student_table = []
@@ -265,7 +265,7 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
             user=request.user,
             TestPackagePair=test_package_pair,
             number_of_students=number_of_students,
-            student_table = student_table,
+            student_table = [],
         )
 
         # create_package_pair_quiz_users.delay(package_quiz_obj)
