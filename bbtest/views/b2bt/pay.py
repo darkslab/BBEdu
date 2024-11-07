@@ -47,7 +47,7 @@ class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
     template_name = "base/buy_credits_kaspi_qr.html"
 
     def get(self, request: WSGIRequest, package_pair_quiz_id, *args, **kwargs):
-        package_pair_quiz_obj = get_object_or_404(TestPackageRusKazQuiz.objects, user=request.user, pk=package_pair_quiz_id)
+        package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, user=request.user, pk=package_pair_quiz_id)
         # if transaction is payed redirect to pakage quiz control
         if package_pair_quiz_obj.payed:
             return redirect("bbtest:b2bt_build_package_pair_quiz", package_pair_quiz_obj.pk)
@@ -56,7 +56,16 @@ class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
         order_key = f"package_pair_quiz_obj-{package_pair_quiz_obj.pk}"
         order = cache.get(order_key)
         cache_hit = order is not None
-        kwargs["cart_rounded_total"] = 1
+
+        price = 1
+        if package_pair_quiz_obj.number_of_students <= 5:
+            price = 1
+        elif package_pair_quiz_obj.number_of_students <= 25:
+            price = 2
+        elif package_pair_quiz_obj.number_of_students <= 150:
+            price = 3
+            
+        kwargs["cart_rounded_total"] = price
 
         if not cache_hit:
             order = kaspi_qr_order_create(kwargs["cart_rounded_total"])

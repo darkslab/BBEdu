@@ -134,18 +134,18 @@ class Buy_B2BTeacher_PackageForm(Form):
         empty_label=pgettext("Buy_B2BTeacher_PackageForm", "Select TestPackage"),
     )
 
-    number_of_students = ChoiceField(
+    number_of_students = IntegerField(
         label=pgettext("Buy_B2BTeacher_PackageForm", "Number of Students"),
         error_messages={
             "required": "Select Number of Students",
-            "invalid_choice": "Invalid choice.",
+            # "invalid_choice": "Invalid choice.",
         },
-        choices=(
-            (5, "5 (5000 KZT)"),
-            (25, "25 (10000 KZT)"),
-            (50, "50 (19000 KZT)"),
-            (100, "100 (35000 KZT)"),
-        ),
+        # choices=(
+        #     (5, "5 (5000 KZT)"),
+        #     (25, "25 (10000 KZT)"),
+        #     (50, "50 (19000 KZT)"),
+        #     (100, "100 (35000 KZT)"),
+        # ),
     )
 
     # comment = CharField(
