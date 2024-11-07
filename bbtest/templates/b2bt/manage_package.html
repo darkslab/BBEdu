@@ -14,143 +14,11 @@
             module: "SuperCreatePackageModule"
         });
     </script>
-    <div class="row">
-        <div class="col-xs-12">
-            {% comment %} <h4>Package&nbsp;"{{ package.name }}"&nbsp;{{ package.domain.name }}&nbsp;<span class="label label-info">{{ package.code }}</span></h4> {% endcomment %}
-            <h5>{% trans 'Package' context '/package-manage/manage-package/' %} "{{ package.name }}" <span class="label label-info">{{ package.code }}</span></h5>
-            {% comment %} <h5>{% trans 'Student Group' context '/package-manage/student-group/' %} №{{ student_group.pk }}: "{{ student_group.name }}"</h5> {% endcomment %}
-            <h5>{% trans package.domain.name %}</h5>
-        </div>
-    </div>
 
-    {% comment %} Table with already added tests {% endcomment %}
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4 class="panel-title">{% trans 'Package' context '/build/packages/PACKAGE_CODE/' %} {% trans 'Russian variant' context '/build/packages/PACKAGE_CODE/' %} </h4>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover table-pressed">
-                        <thead>
-                            <tr>
-                                {% comment %} column 1 {% endcomment %}
-                                <th class="text-center">{% trans 'Variant' context '/package-manage/' %}</th>
-                                {% comment %} <th class="pl-15">{% trans 'Developer' context '/package-manage/' %}</th> {% endcomment %}
-                                {% comment %} column 2 {% endcomment %}
-                                {% comment %} <th>{% trans 'Domain' context '/package-manage/' %}</th> {% endcomment %}
-                                {% comment %} column 3 {% endcomment %}
-                                <th>{% trans 'Section' context '/package-manage/' %}</th>
-                                {% comment %} column 4 {% endcomment %}
-                                <th class="text-center">{% trans 'Order' context '/package-manage/' %}</th>
-                                {% comment %} column 5 {% endcomment %}
-                                {% comment %} column 6 {% endcomment %}
-                                <th class="text-center">{% trans 'Status' context '/package-manage/' %}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for test in tests_ru %}
-                                <tr {% if test.developer == user %}class="success"{% endif %}>
-                                    {% comment %} column 1 {% endcomment %}
-                                    <td class="pl-15 text-center">
-                                        <a href="{% url 'bbtest:build_test_preview' test.code  %}">#{{ test.code|upper }}</a>
-                                    </td>
-                                    {% comment %} <td class="pl-15">{{ test.developer.get_full_name }}</td> {% endcomment %}
-                                    {% comment %} column 2 {% endcomment %}
-                                    {% comment %} <td>{% trans test.section.domain.name %}</td> {% endcomment %}
-                                    {% comment %} column 3 {% endcomment %}
-                                    <td>{% trans test.section.name %}</td>
-                                    {% comment %} column 4 {% endcomment %}
-                                    <td class="text-center">{{ test.section.order }}</td>
-                                    {% comment %} column 5 {% endcomment %}
-                                    {% comment %} column 6 {% endcomment %}
-                                    <td class="text-center">
-                                        {% if test.is_archived   %}<span class="label label-danger" >{{ test.get_status_display }}</span>
-                                        {% elif test.is_approved %}<span class="label label-success">{{ test.get_status_display }}</span>
-                                        {% elif test.is_pending  %}<span class="label label-info"   >{{ test.get_status_display }}</span>
-                                        {% elif test.is_draft    %}<span class="label label-default">{{ test.get_status_display }}</span>
-                                        {% elif test.is_redo     %}<span class="label label-warning">{{ test.get_status_display }}</span>
-                                        {% elif test.is_active   %}<span class="label label-primary">{{ test.get_status_display }}</span>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% empty %}
-                                <tr>
-                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/package-manage/' %}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4 class="panel-title">{% trans 'Package' context '/build/packages/PACKAGE_CODE/' %} {% trans 'Kazakh variant' context '/build/packages/PACKAGE_CODE/' %} </h4>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover table-pressed">
-                        <thead>
-                            <tr>
-                                {% comment %} column 1 {% endcomment %}
-                                <th class="text-center">{% trans 'Variant' context '/package-manage/' %}</th>
-                                {% comment %} <th class="pl-15">{% trans 'Developer' context '/package-manage/' %}</th> {% endcomment %}
-                                {% comment %} column 2 {% endcomment %}
-                                {% comment %} <th>{% trans 'Domain' context '/package-manage/' %}</th> {% endcomment %}
-                                {% comment %} column 3 {% endcomment %}
-                                <th>{% trans 'Section' context '/package-manage/' %}</th>
-                                {% comment %} column 4 {% endcomment %}
-                                <th class="text-center">{% trans 'Order' context '/package-manage/' %}</th>
-                                {% comment %} column 5 {% endcomment %}
-                                {% comment %} column 6 {% endcomment %}
-                                <th class="text-center">{% trans 'Status' context '/package-manage/' %}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for test in tests_kz %}
-                                <tr {% if test.developer == user %}class="success"{% endif %}>
-                                    {% comment %} column 1 {% endcomment %}
-                                    <td class="pl-15 text-center">
-                                        <a href="{% url 'bbtest:build_test_preview' test.code  %}">#{{ test.code|upper }}</a>
-                                    </td>
-                                    {% comment %} <td class="pl-15">{{ test.developer.get_full_name }}</td> {% endcomment %}
-                                    {% comment %} column 2 {% endcomment %}
-                                    {% comment %} <td>{% trans test.section.domain.name %}</td> {% endcomment %}
-                                    {% comment %} column 3 {% endcomment %}
-                                    <td>{% trans test.section.name %}</td>
-                                    {% comment %} column 4 {% endcomment %}
-                                    <td class="text-center">{{ test.section.order }}</td>
-                                    {% comment %} column 5 {% endcomment %}
-                                    {% comment %} column 6 {% endcomment %}
-                                    <td class="text-center">
-                                        {% if test.is_archived   %}<span class="label label-danger" >{{ test.get_status_display }}</span>
-                                        {% elif test.is_approved %}<span class="label label-success">{{ test.get_status_display }}</span>
-                                        {% elif test.is_pending  %}<span class="label label-info"   >{{ test.get_status_display }}</span>
-                                        {% elif test.is_draft    %}<span class="label label-default">{{ test.get_status_display }}</span>
-                                        {% elif test.is_redo     %}<span class="label label-warning">{{ test.get_status_display }}</span>
-                                        {% elif test.is_active   %}<span class="label label-primary">{{ test.get_status_display }}</span>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% empty %}
-                                <tr>
-                                    <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="9">{% trans 'There are no tests yet' context '/package-manage/' %}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-    
+   
     {% comment %} Table with student groups {% endcomment %}    
     <div class="row">
-        <div class="col-xs-0 col-lg-2"></div>
-        <div class="col-xs-12 col-lg-8">
+        <div class="col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">{% trans 'Student Groups' context '/build/packages/PACKAGE_CODE/' %}</h4>
@@ -162,17 +30,17 @@
                             <thead>
                                 <tr>
                                     {% comment %} column 0 {% endcomment %}
-                                    <th class="pl-15 text-center"  >{% trans 'Login' context '/package-manage/student-group/' %}</th>
+                                    <th class="pl-15 text-center"  >{% trans 'Login' context '/b2bt/' %}</th>
                                     {% comment %} column 1 {% endcomment %}
-                                    <th class="pl-15 text-center">{% trans 'First Name' context '/package-manage/student-group/' %}</th>
+                                    <th class="pl-15 text-center">{% trans 'First Name' context '/b2bt/' %}</th>
                                     {% comment %} column 2 {% endcomment %}
-                                    <th class="text-center">{% trans 'Last Name' context '/package-manage/student-group/' %}</th>
+                                    <th class="text-center">{% trans 'Last Name' context '/b2bt/' %}</th>
                                     {% comment %} column 3 {% endcomment %}
-                                    <th class="pr-15 text-center">{% trans 'Language' context '/package-manage/student-group/' %}</th>
+                                    <th class="pr-15 text-center">{% trans 'Language' context '/b2bt/' %}</th>
                                     {% comment %} column 4 {% endcomment %}
-                                    <th class="pr-15 text-center">{% trans 'Password' context '/package-manage/student-group/' %}</th>
+                                    <th class="pr-15 text-center">{% trans 'Password' context '/b2bt/' %}</th>
                                     {% comment %} column 5 {% endcomment %}
-                                    <th class="pr-15 text-center">{% trans 'Actions' context '/package-manage/student-group/' %}</th>
+                                    <th class="pr-15 text-center">{% trans 'Actions' context '/b2bt/' %}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -204,28 +72,29 @@
                                 {% empty %}
                                 <tr>
                                     <td class="pr-15 pl-15 lead text-center pt-30 pb-30" colspan="5">
-                                        {% trans 'There are no student groups yet' context '/package-manage/student-group/' %}
+                                        {% trans 'There are no student groups yet' context '/b2bt/' %}
                                     </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-primary" onclick="logTable(false)">Save & Log Table</button>
-                        <button type="button" class="btn btn-primary" onclick="logTable(true)">Export & Download</button>
+                        {% if not package_pair_quiz_obj.started %}
+                            <button type="button" class="btn btn-primary" onclick="logTable(false)">{% trans 'Save Changes' context '/b2bt/' %}</button>
+                        {% endif %}
+                        <button type="button" class="btn btn-primary" onclick="logTable(true)">{% trans 'Export & Download' context '/b2bt/' %}</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
+    {% comment %} <div class="row">
         <div class="col-xs-12 col-lg-12">
-            {% comment %} {% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz_obj.pk %} {% endcomment %}
             <form action="{% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz_obj.pk %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">Начать тестирование<br>(Отменить нельзя)</button>
             </form>
         </div>
-    </div>
+    </div> {% endcomment %}
     
     <script>
         function togglePassword(button) {

@@ -47,31 +47,49 @@
                     <table class="table table-striped table-hover table-pressed">
                         <thead>
                             <tr>
+                                <th class="pl-15">№</th>
                                 <th class="pl-15">{% trans 'Name' context '/admin/create_package/' %}</th>
                                 {% comment %} <th class="text-center">{% trans 'Domain' context '/admin/create_package/' %}</th> {% endcomment %}
-                                <th class="text-center">{% trans 'Code' context '/admin/create_package/' %}</th>
                                 <th class="text-center">{% trans 'Created at' context '/admin/create_package/' %}</th>
+                                <th class="text-center">{% trans 'State' context '/admin/create_package/' %}</th>
                                 <th class="text-center">{% trans 'Number of students' context '/admin/create_package/' %}</th>
                                 <th class="pr-15 text-center">{% trans 'Actions' context '/admin/create_package/' %}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for package_pair_quiz in package_pair_quiz_set %}
-                                <tr>
-                                    <td class="pl-15"><a href="{% url 'bbtest:b2bt_build_package_pair_quiz' package_pair_quiz.pk %}">{{ package_pair_quiz.TestPackagePair.name }}</a></td>
+                                <tr {% if package_pair_quiz.payed %}class="success"{% endif %}>
+                                    <td class="pl-15">{{ forloop.counter }}</td>
+
+
+                                    <td><a href="{% url 'bbtest:b2bt_build_package_pair_quiz' package_pair_quiz.pk %}">{{ package_pair_quiz.TestPackagePair.name }}</a></td>
                                     {% comment %} <td class="text-center">{% trans package_pair_quiz.TestPackagePair.test_package_ru.domain.name %}</td> {% endcomment %}
-                                    <td class="text-center"><span class="label label-info">{{ package_pair_quiz.TestPackagePair.code  }}</span></td>
                                     <td class="text-center">{{ package_pair_quiz.created_at|date:'SHORT_DATETIME_FORMAT' }}</td>
+                                    <td class="text-center">
+                                        {% if not package_pair_quiz.payed %}
+                                            <span class="label label-danger">{% trans 'not payed' context '/b2bt/' %}</span>
+                                        {% elif not package_pair_quiz.started %}
+                                            <span class="label label-info">{% trans 'pending' context '/b2bt/' %}</span>
+                                        {% elif package_pair_quiz.started %}
+                                            <span class="label label-success">{% trans 'started' context '/b2bt/' %}</span>
+                                        {% else %}
+                                        {% endif %}
+                                    </td>
                                     <td class="text-center"><span class="label label-success">{{ package_pair_quiz.number_of_students }}</span></td>
                                     <td class="text-center">
-                                    {% if package_pair_quiz.buyed %}
-                                    {% else %}
-                                        {% comment %} {% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz.pk %} {% endcomment %}
-                                        <form action="{% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz.pk %}" method="post">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">Начать тестирование<br>(Отменить нельзя)</button>
-                                        </form>
-                                    {% endif %}
+                                        {% if not package_pair_quiz.payed %}
+                                            <a href="{% url 'bbtest:b2bt_build_package_pair_quiz' package_pair_quiz.pk %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'Pay' context '/b2bt/' %}</a>
+
+                                        {% else %}
+                                            <a href="{% url 'bbtest:b2bt_build_package_pair_quiz' package_pair_quiz.pk %}" class="btn djBtnSuccess btn-xs mr-5 mb-5">{% trans 'Manage' context '/b2bt/' %}</a>
+
+                                            {% if package_pair_quiz.payed and not package_pair_quiz.started %}
+                                                <form method="post" action="{% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz.pk %}" data-bb-form data-create-package-form>
+                                                    {% csrf_token %}
+                                                    <button type="button" class="btn djBtnDanger btn-xs mr-5 mb-5" data-toggle="modal" data-target="[data-create-package-modal]">{% trans 'Начать тестирование (Отменить нельзя)' context '/b2bt/' %}</button>
+                                                </form>
+                                            {% endif %}
+                                        {% endif %}
                                     </td>
                                     
                                 </tr>
