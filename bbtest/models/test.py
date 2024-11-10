@@ -143,6 +143,17 @@ class TestSubTopicSection(Model):
         ordering = ("order",)
         unique_together = ("section", "subtopic")
 
+class TestTopicToSubtopicRelation(Model):
+    topic  = ForeignKey  ( TestTopic, on_delete=CASCADE,                         )
+    subtopic    = ForeignKey  ( TestSubTopic,   on_delete=CASCADE,  )
+    
+    order  = PositiveSmallIntegerField  ( pgettext_lazy("Model field", "order"), db_index=True, )
+
+    class Meta:
+        default_permissions = ()
+        ordering = ("order",)
+        unique_together = ("topic", "subtopic")
+
 
 class TestEducationGoal(Model):
     sections  = ManyToManyField  ( TestSection, through="TestEducationGoalSection", related_name="goals", )
