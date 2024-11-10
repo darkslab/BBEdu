@@ -87,10 +87,11 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
             // Retrieve the label and value of the clicked segment
             var label = _this.myChart.data.labels[segmentIndex];
             var value = _this.myChart.data.datasets[0].data[segmentIndex];
+            _this.props.updateParentTopicState(label);
 
             // Do something with the clicked segment information
             console.log("Clicked on segment: ".concat(label, ", Value: ").concat(value));
-            alert("Clicked on ".concat(label, " with value ").concat(value));
+            // alert(`Clicked on ${label} with value ${value}`);
           }
         }
       };

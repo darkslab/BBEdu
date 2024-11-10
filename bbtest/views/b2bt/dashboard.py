@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import get_language
 
 from bbtest.auth.mixins import PermissionRequiredMixinFactory
-from bbtest.models import Test, TestDomain, TestSection, TestTaxonomy, TestTopic
+from bbtest.models import Test, TestDomain, TestSection, TestTaxonomy, TestTopic, TestTopicToSubtopicRelation
 from bbtest.views.common import PaginationMixin, UserContextMixin
 from bbtest.views.generic import TemplateView
 
@@ -27,15 +27,26 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         subject_topics = { "Total": subject_list }
         subject_scores = { }
+        topic_to_subtopic_map = { }
+
         for section_obj in section_list:
-            print(section_obj)
+            # print(section_obj)
             topic_list: List[TestTopic] = section_obj.topics.all()
-            print(topic_list)
+            # print(topic_list)
+
             subject_topics[section_obj.name] = [t.name for t in topic_list]
             subject_scores[section_obj.name] = [random.randint(40, 100) for t in topic_list]
 
-        
+            for t in topic_list:
+                # print(section_obj.name, t.name)
+                topic_to_subtopic_map[section_obj.name] = topic_to_subtopic_map.get(section_obj.name, []) + [t.name]
 
+                topic_subtopic_list: List[TestTopicToSubtopicRelation] = TestTopicToSubtopicRelation.objects.filter(
+                    topic = t
+                ).order_by("order")
+                for topic_subtopic_obj in topic_subtopic_list:
+                    topic_to_subtopic_map[t.name] = topic_to_subtopic_map.get(t.name, []) + [topic_subtopic_obj.subtopic.name]
+        # print(topic_to_subtopic_map)
         # get students score by subject
         scores = { "Total": np.zeros(n_students) }
         for subj in subject_list:
@@ -64,6 +75,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         kwargs['scoresData'] = scores
         kwargs['subject_topics'] = subject_topics
         kwargs['subject_scores'] = subject_scores
+        kwargs["topic_to_subtopic_map"] = topic_to_subtopic_map
 
 
         # chart options

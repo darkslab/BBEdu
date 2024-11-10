@@ -70,9 +70,11 @@ class ChartPolarArea extends React.Component {
                     const label = this.myChart.data.labels[segmentIndex];
                     const value = this.myChart.data.datasets[0].data[segmentIndex];
 
+                    this.props.updateParentTopicState(label);
+
                     // Do something with the clicked segment information
                     console.log(`Clicked on segment: ${label}, Value: ${value}`);
-                    alert(`Clicked on ${label} with value ${value}`);
+                    // alert(`Clicked on ${label} with value ${value}`);
                 }
             }
         };

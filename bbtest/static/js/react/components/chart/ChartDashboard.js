@@ -25,13 +25,23 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
     // this.props.subject_topics
     // this.props.subject_scores
     // this.props.subject_chart_height
+    // this.props.topic_to_subtopic_map
     _this.state = {
-      current_subject: "Total"
+      current_subject: "Total",
+      current_topic: "Чтение"
     };
     return _this;
   }
   _inherits(ChartDashboard, _React$Component);
   return _createClass(ChartDashboard, [{
+    key: "updateParentTopicState",
+    value: function updateParentTopicState(newTopic) {
+      console.log(this.state);
+      this.setState({
+        current_topic: newTopic
+      });
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -42,6 +52,11 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       option_select.on('select2:select', function (event) {
         return _this2._selectSubject(event);
       });
+
+      // const topic_option_select = $("#subject-topic-select");
+      // topic_option_select.select2({
+      //     width: '20vw',
+      // });
     }
   }, {
     key: "render",
@@ -57,17 +72,30 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       var selected_subject_topics = this.props.subject_topics[this.state.current_subject];
       var selected_subject_average = this.props.mean_subj[this.state.current_subject];
       var topic_list_html = [];
+      var topic_options = [];
       for (var _i = 0; _i < selected_subject_topics.length; _i++) {
         topic_list_html.push( /*#__PURE__*/React.createElement("li", {
           key: "option ".concat(_i + 1),
           value: _i + 1
         }, selected_subject_topics[_i]));
+        topic_options.push( /*#__PURE__*/React.createElement("option", {
+          key: "topic_option ".concat(_i + 1),
+          value: _i + 1
+        }, selected_subject_topics[_i]));
       }
       // console.log("topic_list_html", topic_list_html)
 
+      var current_subtopic_list = this.props.topic_to_subtopic_map[this.state.current_topic];
+      var subtopic_list_html = [];
+      for (var _i2 = 0; _i2 < current_subtopic_list.length; _i2++) {
+        subtopic_list_html.push( /*#__PURE__*/React.createElement("li", {
+          key: "option ".concat(_i2 + 1),
+          value: _i2 + 1
+        }, current_subtopic_list[_i2]));
+      }
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FloatingSelector, {
         options: options
-      }), /*#__PURE__*/React.createElement("div", {
+      }), this.state.current_topic, /*#__PURE__*/React.createElement("div", {
         className: "row"
       }, /*#__PURE__*/React.createElement("div", {
         className: "col-lg-3"
@@ -103,10 +131,17 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         subject_topics: this.props.subject_topics,
         subject_scores: this.props.subject_scores,
         selected_subject: this.state.current_subject,
-        students: this.props.students
+        students: this.props.students,
+        updateParentTopicState: this.updateParentTopicState.bind(this)
       })), /*#__PURE__*/React.createElement("div", {
         className: "col-xs-12 col-lg-6"
-      }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "\u0423\u0447\u0435\u043D\u0438\u043A\u0438 \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0438 \u043D\u0430\u0431\u0440\u0430\u043B\u0438 ".concat(selected_subject_average, " \u0431\u0430\u043B\u043B\u043E\u0432"))), /*#__PURE__*/React.createElement("ul", null, topic_list_html))), /*#__PURE__*/React.createElement("div", {
+      }, /*#__PURE__*/React.createElement("select", {
+        className: "select_v2",
+        id: "subject-topic-select",
+        style: {
+          maxWidth: "300px"
+        }
+      }, topic_options), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "\u0423\u0447\u0435\u043D\u0438\u043A\u0438 \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0438 \u043D\u0430\u0431\u0440\u0430\u043B\u0438 ".concat(selected_subject_average, " \u0431\u0430\u043B\u043B\u043E\u0432"))), /*#__PURE__*/React.createElement("ul", null, subtopic_list_html))), /*#__PURE__*/React.createElement("div", {
         className: "panel panel-default",
         style: {
           minHeight: "300px"

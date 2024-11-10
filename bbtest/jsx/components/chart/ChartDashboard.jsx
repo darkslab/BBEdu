@@ -8,9 +8,16 @@ class ChartDashboard extends React.Component {
         // this.props.subject_topics
         // this.props.subject_scores
         // this.props.subject_chart_height
+        // this.props.topic_to_subtopic_map
         this.state = {
             current_subject: "Total",
+            current_topic: "Чтение",
         };
+    }
+
+    updateParentTopicState(newTopic) {
+        console.log(this.state);
+        this.setState({ current_topic: newTopic });
     }
 
     componentDidMount() {
@@ -19,6 +26,12 @@ class ChartDashboard extends React.Component {
             width: '20vw',
         });
         option_select.on('select2:select', (event) => this._selectSubject(event));
+
+
+        // const topic_option_select = $("#subject-topic-select");
+        // topic_option_select.select2({
+        //     width: '20vw',
+        // });
     }
 
     render() {
@@ -34,35 +47,27 @@ class ChartDashboard extends React.Component {
         const selected_subject_average = this.props.mean_subj[this.state.current_subject];
 
         const topic_list_html = []
+        const topic_options = [];
+
+        
+
         for (let i = 0; i < selected_subject_topics.length; i++) {
             topic_list_html.push(<li key={`option ${i + 1}`} value={i + 1} >{selected_subject_topics[i]}</li>)
+            topic_options.push(<option key={`topic_option ${i + 1}`} value={i + 1} >{selected_subject_topics[i]}</option>)
         }
         // console.log("topic_list_html", topic_list_html)
 
+        const current_subtopic_list = this.props.topic_to_subtopic_map[this.state.current_topic];
+        const subtopic_list_html = []
+        for (let i = 0; i < current_subtopic_list.length; i++) {
+            subtopic_list_html.push(<li key={`option ${i + 1}`} value={i + 1} >{current_subtopic_list[i]}</li>)
+        }
 
         return <React.Fragment>
-            {/* <div className="selector" 
-                style={{ 
-                    textAlign: "center", 
-                    position: "fixed", 
-                    top: "10px",   // Adjusts the distance from the top of the screen
-                    left: "50%", 
-                    transform: "translateX(-50%)", // Centers it horizontally
-                    zIndex: 1000,  // Ensures it stays on top of other content
-                    backgroundColor: "white", // Optional: add a background for readability
-                    padding: "10px", // Optional: add padding for a better look
-                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)" // Optional: add shadow for emphasis
-                }}>
-                <label htmlFor="subject-select">Select Subject:</label>
-                <select className="select_v2" id="subject-select">
-                    <option key="option 0" value="0">Total</option>
-                    {options}
-                </select>
-                
-            </div> */}
             <FloatingSelector 
                     options={options}
                 />
+            {this.state.current_topic}
             <div className="row">
                 <div className="col-lg-3" />
                 <div className="col-xs-12 col-lg-6" style={{ minWidth: "600px" }}>
@@ -85,14 +90,21 @@ class ChartDashboard extends React.Component {
                                 subject_scores={this.props.subject_scores}
                                 selected_subject={this.state.current_subject}
                                 students={this.props.students}
+
+                                updateParentTopicState={this.updateParentTopicState.bind(this)}
                             />
                         </div>
                         <div className="col-xs-12 col-lg-6">
+                            <select className="select_v2" id="subject-topic-select" style={{maxWidth: "300px"}}>
+                                {topic_options}
+                            </select>
+
                             <p>
                                 <strong>{`Ученики в среднем ответили набрали ${selected_subject_average} баллов`}</strong>
                             </p>
                             <ul>
-                                {topic_list_html}
+                                {/* {topic_list_html} */}
+                                {subtopic_list_html}
                             </ul>
                         </div>
                     </div>
