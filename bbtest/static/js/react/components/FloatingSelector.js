@@ -81,8 +81,12 @@ var FloatingSelector = /*#__PURE__*/function (_React$Component) {
           boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)"
         } : {})
       }, /*#__PURE__*/React.createElement("label", {
-        htmlFor: "subject-select"
-      }, "Select Subject:"), /*#__PURE__*/React.createElement("select", {
+        htmlFor: "subject-select",
+        className: "h5",
+        style: {
+          "fontWeight": "bold"
+        }
+      }, "\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u041F\u0440\u0435\u0434\u043C\u0435\u0442:"), /*#__PURE__*/React.createElement("select", {
         className: "select_v2",
         id: "subject-select"
       }, /*#__PURE__*/React.createElement("option", {
