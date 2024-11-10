@@ -1319,7 +1319,7 @@ msgstr "Сұрақ-жауап"
 
 msgctxt "Page title"
 msgid "Login"
-msgstr "Авторизация"
+msgstr "Логин"
 
 msgctxt "Form button"
 msgid "Login"
@@ -1703,10 +1703,6 @@ msgstr "Әрекеттер"
 msgctxt "/admin/create_package/"
 msgid "There are no packages yet"
 msgstr "Тест пакеттері жоқ"
-
-msgctxt "Page title"
-msgid "Manage Package"
-msgstr "Управление Пакетом"
 
 msgctxt "/package-manage/manage-package/"
 msgid "Package"

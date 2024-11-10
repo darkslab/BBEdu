@@ -1375,7 +1375,7 @@ msgstr "Произошла ошибка, обновите страницу."
 
 msgctxt "Page title"
 msgid "Manage Package"
-msgstr "Управление Пакетом"
+msgstr "Пользователи"
 
 msgctxt "/build/packages/PACKAGE_CODE/"
 msgid "Student Groups"
@@ -1383,15 +1383,15 @@ msgstr "Группа пользователей"
 
 msgctxt "/b2bt/"
 msgid "Login"
-msgstr "Авторизация"
+msgstr "Логин"
 
 msgctxt "/b2bt/"
 msgid "First Name"
-msgstr "имя"
+msgstr "Имя"
 
 msgctxt "/b2bt/"
 msgid "Last Name"
-msgstr "фамилия"
+msgstr "Фамилия"
 
 msgctxt "/b2bt/"
 msgid "Language"
@@ -1466,8 +1466,8 @@ msgid "There are no students yet"
 msgstr "Нет студентов"
 
 msgctxt "Page title"
-msgid "Create Package"
-msgstr "Управление Пакетом"
+msgid "Package settigs"
+msgstr "Настройка вариантов"
 
 msgctxt "/staff/create_package/"
 msgid "Packages List"
@@ -1650,7 +1650,7 @@ msgstr "Вопрос-ответ"
 
 msgctxt "Page title"
 msgid "Login"
-msgstr "Авторизация"
+msgstr "Логин"
 
 msgctxt "Form button"
 msgid "Login"
