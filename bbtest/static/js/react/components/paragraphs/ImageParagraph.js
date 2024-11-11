@@ -127,9 +127,7 @@ var ImageParagraph = /*#__PURE__*/function (_React$Component) {
         imgClassName = "bb-spinner";
         imgSrc = this.props.data.spinner_logo_url;
       }
-      content = /*#__PURE__*/React.createElement(React.Fragment, null, sharedAddon, /*#__PURE__*/React.createElement("div", {
-        className: className
-      }), /*#__PURE__*/React.createElement("img", {
+      content = /*#__PURE__*/React.createElement(React.Fragment, null, sharedAddon, /*#__PURE__*/React.createElement("img", {
         className: imgClassName,
         src: imgSrc,
         alt: "Thumbnail",

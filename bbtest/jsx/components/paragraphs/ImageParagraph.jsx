@@ -115,7 +115,7 @@ class ImageParagraph extends React.Component {
         content = (
             <React.Fragment>
                 {sharedAddon}
-                <div className={className}>{/* Your SimpleFormattedFragment rendering here */}</div>
+                {/* <div className={className}>Your SimpleFormattedFragment rendering here</div> */}
 
                 <img
                     className={imgClassName} 

@@ -43,12 +43,10 @@ var Question = /*#__PURE__*/function (_React$Component) {
           testTexts: this.props.testTexts,
           forDevelopers: false
         });
-        console.log("paragraph_class", paragraph_class);
         if (paragraph_class.includes("Solution")) {
           solutionParagraphs.push(parag);
-        } else if (paragraph_class === "CalculatorParagraph") {
-          // skip calculator paragraph
-          console.log("skip", paragraph_class);
+        } else if (paragraph_class === "CalculatorParagraph" || paragraph_class === "PeriodicTableParagraph") {
+          // skip calculator and periodic table paragraph
         } else {
           var left_side = this.props.object.paragraphs[i].meta_data["left_side"] | this.props.object.paragraphs[i].meta_data["left_side"] === undefined;
           if (left_side) {
@@ -113,11 +111,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/React.createElement("div", {
         className: ""
-      }, /*#__PURE__*/React.createElement("div", {
-        className: ""
-      }, /*#__PURE__*/React.createElement("div", {
-        className: ""
-      }, paragraphs_left_side), answerContent))), /*#__PURE__*/React.createElement("div", {
+      }, paragraphs_left_side), answerContent), /*#__PURE__*/React.createElement("div", {
         className: "col-xs-12 col-md-7 border pl-5 pr-5 pb-5",
         style: {
           "borderLeft": "solid"
