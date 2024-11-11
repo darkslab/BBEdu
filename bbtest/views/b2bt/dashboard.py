@@ -65,7 +65,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             for topic_obj in topic_list:
                 topic_id = map_key_to_id[topic_obj]
 
-                parent_to_children_list[section_id] = parent_to_children_list.get(section_id, []) + [topic_id]
+                # parent_to_children_list[section_id] = parent_to_children_list.get(section_id, []) + [topic_id]
                 topic_subtopic_list: List[TestTopicToSubtopicRelation] = TestTopicToSubtopicRelation.objects.filter(
                     topic = topic_obj
                 ).order_by("order")
