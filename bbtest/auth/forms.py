@@ -20,7 +20,7 @@ class AuthenticationForm(_AuthenticationForm):
     })
     password = CharField(label=pgettext_lazy("Form label", "Password"), error_messages={
         "required": pgettext_lazy("Validation error", "Please enter password."),
-    }, widget=PasswordInput(attrs={'type': 'text'}), strip=False)
+    }, widget=PasswordInput, strip=False)
     error_messages = {
         "invalid_login": pgettext_lazy("Validation error", "Test has not started yet. Or you entered a wrong username or password."),
     }
