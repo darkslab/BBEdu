@@ -35,15 +35,16 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         user: User = request.user
 
-        quiz_pair: TestPackageRusKazQuiz = TestPackageRusKazQuiz.objects.filter(
+        q: QuerySet = TestPackageRusKazQuiz.objects.filter(
             user = user,
             payed = True,
             started = True,
-        ).latest('created_at')
+        )
 
-        if not quiz_pair:
+        if not q:
             kwargs |= self.produce_rand_data(**kwargs)
         else:
+            quiz_pair: TestPackageRusKazQuiz = q.latest('created_at')
             kwargs |= self.compute_statistic(quiz_pair)
 
         return self.render_to_response(super().get_context_data(**kwargs))
@@ -161,7 +162,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         # produce mapping from section, topic, subtopic to id
         total_id = 0
-        map_key_to_id = self.produce_key_to_id_mapping(domain_obj, total_id = total_id)
+        map_key_to_id = self.produce_key_to_id_mapping(section_list, total_id = total_id)
         map_id_to_key = {v: getattr(k, 'name', k) for k, v in map_key_to_id.items()}
         print(map_key_to_id)
         print(map_id_to_key)
