@@ -16,21 +16,21 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
 var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
   function ChartPolarArea(props) {
     _classCallCheck(this, ChartPolarArea);
-    return _callSuper(this, ChartPolarArea, [props]);
+    return _callSuper(this, ChartPolarArea, [props]); // polar_area_chart_labels_id
+    // polar_area_chart_labels
+    // polar_area_chart_data
+    // map_id_to_key
+    // updateParentTopicState
   }
   _inherits(ChartPolarArea, _React$Component);
   return _createClass(ChartPolarArea, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this = this;
-      var subject_list = this.props.subject_list;
-      var scoresData = this.props.scoresData;
-      var subject_topics = this.props.subject_topics;
-      var subject_scores = this.props.subject_scores;
-      var selected_subject = this.props.selected_subject ? this.props.selected_subject : "Total";
       var ctx = document.getElementById('myDoughnutChart').getContext('2d');
       var polarAreaData = {
         labels: [],
+        mylabels_ids: [],
         datasets: [{
           data: [],
           backgroundColor: ['rgba(52, 152, 219, 0.8)',
@@ -51,7 +51,7 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
         responsive: true,
         scale: {
           min: 0,
-          max: 100,
+          // max: 100,
           weight: 1000
         },
         plugins: {
@@ -86,11 +86,12 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
 
             // Retrieve the label and value of the clicked segment
             var label = _this.myChart.data.labels[segmentIndex];
+            var label_id = _this.myChart.data.mylabels_ids[segmentIndex];
             var value = _this.myChart.data.datasets[0].data[segmentIndex];
-            _this.props.updateParentTopicState(label);
+            _this.props.updateParentTopicState(label_id);
 
             // Do something with the clicked segment information
-            console.log("Clicked on segment: ".concat(label, ", Value: ").concat(value));
+            console.log("Clicked on segment: ".concat(label, ", Value: ").concat(value, ", label_id: ").concat(label_id));
             // alert(`Clicked on ${label} with value ${value}`);
           }
         }
@@ -103,15 +104,15 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
       });
 
       // --------------------------------------------------------------------------------------------------------------------------
-      this._update_doughnut_chart2(this.myChart, subject_topics[selected_subject], subject_scores[selected_subject]);
+
+      this._update_doughnut_chart2(this.myChart, this.props.polar_area_chart_labels_id, this.props.polar_area_chart_labels, this.props.polar_area_chart_data);
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       // Check if subject_list has changed
-      if (prevProps.selected_subject !== this.props.selected_subject) {
-        var selected_subject = this.props.selected_subject ? this.props.selected_subject : "Total";
-        this._update_doughnut_chart2(this.myChart, this.props.subject_topics[selected_subject], this.props.subject_scores[selected_subject]);
+      if (prevProps.selected_parent !== this.props.selected_parent) {
+        this._update_doughnut_chart2(this.myChart, this.props.polar_area_chart_labels_id, this.props.polar_area_chart_labels, this.props.polar_area_chart_data);
       }
     }
   }, {
@@ -134,23 +135,11 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
     // Function to update doughnut chart based on selected subject
   }, {
     key: "_update_doughnut_chart2",
-    value: function _update_doughnut_chart2(myChart, subject_topics, subject_scores) {
+    value: function _update_doughnut_chart2(myChart, labels_id, labels, scores) {
       // Update labels and data for the doughnut chart
-      myChart.data.labels = subject_topics;
-      myChart.data.datasets[0].data = subject_scores;
-
-      // Update the doughnut chart display
-      myChart.update();
-    }
-
-    // Function to update doughnut chart based on selected subject
-  }, {
-    key: "_update_doughnut_chart",
-    value: function _update_doughnut_chart(myChart, selectedSubject, subject_topics, subject_scores) {
-      // Update labels and data for the doughnut chart
-      myChart.data.labels = subject_topics[selectedSubject];
-      myChart.data.datasets[0].data = subject_scores[selectedSubject];
-
+      myChart.data.labels = labels;
+      myChart.data.mylabels_ids = labels_id;
+      myChart.data.datasets[0].data = scores;
       // Update the doughnut chart display
       myChart.update();
     }

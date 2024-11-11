@@ -89,10 +89,7 @@ var FloatingSelector = /*#__PURE__*/function (_React$Component) {
       }, "\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u041F\u0440\u0435\u0434\u043C\u0435\u0442:"), /*#__PURE__*/React.createElement("select", {
         className: "select_v2",
         id: "subject-select"
-      }, /*#__PURE__*/React.createElement("option", {
-        key: "option 0",
-        value: "0"
-      }, "Total"), this.props.options));
+      }, this.props.options));
     }
   }]);
 }(React.Component);

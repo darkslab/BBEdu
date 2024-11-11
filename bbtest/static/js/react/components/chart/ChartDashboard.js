@@ -18,17 +18,17 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
     var _this;
     _classCallCheck(this, ChartDashboard);
     _this = _callSuper(this, ChartDashboard, [props]);
-    // this.props.students
-    // this.props.scores_data
-    // this.props.subject_list
-    // this.props.mean_subj
-    // this.props.subject_topics
-    // this.props.subject_scores
-    // this.props.subject_chart_height
-    // this.props.topic_to_subtopic_map
+    // this.props.student_name_list
+    // this.props.parent_list
+    // this.props.parent_to_children_list
+    // this.props.parent_average_scores
+    // this.props.parent_student_scores
+    // this.props.map_key_to_id
+    // this.props.map_id_to_key
     _this.state = {
-      current_subject: "Total",
-      current_topic: "Чтение"
+      current_parent: 0,
+      // this.props.map_key_to_id["Total"],
+      current_children: _this.props.parent_to_children_list[0][0] // this.props.map_key_to_id["Чтение"]
     };
     return _this;
   }
@@ -36,10 +36,12 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
   return _createClass(ChartDashboard, [{
     key: "updateParentTopicState",
     value: function updateParentTopicState(newTopic) {
-      console.log(this.state);
+      console.log("updateParentTopicState", this.state);
       this.setState({
-        current_topic: newTopic
+        current_children: newTopic
       });
+      var topic_option_select = $("#subject-topic-select");
+      topic_option_select.val(this.state.current_children).trigger("change");
     }
   }, {
     key: "componentDidMount",
@@ -50,52 +52,65 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         width: '20vw'
       });
       option_select.on('select2:select', function (event) {
-        return _this2._selectSubject(event);
+        return _this2._selectParent(event);
       });
-
-      // const topic_option_select = $("#subject-topic-select");
-      // topic_option_select.select2({
-      //     width: '20vw',
-      // });
+      var topic_option_select = $("#subject-topic-select");
+      topic_option_select.select2({
+        width: '100%'
+      });
+      topic_option_select.val(this.state.current_children).trigger("change");
+      topic_option_select.on('select2:select', function (event) {
+        return _this2._selectChild(event);
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var subject_list = this.props.subject_list;
+      var parent_list = this.props.parent_list;
+      var map_id_to_key = this.props.map_id_to_key;
+      console.log("this.props", this.props);
       var options = [];
-      for (var i = 0; i < subject_list.length; i++) {
+      for (var i = 0; i < parent_list.length; i++) {
+        var parent_id = parent_list[i];
         options.push( /*#__PURE__*/React.createElement("option", {
-          key: "option ".concat(i + 1),
-          value: i + 1
-        }, subject_list[i]));
+          key: "option ".concat(parent_id),
+          value: parent_id
+        }, map_id_to_key[parent_id]));
       }
-      var selected_subject_topics = this.props.subject_topics[this.state.current_subject];
-      var selected_subject_average = this.props.mean_subj[this.state.current_subject];
-      var topic_list_html = [];
-      var topic_options = [];
-      for (var _i = 0; _i < selected_subject_topics.length; _i++) {
-        topic_list_html.push( /*#__PURE__*/React.createElement("li", {
-          key: "option ".concat(_i + 1),
-          value: _i + 1
-        }, selected_subject_topics[_i]));
-        topic_options.push( /*#__PURE__*/React.createElement("option", {
-          key: "topic_option ".concat(_i + 1),
-          value: _i + 1
-        }, selected_subject_topics[_i]));
+
+      // Polar Area chart compute
+      var polar_area_chart_labels_id = this.props.parent_to_children_list[this.state.current_parent];
+      var polar_area_chart_labels = [];
+      var polar_area_chart_data = [];
+      for (var _i = 0; _i < polar_area_chart_labels_id.length; _i++) {
+        var index_id = polar_area_chart_labels_id[_i];
+        polar_area_chart_data.push(this.props.parent_average_scores[index_id]);
+        polar_area_chart_labels.push(this.props.map_id_to_key[index_id]);
+      }
+      var selected_children_topic_average = this.props.parent_average_scores[this.state.current_children];
+      var current_subtopic_list = this.props.parent_to_children_list[this.state.current_children];
+      var subtopic_list_html = [];
+      for (var _i2 = 0; _i2 < current_subtopic_list.length; _i2++) {
+        var subchild_id = current_subtopic_list[_i2];
+        subtopic_list_html.push( /*#__PURE__*/React.createElement("li", {
+          key: "subchild_option ".concat(subchild_id),
+          value: subchild_id
+        }, map_id_to_key[subchild_id]));
+      }
+      var selected_children_list = this.props.parent_to_children_list[this.state.current_parent];
+      var child_options = [];
+      for (var _i3 = 0; _i3 < selected_children_list.length; _i3++) {
+        var child_id = selected_children_list[_i3];
+        child_options.push( /*#__PURE__*/React.createElement("option", {
+          key: "topic_option ".concat(child_id),
+          value: child_id
+        }, map_id_to_key[child_id]));
       }
       // console.log("topic_list_html", topic_list_html)
 
-      var current_subtopic_list = this.props.topic_to_subtopic_map[this.state.current_topic];
-      var subtopic_list_html = [];
-      for (var _i2 = 0; _i2 < current_subtopic_list.length; _i2++) {
-        subtopic_list_html.push( /*#__PURE__*/React.createElement("li", {
-          key: "option ".concat(_i2 + 1),
-          value: _i2 + 1
-        }, current_subtopic_list[_i2]));
-      }
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FloatingSelector, {
         options: options
-      }), this.state.current_topic, /*#__PURE__*/React.createElement("div", {
+      }), /*#__PURE__*/React.createElement("div", {
         className: "row"
       }, /*#__PURE__*/React.createElement("div", {
         className: "col-lg-3"
@@ -112,10 +127,12 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
           textAlign: "center"
         }
       }, "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u0443\u0447\u0435\u043D\u0438\u043A\u043E\u0432"), /*#__PURE__*/React.createElement(ChartTotal, {
-        subject_list: this.props.subject_list,
-        scores_data: this.props.scores_data,
-        selected_subject: this.state.current_subject,
-        students: this.props.students
+        student_name_list: this.props.student_name_list,
+        selected_parent: this.state.current_parent,
+        selected_children_list: selected_children_list,
+        parent_student_scores: this.props.parent_student_scores,
+        map_id_to_key: this.props.map_id_to_key,
+        subject_chart_height: this.props.subject_chart_height
       })), /*#__PURE__*/React.createElement("div", {
         className: "row panel panel-default"
       }, /*#__PURE__*/React.createElement("p", {
@@ -126,12 +143,11 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       }, "\u0423\u0441\u0440\u0435\u0434\u043D\u0435\u043D\u043D\u044B\u0435 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u0443\u0447\u0435\u043D\u0438\u043A\u043E\u0432"), /*#__PURE__*/React.createElement("div", {
         className: "col-xs-12 col-lg-6"
       }, /*#__PURE__*/React.createElement(ChartPolarArea, {
-        subject_list: this.props.subject_list,
-        scores_data: this.props.scores_data,
-        subject_topics: this.props.subject_topics,
-        subject_scores: this.props.subject_scores,
-        selected_subject: this.state.current_subject,
-        students: this.props.students,
+        selected_parent: this.state.current_parent,
+        polar_area_chart_labels_id: polar_area_chart_labels_id,
+        polar_area_chart_labels: polar_area_chart_labels,
+        polar_area_chart_data: polar_area_chart_data,
+        map_id_to_key: this.props.map_id_to_key,
         updateParentTopicState: this.updateParentTopicState.bind(this)
       })), /*#__PURE__*/React.createElement("div", {
         className: "col-xs-12 col-lg-6"
@@ -141,7 +157,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         style: {
           maxWidth: "300px"
         }
-      }, topic_options), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "\u0423\u0447\u0435\u043D\u0438\u043A\u0438 \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0438 \u043D\u0430\u0431\u0440\u0430\u043B\u0438 ".concat(selected_subject_average, " \u0431\u0430\u043B\u043B\u043E\u0432"))), /*#__PURE__*/React.createElement("ul", null, subtopic_list_html))), /*#__PURE__*/React.createElement("div", {
+      }, child_options), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "\u0423\u0447\u0435\u043D\u0438\u043A\u0438 \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0438 \u043D\u0430\u0431\u0440\u0430\u043B\u0438 ".concat(selected_children_topic_average, " \u0431\u0430\u043B\u043B\u043E\u0432 "))), /*#__PURE__*/React.createElement("ul", null, subtopic_list_html))), /*#__PURE__*/React.createElement("div", {
         className: "panel panel-default",
         style: {
           minHeight: "300px"
@@ -174,19 +190,24 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       })));
     }
   }, {
-    key: "_selectSubject",
-    value: function _selectSubject(e) {
+    key: "_selectParent",
+    value: function _selectParent(e) {
       var data = e.params.data;
       var selectedIndex = parseInt(data.id);
-      if (selectedIndex == 0) {
-        this.setState({
-          current_subject: "Total"
-        });
-        return;
-      }
-      console.log(data, this.props.subject_list[selectedIndex - 1]);
+      console.log("_selectSubject", data, selectedIndex, this.props.parent_list[selectedIndex]);
       this.setState({
-        current_subject: this.props.subject_list[selectedIndex - 1]
+        current_parent: selectedIndex,
+        // this.props.parent_list[selectedIndex]
+        current_children: this.props.parent_to_children_list[selectedIndex][0]
+      });
+    }
+  }, {
+    key: "_selectChild",
+    value: function _selectChild(e) {
+      var data = e.params.data;
+      var selectedIndex = parseInt(data.id);
+      this.setState({
+        current_children: selectedIndex
       });
     }
   }]);
