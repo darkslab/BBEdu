@@ -33,6 +33,8 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
     def get(self, request: WSGIRequest, *args, **kwargs):
         kwargs["active_nav_item"] = "dashboard"
 
+        self.pixels_per_student = 20
+
         user: User = request.user
 
         q: QuerySet = TestPackageRusKazQuiz.objects.filter(
@@ -147,7 +149,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
 
         # chart options
-        kwargs['subject_chart_height'] = min(n_students * 20, 5000)
+        kwargs['subject_chart_height'] = min(n_students * self.pixels_per_student, 10000)
 
         return kwargs
 
@@ -208,7 +210,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
 
         # chart options
-        kwargs['subject_chart_height'] = min(n_students * 20, 5000)
+        kwargs['subject_chart_height'] = min(n_students * self.pixels_per_student, 10000)
 
         return kwargs
 

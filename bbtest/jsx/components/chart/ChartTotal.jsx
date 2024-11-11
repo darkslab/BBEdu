@@ -90,7 +90,8 @@ class ChartTotal extends React.Component {
             'rgba(26, 188, 156, 0.8)',  // #1abc9c
             'rgba(155, 89, 182, 0.8)',  // #9b59b6
             'rgba(243, 156, 18, 0.8)',  // #f39c12
-            'rgba(231, 76, 60,  0.8)'    // #e74c3c
+            'rgba(231, 76, 60,  0.8)',  // #e74c3c
+            'rgba(46, 204, 113, 0.8)'   // #2ecc71
         ];
 
         if (selected_parent === 0) {
@@ -104,7 +105,7 @@ class ChartTotal extends React.Component {
                 const dataset = {
                     label: selected_children_key.charAt(0).toUpperCase() + selected_children_key.slice(1), 
                     data: parent_student_scores[selected_children_id], // Get the scores for the subject
-                    backgroundColor: colors[i % 5],
+                    backgroundColor: colors[i % colors.length],
                     stack: 'Stack 0'
                 };
 
@@ -116,7 +117,7 @@ class ChartTotal extends React.Component {
             const selected_parent_id = selected_parent
             const selected_parent_key = map_id_to_key[selected_parent]
             const selected_parent_text = selected_parent_key.charAt(0).toUpperCase() + selected_parent_key.slice(1) // Capitalize the label
-            
+
             myChart.options.scales.y.stacked = false;
             myChart.data.datasets = [{
                 label: selected_parent_text,

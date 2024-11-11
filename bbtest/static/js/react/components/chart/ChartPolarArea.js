@@ -41,7 +41,9 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
           // #9b59b6
           'rgba(243, 156, 18, 0.8)',
           // #f39c12
-          'rgba(231, 76, 60,  0.8)' // #e74c3c
+          'rgba(231, 76, 60,  0.8)',
+          // #e74c3c
+          'rgba(46, 204, 113, 0.8)' // #2ecc71
           ],
           borderColor: '#ffffff',
           borderWidth: 2
