@@ -1,17 +1,25 @@
 class ChartTotal extends React.Component {
     constructor(props) {
         super(props);
+        // student_name_list
+        // selected_parent
+        // selected_children_list
+        // parent_student_scores
+
+        // map_id_to_key
+        // subject_chart_height
     }
     componentDidMount() {
-        const subject_list = this.props.subject_list;
-        const scores_data = this.props.scores_data;
+
+        const subject_list = this.props.selected_children_list;
+        const scores_data = this.props.parent_student_scores;
 
         const ctx = document.getElementById('studentChart').getContext('2d');
         
         this.myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: this.props.students,
+                labels: this.props.student_name_list,
                 datasets: []
             },
             options: {
@@ -21,7 +29,7 @@ class ChartTotal extends React.Component {
                     y: {
                         beginAtZero: true,
                         stacked: true,  // Default not stacked
-                        max: this.props.subject_list.length * 100
+                        max: this.props.selected_children_list.length * 100
                     }
                 },
                 plugins: {
@@ -47,21 +55,20 @@ class ChartTotal extends React.Component {
                 }
             }
         });
-        this._update_chart(this.myChart, "Total", subject_list, scores_data);
+        this._update_chart(this.myChart, this.props.selected_parent, this.props.selected_children_list, this.props.parent_student_scores, this.props.map_id_to_key);
         
     }
 
     componentDidUpdate(prevProps) {
         // Check if subject_list has changed
-        if (prevProps.selected_subject !== this.props.selected_subject) {
+        if (prevProps.selected_parent !== this.props.selected_parent) {
             
-            const selected_subject = this.props.selected_subject ? this.props.selected_subject : "Total";
-            const subject_list = this.props.subject_list;
-            const scores_data = this.props.scores_data;
+            // const selected_subject = this.props.selected_subject ? this.props.selected_subject : "Total";
+            // const subject_list = this.props.subject_list;
+            // const scores_data = this.props.scores_data;
+            // console.log("ChartTotal.componentDidUpdate", this.props, selected_subject)
 
-            console.log("ChartTotal.componentDidUpdate", this.props, selected_subject)
-
-            this._update_chart(this.myChart, selected_subject, subject_list, scores_data)
+            this._update_chart(this.myChart, this.props.selected_parent, this.props.selected_children_list, this.props.parent_student_scores, this.props.map_id_to_key);
         }
     }
 
@@ -69,12 +76,12 @@ class ChartTotal extends React.Component {
         return <canvas id="studentChart" width="800" height={ this.props.subject_chart_height }></canvas>
     }
 
-    _update_chart(myChart, selected_subject, subject_list, scores_data) {
-        console.log("ChartTotal._update_chart", selected_subject, subject_list, scores_data)
+    _update_chart(myChart, selected_parent, selected_children_list, parent_student_scores, map_id_to_key) {
+        console.log("ChartTotal._update_chart", selected_parent, selected_children_list, parent_student_scores)
         const getAverage = (array) =>
             array.reduce((sum, currentValue) => sum + currentValue, 0) / array.length;
 
-        const averageScore = getAverage(scores_data[selected_subject]);
+        const averageScore = getAverage(parent_student_scores[selected_parent]);
         myChart.options.plugins.annotation.annotations.line1.xMin = averageScore;
         myChart.options.plugins.annotation.annotations.line1.xMax = averageScore;
 
@@ -86,31 +93,34 @@ class ChartTotal extends React.Component {
             'rgba(231, 76, 60,  0.8)'    // #e74c3c
         ];
 
-        if (selected_subject === "Total") {
+        if (selected_parent === 0) {
             myChart.options.scales.y.stacked = true;
             myChart.data.datasets = [];
             // Loop through each subject in subject_list
-            for (let i = 0; i < subject_list.length; i++) {
-                const subj_key = subject_list[i]
+            for (let i = 0; i < selected_children_list.length; i++) {
+                const selected_children_id = selected_children_list[i]
+                const selected_children_key = map_id_to_key[selected_children_id]
                 // Create dataset for the subject
                 const dataset = {
-                    label: subj_key.charAt(0).toUpperCase() + subj_key.slice(1), 
-                    data: scores_data[subj_key], // Get the scores for the subject
+                    label: selected_children_key.charAt(0).toUpperCase() + selected_children_key.slice(1), 
+                    data: parent_student_scores[selected_children_id], // Get the scores for the subject
                     backgroundColor: colors[i % 5],
-                    // `rgba(${(i * 60) % 255}, ${(i * 100 + 100) % 255}, ${(i * 150) % 255}, 0.6)`, // Example color generation
                     stack: 'Stack 0'
                 };
 
                 // Push the dataset to myChart.data.datasets
                 myChart.data.datasets.push(dataset);
             }
-            myChart.options.scales.y.max = subject_list.length * 100;
+            myChart.options.scales.y.max = selected_children_list.length * 100;
         } else {
-            const selected_subject_text = selected_subject.charAt(0).toUpperCase() + selected_subject.slice(1) // Capitalize the label
+            const selected_parent_id = selected_parent
+            const selected_parent_key = map_id_to_key[selected_parent]
+            const selected_parent_text = selected_parent_key.charAt(0).toUpperCase() + selected_parent_key.slice(1) // Capitalize the label
+            
             myChart.options.scales.y.stacked = false;
             myChart.data.datasets = [{
-                label: selected_subject_text,
-                data: scores_data[selected_subject],
+                label: selected_parent_text,
+                data: parent_student_scores[selected_parent],
                 backgroundColor: 'rgba(54, 162, 235, 0.6)'
             }];
             myChart.options.scales.y.max = 100;

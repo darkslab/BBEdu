@@ -60,7 +60,7 @@ class FloatingSelector extends React.Component {
             >
                 <label htmlFor="subject-select" className="h5" style={{"fontWeight": "bold"}}>Выбрать Предмет:</label>
                 <select className="select_v2" id="subject-select">
-                    <option key="option 0" value="0">Total</option>
+                    {/* <option key="option 0" value="0">Total</option> */}
                     {this.props.options}
                 </select>
             </div>
