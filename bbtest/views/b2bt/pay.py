@@ -61,9 +61,9 @@ class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
         if package_pair_quiz_obj.number_of_students <= 5:
             price = 1
         elif package_pair_quiz_obj.number_of_students <= 25:
-            price = 2
+            price = 15000
         elif package_pair_quiz_obj.number_of_students <= 150:
-            price = 3
+            price = 45000
             
         kwargs["cart_rounded_total"] = price
 
