@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    help = 'Runs Kaspi QR payment email service'
+    help = 'Show calculator in question'
 
     def handle(self, *args, **kwargs):
         TestQuestion.objects.update(has_periodic_table=False, has_calculator=False)

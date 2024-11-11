@@ -27,6 +27,8 @@ class Question extends React.Component {
 
             if ( paragraph_class.includes("Solution")){
                 solutionParagraphs.push(parag);
+            } else if (paragraph_class === "CalculatorParagraph" || paragraph_class === "PeriodicTableParagraph") {
+                // skip calculator and periodic table paragraph
             } else {
                 let left_side = this.props.object.paragraphs[i].meta_data["left_side"] | this.props.object.paragraphs[i].meta_data["left_side"] === undefined
                 if (left_side) {
