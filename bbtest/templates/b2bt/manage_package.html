@@ -50,7 +50,7 @@
                                     {% comment %} column 4 {% endcomment %}
                                     <th class="pr-15 text-center">{% trans 'Password' context '/b2bt/' %}</th>
                                     {% comment %} column 5 {% endcomment %}
-                                    <th class="pr-15 text-center">{% trans 'Actions' context '/b2bt/' %}</th>
+                                    {% comment %} <th class="pr-15 text-center">{% trans 'Actions' context '/b2bt/' %}</th> {% endcomment %}
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,13 +82,13 @@
                                     </td>
                                     {% comment %} column 4 {% endcomment %}
                                     <td class="text-center">
-                                        <span class="password-text" style="display: none;" data-name="pass">{{ student.4  }}</span>
-                                        <span class="password-placeholder">•••••••••••••••</span> <!-- Placeholder -->
+                                        <span class="password-text" style="display: block;" data-name="pass">{{ student.4  }}</span>
+                                        {% comment %} <span class="password-placeholder">•••••••••••••••</span> <!-- Placeholder --> {% endcomment %}
                                     </td>
                                     {% comment %} column 5 {% endcomment %}
-                                    <td class="text-center">
+                                    {% comment %} <td class="text-center">
                                         <button type="button" class="btn btn-sm btn-secondary toggle-password" onclick="togglePassword(this)">Show</button>
-                                    </td>
+                                    </td> {% endcomment %}
                                 </tr>
                                 {% empty %}
                                 <tr>
@@ -118,7 +118,7 @@
     </div> {% endcomment %}
     
     <script>
-        function togglePassword(button) {
+        {% comment %} function togglePassword(button) {
             const row = button.closest('tr'); // Get the current row
             const passwordSpan = row.querySelector('[data-name="pass"]'); // Password span
             const placeholderSpan = row.querySelector('.password-placeholder'); // Placeholder span
@@ -134,7 +134,7 @@
                 placeholderSpan.style.display = '';
                 button.textContent = 'Show';
             }
-        }
+        } {% endcomment %}
 
         function logTable(bool_export) {
             var table = document.getElementById('editable-table');
