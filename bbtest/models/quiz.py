@@ -1,3 +1,5 @@
+from collections import defaultdict
+from typing import List, Tuple
 from django.contrib.auth import get_user_model
 from django.db.models import (
     CASCADE,
@@ -6,13 +8,14 @@ from django.db.models import (
     ForeignKey,
     Model,
     PositiveSmallIntegerField,
+    QuerySet,
 )
 from django.utils.translation import pgettext_lazy
 from ool import VersionedMixin, VersionField
 
 from .fields import JSONField
 from .shopping.base import Cart, LineItem
-from .test import Test, TestDomain, TestQuestion
+from .test import Test, TestDomain, TestQuestion, TestSubTopic, TestTopic
 
 
 class QuizSet(VersionedMixin, Model):
@@ -169,7 +172,7 @@ class Quiz(Model):
         return ret
 
 
-    def calc_score(self):
+    def calc_score(self) -> int:
         student_answers = self.get_student_answers()
         correct_answers = self.get_correct_answers()
         # print(student_answers)
@@ -182,3 +185,37 @@ class Quiz(Model):
                 continue
             score += int(std == corr)
         return score
+
+    def get_question_topic_subtopic(self) -> Tuple[List[TestTopic], List[TestSubTopic]]:
+        questions: QuerySet[TestQuestion] = (
+            self.test.questions.prefetch_related("topic", "subtopic")
+            .order_by("testtoquestionrelation")
+            .all()
+        )
+
+        return [q.topic for q in questions], [q.subtopic for q in questions]
+
+    def calc_score_by_topic_subtopic(self) -> tuple[int, dict, dict]:
+        student_answers = self.get_student_answers()
+        correct_answers = self.get_correct_answers()
+
+        topic_list, subtopic_list = self.get_question_topic_subtopic()
+
+        assert len(student_answers) == len(correct_answers)
+        assert len(topic_list) == len(correct_answers)
+
+        score = 0
+        score_topic = defaultdict(int)
+        score_subtopic = defaultdict(int)
+
+        for std, corr, topic, subtopic in zip(
+            student_answers, correct_answers, topic_list, subtopic_list
+        ):
+            if std is None:
+                continue
+            is_correct = int(std == corr)
+            score_topic[topic] += is_correct
+            score_subtopic[subtopic] += is_correct
+            score += is_correct
+
+        return score, score_topic, score_subtopic
