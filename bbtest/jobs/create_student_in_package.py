@@ -5,6 +5,7 @@ from random import randint
 from typing import List
 
 from django.conf import settings
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db.transaction import atomic
@@ -13,14 +14,12 @@ from django_rq import job
 
 from bbtest.auth.models import User
 from bbtest.models import (
-    Account,
     QuizSet,
     StudentGroup,
     Test,
     TestPackage,
     UserTestPackageProfile,
 )
-from bbtest.models.test import TestPackageRusKazQuiz
 
 BASE_DIR = Path(settings.BASE_DIR_PATH).resolve().parent
 
@@ -141,45 +140,17 @@ def populate_demouser_test(user: User):
 
 
 
-def create_package_pair_quiz_users_helper(package_quiz_obj: TestPackageRusKazQuiz):
-    student_table = [] # package_quiz_obj.student_table
-    number_of_students = package_quiz_obj.number_of_students 
-    
-    bulk_create_user: List[User] = []
-    for i in range(int(number_of_students)):
-        temp_username = uuid.uuid4().hex
-        temp_email = f"{temp_username}@b2b.bbtest.kz"
-        passwrd = "{:05}".format(randint(10000, 99999))
-        temp_user = User(
-                username=temp_username,
-                email=temp_email,
-                password=passwrd,
-                is_active=False,
-                first_name = f"Имя {i+1}",
-                last_name = f"Фамилия {i+1}",
-            )
-        bulk_create_user.append(temp_user)
-        student_table.append(["user.username", f"Имя {i+1}", f"Фамилия {i+1}", "rus", passwrd])
 
-    content_type = ContentType.objects.get_for_model(User)
-    permissions = [Permission.objects.get(codename="student", content_type=content_type)]
-
-    with atomic(savepoint=False):
-        created_users: List[User] = User.objects.bulk_create(bulk_create_user)
-
-    for i, std_user in enumerate(created_users):
-        user = User.objects.get(username = std_user.username)
-        user.user_permissions.set(permissions)
-        user.username = f"std{user.pk}"  # "std" + F("id") 
-        # bulk_refetch_users.append(user)
-        user.save()
-        student_table[i][0] = f"std{user.pk}"
-    
-    package_quiz_obj.student_table = student_table
-    package_quiz_obj.save()
 
 
 @job("high", timeout=3600*2)
-def create_package_pair_quiz_users(package_quiz_obj: TestPackageRusKazQuiz):
-    create_package_pair_quiz_users_helper(package_quiz_obj)
+def hash_users_passwords(user_list: List[User]):
+    # create_package_pair_quiz_users_helper(package_quiz_obj)
+
+    # Find users with unhashed passwords
+    for user in user_list:
+        # if not is_password_usable(user.password) or len(user.password) < 10 or not user.password.startswith("pbkdf2_sha256"):
+        # print(user.password)
+        user.password = make_password(user.password)
+        user.save()
     

@@ -36,10 +36,10 @@ from bbtest.forms.super import (
 from bbtest.http import TightJsonResponse
 from bbtest.jobs.create_student_in_package import (
     activate_package,
-    create_package_pair_quiz_users,
-    create_package_pair_quiz_users_helper,
+    hash_users_passwords,
     populate_package_student_group,
 )
+from bbtest.models.accounting import Account, BalanceAccount
 from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.models.test import (
     StudentGroup,
@@ -269,13 +269,70 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
         )
 
         # create_package_pair_quiz_users.delay(package_quiz_obj)
-        create_package_pair_quiz_users_helper(package_quiz_obj)
-
+        initialized_users = self.create_package_pair_quiz_users_helper(package_quiz_obj)
+        # hashing passwords takes a lot if time, there lets put into separete job queue
+        hash_users_passwords.delay(initialized_users)
 
         print("AddPackagePairFormView", package_quiz_obj)
 
         return redirect("bbtest:b2bt_build_package_pair_quiz", package_quiz_obj.id)
     
+    def create_package_pair_quiz_users_helper(self, package_quiz_obj: TestPackageRusKazQuiz):
+        student_table = [] # package_quiz_obj.student_table
+        number_of_students = package_quiz_obj.number_of_students 
+        
+        bulk_create_user: List[User] = []
+        for i in range(int(number_of_students)):
+            temp_username = uuid.uuid4().hex
+            temp_email = f"{temp_username}@b2b.bbtest.kz"
+            passwrd = "{:05}".format(randint(10000, 99999))
+            temp_user = User(
+                    username=temp_username,
+                    email=temp_email,
+                    password=passwrd,
+                    is_active=False,
+                    first_name = f"Имя {i+1}",
+                    last_name = f"Фамилия {i+1}",
+                )
+            bulk_create_user.append(temp_user)
+            student_table.append(["user.username", f"Имя {i+1}", f"Фамилия {i+1}", "rus", passwrd])
+
+        content_type = ContentType.objects.get_for_model(User)
+        permissions = [Permission.objects.get(codename="student", content_type=content_type)]
+
+        with atomic(savepoint=False):
+            created_users: List[User] = User.objects.bulk_create(bulk_create_user)
+
+        # balance account is not created in bulk creation because post_save is not triggered
+        balance_acount_list = []
+        initialized_users: List[User] = []
+
+        for i, std_user in enumerate(created_users):
+            user = User.objects.get(username = std_user.username)
+            user.user_permissions.set(permissions)
+            user.username = f"std{user.pk}"  # "std" + F("id") 
+            # bulk_refetch_users.append(user)
+            user.save()
+            student_table[i][0] = f"std{user.pk}"
+
+            balance_obj = BalanceAccount(
+                name=user.balance_account_name(), 
+                type=Account.TYPE_EQUITY, 
+                is_contra=False
+            )
+
+            initialized_users.append(user)
+            balance_acount_list.append(balance_obj)
+
+        # BalanceAccount.objects.create_equity_account(kwargs["instance"].balance_account_name())
+        with atomic(savepoint=False):
+            account_list: List[BalanceAccount] = BalanceAccount.objects.bulk_create(balance_acount_list)
+        
+        package_quiz_obj.student_table = student_table
+        package_quiz_obj.save()
+
+        return initialized_users
+
 
     # def create_students(self, password, is_active = False):
         # temp_username = uuid.uuid4().hex
