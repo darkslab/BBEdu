@@ -10,3 +10,4 @@ BBEdu.code-workspace
 package-lock.json
 Pipfile
 .vscode/*
+log/*
