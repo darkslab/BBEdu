@@ -41,14 +41,14 @@
                                 <tr>
                                     {% comment %} column 0 {% endcomment %}
                                     <th class="pl-15 text-center"  >{% trans 'Login' context '/b2bt/' %}</th>
+                                    {% comment %} column 4 {% endcomment %}
+                                    <th class="pr-15 text-center">{% trans 'Password' context '/b2bt/' %}</th>
                                     {% comment %} column 1 {% endcomment %}
                                     <th class="pl-15 text-center">{% trans 'First Name' context '/b2bt/' %}</th>
                                     {% comment %} column 2 {% endcomment %}
                                     <th class="text-center">{% trans 'Last Name' context '/b2bt/' %}</th>
                                     {% comment %} column 3 {% endcomment %}
                                     <th class="pr-15 text-center">{% trans 'Language' context '/b2bt/' %}</th>
-                                    {% comment %} column 4 {% endcomment %}
-                                    <th class="pr-15 text-center">{% trans 'Password' context '/b2bt/' %}</th>
                                     {% comment %} column 5 {% endcomment %}
                                     {% comment %} <th class="pr-15 text-center">{% trans 'Actions' context '/b2bt/' %}</th> {% endcomment %}
                                 </tr>
@@ -58,6 +58,11 @@
                                 <tr>
                                     {% comment %} column 0 {% endcomment %}
                                     <td class="text-center" data-name="user_id">{{ student.0 }}</td>
+                                    {% comment %} column 4 {% endcomment %}
+                                    <td class="text-center">
+                                        <span class="password-text" style="display: block;" data-name="pass">{{ student.4  }}</span>
+                                        {% comment %} <span class="password-placeholder">•••••••••••••••</span> <!-- Placeholder --> {% endcomment %}
+                                    </td>
                                     {% comment %} column 1 {% endcomment %}
                                     {% if not package_pair_quiz_obj.started %}
                                         <td class="text-center editable-cell" contenteditable="true" data-name="firstname">{{ student.1 }}</td>
@@ -80,11 +85,7 @@
                                             <option value="kaz" {% if student.3 == 'kaz' %}selected{% endif %}>kaz</option>
                                         </select>
                                     </td>
-                                    {% comment %} column 4 {% endcomment %}
-                                    <td class="text-center">
-                                        <span class="password-text" style="display: block;" data-name="pass">{{ student.4  }}</span>
-                                        {% comment %} <span class="password-placeholder">•••••••••••••••</span> <!-- Placeholder --> {% endcomment %}
-                                    </td>
+                                    
                                     {% comment %} column 5 {% endcomment %}
                                     {% comment %} <td class="text-center">
                                         <button type="button" class="btn btn-sm btn-secondary toggle-password" onclick="togglePassword(this)">Show</button>
