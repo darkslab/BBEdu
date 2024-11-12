@@ -403,15 +403,6 @@ class BuyPackageView(
         kwargs["active_nav_item"] = "buy_packages"
 
         kwargs["card_data"] = [
-            # {
-            #     'title': 'Пакет "Для Разработчиков"',
-            #     'features': [
-            #         'Предоставление доступа к 1 варианту теста PISA 2025 для 5 чел',
-            #         'Автоматическое формирование аналитики по всему классу и каждому ученику',
-            #     ],
-            #     'price': '1 тг',
-            #     'number_of_students': 5,
-            # },
             {
                 'title': 'Пакет "Классный"',
                 'features': [
@@ -441,6 +432,17 @@ class BuyPackageView(
             #     'price': 'Договорная',
             # },
         ]
+
+        if settings.DEBUG:
+            kwargs["card_data"].append({
+                'title': 'Пакет "Для Разработчиков"',
+                'features': [
+                    'Предоставление доступа к 1 варианту теста PISA 2025 для 5 чел',
+                    'Автоматическое формирование аналитики по всему классу и каждому ученику',
+                ],
+                'price': '1 тг',
+                'number_of_students': 5,
+            })
 
         variant_list: QuerySet[TestPackageRusKazPair] = TestPackageRusKazPair.objects.all()
 
