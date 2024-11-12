@@ -43,9 +43,9 @@ class BuyCreditKaspiQRPage extends React.Component {
                     <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                         <div className="panel panel-default">
                             <div className="panel-body text-center">
-                                <p className="text-center">
-                                    <strong>Инструкция по оплате</strong> {/* Manual Payment Message */}
-                                </p>
+                                {/* <p className="text-center">
+                                    <strong>Инструкция по оплате</strong>
+                                </p> */}
                                 <img 
                                     src={`data:image/png;base64,${this.props.qr_code_base64}`} 
                                     alt="QR Code" 
@@ -63,7 +63,8 @@ class BuyCreditKaspiQRPage extends React.Component {
                                 />
                                 {/* Timer message */}
                                 <p style={{ marginTop: "10px", fontSize: "16px", fontWeight: "bold" }}>
-                                    Пожалуйста, оплатите в течение {this.state.minutes} минут и {this.state.seconds} секунд
+                                    Пожалуйста, оплатите в течение {this.state.minutes} минут и {this.state.seconds} секунд.<br/>
+                                    После оплаты подождите 40 секунд и нажмите на кнопку "Обновить"
                                 </p>
                             </div>
                             {/* Manual Payment Button */}

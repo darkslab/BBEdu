@@ -71,9 +71,7 @@ var BuyCreditKaspiQRPage = /*#__PURE__*/function (_React$Component) {
         className: "panel panel-default"
       }, /*#__PURE__*/React.createElement("div", {
         className: "panel-body text-center"
-      }, /*#__PURE__*/React.createElement("p", {
-        className: "text-center"
-      }, /*#__PURE__*/React.createElement("strong", null, "\u0418\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u044F \u043F\u043E \u043E\u043F\u043B\u0430\u0442\u0435"), " "), /*#__PURE__*/React.createElement("img", {
+      }, /*#__PURE__*/React.createElement("img", {
         src: "data:image/png;base64,".concat(this.props.qr_code_base64),
         alt: "QR Code",
         className: "img-responsive center-block"
@@ -92,7 +90,7 @@ var BuyCreditKaspiQRPage = /*#__PURE__*/function (_React$Component) {
           fontSize: "16px",
           fontWeight: "bold"
         }
-      }, "\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u043E\u043F\u043B\u0430\u0442\u0438\u0442\u0435 \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 ", this.state.minutes, " \u043C\u0438\u043D\u0443\u0442 \u0438 ", this.state.seconds, " \u0441\u0435\u043A\u0443\u043D\u0434")), /*#__PURE__*/React.createElement("div", {
+      }, "\u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u043E\u043F\u043B\u0430\u0442\u0438\u0442\u0435 \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 ", this.state.minutes, " \u043C\u0438\u043D\u0443\u0442 \u0438 ", this.state.seconds, " \u0441\u0435\u043A\u0443\u043D\u0434.", /*#__PURE__*/React.createElement("br", null), "\u041F\u043E\u0441\u043B\u0435 \u043E\u043F\u043B\u0430\u0442\u044B \u043F\u043E\u0434\u043E\u0436\u0434\u0438\u0442\u0435 40 \u0441\u0435\u043A\u0443\u043D\u0434 \u0438 \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \u043D\u0430 \u043A\u043D\u043E\u043F\u043A\u0443 \"\u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C\"")), /*#__PURE__*/React.createElement("div", {
         className: "text-center pb-10"
       }, /*#__PURE__*/React.createElement("a", {
         onClick: function onClick() {
