@@ -20,14 +20,15 @@
                     </div>
                     <div class="col-xs-3"></div>
                 {% else %}
-                    <h2 class="text-center">{% trans 'Тестирование закончено' context 'Exam page' %}</h2>
-                    <p class="h5" >Если всё понравилось можете зарегистрироваться</p>
+                    <h2 class="text-center">{% trans 'Демо-тест завершен' context 'Exam page' %}</h2>
+                    <p class="h5">Приобретите полный вариант теста и получите подробный анализ результатов для всего класса или школы.</p>
+                    <img src="{% static 'img/demotest_image.png' %}" class="img-responsive center-block" >
                     <div class="col-xs-3"></div>
                     <div class="col-xs-6">
                         <form action="{% url 'bbtest:demo_logout_redirect' %}" method="post">
                             {% csrf_token %}
-                            <button type="submit" class="btn">
-                                <i class="fa fa-fw fa-sign-out"></i>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block btn-wrappable">
+                                <i class="fa fa-fw fa-sign-out p-10"></i>
                                 {% trans 'Пройти регистрацию' context 'Navigation link' %}
                             </button>
                         </form>
