@@ -1,17 +1,29 @@
-from django.forms import ModelForm, CharField, EmailField, PasswordInput
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from django.contrib.auth.forms import (
     AuthenticationForm as _AuthenticationForm,
+)
+from django.contrib.auth.forms import (
     PasswordResetForm as _PasswordResetForm,
+)
+from django.contrib.auth.forms import (
     SetPasswordForm as _SetPasswordForm,
 )
-from django.utils.translation import pgettext_lazy, pgettext
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.messages import success
-from bbtest.forms.base import BaseUserForm, ExtendedBaseUserForm, DemoUserForm
-from bbtest.emails.password_reset import send_mail
+from django.forms import CharField, EmailField, ModelForm, PasswordInput
+from django.utils.translation import pgettext, pgettext_lazy
+
 from bbtest.auth.password_validation import password_validators_help_text_html
+from bbtest.emails.password_reset import send_mail
+from bbtest.forms.base import BaseUserForm, DemoUserForm, ExtendedBaseUserForm
 from bbtest.models import Account
+
+if TYPE_CHECKING:
+    from bbtest.auth.models import User
 
 
 class AuthenticationForm(_AuthenticationForm):
@@ -27,7 +39,7 @@ class AuthenticationForm(_AuthenticationForm):
 
 
 class UserCreationFormMixin(ModelForm):
-    def save(self, group):
+    def save(self, group: str) -> User:
         user = super().save()
 
         content_type = ContentType.objects.get_for_model(type(user))

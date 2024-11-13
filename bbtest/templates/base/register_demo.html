@@ -22,35 +22,18 @@
                 <div class="panel-body">
                     <form method="post" action="{% url 'bbtest:register_demo' %}" class="mt-15" data-bb-form>
                         {% csrf_token %}
-
-                        <!-- {% for field in form %}
-                            <div class="form-group {% if field.errors %}has-error{% endif %}">
-                                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}{% if field.name == 'password1' %} <i class="fa fa-question-circle text-help" data-toggle="popover" data-container="body" data-html="true" data-content="{{ field.help_text|force_escape }}" data-placement="auto" data-trigger="hover"></i>{% endif %}</label>
-                                {{ field|add_class:'form-control' }}
-                                {% for error in field.errors %}
-                                    <p class="help-block {% if not forloop.first %}mt-0{% endif %} {% if not forloop.last %}mb-0{% endif %}">{{ error }}</p>
-                                {% endfor %}
+                        <div class="form-group">
+                            {% comment %} user's phone field is used as a hack to pass language to demouser {% endcomment %}
+                            <label for="lang">{% trans 'Choose language' context 'Form button' %}:</label>
+                            <div class="form-check">
+                                <input type="radio" id="lang_ru" name="phone" value="ru" class="form-check-input" checked>
+                                <label class="form-check-label" for="lang_ru">Русский (RU)</label>
                             </div>
-                        {% endfor %} -->
-
-                        <!-- <div class="form-group hidden">
-                            <label class="control-label">{% trans 'I want to register as' context 'Form label' %}</label>
-                            <div class="mr-23 ml-23">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="group_type" value="student" data-register-radio {% if group == 'student' %}checked{% endif %}>
-                                        {% trans 'Student' context 'Form label' %}
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="group_type" value="developer" data-register-radio {% if group == 'developer' %}checked{% endif %}>
-                                        {% trans 'Test developer' context 'Form label' %}
-                                    </label>
-                                </div>
+                            <div class="form-check">
+                                <input type="radio" id="lang_kk" name="phone" value="kk" class="form-check-input">
+                                <label class="form-check-label" for="lang_kk">Қазақша (KK)</label>
                             </div>
-                        </div> -->
-
+                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block" data-bb-submit>{% trans 'Login as demouser' context 'Form button' %}</button>
                         </div>

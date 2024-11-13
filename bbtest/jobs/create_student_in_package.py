@@ -118,10 +118,15 @@ def activate_package(group_obj: StudentGroup, active_state: bool):
 
 @job("default", timeout=600000000)
 def populate_demouser_test(user: User):
-    if settings.DEBUG: 
+    # if settings.DEBUG: 
+    #     package_obj = TestPackage.objects.get(code = "241103f825")
+    # else: 
+    #     package_obj = TestPackage.objects.get(code = "241103f825")
+
+    if user.phone == "ru":
         package_obj = TestPackage.objects.get(code = "241103f825")
-    else: 
-        package_obj = TestPackage.objects.get(code = "241103f825")
+    else:
+        package_obj = TestPackage.objects.get(code = "241104f58d")
     
     # print(package_obj)
     test_set = package_obj.tests.order_by('section__order').all()

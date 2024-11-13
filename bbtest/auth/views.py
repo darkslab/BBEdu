@@ -1,20 +1,42 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from django.conf import settings
+from django.contrib.auth import login
 from django.contrib.auth.views import (
     LoginView as _LoginView,
+)
+from django.contrib.auth.views import (
     LogoutView as _LogoutView,
-    PasswordResetView as _PasswordResetView,
+)
+from django.contrib.auth.views import (
     PasswordResetConfirmView as _PasswordResetConfirmView,
 )
-from django.shortcuts import resolve_url
-from django.conf import settings
-from django.urls import reverse, reverse_lazy
+from django.contrib.auth.views import (
+    PasswordResetView as _PasswordResetView,
+)
 from django.contrib.messages import success
+from django.shortcuts import resolve_url
+from django.urls import reverse, reverse_lazy
 from django.utils.translation import pgettext
-from django.contrib.auth import login
-from .forms import AuthenticationForm, UserCreationForm, DemoUserCreationForm, ExtendedUserCreationForm, PasswordResetForm, SetPasswordForm
-from .mixins import LogoutRequiredMixin
-from bbtest.views.generic import FormView
-from bbtest.models import TestPackage, QuizSet, User
+
 from bbtest.jobs.create_student_in_package import populate_demouser_test
+from bbtest.models import QuizSet, TestPackage
+from bbtest.views.generic import FormView
+
+from .forms import (
+    AuthenticationForm,
+    DemoUserCreationForm,
+    ExtendedUserCreationForm,
+    PasswordResetForm,
+    SetPasswordForm,
+    UserCreationForm,
+)
+from .mixins import LogoutRequiredMixin
+
+if TYPE_CHECKING:
+    from bbtest.auth.models import User
 
 
 class LoginView(_LoginView):
@@ -40,7 +62,9 @@ class RegisterView(LogoutRequiredMixin, FormView):
 
     def form_valid(self, form):
         login(self.request, form.save(self._group()))
-        self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "registration", { "event_category": self._group() } ]]
+        self.request.session["ga_events"] = self.request.session.get(
+            "ga_events", []
+        ) + [["registration", {"event_category": self._group()}]]
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -58,12 +82,14 @@ class RegisterDeveloperView(RegisterView):
     def _group(self):
         return "developer"
 
+
 class RegisterB2BTeacherView(RegisterView):
     form_class = UserCreationForm
     success_url = reverse_lazy("bbtest:b2bt_dashboard")
 
     def _group(self):
         return "B2BTeacher"
+
 
 class RegisterDemoUserView(RegisterView):
     form_class = DemoUserCreationForm
@@ -76,7 +102,9 @@ class RegisterDemoUserView(RegisterView):
         login(self.request, user)
 
         populate_demouser_test.delay(user)
-        self.request.session["ga_events"] = self.request.session.get("ga_events", []) + [[ "registration", { "event_category": self._group() } ]]
+        self.request.session["ga_events"] = self.request.session.get(
+            "ga_events", []
+        ) + [["registration", {"event_category": self._group()}]]
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -86,12 +114,14 @@ class RegisterDemoUserView(RegisterView):
     def _group(self):
         return "demouser"
 
+
 class Logout_and_Register_DemoUserView(_LogoutView):
     success_url = reverse_lazy("bbtest:register_b2bt")
     next_page = reverse_lazy("bbtest:register_b2bt")
 
     def get_next_page(self):
         return reverse_lazy("bbtest:register_b2bt")
+
 
 class PasswordResetView(LogoutRequiredMixin, _PasswordResetView):
     form_class = PasswordResetForm
@@ -106,5 +136,8 @@ class PasswordResetConfirmView(LogoutRequiredMixin, _PasswordResetConfirmView):
     template_name = "base/password_reset_confirm.html"
 
     def form_valid(self, form):
-        success(self.request, pgettext("Success alert message", "Password was reset successfully."))
+        success(
+            self.request,
+            pgettext("Success alert message", "Password was reset successfully."),
+        )
         return super().form_valid(form)
