@@ -126,7 +126,7 @@ def populate_demouser_test(user: User):
     if user.phone == "ru":
         package_obj = TestPackage.objects.get(code = "241103f825")
     else:
-        package_obj = TestPackage.objects.get(code = "241104f58d")
+        package_obj = TestPackage.objects.get(code = "241103f825")
     
     # print(package_obj)
     test_set = package_obj.tests.order_by('section__order').all()
