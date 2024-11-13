@@ -61,25 +61,31 @@
         </div>
     </div> {% endcomment %}
     {% for variant in variant_list %}
-        <h2 class="text-center">{{ variant.name }}</h2>
-        <div class="row" style="justify-items: center">
+        <h2 class="text-center variant-title">{{ variant.name }}</h2>
+        <div class="row justify-content-center">
             <div class="pricing-cards">
                 {% for card in card_data %}
                     <div class="card">
-                        <h3>{{ card.title }}</h3>
-                        <ul>
+                        <p class="card-title display-4">{{ card.title }}</p>
+                        <p class="card-subtitle">{{ card.subtitle }} </p>
+                        <p class="display-4"> <strong>{{ card.number_of_students }} учащихся</strong></p>
+                        
+                        <p class="card-section-title">Тестирование по направлениям:</p>
+                        <ul class="features-list">
                             {% for feature in card.features %}
                                 <li>{{ feature }}</li>
                             {% endfor %}
                         </ul>
-                        <p class="price">{{ card.price }}</p>
-                        {% comment %} <button class="order-button">Заказать</button> {% endcomment %}
+                        
+                        <p class="card-footer">{{ card.footer }}</p>
+                        <p class="card-techsupport">{{ card.techsupport }}</p>
+                        
+                        <p class="card-price">{{ card.price }}</p>
                         <button class="order-button" onclick="handleOrder('{{ variant.id }}', '{{ card.number_of_students }}')">Заказать</button>
                     </div>
                 {% endfor %}
             </div>
         </div>
-
     {% endfor %}
 
     
@@ -122,66 +128,84 @@
 
     </script>
     <style>
+        .display-1{font-size:6rem;font-weight:300;line-height:1.2}
+        .display-4{font-size:3.5rem;font-weight:300;line-height:1.2}
 
+        .variant-title {
+            color: #fff;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        
         .pricing-cards {
             display: flex;
-            {% comment %} justify-content: left; {% endcomment %}
+            flex-wrap: wrap;
             gap: 20px;
-            padding: 20px;
+            justify-content: center;
         }
         
         .card {
-            background-color: #1f3b5a; /* Card background color */
+            background-color: #1A3D6C;
+            border-radius: 10px;
             color: #fff;
             width: 300px;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
         
-        .card h3 {
-            color: white;
-            font-weight: bold;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
-        
-        .card ul {
-            list-style-type: none;
-            padding: 0;
-            {% comment %} justify-content: left; {% endcomment %}
-            /*margin: 0 0 20px 0; */
-            margin-bottom: auto;
-            text-align: left; /* Align text to the left */
-        }
-        
-        .card li {
+        .card-title {
+            {% comment %} font-size: 1.5em; {% endcomment %}
             margin-bottom: 10px;
         }
         
-        .price {
-            font-size: 1.4em;
+        .card-subtitle {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            color: #d9d9d9;
+        }
+        
+        .card-section-title {
             font-weight: bold;
-            margin: 15px 0;
+            margin: 10px 0 5px;
+        }
+        
+        .features-list {
+            text-align: left;
+            margin: 0;
+            padding: 0 0 0 20px;
+            list-style-type: decimal;
+        }
+        
+        .features-list li {
+            margin-bottom: 5px;
+        }
+        
+        .card-footer,
+        .card-techsupport {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        .card-price {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin: 20px 0;
         }
         
         .order-button {
-            padding: 10px 20px;
-            background-color: #1abc9c; /* Green button color */
+            background-color: #27AE60;
             color: #fff;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
         
         .order-button:hover {
-            background-color: #16a085; /* Darker green on hover */
+            background-color: #219653;
         }
     </style>
     
