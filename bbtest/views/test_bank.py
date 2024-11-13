@@ -1,31 +1,48 @@
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import redirect, get_object_or_404
-from django.contrib.messages import warning, success, error
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import Permission
-from django.utils.translation import pgettext, gettext_lazy
-from django.db.models import Q, F
-from django.utils.timezone import now
-from django.http import Http404
-from django.http import HttpResponse
-from bbtest.auth.mixins import SuperPermissionRequiredMixin
-from bbtest.views.generic import TemplateView, View
-from bbtest.views.common import UserContextMixin, PaginationMixin
-from bbtest.forms.super import  CreateCustomTestSelectionForm, CreateStandaloneQuestionForm
-from bbtest.models.test import TestDomain, Test, TestSection, TestQuestion, TestParagraph, TestParagraphQuestion, TestToQuestionRelation
-from bbtest.models.quiz import Quiz, QuizSet
-from bbtest.http import TightJsonResponse
-import uuid
-from bbtest.models import User
-from bbtest.auth.mixins import AdminPermissionRequiredMixin
-from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
-from django.core.exceptions import ValidationError
-from datetime import datetime
-from django.views.generic.base import TemplateResponseMixin, ContextMixin, View
-from random import randint
+from __future__ import annotations
+
 import json
+import uuid
+from datetime import datetime
+from random import randint
+from typing import TYPE_CHECKING
 
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.messages import error, success, warning
+from django.core.exceptions import ValidationError
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import F, Q
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, redirect
+from django.utils.timezone import now
+from django.utils.translation import gettext_lazy, pgettext
+from django.views.generic.base import ContextMixin, TemplateResponseMixin, View
 
+from bbtest.auth.mixins import (
+    AdminPermissionRequiredMixin,
+    SuperPermissionRequiredMixin,
+)
+from bbtest.forms.super import (
+    CreateCustomTestSelectionForm,
+    CreateStandaloneQuestionForm,
+)
+from bbtest.http import TightJsonResponse
+from bbtest.models.quiz import Quiz, QuizSet
+from bbtest.models.test import (
+    Test,
+    TestDomain,
+    TestParagraph,
+    TestParagraphQuestion,
+    TestQuestion,
+    TestSection,
+    TestToQuestionRelation,
+)
+from bbtest.views.common import PaginationMixin, UserContextMixin
+from bbtest.views.developer.mixins import DeveloperAcknowledgementRequiredMixin
+from bbtest.views.generic import TemplateView, View
+
+if TYPE_CHECKING:
+    from bbtest.auth.models import User
 
 
 class BuildSelectTestForAssembleView(AdminPermissionRequiredMixin, UserContextMixin, PaginationMixin, TemplateResponseMixin, ContextMixin, View):
@@ -86,7 +103,7 @@ class BuildSelectTestForAssembleView(AdminPermissionRequiredMixin, UserContextMi
         return question_count, test_duration, section_obj
 
 
-    def create_test_suite(self, developer, question_count, test_duration, section_obj):
+    def create_test_suite(self, developer: User, question_count: int, test_duration: int, section_obj: TestSection):
         # test = self.save(developer)
         while True:
             code = "%04x" % randint(0x0000, 0xffff)

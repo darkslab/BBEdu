@@ -66,9 +66,13 @@ class TestSection(Model):
         # return self.pk in (9540, 9544, 9547, 9545) or self.pk in range(9548, 9560) or self.pk in range(9560, 9564) or self.pk == 9565
     
     def get_lang(self):
-        if "ru" in self.name:
+        # if "ru" in self.name.lower():
+        #     return Test.LANGUAGE_RU
+        # if "kz" in self.name.lower():
+        #     return Test.LANGUAGE_KK
+        if "RU" in self.code.upper():
             return Test.LANGUAGE_RU
-        if "kz" in self.name:
+        if "KZ" in self.code.upper():
             return Test.LANGUAGE_KK
         return Test.LANGUAGE_XX
 
