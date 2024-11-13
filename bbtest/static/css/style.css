@@ -1691,24 +1691,3 @@ html {
     display: -ms-flexbox;
     display:         flex;
 }
-
-
-.watermarked-content {
-    position: relative;
-    padding: 20px;
-    /* Other styling as needed */
-}
-
-.watermarked-content::before {
-    content: "Демонстрационные данные"; /* Set the watermark text */
-    color: rgba(0, 0, 0, 0.1); /* Light color for watermark effect */
-    font-size: 96px; /* Adjust font size */
-    font-weight: bold;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-30deg); /* Center and rotate watermark */
-    white-space: nowrap;
-    pointer-events: none; /* Prevent the watermark from interfering with clicks */
-    z-index: 90;
-}
