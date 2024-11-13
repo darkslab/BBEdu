@@ -1,11 +1,12 @@
-from collections import defaultdict
+from __future__ import annotations
+
 import random
-from typing import List
+from collections import defaultdict
+from typing import TYPE_CHECKING, List
 
 import numpy as np
-from django.core.handlers.wsgi import WSGIRequest
+from django.contrib.auth import get_user_model
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404
 from django.utils.translation import get_language
 
@@ -25,6 +26,11 @@ from bbtest.models import (
 from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.views.common import PaginationMixin, UserContextMixin
 from bbtest.views.generic import TemplateView
+
+if TYPE_CHECKING:
+    from django.core.handlers.wsgi import WSGIRequest
+    from django.db.models import QuerySet
+    from bbtest.auth.models import User
 
 
 class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), UserContextMixin, PaginationMixin, TemplateView):
@@ -59,7 +65,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         # Get student list
         student_username_list: List[str] = [row[0] for row in quiz_pair.student_table]
-        student_obj_list: QuerySet[User] = User.objects.filter(username__in=student_username_list).all()
+        student_obj_list: QuerySet[User] = get_user_model().objects.filter(username__in=student_username_list).all()
         student_obj_list = sorted(student_obj_list, key=lambda obj: student_username_list.index(obj.username))
         n_students = len(student_username_list)
         

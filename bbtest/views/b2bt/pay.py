@@ -28,6 +28,7 @@ from bbtest.views.generic import TemplateView, View
 
 if TYPE_CHECKING:
     from django.core.handlers.wsgi import WSGIRequest
+    from bbtest.auth.models import User
 
 
 def set_cache_with_expiration(key, value, ttl):

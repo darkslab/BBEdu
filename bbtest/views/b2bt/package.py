@@ -1,20 +1,20 @@
-import csv
+from __future__ import annotations
+
 import io
 import json
 import uuid
 from datetime import datetime
 from random import randint
-from typing import List
+from typing import TYPE_CHECKING, List
 
 import xlsxwriter
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.messages import error, success, warning
 from django.core.exceptions import ValidationError
-from django.core.handlers.wsgi import WSGIRequest
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.db.models import F, Q, QuerySet
 from django.db.transaction import atomic
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
@@ -55,7 +55,13 @@ from bbtest.models.test import (
 from bbtest.views.common import PaginationMixin, UserContextMixin
 from bbtest.views.generic import TemplateView, View
 
-# User = get_user_model()
+if TYPE_CHECKING:
+    from django.core.handlers.wsgi import WSGIRequest
+    from django.db.models import QuerySet
+    from bbtest.auth.models import User
+
+
+User_model = get_user_model()
 
 
 class BuildPackagesView(
@@ -223,44 +229,6 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
         # comment = form.cleaned_data["comment"]
         number_of_students = form.cleaned_data["number_of_students"]
 
-        # student_table = []
-        # for i in range(int(number_of_students)):
-        #     passwrd = "{:05}".format(randint(10000, 99999))
-        #     # user: User = self.create_students(passwrd)
-        #     student_table.append(["", f"Имя {i+1}", f"Фамилия {i+1}", "rus", passwrd])
-            
-
-        # student_table = []
-        # bulk_create_user: List[User] = []
-        # for i in range(int(number_of_students)):
-        #     temp_username = uuid.uuid4().hex
-        #     temp_email = f"{temp_username}@b2b.bbtest.kz"
-        #     passwrd = "{:05}".format(randint(10000, 99999))
-        #     # user: User = self.create_students(passwrd)
-        #     temp_user = User(
-        #             username=temp_username,
-        #             email=temp_email,
-        #             password=passwrd,
-        #             is_active=False,
-        #             first_name = f"Имя {i+1}",
-        #             last_name = f"Фамилия {i+1}",
-        #         )
-        #     bulk_create_user.append(temp_user)
-        #     student_table.append(["user.username", f"Имя {i+1}", f"Фамилия {i+1}", "rus", passwrd])
-
-        # content_type = ContentType.objects.get_for_model(User)
-        # permissions = [Permission.objects.get(codename="student", content_type=content_type)]
-
-        # with atomic(savepoint=False):
-        #     created_users: List[User] = User.objects.bulk_create(bulk_create_user)
-        # for i, std_user in enumerate(created_users):
-        #     std_user.user_permissions.set(permissions)
-        #     std_user.username = f"std{std_user.pk}"
-        #     student_table[i][0] = f"std{std_user.pk}"
-        
-        # User.objects.bulk_update(created_users, ["username"])
-
-
         package_quiz_obj = TestPackageRusKazQuiz.objects.create(
             user=request.user,
             TestPackagePair=test_package_pair,
@@ -273,20 +241,22 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
         # hashing passwords takes a lot if time, there lets put into separete job queue
         hash_users_passwords.delay(initialized_users)
 
-        print("AddPackagePairFormView", package_quiz_obj)
+        # print("AddPackagePairFormView", package_quiz_obj)
 
         return redirect("bbtest:b2bt_build_package_pair_quiz", package_quiz_obj.id)
     
+
     def create_package_pair_quiz_users_helper(self, package_quiz_obj: TestPackageRusKazQuiz):
         student_table = [] # package_quiz_obj.student_table
         number_of_students = package_quiz_obj.number_of_students 
+        
         
         bulk_create_user: List[User] = []
         for i in range(int(number_of_students)):
             temp_username = uuid.uuid4().hex
             temp_email = f"{temp_username}@b2b.bbtest.kz"
             passwrd = "{:05}".format(randint(10000, 99999))
-            temp_user = User(
+            temp_user = User_model(
                     username=temp_username,
                     email=temp_email,
                     password=passwrd,
@@ -297,18 +267,18 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
             bulk_create_user.append(temp_user)
             student_table.append(["user.username", f"Имя {i+1}", f"Фамилия {i+1}", "rus", passwrd])
 
-        content_type = ContentType.objects.get_for_model(User)
+        content_type = ContentType.objects.get_for_model(User_model)
         permissions = [Permission.objects.get(codename="student", content_type=content_type)]
 
         with atomic(savepoint=False):
-            created_users: List[User] = User.objects.bulk_create(bulk_create_user)
+            created_users: List[User] = User_model.objects.bulk_create(bulk_create_user)
 
         # balance account is not created in bulk creation because post_save is not triggered
         balance_acount_list = []
         initialized_users: List[User] = []
 
         for i, std_user in enumerate(created_users):
-            user = User.objects.get(username = std_user.username)
+            user = User_model.objects.get(username = std_user.username)
             user.user_permissions.set(permissions)
             user.username = f"std{user.pk}"  # "std" + F("id") 
             # bulk_refetch_users.append(user)
@@ -338,7 +308,7 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
         # temp_username = uuid.uuid4().hex
         # temp_email = f"{temp_username}@b2b.bbtest.kz"
 
-        # user: User = User.objects.create_user(
+        # user: User = User_model.objects.create_user(
         #     username=temp_username, email=temp_email, password=password
         # )
 
@@ -430,7 +400,7 @@ class B2BStudentStartExamView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vi
             domain = domain_ru if lang == "rus" else domain_kz
             test_set = test_set_ru if lang == "rus" else test_set_kz
 
-            student: User = User.objects.get(username = username)
+            student: User = User_model.objects.get(username = username)
 
             quiz_set = student.quiz_sets.create(test_domain=domain, cart=None)
             for quiz_order, test in enumerate(test_set):
@@ -566,7 +536,7 @@ class ManagePackageStudentsFormView(CreateStudentRequiredMixin, View):
         return redirect("bbtest:build_package", package_code)
 
     def create_students(self, username, email, password, is_active):
-        user: User = User.objects.create_user(
+        user: User = User_model.objects.create_user(
             username=username, email=email, password=password
         )
         user.first_name = username
@@ -639,8 +609,8 @@ class ActivateStudentTurnON(PermissionRequiredMixinFactory(["B2BTeacher"]), View
         group_obj = get_object_or_404(StudentGroup.objects, pk=student_group_id)
         if settings.DEBUG:
             # group_obj.students.update(student__is_active=True)
-            # User.objects.filter(student_test_profile=group_obj).count()
-            User.objects.filter(
+            # User_model.objects.filter(student_test_profile=group_obj).count()
+            User_model.objects.filter(
                 student_test_profile__isnull=False,
                 student_test_profile__student_group=group_obj,
             ).update(is_active=True)
@@ -660,7 +630,7 @@ class ActivateStudentTurnOFF(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
             StudentGroup.objects, pk=student_group_id
         )
         if settings.DEBUG:
-            User.objects.filter(
+            User_model.objects.filter(
                 student_test_profile__isnull=False,
                 student_test_profile__student_group=group_obj,
             ).update(is_active=False)

@@ -1,7 +1,10 @@
-from json import loads
+from __future__ import annotations
 
+from json import loads
+from typing import TYPE_CHECKING
+
+from django.contrib.auth import get_user_model
 from django.contrib.messages import error, success
-from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import Prefetch
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
@@ -25,7 +28,7 @@ from bbtest.forms.test import (
 )
 from bbtest.http import TightJsonResponse
 from bbtest.jobs.upload import image_paragraph_destroyer
-from bbtest.models import QuestionComments, Test, TestParagraph, TestQuestion, User
+from bbtest.models import QuestionComments, Test, TestParagraph, TestQuestion
 from bbtest.models.upload import expiring_url
 from bbtest.texts import (
     inject_texts_into_question_response,
@@ -39,6 +42,13 @@ from .common import (
     inject_standalone_question_and_report_into_started_response,
 )
 from .generic import FormView, RedirectView, TemplateView, View
+
+if TYPE_CHECKING:
+    from django.core.handlers.wsgi import WSGIRequest
+    from bbtest.auth.models import User
+
+
+User_model = get_user_model()
 
 
 def get_question_for_edit_or_404(request: WSGIRequest, code: str, include_section=False, include_paragraphs=False) -> TestQuestion:
