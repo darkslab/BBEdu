@@ -1,11 +1,12 @@
+from __future__ import annotations
 
 import time
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 from django.conf import settings
 from django.contrib.messages import success
 from django.core.cache import cache
-from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import get_object_or_404, redirect, resolve_url
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import get_language, pgettext
@@ -24,6 +25,9 @@ from bbtest.payment_processors.kaspi_qr import generate_QR_base64
 from bbtest.payment_processors.kaspi_qr import order_create as kaspi_qr_order_create
 from bbtest.views.common import UserContextMixin
 from bbtest.views.generic import TemplateView, View
+
+if TYPE_CHECKING:
+    from django.core.handlers.wsgi import WSGIRequest
 
 
 def set_cache_with_expiration(key, value, ttl):
@@ -64,6 +68,8 @@ class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
             price = 15000
         elif package_pair_quiz_obj.number_of_students <= 150:
             price = 45000
+        else:
+            raise ValueError(f"Unexpectedlyy large number of students: package_pair_quiz_obj.number_of_students={package_pair_quiz_obj.number_of_students}")
             
         kwargs["cart_rounded_total"] = price
 
