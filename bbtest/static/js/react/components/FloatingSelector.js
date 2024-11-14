@@ -21,6 +21,9 @@ var FloatingSelector = /*#__PURE__*/function (_React$Component) {
     var _this;
     _classCallCheck(this, FloatingSelector);
     _this = _callSuper(this, FloatingSelector, [props]);
+    // this.props.id
+    // this.props.options
+    // this.props.title
     _this.state = {
       isSticky: false
     };
@@ -64,6 +67,26 @@ var FloatingSelector = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var option_selector = [];
+      for (var i = 0; i < this.props.options.length; i++) {
+        var id = this.props.id[i];
+        var options = this.props.options[i];
+        var title = this.props.title[i];
+        option_selector.push( /*#__PURE__*/React.createElement(React.Fragment, {
+          key: "asd ".concat(i)
+        }, /*#__PURE__*/React.createElement("label", {
+          key: "label ".concat(i),
+          htmlFor: id,
+          className: "h5",
+          style: {
+            "fontWeight": "bold"
+          }
+        }, title, ":"), /*#__PURE__*/React.createElement("select", {
+          key: "select ".concat(i),
+          className: "select_v2",
+          id: id
+        }, options)));
+      }
       return /*#__PURE__*/React.createElement("div", {
         ref: this.setSelectorRef // Set callback ref
         ,
@@ -80,16 +103,7 @@ var FloatingSelector = /*#__PURE__*/function (_React$Component) {
           padding: "10px",
           boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)"
         } : {})
-      }, /*#__PURE__*/React.createElement("label", {
-        htmlFor: "subject-select",
-        className: "h5",
-        style: {
-          "fontWeight": "bold"
-        }
-      }, "\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u041F\u0440\u0435\u0434\u043C\u0435\u0442:"), /*#__PURE__*/React.createElement("select", {
-        className: "select_v2",
-        id: "subject-select"
-      }, this.props.options));
+      }, option_selector);
     }
   }]);
 }(React.Component);

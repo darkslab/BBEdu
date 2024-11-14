@@ -1,6 +1,9 @@
 class FloatingSelector extends React.Component {
     constructor(props) {
         super(props);
+        // this.props.id
+        // this.props.options
+        // this.props.title
         this.state = {
             isSticky: false,
         };
@@ -37,6 +40,22 @@ class FloatingSelector extends React.Component {
     }
 
     render() {
+        const option_selector = []
+        for (let i = 0; i < this.props.options.length; i++) {
+            const id = this.props.id[i]
+            const options = this.props.options[i]
+            const title = this.props.title[i]
+
+            option_selector.push(<React.Fragment key={`asd ${i}`} >
+                <label key={`label ${i}`} htmlFor={id} className="h5" style={{ "fontWeight": "bold" }}>{title}:</label>
+                <select key={`select ${i}`} className="select_v2" id={id}>
+                    {options}
+                </select>
+            </React.Fragment>)
+
+
+        }
+
         return (
             <div
                 ref={this.setSelectorRef} // Set callback ref
@@ -58,11 +77,7 @@ class FloatingSelector extends React.Component {
                         : {}),
                 }}
             >
-                <label htmlFor="subject-select" className="h5" style={{"fontWeight": "bold"}}>Выбрать Предмет:</label>
-                <select className="select_v2" id="subject-select">
-                    {/* <option key="option 0" value="0">Total</option> */}
-                    {this.props.options}
-                </select>
+            {option_selector}
             </div>
         );
     }

@@ -55,20 +55,20 @@ class ChartTotal extends React.Component {
                 }
             }
         });
-        this._update_chart(this.myChart, this.props.selected_parent, this.props.selected_children_list, this.props.parent_student_scores, this.props.map_id_to_key);
+        this._update_chart(this.myChart, this.props.selected_parent, this.props.selected_children_list, this.props.parent_student_scores, this.props.map_id_to_key, this.props.student_name_list);
         
     }
 
     componentDidUpdate(prevProps) {
         // Check if subject_list has changed
-        if (prevProps.selected_parent !== this.props.selected_parent) {
+        if (prevProps.selected_parent !== this.props.selected_parent | prevProps.selected_language !== this.props.selected_language) {
             
             // const selected_subject = this.props.selected_subject ? this.props.selected_subject : "Total";
             // const subject_list = this.props.subject_list;
             // const scores_data = this.props.scores_data;
             // console.log("ChartTotal.componentDidUpdate", this.props, selected_subject)
 
-            this._update_chart(this.myChart, this.props.selected_parent, this.props.selected_children_list, this.props.parent_student_scores, this.props.map_id_to_key);
+            this._update_chart(this.myChart, this.props.selected_parent, this.props.selected_children_list, this.props.parent_student_scores, this.props.map_id_to_key, this.props.student_name_list);
         }
     }
 
@@ -76,7 +76,7 @@ class ChartTotal extends React.Component {
         return <canvas id="studentChart" width="800" height={ this.props.subject_chart_height }></canvas>
     }
 
-    _update_chart(myChart, selected_parent, selected_children_list, parent_student_scores, map_id_to_key) {
+    _update_chart(myChart, selected_parent, selected_children_list, parent_student_scores, map_id_to_key, student_name_list) {
         console.log("ChartTotal._update_chart", selected_parent, selected_children_list, parent_student_scores)
         const getAverage = (array) =>
             array.reduce((sum, currentValue) => sum + currentValue, 0) / array.length;
@@ -94,7 +94,9 @@ class ChartTotal extends React.Component {
             'rgba(46, 204, 113, 0.8)'   // #2ecc71
         ];
 
-        if (selected_parent === 0) {
+        myChart.data.labels = student_name_list;
+
+        if (selected_parent === "0rus" || selected_parent === "0kaz") {
             myChart.options.scales.y.stacked = true;
             myChart.data.datasets = [];
             // Loop through each subject in subject_list

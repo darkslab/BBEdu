@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import hashlib
+import inspect
 import random
 from collections import defaultdict
 from typing import TYPE_CHECKING, List
 
 import numpy as np
 from django.contrib.auth import get_user_model
+from django.core.cache import cache
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404
 from django.utils.translation import get_language
@@ -31,8 +34,15 @@ from bbtest.views.generic import TemplateView
 if TYPE_CHECKING:
     from django.core.handlers.wsgi import WSGIRequest
     from django.db.models import QuerySet
+
     from bbtest.auth.models import User
 
+
+def get_function_hash(func):
+    # Retrieve the source code of the function
+    source_code = inspect.getsource(func)
+    # Compute a hash of the source code
+    return hashlib.sha256(source_code.encode('utf-8')).hexdigest()
 
 class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), UserContextMixin, PaginationMixin, TemplateView):
     template_name = "b2bt/dashboard.html"
@@ -71,13 +81,17 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         # )
             
         # quiz_pair: TestPackageRusKazQuiz = q.latest('created_at')
+        fhash = get_function_hash(self.get)
 
-        kwargs |= self.compute_statistic(quiz_pair)
+        stats = None # cache.get(f"dashboard_result_{package_pair_quiz_id}_{fhash}")
+        if stats is None:
+            stats = self.compute_statistic(quiz_pair)
+            # cache.set(f"dashboard_result_{package_pair_quiz_id}_{fhash}", stats, 300)
+
+        kwargs |= stats
 
         return self.render_to_response(super().get_context_data(**kwargs))
 
-    # def get_context_data(self, **kwargs):
-    #     return super().get_context_data(**kwargs)
 
     def compute_statistic(self, quiz_pair: TestPackageRusKazQuiz):
         kwargs = {}
@@ -91,29 +105,36 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         domain_obj_kz: TestDomain = quiz_pair.TestPackagePair.test_package_kz.domain
         domain_obj_ru: TestDomain = quiz_pair.TestPackagePair.test_package_ru.domain
 
-        section_list: List[TestSection] = list(domain_obj_kz.sections.prefetch_related("topics").all())
-        section_list.extend(list(domain_obj_ru.sections.prefetch_related("topics").all()))
+        section_list_kz: List[TestSection] = list(domain_obj_kz.sections.prefetch_related("topics").all())
+        section_list_ru: List[TestSection] = list(domain_obj_ru.sections.prefetch_related("topics").all())
+        section_list = section_list_kz + section_list_ru
 
         # produce mapping from section, topic, subtopic to id
         total_id = 0
-        map_key_to_id = self.produce_key_to_id_mapping(section_list, total_id = total_id)
+        map_key_to_id_ru = self.produce_key_to_id_mapping(section_list_ru, total_id, lang="rus")
+        map_key_to_id_kz = self.produce_key_to_id_mapping(section_list_kz, total_id, lang="kaz")
+        map_key_to_id = map_key_to_id_ru | map_key_to_id_kz
+
         map_id_to_key = {v: getattr(k, 'name', k) for k, v in map_key_to_id.items()}
         # print(map_key_to_id)
         # print(map_id_to_key)
 
 
         # create tree
-        parent_to_children_list = self.produce_parent_to_children_list(section_list, map_key_to_id, total_id)
+        parent_to_children_list_ru = self.produce_parent_to_children_list(section_list_ru, map_key_to_id, total_id, lang="rus")
+        parent_to_children_list_kz = self.produce_parent_to_children_list(section_list_kz, map_key_to_id, total_id, lang="kaz")
+        parent_to_children_list = parent_to_children_list_ru | parent_to_children_list_kz
 
-        parent_student_scores = defaultdict(lambda: [])  # { total_id: np.zeros(n_students) }
 
-        parent_student_scores = {k: np.zeros(n_students) for k, v in map_id_to_key.items()}
+        # parent_student_scores = defaultdict(lambda: [])  # { total_id: np.zeros(n_students) }
+        parent_student_scores = {k: np.zeros(n_students) for k in map_id_to_key.keys()}
 
-        for student_index, student in enumerate(student_obj_list):
+
+        for student_i, (student, row) in enumerate(zip(student_obj_list, quiz_pair.student_table)):
             # username = row[0]
             # first_name = row[1]
             # last_name = row[2]
-            # lang = row[3]
+            student_lang = row[3]
             # pwd = row[4]
 
             quiz_set_list: QuerySet[QuizSet] = student.quiz_sets.all()
@@ -138,22 +159,39 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
                 score, score_topic, score_subtopic = quiz_obj.calc_score_by_topic_subtopic()
                 # print(score, score_topic, score_subtopic)
 
-                parent_student_scores[section_id][student_index] = score
+                parent_student_scores[section_id][student_i] = score
                 total_score += score
 
-                # topic_list: List[TestTopic] = section_obj.topics.all()
-                # for topic_obj in topic_list:
-                #     topic_id = map_key_to_id[topic_obj]
-                #     parent_student_scores[topic_id].append(score_topic[topic_obj]) 
-
-                for topic, topic_score in score_topic.items():
-                    topic_id = map_key_to_id[topic]
-                    parent_student_scores[topic_id][student_index] = topic_score
+                for topic_obj, topic_score in score_topic.items():
+                    topic_id = map_key_to_id[topic_obj]
+                    parent_student_scores[topic_id][student_i] = topic_score
                 # for subtopic, subtopic_score in score_topic.items():
                 #     subtopic_id = map_key_to_id[subtopic]
                 #     parent_student_scores[subtopic_id].append(subtopic_score)
 
-            parent_student_scores[total_id][student_index] = total_score
+            parent_student_scores[f"{total_id}{student_lang}"][student_i] = total_score
+
+
+        student_name_list_by_lang = {"rus": [], "kaz": []}
+        slice_by_lang = {"rus": [], "kaz": []}
+        for i, row in enumerate(quiz_pair.student_table):
+            # username = row[0]
+            first_name = row[1]
+            last_name = row[2]
+            student_lang = row[3]
+            # pwd = row[4]
+            student_name_list_by_lang[student_lang].append(f"{i+1}) {first_name} + {last_name}")
+            slice_by_lang[student_lang].append(i)
+
+        # n_students_ru = len(student_name_list["rus"])
+        # n_students_kz = len(student_name_list["kaz"])
+        parent_student_scores_by_lang = {
+            "rus": {k: scores[slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("rus")},
+            "kaz": {k: scores[slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("kaz")},
+        }
+        
+        # parent_student_scores_by_lang["rus"] = {k: np.zeros(n_students_ru) for k in map_id_to_key.keys() if k.lower().endswith("rus")}
+        # parent_student_scores_by_lang["kaz"] = {k: np.zeros(n_students_kz) for k in map_id_to_key.keys() if k.lower().endswith("kaz")}
 
 
 
@@ -164,11 +202,15 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             parent_student_scores[key] = parent_student_scores[key].tolist()
 
         # pass data to charts
-        kwargs['student_name_list'] = [s.get_full_name() for s in student_obj_list]
-        kwargs['parent_list'] = [total_id] + [map_key_to_id[s] for s in section_list]
+        kwargs['student_name_list'] = student_name_list_by_lang # [s.get_full_name() for s in student_obj_list]
+        kwargs['parent_list'] = {
+            "rus": [f"{total_id}rus"] + [map_key_to_id[s] for s in section_list_ru],
+            "kaz": [f"{total_id}kaz"] + [map_key_to_id[s] for s in section_list_kz],
+        }
+        
         kwargs['parent_to_children_list'] = parent_to_children_list
         kwargs['parent_average_scores'] = parent_average_scores
-        kwargs['parent_student_scores'] = parent_student_scores
+        kwargs['parent_student_scores'] = parent_student_scores_by_lang  # parent_student_scores
         # kwargs['map_key_to_id'] = map_key_to_id
         kwargs['map_id_to_key'] = map_id_to_key
 
@@ -239,30 +281,30 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         return kwargs
 
-    def produce_key_to_id_mapping(self, section_list: List[TestSection],  total_id = 0):
-        map_key_to_id = {"Total": total_id}
-        map_key_to_id |= {s: i for i, s in enumerate(section_list, 10)}  # f"Предмет {s.name}"
+    def produce_key_to_id_mapping(self, section_list: List[TestSection],  total_id = 0, lang = "rus"):
+        map_key_to_id = {f"Total_{lang}": f"{total_id}{lang}"}
+        map_key_to_id |= {s: f"{i}{lang}" for i, s in enumerate(section_list, 10)}  # f"Предмет {s.name}"
         topic_id = 1000
         subtopic_id = 2000
 
         for section_obj in section_list:
             topic_list: List[TestTopic] = section_obj.topics.all()
             for topic_obj in topic_list:
-                map_key_to_id[topic_obj] = topic_id
+                map_key_to_id[topic_obj] = f"{topic_id}{lang}"
                 topic_id += 1
 
                 topic_subtopic_list: List[TestTopicToSubtopicRelation] = TestTopicToSubtopicRelation.objects.filter(topic = topic_obj).order_by("order")
                 for topic_subtopic_obj in topic_subtopic_list:
-                    map_key_to_id[topic_subtopic_obj.subtopic] = subtopic_id
+                    map_key_to_id[topic_subtopic_obj.subtopic] = f"{subtopic_id}{lang}"
                     subtopic_id += 1
 
         # map_id_to_key = {v: getattr(k, 'name', k) for k, v in map_key_to_id.items()}
         return map_key_to_id
     
 
-    def produce_parent_to_children_list(self, section_list: List[TestSection], map_key_to_id, total_id = 0):
+    def produce_parent_to_children_list(self, section_list: List[TestSection], map_key_to_id, total_id = 0, lang = "rus"):
 
-        parent_to_children_list = { total_id: [map_key_to_id[s] for s in section_list] }
+        parent_to_children_list = { f"{total_id}{lang}": [map_key_to_id[s] for s in section_list] }
         for section_obj in section_list:
             section_id = map_key_to_id[section_obj]
             # print(section_obj)

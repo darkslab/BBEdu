@@ -9,8 +9,9 @@ class ChartDashboard extends React.Component {
         // this.props.map_key_to_id
         // this.props.map_id_to_key
         this.state = {
-            current_parent: 0, // this.props.map_key_to_id["Total"],
-            current_children: this.props.parent_to_children_list[0][0], // this.props.map_key_to_id["Чтение"]
+            current_parent: "0rus", // this.props.map_key_to_id["Total"],
+            current_children: this.props.parent_to_children_list["0rus"][0], // this.props.map_key_to_id["Чтение"]
+            current_language: "rus",
         };
     }
 
@@ -25,22 +26,31 @@ class ChartDashboard extends React.Component {
     componentDidMount() {
         const option_select = $("#subject-select");
         option_select.select2({
-            width: '20vw',
+            width: '10%',
         });
+        option_select.val(this.state.current_parent).trigger("change");
         option_select.on('select2:select', (event) => this._selectParent(event));
+
+        const lang_option_select = $("#language-select");
+        lang_option_select.select2({
+            width: '10%',
+        });
+        // lang_option_select.val(this.state.current_children).trigger("change");
+        lang_option_select.on('select2:select', (event) => this._selectLanguage(event));
 
 
         const topic_option_select = $("#subject-topic-select");
         topic_option_select.select2({
-            width: '100%',
+            width: '50%',
         });
         topic_option_select.val(this.state.current_children).trigger("change");
-
         topic_option_select.on('select2:select', (event) => this._selectChild(event));
+
+        
     }
 
     render() {
-        const parent_list = this.props.parent_list;
+        const parent_list = this.props.parent_list[this.state.current_language];
         const map_id_to_key = this.props.map_id_to_key
 
         console.log("this.props", this.props)
@@ -51,6 +61,11 @@ class ChartDashboard extends React.Component {
             options.push(<option key={`option ${parent_id}`} value={parent_id} >{map_id_to_key[parent_id]}</option>)
 
         }
+
+        const options_lang = [
+            <option key={`option rus}`} value={"rus"} >rus</option>,
+            <option key={`option kaz}`} value={"kaz"} >kaz</option>,
+        ];
         
         
         // Polar Area chart compute
@@ -87,7 +102,9 @@ class ChartDashboard extends React.Component {
 
         return <React.Fragment>
             <FloatingSelector 
-                    options={options}
+                    id={["subject-select", "language-select"]}
+                    title={["Выбрать - Предмет", "Язык"]}
+                    options={[options, options_lang]}
                 />
             {/* {this.state.current_children} */}
             <div className="row">
@@ -96,10 +113,11 @@ class ChartDashboard extends React.Component {
                     <div className="row panel panel-default">
                         <p className="h3" style={{ textAlign: "center" }}>Результаты учеников</p>
                         <ChartTotal
-                            student_name_list={this.props.student_name_list}
+                            student_name_list={this.props.student_name_list[this.state.current_language]}
                             selected_parent={this.state.current_parent}
+                            selected_language={this.state.current_language}
                             selected_children_list={selected_children_list}
-                            parent_student_scores={this.props.parent_student_scores}
+                            parent_student_scores={this.props.parent_student_scores[this.state.current_language]}
 
                             map_id_to_key={this.props.map_id_to_key}
                             subject_chart_height={this.props.subject_chart_height}
@@ -156,23 +174,37 @@ class ChartDashboard extends React.Component {
 
     _selectParent(e) {
         const data = e.params.data;
-        const selectedIndex = parseInt(data.id);
+        const selectedIndex = data.id;
+        const current_language = this.state.current_language;
 
-        console.log("_selectSubject", data, selectedIndex, this.props.parent_list[selectedIndex])
+        console.log("_selectSubject", data, selectedIndex, this.props.parent_list[this.state.current_language][selectedIndex])
         this.setState({
-            current_parent: selectedIndex, // this.props.parent_list[selectedIndex]
+            current_parent: selectedIndex,
             current_children: this.props.parent_to_children_list[selectedIndex][0],
         });
     }
 
     _selectChild(e) {
         const data = e.params.data;
-        const selectedIndex = parseInt(data.id);
+        const selectedIndex = data.id;
 
         this.setState({
             current_children: selectedIndex,
         });
     }
 
+    _selectLanguage(e) {
+        const data = e.params.data;
+        const new_lang = data.id;
+        const new_parrent = this.state.current_parent.slice(0, -3) + new_lang;
+        const new_children = this.props.parent_to_children_list[new_parrent][0];
+        // const selectedIndex = data.id;
+        console.log(data, data.id)
 
+        this.setState({
+            current_language: new_lang,
+            current_parent: new_parrent,
+            current_children: new_children,
+        });
+    }
 }
