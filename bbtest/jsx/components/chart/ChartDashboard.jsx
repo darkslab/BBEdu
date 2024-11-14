@@ -26,14 +26,14 @@ class ChartDashboard extends React.Component {
     componentDidMount() {
         const option_select = $("#subject-select");
         option_select.select2({
-            width: '10%',
+            width: '100%',
         });
         option_select.val(this.state.current_parent).trigger("change");
         option_select.on('select2:select', (event) => this._selectParent(event));
 
         const lang_option_select = $("#language-select");
         lang_option_select.select2({
-            width: '10%',
+            width: '100%',
         });
         // lang_option_select.val(this.state.current_children).trigger("change");
         lang_option_select.on('select2:select', (event) => this._selectLanguage(event));
@@ -103,7 +103,7 @@ class ChartDashboard extends React.Component {
         return <React.Fragment>
             <FloatingSelector 
                     id={["subject-select", "language-select"]}
-                    title={["Выбрать - Предмет", "Язык"]}
+                    title={["Предмет", "Язык"]}
                     options={[options, options_lang]}
                 />
             {/* {this.state.current_children} */}

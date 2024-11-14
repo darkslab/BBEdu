@@ -72,24 +72,50 @@ var FloatingSelector = /*#__PURE__*/function (_React$Component) {
         var id = this.props.id[i];
         var options = this.props.options[i];
         var title = this.props.title[i];
-        option_selector.push( /*#__PURE__*/React.createElement(React.Fragment, {
-          key: "asd ".concat(i)
+        option_selector.push( /*#__PURE__*/React.createElement("div", {
+          key: "selector-container-".concat(i),
+          style: {
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            border: "1px solid #ddd",
+            borderRadius: "2px",
+            padding: "2px 3px",
+            margin: "2px 0",
+            backgroundColor: "#f9f9f9",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+            maxWidth: "800px",
+            // Keep a max width to avoid spreading too wide
+            marginLeft: "auto",
+            // Center align within the parent container
+            marginRight: "auto"
+          }
         }, /*#__PURE__*/React.createElement("label", {
-          key: "label ".concat(i),
           htmlFor: id,
           className: "h5",
           style: {
-            "fontWeight": "bold"
+            fontWeight: "bold",
+            color: "#333",
+            marginRight: "15px",
+            whiteSpace: "nowrap" // Prevents wrapping of the label text
           }
         }, title, ":"), /*#__PURE__*/React.createElement("select", {
-          key: "select ".concat(i),
+          id: id,
           className: "select_v2",
-          id: id
+          style: {
+            flex: 1,
+            padding: "2px 3px",
+            borderRadius: "3px",
+            border: "1px solid #ccc",
+            fontSize: "16px",
+            backgroundColor: "#fff",
+            appearance: "none",
+            width: "100%" // Allows dropdown to fill remaining space
+          }
         }, options)));
       }
       return /*#__PURE__*/React.createElement("div", {
-        ref: this.setSelectorRef // Set callback ref
-        ,
+        ref: this.setSelectorRef,
         className: "selector ".concat(this.state.isSticky ? "is-sticky" : ""),
         style: _objectSpread({
           textAlign: "center"
@@ -101,7 +127,8 @@ var FloatingSelector = /*#__PURE__*/function (_React$Component) {
           zIndex: 1000,
           backgroundColor: "white",
           padding: "10px",
-          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)"
+          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+          minWidth: "600px"
         } : {})
       }, option_selector);
     }

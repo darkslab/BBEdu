@@ -51,7 +51,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
       var option_select = $("#subject-select");
       option_select.select2({
-        width: '10%'
+        width: '100%'
       });
       option_select.val(this.state.current_parent).trigger("change");
       option_select.on('select2:select', function (event) {
@@ -59,7 +59,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       });
       var lang_option_select = $("#language-select");
       lang_option_select.select2({
-        width: '10%'
+        width: '100%'
       });
       // lang_option_select.val(this.state.current_children).trigger("change");
       lang_option_select.on('select2:select', function (event) {
@@ -128,7 +128,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FloatingSelector, {
         id: ["subject-select", "language-select"],
-        title: ["Выбрать - Предмет", "Язык"],
+        title: ["Предмет", "Язык"],
         options: [options, options_lang]
       }), /*#__PURE__*/React.createElement("div", {
         className: "row"

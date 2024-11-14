@@ -40,29 +40,68 @@ class FloatingSelector extends React.Component {
     }
 
     render() {
-        const option_selector = []
+        const option_selector = [];
         for (let i = 0; i < this.props.options.length; i++) {
-            const id = this.props.id[i]
-            const options = this.props.options[i]
-            const title = this.props.title[i]
-
-            option_selector.push(<React.Fragment key={`asd ${i}`} >
-                <label key={`label ${i}`} htmlFor={id} className="h5" style={{ "fontWeight": "bold" }}>{title}:</label>
-                <select key={`select ${i}`} className="select_v2" id={id}>
-                    {options}
-                </select>
-            </React.Fragment>)
-
-
+            const id = this.props.id[i];
+            const options = this.props.options[i];
+            const title = this.props.title[i];
+    
+            option_selector.push(
+                <div
+                    key={`selector-container-${i}`}
+                    style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        border: "1px solid #ddd",
+                        borderRadius: "2px",
+                        padding: "2px 3px",
+                        margin: "2px 0",
+                        backgroundColor: "#f9f9f9",
+                        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+                        maxWidth: "800px", // Keep a max width to avoid spreading too wide
+                        marginLeft: "auto", // Center align within the parent container
+                        marginRight: "auto",
+                    }}
+                >
+                    <label
+                        htmlFor={id}
+                        className="h5"
+                        style={{
+                            fontWeight: "bold",
+                            color: "#333",
+                            marginRight: "15px",
+                            whiteSpace: "nowrap", // Prevents wrapping of the label text
+                        }}
+                    >
+                        {title}:
+                    </label>
+                    <select
+                        id={id}
+                        className="select_v2"
+                        style={{
+                            flex: 1,
+                            padding: "2px 3px",
+                            borderRadius: "3px",
+                            border: "1px solid #ccc",
+                            fontSize: "16px",
+                            backgroundColor: "#fff",
+                            appearance: "none",
+                            width: "100%", // Allows dropdown to fill remaining space
+                        }}
+                    >
+                        {options}
+                    </select>
+                </div>
+            );
         }
-
+    
         return (
             <div
-                ref={this.setSelectorRef} // Set callback ref
+                ref={this.setSelectorRef}
                 className={`selector ${this.state.isSticky ? "is-sticky" : ""}`}
                 style={{
                     textAlign: "center",
-                    // transition: "all 0.3s ease",
                     ...(this.state.isSticky
                         ? {
                             position: "fixed",
@@ -73,12 +112,14 @@ class FloatingSelector extends React.Component {
                             backgroundColor: "white",
                             padding: "10px",
                             boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                            minWidth: "600px",
                         }
                         : {}),
                 }}
             >
-            {option_selector}
+                {option_selector}
             </div>
         );
     }
+    
 }
