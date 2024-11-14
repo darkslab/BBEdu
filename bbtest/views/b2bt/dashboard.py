@@ -86,7 +86,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         stats = None # cache.get(f"dashboard_result_{package_pair_quiz_id}_{fhash}")
         if stats is None:
             stats = self.compute_statistic(quiz_pair)
-            # cache.set(f"dashboard_result_{package_pair_quiz_id}_{fhash}", stats, 300)
+            cache.set(f"dashboard_result_{package_pair_quiz_id}_{fhash}", stats, 100)
 
         kwargs |= stats
 
@@ -189,7 +189,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             "rus": {k: scores[slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("rus")},
             "kaz": {k: scores[slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("kaz")},
         }
-        
+         
         # parent_student_scores_by_lang["rus"] = {k: np.zeros(n_students_ru) for k in map_id_to_key.keys() if k.lower().endswith("rus")}
         # parent_student_scores_by_lang["kaz"] = {k: np.zeros(n_students_kz) for k in map_id_to_key.keys() if k.lower().endswith("kaz")}
 
@@ -282,7 +282,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         return kwargs
 
     def produce_key_to_id_mapping(self, section_list: List[TestSection],  total_id = 0, lang = "rus"):
-        map_key_to_id = {f"Total_{lang}": f"{total_id}{lang}"}
+        map_key_to_id = {f"Общее {lang}": f"{total_id}{lang}"}
         map_key_to_id |= {s: f"{i}{lang}" for i, s in enumerate(section_list, 10)}  # f"Предмет {s.name}"
         topic_id = 1000
         subtopic_id = 2000
