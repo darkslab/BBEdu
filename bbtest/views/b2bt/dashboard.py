@@ -12,6 +12,7 @@ from django.utils.translation import get_language
 
 from bbtest.auth.mixins import PermissionRequiredMixinFactory
 from bbtest.auth.models import User
+from bbtest.http import TightJsonResponse
 from bbtest.models import (
     Test,
     TestDomain,
@@ -36,24 +37,42 @@ if TYPE_CHECKING:
 class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), UserContextMixin, PaginationMixin, TemplateView):
     template_name = "b2bt/dashboard.html"
 
-    def get(self, request: WSGIRequest, *args, **kwargs):
+    def get(self, request: WSGIRequest, package_pair_quiz_id: str|int, *args, **kwargs):
         kwargs["active_nav_item"] = "dashboard"
 
         self.pixels_per_student = 20
 
+        if package_pair_quiz_id == "demo":
+            kwargs |= self.produce_rand_data(**kwargs)
+            return self.render_to_response(super().get_context_data(**kwargs))
+
+
         user: User = request.user
 
-        q: QuerySet = TestPackageRusKazQuiz.objects.filter(
-            user = user,
-            payed = True,
-            started = True,
+        quiz_pair: TestPackageRusKazQuiz = get_object_or_404(
+            TestPackageRusKazQuiz.objects,
+            id=package_pair_quiz_id,
+            # user=user,
+            # payed=True,
+            # started=True,
         )
 
-        if not q:
-            kwargs |= self.produce_rand_data(**kwargs)
-        else:
-            quiz_pair: TestPackageRusKazQuiz = q.latest('created_at')
-            kwargs |= self.compute_statistic(quiz_pair)
+        if not (quiz_pair.user == user or user.has_perm("bbtest.super")):
+            return TightJsonResponse({"error": "можно смотреть только свои тесты"})
+        if not quiz_pair.payed:
+            return TightJsonResponse({"error": "тестирование не орлачено"})
+        if not quiz_pair.started:
+            return TightJsonResponse({"error": "тестирование ещё не было начато"})
+
+        # q: QuerySet = TestPackageRusKazQuiz.objects.filter(
+        #     user = user,
+        #     payed = True,
+        #     started = True,
+        # )
+            
+        # quiz_pair: TestPackageRusKazQuiz = q.latest('created_at')
+
+        kwargs |= self.compute_statistic(quiz_pair)
 
         return self.render_to_response(super().get_context_data(**kwargs))
 

@@ -283,6 +283,7 @@ urlpatterns = [
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/export/$",    B2BT_ExportStudentExcelView.as_view(),         name="b2bt_build_package_pair_export"),
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/start_exam/$",B2BT_B2BStudentStartExamView.as_view(),        name="b2bt_build_package_pair_start_exam"),
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/buy_kaspi/$", B2BT_BuyCreditsKaspiView.as_view(),            name="b2bt_build_packages_buy_kaspi"),
+    re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>([0-9]+|demo))/result/$",    B2BT_DashboardView.as_view(),                  name="b2bt_build_package_stats"),
     
 
     # SYSTEM URLS

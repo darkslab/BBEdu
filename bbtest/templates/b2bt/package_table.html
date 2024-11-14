@@ -91,6 +91,9 @@
                                                 
                                                 </form>
                                             {% endif %}
+                                            {% if package_pair_quiz.payed and package_pair_quiz.started %}
+                                                <a href="{% url 'bbtest:b2bt_build_package_stats' package_pair_quiz.pk %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'View Results' context '/b2bt/' %}</a>
+                                            {% endif %}
                                         {% endif %}
                                     </td>
                                     
