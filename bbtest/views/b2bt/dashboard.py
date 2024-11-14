@@ -25,6 +25,7 @@ from bbtest.models import (
     TestSection,
     TestTaxonomy,
     TestTopic,
+    TestSubTopic,
     TestTopicToSubtopicRelation,
 )
 from bbtest.models.quiz import Quiz, QuizSet
@@ -53,7 +54,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         self.pixels_per_student = 20
 
         if package_pair_quiz_id == "demo":
-            kwargs |= self.produce_rand_data(**kwargs)
+            kwargs |= self.compute_statistic_fake()
             return self.render_to_response(super().get_context_data(**kwargs))
 
 
@@ -180,7 +181,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             last_name = row[2]
             student_lang = row[3]
             # pwd = row[4]
-            student_name_list_by_lang[student_lang].append(f"{i+1}) {first_name} + {last_name}")
+            student_name_list_by_lang[student_lang].append(f"{i+1}) {first_name} {last_name}")
             slice_by_lang[student_lang].append(i)
 
         # n_students_ru = len(student_name_list["rus"])
@@ -220,58 +221,92 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         return kwargs
 
+    def compute_statistic_fake(self):
+        kwargs = {}
 
-    def produce_rand_data(self, **kwargs):
-        n_students = 20
+        # Get student list
+        n_students = 30
         student_name_list = [f'Ученик {i + 1}' for i in range(n_students)]
 
-        domain_obj:  TestDomain = TestDomain.objects.prefetch_related("sections").get(name="PISA_ru")
-        section_list: List[TestSection] = domain_obj.sections.prefetch_related("topics").all()
-        # subject_list = ["Математика", "Естествознание", "Русский язык", "Казахский язык"]
+        domain_obj_ru: TestDomain = TestDomain.objects.prefetch_related("sections").get(name="PISA_ru")
+        domain_obj_kz: TestDomain = TestDomain.objects.prefetch_related("sections").get(name="PISA_kz")
+
+        section_list_ru: List[TestSection] = list(domain_obj_ru.sections.prefetch_related("topics").all())
+        section_list_kz: List[TestSection] = list(domain_obj_kz.sections.prefetch_related("topics").all())
+        section_list = {
+            "rus": section_list_ru,
+            "kaz": section_list_kz,
+        }
 
         # produce mapping from section, topic, subtopic to id
         total_id = 0
-        map_key_to_id = self.produce_key_to_id_mapping(section_list, total_id = total_id)
+        map_key_to_id_ru = self.produce_key_to_id_mapping(section_list_ru, total_id, lang="rus")
+        map_key_to_id_kz = self.produce_key_to_id_mapping(section_list_kz, total_id, lang="kaz")
+        map_key_to_id = map_key_to_id_ru | map_key_to_id_kz
+
         map_id_to_key = {v: getattr(k, 'name', k) for k, v in map_key_to_id.items()}
-        print(map_key_to_id)
-        print(map_id_to_key)
-        
+
 
         # create tree
-        parent_to_children_list = self.produce_parent_to_children_list(section_list, map_key_to_id, total_id)
+        parent_to_children_list_ru = self.produce_parent_to_children_list(section_list_ru, map_key_to_id, total_id, lang="rus")
+        parent_to_children_list_kz = self.produce_parent_to_children_list(section_list_kz, map_key_to_id, total_id, lang="kaz")
+        parent_to_children_list = parent_to_children_list_ru | parent_to_children_list_kz
 
-        # get students score by subject
-        parent_student_scores = { total_id: np.zeros(n_students) }
-        for section_obj in section_list:
-            section_id = map_key_to_id[section_obj]
-            parent_student_scores[section_id] = np.zeros(n_students)
 
-            topic_list: List[TestTopic] = section_obj.topics.all()
-            for topic_obj in topic_list:
-                topic_id = map_key_to_id[topic_obj]
-                parent_student_scores[topic_id] = self.calculate_topic_score_by_student(topic_obj, len(topic_list), n_students)
-                parent_student_scores[section_id] += parent_student_scores[topic_id]
-                
+        parent_student_scores = {k: np.zeros(n_students) for k in map_id_to_key.keys()}
 
-            parent_student_scores[total_id] += parent_student_scores[section_id]
+        student_name_list_by_lang = {"rus": [], "kaz": []}
+        slice_by_lang = {"rus": [], "kaz": []}
+        for student_i, student in enumerate(student_name_list):
+            student_lang = random.choice(["rus", "kaz"])
+            student_name_list_by_lang[student_lang].append(f"{student_i+1}) {student}")
+            slice_by_lang[student_lang].append(student_i)
+
+            total_score = 0
+
+            for section_obj in section_list[student_lang]:
+                section_id = map_key_to_id[section_obj]
+
+                # compute scores
+                score, score_topic, score_subtopic = self.fake_calc_score_by_topic_subtopic(section_obj)
+                # print(score, score_topic, score_subtopic)
+
+                parent_student_scores[section_id][student_i] = score
+                total_score += score
+
+                for topic_obj, topic_score in score_topic.items():
+                    topic_id = map_key_to_id[topic_obj]
+                    parent_student_scores[topic_id][student_i] = topic_score
+                # for subtopic, subtopic_score in score_topic.items():
+                #     subtopic_id = map_key_to_id[subtopic]
+                #     parent_student_scores[subtopic_id].append(subtopic_score)
+
+            parent_student_scores[f"{total_id}{student_lang}"][student_i] = total_score
 
             
+
+        parent_student_scores_by_lang = {
+            "rus": {k: scores[slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("rus")},
+            "kaz": {k: scores[slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("kaz")},
+        }
+         
+
         # get student group mean score by subject
         parent_average_scores = {k: float(np.mean(v)) for k, v in parent_student_scores.items()}
-
         # conver numpy to list for compatibility
         for key in parent_student_scores.keys():
             parent_student_scores[key] = parent_student_scores[key].tolist()
-            # parent_average_scores[key] = parent_average_scores[key].tolist()
-
-        
 
         # pass data to charts
-        kwargs['student_name_list'] = student_name_list
-        kwargs['parent_list'] = [total_id] + [map_key_to_id[s] for s in section_list]
+        kwargs['student_name_list'] = student_name_list_by_lang # [s.get_full_name() for s in student_obj_list]
+        kwargs['parent_list'] = {
+            "rus": [f"{total_id}rus"] + [map_key_to_id[s] for s in section_list_ru],
+            "kaz": [f"{total_id}kaz"] + [map_key_to_id[s] for s in section_list_kz],
+        }
+        
         kwargs['parent_to_children_list'] = parent_to_children_list
         kwargs['parent_average_scores'] = parent_average_scores
-        kwargs['parent_student_scores'] = parent_student_scores
+        kwargs['parent_student_scores'] = parent_student_scores_by_lang  # parent_student_scores
         # kwargs['map_key_to_id'] = map_key_to_id
         kwargs['map_id_to_key'] = map_id_to_key
 
@@ -327,3 +362,25 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
     def calculate_topic_score_by_student(self, topic, n_topic, n_students):
         return np.array([random.randint(40 // n_topic, 100 // n_topic) for t in range(n_students)])
+    
+
+    def fake_calc_score_by_topic_subtopic(self, section_obj: TestSection) -> tuple[int, dict, dict]:
+        # topic_list, subtopic_list = self.get_question_topic_subtopic()
+        n = 100
+        all_topic_list: List[TestTopic] = section_obj.topics.all()
+        all_subtopic_list: List[TestSubTopic] = section_obj.subtopics.all()
+
+        score = 0
+        score_topic = defaultdict(int)
+        score_subtopic = defaultdict(int)
+
+        for topic, subtopic in zip(
+            random.choices(all_topic_list, k=n), random.choices(all_subtopic_list, k=n)
+        ):
+            is_correct = 0 if random.random() > 0.8 else 1
+
+            score_topic[topic] += is_correct
+            score_subtopic[subtopic] += is_correct
+            score += is_correct
+
+        return score, score_topic, score_subtopic
