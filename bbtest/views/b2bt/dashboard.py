@@ -10,10 +10,10 @@ import numpy as np
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import get_language
 
-from bbtest.auth.mixins import PermissionRequiredMixinFactory
+from bbtest.auth.mixins import LoginRequiredMixin, PermissionRequiredMixinFactory
 from bbtest.auth.models import User
 from bbtest.http import TightJsonResponse
 from bbtest.models import (
@@ -44,6 +44,24 @@ def get_function_hash(func):
     source_code = inspect.getsource(func)
     # Compute a hash of the source code
     return hashlib.sha256(source_code.encode('utf-8')).hexdigest()
+
+
+
+class DashboardRedirectView(LoginRequiredMixin, UserContextMixin, TemplateView):
+    template_name = ""
+
+    def get(self, request: WSGIRequest, *args, **kwargs):
+        q: QuerySet = TestPackageRusKazQuiz.objects.filter(
+            user = request.user,
+            payed = True,
+            started = True,
+        )
+        if not q:
+            return redirect("bbtest:b2bt_build_package_stats", "demo")
+
+        quiz_pair: TestPackageRusKazQuiz = q.latest('created_at')
+        return redirect("bbtest:b2bt_build_package_stats", quiz_pair.pk)
+
 
 class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), UserContextMixin, PaginationMixin, TemplateView):
     template_name = "b2bt/dashboard.html"
