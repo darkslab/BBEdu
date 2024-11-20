@@ -93,6 +93,11 @@
                                             {% endif %}
                                             {% if package_pair_quiz.payed and package_pair_quiz.started %}
                                                 <a href="{% url 'bbtest:b2bt_build_package_stats' package_pair_quiz.pk %}" class="btn djBtnPrimary btn-xs mr-5 mb-5">{% trans 'View Results' context '/b2bt/' %}</a>
+                                                <form method="post" action="{% url 'bbtest:b2bt_export_package_results' package_pair_quiz_id=package_pair_quiz.pk %}" data-bb-form data-create-package-form>
+                                                    {% csrf_token %}
+                                                    {% comment %} <button type="button" class="btn djBtnDanger btn-xs mr-5 mb-5" data-toggle="modal" data-target="[data-create-package-modal]">{% trans 'Начать тестирование (Отменить нельзя)' context '/b2bt/' %}</button> {% endcomment %}
+                                                    <button type="submit" class="btn djBtnInfo btn-xs mr-5 mb-5">{% trans 'Выгрузить результаты' context '/b2bt/' %}</button>
+                                                </form>
                                             {% endif %}
                                         {% endif %}
                                     </td>

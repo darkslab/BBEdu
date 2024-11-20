@@ -1,14 +1,11 @@
-import csv
-import uuid
+from __future__ import annotations
+
 from datetime import datetime, timedelta
 from pathlib import Path
-from pprint import pprint
-from random import randint
+from typing import TYPE_CHECKING
 
-import pytz
 from django.conf import settings
-from django.contrib.auth.models import Permission
-from django.db.models import Q, QuerySet
+from django.db.models import Q
 from django_rq import job
 
 from bbtest.models import (
@@ -16,10 +13,7 @@ from bbtest.models import (
     StudentGroup,
     Test,
     TestPackage,
-    User,
-    UserTestPackageProfile,
 )
-from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.models.test import (
     StudentGroup,
     Test,
@@ -27,6 +21,12 @@ from bbtest.models.test import (
     TestParagraph,
     TestQuestion,
 )
+
+if TYPE_CHECKING:
+    from bbtest.auth.models import User
+    from django.db.models import QuerySet
+    from bbtest.models.quiz import Quiz, QuizSet
+
 
 BASE_DIR = Path(settings.BASE_DIR_PATH).resolve().parent
 

@@ -3,7 +3,7 @@ from __future__ import annotations
 import io
 import json
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 from random import randint
 from typing import TYPE_CHECKING, List
 
@@ -454,3 +454,71 @@ class BuyPackageView(
 
         return super().get_context_data(**kwargs)
     
+
+
+class ExportTestResultView(PermissionRequiredMixinFactory(["B2BTeacher"]), View):
+
+    def post(self, request: WSGIRequest, package_pair_quiz_id, *args, **kwargs):
+        package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
+
+        if not package_pair_quiz_obj.payed or not package_pair_quiz_obj.started:
+            return JsonResponse({'error': 'Test is not started or not payed'}, status=400)
+
+        # correct time zone offset
+        dt = timedelta(hours=5)  
+
+        # Create an in-memory output stream for the Excel file
+        output = io.BytesIO()
+        # Create a new Excel workbook and add a worksheet
+        workbook = xlsxwriter.Workbook(output, {'in_memory': True})
+        worksheet = workbook.add_worksheet()
+
+
+        for i_row, row in enumerate(package_pair_quiz_obj.student_table, start=1):
+            username = row[0]
+            first_name = row[1]
+            last_name = row[2]
+            lang = row[3]
+            # pwd = row[4]
+            student: User = User_model.objects.get(username = username)
+
+            quiz_set_list: QuerySet[QuizSet] = student.quiz_sets.all()
+            if len(quiz_set_list) < 1:
+                continue
+
+            # email = student.email if student.email else ""
+            
+            for quiz_set in quiz_set_list:
+                row = [student.username, first_name, last_name] 
+                quiz_list: QuerySet[Quiz] = quiz_set.quizzes.order_by("test__section__order", "order").all()
+
+                for quiz in quiz_list:
+                    test: Test = quiz.test
+                    answers = [""] * test.question_count
+
+                    for i, ans in enumerate(quiz.get_answers_letters()):
+                        if ans is not None:
+                            answers[i] = str(ans)
+
+                    started_at = str((quiz.started_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.started_at else ""
+                    due_at = str((quiz.due_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.due_at else ""
+                    ended_at = str((quiz.ended_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.ended_at else due_at
+                    row = row + [test.section.name, test.code, str(quiz.calc_score()),  started_at, ended_at] + answers
+
+
+                for i_col, cell_data in enumerate(row, start=0):
+                    worksheet.write(i_row, i_col, cell_data)
+
+
+        # Close the workbook to finalize the output stream
+        workbook.close()
+        print("ExportStudentExcelView", "close")
+        # Rewind the output stream to the beginning
+        output.seek(0)
+        # Create an HTTP response with the Excel file
+        response = HttpResponse(
+            output,
+            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
+        response['Content-Disposition'] = 'attachment; filename="students_result.xlsx"'
+        return response
