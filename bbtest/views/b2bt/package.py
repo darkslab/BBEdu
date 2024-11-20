@@ -474,6 +474,20 @@ class ExportTestResultView(PermissionRequiredMixinFactory(["B2BTeacher"]), View)
         worksheet = workbook.add_worksheet()
 
 
+        header_row = ["Username", "Имя", "Фамилия"]
+        domain_obj: TestDomain = package_pair_quiz_obj.TestPackagePair.test_package_ru.domain
+        for section_obj in domain_obj.sections.order_by("order").all():
+            section_obj: TestSection = section_obj
+            print(section_obj, section_obj.question_count)
+
+            header_row += ["предмет", "код теста", "всего", "начал", "закончил"] + [f"вопрос {i + 1}" for i in range(section_obj.question_count)]
+
+        for i_col, cell_data in enumerate(header_row):
+                worksheet.write(0, i_col, cell_data)
+
+        # total_subject_index = [f"RC{index + 1}" for index, value in enumerate(header_row) if value == "всего"]
+        # total_sum_formula = "=" + "+".join(total_subject_index)
+
         for i_row, row in enumerate(package_pair_quiz_obj.student_table, start=1):
             username = row[0]
             first_name = row[1]
@@ -505,14 +519,14 @@ class ExportTestResultView(PermissionRequiredMixinFactory(["B2BTeacher"]), View)
                     ended_at = str((quiz.ended_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.ended_at else due_at
                     row = row + [test.section.name, test.code, str(quiz.calc_score()),  started_at, ended_at] + answers
 
-
+                # row.append(total_sum_formula)
                 for i_col, cell_data in enumerate(row, start=0):
                     worksheet.write(i_row, i_col, cell_data)
 
 
         # Close the workbook to finalize the output stream
         workbook.close()
-        print("ExportStudentExcelView", "close")
+        print("ExportTestResultView", "close")
         # Rewind the output stream to the beginning
         output.seek(0)
         # Create an HTTP response with the Excel file
