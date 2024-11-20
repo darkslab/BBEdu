@@ -1,12 +1,24 @@
-from django.forms import ValidationError, ModelForm, Form, CharField, PasswordInput, IntegerField, TextInput, ChoiceField, HiddenInput
-from django.utils.translation import pgettext_lazy, pgettext
-from django.contrib.auth.password_validation import validate_password
-from django.contrib.auth import get_user_model
+import re
 from uuid import uuid4
-from bbtest.auth.password_validation import password_validators_help_text_html
-from bbtest.models.shopping.items.credit import MAX_CREDIT_AMOUNT, MIN_CREDIT_AMOUNT
-from bbtest.models import REGIONS
 
+from django.contrib.auth import get_user_model
+from django.contrib.auth.password_validation import validate_password
+from django.forms import (
+    CharField,
+    ChoiceField,
+    Form,
+    HiddenInput,
+    IntegerField,
+    ModelForm,
+    PasswordInput,
+    TextInput,
+    ValidationError,
+)
+from django.utils.translation import pgettext, pgettext_lazy
+
+from bbtest.auth.password_validation import password_validators_help_text_html
+from bbtest.models import REGIONS
+from bbtest.models.shopping.items.credit import MAX_CREDIT_AMOUNT, MIN_CREDIT_AMOUNT
 
 User = get_user_model()
 
@@ -70,6 +82,18 @@ class BaseUserForm(ModelForm):
                 if not self.allow_weak_password:
                     validate_password(password2, User(**user_attributes))
         return password2
+
+    def clean_phone(self):
+        phone = self.cleaned_data["phone"]
+        # Regex to validate the phone number
+        phone_regex = re.compile(r'^(?:\+?7|8)\(?7\d\d\)?\d{7}$')
+        if not phone_regex.match(phone):
+            raise ValidationError(
+                pgettext("Validation error", "Wrong phone format. Acceptable formats are 87071112233, +7(707)1112233, "),
+                code="phone_wrong_format",
+            )
+
+        return phone
 
     def save(self, commit=True):
         user = super().save(commit=False)
