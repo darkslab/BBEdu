@@ -402,3 +402,14 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             score += is_correct
 
         return score, score_topic, score_subtopic
+    
+
+
+class HelpPageView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), UserContextMixin, PaginationMixin, TemplateView):
+    template_name = "b2bt/help_page.html"
+
+    def get(self, request: WSGIRequest, *args, **kwargs):
+        kwargs["active_nav_item"] = "help_instructions"
+        kwargs["youtube_video_id"] = "U_ApFztnWa8"
+        
+        return self.render_to_response(super().get_context_data(**kwargs))

@@ -73,6 +73,7 @@ from .views.b2bt import (
     BuyCreditsKaspiView as B2BT_BuyCreditsKaspiView,
     BuyPackageView as B2BT_BuyPackageView,
     BuildPackagesListView as B2BT_BuildPackagesListView,
+    HelpPageView as B2BT_HelpPageView,
 )
 
 from .views.package import (
@@ -275,7 +276,8 @@ urlpatterns = [
     re_path(r"^demo_taketest/$",                                DemouserDashboardView.as_view(),              name="demo_student_test"               ),
 
     # B2B TEACHER URLS
-    re_path(r"^b2bt/$",                                                     B2BT_DashboardRedirectView.as_view(),                  name="b2bt_dashboard"),
+    re_path(r"^b2bt/$",                                                     B2BT_DashboardRedirectView.as_view(),          name="b2bt_dashboard"),
+    re_path(r"^b2bt/help/$",                                                B2BT_HelpPageView.as_view(),                   name="b2bt_help_page"),
     re_path(r"^b2bt/packages/$",                                            B2BT_BuildPackagesView.as_view(),              name="b2bt_build_packages"),
     re_path(r"^b2bt/packages/view/$",                                       B2BT_BuildPackagesListView.as_view(),          name="b2bt_packages_list"),
     re_path(r"^b2bt/create-package/create-form/$",                          B2BT_BuildCreatePackageFormView.as_view(),     name="b2bt_build_add_package_pair_form"),
