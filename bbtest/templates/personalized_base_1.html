@@ -77,7 +77,7 @@
                             <li class="{% if active_nav_item|default:'' == 'manage_variants' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_packages_list' %}"><i class="fa fa-fw fa-book"></i> {% trans 'Manage Variants' context 'Navigation link' %}</a></li>
                             <li class="{% if active_nav_item|default:'' == 'manage_students' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_build_packages' %}"><i class="fa fa-fw fa-gear"></i> {% trans 'Manage Users' context 'Navigation link' %}</a></li>
                             {% comment %} <li class="{% block nav_admin_create_package_class %}{% endblock %}"><a href="{% url 'bbtest:build_packages' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Manage Packages' context 'Navigation link' %}</a></li> {% endcomment %}
-                            <li class="{% if active_nav_item|default:'' == 'help_instructions' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_help_page' %}"><i class="fa fa-fw fa-gear"></i> {% trans 'Help B2BTeacher' context 'Navigation link' %}</a></li>
+                            <li class="{% if active_nav_item|default:'' == 'help_instructions' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_help_page' %}"><i class="fa fa-fw fa-question-circle"></i> {% trans 'Help B2BTeacher' context 'Navigation link' %}</a></li>
 
                         {% endif %}
                     </ul>
