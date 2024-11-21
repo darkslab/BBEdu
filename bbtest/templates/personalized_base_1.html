@@ -67,7 +67,7 @@
                             {% endif %} {% endcomment %}
 
                         {% elif perms.bbtest.demouser %}
-                            <li class="{% if active_nav_item|default:'' == 'dashboard' %}active{% endif %}"><a href="{% url 'bbtest:demo_dashboard' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Student dashboard' context 'Navigation link' %}</a></li>
+                            {% comment %} <li class="{% if active_nav_item|default:'' == 'dashboard' %}active{% endif %}"><a href="{% url 'bbtest:demo_dashboard' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Student dashboard' context 'Navigation link' %}</a></li> {% endcomment %}
 
                             <li class="{% block nav_student_buy_tests3_class %}{% endblock %}"><a href="{% url 'bbtest:student_exam' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Student testing' context 'Navigation link' %}</a></li>
                             
