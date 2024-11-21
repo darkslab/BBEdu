@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import io
 import json
+import re
 import uuid
 from datetime import datetime, timedelta
 from random import randint
@@ -58,11 +59,24 @@ from bbtest.views.generic import TemplateView, View
 if TYPE_CHECKING:
     from django.core.handlers.wsgi import WSGIRequest
     from django.db.models import QuerySet
+
     from bbtest.auth.models import User
 
 
 User_model = get_user_model()
 
+def col_to_letter(col):
+    """Convert a column number (1-based) to a letter (A1-style)."""
+    result = ""
+    while col > 0:
+        col, remainder = divmod(col - 1, 26)
+        result = chr(65 + remainder) + result
+    return result
+
+def row_col_to_a1(row, col):
+    """Convert 1-based row and column numbers to A1-style notation."""
+    col_letter = col_to_letter(col + 1)
+    return f"{col_letter}{row + 1}"
 
 class BuildPackagesView(
     PermissionRequiredMixinFactory(["B2BTeacher"]), UserContextMixin, TemplateView, PaginationMixin
@@ -464,8 +478,8 @@ class ExportTestResultView(PermissionRequiredMixinFactory(["B2BTeacher"]), View)
         if not package_pair_quiz_obj.payed or not package_pair_quiz_obj.started:
             return JsonResponse({'error': 'Test is not started or not payed'}, status=400)
 
-        # correct time zone offset
-        dt = timedelta(hours=5)  
+        # # correct time zone offset
+        # dt = timedelta(hours=5)  
 
         # Create an in-memory output stream for the Excel file
         output = io.BytesIO()
@@ -474,18 +488,22 @@ class ExportTestResultView(PermissionRequiredMixinFactory(["B2BTeacher"]), View)
         worksheet = workbook.add_worksheet()
 
 
-        header_row = ["Username", "Имя", "Фамилия"]
+        header_row = ["Логин", "Имя", "Фамилия", "Общий балл"]
         domain_obj: TestDomain = package_pair_quiz_obj.TestPackagePair.test_package_ru.domain
         for section_obj in domain_obj.sections.order_by("order").all():
             section_obj: TestSection = section_obj
             print(section_obj, section_obj.question_count)
 
-            header_row += ["предмет", "код теста", "всего", "начал", "закончил"] + [f"вопрос {i + 1}" for i in range(section_obj.question_count)]
+            header_row += ["предмет", f"балл по {section_obj.name}"] + [f"вопрос {i + 1}" for i in range(section_obj.question_count)]
 
         for i_col, cell_data in enumerate(header_row):
                 worksheet.write(0, i_col, cell_data)
 
-        # total_subject_index = [f"RC{index + 1}" for index, value in enumerate(header_row) if value == "всего"]
+        total_index = [index for index, value in enumerate(header_row) if re.match("^балл по.+", value)]
+        def total_subject_index(row):
+            cells = [row_col_to_a1(row, index) for index in total_index]
+            return "=" + "+".join(cells)
+        
         # total_sum_formula = "=" + "+".join(total_subject_index)
 
         for i_row, row in enumerate(package_pair_quiz_obj.student_table, start=1):
@@ -503,7 +521,7 @@ class ExportTestResultView(PermissionRequiredMixinFactory(["B2BTeacher"]), View)
             # email = student.email if student.email else ""
             
             for quiz_set in quiz_set_list:
-                row = [student.username, first_name, last_name] 
+                row = [student.username, first_name, last_name, total_subject_index(i_row)] 
                 quiz_list: QuerySet[Quiz] = quiz_set.quizzes.order_by("test__section__order", "order").all()
 
                 for quiz in quiz_list:
@@ -514,10 +532,10 @@ class ExportTestResultView(PermissionRequiredMixinFactory(["B2BTeacher"]), View)
                         if ans is not None:
                             answers[i] = str(ans)
 
-                    started_at = str((quiz.started_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.started_at else ""
-                    due_at = str((quiz.due_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.due_at else ""
-                    ended_at = str((quiz.ended_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.ended_at else due_at
-                    row = row + [test.section.name, test.code, str(quiz.calc_score()),  started_at, ended_at] + answers
+                    # started_at = str((quiz.started_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.started_at else ""
+                    # due_at = str((quiz.due_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.due_at else ""
+                    # ended_at = str((quiz.ended_at + dt).strftime("%Y.%m.%d %H:%M:%S")) if quiz.ended_at else due_at
+                    row = row + [f"{test.section.name} {lang}", str(quiz.calc_score())] + answers
 
                 # row.append(total_sum_formula)
                 for i_col, cell_data in enumerate(row, start=0):
