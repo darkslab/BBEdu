@@ -17,6 +17,8 @@ class ChartMultiBarHorizontal extends React.Component {
         // data_label_list
         // row_label_list
 
+        // props_update_indicator
+
         // map_id_to_key
         // subject_chart_height
     }
@@ -53,7 +55,9 @@ class ChartMultiBarHorizontal extends React.Component {
         // console.log("ChartMultiBarHorizontal.componentDidUpdate", prevProps.data, prevProps.data_label_list)
         // console.log("ChartMultiBarHorizontal.componentDidUpdate", this.props.data, this.props.data_label_list)
         // console.log("ChartMultiBarHorizontal.componentDidUpdate", this.myChart)
-        this._update_chart(this.myChart);
+        if (prevProps.props_update_indicator != this.props.props_update_indicator) {
+            this._update_chart(this.myChart);
+        }
     }
 
     render() {

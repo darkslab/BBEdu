@@ -129,13 +129,10 @@ class ChartDashboard extends React.Component {
                             <p className="h3" style={{ textAlign: "center" }}>Результаты учеников по сложности</p>
                             <ChartMultiBarHorizontal
                                 data={this.props.parent_student_scores_by_difficulty[this.state.current_language][this.state.current_parent]}
-                                data_label_list={["no", "low", "mid", "high"]}
+                                data_label_list={["Базовый", "Средний", "Высокий"]}
                                 row_label_list={this.props.student_name_list[this.state.current_language]}
 
-
-                                // selected_parent={"10rus"}  // this.state.current_parent
-                                // selected_language={"rus"}  // this.state.current_language
-                                // selected_children_list={selected_children_list}
+                                props_update_indicator={`${this.state.current_parent}+${this.state.current_language}`}
 
                                 map_id_to_key={this.props.map_id_to_key}
                                 subject_chart_height={this.props.subject_chart_height}

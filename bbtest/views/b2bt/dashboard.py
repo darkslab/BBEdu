@@ -212,8 +212,9 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             "kaz": {k: scores[slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("kaz")},
         }
         parent_student_scores_by_difficulty_by_lang = {
-            "rus": {k: scores[:, slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores_by_difficulty.items() if k.lower().endswith("rus")},
-            "kaz": {k: scores[:, slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores_by_difficulty.items() if k.lower().endswith("kaz")},
+            # slice starts from in order to remove Questions with not specified difficulty
+            "rus": {k: scores[1:, slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores_by_difficulty.items() if k.lower().endswith("rus")},
+            "kaz": {k: scores[1:, slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores_by_difficulty.items() if k.lower().endswith("kaz")},
         }
 
         # get student group mean score by subject
