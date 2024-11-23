@@ -273,6 +273,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
 
         parent_student_scores = {k: np.zeros(n_students) for k in map_id_to_key.keys()}
+        parent_student_scores_by_difficulty = {k: np.zeros((len(TestQuestion.DIFFICULTIES), n_students)) for k in map_id_to_key.keys()}
 
         student_name_list_by_lang = {"rus": [], "kaz": []}
         slice_by_lang = {"rus": [], "kaz": []}
@@ -287,7 +288,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
                 section_id = map_key_to_id[section_obj]
 
                 # compute scores
-                score, score_topic, score_subtopic = self.fake_calc_score_by_topic_subtopic(section_obj)
+                score, score_topic, score_subtopic, score_difficulty = self.fake_calc_score_by_topic_subtopic(section_obj)
                 # print(score, score_topic, score_subtopic)
 
                 parent_student_scores[section_id][student_i] = score
@@ -299,6 +300,9 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
                 # for subtopic, subtopic_score in score_topic.items():
                 #     subtopic_id = map_key_to_id[subtopic]
                 #     parent_student_scores[subtopic_id].append(subtopic_score)
+                for question_difficulty, difficulty_score in score_difficulty.items():
+                    irow_difficulty = TestQuestion.DIFFICULTIES_MAP[question_difficulty]
+                    parent_student_scores_by_difficulty[section_id][irow_difficulty, student_i] = difficulty_score
 
             parent_student_scores[f"{total_id}{student_lang}"][student_i] = total_score
 
@@ -308,13 +312,16 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             "rus": {k: scores[slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("rus")},
             "kaz": {k: scores[slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("kaz")},
         }
+        parent_student_scores_by_difficulty_by_lang = {
+            # slice starts from in order to remove Questions with not specified difficulty
+            "rus": {k: scores[1:, slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores_by_difficulty.items() if k.lower().endswith("rus")},
+            "kaz": {k: scores[1:, slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores_by_difficulty.items() if k.lower().endswith("kaz")},
+        }
          
 
         # get student group mean score by subject
         parent_average_scores = {k: float(np.mean(v)) for k, v in parent_student_scores.items()}
-        # conver numpy to list for compatibility
-        for key in parent_student_scores.keys():
-            parent_student_scores[key] = parent_student_scores[key].tolist()
+        
 
         # pass data to charts
         kwargs['student_name_list'] = student_name_list_by_lang # [s.get_full_name() for s in student_obj_list]
@@ -325,7 +332,8 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         
         kwargs['parent_to_children_list'] = parent_to_children_list
         kwargs['parent_average_scores'] = parent_average_scores
-        kwargs['parent_student_scores'] = parent_student_scores_by_lang  # parent_student_scores
+        kwargs['parent_student_scores'] = parent_student_scores_by_lang
+        kwargs['parent_student_scores_by_difficulty'] = parent_student_scores_by_difficulty_by_lang 
         # kwargs['map_key_to_id'] = map_key_to_id
         kwargs['map_id_to_key'] = map_id_to_key
 
@@ -388,21 +396,24 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         n = 100
         all_topic_list: List[TestTopic] = section_obj.topics.all()
         all_subtopic_list: List[TestSubTopic] = section_obj.subtopics.all()
+        all_difficulties = [v[0] for v in TestQuestion.DIFFICULTIES if v != 0]
 
         score = 0
         score_topic = defaultdict(int)
         score_subtopic = defaultdict(int)
+        score_difficulty = defaultdict(int)
 
-        for topic, subtopic in zip(
-            random.choices(all_topic_list, k=n), random.choices(all_subtopic_list, k=n)
+        for topic, subtopic, question_difficulty in zip(
+            random.choices(all_topic_list, k=n), random.choices(all_subtopic_list, k=n), random.choices(all_difficulties, k=n)
         ):
             is_correct = 0 if random.random() > 0.8 else 1
 
             score_topic[topic] += is_correct
             score_subtopic[subtopic] += is_correct
+            score_difficulty[question_difficulty] += is_correct
             score += is_correct
 
-        return score, score_topic, score_subtopic
+        return score, score_topic, score_subtopic, score_difficulty
     
 
 
