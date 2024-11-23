@@ -105,6 +105,10 @@
                                             <span class="label label-danger">{% trans 'Expert' context '/super/users/' %}</span>
                                         {% elif user.role == 'student' %}
                                             <span class="label label-success">{% trans 'Student' context '/super/users/' %}</span>
+                                        {% elif user.role == 'B2BTeacher' %}
+                                            <span class="label label-success">{% trans 'PISA Teacher' context '/super/users/' %}</span>
+                                        {% elif user.role == 'demouser' %}
+                                            <span class="label label-info">{% trans 'Demouser' context '/super/users/' %}</span>
                                         {% endif %}
                                     </td>
                                     <td class="text-center">{{ user.joined_at|date:'SHORT_DATETIME_FORMAT' }}</td>
