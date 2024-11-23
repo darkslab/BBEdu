@@ -77,14 +77,14 @@ class ChartPolarArea extends React.Component {
 
                     // Reset the border colors to their original value
                     const defaultBorderColor = this.props.polar_area_chart_labels_id.map(() => "#ffffff"); // Default border color
-                    const defaultBorderWidth = this.props.polar_area_chart_labels_id.map(() => 1); // Default border width
+                    const defaultBorderWidth = this.props.polar_area_chart_labels_id.map(() => 0); // Default border width
 
                     this.myChart.data.datasets[0].borderColor = defaultBorderColor;
                     this.myChart.data.datasets[0].borderWidth = defaultBorderWidth;
 
                     // Set a dark border color and thicker border for the clicked segment
                     this.myChart.data.datasets[0].borderColor[segmentIndex] = "#000000"; // Dark border (black)
-                    this.myChart.data.datasets[0].borderWidth[segmentIndex] = 6; // Thicker border for emphasis
+                    this.myChart.data.datasets[0].borderWidth[segmentIndex] = 3; // Thicker border for emphasis
 
                     // Update the chart
                     this.myChart.update();
@@ -135,7 +135,7 @@ class ChartPolarArea extends React.Component {
         myChart.data.datasets[0].data = scores;
 
         const defaultBorderColor = label_id_list.map(() => "#ffffff"); // Default border color
-        const defaultBorderWidth = label_id_list.map(() => 1); // Default border width
+        const defaultBorderWidth = label_id_list.map(() => 0); // Default border width
         myChart.data.datasets[0].borderColor = defaultBorderColor;
         myChart.data.datasets[0].borderWidth = defaultBorderWidth;
 
@@ -144,7 +144,7 @@ class ChartPolarArea extends React.Component {
             if (label_id_list[i] === this.props.selected_children) {
                 // Set a dark border color and thicker border for the clicked segment
                 myChart.data.datasets[0].borderColor[i] = "rgba(10, 10, 10, 0.5);"; // Dark border (black)
-                myChart.data.datasets[0].borderWidth[i] = 6; // Thicker border for emphasis
+                myChart.data.datasets[0].borderWidth[i] = 3; // Thicker border for emphasis
             }
         }
         console.log("defaultBorderColor", myChart.data.datasets[0].borderColor, myChart.data.datasets[0].borderWidth)
