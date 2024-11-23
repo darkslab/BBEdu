@@ -207,8 +207,6 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             student_name_list_by_lang[student_lang].append(f"{i+1}) {first_name} {last_name}")
             slice_by_lang[student_lang].append(i)
 
-        # n_students_ru = len(student_name_list["rus"])
-        # n_students_kz = len(student_name_list["kaz"])
         parent_student_scores_by_lang = {
             "rus": {k: scores[slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("rus")},
             "kaz": {k: scores[slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("kaz")},
@@ -217,11 +215,6 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             "rus": {k: scores[:, slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores_by_difficulty.items() if k.lower().endswith("rus")},
             "kaz": {k: scores[:, slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores_by_difficulty.items() if k.lower().endswith("kaz")},
         }
-         
-        # parent_student_scores_by_lang["rus"] = {k: np.zeros(n_students_ru) for k in map_id_to_key.keys() if k.lower().endswith("rus")}
-        # parent_student_scores_by_lang["kaz"] = {k: np.zeros(n_students_kz) for k in map_id_to_key.keys() if k.lower().endswith("kaz")}
-
-
 
         # get student group mean score by subject
         parent_average_scores = {k: float(np.mean(v)) for k, v in parent_student_scores.items()}
@@ -235,7 +228,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         
         kwargs['parent_to_children_list'] = parent_to_children_list
         kwargs['parent_average_scores'] = parent_average_scores
-        kwargs['parent_student_scores'] = parent_student_scores_by_lang  # parent_student_scores
+        kwargs['parent_student_scores'] = parent_student_scores_by_lang
         kwargs['parent_student_scores_by_difficulty'] = parent_student_scores_by_difficulty_by_lang 
         # kwargs['map_key_to_id'] = map_key_to_id
         kwargs['map_id_to_key'] = map_id_to_key

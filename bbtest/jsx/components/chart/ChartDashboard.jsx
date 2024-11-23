@@ -6,6 +6,7 @@ class ChartDashboard extends React.Component {
         // this.props.parent_to_children_list
         // this.props.parent_average_scores
         // this.props.parent_student_scores
+        // this.props.parent_student_scores_by_difficulty
         // this.props.map_key_to_id
         // this.props.map_id_to_key
         this.state = {
@@ -46,7 +47,7 @@ class ChartDashboard extends React.Component {
         topic_option_select.val(this.state.current_children).trigger("change");
         topic_option_select.on('select2:select', (event) => this._selectChild(event));
 
-        
+
     }
 
     render() {
@@ -66,13 +67,13 @@ class ChartDashboard extends React.Component {
             <option key={`option rus}`} value={"rus"} >rus</option>,
             <option key={`option kaz}`} value={"kaz"} >kaz</option>,
         ];
-        
-        
+
+
         // Polar Area chart compute
         const polar_area_chart_labels_id = this.props.parent_to_children_list[this.state.current_parent];
         const polar_area_chart_labels = []
         const polar_area_chart_data = [];
-        
+
         for (let i = 0; i < polar_area_chart_labels_id.length; i++) {
             const index_id = polar_area_chart_labels_id[i];
             polar_area_chart_data.push(this.props.parent_average_scores[index_id]);
@@ -98,14 +99,14 @@ class ChartDashboard extends React.Component {
         }
         // console.log("topic_list_html", topic_list_html)
 
-        
+
 
         return <React.Fragment>
-            <FloatingSelector 
-                    id={["subject-select", "language-select"]}
-                    title={["Предмет", "Язык"]}
-                    options={[options, options_lang]}
-                />
+            <FloatingSelector
+                id={["subject-select", "language-select"]}
+                title={["Предмет", "Язык"]}
+                options={[options, options_lang]}
+            />
             {/* {this.state.current_children} */}
             <div className="row">
                 <div className="col-lg-3" />
@@ -123,22 +124,25 @@ class ChartDashboard extends React.Component {
                             subject_chart_height={this.props.subject_chart_height}
                         />
                     </div>
-                    <div className="row panel panel-default">
-                        <p className="h3" style={{ textAlign: "center" }}>Результаты учеников</p>
-                        <ChartMultiBarHorizontal
-                            data={this.props.parent_student_scores_by_difficulty["rus"]["10rus"]}
-                            data_label_list={["no", "low", "mid", "high"]}
-                            row_label_list={this.props.student_name_list[this.state.current_language]}
+                    {this.state.current_parent.length == 5 ?
+                        <div className="row panel panel-default">
+                            <p className="h3" style={{ textAlign: "center" }}>Результаты учеников по сложности</p>
+                            <ChartMultiBarHorizontal
+                                data={this.props.parent_student_scores_by_difficulty[this.state.current_language][this.state.current_parent]}
+                                data_label_list={["no", "low", "mid", "high"]}
+                                row_label_list={this.props.student_name_list[this.state.current_language]}
 
 
-                            selected_parent={"10rus"}  // this.state.current_parent
-                            selected_language={"rus"}  // this.state.current_language
-                            selected_children_list={selected_children_list}
+                                // selected_parent={"10rus"}  // this.state.current_parent
+                                // selected_language={"rus"}  // this.state.current_language
+                                // selected_children_list={selected_children_list}
 
-                            map_id_to_key={this.props.map_id_to_key}
-                            subject_chart_height={this.props.subject_chart_height}
-                        />
-                    </div>
+                                map_id_to_key={this.props.map_id_to_key}
+                                subject_chart_height={this.props.subject_chart_height}
+                            />
+                        </div>
+                        : null
+                    }
                     <div className="row panel panel-default">
                         <p className="h3" style={{ textAlign: "center" }}>Усредненные результаты учеников</p>
                         <div className="col-xs-12 col-lg-6">
@@ -153,7 +157,7 @@ class ChartDashboard extends React.Component {
                             />
                         </div>
                         <div className="col-xs-12 col-lg-6">
-                            <select className="select_v2" id="subject-topic-select" style={{maxWidth: "300px"}}>
+                            <select className="select_v2" id="subject-topic-select" style={{ maxWidth: "300px" }}>
                                 {child_options}
                             </select>
 
@@ -167,9 +171,9 @@ class ChartDashboard extends React.Component {
                         </div>
                     </div>
                     <div className="panel panel-default" style={{ minHeight: "300px" }}>
-                        <div className="row" style={{textAlign: "center"}}>
-                            <h3 style={{textAlign: "center"}}>Мониторинг прогресса участника тестирования</h3>
-                            <div className="text-center" style={{textAlign: "center"}}>
+                        <div className="row" style={{ textAlign: "center" }}>
+                            <h3 style={{ textAlign: "center" }}>Мониторинг прогресса участника тестирования</h3>
+                            <div className="text-center" style={{ textAlign: "center" }}>
                                 <p>В графике показаны Ваши результаты по данному предмету. Здесь Вы сможете отслеживать результаты каждого теста и траекторию прогресса.</p>
                                 <ChartProgressBar
                                     scores_data={[200, 250, 180, 220, 0, 0, 0, 0, 0, 0]}
