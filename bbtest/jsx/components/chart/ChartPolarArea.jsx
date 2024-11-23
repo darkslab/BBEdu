@@ -1,6 +1,8 @@
 class ChartPolarArea extends React.Component {
     constructor(props) {
         super(props);
+        // selected_parent
+        // selected_children
         // polar_area_chart_labels_id
         // polar_area_chart_labels
         // polar_area_chart_data
@@ -36,29 +38,28 @@ class ChartPolarArea extends React.Component {
             responsive: true,
             scale: {
                 min: 0,
-                // max: 100,
                 weight: 1000,
             },
             plugins: {
                 legend: {
-                    display: false // Hide default legend
+                    display: false, // Hide default legend
                 },
                 tooltip: {
                     callbacks: {
                         label: function (tooltipItem) {
-                            return tooltipItem.raw + '%';
-                        }
-                    }
+                            return parseFloat(tooltipItem.raw).toFixed(2) + '%';
+                        },
+                    },
                 },
                 datalabels: {
                     display: true,
                     color: '#ffffff',
                     font: {
                         weight: 'bold',
-                        size: 16
+                        size: 16,
                     },
-                    formatter: (value) => value + '%'
-                }
+                    formatter: (value) => value + '%',
+                },
             },
             onClick: (event, elements) => {
                 // Check if a segment was clicked
@@ -74,11 +75,24 @@ class ChartPolarArea extends React.Component {
 
                     this.props.updateParentTopicState(label_id);
 
-                    // Do something with the clicked segment information
+                    // Reset the border colors to their original value
+                    const defaultBorderColor = this.props.polar_area_chart_labels_id.map(() => "#ffffff"); // Default border color
+                    const defaultBorderWidth = this.props.polar_area_chart_labels_id.map(() => 1); // Default border width
+
+                    this.myChart.data.datasets[0].borderColor = defaultBorderColor;
+                    this.myChart.data.datasets[0].borderWidth = defaultBorderWidth;
+
+                    // Set a dark border color and thicker border for the clicked segment
+                    this.myChart.data.datasets[0].borderColor[segmentIndex] = "#000000"; // Dark border (black)
+                    this.myChart.data.datasets[0].borderWidth[segmentIndex] = 6; // Thicker border for emphasis
+
+                    // Update the chart
+                    this.myChart.update();
+
+                    // Log clicked segment details
                     console.log(`Clicked on segment: ${label}, Value: ${value}, label_id: ${label_id}`);
-                    // alert(`Clicked on ${label} with value ${value}`);
                 }
-            }
+            },
         };
 
         this.myChart = new Chart(ctx, {
@@ -96,7 +110,7 @@ class ChartPolarArea extends React.Component {
 
     componentDidUpdate(prevProps) {
         // Check if subject_list has changed
-        if (prevProps.selected_parent !== this.props.selected_parent) {
+        if (prevProps.selected_parent !== this.props.selected_parent || prevProps.selected_children !== this.props.selected_children) {
 
             this._update_doughnut_chart2(this.myChart, this.props.polar_area_chart_labels_id, this.props.polar_area_chart_labels, this.props.polar_area_chart_data)
         }
@@ -109,15 +123,31 @@ class ChartPolarArea extends React.Component {
     }
 
     render() {
+        console.log("ChartPolarArea.props", this.props)
         return <canvas id="myDoughnutChart" width="400" height="400"></canvas>
     }
 
     // Function to update doughnut chart based on selected subject
-    _update_doughnut_chart2(myChart, labels_id, labels, scores) {
+    _update_doughnut_chart2(myChart, label_id_list, labels, scores ) {
         // Update labels and data for the doughnut chart
         myChart.data.labels = labels;
-        myChart.data.mylabels_ids = labels_id;
+        myChart.data.mylabels_ids = label_id_list;
         myChart.data.datasets[0].data = scores;
+
+        const defaultBorderColor = label_id_list.map(() => "#ffffff"); // Default border color
+        const defaultBorderWidth = label_id_list.map(() => 1); // Default border width
+        myChart.data.datasets[0].borderColor = defaultBorderColor;
+        myChart.data.datasets[0].borderWidth = defaultBorderWidth;
+
+        for (let i=0; i < label_id_list.length; i++) {
+            console.log(i, label_id_list[i], this.props.selected_children)
+            if (label_id_list[i] === this.props.selected_children) {
+                // Set a dark border color and thicker border for the clicked segment
+                myChart.data.datasets[0].borderColor[i] = "rgba(10, 10, 10, 0.5);"; // Dark border (black)
+                myChart.data.datasets[0].borderWidth[i] = 6; // Thicker border for emphasis
+            }
+        }
+        console.log("defaultBorderColor", myChart.data.datasets[0].borderColor, myChart.data.datasets[0].borderWidth)
         // Update the doughnut chart display
         myChart.update();
     }

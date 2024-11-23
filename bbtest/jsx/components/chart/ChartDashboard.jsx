@@ -145,6 +145,7 @@ class ChartDashboard extends React.Component {
                         <div className="col-xs-12 col-lg-6">
                             <ChartPolarArea
                                 selected_parent={this.state.current_parent}
+                                selected_children={this.state.current_children}
                                 polar_area_chart_labels_id={polar_area_chart_labels_id}
                                 polar_area_chart_labels={polar_area_chart_labels}
                                 polar_area_chart_data={polar_area_chart_data}
@@ -159,7 +160,7 @@ class ChartDashboard extends React.Component {
                             </select>
 
                             <p>
-                                <strong>{`Ученики в среднем ответили набрали ${selected_children_topic_average} баллов `}</strong>
+                                <strong>{`Ученики в среднем ответили набрали ${parseFloat(selected_children_topic_average).toFixed(2)} баллов `}</strong>
                                 {/* по предмету "${map_id_to_key[this.state.current_children]}" */}
                             </p>
                             <ul>
