@@ -17,7 +17,7 @@ class ChartDashboard extends React.Component {
     }
 
     updateParentTopicState(newTopic) {
-        console.log("updateParentTopicState", this.state);
+        // console.log("updateParentTopicState", this.state);
         this.setState({ current_children: newTopic });
 
         const topic_option_select = $("#subject-topic-select");
@@ -195,7 +195,7 @@ class ChartDashboard extends React.Component {
         const selectedIndex = data.id;
         const current_language = this.state.current_language;
 
-        console.log("_selectSubject", data, selectedIndex, this.props.parent_list[this.state.current_language][selectedIndex])
+        // console.log("_selectSubject", data, selectedIndex, this.props.parent_list[this.state.current_language][selectedIndex])
         this.setState({
             current_parent: selectedIndex,
             current_children: this.props.parent_to_children_list[selectedIndex][0],
@@ -217,7 +217,7 @@ class ChartDashboard extends React.Component {
         const new_parrent = this.state.current_parent.slice(0, -3) + new_lang;
         const new_children = this.props.parent_to_children_list[new_parrent][0];
         // const selectedIndex = data.id;
-        console.log(data, data.id)
+        // console.log(data, data.id)
 
         this.setState({
             current_language: new_lang,

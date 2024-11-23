@@ -123,7 +123,7 @@ class ChartPolarArea extends React.Component {
     }
 
     render() {
-        console.log("ChartPolarArea.props", this.props)
+        // console.log("ChartPolarArea.props", this.props)
         return <canvas id="myDoughnutChart" width="400" height="400"></canvas>
     }
 
@@ -140,14 +140,12 @@ class ChartPolarArea extends React.Component {
         myChart.data.datasets[0].borderWidth = defaultBorderWidth;
 
         for (let i=0; i < label_id_list.length; i++) {
-            console.log(i, label_id_list[i], this.props.selected_children)
             if (label_id_list[i] === this.props.selected_children) {
                 // Set a dark border color and thicker border for the clicked segment
                 myChart.data.datasets[0].borderColor[i] = "rgba(10, 10, 10, 0.5);"; // Dark border (black)
                 myChart.data.datasets[0].borderWidth[i] = 3; // Thicker border for emphasis
             }
         }
-        console.log("defaultBorderColor", myChart.data.datasets[0].borderColor, myChart.data.datasets[0].borderWidth)
         // Update the doughnut chart display
         myChart.update();
     }

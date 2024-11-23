@@ -67,7 +67,7 @@ class ChartMultiBarHorizontal extends React.Component {
     _update_chart(myChart) {
         const data = this.props.data;
         const data_label_list = this.props.data_label_list;
-        console.log("ChartMultiBarHorizontal._update_chart", data, data_label_list)
+        // console.log("ChartMultiBarHorizontal._update_chart", data, data_label_list)
 
         const datasets = []
         for (let i = 0; i < data.length; i++) {

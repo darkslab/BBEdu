@@ -23,6 +23,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
     // this.props.parent_to_children_list
     // this.props.parent_average_scores
     // this.props.parent_student_scores
+    // this.props.parent_student_scores_by_difficulty
     // this.props.map_key_to_id
     // this.props.map_id_to_key
     _this.state = {
@@ -38,7 +39,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
   return _createClass(ChartDashboard, [{
     key: "updateParentTopicState",
     value: function updateParentTopicState(newTopic) {
-      console.log("updateParentTopicState", this.state);
+      // console.log("updateParentTopicState", this.state);
       this.setState({
         current_children: newTopic
       });
@@ -154,7 +155,21 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         parent_student_scores: this.props.parent_student_scores[this.state.current_language],
         map_id_to_key: this.props.map_id_to_key,
         subject_chart_height: this.props.subject_chart_height
-      })), /*#__PURE__*/React.createElement("div", {
+      })), this.state.current_parent.length == 5 ? /*#__PURE__*/React.createElement("div", {
+        className: "row panel panel-default"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "h3",
+        style: {
+          textAlign: "center"
+        }
+      }, "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u0443\u0447\u0435\u043D\u0438\u043A\u043E\u0432 \u043F\u043E \u0441\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u0438"), /*#__PURE__*/React.createElement(ChartMultiBarHorizontal, {
+        data: this.props.parent_student_scores_by_difficulty[this.state.current_language][this.state.current_parent],
+        data_label_list: ["Базовый", "Средний", "Высокий"],
+        row_label_list: this.props.student_name_list[this.state.current_language],
+        props_update_indicator: "".concat(this.state.current_parent, "+").concat(this.state.current_language),
+        map_id_to_key: this.props.map_id_to_key,
+        subject_chart_height: this.props.subject_chart_height
+      })) : null, /*#__PURE__*/React.createElement("div", {
         className: "row panel panel-default"
       }, /*#__PURE__*/React.createElement("p", {
         className: "h3",
@@ -165,6 +180,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         className: "col-xs-12 col-lg-6"
       }, /*#__PURE__*/React.createElement(ChartPolarArea, {
         selected_parent: this.state.current_parent,
+        selected_children: this.state.current_children,
         polar_area_chart_labels_id: polar_area_chart_labels_id,
         polar_area_chart_labels: polar_area_chart_labels,
         polar_area_chart_data: polar_area_chart_data,
@@ -178,7 +194,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         style: {
           maxWidth: "300px"
         }
-      }, child_options), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "\u0423\u0447\u0435\u043D\u0438\u043A\u0438 \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0438 \u043D\u0430\u0431\u0440\u0430\u043B\u0438 ".concat(selected_children_topic_average, " \u0431\u0430\u043B\u043B\u043E\u0432 "))), /*#__PURE__*/React.createElement("ul", null, subtopic_list_html))), /*#__PURE__*/React.createElement("div", {
+      }, child_options), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "\u0423\u0447\u0435\u043D\u0438\u043A\u0438 \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0438 \u043D\u0430\u0431\u0440\u0430\u043B\u0438 ".concat(parseFloat(selected_children_topic_average).toFixed(2), " \u0431\u0430\u043B\u043B\u043E\u0432 "))), /*#__PURE__*/React.createElement("ul", null, subtopic_list_html))), /*#__PURE__*/React.createElement("div", {
         className: "panel panel-default",
         style: {
           minHeight: "300px"
@@ -216,7 +232,8 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       var data = e.params.data;
       var selectedIndex = data.id;
       var current_language = this.state.current_language;
-      console.log("_selectSubject", data, selectedIndex, this.props.parent_list[this.state.current_language][selectedIndex]);
+
+      // console.log("_selectSubject", data, selectedIndex, this.props.parent_list[this.state.current_language][selectedIndex])
       this.setState({
         current_parent: selectedIndex,
         current_children: this.props.parent_to_children_list[selectedIndex][0]
@@ -239,7 +256,8 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       var new_parrent = this.state.current_parent.slice(0, -3) + new_lang;
       var new_children = this.props.parent_to_children_list[new_parrent][0];
       // const selectedIndex = data.id;
-      console.log(data, data.id);
+      // console.log(data, data.id)
+
       this.setState({
         current_language: new_lang,
         current_parent: new_parrent,
