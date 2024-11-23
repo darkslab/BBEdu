@@ -1,26 +1,57 @@
+
+
+const chart_colors = [
+    'rgba(52, 152, 219, 0.8)',  // #3498db
+    'rgba(26, 188, 156, 0.8)',  // #1abc9c
+    'rgba(155, 89, 182, 0.8)',  // #9b59b6
+    'rgba(243, 156, 18, 0.8)',  // #f39c12
+    'rgba(231, 76, 60,  0.8)',  // #e74c3c
+    'rgba(46, 204, 113, 0.8)'   // #2ecc71
+];
+
+
 class ChartMultiBarHorizontal extends React.Component {
     constructor(props) {
         super(props);
+        // data
+        // data_label_list
+        // row_label_list
+
         // student_name_list
         // selected_parent
         // selected_children_list
-        // parent_student_scores
+        // parent_student_scores_by_difficulty
 
         // map_id_to_key
         // subject_chart_height
     }
     componentDidMount() {
 
-        const subject_list = this.props.selected_children_list;
-        const scores_data = this.props.parent_student_scores;
+        const data = this.props.data;
+        const data_label_list = this.props.data_label_list;
+        console.log(data, data_label_list)
 
-        const ctx = document.getElementById('studentChart').getContext('2d');
+        const ctx = document.getElementById('graph_1').getContext('2d');
+
+        const datasets = []
+
+        for (let i=0; i < data.length; i++) {
+            const dataset = {
+                label: data_label_list[i],
+                data: data[i],
+                backgroundColor: chart_colors[i % chart_colors.length],
+                stack: `Stack ${i}`
+            };
+            datasets.push(dataset);
+        }
+
+        
         
         this.myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: this.props.student_name_list,
-                datasets: []
+                labels: this.props.row_label_list,
+                datasets: datasets
             },
             options: {
                 indexAxis: 'y',
@@ -29,33 +60,33 @@ class ChartMultiBarHorizontal extends React.Component {
                     y: {
                         beginAtZero: true,
                         stacked: false,  // Default not stacked
-                        max: this.props.selected_children_list.length * 100
+                        max: 100
                     }
                 },
                 plugins: {
                     legend: { display: true, position: 'top' },
-                    annotation: {
-                        annotations: {
-                            line1: {
-                                type: 'line',
-                                xMin: 0,
-                                xMax: 0,
-                                borderColor: 'red',
-                                borderWidth: 2,
-                                label: {
-                                    content: 'Average Score',
-                                    enabled: true,
-                                    position: 'end',
-                                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                                    color: 'red'
-                                }
-                            }
-                        }
-                    }
+                    // annotation: {
+                    //     annotations: {
+                    //         line1: {
+                    //             type: 'line',
+                    //             xMin: 0,
+                    //             xMax: 0,
+                    //             borderColor: 'red',
+                    //             borderWidth: 2,
+                    //             label: {
+                    //                 content: 'Average Score',
+                    //                 enabled: true,
+                    //                 position: 'end',
+                    //                 backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    //                 color: 'red'
+                    //             }
+                    //         }
+                    //     }
+                    // }
                 }
             }
         });
-        this._update_chart(this.myChart, this.props.selected_parent, this.props.selected_children_list, this.props.parent_student_scores, this.props.map_id_to_key, this.props.student_name_list);
+        // this._update_chart(this.myChart, this.props.selected_parent, this.props.selected_children_list, this.props.parent_student_scores, this.props.map_id_to_key, this.props.student_name_list);
         
     }
 
@@ -73,7 +104,7 @@ class ChartMultiBarHorizontal extends React.Component {
     }
 
     render() {
-        return <canvas id="studentChart" width="800" height={ this.props.subject_chart_height }></canvas>
+        return <canvas id="graph_1" width="800" height={ this.props.subject_chart_height }></canvas>
     }
 
     _update_chart(myChart, selected_parent, selected_children_list, parent_student_scores, map_id_to_key, student_name_list) {

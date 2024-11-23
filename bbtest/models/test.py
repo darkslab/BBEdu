@@ -409,6 +409,7 @@ class TestQuestion(Model):
         ( DIFFICULTY_LOW,    pgettext_lazy("Question difficulty", "Low")    ),
         ( DIFFICULTY_NONE,   pgettext_lazy("Question difficulty", "Unspecified")),
     )
+    DIFFICULTIES_MAP = {code: i for i, (code, _) in enumerate(reversed(DIFFICULTIES))}
 
     ANSWER_CLASS_MULTICHOICE_ONE    = "MultichoiceOneAnswer"
     ANSWER_CLASS_MULTICHOICE_MULTI  = "MultichoiceMultiAnswer"

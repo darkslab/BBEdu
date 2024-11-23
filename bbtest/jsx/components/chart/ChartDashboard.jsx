@@ -124,6 +124,22 @@ class ChartDashboard extends React.Component {
                         />
                     </div>
                     <div className="row panel panel-default">
+                        <p className="h3" style={{ textAlign: "center" }}>Результаты учеников</p>
+                        <ChartMultiBarHorizontal
+                            data={this.props.parent_student_scores_by_difficulty["rus"]["10rus"]}
+                            data_label_list={["no", "low", "mid", "high"]}
+                            row_label_list={this.props.student_name_list[this.state.current_language]}
+
+
+                            selected_parent={"10rus"}  // this.state.current_parent
+                            selected_language={"rus"}  // this.state.current_language
+                            selected_children_list={selected_children_list}
+
+                            map_id_to_key={this.props.map_id_to_key}
+                            subject_chart_height={this.props.subject_chart_height}
+                        />
+                    </div>
+                    <div className="row panel panel-default">
                         <p className="h3" style={{ textAlign: "center" }}>Усредненные результаты учеников</p>
                         <div className="col-xs-12 col-lg-6">
                             <ChartPolarArea

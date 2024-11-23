@@ -186,20 +186,25 @@ class Quiz(Model):
             score += int(std == corr)
         return score
 
-    def get_question_topic_subtopic(self) -> Tuple[List[TestTopic], List[TestSubTopic]]:
+    def get_question_topic_subtopic(self) -> Tuple[List[TestTopic], List[TestSubTopic], List[int]]:
         questions: QuerySet[TestQuestion] = (
             self.test.questions.prefetch_related("topic", "subtopic")
             .order_by("testtoquestionrelation")
             .all()
         )
 
-        return [q.topic for q in questions], [q.subtopic for q in questions]
+        return (
+            [q.topic for q in questions],
+            [q.subtopic for q in questions],
+            [q.difficulty for q in questions],
+        )
 
-    def calc_score_by_topic_subtopic(self) -> tuple[int, dict, dict]:
+    def calc_score_by_topic_subtopic(self) -> tuple[int, defaultdict, defaultdict, defaultdict]:
         student_answers = self.get_student_answers()
         correct_answers = self.get_correct_answers()
 
-        topic_list, subtopic_list = self.get_question_topic_subtopic()
+        topic_list, subtopic_list, difficulty = self.get_question_topic_subtopic()
+        # print(difficulty)
 
         assert len(student_answers) == len(correct_answers)
         assert len(topic_list) == len(correct_answers)
@@ -207,15 +212,17 @@ class Quiz(Model):
         score = 0
         score_topic = defaultdict(int)
         score_subtopic = defaultdict(int)
+        score_difficulty = defaultdict(int)
 
-        for std, corr, topic, subtopic in zip(
-            student_answers, correct_answers, topic_list, subtopic_list
+        for std, corr, topic, subtopic, question_difficulty in zip(
+            student_answers, correct_answers, topic_list, subtopic_list, difficulty
         ):
             if std is None:
                 continue
             is_correct = int(std == corr)
             score_topic[topic] += is_correct
             score_subtopic[subtopic] += is_correct
+            score_difficulty[question_difficulty] += is_correct
             score += is_correct
 
-        return score, score_topic, score_subtopic
+        return score, score_topic, score_subtopic, score_difficulty

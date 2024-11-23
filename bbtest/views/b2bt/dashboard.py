@@ -18,6 +18,7 @@ from bbtest.auth.models import User
 from bbtest.http import TightJsonResponse
 from bbtest.models import (
     Test,
+    TestQuestion,
     TestDomain,
     TestPackage,
     TestPackageRusKazPair,
@@ -103,7 +104,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         fhash = get_function_hash(self.get)
 
         stats = None # cache.get(f"dashboard_result_{package_pair_quiz_id}_{fhash}")
-        if stats is None:
+        if stats is None or True:
             stats = self.compute_statistic(quiz_pair)
             cache.set(f"dashboard_result_{package_pair_quiz_id}_{fhash}", stats, 100)
 
@@ -147,6 +148,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         # parent_student_scores = defaultdict(lambda: [])  # { total_id: np.zeros(n_students) }
         parent_student_scores = {k: np.zeros(n_students) for k in map_id_to_key.keys()}
+        parent_student_scores_by_difficulty = {k: np.zeros((len(TestQuestion.DIFFICULTIES), n_students)) for k in map_id_to_key.keys()}
 
 
         for student_i, (student, row) in enumerate(zip(student_obj_list, quiz_pair.student_table)):
@@ -175,8 +177,8 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
                     continue
                 
                 # compute scores
-                score, score_topic, score_subtopic = quiz_obj.calc_score_by_topic_subtopic()
-                # print(score, score_topic, score_subtopic)
+                score, score_topic, score_subtopic, score_difficulty = quiz_obj.calc_score_by_topic_subtopic()
+                # print(score, score_topic, score_subtopic, score_difficulty)
 
                 parent_student_scores[section_id][student_i] = score
                 total_score += score
@@ -187,6 +189,9 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
                 # for subtopic, subtopic_score in score_topic.items():
                 #     subtopic_id = map_key_to_id[subtopic]
                 #     parent_student_scores[subtopic_id].append(subtopic_score)
+                for question_difficulty, difficulty_score in score_difficulty.items():
+                    irow_difficulty = TestQuestion.DIFFICULTIES_MAP[question_difficulty]
+                    parent_student_scores_by_difficulty[section_id][irow_difficulty, student_i] = difficulty_score
 
             parent_student_scores[f"{total_id}{student_lang}"][student_i] = total_score
 
@@ -208,6 +213,10 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             "rus": {k: scores[slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("rus")},
             "kaz": {k: scores[slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores.items() if k.lower().endswith("kaz")},
         }
+        parent_student_scores_by_difficulty_by_lang = {
+            "rus": {k: scores[:, slice_by_lang["rus"]].tolist() for k, scores in parent_student_scores_by_difficulty.items() if k.lower().endswith("rus")},
+            "kaz": {k: scores[:, slice_by_lang["kaz"]].tolist() for k, scores in parent_student_scores_by_difficulty.items() if k.lower().endswith("kaz")},
+        }
          
         # parent_student_scores_by_lang["rus"] = {k: np.zeros(n_students_ru) for k in map_id_to_key.keys() if k.lower().endswith("rus")}
         # parent_student_scores_by_lang["kaz"] = {k: np.zeros(n_students_kz) for k in map_id_to_key.keys() if k.lower().endswith("kaz")}
@@ -216,9 +225,6 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         # get student group mean score by subject
         parent_average_scores = {k: float(np.mean(v)) for k, v in parent_student_scores.items()}
-        # conver numpy to list for compatibility
-        for key in parent_student_scores.keys():
-            parent_student_scores[key] = parent_student_scores[key].tolist()
 
         # pass data to charts
         kwargs['student_name_list'] = student_name_list_by_lang # [s.get_full_name() for s in student_obj_list]
@@ -230,6 +236,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         kwargs['parent_to_children_list'] = parent_to_children_list
         kwargs['parent_average_scores'] = parent_average_scores
         kwargs['parent_student_scores'] = parent_student_scores_by_lang  # parent_student_scores
+        kwargs['parent_student_scores_by_difficulty'] = parent_student_scores_by_difficulty_by_lang 
         # kwargs['map_key_to_id'] = map_key_to_id
         kwargs['map_id_to_key'] = map_id_to_key
 
