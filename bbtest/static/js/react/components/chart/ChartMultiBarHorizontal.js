@@ -92,20 +92,67 @@ var ChartMultiBarHorizontal = /*#__PURE__*/function (_React$Component) {
     value: function _update_chart(myChart) {
       var data = this.props.data;
       var data_label_list = this.props.data_label_list;
-      // console.log("ChartMultiBarHorizontal._update_chart", data, data_label_list)
+      var row_label_list = this.props.row_label_list; // Labels for rows (corresponding to columns in data)
 
+      console.log("ChartMultiBarHorizontal._update_chart", data, data_label_list);
+
+      // Calculate the sum for each column
+      var columnSums = data[0].map(function (_, colIndex) {
+        return data.reduce(function (sum, row) {
+          return sum + row[colIndex];
+        }, 0);
+      });
+      console.log("ChartMultiBarHorizontal._update_chart", columnSums);
+
+      // Get sorted indices based on the column sums in descending order
+      var sortedIndices = columnSums.map(function (sum, index) {
+        return {
+          sum: sum,
+          index: index
+        };
+      }).sort(function (a, b) {
+        return b.sum - a.sum;
+      }) // Sort by sum (descending)
+      .map(function (item) {
+        return item.index;
+      });
+
+      // Rearrange data columns and row_label_list based on the sorted indices
+      var sortedData = data.map(function (row) {
+        return sortedIndices.map(function (index) {
+          return row[index];
+        });
+      });
+      var sortedRowLabels = sortedIndices.map(function (index) {
+        return row_label_list[index];
+      });
+
+      // Update the datasets
       var datasets = [];
-      for (var i = 0; i < data.length; i++) {
+      for (var i = 0; i < sortedData.length; i++) {
         var dataset = {
           label: data_label_list[i],
-          data: data[i],
+          data: sortedData[i],
+          // Columns are now sorted
           backgroundColor: chart_colors[i % chart_colors.length],
           stack: "Stack ".concat(i)
         };
         datasets.push(dataset);
       }
+
+      // const datasets = []
+      // for (let i = 0; i < data.length; i++) {
+      //     const dataset = {
+      //         label: data_label_list[i],
+      //         data: data[i],
+      //         backgroundColor: chart_colors[i % chart_colors.length],
+      //         stack: `Stack ${i}`
+      //     };
+      //     datasets.push(dataset);
+      // }
+
       myChart.data.datasets = datasets;
-      myChart.data.labels = this.props.row_label_list;
+      myChart.data.labels = sortedRowLabels; // this.props.row_label_list;
       myChart.update();
     }
   }]);

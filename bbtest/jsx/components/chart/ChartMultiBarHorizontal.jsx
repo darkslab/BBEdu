@@ -67,13 +67,33 @@ class ChartMultiBarHorizontal extends React.Component {
     _update_chart(myChart) {
         const data = this.props.data;
         const data_label_list = this.props.data_label_list;
+        const row_label_list = this.props.row_label_list; // Labels for rows (corresponding to columns in data)
+
         // console.log("ChartMultiBarHorizontal._update_chart", data, data_label_list)
 
-        const datasets = []
-        for (let i = 0; i < data.length; i++) {
+        // Calculate the sum for each column
+        const columnSums = data[0].map((_, colIndex) => 
+            data.reduce((sum, row) => sum + row[colIndex], 0)
+        );
+        // console.log("ChartMultiBarHorizontal._update_chart", columnSums)
+
+        // Get sorted indices based on the column sums in descending order
+        const sortedIndices = columnSums
+            .map((sum, index) => ({ sum, index }))
+            .sort((a, b) => b.sum - a.sum) // Sort by sum (descending)
+            .map(item => item.index);
+
+
+        // Rearrange data columns and row_label_list based on the sorted indices
+        const sortedData = data.map(row => sortedIndices.map(index => row[index]));
+        const sortedRowLabels = sortedIndices.map(index => row_label_list[index]);
+
+        // Update the datasets
+        const datasets = [];
+        for (let i = 0; i < sortedData.length; i++) {
             const dataset = {
                 label: data_label_list[i],
-                data: data[i],
+                data: sortedData[i], // Columns are now sorted
                 backgroundColor: chart_colors[i % chart_colors.length],
                 stack: `Stack ${i}`
             };
@@ -81,7 +101,7 @@ class ChartMultiBarHorizontal extends React.Component {
         }
 
         myChart.data.datasets = datasets;
-        myChart.data.labels = this.props.row_label_list;
+        myChart.data.labels = sortedRowLabels; // this.props.row_label_list;
         myChart.update();
     }
 
