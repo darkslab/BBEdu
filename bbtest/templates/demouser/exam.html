@@ -25,10 +25,10 @@
                     skipUrl: "{% url 'bbtest:student_exam_skip' %}",
                     endUrl: "{% url 'bbtest:student_exam_end' %}",
                     reportUrl: "{% url 'bbtest:student_exam_report' %}",
-                    resultsUrl: "{% url 'bbtest:dashboard' %}",
+                    resultsUrl: "{% url 'bbtest:demo_dashboard' %}",
                     buyUrl: "{% url 'bbtest:student_buy_test_domains' %}",
-                    refreshUrl: "{% url 'bbtest:student_exam' %}",
-                    cancelRefreshUrl: "{% url 'bbtest:student_dashboard' %}",
+                    refreshUrl: "{% url 'bbtest:demo_exam' %}",
+                    cancelRefreshUrl: "{% url 'bbtest:demo_dashboard' %}",
                     objectClass: "StudentTestObject",
                     texts: {
                         error:                        "{% trans 'There was an error, please reload the page.'  context 'Exam' %}",

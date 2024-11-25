@@ -112,6 +112,7 @@ from .views.student import (
 )
 from .views.demouser import (
     DashboardView         as DemouserDashboardView,
+    DemoExamView          as DemoExamView,
 )
 from .views.developer import (
     DashboardView        as DeveloperDashboardView,
@@ -274,7 +275,7 @@ urlpatterns = [
     
     # DEMO USER URLS
     re_path(r"^demouser/$",                                     DemouserDashboardView.as_view(),              name="demo_dashboard"                  ),
-    re_path(r"^demo_taketest/$",                                DemouserDashboardView.as_view(),              name="demo_student_test"               ),
+    re_path(r"^demouser/exam/$",                                DemoExamView.as_view(),                       name="demo_exam"              ),
 
     # B2B TEACHER URLS
     re_path(r"^b2bt/$",                                                     B2BT_DashboardRedirectView.as_view(),          name="b2bt_dashboard"),
