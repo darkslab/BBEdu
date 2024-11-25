@@ -46,18 +46,7 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
-#calculator #statusContainer {
-  color: rgba(92, 184, 92, 0.89);
-  height: 5px;
-  left: 25px;
-  overflow: hidden;
-  padding-right: 10px;
-  position: fixed;
-  right: 25px;
-  top: 10px;
-  width: 85%;
-  z-index: -9;
-}
+
 #calculator #status {
   font-weight: bold;
   font: 16px "Courier New", Courier, Sans-Serif;

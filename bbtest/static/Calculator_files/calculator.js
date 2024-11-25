@@ -42,9 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		content: function () {
 			var html = '<div id="calculator">\
 					<div id="display" class="pull-right" contenteditable="true"></div>\
-					<div id="statusContainer">\
-						<div id="status" class="pull-right"></div>\
-					</div>\
 					<a class="num-button seven" href="#">7</a>\
 					<a class="num-button eight" href="#">8</a>\
 					<a class="num-button nine" href="#">9</a>\
