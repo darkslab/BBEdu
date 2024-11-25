@@ -1,9 +1,28 @@
-from bbtest.auth.mixins import PermissionRequiredMixinFactory
-from bbtest.views.generic import TemplateView
-from bbtest.views.common import UserContextMixin, results_progress, average_score
-from bbtest.utils.json import tight_dumps
+from datetime import timedelta
+from json import loads
+
+from django.contrib.messages import error, success, warning
+from django.core.cache import cache
+from django.db.models import F
+from django.db.transaction import atomic
+from django.utils.timezone import now
+from django.utils.translation import pgettext, pgettext_lazy
+from ool import ConcurrentUpdate
+
+from bbtest.auth.mixins import (
+    PermissionRequiredMixinFactory,
+)
 from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
-from django.utils.translation import pgettext
+from bbtest.utils.json import tight_dumps
+from bbtest.views.common import (
+    UserContextMixin,
+    average_score,
+    results_progress,
+)
+from bbtest.views.generic import TemplateView, View
+from bbtest.views.student.mixins import CurrentQuizSetRequiredMixin
+
+
 
 
 class DashboardView(PermissionRequiredMixinFactory(["demouser"]), UserContextMixin, TemplateView):
@@ -120,5 +139,22 @@ class DashboardView(PermissionRequiredMixinFactory(["demouser"]), UserContextMix
                     },
                 },
             })
+
+        return super().get_context_data(**kwargs)
+
+
+
+class DemoExamView(PermissionRequiredMixinFactory(["demouser"]), CurrentQuizSetRequiredMixin, UserContextMixin, TemplateView):
+    template_name = "demouser/exam.html"
+
+    def get_context_data(self, **kwargs):
+        kwargs["test_domain"] = self.quiz_set().test_domain
+        kwargs["is_current"] = self.quiz_set().is_current
+
+        current_test = self.current_quiz().test
+        question_list = current_test.questions.values("id", "has_calculator", "has_periodic_table").order_by("testtoquestionrelation")
+
+        kwargs["has_periodic_table"] = tight_dumps([q["has_periodic_table"] for q in question_list])
+        kwargs["has_calculator"] = tight_dumps([q["has_calculator"] for q in question_list])
 
         return super().get_context_data(**kwargs)
