@@ -94,7 +94,7 @@ var ChartMultiBarHorizontal = /*#__PURE__*/function (_React$Component) {
       var data_label_list = this.props.data_label_list;
       var row_label_list = this.props.row_label_list; // Labels for rows (corresponding to columns in data)
 
-      console.log("ChartMultiBarHorizontal._update_chart", data, data_label_list);
+      // console.log("ChartMultiBarHorizontal._update_chart", data, data_label_list)
 
       // Calculate the sum for each column
       var columnSums = data[0].map(function (_, colIndex) {
@@ -102,7 +102,7 @@ var ChartMultiBarHorizontal = /*#__PURE__*/function (_React$Component) {
           return sum + row[colIndex];
         }, 0);
       });
-      console.log("ChartMultiBarHorizontal._update_chart", columnSums);
+      // console.log("ChartMultiBarHorizontal._update_chart", columnSums)
 
       // Get sorted indices based on the column sums in descending order
       var sortedIndices = columnSums.map(function (sum, index) {
@@ -139,18 +139,6 @@ var ChartMultiBarHorizontal = /*#__PURE__*/function (_React$Component) {
         };
         datasets.push(dataset);
       }
-
-      // const datasets = []
-      // for (let i = 0; i < data.length; i++) {
-      //     const dataset = {
-      //         label: data_label_list[i],
-      //         data: data[i],
-      //         backgroundColor: chart_colors[i % chart_colors.length],
-      //         stack: `Stack ${i}`
-      //     };
-      //     datasets.push(dataset);
-      // }
-
       myChart.data.datasets = datasets;
       myChart.data.labels = sortedRowLabels; // this.props.row_label_list;
       myChart.update();
