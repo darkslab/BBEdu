@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blockly - Проверить положительное число</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      #blocklyDiv {
+        height: 80vh;
+        width: 100%;
+      }
+      #buttons {
+        text-align: center;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Проверить, является ли число положительным</h1>
+    <div id="blocklyDiv"></div>
+    <div id="buttons">
+      <button onclick="checkSolution()">Проверить решение</button>
+      <div id="output" style="margin-top: 10px; font-weight: bold;"></div>
+    </div>
+
+    <script>
+      const workspace = Blockly.inject('blocklyDiv', {
+        toolbox: `
+              <xml xmlns="https://developers.google.com/blockly/xml">
+                  <block type="math_number"></block>
+                  <block type="logic_compare"></block>
+                  <block type="controls_if"></block>
+                  <block type="text_print"></block>
+                  <block type="text">
+                      <field name="TEXT">Введите текст</field>
+                  </block>
+              </xml>
+          `
+      })
+      
+      function checkSolution() {
+        const code = Blockly.JavaScript.workspaceToCode(workspace)
+        try {
+          const outputElement = document.getElementById('output')
+          outputElement.innerHTML = '' // Очистить предыдущий вывод
+          const log = console.log
+          console.log = function (message) {
+            outputElement.innerHTML += message + '<br>'
+          }
+          eval(code)
+          console.log = log
+        } catch (error) {
+          alert('Ошибка: ' + error.message)
+        }
+      }
+    </script>
+  </body>
+</html>

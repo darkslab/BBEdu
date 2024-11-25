@@ -109,6 +109,7 @@ from .views.student import (
     ResultDataView        as StudentResultDataView,
     TransactionsView      as StudentTransactionsView,
     TransactionView       as StudentTransactionView,
+    QuestionInteractiveEmbedView,
 )
 from .views.demouser import (
     DashboardView         as DemouserDashboardView,
@@ -291,6 +292,7 @@ urlpatterns = [
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>[0-9]+)/export_result/$",    B2BT_ExportTestResultView.as_view(),    name="b2bt_export_package_results"),
     re_path(r"^b2bt/packages/(?P<package_pair_quiz_id>([0-9]+|demo))/result/$",    B2BT_DashboardView.as_view(),           name="b2bt_build_package_stats"),
     
+    re_path(r"^experimental/block/$", QuestionInteractiveEmbedView.as_view(), name="experimental_block"),
 
     # SYSTEM URLS
     re_path(r"^login/$",                                        LoginView.as_view(),                  name="login"                 ),

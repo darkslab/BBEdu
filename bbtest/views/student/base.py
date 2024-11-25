@@ -1,12 +1,13 @@
-from bbtest.auth.mixins import StudentPermissionRequiredMixin
-from bbtest.views.generic import TemplateView
-from bbtest.views.common import UserContextMixin, results_progress, average_score
-from bbtest.utils.json import tight_dumps
-from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
 from django.utils.translation import pgettext
 
+from bbtest.auth.mixins import PermissionRequiredMixinFactory
+from bbtest.utils.colors import GOOGLE_COLORS, GOOGLE_COLORS_BLEACHED
+from bbtest.utils.json import tight_dumps
+from bbtest.views.common import UserContextMixin, average_score, results_progress
+from bbtest.views.generic import TemplateView
 
-class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateView):
+
+class DashboardView(PermissionRequiredMixinFactory(["student"]), UserContextMixin, TemplateView):
     template_name = "student/dashboard.html"
 
     def get_context_data(self, **kwargs):
@@ -119,4 +120,12 @@ class DashboardView(StudentPermissionRequiredMixin, UserContextMixin, TemplateVi
                 },
             })
 
+        return super().get_context_data(**kwargs)
+
+
+class QuestionInteractiveEmbedView(PermissionRequiredMixinFactory(["student"]), UserContextMixin, TemplateView):
+    template_name = "blockly.html"
+
+    def get_context_data(self, **kwargs):
+        kwargs["active_nav_item"] = "dashboard"
         return super().get_context_data(**kwargs)
