@@ -87,9 +87,7 @@ var Question = /*#__PURE__*/function (_React$Component) {
         className: "bb-test-number"
       }, this.props.count), /*#__PURE__*/React.createElement("h4", {
         className: "panel-title bb-test-title mt-15 mb-15 pull-left"
-      }, this.props.texts.question, " (", this.props.object.meta_data.question_code, ")"), /*#__PURE__*/React.createElement("h4", {
-        className: "panel-title bb-test-title mt-15 mb-15 pull-left"
-      }, this.props.username), /*#__PURE__*/React.createElement(TestTimer, {
+      }, this.props.texts.question), /*#__PURE__*/React.createElement(TestTimer, {
         secondsLeft: this.props.secondsLeft,
         hasTimer: this.props.hasTimer
       }), /*#__PURE__*/React.createElement(TestPeriodicTable, {
