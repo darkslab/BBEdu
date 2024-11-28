@@ -134,11 +134,9 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/React.createElement("div", {
         className: "row"
       }, /*#__PURE__*/React.createElement("div", {
-        className: "col-lg-3"
-      }), /*#__PURE__*/React.createElement("div", {
-        className: "col-xs-12 col-lg-6",
+        className: "col-xs-12",
         style: {
-          minWidth: "600px"
+          minWidth: "900px"
         }
       }, /*#__PURE__*/React.createElement("div", {
         className: "row panel panel-default"

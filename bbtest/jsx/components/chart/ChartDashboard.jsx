@@ -109,8 +109,7 @@ class ChartDashboard extends React.Component {
             />
             {/* {this.state.current_children} */}
             <div className="row">
-                <div className="col-lg-3" />
-                <div className="col-xs-12 col-lg-6" style={{ minWidth: "600px" }}>
+                <div className="col-xs-12" style={{ minWidth: "900px" }}>
                     <div className="row panel panel-default">
                         <p className="h3" style={{ textAlign: "center" }}>Результаты учеников</p>
                         <ChartTotal
