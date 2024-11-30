@@ -296,9 +296,9 @@
     {% if perms.bbtest.super %}
         <span>Видемо только для супер пользователя, в качестве демо и проверки</span>
         <iframe 
-            src="{% url 'bbtest:experimental_block' %}" 
+            src="{% static 'blockly-games/ru/index.html' %}" 
             width="100%" 
-            height="500" 
+            height="800" 
             frameborder="0">
         </iframe>
     {% endif %}
