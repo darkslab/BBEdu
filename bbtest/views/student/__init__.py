@@ -1,4 +1,4 @@
-from .base import DashboardView, QuestionInteractiveEmbedView
+from .base import *
 from .buy import BuyTestDomainsView, BuyTestsView, BuyTestsCartView, BuyTestsCheckoutView
 from .exam import ExamView, ExamContinueView, ExamStartView, ExamSkipView, ExamEndView, ExamReportView
 from .result import ResultsView, ResultView, ResultDataView

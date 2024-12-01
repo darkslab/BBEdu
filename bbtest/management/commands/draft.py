@@ -1,3 +1,23 @@
+
+
+from bbtest.models.test import StudentProfile
+from bbtest.models import TestQuestion, TestSection, Test
+from bbtest.auth.models import User
+from django.contrib.auth.models import Permission, ContentType
+
+content_type = ContentType.objects.get_for_model(User)
+permission = Permission.objects.get(codename="student", content_type=content_type)
+
+objects = User.objects.filter(
+    user_permissions  = permission,
+)
+for user in objects:
+    StudentProfile.objects.create(
+        student = user,
+        games = "bird",
+    )
+
+
 from bbtest.models import User, TestQuestion, TestSection, Test
 from pprint import pprint
 import django

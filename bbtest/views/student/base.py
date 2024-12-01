@@ -129,3 +129,13 @@ class QuestionInteractiveEmbedView(PermissionRequiredMixinFactory(["student"]), 
     def get_context_data(self, **kwargs):
         kwargs["active_nav_item"] = "dashboard"
         return super().get_context_data(**kwargs)
+    
+
+
+class BlocklyBirdGameView(PermissionRequiredMixinFactory(["student"]), UserContextMixin, TemplateView):
+    template_name = "blockly.html"
+
+    def get_context_data(self, **kwargs):
+        kwargs["active_nav_item"] = "blockly_bird_game"
+        kwargs["game_url"] = "/blockly/ru/bird.html"
+        return super().get_context_data(**kwargs)

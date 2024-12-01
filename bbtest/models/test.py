@@ -700,6 +700,23 @@ class TestPackageRusKazQuiz(Model):
 
 # -------------------------------------------- User Profile --------------------------------------------
 
+class StudentProfile(Model):
+    student = OneToOneField(
+        User, on_delete=CASCADE, related_name="student_profile"
+    )
+    games = CharField(
+        pgettext_lazy("Model field", "accessible games"),
+        max_length=100,
+    )
+
+    @property
+    def game_list(self):
+        return self.games.split(",")
+    
+    def __str__(self):
+        return f"{self.student}:{self.game_list}"
+
+
 class UserTestPackageProfile(Model):
     student = OneToOneField ( User,         on_delete=CASCADE, related_name="student_test_profile")
 
