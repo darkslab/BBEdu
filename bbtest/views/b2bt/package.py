@@ -44,6 +44,7 @@ from bbtest.models.accounting import Account, BalanceAccount
 from bbtest.models.quiz import Quiz, QuizSet
 from bbtest.models.test import (
     StudentGroup,
+    StudentProfile,
     Test,
     TestDomain,
     TestPackage,
@@ -280,6 +281,11 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
 
             initialized_users.append(user)
             balance_acount_list.append(balance_obj)
+
+            StudentProfile.objects.create(
+                student = user,
+                games = "bird",
+            )
 
         # BalanceAccount.objects.create_equity_account(kwargs["instance"].balance_account_name())
         with atomic(savepoint=False):
