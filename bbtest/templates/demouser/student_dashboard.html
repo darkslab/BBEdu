@@ -22,16 +22,16 @@
                     </div>
                     <div class="col-xs-3"></div>
                 {% else %}
-                    <div class="col-xs-12">
+                    {% comment %} <div class="col-xs-12">
                         <h2 class="text-center">Также попробуйте упражненния на компьютрную грамотность</h2>
                         <iframe 
                             src="/blockly/ru/puzzle.html" 
-                            {% comment %} src="{% static 'blockly-games/ru/puzzle.html' %}" {% endcomment %}
+                            src="{% static 'blockly-games/ru/puzzle.html' %}"
                             width="100%" 
                             height="800" 
                             frameborder="0">
                         </iframe>
-                    </div>
+                    </div> {% endcomment %}
                     <h2 class="text-center">{% trans 'Демо-тест завершен' context 'Exam page' %}</h2>
                     {% comment %} <h2 class="text-center">Также попробуйте упражненния на компьютрную грамотность</h2> {% endcomment %}
                     <p class="h5">Приобретите полный вариант теста и получите подробный анализ результатов для всего класса или школы.</p>
