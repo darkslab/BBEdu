@@ -59,18 +59,16 @@
 
                         {% elif perms.bbtest.student %}
                             {% comment %} {{ user.student_profile.game_list }} {% endcomment %}
-
-                            {% if "bird" in  user.student_profile.games %}
-                                <li class="{% if active_nav_item|default:'' == 'blockly_bird_game' %}active{% endif %}"><a href="{% url 'bbtest:blockly_bird_game' %}"><i class="fa fa-fw fa-gamepad"></i> {% trans 'Bird Game' context 'Navigation link' %}</a></li>
-
-                            {% endif %}
                             <!-- <li class="{% if active_nav_item|default:'' == 'dashboard' %}active{% endif %}"><a href="{% url 'bbtest:student_dashboard' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Dashboard' context 'Navigation link' %}</a></li> -->
                             {% comment %} <li class="bb-highlighted {% block nav_student_exam_class %}{% endblock %}"><a href="{% url 'bbtest:student_exam' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Testing' context 'Navigation link' %}</a></li> {% endcomment %}
-                            {% comment %} {% if has_exam %}
+                            {% if has_exam %}
                                 <li class="bb-highlighted {% block nav_student_exam_class %}{% endblock %}"><a href="{% url 'bbtest:student_exam' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Testing' context 'Navigation link' %}</a></li>
                             {% else %}
                                 <li class="{% block nav_student_buy_tests_class %}{% endblock %}"><a href="{% url 'bbtest:student_buy_test_domains' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Start testing' context 'Navigation link' %}</a></li>
-                            {% endif %} {% endcomment %}
+                            {% endif %}
+                            {% if "bird" in  user.student_profile.games %}
+                                <li class="{% if active_nav_item|default:'' == 'blockly_bird_game' %}active{% endif %}"><a href="{% url 'bbtest:blockly_bird_game' %}"><i class="fa fa-fw fa-gamepad"></i> {% trans 'Bird Game' context 'Navigation link' %}</a></li>
+                            {% endif %}
 
                         {% elif perms.bbtest.demouser %}
                             {% comment %} <li class="{% if active_nav_item|default:'' == 'dashboard' %}active{% endif %}"><a href="{% url 'bbtest:demo_dashboard' %}"><i class="fa fa-fw fa-graduation-cap"></i> {% trans 'Student dashboard' context 'Navigation link' %}</a></li> {% endcomment %}
