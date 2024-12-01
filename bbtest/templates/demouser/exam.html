@@ -21,6 +21,7 @@
                     
                     hasTimer: true,
                     canEnd: true,
+                    show_blockly_game: true,
                     spinnerLogo: "{% static 'img/logo2_spinner.png' %}",
                     continueUrl: "{% url 'bbtest:student_exam_continue' %}",
                     startUrl: "{% url 'bbtest:student_exam_start' %}",
@@ -38,7 +39,7 @@
                         skipButton:                   "{% trans 'Skip the test'                                context 'Exam' %}",
                         endButton:                    "{% trans 'End the test'                                 context 'Exam' %}",
                         continueButton:               "{% trans 'Continue'                                     context 'Exam' %}",
-                        resultsButton:                "{% trans 'Go to Results'                                context 'Exam' %}",
+                        resultsButton:                "{% trans 'Go to Results'                                context 'Demo Exam' %}",
                         buyButton:                    "{% trans 'Buy new tests'                                context 'Exam' %}",
                         refreshButton:                "{% trans 'Reload the page'                              context 'Exam' %}",
                         cancelRefreshButton:          "{% trans 'Cancel'                                       context 'Exam' %}",

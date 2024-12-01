@@ -218,24 +218,52 @@ class Test extends React.Component {
                 );
                 break;
             case "concluded":
-                content = (
-                    <div className="panel panel-default">
-                        <div className="panel-body">
-                            <h3 className="text-center mb-15 text-success">{this.props.texts.concludedTitle}</h3>
-                            <p className="lead text-center">{this.props.texts.concludedExplanation}</p>
-                            <div className="text-center mb-23">
-                                <div className="visible-xs-block">
-                                    <a href={this.props.resultsUrl}
-                                       className="btn btn-success btn-block">{this.props.texts.resultsButton}</a>
-                                </div>
-                                <div className="hidden-xs">
-                                    <a href={this.props.resultsUrl}
-                                       className="btn btn-success btn-lg">{this.props.texts.resultsButton}</a>
+                console.log("concluded", this.props)
+                if (this.props.show_blockly_game !== undefined) {
+                    content = (
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                                <h3 className="text-center mb-15 text-success">Обучение в цифровом мире</h3>
+                                <p className="lead text-center">Данная задача представляет собой пример вопросов инновационного направления исследования PISA 2025</p>
+                                <iframe
+                                    src="/blockly/ru/puzzle.html"
+                                    width="100%"
+                                    height="800"
+                                    frameborder="0">
+                                </iframe>
+                                <div className="text-center mb-23">
+                                    <div className="visible-xs-block">
+                                        <a href={this.props.resultsUrl}
+                                           className="btn btn-success btn-block">{this.props.texts.resultsButton}</a>
+                                    </div>
+                                    <div className="hidden-xs">
+                                        <a href={this.props.resultsUrl}
+                                           className="btn btn-success btn-lg">{this.props.texts.resultsButton}</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                );
+                    );
+                } else {
+                    content = (
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                                <h3 className="text-center mb-15 text-success">{this.props.texts.concludedTitle}</h3>
+                                <p className="lead text-center">{this.props.texts.concludedExplanation}</p>
+                                <div className="text-center mb-23">
+                                    <div className="visible-xs-block">
+                                        <a href={this.props.resultsUrl}
+                                           className="btn btn-success btn-block">{this.props.texts.resultsButton}</a>
+                                    </div>
+                                    <div className="hidden-xs">
+                                        <a href={this.props.resultsUrl}
+                                           className="btn btn-success btn-lg">{this.props.texts.resultsButton}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                }
                 break;
             default:
                 content = (

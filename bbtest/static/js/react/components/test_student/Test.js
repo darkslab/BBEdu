@@ -235,27 +235,57 @@ var Test = /*#__PURE__*/function (_React$Component) {
           }, this.props.texts.continueButton)))));
           break;
         case "concluded":
-          content = /*#__PURE__*/React.createElement("div", {
-            className: "panel panel-default"
-          }, /*#__PURE__*/React.createElement("div", {
-            className: "panel-body"
-          }, /*#__PURE__*/React.createElement("h3", {
-            className: "text-center mb-15 text-success"
-          }, this.props.texts.concludedTitle), /*#__PURE__*/React.createElement("p", {
-            className: "lead text-center"
-          }, this.props.texts.concludedExplanation), /*#__PURE__*/React.createElement("div", {
-            className: "text-center mb-23"
-          }, /*#__PURE__*/React.createElement("div", {
-            className: "visible-xs-block"
-          }, /*#__PURE__*/React.createElement("a", {
-            href: this.props.resultsUrl,
-            className: "btn btn-success btn-block"
-          }, this.props.texts.resultsButton)), /*#__PURE__*/React.createElement("div", {
-            className: "hidden-xs"
-          }, /*#__PURE__*/React.createElement("a", {
-            href: this.props.resultsUrl,
-            className: "btn btn-success btn-lg"
-          }, this.props.texts.resultsButton)))));
+          console.log("concluded", this.props);
+          if (this.props.show_blockly_game !== undefined) {
+            content = /*#__PURE__*/React.createElement("div", {
+              className: "panel panel-default"
+            }, /*#__PURE__*/React.createElement("div", {
+              className: "panel-body"
+            }, /*#__PURE__*/React.createElement("h3", {
+              className: "text-center mb-15 text-success"
+            }, "\u041E\u0431\u0443\u0447\u0435\u043D\u0438\u0435 \u0432 \u0446\u0438\u0444\u0440\u043E\u0432\u043E\u043C \u043C\u0438\u0440\u0435"), /*#__PURE__*/React.createElement("p", {
+              className: "lead text-center"
+            }, "\u0414\u0430\u043D\u043D\u0430\u044F \u0437\u0430\u0434\u0430\u0447\u0430 \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 \u0441\u043E\u0431\u043E\u0439 \u043F\u0440\u0438\u043C\u0435\u0440 \u0432\u043E\u043F\u0440\u043E\u0441\u043E\u0432 \u0438\u043D\u043D\u043E\u0432\u0430\u0446\u0438\u043E\u043D\u043D\u043E\u0433\u043E \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0438\u0441\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u043D\u0438\u044F PISA 2025"), /*#__PURE__*/React.createElement("iframe", {
+              src: "/blockly/ru/puzzle.html",
+              width: "100%",
+              height: "800",
+              frameborder: "0"
+            }), /*#__PURE__*/React.createElement("div", {
+              className: "text-center mb-23"
+            }, /*#__PURE__*/React.createElement("div", {
+              className: "visible-xs-block"
+            }, /*#__PURE__*/React.createElement("a", {
+              href: this.props.resultsUrl,
+              className: "btn btn-success btn-block"
+            }, this.props.texts.resultsButton)), /*#__PURE__*/React.createElement("div", {
+              className: "hidden-xs"
+            }, /*#__PURE__*/React.createElement("a", {
+              href: this.props.resultsUrl,
+              className: "btn btn-success btn-lg"
+            }, this.props.texts.resultsButton)))));
+          } else {
+            content = /*#__PURE__*/React.createElement("div", {
+              className: "panel panel-default"
+            }, /*#__PURE__*/React.createElement("div", {
+              className: "panel-body"
+            }, /*#__PURE__*/React.createElement("h3", {
+              className: "text-center mb-15 text-success"
+            }, this.props.texts.concludedTitle), /*#__PURE__*/React.createElement("p", {
+              className: "lead text-center"
+            }, this.props.texts.concludedExplanation), /*#__PURE__*/React.createElement("div", {
+              className: "text-center mb-23"
+            }, /*#__PURE__*/React.createElement("div", {
+              className: "visible-xs-block"
+            }, /*#__PURE__*/React.createElement("a", {
+              href: this.props.resultsUrl,
+              className: "btn btn-success btn-block"
+            }, this.props.texts.resultsButton)), /*#__PURE__*/React.createElement("div", {
+              className: "hidden-xs"
+            }, /*#__PURE__*/React.createElement("a", {
+              href: this.props.resultsUrl,
+              className: "btn btn-success btn-lg"
+            }, this.props.texts.resultsButton)))));
+          }
           break;
         default:
           content = /*#__PURE__*/React.createElement("img", {
