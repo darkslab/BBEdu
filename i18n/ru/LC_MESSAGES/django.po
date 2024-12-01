@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bbTest.kz Russian translation 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-20 21:12+0500\n"
+"POT-Creation-Date: 2024-12-01 20:31+0500\n"
 "PO-Revision-Date: 2021-05-07 08:10-0700\n"
 "Last-Translator: Darkhan Baimyrza <darkhan@bbtest.kz>\n"
 "Language-Team: bbTest.kz <admin@bbtest.kz>\n"
@@ -1423,54 +1423,6 @@ msgid "Export & Download"
 msgstr "Выгрузка данных"
 
 msgctxt "Page title"
-msgid "Manage Student Group"
-msgstr "Управления Группами"
-
-msgctxt "/package-manage/student-group/"
-msgid "Package"
-msgstr "Пакет"
-
-msgctxt "/package-manage/student-group/"
-msgid "Student Group"
-msgstr "Группа учеников"
-
-msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
-msgid "Create Students"
-msgstr "Создать пользователей"
-
-msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
-msgid "Add users (Перезагрузите страницу после)"
-msgstr "Добавить пользователей"
-
-msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER"
-msgid "Students"
-msgstr "Пользователи"
-
-msgctxt "/package-manage/users/"
-msgid "Name"
-msgstr "Имя"
-
-msgctxt "/package-manage/users/"
-msgid "Joined at"
-msgstr "Зарегистрирован"
-
-msgctxt "/package-manage/users/"
-msgid "Active?"
-msgstr "Активный?"
-
-msgctxt "/package-manage/users/"
-msgid "Yes"
-msgstr "Да"
-
-msgctxt "/package-manage/users/"
-msgid "No"
-msgstr "Нет"
-
-msgctxt "/package-manage/users/"
-msgid "There are no students yet"
-msgstr "Нет студентов"
-
-msgctxt "Page title"
 msgid "Package settigs"
 msgstr "Настройка вариантов"
 
@@ -1525,6 +1477,10 @@ msgstr "Начать тестирование (Отменить нельзя)"
 msgctxt "/b2bt/"
 msgid "View Results"
 msgstr "Результаты"
+
+msgctxt "/b2bt/"
+msgid "Выгрузить результаты"
+msgstr ""
 
 msgctxt "/admin/create_package/"
 msgid "There are no packages yet"
@@ -1761,6 +1717,87 @@ msgstr ""
 "результатов. Пробные тесты для поступающих в 7 классы Назарбаев "
 "Интеллектуальных школ (НИШ) и абитуриентов, сдающих Единое Национальное "
 "Тестирование (ЕНТ)."
+
+msgctxt "Exam"
+msgid "Start the test"
+msgstr "Начать тест"
+
+msgctxt "Exam"
+msgid "Skip the test"
+msgstr "Пропустить тест"
+
+msgctxt "Exam"
+msgid "End the test"
+msgstr "Завершить предмет"
+
+msgctxt "Exam"
+msgid "Continue"
+msgstr "Продолжить"
+
+msgctxt "Demo Exam"
+msgid "Go to Results"
+msgstr "Завершить тест"
+
+msgctxt "Exam"
+msgid "Buy new tests"
+msgstr "Новые тесты"
+
+msgctxt "Exam"
+msgid "Reload the page"
+msgstr "Обновить страницу"
+
+msgctxt "Exam"
+msgid "Cancel"
+msgstr "Отмена"
+
+msgctxt "Exam"
+msgid "Question"
+msgstr "Вопрос"
+
+msgctxt "Exam"
+msgid "Please choose an answer choice"
+msgstr "Выберите один правильный ответ"
+
+msgctxt "Exam"
+msgid "Please choose answer choices that apply"
+msgstr "Выберите правильные ответы"
+
+msgctxt "Exam"
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgctxt "Exam"
+msgid "Next"
+msgstr "Следующий"
+
+msgctxt "Exam"
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+msgctxt "Exam"
+msgid "Yes"
+msgstr "Да"
+
+msgctxt "Exam"
+msgid "No"
+msgstr "Нет"
+
+msgctxt "Exam"
+msgid "Time is up"
+msgstr "Время вышло"
+
+msgctxt "Exam"
+msgid "Finished"
+msgstr "Завершено"
+
+msgctxt "Exam"
+msgid ""
+"You ran out of allocated time for the test. Please continue to the next test."
+msgstr "Время вышло. Пройдите к следующему предмету."
+
+msgctxt "Exam"
+msgid "All tests are finished. Please continue to view the results."
+msgstr "Тест завершен."
 
 msgctxt "Page title"
 msgid "Dashboard"
@@ -2111,6 +2148,54 @@ msgctxt "/package-manage/student-group/"
 msgid "There are no student groups yet"
 msgstr "Нет студентов"
 
+msgctxt "Page title"
+msgid "Manage Student Group"
+msgstr "Управления Группами"
+
+msgctxt "/package-manage/student-group/"
+msgid "Package"
+msgstr "Пакет"
+
+msgctxt "/package-manage/student-group/"
+msgid "Student Group"
+msgstr "Группа учеников"
+
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
+msgid "Create Students"
+msgstr "Создать пользователей"
+
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER (ManagePackageStudentsForm)"
+msgid "Add users (Перезагрузите страницу после)"
+msgstr "Добавить пользователей"
+
+msgctxt "/build/packages/PACKAGE_CODE/GROUP_NUMBER"
+msgid "Students"
+msgstr "Пользователи"
+
+msgctxt "/package-manage/users/"
+msgid "Name"
+msgstr "Имя"
+
+msgctxt "/package-manage/users/"
+msgid "Joined at"
+msgstr "Зарегистрирован"
+
+msgctxt "/package-manage/users/"
+msgid "Active?"
+msgstr "Активный?"
+
+msgctxt "/package-manage/users/"
+msgid "Yes"
+msgstr "Да"
+
+msgctxt "/package-manage/users/"
+msgid "No"
+msgstr "Нет"
+
+msgctxt "/package-manage/users/"
+msgid "There are no students yet"
+msgstr "Нет студентов"
+
 msgctxt "Navigation link"
 msgid "All Tests"
 msgstr "Все Тесты"
@@ -2154,10 +2239,6 @@ msgstr "Управление Пакетами"
 msgctxt "Navigation link"
 msgid "Public Offer"
 msgstr "Публичная оферта"
-
-msgctxt "Navigation link"
-msgid "Student dashboard"
-msgstr "Личный кабинет"
 
 msgctxt "Navigation link"
 msgid "Student testing"
@@ -2302,85 +2383,8 @@ msgid ""
 msgstr "%(section_name)s %(span_open)sВариант %(code)s%(span_close)s"
 
 msgctxt "Exam"
-msgid "Start the test"
-msgstr "Начать тест"
-
-msgctxt "Exam"
-msgid "Skip the test"
-msgstr "Пропустить тест"
-
-msgctxt "Exam"
-msgid "End the test"
-msgstr "Завершить предмет"
-
-msgctxt "Exam"
-msgid "Continue"
-msgstr "Продолжить"
-
-msgctxt "Exam"
 msgid "Go to Results"
 msgstr "Выйти"
-
-msgctxt "Exam"
-msgid "Buy new tests"
-msgstr "Новые тесты"
-
-msgctxt "Exam"
-msgid "Reload the page"
-msgstr "Обновить страницу"
-
-msgctxt "Exam"
-msgid "Cancel"
-msgstr "Отмена"
-
-msgctxt "Exam"
-msgid "Question"
-msgstr "Вопрос"
-
-msgctxt "Exam"
-msgid "Please choose an answer choice"
-msgstr "Выберите один правильный ответ"
-
-msgctxt "Exam"
-msgid "Please choose answer choices that apply"
-msgstr "Выберите правильные ответы"
-
-msgctxt "Exam"
-msgid "Previous"
-msgstr "Предыдущий"
-
-msgctxt "Exam"
-msgid "Next"
-msgstr "Следующий"
-
-msgctxt "Exam"
-msgid "Are you sure?"
-msgstr "Вы уверены?"
-
-msgctxt "Exam"
-msgid "Yes"
-msgstr "Да"
-
-msgctxt "Exam"
-msgid "No"
-msgstr "Нет"
-
-msgctxt "Exam"
-msgid "Time is up"
-msgstr "Время вышло"
-
-msgctxt "Exam"
-msgid "Finished"
-msgstr "Завершено"
-
-msgctxt "Exam"
-msgid ""
-"You ran out of allocated time for the test. Please continue to the next test."
-msgstr "Время вышло. Пройдите к следующему предмету."
-
-msgctxt "Exam"
-msgid "All tests are finished. Please continue to view the results."
-msgstr "Тест завершен."
 
 msgctxt "/student/results/xxxx/"
 msgid "Go back to results"
@@ -3023,6 +3027,14 @@ msgid "Expert"
 msgstr "Эксперт"
 
 msgctxt "/super/users/"
+msgid "PISA Teacher"
+msgstr "PISA Учитель"
+
+msgctxt "/super/users/"
+msgid "Demouser"
+msgstr "Демо-пользователь"
+
+msgctxt "/super/users/"
 msgid "Impersonate"
 msgstr "Войти как пользователь"
 
@@ -3502,10 +3514,6 @@ msgid "Test is started."
 msgstr "Тест начат."
 
 msgctxt "Success alert message"
-msgid "Package is finalized."
-msgstr "Пакет финализирован"
-
-msgctxt "Success alert message"
 msgid ""
 "Thank you. We have received your message and we will get back to you as soon "
 "as possible."
@@ -3542,6 +3550,10 @@ msgstr "Вы создали новый тест."
 msgctxt "Success alert message"
 msgid "Test is removed from package."
 msgstr "Тест убран из пакета."
+
+msgctxt "Success alert message"
+msgid "Package is finalized."
+msgstr "Пакет финализирован"
 
 msgctxt "Error alert message"
 msgid ""
