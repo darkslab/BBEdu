@@ -137,5 +137,7 @@ class BlocklyBirdGameView(PermissionRequiredMixinFactory(["student"]), UserConte
 
     def get_context_data(self, **kwargs):
         kwargs["active_nav_item"] = "blockly_bird_game"
+        kwargs["game_window_title"] = "Bird"
+        kwargs["game_title"] = "Bird Game"
         kwargs["game_url"] = "/blockly/ru/bird.html"
         return super().get_context_data(**kwargs)

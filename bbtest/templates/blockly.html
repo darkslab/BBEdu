@@ -1,9 +1,9 @@
 {% extends 'personalized_base_1.html' %}
 {% load i18n static permission %}
 
-{% block window_title %}Bird{% endblock %}
+{% block window_title %}{{ game_window_title }}{% endblock %}
 
-{% block title %}Bird game{% endblock %}
+{% block title %}{{ game_title }}{% endblock %}
 
 {% block content %}
   <iframe 
