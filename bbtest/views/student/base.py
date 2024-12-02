@@ -132,7 +132,7 @@ class QuestionInteractiveEmbedView(PermissionRequiredMixinFactory(["student"]), 
     
 
 
-class BlocklyBirdGameView(PermissionRequiredMixinFactory(["student"]), UserContextMixin, TemplateView):
+class BlocklyBirdGameView(PermissionRequiredMixinFactory(["student", "B2BTeacher"]), UserContextMixin, TemplateView):
     template_name = "blockly.html"
 
     def get_context_data(self, **kwargs):
@@ -142,7 +142,7 @@ class BlocklyBirdGameView(PermissionRequiredMixinFactory(["student"]), UserConte
         kwargs["game_url"] = "/blockly/ru/bird.html"
         return super().get_context_data(**kwargs)
     
-class BlocklyPuzzleGameView(PermissionRequiredMixinFactory(["student"]), UserContextMixin, TemplateView):
+class BlocklyPuzzleGameView(PermissionRequiredMixinFactory(["student", "B2BTeacher"]), UserContextMixin, TemplateView):
     template_name = "blockly.html"
 
     def get_context_data(self, **kwargs):
