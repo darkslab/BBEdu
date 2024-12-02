@@ -111,6 +111,7 @@ from .views.student import (
     TransactionView       as StudentTransactionView,
     QuestionInteractiveEmbedView,
     BlocklyBirdGameView,
+    BlocklyPuzzleGameView,
 )
 from .views.demouser import (
     DashboardView         as DemouserDashboardView,
@@ -295,6 +296,8 @@ urlpatterns = [
     
     # re_path(r"^experimental/block/$", QuestionInteractiveEmbedView.as_view(), name="experimental_block"),
     re_path(r"^experimental/blockly/bird/$", BlocklyBirdGameView.as_view(), name="blockly_bird_game"),
+    re_path(r"^experimental/blockly/puzzle/$", BlocklyPuzzleGameView.as_view(), name="blockly_puzzle_game"),
+
 
     # SYSTEM URLS
     re_path(r"^login/$",                                        LoginView.as_view(),                  name="login"                 ),
