@@ -29,8 +29,12 @@ class ChartTotal extends React.Component {
                     y: {
                         beginAtZero: true,
                         stacked: true,  // Default not stacked
-                        max: this.props.selected_children_list.length * 100
-                    }
+                        // max: 600*3,
+                    },
+                    x: {
+                        beginAtZero: true,
+                        max: 600*3,
+                    },
                 },
                 plugins: {
                     legend: { display: true, position: 'top' },
@@ -114,7 +118,7 @@ class ChartTotal extends React.Component {
                 // Push the dataset to myChart.data.datasets
                 myChart.data.datasets.push(dataset);
             }
-            myChart.options.scales.y.max = selected_children_list.length * 100;
+            myChart.options.scales.x.max = 600*3;
         } else {
             const selected_parent_id = selected_parent
             const selected_parent_key = map_id_to_key[selected_parent]
@@ -126,7 +130,7 @@ class ChartTotal extends React.Component {
                 data: parent_student_scores[selected_parent],
                 backgroundColor: 'rgba(54, 162, 235, 0.6)'
             }];
-            myChart.options.scales.y.max = 100;
+            myChart.options.scales.x.max = 600;
         }
         myChart.update();
     }

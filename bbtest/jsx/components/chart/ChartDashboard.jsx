@@ -161,7 +161,7 @@ class ChartDashboard extends React.Component {
                             </select>
 
                             <p>
-                                <strong>{`Ученики в среднем ответили набрали ${parseFloat(selected_children_topic_average).toFixed(2)} баллов `}</strong>
+                                <strong>{`Ученики в среднем ответили набрали ${parseFloat(selected_children_topic_average).toFixed(0)} баллов `}</strong>
                                 {/* по предмету "${map_id_to_key[this.state.current_children]}" */}
                             </p>
                             <ul>
