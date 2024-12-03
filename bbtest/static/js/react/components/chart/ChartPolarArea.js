@@ -64,7 +64,7 @@ var ChartPolarArea = /*#__PURE__*/function (_React$Component) {
           tooltip: {
             callbacks: {
               label: function label(tooltipItem) {
-                return parseFloat(tooltipItem.raw).toFixed(2) + '%';
+                return parseFloat(tooltipItem.raw).toFixed(0);
               }
             }
           },

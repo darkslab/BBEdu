@@ -47,7 +47,7 @@ class ChartPolarArea extends React.Component {
                 tooltip: {
                     callbacks: {
                         label: function (tooltipItem) {
-                            return parseFloat(tooltipItem.raw).toFixed(2) + '%';
+                            return parseFloat(tooltipItem.raw).toFixed(0);
                         },
                     },
                 },
