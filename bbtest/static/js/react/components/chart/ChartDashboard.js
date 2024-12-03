@@ -92,10 +92,10 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       var options_lang = [/*#__PURE__*/React.createElement("option", {
         key: "option rus}",
         value: "rus"
-      }, "rus"), /*#__PURE__*/React.createElement("option", {
+      }, "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"), /*#__PURE__*/React.createElement("option", {
         key: "option kaz}",
         value: "kaz"
-      }, "kaz")];
+      }, "\u049A\u0430\u0437\u0430\u049B \u0442\u0456\u043B\u0456")];
 
       // Polar Area chart compute
       var polar_area_chart_labels_id = this.props.parent_to_children_list[this.state.current_parent];

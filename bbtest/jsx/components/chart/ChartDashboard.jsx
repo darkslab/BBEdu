@@ -64,8 +64,8 @@ class ChartDashboard extends React.Component {
         }
 
         const options_lang = [
-            <option key={`option rus}`} value={"rus"} >rus</option>,
-            <option key={`option kaz}`} value={"kaz"} >kaz</option>,
+            <option key={`option rus}`} value={"rus"} >Русский</option>,
+            <option key={`option kaz}`} value={"kaz"} >Қазақ тілі</option>,
         ];
 
 
