@@ -145,7 +145,11 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         style: {
           textAlign: "center"
         }
-      }, "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u0443\u0447\u0435\u043D\u0438\u043A\u043E\u0432"), /*#__PURE__*/React.createElement(ChartTotal, {
+      }, this.props.texts.graph_total_title), /*#__PURE__*/React.createElement("p", {
+        style: {
+          textAlign: "center"
+        }
+      }, this.props.texts.graph_total_description), /*#__PURE__*/React.createElement(ChartTotal, {
         student_name_list: this.props.student_name_list[this.state.current_language],
         selected_parent: this.state.current_parent,
         selected_language: this.state.current_language,
@@ -160,7 +164,11 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         style: {
           textAlign: "center"
         }
-      }, "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u0443\u0447\u0435\u043D\u0438\u043A\u043E\u0432 \u043F\u043E \u0441\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u0438"), /*#__PURE__*/React.createElement(ChartMultiBarHorizontal, {
+      }, this.props.texts.graph_difficulty_title), /*#__PURE__*/React.createElement("p", {
+        style: {
+          textAlign: "center"
+        }
+      }, this.props.texts.graph_difficulty_description), /*#__PURE__*/React.createElement(ChartMultiBarHorizontal, {
         data: this.props.parent_student_scores_by_difficulty[this.state.current_language][this.state.current_parent],
         data_label_list: ["Базовый", "Средний", "Высокий"],
         row_label_list: this.props.student_name_list[this.state.current_language],
@@ -174,7 +182,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         style: {
           textAlign: "center"
         }
-      }, "\u0423\u0441\u0440\u0435\u0434\u043D\u0435\u043D\u043D\u044B\u0435 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u0443\u0447\u0435\u043D\u0438\u043A\u043E\u0432"), /*#__PURE__*/React.createElement("div", {
+      }, this.props.texts.graph_polararea_title), /*#__PURE__*/React.createElement("div", {
         className: "col-xs-12 col-lg-6"
       }, /*#__PURE__*/React.createElement(ChartPolarArea, {
         selected_parent: this.state.current_parent,
@@ -206,12 +214,12 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         style: {
           textAlign: "center"
         }
-      }, "\u041C\u043E\u043D\u0438\u0442\u043E\u0440\u0438\u043D\u0433 \u043F\u0440\u043E\u0433\u0440\u0435\u0441\u0441\u0430 \u0443\u0447\u0430\u0441\u0442\u043D\u0438\u043A\u0430 \u0442\u0435\u0441\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F"), /*#__PURE__*/React.createElement("div", {
+      }, this.props.texts.graph_monitoring_title), /*#__PURE__*/React.createElement("div", {
         className: "text-center",
         style: {
           textAlign: "center"
         }
-      }, /*#__PURE__*/React.createElement("p", null, "\u0412 \u0433\u0440\u0430\u0444\u0438\u043A\u0435 \u043F\u043E\u043A\u0430\u0437\u0430\u043D\u044B \u0412\u0430\u0448\u0438 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u043F\u043E \u0434\u0430\u043D\u043D\u043E\u043C\u0443 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u0443. \u0417\u0434\u0435\u0441\u044C \u0412\u044B \u0441\u043C\u043E\u0436\u0435\u0442\u0435 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u0442\u044C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u0442\u0435\u0441\u0442\u0430 \u0438 \u0442\u0440\u0430\u0435\u043A\u0442\u043E\u0440\u0438\u044E \u043F\u0440\u043E\u0433\u0440\u0435\u0441\u0441\u0430."), /*#__PURE__*/React.createElement(ChartProgressBar, {
+      }, /*#__PURE__*/React.createElement("p", null, this.props.texts.graph_monitoring_description1), /*#__PURE__*/React.createElement(ChartProgressBar, {
         scores_data: [500, 0, 0, 0, 0],
         averageScore: 425
       }), /*#__PURE__*/React.createElement("p", {
@@ -220,7 +228,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
           fontSize: '14px',
           color: '#666'
         }
-      }, "\u0414\u043B\u044F \u0441\u0440\u0430\u0432\u043D\u0435\u043D\u0438\u044F \u0412\u0430\u0448\u0438\u0445 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u043E\u0432 \u043C\u044B \u0443\u043A\u0430\u0437\u0430\u043B\u0438 \u0441\u0440\u0435\u0434\u043D\u0438\u0439 \u0431\u0430\u043B\u043B (\u043A\u0440\u0430\u0441\u043D\u0430\u044F \u043B\u0438\u043D\u0438\u044F) \u0432\u0441\u0435\u0445 \u0443\u0447\u0430\u0441\u0442\u043D\u0438\u043A\u043E\u0432 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435 \u043F\u043E \u0434\u0430\u043D\u043D\u043E\u043C\u0443 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u0443."))))), /*#__PURE__*/React.createElement("div", {
+      }, this.props.texts.graph_monitoring_description2))))), /*#__PURE__*/React.createElement("div", {
         className: "col-lg-3"
       })));
     }

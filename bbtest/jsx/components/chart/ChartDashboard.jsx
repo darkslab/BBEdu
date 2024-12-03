@@ -111,7 +111,8 @@ class ChartDashboard extends React.Component {
             <div className="row">
                 <div className="col-xs-12" style={{ minWidth: "900px" }}>
                     <div className="row panel panel-default">
-                        <p className="h3" style={{ textAlign: "center" }}>Результаты учеников</p>
+                        <p className="h3" style={{ textAlign: "center" }}>{this.props.texts.graph_total_title}</p>
+                        <p style={{ textAlign: "center" }}>{this.props.texts.graph_total_description}</p>
                         <ChartTotal
                             student_name_list={this.props.student_name_list[this.state.current_language]}
                             selected_parent={this.state.current_parent}
@@ -125,7 +126,8 @@ class ChartDashboard extends React.Component {
                     </div>
                     {this.state.current_parent.length == 5 ?
                         <div className="row panel panel-default">
-                            <p className="h3" style={{ textAlign: "center" }}>Результаты учеников по сложности</p>
+                            <p className="h3" style={{ textAlign: "center" }}>{this.props.texts.graph_difficulty_title}</p>
+                            <p style={{ textAlign: "center" }}>{this.props.texts.graph_difficulty_description}</p>
                             <ChartMultiBarHorizontal
                                 data={this.props.parent_student_scores_by_difficulty[this.state.current_language][this.state.current_parent]}
                                 data_label_list={["Базовый", "Средний", "Высокий"]}
@@ -140,7 +142,7 @@ class ChartDashboard extends React.Component {
                         : null
                     }
                     <div className="row panel panel-default">
-                        <p className="h3" style={{ textAlign: "center" }}>Усредненные результаты учеников</p>
+                        <p className="h3" style={{ textAlign: "center" }}>{this.props.texts.graph_polararea_title}</p>
                         <div className="col-xs-12 col-lg-6">
                             <ChartPolarArea
                                 selected_parent={this.state.current_parent}
@@ -169,15 +171,15 @@ class ChartDashboard extends React.Component {
                     </div>
                     <div className="panel panel-default" style={{ minHeight: "300px" }}>
                         <div className="row" style={{ textAlign: "center" }}>
-                            <h3 style={{ textAlign: "center" }}>Мониторинг прогресса участника тестирования</h3>
+                            <h3 style={{ textAlign: "center" }}>{this.props.texts.graph_monitoring_title}</h3>
                             <div className="text-center" style={{ textAlign: "center" }}>
-                                <p>В графике показаны Ваши результаты по данному предмету. Здесь Вы сможете отслеживать результаты каждого теста и траекторию прогресса.</p>
+                                <p>{this.props.texts.graph_monitoring_description1}</p>
                                 <ChartProgressBar
                                     scores_data={[500, 0, 0, 0, 0]}
                                     averageScore={425}
                                 />
                                 <p style={{ fontStyle: 'italic', fontSize: '14px', color: '#666' }}>
-                                    Для сравнения Ваших результатов мы указали средний балл (красная линия) всех участников на сайте по данному предмету.
+                                    {this.props.texts.graph_monitoring_description2}
                                 </p>
                             </div>
                         </div>

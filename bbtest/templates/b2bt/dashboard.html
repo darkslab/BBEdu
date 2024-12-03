@@ -27,7 +27,14 @@
 
                 subject_chart_height: {{ subject_chart_height | safe}},
                 texts: {
-                    error:                        "{% trans 'There was an error, please reload the page.'  context 'Exam' %}",
+                    graph_total_title:  "{% trans 'Результаты учащихся по выбранному предмету'  context 'PISA Teacher' %}",
+                    graph_total_description: "{% trans 'Данная диаграмма показывает набранные баллы учащихся по выбранному предмету.'  context 'PISA Teacher' %}",
+                    graph_difficulty_title: "{% trans 'Результаты учащихся по выбранному предмету в разрезе сложности.'  context 'PISA Teacher' %}",
+                    graph_difficulty_description: "{% trans 'Данная диаграмма показывает насколько хорошо учащиеся справились с вопросами разной сложности. Вопросы высокой сложности сопоставимы с вопросами PISA второго уровня и выше.'  context 'PISA Teacher' %}",
+                    graph_polararea_title: "{% trans 'Средний балл учащихся в разрезе разделов выбранного предмета.'  context 'PISA Teacher' %}",
+                    graph_monitoring_title: "{% trans 'Мониторинг прогресса результатов учащихся.'  context 'PISA Teacher' %}",
+                    graph_monitoring_description1: "{% trans 'В диаграмме ниже представлен средний балл выбранного предмета учащихся в разрезе вариантов тестирования.'  context 'PISA Teacher' %}",
+                    graph_monitoring_description2: "{% trans 'Красная линия показывает фактический результат Казахстана по выбранному предмету, набранный в 2022 году. '  context 'PISA Teacher' %}",
                 }
             }
         }
