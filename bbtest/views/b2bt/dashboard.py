@@ -177,7 +177,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
                     continue
                 
                 # compute scores
-                score, score_topic, score_subtopic, score_difficulty = quiz_obj.calc_score_by_topic_subtopic()
+                score, score_topic, score_subtopic, score_difficulty = quiz_obj.calc_score_by_topic_subtopic(question_weight = 30)
                 # print(score, score_topic, score_subtopic, score_difficulty)
 
                 parent_student_scores[section_id][student_i] = score
@@ -288,7 +288,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
                 section_id = map_key_to_id[section_obj]
 
                 # compute scores
-                score, score_topic, score_subtopic, score_difficulty = self.fake_calc_score_by_topic_subtopic(section_obj)
+                score, score_topic, score_subtopic, score_difficulty = self.fake_calc_score_by_topic_subtopic(section_obj, question_weight = 30)
                 # print(score, score_topic, score_subtopic)
 
                 parent_student_scores[section_id][student_i] = score
@@ -393,7 +393,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         return np.array([random.randint(40 // n_topic, 100 // n_topic) for t in range(n_students)])
     
 
-    def fake_calc_score_by_topic_subtopic(self, section_obj: TestSection) -> tuple[int, dict, dict]:
+    def fake_calc_score_by_topic_subtopic(self, section_obj: TestSection, question_weight = 1) -> tuple[int, dict, dict]:
         # topic_list, subtopic_list = self.get_question_topic_subtopic()
         n = 100
         all_topic_list: List[TestTopic] = section_obj.topics.all()
@@ -408,7 +408,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         for topic, subtopic, question_difficulty in zip(
             random.choices(all_topic_list, k=n), random.choices(all_subtopic_list, k=n), random.choices(all_difficulties, k=n)
         ):
-            is_correct = 0 if random.random() > 0.8 else 1
+            is_correct = 0 if random.random() > 0.8 else question_weight
 
             score_topic[topic] += is_correct
             score_subtopic[subtopic] += is_correct

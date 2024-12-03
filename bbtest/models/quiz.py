@@ -199,7 +199,7 @@ class Quiz(Model):
             [q.difficulty for q in questions],
         )
 
-    def calc_score_by_topic_subtopic(self) -> tuple[int, defaultdict, defaultdict, defaultdict]:
+    def calc_score_by_topic_subtopic(self, question_weight = 1) -> tuple[int, defaultdict, defaultdict, defaultdict]:
         student_answers = self.get_student_answers()
         correct_answers = self.get_correct_answers()
 
@@ -219,7 +219,7 @@ class Quiz(Model):
         ):
             if std is None:
                 continue
-            is_correct = int(std == corr)
+            is_correct = int(std == corr) * question_weight
             score_topic[topic] += is_correct
             score_subtopic[subtopic] += is_correct
             score_difficulty[question_difficulty] += is_correct
