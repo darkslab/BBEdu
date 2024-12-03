@@ -32,6 +32,8 @@
                             <li class="{% if active_nav_item|default:'' == 'testbank' %}active{% endif %}"><a href="{% url 'bbtest:build_assemble_tests' %}"><i class="fa fa-fw fa-list"></i> {% trans 'Test Assemle' context 'Navigation link' %}</a></li>
                             <li class="{% if active_nav_item|default:'' == 'question_create' %}active{% endif %}"><a href="{% url 'bbtest:question_create' %}"><i class="fa fa-fw fa-file-text"></i> {% trans 'Create Question' context 'Navigation link' %}</a></li>
 
+                            <li class="{% if active_nav_item|default:'' == 'dashboard' %}active{% endif %}"><a href="{% url 'bbtest:b2bt_build_package_stats' 'demo' %}"><i class="fa fa-fw fa-home"></i> {% trans 'Teacher dashboard' context 'Navigation link' %}</a></li>
+
                             <li class="{% if active_nav_item|default:'' == 'blockly_bird_game' %}active{% endif %}"><a href="{% url 'bbtest:blockly_bird_game' %}"><i class="fa fa-fw fa-gamepad"></i> {% trans 'Bird Game' context 'Navigation link' %}</a></li>
                             <li class="{% if active_nav_item|default:'' == 'blockly_puzzle_game' %}active{% endif %}"><a href="{% url 'bbtest:blockly_puzzle_game' %}"><i class="fa fa-fw fa-gamepad"></i> {% trans 'Puzzle Game' context 'Navigation link' %}</a></li>
 
