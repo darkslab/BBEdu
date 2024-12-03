@@ -173,8 +173,8 @@ class ChartDashboard extends React.Component {
                             <div className="text-center" style={{ textAlign: "center" }}>
                                 <p>В графике показаны Ваши результаты по данному предмету. Здесь Вы сможете отслеживать результаты каждого теста и траекторию прогресса.</p>
                                 <ChartProgressBar
-                                    scores_data={[200, 250, 180, 220, 0, 0, 0, 0, 0, 0]}
-                                    averageScore={195}
+                                    scores_data={[500, 0, 0, 0, 0]}
+                                    averageScore={425}
                                 />
                                 <p style={{ fontStyle: 'italic', fontSize: '14px', color: '#666' }}>
                                     Для сравнения Ваших результатов мы указали средний балл (красная линия) всех участников на сайте по данному предмету.
