@@ -231,6 +231,14 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         kwargs['parent_average_scores'] = parent_average_scores
         kwargs['parent_student_scores'] = parent_student_scores_by_lang
         kwargs['parent_student_scores_by_difficulty'] = parent_student_scores_by_difficulty_by_lang 
+
+        kwargs['pisa_average_historic'] = {
+            f"{total_id}rus": 1234,
+            f"{total_id}kaz": 1234,
+        }
+        kwargs['pisa_average_historic'] |= { map_key_to_id[s]: s.pisa_avarage_score_historic() for s in section_list_ru }
+        kwargs['pisa_average_historic'] |= { map_key_to_id[s]: s.pisa_avarage_score_historic() for s in section_list_kz }
+
         # kwargs['map_key_to_id'] = map_key_to_id
         kwargs['map_id_to_key'] = map_id_to_key
 
@@ -334,6 +342,12 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         kwargs['parent_average_scores'] = parent_average_scores
         kwargs['parent_student_scores'] = parent_student_scores_by_lang
         kwargs['parent_student_scores_by_difficulty'] = parent_student_scores_by_difficulty_by_lang 
+        kwargs['pisa_average_historic'] = {
+            f"{total_id}rus": 1234,
+            f"{total_id}kaz": 1234,
+        }
+        kwargs['pisa_average_historic'] |= { map_key_to_id[s]: s.pisa_avarage_score_historic() for s in section_list_ru }
+        kwargs['pisa_average_historic'] |= { map_key_to_id[s]: s.pisa_avarage_score_historic() for s in section_list_kz }
         # kwargs['map_key_to_id'] = map_key_to_id
         kwargs['map_id_to_key'] = map_id_to_key
 

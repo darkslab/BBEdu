@@ -7,9 +7,8 @@ class ChartProgressBar extends React.Component {
         const { scores_data, averageScore } = this.props;
 
 
-        console.log(scores_data, averageScore)
+        // console.log("ChartProgressBar", this.props);
 
-        const ctx = document.getElementById('progressChart').getContext('2d');
 
         const chartData = {
             labels: scores_data.map((_, index) => `Test ${index + 1}`), // Labels like "Test 1", "Test 2", etc.
@@ -29,7 +28,7 @@ class ChartProgressBar extends React.Component {
             scales: {
                 y: {
                     beginAtZero: true,
-                    max: Math.max(...scores_data) + 50, // Adjust max to fit scores + some margin
+                    max: 600 * 3, // Adjust max to fit scores + some margin
                 }
             },
             plugins: {
@@ -57,11 +56,18 @@ class ChartProgressBar extends React.Component {
             }
         };
 
+
+        const ctx = document.getElementById('progressChart').getContext('2d');
+
+
         this.chart = new Chart(ctx, {
             type: 'bar',
             data: chartData,
-            options: chartOptions
+            options: chartOptions,
         });
+
+
+        this._update_chart(this.chart, chartData, averageScore, averageScore > 1000 ? 600 * 3: 600)
     }
 
     componentWillUnmount() {
@@ -70,9 +76,43 @@ class ChartProgressBar extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+
+        if (prevProps.props_update_indicator !== this.props.props_update_indicator) {
+
+            const { scores_data, averageScore } = this.props;
+            const chartData = {
+                labels: scores_data.map((_, index) => `Test ${index + 1}`), // Labels like "Test 1", "Test 2", etc.
+                datasets: [
+                    {
+                        label: 'Your Scores',
+                        data: scores_data,
+                        backgroundColor: 'rgba(52, 152, 219, 0.6)', // Bar color
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+
+            console.log("ChartProgressBar", this.props);
+
+            this._update_chart(this.chart, chartData, averageScore, averageScore > 1000 ? 600 * 3: 600)
+        }
+    }
+
     render() {
         return (
             <canvas id="progressChart" width="400" height="300" style={{ maxHeight: "300px" }}></canvas>
         );
+    }
+
+    _update_chart(chart, chartData, averageScore, y_max) {
+
+        chart.data = chartData;
+        chart.options.plugins.annotation.annotations.line1.yMin = averageScore;
+        chart.options.plugins.annotation.annotations.line1.yMax = averageScore;
+        chart.options.scales.y.max = y_max;
+
+        chart.update();
     }
 }

@@ -7,6 +7,7 @@ class ChartDashboard extends React.Component {
         // this.props.parent_average_scores
         // this.props.parent_student_scores
         // this.props.parent_student_scores_by_difficulty
+        // this.props.pisa_average_historic
         // this.props.map_key_to_id
         // this.props.map_id_to_key
         this.state = {
@@ -83,6 +84,7 @@ class ChartDashboard extends React.Component {
 
 
         const selected_children_topic_average = this.props.parent_average_scores[this.state.current_children];
+        const selected_parent_average = this.props.parent_average_scores[this.state.current_parent];
 
         const current_subtopic_list = this.props.parent_to_children_list[this.state.current_children];
         const subtopic_list_html = []
@@ -175,8 +177,11 @@ class ChartDashboard extends React.Component {
                             <div className="text-center" style={{ textAlign: "center" }}>
                                 <p>{this.props.texts.graph_monitoring_description1}</p>
                                 <ChartProgressBar
-                                    scores_data={[500, 0, 0, 0, 0]}
-                                    averageScore={425}
+                                    scores_data={[selected_parent_average, 0, 0, 0, 0]}
+                                    y_max={ this.state.current_parent.length === 4 ? 600 * 3 : 600 }
+                                    averageScore={ this.props.pisa_average_historic[this.state.current_parent] }
+
+                                    props_update_indicator={`${this.state.current_parent}+${this.state.current_language}`}
                                 />
                                 <p style={{ fontStyle: 'italic', fontSize: '14px', color: '#666' }}>
                                     {this.props.texts.graph_monitoring_description2}
@@ -215,10 +220,16 @@ class ChartDashboard extends React.Component {
     _selectLanguage(e) {
         const data = e.params.data;
         const new_lang = data.id;
-        const new_parrent = this.state.current_parent.slice(0, -3) + new_lang;
+        // const new_parrent = this.state.current_parent.slice(0, -3) + new_lang;
+        const new_parrent = `0${new_lang}`;
         const new_children = this.props.parent_to_children_list[new_parrent][0];
         // const selectedIndex = data.id;
         // console.log(data, data.id)
+        // console.log("_selectLanguage", {
+        //     current_language: new_lang,
+        //     current_parent: new_parrent,
+        //     current_children: new_children,
+        // })
 
         this.setState({
             current_language: new_lang,

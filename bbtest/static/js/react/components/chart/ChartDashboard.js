@@ -24,6 +24,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
     // this.props.parent_average_scores
     // this.props.parent_student_scores
     // this.props.parent_student_scores_by_difficulty
+    // this.props.pisa_average_historic
     // this.props.map_key_to_id
     // this.props.map_id_to_key
     _this.state = {
@@ -107,6 +108,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         polar_area_chart_labels.push(this.props.map_id_to_key[index_id]);
       }
       var selected_children_topic_average = this.props.parent_average_scores[this.state.current_children];
+      var selected_parent_average = this.props.parent_average_scores[this.state.current_parent];
       var current_subtopic_list = this.props.parent_to_children_list[this.state.current_children];
       var subtopic_list_html = [];
       for (var _i2 = 0; _i2 < current_subtopic_list.length; _i2++) {
@@ -220,8 +222,10 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
           textAlign: "center"
         }
       }, /*#__PURE__*/React.createElement("p", null, this.props.texts.graph_monitoring_description1), /*#__PURE__*/React.createElement(ChartProgressBar, {
-        scores_data: [500, 0, 0, 0, 0],
-        averageScore: 425
+        scores_data: [selected_parent_average, 0, 0, 0, 0],
+        y_max: this.state.current_parent.length === 4 ? 600 * 3 : 600,
+        averageScore: this.props.pisa_average_historic[this.state.current_parent],
+        props_update_indicator: "".concat(this.state.current_parent, "+").concat(this.state.current_language)
       }), /*#__PURE__*/React.createElement("p", {
         style: {
           fontStyle: 'italic',
@@ -259,10 +263,16 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
     value: function _selectLanguage(e) {
       var data = e.params.data;
       var new_lang = data.id;
-      var new_parrent = this.state.current_parent.slice(0, -3) + new_lang;
+      // const new_parrent = this.state.current_parent.slice(0, -3) + new_lang;
+      var new_parrent = "0".concat(new_lang);
       var new_children = this.props.parent_to_children_list[new_parrent][0];
       // const selectedIndex = data.id;
       // console.log(data, data.id)
+      // console.log("_selectLanguage", {
+      //     current_language: new_lang,
+      //     current_parent: new_parrent,
+      //     current_children: new_children,
+      // })
 
       this.setState({
         current_language: new_lang,

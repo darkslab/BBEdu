@@ -54,6 +54,17 @@ class TestSection(Model):
         domain_id_list = (7911, 7912, 7913, 7914, 7915, 7916, 7919, 7920)
         return self.domain.pk in domain_id_list 
         # return True
+    
+    def pisa_avarage_score_historic(self):
+        # Красную линию установить статичной согласно баллам: Математика 425, Чтение 386, Естествознание 423
+        if self.domain.pk in [7919, 7920]:
+            if self.code in ["PSMRU", "PSMKZ"]: # Математика
+                return 425
+            if self.code in ["PSRRU", "PSKKZ"]: # Чтение
+                return 386
+            if self.code in ["PSERU", "PSEKZ"]: # Естествознание
+                return 423
+        return 0
 
     def fg_color(self):
         return GOOGLE_COLORS[(self.pk - 9540) % len(GOOGLE_COLORS)]
