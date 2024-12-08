@@ -4,6 +4,7 @@ from uuid import uuid4
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from django.forms import (
+    BooleanField,
     CharField,
     ChoiceField,
     Form,
@@ -27,12 +28,31 @@ class BaseUserForm(ModelForm):
     require_password = True
     allow_weak_password = False
 
-    password1 = CharField(label=pgettext_lazy("Form label", "Password"), error_messages={
-        "required": pgettext_lazy("Validation error", "Please enter password."),
-    }, widget=PasswordInput, strip=False, help_text=password_validators_help_text_html())
-    password2 = CharField(label=pgettext_lazy("Form label", "Confirm password"), error_messages={
-        "required": pgettext_lazy("Validation error", "Please enter password confirmation."),
-    }, widget=PasswordInput, strip=False)
+    password1 = CharField(
+        label=pgettext_lazy("Form label", "Password"),
+        error_messages={
+            "required": pgettext_lazy("Validation error", "Please enter password."),
+        },
+        widget=PasswordInput,
+        strip=False,
+        help_text=password_validators_help_text_html(),
+    )
+    password2 = CharField(
+        label=pgettext_lazy("Form label", "Confirm password"),
+        error_messages={
+            "required": pgettext_lazy("Validation error", "Please enter password confirmation."),
+        },
+        widget=PasswordInput,
+        strip=False,
+    )
+
+    user_agreement = BooleanField(
+        label=pgettext_lazy("Form label", "User Agreement"),
+        required=False,
+        # error_messages={
+        #     "required": pgettext_lazy("Validation error", "Please enter password confirmation."),
+        # },
+    )
 
     class Meta:
         model = User
@@ -94,6 +114,16 @@ class BaseUserForm(ModelForm):
             )
 
         return phone
+    
+    def clean_user_agreement(self):
+        user_agreement = self.cleaned_data["user_agreement"]
+        if not user_agreement:
+            raise ValidationError(
+                pgettext("Validation error", "To use site you must agree with terms."),
+                code="user_agreement",
+            )
+
+        return user_agreement
 
     def save(self, commit=True):
         user = super().save(commit=False)
