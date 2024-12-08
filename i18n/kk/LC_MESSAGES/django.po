@@ -266,6 +266,10 @@ msgctxt "Validation error"
 msgid "Please enter password confirmation."
 msgstr "Құпиясөздің растауын енгізіңіз."
 
+msgctxt "Form label"
+msgid "User Agreement"
+msgstr "Пайдаланушы келісімі"
+
 msgctxt "Validation error"
 msgid "Please enter first name."
 msgstr "Атыңызды енгізіңіз."
@@ -293,6 +297,15 @@ msgstr "Бұл электрондық пошта тіркелген."
 msgctxt "Validation error"
 msgid "Phone is too long."
 msgstr "Телефон нөмірінің ұзындығы тым үлкен."
+
+msgctxt "Validation error"
+msgid ""
+"Wrong phone format. Acceptable formats are 87071112233, +7(707)1112233, "
+msgstr "Телефон пішімі қате. Рұқсат етілген форматтар: 87071112233, +7(707)1112233,"
+
+msgctxt "Validation error"
+msgid "To use site you must agree with terms."
+msgstr "Сайтты пайдалану үшін сіз шарттармен келісуіңіз керек."
 
 msgctxt "Form label"
 msgid "ID"
@@ -1402,6 +1415,10 @@ msgctxt "Page title"
 msgid "Register"
 msgstr "Тіркелу"
 
+msgctxt "/register/"
+msgid "User Agreement Accept"
+msgstr "Пайдаланушы келісімі қабылданыз"
+
 msgctxt "Form label"
 msgid "I want to register as"
 msgstr "Келесі ретінде тіркелу"
@@ -1425,6 +1442,19 @@ msgstr "Тіркеліп қойдыңыз ба?"
 msgctxt "/register/"
 msgid "Login"
 msgstr "Кіру"
+
+msgctxt "/register/"
+msgid "User Agreement"
+msgstr "Пайдаланушы келісімі"
+
+msgctxt "/register/"
+msgid "Russian"
+msgstr "Орысша"
+
+msgctxt "/register/"
+msgid "Kazakh"
+msgstr "Қазақша"
+
 
 msgctxt "Page title"
 msgid "Settings"
