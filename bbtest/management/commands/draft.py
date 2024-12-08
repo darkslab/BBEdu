@@ -1,3 +1,39 @@
+from bbtest.models import TestQuestion, TestSection, Test, TestTopic, TestSubTopic, TestSubTopicSection, TestTopicToSubtopicRelation, TestQuestion, TestTopicSection
+# 9587, 9584
+section_obj = TestSection.objects.get(id=9584)
+topic_main_obj = TestTopic.objects.filter(sections=section_obj)[0]
+subtopic_list = TestSubTopic.objects.filter(sections=section_obj)
+section_obj
+topic_main_obj
+subtopic_list
+
+for index, subtopic_obj in enumerate(subtopic_list):
+    topic_name = subtopic_obj.name
+    print(topic_name)
+    topic_obj, _ = TestTopic.objects.get_or_create(name=topic_name)
+    TestTopicSection.objects.get_or_create(section=section_obj, topic=topic_obj, order=index)
+    TestTopicToSubtopicRelation.objects.get_or_create(
+            topic = topic_obj,
+            subtopic = subtopic_obj,
+            order = 0,
+        )
+
+question_list = TestQuestion.objects.filter(topic=topic_main_obj)
+question_list
+
+for question_obj in question_list:
+    try:
+        subtopic_name = question_obj.subtopic.name
+    except Exception:
+        print(question_obj.code, "broken")
+        continue
+    print(question_obj.code)
+    q_topic = TestTopic.objects.get(name=subtopic_name)
+    question_obj.topic = q_topic
+    question_obj.save()
+    # break
+
+topic_main_obj.delete()
 
 
 from bbtest.models.test import StudentProfile
