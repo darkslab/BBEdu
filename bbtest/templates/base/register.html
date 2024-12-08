@@ -1,5 +1,5 @@
 {% extends '../public_base_1.html' %}
-{% load i18n widget_tweaks %}
+{% load i18n widget_tweaks static %}
 
 {% block extended_footer %}{% endblock %}
 
@@ -39,12 +39,13 @@
                                     </label>
                                     {{ field|add_class:'form-control' }}
                                 {% elif field.name == 'user_agreement' %}
-                                    <div class="custom-checkbox">
+                                    <div>
                                         {{ field }}
                                         <label for="{{ field.id_for_label }}" class="control-label">
-                                            I agree to the 
-                                            <a href="{% static 'User_agreement_rus.html' %}" target="_blank">Privacy Policy</a> and 
-                                            <a href="{% static 'User_agreement_kaz.html' %}" target="_blank">Terms of Service</a>.
+                                            {% trans 'I agree to the' context '/register/' %}
+                                            <a href="#" data-toggle="modal" data-target="#user_agreement_rus_modal">{% trans 'User Agreement Rus' context '/register/' %}</a> 
+                                            {% trans 'and' %} 
+                                            <a href="#" data-toggle="modal" data-target="#user_agreement_kaz_modal">{% trans 'User Agreement Kaz' context '/register/' %}</a>.
                                         </label>
                                     </div>
                                 {% else %}
@@ -91,6 +92,38 @@
                             <a href="{% url 'bbtest:login' %}" class="btn btn-success btn-block">{% trans 'Login' context '/register/' %}</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for User Agreement Rus -->
+    <div class="modal fade" id="user_agreement_rus_modal" tabindex="-1" role="dialog" aria-labelledby="privacyPolicyLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="privacyPolicyLabel">{% trans 'User Agreement Rus' context '/register/' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Load the User Agreement Rus content dynamically -->
+                    <iframe src="{% static 'User_agreement_rus.html' %}" width="100%" height="600" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for User Agreement Kaz -->
+    <div class="modal fade" id="user_agreement_kaz_modal" tabindex="-1" role="dialog" aria-labelledby="termsOfServiceLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="termsOfServiceLabel">{% trans 'User Agreement Kaz' context '/register/' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Load the User Agreement Kaz content dynamically -->
+                    <iframe src="{% static 'User_agreement_kaz.html' %}" width="100%" height="600" frameborder="0"></iframe>
                 </div>
             </div>
         </div>
