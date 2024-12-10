@@ -8,6 +8,7 @@ class ChartDashboard extends React.Component {
         // this.props.parent_student_scores
         // this.props.parent_student_scores_by_difficulty
         // this.props.pisa_average_historic
+        // this.props.polar_area_description
         // this.props.map_key_to_id
         // this.props.map_id_to_key
         this.state = {
@@ -100,8 +101,18 @@ class ChartDashboard extends React.Component {
             child_options.push(<option key={`topic_option ${child_id}`} value={child_id} >{map_id_to_key[child_id]}</option>)
         }
         // console.log("topic_list_html", topic_list_html)
-
-
+        
+        let recommend = null;
+        if (this.state.current_children.length == 5) {
+            if (parseFloat(selected_children_topic_average) <= 200) {
+                recommend = <div dangerouslySetInnerHTML={{ __html: this.props.polar_area_recomend_description[this.state.current_language][this.state.current_children][0] }} />  
+            } else if (parseFloat(selected_children_topic_average) <= 400) {
+                recommend = <div dangerouslySetInnerHTML={{ __html: this.props.polar_area_recomend_description[this.state.current_language][this.state.current_children][200] }} />
+            } else {
+                recommend = <div dangerouslySetInnerHTML={{ __html: this.props.polar_area_recomend_description[this.state.current_language][this.state.current_children][400] }} />  
+            }
+        }
+        
 
         return <React.Fragment>
             <FloatingSelector
@@ -162,10 +173,11 @@ class ChartDashboard extends React.Component {
                                 {child_options}
                             </select>
 
-                            <p>
+                            <div dangerouslySetInnerHTML={{ __html: this.props.polar_area_common_description[this.state.current_language][this.state.current_parent] }} /> 
+                            { recommend }
+                            {/* <p>
                                 <strong>{`Ученики в среднем ответили набрали ${parseFloat(selected_children_topic_average).toFixed(0)} баллов `}</strong>
-                                {/* по предмету "${map_id_to_key[this.state.current_children]}" */}
-                            </p>
+                            </p> */}
                             <ul>
                                 {subtopic_list_html}
                             </ul>

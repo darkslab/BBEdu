@@ -25,6 +25,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
     // this.props.parent_student_scores
     // this.props.parent_student_scores_by_difficulty
     // this.props.pisa_average_historic
+    // this.props.polar_area_description
     // this.props.map_key_to_id
     // this.props.map_id_to_key
     _this.state = {
@@ -129,6 +130,28 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       }
       // console.log("topic_list_html", topic_list_html)
 
+      var recommend = null;
+      if (this.state.current_children.length == 5) {
+        if (parseFloat(selected_children_topic_average) <= 200) {
+          recommend = /*#__PURE__*/React.createElement("div", {
+            dangerouslySetInnerHTML: {
+              __html: this.props.polar_area_recomend_description[this.state.current_language][this.state.current_children][0]
+            }
+          });
+        } else if (parseFloat(selected_children_topic_average) <= 400) {
+          recommend = /*#__PURE__*/React.createElement("div", {
+            dangerouslySetInnerHTML: {
+              __html: this.props.polar_area_recomend_description[this.state.current_language][this.state.current_children][200]
+            }
+          });
+        } else {
+          recommend = /*#__PURE__*/React.createElement("div", {
+            dangerouslySetInnerHTML: {
+              __html: this.props.polar_area_recomend_description[this.state.current_language][this.state.current_children][400]
+            }
+          });
+        }
+      }
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FloatingSelector, {
         id: ["subject-select", "language-select"],
         title: ["Предмет", "Язык"],
@@ -202,7 +225,11 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         style: {
           maxWidth: "300px"
         }
-      }, child_options), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "\u0423\u0447\u0435\u043D\u0438\u043A\u0438 \u0432 \u0441\u0440\u0435\u0434\u043D\u0435\u043C \u043E\u0442\u0432\u0435\u0442\u0438\u043B\u0438 \u043D\u0430\u0431\u0440\u0430\u043B\u0438 ".concat(parseFloat(selected_children_topic_average).toFixed(0), " \u0431\u0430\u043B\u043B\u043E\u0432 "))), /*#__PURE__*/React.createElement("ul", null, subtopic_list_html))), /*#__PURE__*/React.createElement("div", {
+      }, child_options), /*#__PURE__*/React.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: this.props.polar_area_common_description[this.state.current_language][this.state.current_parent]
+        }
+      }), recommend, /*#__PURE__*/React.createElement("ul", null, subtopic_list_html))), /*#__PURE__*/React.createElement("div", {
         className: "panel panel-default",
         style: {
           minHeight: "300px"
