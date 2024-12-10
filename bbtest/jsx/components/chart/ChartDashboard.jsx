@@ -173,11 +173,12 @@ class ChartDashboard extends React.Component {
                                 {child_options}
                             </select>
 
-                            <div dangerouslySetInnerHTML={{ __html: this.props.polar_area_common_description[this.state.current_language][this.state.current_parent] }} /> 
+                            <div dangerouslySetInnerHTML={{ __html: this.props.polar_area_common_description[this.state.current_language][this.state.current_children] }} /> 
                             { recommend }
                             {/* <p>
                                 <strong>{`Ученики в среднем ответили набрали ${parseFloat(selected_children_topic_average).toFixed(0)} баллов `}</strong>
                             </p> */}
+                            <p>{ this.state.current_language == "rus" ? "Разделы:" : "Бөлімдер:"}</p>
                             <ul>
                                 {subtopic_list_html}
                             </ul>

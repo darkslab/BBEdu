@@ -227,9 +227,9 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         }
       }, child_options), /*#__PURE__*/React.createElement("div", {
         dangerouslySetInnerHTML: {
-          __html: this.props.polar_area_common_description[this.state.current_language][this.state.current_parent]
+          __html: this.props.polar_area_common_description[this.state.current_language][this.state.current_children]
         }
-      }), recommend, /*#__PURE__*/React.createElement("ul", null, subtopic_list_html))), /*#__PURE__*/React.createElement("div", {
+      }), recommend, /*#__PURE__*/React.createElement("p", null, this.state.current_language == "rus" ? "Разделы:" : "Бөлімдер:"), /*#__PURE__*/React.createElement("ul", null, subtopic_list_html))), /*#__PURE__*/React.createElement("div", {
         className: "panel panel-default",
         style: {
           minHeight: "300px"
