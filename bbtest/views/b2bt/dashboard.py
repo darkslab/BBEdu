@@ -348,6 +348,15 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             "rus": [f"{total_id}rus"] + [map_key_to_id[s] for s in section_list_ru],
             "kaz": [f"{total_id}kaz"] + [map_key_to_id[s] for s in section_list_kz],
         }
+
+        kwargs['polar_area_common_description'] = {
+            "rus": {map_key_to_id[s]: POLOR_AREA_COMMON_TEXT[s.id]["ru"].format() for s in section_list_ru},
+            "kaz": {map_key_to_id[s]: POLOR_AREA_COMMON_TEXT[s.id]["kk"].format() for s in section_list_kz},
+        }
+        kwargs['polar_area_recomend_description'] = {
+            "rus": {map_key_to_id[s]: {k: v.format(parent_average_scores[map_key_to_id[s]]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.id]["ru"].items()} for s in section_list_ru},
+            "kaz": {map_key_to_id[s]: {k: v.format(parent_average_scores[map_key_to_id[s]]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.id]["kk"].items()} for s in section_list_kz},
+        }
         
         kwargs['parent_to_children_list'] = parent_to_children_list
         kwargs['parent_average_scores'] = parent_average_scores
