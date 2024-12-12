@@ -112,15 +112,16 @@
             </div>
         </div>
     </div>
-    {% comment %} <div class="row">
-        <div class="col-xs-12 col-lg-12">
-            <form action="{% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz_obj.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger btn-xs mr-5 mb-5">Начать тестирование<br>(Отменить нельзя)</button>
-            </form>
+    {% if package_pair_quiz_obj.payed and not package_pair_quiz_obj.started %}
+        <div class="row">
+            <div class="col-xs-12 col-lg-12">
+                <form method="post" action="{% url 'bbtest:b2bt_build_package_pair_start_exam' package_pair_quiz_id=package_pair_quiz_obj.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">{% trans 'Начать тестирование (Отменить нельзя)' context '/b2bt/' %}</button>
+                </form>
+            </div>
         </div>
-    </div> {% endcomment %}
-    
+    {% endif %}
     <script>
         {% comment %} function togglePassword(button) {
             const row = button.closest('tr'); // Get the current row
