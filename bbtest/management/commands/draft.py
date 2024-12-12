@@ -1,3 +1,44 @@
+from django.contrib.auth.models import ContentType, Permission
+from bbtest.auth.models import User
+from bbtest.models import TestPackageRusKazQuiz
+from bbtest.models.test import StudentProfile
+
+
+def add_migration():
+    content_type = ContentType.objects.get_for_model(User)
+    permission = Permission.objects.get(codename="B2BTeacher", content_type=content_type)
+    objects = User.objects.filter(
+        user_permissions=permission,
+    )
+    for teacher in objects:
+        test_pagage_list = TestPackageRusKazQuiz.objects.filter(user=teacher)
+        for test_package_obj in test_pagage_list:
+            for row in test_package_obj.student_table:
+                student_obj = User.objects.get(username=row[0])
+                profile = StudentProfile.objects.get(
+                    student = student_obj,
+                )
+                if not profile:
+                    print(teacher, "|", student_obj)
+                    print(profile)
+                # profile.teacher = teacher
+                # profile.save()
+
+def add_migration2():
+    test_pagage_list = TestPackageRusKazQuiz.objects.all()
+    for test_package_obj in test_pagage_list:
+        teacher = test_package_obj.user
+        for row in test_package_obj.student_table:
+            student_obj = User.objects.get(username=row[0])
+            profile = StudentProfile.objects.get(
+                student = student_obj,
+            )
+            # if not profile.teacher:
+            # print(teacher, "|", student_obj)
+            print(profile)
+            # profile.teacher = teacher
+            # profile.save()
+
 from bbtest.models import TestQuestion, TestSection, Test, TestTopic, TestSubTopic, TestSubTopicSection, TestTopicToSubtopicRelation, TestQuestion, TestTopicSection
 # 9587, 9584
 section_obj = TestSection.objects.get(id=9584)

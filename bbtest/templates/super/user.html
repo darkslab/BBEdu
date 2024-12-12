@@ -83,6 +83,10 @@
                         <div class="panel-body">
                             <form class="mt-15">
                                 <div class="form-group">
+                                    <label for="username" class="control-label">User Name</label>
+                                    <input type="text" value="{{ user_object.username }}" class="form-control" id="username" readonly>
+                                </div>
+                                <div class="form-group">
                                     <label for="first_name" class="control-label">First Name</label>
                                     <input type="text" value="{{ user_object.first_name }}" class="form-control" id="first_name" readonly>
                                 </div>
@@ -243,7 +247,7 @@
         <div class="col-xs-12">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              {% if student_profile %}  
+              {% if student_profile and student_profile.teacher %}  
                 <h4 class="panel-title">Учитель: &nbsp; <a href="{% url 'bbtest:super_user' student_profile.teacher.pk %}">{{ student_profile.teacher.get_full_name  }}</a></h4>
               {% else %}
                 <h4 class="panel-title">&nbsp;</h4>

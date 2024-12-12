@@ -96,7 +96,7 @@ class UserView(AdminPermissionRequiredMixin, UserContextMixin, TemplateView):
         kwargs["quiz_set_list"] = []
         if user.role == "student":
             kwargs["quiz_set_list"] = QuizSet.objects.filter(student=user).prefetch_related("quizzes").all()
-            kwargs["student_profile"] = user.student_profile
+            kwargs["student_profile"] = user.student_profile if user.student_profile else None
         # print(kwargs["quiz_set_list"])
 
         return super().get_context_data(**kwargs)

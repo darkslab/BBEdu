@@ -284,6 +284,7 @@ class AddPackagePairFormView(PermissionRequiredMixinFactory(["B2BTeacher"]), Vie
 
             StudentProfile.objects.create(
                 student = user,
+                teacher = package_quiz_obj.user,
                 games = "bird",
             )
 
