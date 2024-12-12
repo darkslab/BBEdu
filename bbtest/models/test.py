@@ -712,9 +712,8 @@ class TestPackageRusKazQuiz(Model):
 # -------------------------------------------- User Profile --------------------------------------------
 
 class StudentProfile(Model):
-    student = OneToOneField(
-        User, on_delete=CASCADE, related_name="student_profile"
-    )
+    student = OneToOneField(User, on_delete=CASCADE, related_name="student_profile")
+    teacher = ForeignKey(User, on_delete=CASCADE, related_name="student_profile_list", default=None, null=True)
     games = CharField(
         pgettext_lazy("Model field", "accessible games"),
         max_length=100,
