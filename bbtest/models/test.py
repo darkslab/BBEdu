@@ -724,7 +724,7 @@ class StudentProfile(Model):
         return self.games.split(",")
     
     def __str__(self):
-        return f"{self.student}:{self.game_list}"
+        return f"{self.student}:{self.game_list}:{self.teacher}"
 
 
 class UserTestPackageProfile(Model):
