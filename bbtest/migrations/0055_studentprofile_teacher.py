@@ -2,7 +2,34 @@
 
 import django.db.models.deletion
 from django.conf import settings
+from django.contrib.auth.models import ContentType, Permission
 from django.db import migrations, models
+
+from bbtest.auth.models import User
+from bbtest.models import TestPackageRusKazQuiz
+from bbtest.models.test import StudentProfile
+
+
+def add_migration(apps, schema_editor):
+    content_type = ContentType.objects.get_for_model(User)
+    permission = Permission.objects.get(codename="B2BTeacher", content_type=content_type)
+
+    objects = User.objects.filter(
+        user_permissions=permission,
+    )
+    for teacher in objects:
+        test_pagage_list = TestPackageRusKazQuiz.objects.filter(user=teacher)
+        for test_package_obj in test_pagage_list:
+            for row in test_package_obj.student_table:
+                student_obj = User.objects.get(username=row[0])
+                profile = StudentProfile.objects.get(
+                    student = student_obj,
+                )
+                print(teacher, "|", student_obj)
+                print(profile)
+                profile.teacher = teacher
+                profile.save()
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -15,4 +42,5 @@ class Migration(migrations.Migration):
             name='teacher',
             field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='student_profile_list', to=settings.AUTH_USER_MODEL),
         ),
+        migrations.RunPython(add_migration, migrations.RunPython.noop),
     ]
