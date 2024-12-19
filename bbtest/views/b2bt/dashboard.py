@@ -134,16 +134,18 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         total_id = 0
         map_key_to_id_ru = self.produce_key_to_id_mapping(section_list_ru, total_id, lang="rus")
         map_key_to_id_kz = self.produce_key_to_id_mapping(section_list_kz, total_id, lang="kaz")
-        map_key_to_id = map_key_to_id_ru | map_key_to_id_kz
+        # map_key_to_id = map_key_to_id_ru | map_key_to_id_kz
 
-        map_id_to_key = {v: getattr(k, 'name', k) for k, v in map_key_to_id.items()}
+        map_id_to_key_ru = {v: getattr(k, 'name', k) for k, v in map_key_to_id_ru.items()}
+        map_id_to_key_kz = {v: getattr(k, 'name', k) for k, v in map_key_to_id_kz.items()}
+        map_id_to_key = map_id_to_key_ru | map_id_to_key_kz
         # print(map_key_to_id)
         # print(map_id_to_key)
 
 
         # create tree
-        parent_to_children_list_ru = self.produce_parent_to_children_list(section_list_ru, map_key_to_id, total_id, lang="rus")
-        parent_to_children_list_kz = self.produce_parent_to_children_list(section_list_kz, map_key_to_id, total_id, lang="kaz")
+        parent_to_children_list_ru = self.produce_parent_to_children_list(section_list_ru, map_key_to_id_ru, total_id, lang="rus")
+        parent_to_children_list_kz = self.produce_parent_to_children_list(section_list_kz, map_key_to_id_kz, total_id, lang="kaz")
         parent_to_children_list = parent_to_children_list_ru | parent_to_children_list_kz
 
 
@@ -172,7 +174,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
             for quiz_obj in quiz_list:
                 section_obj: TestSection = quiz_obj.test.section
-                section_id = map_key_to_id[section_obj]
+                section_id = map_key_to_id_ru[section_obj] if student_lang == "rus" else map_key_to_id_kz[section_obj]
 
                 if not quiz_obj.is_finished:
                     continue
@@ -185,7 +187,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
                 total_score += score
 
                 for topic_obj, topic_score in score_topic.items():
-                    topic_id = map_key_to_id[topic_obj]
+                    topic_id = map_key_to_id_ru[topic_obj] if student_lang == "rus" else map_key_to_id_kz[topic_obj]
                     parent_student_scores[topic_id][student_i] = topic_score
                 # for subtopic, subtopic_score in score_topic.items():
                 #     subtopic_id = map_key_to_id[subtopic]
@@ -224,17 +226,18 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         # pass data to charts
         kwargs['student_name_list'] = student_name_list_by_lang # [s.get_full_name() for s in student_obj_list]
         kwargs['parent_list'] = {
-            "rus": [f"{total_id}rus"] + [map_key_to_id[s] for s in section_list_ru],
-            "kaz": [f"{total_id}kaz"] + [map_key_to_id[s] for s in section_list_kz],
+            "rus": [f"{total_id}rus"] + [map_key_to_id_ru[s] for s in section_list_ru],
+            "kaz": [f"{total_id}kaz"] + [map_key_to_id_kz[s] for s in section_list_kz],
         }
 
         kwargs['polar_area_common_description'] = {
-            "rus": {map_key_to_id[s]: POLOR_AREA_COMMON_TEXT[s.id]["ru"].format() for s in section_list_ru},
-            "kaz": {map_key_to_id[s]: POLOR_AREA_COMMON_TEXT[s.id]["kk"].format() for s in section_list_kz},
+            "rus": {kid: POLOR_AREA_COMMON_TEXT[k.pk]["ru"].format() for k, kid in map_key_to_id_ru.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
+            "kaz": {kid: POLOR_AREA_COMMON_TEXT[k.pk]["kk"].format() for k, kid in map_key_to_id_kz.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
         }
+
         kwargs['polar_area_recomend_description'] = {
-            "rus": {map_key_to_id[s]: {k: v.format(parent_average_scores[map_key_to_id[s]]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.id]["ru"].items()} for s in section_list_ru},
-            "kaz": {map_key_to_id[s]: {k: v.format(parent_average_scores[map_key_to_id[s]]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.id]["kk"].items()} for s in section_list_kz},
+            "rus": {kid: {k: v.format(parent_average_scores[kid]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk]["ru"].items()} for s, kid in map_key_to_id_ru.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
+            "kaz": {kid: {k: v.format(parent_average_scores[kid]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk]["kk"].items()} for s, kid in map_key_to_id_kz.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
         }
 
         
@@ -247,8 +250,8 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             f"{total_id}rus": 1234,
             f"{total_id}kaz": 1234,
         }
-        kwargs['pisa_average_historic'] |= { map_key_to_id[s]: s.pisa_avarage_score_historic() for s in section_list_ru }
-        kwargs['pisa_average_historic'] |= { map_key_to_id[s]: s.pisa_avarage_score_historic() for s in section_list_kz }
+        kwargs['pisa_average_historic'] |= { map_key_to_id_ru[s]: s.pisa_avarage_score_historic() for s in section_list_ru }
+        kwargs['pisa_average_historic'] |= { map_key_to_id_kz[s]: s.pisa_avarage_score_historic() for s in section_list_kz }
 
         # kwargs['map_key_to_id'] = map_key_to_id
         kwargs['map_id_to_key'] = map_id_to_key
@@ -280,14 +283,16 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         total_id = 0
         map_key_to_id_ru = self.produce_key_to_id_mapping(section_list_ru, total_id, lang="rus")
         map_key_to_id_kz = self.produce_key_to_id_mapping(section_list_kz, total_id, lang="kaz")
-        map_key_to_id = map_key_to_id_ru | map_key_to_id_kz
+        # map_key_to_id = map_key_to_id_ru | map_key_to_id_kz
 
-        map_id_to_key = {v: getattr(k, 'name', k) for k, v in map_key_to_id.items()}
+        map_id_to_key_ru = {v: getattr(k, 'name', k) for k, v in map_key_to_id_ru.items()}
+        map_id_to_key_kz = {v: getattr(k, 'name', k) for k, v in map_key_to_id_kz.items()}
+        map_id_to_key = map_id_to_key_ru | map_id_to_key_kz
 
 
         # create tree
-        parent_to_children_list_ru = self.produce_parent_to_children_list(section_list_ru, map_key_to_id, total_id, lang="rus")
-        parent_to_children_list_kz = self.produce_parent_to_children_list(section_list_kz, map_key_to_id, total_id, lang="kaz")
+        parent_to_children_list_ru = self.produce_parent_to_children_list(section_list_ru, map_key_to_id_ru, total_id, lang="rus")
+        parent_to_children_list_kz = self.produce_parent_to_children_list(section_list_kz, map_key_to_id_kz, total_id, lang="kaz")
         parent_to_children_list = parent_to_children_list_ru | parent_to_children_list_kz
 
 
@@ -304,7 +309,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             total_score = 0
 
             for section_obj in section_list[student_lang]:
-                section_id = map_key_to_id[section_obj]
+                section_id = map_key_to_id_ru[section_obj] if student_lang == "rus" else map_key_to_id_kz[section_obj]
 
                 # compute scores
                 score, score_topic, score_subtopic, score_difficulty = self.fake_calc_score_by_topic_subtopic(section_obj, question_weight = 6)
@@ -314,7 +319,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
                 total_score += score
 
                 for topic_obj, topic_score in score_topic.items():
-                    topic_id = map_key_to_id[topic_obj]
+                    topic_id = map_key_to_id_ru[topic_obj] if student_lang == "rus" else map_key_to_id_kz[topic_obj]
                     parent_student_scores[topic_id][student_i] = topic_score
                 # for subtopic, subtopic_score in score_topic.items():
                 #     subtopic_id = map_key_to_id[subtopic]
@@ -345,17 +350,17 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         # pass data to charts
         kwargs['student_name_list'] = student_name_list_by_lang # [s.get_full_name() for s in student_obj_list]
         kwargs['parent_list'] = {
-            "rus": [f"{total_id}rus"] + [map_key_to_id[s] for s in section_list_ru],
-            "kaz": [f"{total_id}kaz"] + [map_key_to_id[s] for s in section_list_kz],
+            "rus": [f"{total_id}rus"] + [map_key_to_id_ru[s] for s in section_list_ru],
+            "kaz": [f"{total_id}kaz"] + [map_key_to_id_kz[s] for s in section_list_kz],
         }
 
         kwargs['polar_area_common_description'] = {
-            "rus": {map_key_to_id[s]: POLOR_AREA_COMMON_TEXT[s.id]["ru"].format() for s in section_list_ru},
-            "kaz": {map_key_to_id[s]: POLOR_AREA_COMMON_TEXT[s.id]["kk"].format() for s in section_list_kz},
+            "rus": {kid: POLOR_AREA_COMMON_TEXT[k.pk]["ru"].format() for k, kid in map_key_to_id_ru.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
+            "kaz": {kid: POLOR_AREA_COMMON_TEXT[k.pk]["kk"].format() for k, kid in map_key_to_id_kz.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
         }
         kwargs['polar_area_recomend_description'] = {
-            "rus": {map_key_to_id[s]: {k: v.format(parent_average_scores[map_key_to_id[s]]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.id]["ru"].items()} for s in section_list_ru},
-            "kaz": {map_key_to_id[s]: {k: v.format(parent_average_scores[map_key_to_id[s]]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.id]["kk"].items()} for s in section_list_kz},
+            "rus": {kid: {k: v.format(parent_average_scores[kid]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk]["ru"].items()} for s, kid in map_key_to_id_ru.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
+            "kaz": {kid: {k: v.format(parent_average_scores[kid]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk]["kk"].items()} for s, kid in map_key_to_id_kz.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
         }
         
         kwargs['parent_to_children_list'] = parent_to_children_list
@@ -366,8 +371,8 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
             f"{total_id}rus": 1234,
             f"{total_id}kaz": 1234,
         }
-        kwargs['pisa_average_historic'] |= { map_key_to_id[s]: s.pisa_avarage_score_historic() for s in section_list_ru }
-        kwargs['pisa_average_historic'] |= { map_key_to_id[s]: s.pisa_avarage_score_historic() for s in section_list_kz }
+        kwargs['pisa_average_historic'] |= { map_key_to_id_ru[s]: s.pisa_avarage_score_historic() for s in section_list_ru }
+        kwargs['pisa_average_historic'] |= { map_key_to_id_kz[s]: s.pisa_avarage_score_historic() for s in section_list_kz }
         # kwargs['map_key_to_id'] = map_key_to_id
         kwargs['map_id_to_key'] = map_id_to_key
 
