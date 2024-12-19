@@ -131,7 +131,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       // console.log("topic_list_html", topic_list_html)
 
       var recommend = null;
-      if (this.state.current_children.length == 5) {
+      if (this.state.current_children.length == 5 | this.state.current_children.length == 7) {
         if (parseFloat(selected_children_topic_average) <= 200) {
           recommend = /*#__PURE__*/React.createElement("div", {
             dangerouslySetInnerHTML: {
@@ -152,6 +152,8 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
           });
         }
       }
+      // console.log("recommend", this.state.current_children, recommend)
+
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FloatingSelector, {
         id: ["subject-select", "language-select"],
         title: ["Предмет", "Язык"],
@@ -229,7 +231,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
         dangerouslySetInnerHTML: {
           __html: this.props.polar_area_common_description[this.state.current_language][this.state.current_children]
         }
-      }), recommend, /*#__PURE__*/React.createElement("p", null, this.state.current_language == "rus" ? "Разделы:" : "Бөлімдер:"), /*#__PURE__*/React.createElement("ul", null, subtopic_list_html))), /*#__PURE__*/React.createElement("div", {
+      }), recommend)), /*#__PURE__*/React.createElement("div", {
         className: "panel panel-default",
         style: {
           minHeight: "300px"

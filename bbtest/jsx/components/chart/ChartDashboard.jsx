@@ -103,7 +103,7 @@ class ChartDashboard extends React.Component {
         // console.log("topic_list_html", topic_list_html)
         
         let recommend = null;
-        if (this.state.current_children.length == 5) {
+        if (this.state.current_children.length == 5 | this.state.current_children.length == 7) {
             if (parseFloat(selected_children_topic_average) <= 200) {
                 recommend = <div dangerouslySetInnerHTML={{ __html: this.props.polar_area_recomend_description[this.state.current_language][this.state.current_children][0] }} />  
             } else if (parseFloat(selected_children_topic_average) <= 400) {
@@ -112,7 +112,7 @@ class ChartDashboard extends React.Component {
                 recommend = <div dangerouslySetInnerHTML={{ __html: this.props.polar_area_recomend_description[this.state.current_language][this.state.current_children][400] }} />  
             }
         }
-        
+        // console.log("recommend", this.state.current_children, recommend)
 
         return <React.Fragment>
             <FloatingSelector
@@ -174,14 +174,15 @@ class ChartDashboard extends React.Component {
                             </select>
 
                             <div dangerouslySetInnerHTML={{ __html: this.props.polar_area_common_description[this.state.current_language][this.state.current_children] }} /> 
+                            {/* <div style={{ whiteSpace: "pre-wrap" }}>{ this.props.polar_area_common_description[this.state.current_language][this.state.current_children] }</div> */}
                             { recommend }
                             {/* <p>
                                 <strong>{`Ученики в среднем ответили набрали ${parseFloat(selected_children_topic_average).toFixed(0)} баллов `}</strong>
                             </p> */}
-                            <p>{ this.state.current_language == "rus" ? "Разделы:" : "Бөлімдер:"}</p>
+                            {/* <p><strong>{ this.state.current_language == "rus" ? "Разделы:" : "Бөлімдер:"}</strong></p>
                             <ul>
                                 {subtopic_list_html}
-                            </ul>
+                            </ul> */}
                         </div>
                     </div>
                     <div className="panel panel-default" style={{ minHeight: "300px" }}>
