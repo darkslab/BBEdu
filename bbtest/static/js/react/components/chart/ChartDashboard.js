@@ -28,6 +28,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
     // this.props.polar_area_description
     // this.props.map_key_to_id
     // this.props.map_id_to_key
+    // this.props.lang_django
     _this.state = {
       current_parent: "0rus",
       // this.props.map_key_to_id["Total"],
@@ -83,21 +84,36 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       var parent_list = this.props.parent_list[this.state.current_language];
       var map_id_to_key = this.props.map_id_to_key;
       console.log("this.props", this.props);
+      var map_rus_kaz = {};
+      map_rus_kaz["rus"] = {
+        "Оқылым": "Чтение",
+        "Математика (қазақ тілінде)": "Математика (на казахском)",
+        "Жаратылыстану": "Естествознание"
+      };
+      map_rus_kaz["kaz"] = {
+        "Чтение": "Оқылым",
+        "Математика (на русском)": "Математика (орыс тілінде)",
+        "Естествознание": "Жаратылыстану"
+      };
+      // console.log(map_rus_kaz)
+
       var options = [];
       for (var i = 0; i < parent_list.length; i++) {
         var parent_id = parent_list[i];
+        var key = map_id_to_key[parent_id];
+        var text = key in map_rus_kaz[this.props.lang_django] ? map_rus_kaz[this.props.lang_django][key] : key;
         options.push( /*#__PURE__*/React.createElement("option", {
           key: "option ".concat(parent_id),
           value: parent_id
-        }, map_id_to_key[parent_id]));
+        }, text));
       }
       var options_lang = [/*#__PURE__*/React.createElement("option", {
         key: "option rus}",
         value: "rus"
-      }, "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"), /*#__PURE__*/React.createElement("option", {
+      }, this.props.lang_django == "rus" ? "Русский язык" : "Орыс тілі"), /*#__PURE__*/React.createElement("option", {
         key: "option kaz}",
         value: "kaz"
-      }, "\u049A\u0430\u0437\u0430\u049B \u0442\u0456\u043B\u0456")];
+      }, this.props.lang_django == "rus" ? "Казахский язык" : "Қазақ тілі")];
 
       // Polar Area chart compute
       var polar_area_chart_labels_id = this.props.parent_to_children_list[this.state.current_parent];

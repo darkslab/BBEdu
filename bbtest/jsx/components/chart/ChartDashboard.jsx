@@ -11,6 +11,7 @@ class ChartDashboard extends React.Component {
         // this.props.polar_area_description
         // this.props.map_key_to_id
         // this.props.map_id_to_key
+        // this.props.lang_django
         this.state = {
             current_parent: "0rus", // this.props.map_key_to_id["Total"],
             current_children: this.props.parent_to_children_list["0rus"][0], // this.props.map_key_to_id["Чтение"]
@@ -58,16 +59,32 @@ class ChartDashboard extends React.Component {
 
         console.log("this.props", this.props)
 
+        const map_rus_kaz = {};
+        map_rus_kaz["rus"] = {
+            "Оқылым": "Чтение",
+            "Математика (қазақ тілінде)": "Математика (на казахском)",
+            "Жаратылыстану": "Естествознание",
+            
+        }
+        map_rus_kaz["kaz"] = {
+            "Чтение": "Оқылым",
+            "Математика (на русском)": "Математика (орыс тілінде)",
+            "Естествознание": "Жаратылыстану",
+        }
+        // console.log(map_rus_kaz)
+
         const options = [];
         for (let i = 0; i < parent_list.length; i++) {
             const parent_id = parent_list[i]
-            options.push(<option key={`option ${parent_id}`} value={parent_id} >{map_id_to_key[parent_id]}</option>)
+            const key = map_id_to_key[parent_id]
+            const text = key in map_rus_kaz[this.props.lang_django] ? map_rus_kaz[this.props.lang_django][key] : key
+            options.push(<option key={`option ${parent_id}`} value={parent_id} >{ text }</option>)
 
         }
 
         const options_lang = [
-            <option key={`option rus}`} value={"rus"} >Русский</option>,
-            <option key={`option kaz}`} value={"kaz"} >Қазақ тілі</option>,
+            <option key={`option rus}`} value={"rus"} >{ this.props.lang_django == "rus" ? "Русский язык" : "Орыс тілі"}</option>,
+            <option key={`option kaz}`} value={"kaz"} >{ this.props.lang_django == "rus" ? "Казахский язык" : "Қазақ тілі"}</option>,
         ];
 
 
