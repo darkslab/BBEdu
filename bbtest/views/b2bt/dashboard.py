@@ -232,13 +232,13 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         }
 
         kwargs['polar_area_common_description'] = {
-            "rus": {kid: POLOR_AREA_COMMON_TEXT[k.pk]["ru"].format() for k, kid in map_key_to_id_ru.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
-            "kaz": {kid: POLOR_AREA_COMMON_TEXT[k.pk]["kk"].format() for k, kid in map_key_to_id_kz.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
+            "rus": {kid: POLOR_AREA_COMMON_TEXT[k.pk][get_language()].format() for k, kid in map_key_to_id_ru.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
+            "kaz": {kid: POLOR_AREA_COMMON_TEXT[k.pk][get_language()].format() for k, kid in map_key_to_id_kz.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
         }
 
         kwargs['polar_area_recomend_description'] = {
-            "rus": {kid: {k: v.format(parent_average_scores[kid]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk]["ru"].items()} for s, kid in map_key_to_id_ru.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
-            "kaz": {kid: {k: v.format(parent_average_scores[kid]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk]["kk"].items()} for s, kid in map_key_to_id_kz.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
+            "rus": {kid: {k: v.format(round(parent_average_scores[kid], 1)) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk][get_language()].items()} for s, kid in map_key_to_id_ru.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
+            "kaz": {kid: {k: v.format(round(parent_average_scores[kid], 1)) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk][get_language()].items()} for s, kid in map_key_to_id_kz.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
         }
 
         
@@ -256,6 +256,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         # kwargs['map_key_to_id'] = map_key_to_id
         kwargs['map_id_to_key'] = map_id_to_key
+        kwargs['lang_django'] = "rus" if get_language() == "ru" else "kaz"
 
 
         # chart options
@@ -357,12 +358,12 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         }
 
         kwargs['polar_area_common_description'] = {
-            "rus": {kid: POLOR_AREA_COMMON_TEXT[k.pk]["ru"].format() for k, kid in map_key_to_id_ru.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
-            "kaz": {kid: POLOR_AREA_COMMON_TEXT[k.pk]["kk"].format() for k, kid in map_key_to_id_kz.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
+            "rus": {kid: POLOR_AREA_COMMON_TEXT[k.pk][get_language()].format() for k, kid in map_key_to_id_ru.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
+            "kaz": {kid: POLOR_AREA_COMMON_TEXT[k.pk][get_language()].format() for k, kid in map_key_to_id_kz.items() if isinstance(k, TestSection) or isinstance(k, TestTopic)},
         }
         kwargs['polar_area_recomend_description'] = {
-            "rus": {kid: {k: v.format(parent_average_scores[kid]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk]["ru"].items()} for s, kid in map_key_to_id_ru.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
-            "kaz": {kid: {k: v.format(parent_average_scores[kid]) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk]["kk"].items()} for s, kid in map_key_to_id_kz.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
+            "rus": {kid: {k: v.format(round(parent_average_scores[kid], 1)) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk][get_language()].items()} for s, kid in map_key_to_id_ru.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
+            "kaz": {kid: {k: v.format(round(parent_average_scores[kid], 1)) for k, v in POLOR_AREA_RECOMEND_TEXT[s.pk][get_language()].items()} for s, kid in map_key_to_id_kz.items() if isinstance(s, TestSection) or isinstance(s, TestTopic)},
         }
         
         kwargs['parent_to_children_list'] = parent_to_children_list
@@ -381,6 +382,7 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
 
         # chart options
         kwargs['subject_chart_height'] = min(n_students * self.pixels_per_student, 10000)
+        kwargs['lang_django'] = "rus" if get_language() == "ru" else "kaz"
 
         return kwargs
 
