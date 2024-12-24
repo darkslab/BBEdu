@@ -87,13 +87,15 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
       var map_rus_kaz = {};
       map_rus_kaz["rus"] = {
         "Оқылым": "Чтение",
-        "Математика (қазақ тілінде)": "Математика (на казахском)",
-        "Жаратылыстану": "Естествознание"
+        "Математика (қазақ тілінде)": "Математика",
+        "Жаратылыстану": "Естествознание",
+        "Математика (на русском)": "Математика"
       };
       map_rus_kaz["kaz"] = {
         "Чтение": "Оқылым",
-        "Математика (на русском)": "Математика (орыс тілінде)",
-        "Естествознание": "Жаратылыстану"
+        "Математика (на русском)": "Математика",
+        "Естествознание": "Жаратылыстану",
+        "Математика (қазақ тілінде)": "Математика"
       };
       // console.log(map_rus_kaz)
 
@@ -172,7 +174,7 @@ var ChartDashboard = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FloatingSelector, {
         id: ["subject-select", "language-select"],
-        title: ["Предмет", "Язык"],
+        title: [this.props.lang_django == "rus" ? "Предмет" : "Пән", this.props.lang_django == "rus" ? "Язык тестирования" : "Тестілеу тілі"],
         options: [options, options_lang]
       }), /*#__PURE__*/React.createElement("div", {
         className: "row"

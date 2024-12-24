@@ -387,7 +387,10 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         return kwargs
 
     def produce_key_to_id_mapping(self, section_list: List[TestSection],  total_id = 0, lang = "rus"):
-        total_key = "Итоговый балл  (на русском)" if get_language() == "ru" else "Қорытынды ұпай"
+        if get_language() == "ru":
+            total_key = "Итоговый балл (на русском)" if lang == "rus" else "Итоговый балл (на казахском)"
+        else:
+            total_key = "Қорытынды ұпай" if lang == "rus" else "Қорытынды ұпай"
 
         map_key_to_id = {total_key: f"{total_id}{lang}"}
         map_key_to_id |= {s: f"{i}{lang}" for i, s in enumerate(section_list, 10)}  # f"Предмет {s.name}"
