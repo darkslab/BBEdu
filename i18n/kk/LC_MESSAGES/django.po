@@ -1268,13 +1268,19 @@ msgctxt "PISA Teacher"
 msgid ""
 "В диаграмме ниже представлен средний балл выбранного предмета учащихся в "
 "разрезе вариантов тестирования."
-msgstr "Төмендегі диаграммада таңдалған пән бойынша оқушылардың орташа балы тестілеу нұсқалары бойынша көрсетілген."
+msgstr ""
+"Төмендегі диаграммада таңдалған пән бойынша оқушылардың орташа балы тестілеу "
+"нұсқалары бойынша көрсетілген."
 
 msgctxt "PISA Teacher"
 msgid ""
 "Красная линия показывает фактический результат Казахстана по выбранному "
 "предмету, набранный в 2022 году. "
 msgstr "Қызыл сызық 2022 жылы таңдалған пән бойынша Қазақстанның алған нәтижесін көрсетеді."
+
+msgctxt "Page title"
+msgid "Manage Variants"
+msgstr "Сұрақтарды қарау"
 
 msgctxt "Page title"
 msgid "Buy Credits"
@@ -1931,12 +1937,36 @@ msgid "Manage Package"
 msgstr ""
 
 msgctxt "Navigation link"
+msgid "Teacher dashboard"
+msgstr "Оқушылардың прогресі"
+
+msgctxt "Navigation link"
+msgid "Bird Game"
+msgstr "Құс ойыны"
+
+msgctxt "Navigation link"
 msgid "Manage Packages"
 msgstr ""
 
 msgctxt "Navigation link"
 msgid "Public Offer"
 msgstr "Жария офертасы"
+
+msgctxt "Navigation link"
+msgid "Buy Packages"
+msgstr "Бірліктерді сатып алу"
+
+msgctxt "Navigation link"
+msgid "Manage Variants"
+msgstr "Сұрақтарды қарау"
+
+msgctxt "Navigation link"
+msgid "Manage Users"
+msgstr "Таңдауларды баптау"
+
+msgctxt "Navigation link"
+msgid "Help B2BTeacher"
+msgstr "Бейне-нұсқаулық"
 
 msgctxt "Navigation link"
 msgid "Settings"

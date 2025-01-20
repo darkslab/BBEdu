@@ -2326,7 +2326,7 @@ msgstr "Начать тестирование"
 
 msgctxt "Navigation link"
 msgid "Buy Packages"
-msgstr "Приобрести вариант"
+msgstr "Приобрести единицы"
 
 msgctxt "Navigation link"
 msgid "Manage Variants"
