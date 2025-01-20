@@ -64,26 +64,49 @@
         <h2 class="text-center variant-title">{{ variant.name }}</h2>
         <div class="row justify-content-center">
             <div class="pricing-cards">
-                {% for card in card_data %}
-                    <div class="card">
-                        <p class="card-title display-4">{{ card.title }}</p>
-                        <p class="card-subtitle">{{ card.subtitle }} </p>
-                        <p class="display-4"> <strong>{{ card.number_of_students }} учащихся</strong></p>
-                        
-                        <p class="card-section-title">Тестирование по направлениям:</p>
-                        <ul class="features-list">
-                            {% for feature in card.features %}
-                                <li>{{ feature }}</li>
-                            {% endfor %}
-                        </ul>
-                        
-                        <p class="card-footer">{{ card.footer }}</p>
-                        <p class="card-techsupport">{{ card.techsupport }}</p>
-                        
-                        <p class="card-price">{{ card.price }}</p>
-                        <button class="order-button" onclick="handleOrder('{{ variant.id }}', '{{ card.number_of_students }}')">Заказать</button>
-                    </div>
-                {% endfor %}
+                {% if language == "ru" %}
+                    {% for card in card_data %}
+                        <div class="card">
+                            <p class="card-title display-4">{{ card.title }}</p>
+                            <p class="card-subtitle">{{ card.subtitle }} </p>
+                            <p class="display-4"> <strong>{{ card.number_of_students }} учащихся</strong></p>
+                            
+                            <p class="card-section-title">Тестирование по направлениям:</p>
+                            <ul class="features-list">
+                                {% for feature in card.features %}
+                                    <li>{{ feature }}</li>
+                                {% endfor %}
+                            </ul>
+                            
+                            <p class="card-footer">{{ card.footer }}</p>
+                            <p class="card-techsupport">{{ card.techsupport }}</p>
+                            
+                            <p class="card-price">{{ card.price }}</p>
+                            <button class="order-button" onclick="handleOrder('{{ variant.id }}', '{{ card.number_of_students }}')">Заказать</button>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% for card in card_data %}
+                        <div class="card">
+                            <p class="card-title display-4">{{ card.title }}</p>
+                            <p class="card-subtitle">{{ card.subtitle }} </p>
+                            <p class="display-4"> <strong>{{ card.number_of_students }} оқушыға арналған</strong></p>
+                            
+                            <p class="card-section-title">Тест тапсыру бағыттары бойынша:</p>
+                            <ul class="features-list">
+                                {% for feature in card.features %}
+                                    <li>{{ feature }}</li>
+                                {% endfor %}
+                            </ul>
+                            
+                            <p class="card-footer">{{ card.footer }}</p>
+                            <p class="card-techsupport">{{ card.techsupport }}</p>
+                            
+                            <p class="card-price">{{ card.price }}</p>
+                            <button class="order-button" onclick="handleOrder('{{ variant.id }}', '{{ card.number_of_students }}')">Тапсырыс беру</button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     {% endfor %}

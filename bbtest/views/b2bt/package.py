@@ -20,7 +20,7 @@ from django.db.transaction import atomic
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.timezone import now
-from django.utils.translation import pgettext
+from django.utils.translation import pgettext, get_language
 from django.views.generic.base import ContextMixin, TemplateResponseMixin, View
 
 from bbtest.auth.mixins import (
@@ -422,6 +422,7 @@ class BuyPackageView(
 
     def get_context_data(self, **kwargs):
         kwargs["active_nav_item"] = "buy_packages"
+        kwargs["language"] = get_language()
 
         kwargs["card_data"] = [
             {
@@ -447,6 +448,33 @@ class BuyPackageView(
                 ],
                 'footer': 'Автоматическое формирование аналитики по всему классу и каждому ученику',
                 'techsupport': 'Предоставление технической поддержки',
+                'price': '45 000 тг',
+                'number_of_students': 150,
+            },
+        ] if get_language() == "ru" else [
+            {
+                'title': 'Пакет "Сынып"',
+                'subtitle': 'PISA 2025 симуляциялық тестінің бір нұсқасына қолжетімділік беру',
+                'features': [
+                    'Оқу сауаттылығы',
+                    'Математикалық сауаттылық',
+                    'Жаратылыстану-ғылыми сауаттылық',
+                ],
+                'footer': 'Толық сынып және әр оқушы бойынша аналитиканы автоматты түрде қалыптастыру',
+                'techsupport': 'Техникалық қолдау көрсету',
+                'price': '15 000 тг',
+                'number_of_students': 25,
+            },
+            {
+                'title': 'Пакет "Мектептік"',
+                'subtitle': 'PISA 2025 симуляциялық тестінің бір нұсқасына қолжетімділік беру',
+                'features': [
+                    'Оқу сауаттылығы',
+                    'Математикалық сауаттылық',
+                    'Жаратылыстану-ғылыми сауаттылық',
+                ],
+                'footer': 'Толық сыныптар және әр оқушы бойынша аналитиканы автоматты түрде қалыптастыру',
+                'techsupport': 'Техникалық қолдау көрсету',
                 'price': '45 000 тг',
                 'number_of_students': 150,
             },
