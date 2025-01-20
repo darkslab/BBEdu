@@ -1516,7 +1516,7 @@ msgstr "Управление"
 
 msgctxt "/b2bt/"
 msgid "Начать тестирование (Отменить нельзя)"
-msgstr "Начать тестирование (Отменить нельзя)"
+msgstr "Начать тестирование"
 
 msgctxt "/b2bt/"
 msgid "View Results"

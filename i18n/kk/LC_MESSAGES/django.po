@@ -1297,8 +1297,40 @@ msgid "View Results"
 msgstr "Нәтижелер"
 
 msgctxt "/b2bt/"
+msgid "Начать тестирование (Отменить нельзя)"
+msgstr "Тестті Бастау"
+
+msgctxt "/b2bt/"
+msgid "Login"
+msgstr "Логин"
+
+msgctxt "/b2bt/"
+msgid "Password"
+msgstr "Құпиясөз"
+
+msgctxt "/b2bt/"
+msgid "First Name"
+msgstr "Аты"
+
+msgctxt "/b2bt/"
+msgid "Last Name"
+msgstr "Тегі"
+
+msgctxt "/b2bt/"
+msgid "Language"
+msgstr "Тіл"
+
+msgctxt "/b2bt/"
 msgid "Выгрузить результаты"
 msgstr "Нәтижелерді Жүктеу"
+
+msgctxt "/b2bt/"
+msgid "Save Changes"
+msgstr "Өзгерістерді Сақтау"
+
+msgctxt "/b2bt/"
+msgid "Export & Download"
+msgstr "Деректерді Жүктеу"
 
 msgctxt "Page title"
 msgid "Manage Variants"
@@ -1533,6 +1565,10 @@ msgid "Plan C line 1."
 msgstr ""
 "1 тест сұрағының бағасы 300 теңге және сатылым санына байланысты жоғары "
 "болады."
+
+msgctxt "Page title"
+msgid "Manage Package"
+msgstr "Пайдаланушылар"
 
 msgctxt "Developer acknowledgement page"
 msgid "Plan C line 2."

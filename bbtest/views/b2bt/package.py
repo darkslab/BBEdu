@@ -163,6 +163,7 @@ class BuildPackageView(
         # print("BuildPackageView", self.request)
         # print("BuildPackageView", kwargs, code)
         kwargs["active_nav_item"] = "manage_students"
+        kwargs["language"] = get_language()
 
         package_pair_quiz_obj: TestPackageRusKazQuiz = get_object_or_404(TestPackageRusKazQuiz.objects, pk=package_pair_quiz_id)
 

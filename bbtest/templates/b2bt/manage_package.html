@@ -14,20 +14,35 @@
             module: "SuperCreatePackageModule"
         });
     </script>
-
-    <div class="instruction-box" style="margin: 15px; padding: 15px; padding-bottom: 0; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
-        <h3 style="font-size: 18px; font-weight: bold; margin-top: 0px;">Инструкция по заполнению формы:</h3>
-        <ol style="font-size: 16px; line-height: 1.6;">
-            <li>Необходимо вбить в поля <strong>Имя</strong> и <strong>Фамилия</strong> - имена и фамилии детей.</li>
-            <li>Выбрать язык сдачи тестирования (<strong>rus/kaz</strong>).</li>
-            <li>Нажать на кнопку <strong>"Сохранить Изменения"</strong> в конце списка.</li>
-            <li>Для выгрузки данных в Excel нажмите на кнопку <strong>"Выгрузка данных"</strong>.</li>
-            <li>После внесения данных об учениках, нужно нажать на кнопку <strong>"Настройка Вариантов"</strong> в левом меню. Далее нажимаем на кнопку <strong>"Начать тестирование"</strong>, напротив нужного варианта.<br/><strong>ВНИМАНИЕ</strong>: После того как вы нажмете начнете тестирование, изменять данные об учениках будет <strong>НЕВОЗМОЖНО</strong>.</li>
-            <li>Ученикам, для прохождения тестирования необходимо перейти по ссылке <a href="https://qabilet.kz/">https://qabilet.kz/</a> и в поле логин и пароль ввести соответвующие данные.</li>
-            {% comment %} <li>Видео инструкция <a href="https://www.youtube.com/watch?v=U_ApFztnWa8/">ссылка</a></li> {% endcomment %}
-        </ol>
-    </div>
-
+    {% if language == "ru" %}
+        <div class="instruction-box" style="margin: 15px; padding: 15px; padding-bottom: 0; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+            <h3 style="font-size: 18px; font-weight: bold; margin-top: 0px;">Инструкция по заполнению формы:</h3>
+            <ol style="font-size: 16px; line-height: 1.6;">
+                <li>Необходимо вбить в поля <strong>Имя</strong> и <strong>Фамилия</strong> - имена и фамилии детей.</li>
+                <li>Выбрать язык сдачи тестирования (<strong>rus/kaz</strong>).</li>
+                <li>Нажать на кнопку <strong>"Сохранить Изменения"</strong> в конце списка.</li>
+                <li>Для выгрузки данных в Excel нажмите на кнопку <strong>"Выгрузка данных"</strong>.</li>
+                <li>После внесения данных об учениках, нужно нажать на кнопку <strong>"Настройка Вариантов"</strong> в левом меню. Далее нажимаем на кнопку <strong>"Начать тестирование"</strong>, напротив нужного варианта.<br/><strong>ВНИМАНИЕ</strong>: После того как вы нажмете начнете тестирование, изменять данные об учениках будет <strong>НЕВОЗМОЖНО</strong>.</li>
+                <li>Ученикам, для прохождения тестирования необходимо перейти по ссылке <a href="https://qabilet.kz/">https://qabilet.kz/</a> и в поле логин и пароль ввести соответвующие данные.</li>
+            </ol>
+        </div>
+    {% else %}
+        <div class="instruction-box" style="margin: 15px; padding: 15px; padding-bottom: 0; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+            <h3 style="font-size: 18px; font-weight: bold; margin-top: 0px;">Форма толтыру бойынша нұсқаулық:</h3>
+            <ol style="font-size: 16px; line-height: 1.6;">
+                <li>Балалардың <strong>аты</strong> мен <strong>тегін</strong> сәйкес өрістерге енгізіңіз.</li>
+                <li>Тест тапсыру тілін таңдаңыз.(<strong>қаз/ орыс</strong>).</li>
+                <li>Тізімнің соңында орналасқан <strong>"Өзгерістерді сақтау"</strong> батырмасын басыңыз.</li>
+                <li>Деректерді Excel форматына жүктеу үшін <strong>"Деректерді жүктеу"</strong> батырмасын басыңыз.</li>
+                <li>Оқушылар туралы мәлімет енгізілгеннен кейін, сол жақ мәзірде орналасқан <strong>"Таңдауларды баптау"</strong> батырмасын басыңыз.
+                    Содан кейін қажетті нұсқаның жанындағы <strong>"Тестті бастау"</strong> батырмасын басыңыз.
+                    <strong>НАЗАР АУДАРЫҢЫЗ!</strong>
+                    Тестті бастағаннан кейін оқушылар туралы мәліметтерді өзгерту <strong>МҮМКІН ЕМЕС</strong>.
+                </li>
+                <li>Тестті тапсыру үшін оқушылар <a href="https://qabilet.kz/">https://qabilet.kz/</a> сілтемесіне өтіп, логин мен құпиясөзді енгізуі керек.</li>
+            </ol>
+        </div>
+    {% endif %}
    
     {% comment %} Table with student groups {% endcomment %}    
     <div class="row">
