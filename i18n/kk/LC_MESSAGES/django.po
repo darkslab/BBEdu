@@ -1276,7 +1276,29 @@ msgctxt "PISA Teacher"
 msgid ""
 "Красная линия показывает фактический результат Казахстана по выбранному "
 "предмету, набранный в 2022 году. "
-msgstr "Қызыл сызық 2022 жылы таңдалған пән бойынша Қазақстанның алған нәтижесін көрсетеді."
+msgstr ""
+"Қызыл сызық 2022 жылы таңдалған пән бойынша Қазақстанның алған нәтижесін "
+"көрсетеді."
+
+msgctxt "Page title"
+msgid "Package settigs"
+msgstr "Таңдауларды баптау"
+
+msgctxt "/admin/create_package/"
+msgid "Number of students"
+msgstr "Пайдаланушылар саны"
+
+msgctxt "/b2bt/"
+msgid "Manage"
+msgstr "Басқару"
+
+msgctxt "/b2bt/"
+msgid "View Results"
+msgstr "Нәтижелер"
+
+msgctxt "/b2bt/"
+msgid "Выгрузить результаты"
+msgstr "Нәтижелерді Жүктеу"
 
 msgctxt "Page title"
 msgid "Manage Variants"
@@ -1766,7 +1788,7 @@ msgstr ""
 
 msgctxt "/admin/create_package/"
 msgid "Created at"
-msgstr "жасалған уақыты"
+msgstr "Жасалған уақыты"
 
 msgctxt "/admin/create_package/"
 msgid "Finalized?"
