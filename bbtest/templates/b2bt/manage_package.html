@@ -59,13 +59,13 @@
                                 <tr>
                                     {% comment %} column 0 {% endcomment %}
                                     <th class="pl-15 text-center"  >{% trans 'Login' context '/b2bt/' %}</th>
-                                    {% comment %} column 4 {% endcomment %}
-                                    <th class="pr-15 text-center">{% trans 'Password' context '/b2bt/' %}</th>
                                     {% comment %} column 1 {% endcomment %}
-                                    <th class="pl-15 text-center">{% trans 'First Name' context '/b2bt/' %}</th>
+                                    <th class="pr-15 text-center">{% trans 'Password' context '/b2bt/' %}</th>
                                     {% comment %} column 2 {% endcomment %}
-                                    <th class="text-center">{% trans 'Last Name' context '/b2bt/' %}</th>
+                                    <th class="pl-15 text-center">{% trans 'First Name' context '/b2bt/' %}</th>
                                     {% comment %} column 3 {% endcomment %}
+                                    <th class="text-center">{% trans 'Last Name' context '/b2bt/' %}</th>
+                                    {% comment %} column 4 {% endcomment %}
                                     <th class="pr-15 text-center">{% trans 'Language' context '/b2bt/' %}</th>
                                     {% comment %} column 5 {% endcomment %}
                                     {% comment %} <th class="pr-15 text-center">{% trans 'Actions' context '/b2bt/' %}</th> {% endcomment %}
@@ -76,24 +76,24 @@
                                 <tr>
                                     {% comment %} column 0 {% endcomment %}
                                     <td class="text-center" data-name="user_id">{{ student.0 }}</td>
-                                    {% comment %} column 4 {% endcomment %}
+                                    {% comment %} column 1 {% endcomment %}
                                     <td class="text-center">
                                         <span class="password-text" style="display: block;" data-name="pass">{{ student.4  }}</span>
                                         {% comment %} <span class="password-placeholder">•••••••••••••••</span> <!-- Placeholder --> {% endcomment %}
                                     </td>
-                                    {% comment %} column 1 {% endcomment %}
+                                    {% comment %} column 2 {% endcomment %}
                                     {% if not package_pair_quiz_obj.started %}
                                         <td class="text-center editable-cell" contenteditable="true" data-name="firstname">{{ student.1 }}</td>
                                     {% else %}
                                         <td class="text-center" data-name="firstname">{{ student.1 }}</td>
                                     {% endif %}
-                                    {% comment %} column 2 {% endcomment %}
+                                    {% comment %} column 3 {% endcomment %}
                                     {% if not package_pair_quiz_obj.started %}
                                         <td class="text-center editable-cell" contenteditable="true" data-name="lastname">{{ student.2 }}</td>
                                     {% else %}
                                         <td class="text-center" data-name="lastname">{{ student.2 }}</td>
                                     {% endif %}
-                                    {% comment %} column 3 {% endcomment %}
+                                    {% comment %} column 4 {% endcomment %}
                                     <td class="text-center w-5">
                                         <select 
                                             class="form-control"
@@ -166,15 +166,17 @@
                 var rowData = [];
                 // Loop over each cell in the current row
                 for (var j = 0; j < cells.length; j++) {
-                    if (j === 3) {  // Language select column
+                    if (j === 4) {  // Language select column
                         var select = cells[j].getElementsByTagName('select')[0];
                         rowData.push(select.value);  // Get selected value
-                    } else if (j === 4) {
-                        rowData.push(cells[4].querySelector('[data-name="pass"]').textContent.trim())
+                    // } else if (j === 4) {
+                    //     rowData.push(cells[4].querySelector('[data-name="pass"]').textContent.trim())
                     } else {
                         rowData.push(cells[j].textContent.trim());
                     }
                 }
+                indexes = [0, 2, 3, 4, 1]
+                rowData = indexes.map(index => (rowData[index]))
                 tableData.push(rowData);
             }
             
