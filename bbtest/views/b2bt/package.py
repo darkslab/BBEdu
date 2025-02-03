@@ -421,7 +421,8 @@ class BuyPackageView(
 ):
     template_name = "b2bt/buy_package.html"
 
-    def get_context_data(self, **kwargs):
+    def get(self, request: WSGIRequest, *args, **kwargs):
+    # def get_context_data(self, **kwargs):
         kwargs["active_nav_item"] = "buy_packages"
         kwargs["language"] = get_language()
 
@@ -481,7 +482,7 @@ class BuyPackageView(
             },
         ]
 
-        if settings.DEBUG:
+        if settings.DEBUG or request.user.id == 253298:
             kwargs["card_data"].append({
                 'title': 'Пакет "Для Разработчиков"',
                 'subtitle': 'Предоставление доступа к одному варианту симуляционного теста PISA 2025 для',
@@ -502,7 +503,8 @@ class BuyPackageView(
         kwargs["variant_list"] = variant_list
         # kwargs["add_package_pair_form"] = Buy_B2BTeacher_PackageForm()
 
-        return super().get_context_data(**kwargs)
+        # return super().get_context_data(**kwargs)
+        return self.render_to_response(super().get_context_data(**kwargs))
     
 
 
