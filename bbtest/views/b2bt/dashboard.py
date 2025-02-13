@@ -221,8 +221,8 @@ class DashboardView(PermissionRequiredMixinFactory(["super", "B2BTeacher"]), Use
         }
 
         # get student group mean score by subject
-        parent_average_scores = {k: float(np.mean(scores)) for k, scores in parent_student_scores_by_lang["rus"].items()}
-        parent_average_scores |= {k: float(np.mean(scores)) for k, scores in parent_student_scores_by_lang["kaz"].items()}
+        parent_average_scores = {k: float(np.nanmean(scores)) for k, scores in parent_student_scores_by_lang["rus"].items()}
+        parent_average_scores |= {k: float(np.nanmean(scores)) for k, scores in parent_student_scores_by_lang["kaz"].items()}
 
         # pass data to charts
         kwargs['student_name_list'] = student_name_list_by_lang # [s.get_full_name() for s in student_obj_list]
