@@ -27,14 +27,27 @@ class UsersView(StaffPermissionRequiredMixin, UserContextMixin, PaginationMixin,
         kwargs["q"] = self.request.GET.get("q", "")
         kwargs["filter_role"] = self.request.GET.get("filter_role", "")
         kwargs["filter_active"] = self.request.GET.get("filter_active", "")
-        kwargs["role_type_list"] = ["developer", "expert", "admin", "student", "super", "demouser", "B2BTeacher"]
+        kwargs["role_type_list"] = ["developer", "expert", "admin", "student", "super", "demouser", "B2BTeacher", "B2BTeacher (pay)", "B2BTeacher (no pay)"]
 
 
         if kwargs["filter_active"] == "1":
             users = users.filter(is_active=True)
 
         if kwargs["filter_role"]:
-            users = users.filter(user_permissions__codename=kwargs["filter_role"] )
+            if kwargs["filter_role"] == "B2BTeacher (pay)":
+                users = users.filter(user_permissions__codename="B2BTeacher" )
+                users = users.filter(
+                    test_package_pair_quiz_sets__payed=True
+                ).distinct()
+
+            elif kwargs["filter_role"] == "B2BTeacher (no pay)":
+                users = users.filter(user_permissions__codename="B2BTeacher" )
+                users = users.exclude(
+                    test_package_pair_quiz_sets__payed=True
+                ).distinct()
+            else:
+                users = users.filter(user_permissions__codename=kwargs["filter_role"] )
+                
 
         if kwargs["q"]:
             users = users.filter(
