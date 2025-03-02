@@ -159,7 +159,7 @@
                 <li><strong><a href="{% url 'bbtest:contact_us' %}">{% trans 'Contact Us' context 'Footer navigation link' %}</a></strong></li>
             </ul>
         </div>
-        <div class="text-white text-center ">{% blocktrans with copyright_code='&copy;' %}_common.copyright:{{ copyright_code }}{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
+        <div class="text-white text-center ">{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
     </div>
 
 </div>

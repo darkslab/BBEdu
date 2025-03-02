@@ -234,7 +234,7 @@
             <li><strong><a href="{% url 'bbtest:contact_us' %}">{% trans 'Contact Us' context 'Footer navigation link' %}</a></strong></li>
         </ul>
     </div>
-    <div class="bb-copyright text-center">{% blocktrans with copyright_code='&copy;' %}_common.copyright:{{ copyright_code }}{% endblocktrans %}{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
+    <div class="bb-copyright text-center">{% if VERSION %}&nbsp;&nbsp;({{ VERSION }}){% endif %}</div>
 {% endblock %}
 
 {% block popup %}{% include 'popups/whatsapp.html' %}{% endblock %}
