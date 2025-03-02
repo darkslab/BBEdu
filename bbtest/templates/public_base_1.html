@@ -39,27 +39,6 @@
                                         <li><a href="{% url 'bbtest:register' %}">{% trans 'Register' context 'Navigation link' %}</a></li>
                                         <li><a href="{% url 'bbtest:faq' %}">{% trans '_common.nav.faq' %}</a></li>
                                     {% endif %}
-                                    <li>
-                                        <a href="#corporate-modal" data-toggle="modal" data-corporate-link="true">{% trans '_common.nav.corporate' %}</a>
-                                        <div class="modal fade" id="corporate-modal">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">{% trans '_common.nav.corporate' %}</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-xs-12">
-                                                                <img class="img-responsive" src="{% static 'img/corporate.png' %}" alt="{% trans '_common.nav.corporate' %}" title="{% trans '_common.nav.corporate' %}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
                                     <li class="bb-lang-container container-fluid">
                                         <div class="row">
                                             <div class="col-xs-2 col-xs-offset-3 col-sm-12 col-sm-offset-0 pr-5 pl-5">
