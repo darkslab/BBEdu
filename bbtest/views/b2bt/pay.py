@@ -68,7 +68,7 @@ class BuyCreditsKaspiView(LoginRequiredMixin, UserContextMixin, TemplateView):
         elif package_pair_quiz_obj.number_of_students <= 25:
             price = 15000
         elif package_pair_quiz_obj.number_of_students <= 150:
-            price = 45000
+            price = 30000
         else:
             raise ValueError(f"Unexpectedlyy large number of students: package_pair_quiz_obj.number_of_students={package_pair_quiz_obj.number_of_students}")
             
