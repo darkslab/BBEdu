@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db.transaction import atomic
 from decimal import Decimal
@@ -13,9 +14,11 @@ import logging
 # crontab -e
 # */1 * * * * /usr/local/bin/python3 ~/BBEdu/manage.py run_kaspi_qr_payment_server
 
+BASE_DIR_PATH = settings.BASE_DIR_PATH
 
 # Set up logging configuration
-LOG_FILE = '~/kaspi_qr.log'
+LOG_FILE = BASE_DIR_PATH.parent / 'kaspi_qr.log'
+LOG_FILE = LOG_FILE.name
 
 logging.basicConfig(
     level=logging.INFO,  # Adjust to DEBUG if you need more detailed logs
